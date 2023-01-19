@@ -1,12 +1,12 @@
-# Kaspium - a non-custodial wallet for Kaspa Blockchain
+# Kaspium - a non-custodial wallet for Kaspa blockDAG
 
 ## What is Kaspium?
 
-Kaspium is a non-custodial wallet for the Kaspa blockchain, avaialble for Android and iOS. It is written in [Dart](https://dart.dev) using [Flutter](https://flutter.dev).
+Kaspium is a non-custodial wallet for the Kaspa, avaialble for Android and iOS. It is written in [Dart](https://dart.dev) using [Flutter](https://flutter.dev).
 
 | Link | Description |
 | :----- | :------ |
-[kaspa.org](https://kaspa.org) | Kaspa Blockchain Homepage
+[kaspa.org](https://kaspa.org) | Kaspa Homepage
 
 ## Contributing
 
