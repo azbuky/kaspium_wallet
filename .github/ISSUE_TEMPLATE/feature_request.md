@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for Kaspad
+about: Suggest an idea for kaspian_wallet
 title: ''
 labels: ''
 assignees: ''

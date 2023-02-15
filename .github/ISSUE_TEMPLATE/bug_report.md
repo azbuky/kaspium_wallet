@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help improve Kaspad
+about: Create a report to help improve kaspium_wallet
 title: ''
 labels: ''
 assignees: ''
@@ -24,8 +24,9 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
- - OS: [e.g. Ubuntu 20.04]
- - Kaspad version: [e.g. 0.12.11]
+ - OS and version: [e.g. Android 13]
+ - Device: [e.g. Galaxy S20]
+ - kaspium_wallet version: [e.g. 0.2.0]
 
 **Additional context**
 Add any other context about the problem here.
