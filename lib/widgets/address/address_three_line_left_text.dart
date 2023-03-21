@@ -24,7 +24,7 @@ class AddressThreeLineLeftText extends ConsumerWidget {
     String stringPartTwo = address.substring(separatorIndex + 1, length + 4);
     String stringPartThree = address.substring(length + 4, 2 * (length + 4));
     String stringPartFour =
-        address.substring(2 * length + 6, address.length - 8);
+        address.substring(2 * (length + 4), address.length - 8);
     String stringPartFive = address.substring(address.length - 8);
 
     final styles = ref.watch(stylesProvider);
