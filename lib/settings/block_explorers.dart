@@ -11,6 +11,7 @@ const kBlockExplorerOptions = {
   KaspaNetwork.mainnet: [
     kKaspaExplorerMainnet,
     kKatnipMainnet,
+    kKasFyiExplorerMainnet,
   ],
   KaspaNetwork.testnet: [
     kKatnipTestnet,
@@ -53,6 +54,14 @@ const kKatnipMainnet = BlockExplorer(
   url: 'katnip.kaspad.net',
   addressUrl: 'https://katnip.kaspad.net/addr/$kParamPattern',
   txUrl: 'https://katnip.kaspad.net/tx/$kParamPattern',
+);
+
+const kKasFyiExplorerMainnet = BlockExplorer(
+  network: KaspaNetwork.mainnet,
+  name: 'Kas.fyi Explorer',
+  url: 'kas.fyi',
+  addressUrl: 'https://kas.fyi/address/$kParamPattern',
+  txUrl: 'https://kas.fyi/transaction/$kParamPattern',
 );
 
 const kKatnipTestnet = BlockExplorer(
