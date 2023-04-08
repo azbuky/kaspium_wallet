@@ -1,0 +1,244 @@
+{
+    "@@locale": "uk",
+    "account": "Гаманець",
+    "accounts": "Гаманці",
+    "ackBackedUp": "Ви впевнені, що ви зробили резервну копію вашої секретної фрази або seed?",
+    "addAccount": "Додати гаманець",
+    "addContact": "Додати контакт",
+    "addressCopied": "Адресу скопійовано",
+    "addressHint": "Введіть адресу",
+    "addressMising": "Будь ласка вкажіть адресу",
+    "addressShare": "Поділитися адресою",
+    "amountMissing": "Будь ласка вкажіть суму",
+    "authMethod": "Метод аутентикації",
+    "autoLockHeader": "Автоматичне блокування",
+    "backupConfirmButton": "Я зробив резервну копію",
+    "backupSecretPhrase": "Резервна копія секретної фрази",
+    "backupSeed": "Резервна копія seed",
+    "backupSeedConfirm": "ви впевнені що ви зробили резервну копію seed?",
+    "backupYourSeed": "зробити резервну копію seed",
+    "biometricsMethod": "Біометрика",
+    "blockExplorer": "Explorer блокчейну",
+    "cancel": "Відмовитися",
+    "changeCurrency": "Змінити валюту",
+    "close": "Закрити",
+    "confirm": "Підтвердити",
+    "confirmPasswordHint": "Підтвердити пароль",
+    "contactAdded": "{contactName} додано до контактів.",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Такий контакт вже існує",
+    "contactHeader": "Контакт",
+    "contactInvalid": "Невірне ім'я контакта",
+    "contactNameHint": "Введіть ім'я @",
+    "contactNameMissing": "Оберіть ім'я контакта",
+    "contactRemoved": "{contactName} було видалено з контактів!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Контакти",
+    "contactsImportErr": "Не вдалося імпортувати контакти",
+    "contactsImportSuccess": "Успішно імпортовано {noContacts} контактів.",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Скопійовано",
+    "copy": "Скопіювати",
+    "copyAddress": "Скопіювати адресу",
+    "createAPasswordHeader": "Створити пароль.",
+    "createPasswordFirstParagraph": "Ви можете призначити пароль щоб ваш гаманець був у безпеці.",
+    "createPasswordHint": "Створити пароль",
+    "createPasswordSecondParagraph": "Пароль встановлювати не обов'язково, ваш гаманець буде захищено пін кодом або біометричними даними.",
+    "createPasswordSheetHeader": "Створити",
+    "currency": "Валюта",
+    "defaultAccountName": "Головний гаманець",
+    "defaultNewAccountName": "Гаманець {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "Вимкнути",
+    "disablePasswordSuccess": "Пароль було вимкнено",
+    "disableWalletPassword": "Заборонити пароль гаманця",
+    "dismiss": "Зрозуміло",
+    "encryptionFailedError": "Не вдалося встановити пароль гаманця",
+    "enterAddress": "Введіть адресу",
+    "enterAmount": "Введіть суму",
+    "enterPasswordHint": "Введіть пароль",
+    "exampleCardIntro": "Ласкаво прошу до Kaspium. Як тільки ви отримаєте KAS, трансакції буде показано отак:",
+    "exit": "Вийти",
+    "fingerprintSeedBackup": "Введіть пароль для створення резервної копії.",
+    "goBackButton": "Повернутися",
+    "gotItButton": "Зрозуміло!",
+    "hideAccountHeader": "Приховати гаманець?",
+    "iUnderstandTheRisks": "Я розумію ризики",
+    "ignore": "Ігнорувати",
+    "import": "Імпортувати",
+    "importSecretPhrase": "Імпортувати секретну фразу",
+    "importSecretPhraseHint": "Будь ласка введіть секретну фразу із 24 слів. Слова мають бути розділені пробілом.",
+    "importSeed": "Імпортувати seed",
+    "importSeedHint": "Будь ласка введіть ваш seed нижче.",
+    "importWallet": "Імпортувати гаманець",
+    "instantly": "Миттєво",
+    "insufficientBalance": "Недостатньо коштів",
+    "invalidAddress": "Введено невірну адресу",
+    "invalidPassword": "Невірний пароль",
+    "language": "Мова",
+    "lockAppSetting": "Вводити пароль після запуска",
+    "locked": "Заблоковано",
+    "logout": "Вийти",
+    "manage": "Керувати",
+    "manualEntry": "Введення вручну",
+    "messageHeader": "Повідомлення",
+    "mnemonicInvalidWord": "{word} неправильне слово",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Мнемонічна фраза",
+    "mnemonicSizeError": "Секретна фраза складається  із точно 24х слів",
+    "newWallet": "Новий гаманець",
+    "nextButton": "Далі",
+    "no": "Ні",
+    "noContactsExport": "Немає контактів для експорту.",
+    "noContactsImport": "Немає нових контактів для імпорту",
+    "noSkipButton": "Ні, пропустити",
+    "notificationBody": "Відкрити Kaspium щоб переглянути трансакції",
+    "notificationHeaderSupplement": "Торкніться щоб відкрити",
+    "notificationTitle": "Отримано {amount} KAS",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Повідомлення",
+    "off": "Вимкнуто",
+    "on": "Увімкнуто",
+    "paperWallet": "Паперовий гаманець",
+    "passwordBlank": "Пароль не може бути порожнім",
+    "passwordNoLongerRequiredToOpenParagraph": "Вам більше не треба буде пароль щоб відкрити Kaspium.",
+    "passwordWillBeRequiredToOpenParagraph": "Цей пароль буде необхідним щоб відкрити Kaspium.",
+    "passwordsDontMatch": "Паролі не співпали",
+    "pending": "в процесі",
+    "pinConfirmError": "Пін коди не співпадають",
+    "pinConfirmTitle": "Підтвердіть ваш пін код",
+    "pinCreateTitle": "Придумайте пін код із 6и цифр",
+    "pinEnterTitle": "Введіть пін код",
+    "pinInvalid": "Введено невірний пін код",
+    "pinMethod": "Пін код",
+    "pinSeedBackup": "Введіть пін код для створення резервної копії",
+    "preferences": "Преференції",
+    "privacyPolicy": "Політика приватності",
+    "qrInvalidAddress": "QR код не містить правильного адресата",
+    "qrInvalidPermissions": "Будь ласка дайте дозвіл камері сканувати QR коди",
+    "qrInvalidSeed": "QR код не містить правильних seed чи приватного ключа",
+    "qrMnemonicError": "QR код не містить правильної секретної фрази",
+    "qrUnknownError": "Не вийшло зчитати QR код",
+    "rawSeed": "Seed як є",
+    "receive": "Отримати",
+    "received": "Отримано",
+    "removeContact": "Видалити контакт",
+    "removeContactConfirmation": "Ви впевнені, що ви хочете видалити {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Чи треба пароль щоб відкрити Kaspium?",
+    "rootWarning": "Схоже що ваш прилад \"rooted\", \"jailbroken\", чи модифікований настільки, що це небезпечно. Рекомендовано повернути фабричні установки вашому приладу перед продовженням.",
+    "scanInstructions": "Сканувати QR код \n KAS адреси",
+    "scanQrCode": "Сканувати QR код",
+    "secretInfo": "На наступному екрані ви побачите секретну фразу. Це пароль для доступа до ваших коштів. Це НАДЗВИЧАЙНО важливо зробити резервну копію фрази і ніколи не ділитися нею ні з ким.",
+    "secretInfoHeader": "Перш за все - безпека!",
+    "secretPhrase": "Секретна фраза",
+    "secretWarning": "Якщо ви загубите ваш прилад, або деінсталюєте додаток, вам буде необхідна секретна фраза або seed для повернення коштів!",
+    "securityHeader": "Безпека",
+    "seed": "Seed",
+    "seedBackupInfo": "Це seed вашого гаманця. Це НАДВАЖЛИВО зробити резервну копію вашого seed і ніколи не зберігати цю копію як звичайний текст чи знімок екрана.",
+    "seedInvalid": "неправильний Seed",
+    "send": "Надіслати",
+    "sendError": "Сталася помилка. Спробуйте ще раз пізніше.",
+    "sending": "Надсилання",
+    "sent": "Надіслано",
+    "sentTo": "Надіслано для",
+    "setPassword": "Установити пароль",
+    "setPasswordSuccess": "Пароль було успішно встановлено",
+    "setWalletPassword": "Установити пароль гаманця",
+    "settingsHeader": "Установки",
+    "settingsTransfer": "Завантажити з паперового гаманця",
+    "shareKaspium": "Поділитися Kaspium",
+    "shareKaspiumText": "Спробуйте Kaspium! Офіційний мобільний гаманець Kaspa!",
+    "systemDefault": "Системне значення поза запитом",
+    "tapToHide": "Торкніться щоб приховати",
+    "tapToReveal": "Торкніться щоб побачити",
+    "themeHeader": "Тема",
+    "to": "Для",
+    "tooManyFailedAttempts": "Надто багато невірних спроб розблокувати.",
+    "transfer": "Переказати",
+    "transferClose": "Торкніться щоб закрити вікно.",
+    "transferComplete": "{amount} KAS успішно переказано до вашого гаманця Kaspium. \n",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Знайдено гаманець з балансом {amount} KAS . \n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Натисніть сюди щоб підтвердити переказ коштів. \n",
+    "transferConfirmInfoThird": "Переказ може зайняти декілька секунд.",
+    "transferError": "Під час переказу трапилася помилка. Будь ласка спробуйте пізніше.",
+    "transferHeader": "Переказати кошти",
+    "transferIntro": "Цією дією ви перекажете кошти з паперового гаманця у ваш Kaspium гаманець. \n\n Натисніть \"%1\" конпку щоб почати.",
+    "transferLoading": "Переказується",
+    "transferManualHint": "Будь ласка введіть ваш seed нижче.",
+    "transferNoFunds": "За цим seed знайдено лише нульовий баланс",
+    "transferQrScanError": "Цей QR код не містить правильних seed.",
+    "transferQrScanHint": "Сканувати seed \n або приватний ключ",
+    "unconfirmed": "непідтверджено",
+    "unlock": "Розблокувати",
+    "unlockBiometrics": "Введіть пароль для входу в Kaspium",
+    "unlockPin": "Введіть пін код для входу в Kaspium",
+    "warning": "Попередження",
+    "welcomeText": "Ласкаво просимо до Kaspium. Щоб продовжити ви можете створити новий гаманець або імпортувати існуючий.",
+    "xMinutes": "Після {minutes, plural, =1{1 хвилини} other{{minutes} хвилин}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Так",
+    "yesButton": "Так"
+}

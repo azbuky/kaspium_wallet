@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../util/util.dart';
 import '../widgets/address_widgets.dart';
 import '../widgets/app_text_field.dart';
@@ -50,7 +51,7 @@ class AddressDetailsSheet extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final addressCopiedTimer = ref.watch(_timerProvider.notifier);
 
@@ -79,27 +80,6 @@ class AddressDetailsSheet extends HookConsumerWidget {
     void updateName(String value) {
       ref.read(_accountNameProvider.notifier).state = value;
     }
-
-    // void deleteAccount() {
-    //   ref.read(_accountNameProvider.notifier).state = null;
-    //   ref.read(walletManagerProvider).removeAccount(account);
-
-    //   Navigator.of(context).pop();
-    // }
-
-    // void confirmDelete() {
-    //   AppDialogs.showConfirmDialog(
-    //     context,
-    //     l10n.hideAccountHeader,
-    //     l10n.hideAccountText.replaceAll(
-    //       "%1",
-    //       l10n.addAccount,
-    //     ),
-    //     l10n.YES,
-    //     deleteAccount,
-    //     cancelText: l10n.NO,
-    //   );
-    // }
 
     void showExplorer() {
       final explorer = ref.read(blockExplorerProvider);

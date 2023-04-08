@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/core_providers.dart';
+import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../widgets/buttons.dart';
 
@@ -20,7 +21,7 @@ class SetupFailedPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

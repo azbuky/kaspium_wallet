@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
+import '../l10n/l10n.dart';
 import '../transactions/send_tx.dart';
 import '../txnotes/txnotes_provider.dart';
 import '../util/numberutil.dart';
@@ -32,7 +33,7 @@ class SendConfirmSheet extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
     final styles = ref.watch(stylesProvider);
 
     final toAddress = tx.toAddress;

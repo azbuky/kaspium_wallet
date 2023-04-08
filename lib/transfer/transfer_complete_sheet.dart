@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../widgets/buttons/success_outline_button.dart';
 
 class TransferCompleteSheet extends ConsumerWidget {
@@ -16,7 +17,7 @@ class TransferCompleteSheet extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     return SafeArea(
       minimum: EdgeInsets.only(
@@ -55,7 +56,7 @@ class TransferCompleteSheet extends ConsumerWidget {
                     alignment: AlignmentDirectional(-1, 0),
                     margin: EdgeInsets.symmetric(horizontal: 60),
                     child: Text(
-                      l10n.transferComplete.replaceAll("%1", transferAmount),
+                      l10n.transferComplete(transferAmount),
                       style: styles.textStyleParagraphSuccess,
                       textAlign: TextAlign.start,
                     ),

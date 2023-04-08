@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../main_card/main_card.dart';
 import '../transactions/transactions_widget.dart';
 import '../utxos/utxos_providers.dart';
@@ -31,7 +32,7 @@ class WalletHome extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     ref.watch(_walletWatcherProvider);
 
@@ -57,7 +58,7 @@ class WalletHome extends HookConsumerWidget {
                         child: Container(
                           margin: const EdgeInsets.only(top: 20),
                           child: Text(
-                            l10n.transactions,
+                            l10n.transactionsUppercase,
                             textAlign: TextAlign.center,
                             style: styles.textStyleTabLabel,
                           ),
@@ -68,7 +69,7 @@ class WalletHome extends HookConsumerWidget {
                           padding: const EdgeInsets.only(top: 20),
                           width: double.infinity,
                           child: Text(
-                            l10n.utxos,
+                            l10n.utxosUppercase,
                             textAlign: TextAlign.center,
                             style: styles.textStyleTabLabel,
                           ),

@@ -1,0 +1,238 @@
+{
+    "@@locale": "zh_Hant",
+    "account": "帳戶",
+    "accounts": "帳戶",
+    "ackBackedUp": "確定已備份您的種子或秘密詞語嗎？",
+    "addAccount": "新增帳戶",
+    "addContact": "新增聯絡人",
+    "addressCopied": "地址已複製",
+    "addressHint": "輸入地址",
+    "addressMising": "請輸入目標地址",
+    "addressShare": "分享地址",
+    "amountMissing": "請輸入金額",
+    "authMethod": "驗證機制",
+    "autoLockHeader": "自動鎖定",
+    "backupConfirmButton": "已備份",
+    "backupSecretPhrase": "備份秘密詞語",
+    "backupSeed": "備份種子",
+    "backupSeedConfirm": "您確認已備份您的錢包種子嗎？",
+    "backupYourSeed": "備份您的種子",
+    "biometricsMethod": "生物辨識技術",
+    "cancel": "取消",
+    "changeCurrency": "變更貨幣單位",
+    "close": "關閉",
+    "confirm": "確認",
+    "confirmPasswordHint": "確認密碼",
+    "contactAdded": "{contactName} 已新增為聯絡人！",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "聯絡人已存在",
+    "contactHeader": "聯絡人",
+    "contactInvalid": "無效的聯絡人名稱",
+    "contactNameHint": "輸入名稱 @",
+    "contactNameMissing": "選擇該聯絡人的名稱",
+    "contactRemoved": "{contactName} 已自聯絡人清單中刪除！",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "聯絡人清單",
+    "contactsImportErr": "無法匯入聯絡人",
+    "contactsImportSuccess": "順利匯出 {noContacts} 個聯絡人",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "已複製",
+    "copy": "複製",
+    "copyAddress": "複製地址",
+    "createAPasswordHeader": "建立一組密碼。",
+    "createPasswordFirstParagraph": "您可建立一組密碼以增進錢包的安全強度。",
+    "createPasswordHint": "建立密碼",
+    "createPasswordSecondParagraph": "密碼並非必要，無論如何您的錢包仍會被辨識碼或生物辨識技術保護。",
+    "createPasswordSheetHeader": "建立",
+    "currency": "貨幣",
+    "defaultAccountName": "主要帳戶",
+    "defaultNewAccountName": "帳戶 {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "解除",
+    "disablePasswordSuccess": "錢包密碼已解除",
+    "disableWalletPassword": "解除錢包密碼",
+    "encryptionFailedError": "無法設定錢包密碼",
+    "enterAddress": "輸入地址",
+    "enterAmount": "輸入金額",
+    "enterPasswordHint": "輸入您的密碼",
+    "exampleCardIntro": "歡迎來到 Kaspium。當您收到或發送 KAS 時，交易將顯示如下：",
+    "exit": "退出",
+    "fingerprintSeedBackup": "確認指紋或 Face ID，備份錢包種子。",
+    "goBackButton": "返回",
+    "gotItButton": "已理解",
+    "hideAccountHeader": "隱藏帳戶？",
+    "iUnderstandTheRisks": "我已理解風險",
+    "import": "匯入",
+    "importSecretPhrase": "輸入秘密詞語",
+    "importSecretPhraseHint": "請輸入您的 24 個秘密詞語。每個詞應用空格分隔。",
+    "importSeed": "匯入種子",
+    "importSeedHint": "請在下方輸入您的種子",
+    "importWallet": "匯入現有錢包",
+    "instantly": "立刻",
+    "insufficientBalance": "餘額不足",
+    "invalidAddress": "無效的目標地址",
+    "invalidPassword": "無效的密碼",
+    "language": "語言",
+    "lockAppSetting": "啟動時要求驗證",
+    "locked": "已鎖定",
+    "logout": "登出",
+    "manage": "管理",
+    "manualEntry": "手動輸入",
+    "mnemonicInvalidWord": "{word} 不是有效的詞語。",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "助記詞",
+    "mnemonicSizeError": "秘密詞語一定要包含 24 個詞語",
+    "newWallet": "建立新錢包",
+    "nextButton": "繼續",
+    "no": "不要",
+    "noContactsExport": "沒有可匯出的聯絡人",
+    "noContactsImport": "沒有可匯入的聯絡人",
+    "noSkipButton": "不用，略過",
+    "notificationBody": "查看交易明細",
+    "notificationHeaderSupplement": "輕觸打開",
+    "notificationTitle": "收到 {amount} KAS",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "通知",
+    "off": "關閉",
+    "on": "開啟",
+    "paperWallet": "紙錢包",
+    "passwordBlank": "密碼不得留白",
+    "passwordNoLongerRequiredToOpenParagraph": "您日後啟動 Kaspium 時不用輸入密碼。",
+    "passwordWillBeRequiredToOpenParagraph": "以後需要這個密碼方可開啟 Kaspium。",
+    "passwordsDontMatch": "密碼不匹配",
+    "pinConfirmError": "識別碼不匹配",
+    "pinConfirmTitle": "確認您的識別碼",
+    "pinCreateTitle": "建立 6 個數字組成的辨識碼",
+    "pinEnterTitle": "輸入識別碼",
+    "pinInvalid": "輸入的識別碼無效",
+    "pinMethod": "識別碼",
+    "pinSeedBackup": "輸入識別碼以查看錢包種子",
+    "preferences": "個人偏好",
+    "privacyPolicy": "隱私政策",
+    "qrInvalidAddress": "二維條碼不含有效的地址",
+    "qrInvalidPermissions": "請允許相機權限來掃描二維條碼",
+    "qrInvalidSeed": "二維條碼不含任何有效的種子",
+    "qrMnemonicError": "二維條碼不含有效的秘密詞語",
+    "qrUnknownError": "無法讀取二維條碼",
+    "rawSeed": "種子",
+    "receive": "接收",
+    "received": "收到",
+    "removeContact": "刪除聯絡人",
+    "removeContactConfirmation": "您確定要删除 {contactName} 嗎？",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "需要密碼才可開啟 Kaspium 嗎？",
+    "rootWarning": "您的裝置似乎已「越獄」或被修改，從而存在安全疑慮。建議您在繼續之前，將裝置還原至初始狀態。",
+    "scanInstructions": "掃描 KAS 二維條碼地址",
+    "scanQrCode": "掃描二維條碼",
+    "secretInfo": "您將看到您的秘密詞語，秘密詞語是存取您資產的密碼。務必確認您將其備份，不與他人分享。",
+    "secretInfoHeader": "安全至上！",
+    "secretPhrase": "秘密詞語",
+    "secretWarning": "若您的手機遺失或卸載本程式，就需要您的種子或秘密詞語才可重新處理您的資產！",
+    "securityHeader": "資訊安全",
+    "seed": "種子",
+    "seedBackupInfo": "以下是您錢包的種子。請注意，您一定要備份種子，但不要將其儲存為純文字或螢幕截圖",
+    "seedInvalid": "種子無效",
+    "send": "發送",
+    "sendError": "發生錯誤。稍後再試。",
+    "sending": "傳送",
+    "sent": "發送",
+    "sentTo": "發送給：",
+    "setPassword": "設定密碼",
+    "setPasswordSuccess": "順利設定密碼",
+    "setWalletPassword": "設定錢包密碼",
+    "settingsHeader": "設定",
+    "settingsTransfer": "透過紙錢包儲值",
+    "shareKaspium": "分享 Kaspium",
+    "shareKaspiumText": "請試試 Kaspium —— 針對行動裝置的 KAS 錢包！",
+    "systemDefault": "系統預設",
+    "tapToHide": "輕觸以隱藏",
+    "tapToReveal": "輕觸以揭露",
+    "themeHeader": "佈景主題",
+    "to": "至：",
+    "tooManyFailedAttempts": "解鎖失敗太多次",
+    "transfer": "移轉",
+    "transferClose": "輕觸任意位置以關閉視窗。",
+    "transferComplete": "{amount} KAS 順利移轉到您的 Kaspium 錢包。\n",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "偵測到一個內有 {amount} KAS 的錢包。\n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "輕觸以確認移轉。\n",
+    "transferConfirmInfoThird": "移轉需要幾秒鐘完成，請稍等。",
+    "transferError": "轉帳過程遇到障礙，請稍後再試。",
+    "transferHeader": "自紙錢包移轉資產",
+    "transferIntro": "這過程會將紙錢包的資產移轉至您的 Kaspium 錢包。\n\n輕觸 \"%1\" 按鈕開始。",
+    "transferLoading": "移轉中",
+    "transferManualHint": "請輸入紙錢包的種子",
+    "transferNoFunds": "這個種子不含任何 KAS",
+    "transferQrScanError": "這個二維條碼不含任何有效的種子",
+    "transferQrScanHint": "掃描 KAS 種子",
+    "unlock": "解鎖",
+    "unlockBiometrics": "經由生物辨識解鎖 Kaspium",
+    "unlockPin": "請輸入識別碼以解鎖 Kaspium",
+    "warning": "警告",
+    "welcomeText": "歡迎來到 Kaspium。接著您可建立新錢包或匯入現有錢包",
+    "xMinutes": "{minutes, plural, =1{1} other{{minutes}}} 分鐘後",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "確認",
+    "yesButton": "確認"
+}

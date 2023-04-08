@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 
 import '../themes/themes.dart';
 import 'setting_item.dart';
@@ -22,7 +22,7 @@ class ThemeSetting extends SettingSelectionItem {
 
   const ThemeSetting(this.theme);
 
-  String getDisplayName(WidgetRef ref) {
+  String getDisplayName(BuildContext context) {
     switch (theme) {
       // case ThemeOptions.CARBON:
       //   return "Carbon";

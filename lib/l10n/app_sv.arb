@@ -1,0 +1,244 @@
+{
+    "@@locale": "sv",
+    "account": "Konto",
+    "accounts": "Konton",
+    "ackBackedUp": "Är du säker på att du har sparat ner din hemliga fras eller seed?",
+    "addAccount": "Lägg till konto",
+    "addContact": "Lägg till kontakt",
+    "addressCopied": "Adress kopierad",
+    "addressHint": "Ange adress",
+    "addressMising": "Ange en destination",
+    "addressShare": "Dela",
+    "amountMissing": "Ange ett belopp",
+    "authMethod": "Autentiseringsmetod",
+    "autoLockHeader": "Lås automatiskt",
+    "backupConfirmButton": "Jag har sparat den",
+    "backupSecretPhrase": "Säkerhetskopiera hemlig fras",
+    "backupSeed": "Säkerhetskopiera seed",
+    "backupSeedConfirm": "Är du säker på att du har säkerhetskopierat din plånboks seed?",
+    "backupYourSeed": "Säkerhetskopiera ditt seed",
+    "biometricsMethod": "Biometrik",
+    "blockExplorer": "Block Utforskare",
+    "cancel": "Avbryt",
+    "changeCurrency": "Ändra valuta",
+    "close": "Stäng",
+    "confirm": "Bekräfta",
+    "confirmPasswordHint": "Bekräfta lösenordet",
+    "contactAdded": "{contactName} har lagts till under kontakter!",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Kontakten existerar redan",
+    "contactHeader": "Kontakter",
+    "contactInvalid": "Ogiltigt kontaktnamn",
+    "contactNameHint": "Ange ett namn @",
+    "contactNameMissing": "Det finns inga kontakter att exportera",
+    "contactRemoved": "{contactName} har raderats från dina kontakter!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Kontakter",
+    "contactsImportErr": "Gick ej att importera kontakter",
+    "contactsImportSuccess": "Lyckad import av {noContacts} kontakter",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Kopierad",
+    "copy": "Kopiera",
+    "copyAddress": "Kopiera adress",
+    "createAPasswordHeader": "Ställ in ett lösenord.",
+    "createPasswordFirstParagraph": "Du kan ställa in ett lösenord för att öka säkerheten för din plånbok.",
+    "createPasswordHint": "Ställ in ett lösenord",
+    "createPasswordSecondParagraph": "Lösenord är valfritt och din plånbok kommer ändå att skyddas av din PIN-kod eller biometriskt.",
+    "createPasswordSheetHeader": "Ställ in",
+    "currency": "Valuta",
+    "defaultAccountName": "Huvudkonto",
+    "defaultNewAccountName": "Konto {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "Avaktivera",
+    "disablePasswordSuccess": "Lösenordet har avaktiverats",
+    "disableWalletPassword": "Avaktivera plånbokslösenord",
+    "dismiss": "Avfärda",
+    "encryptionFailedError": "Misslyckades med att ställa in ett lösenord",
+    "enterAddress": "Ange adress",
+    "enterAmount": "Ange belopp",
+    "enterPasswordHint": "Ange ditt lösenord",
+    "exampleCardIntro": "Välkommen till Kaspium. Så snart du tar emot KAS, visas transaktionerna på detta vis",
+    "exit": "Tillbaka",
+    "fingerprintSeedBackup": "Bekräfta fingeravtryck för att säkerhetskopiera plånboks-seed.",
+    "goBackButton": "Tillbaka",
+    "gotItButton": "Jag fattar!",
+    "hideAccountHeader": "Dölja konto?",
+    "iUnderstandTheRisks": "Jag förstår riskerna",
+    "ignore": "Ignorera",
+    "import": "Importera",
+    "importSecretPhrase": "Importera hemlig fras",
+    "importSecretPhraseHint": "Ange din hemliga fras på 24 ord. Varje ord ska separeras med ett mellanslag.",
+    "importSeed": "Importera seed",
+    "importSeedHint": "Ange ditt seed nedanför.",
+    "importWallet": "Importera plånbok",
+    "instantly": "Omedelbart",
+    "insufficientBalance": "Otillräckligt saldo",
+    "invalidAddress": "Ogiltig mottagaradress",
+    "invalidPassword": "Ogiltigt lösenord",
+    "language": "Språk",
+    "lockAppSetting": "Verifiera vid uppstart",
+    "locked": "Låst",
+    "logout": "Logga ut",
+    "manage": "Förvaltning",
+    "manualEntry": "Ange manuellt",
+    "messageHeader": "Meddelande",
+    "mnemonicInvalidWord": "{word} är inget giltigt ord",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Hemlig fras",
+    "mnemonicSizeError": "En hemlig fras kan bara innehålla 24 ord",
+    "newWallet": "Ny plånbok",
+    "nextButton": "Nästa",
+    "no": "Nej",
+    "noContactsExport": "Det finns inga kontakter att exportera",
+    "noContactsImport": "Hittade inga kontakter att importera",
+    "noSkipButton": "Nej, hoppa över",
+    "notificationBody": "Öppna Kaspium för att visa transaktion.",
+    "notificationHeaderSupplement": "Tryck för att öppna",
+    "notificationTitle": "Mottog {amount} KAS",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Aviseringar",
+    "off": "Av",
+    "on": "På",
+    "paperWallet": "Pappersplånbok",
+    "passwordBlank": "Lösenordsfältet kan ej lämnas tomt",
+    "passwordNoLongerRequiredToOpenParagraph": "Du behöver inte lösenord för att öppna Kaspium längre.",
+    "passwordWillBeRequiredToOpenParagraph": "Lösenordet behövs för att öppna Kaspium.",
+    "passwordsDontMatch": "Lösenorden stämmer ej överens",
+    "pending": "pågående",
+    "pinConfirmError": "PIN-kod matchar ej",
+    "pinConfirmTitle": "Bekräfta din PIN-kod",
+    "pinCreateTitle": "Skapa en 6-siffrig PIN-kod",
+    "pinEnterTitle": "Ange PIN-kod",
+    "pinInvalid": "Felaktig PIN-kod angiven",
+    "pinMethod": "PIN",
+    "pinSeedBackup": "Ange din PIN-kod för att se ditt seed.",
+    "preferences": "Inställningar",
+    "privacyPolicy": "Privatpolicy",
+    "qrInvalidAddress": "QR-koden innehåller inte en giltig destination",
+    "qrInvalidPermissions": "Bevilja kameraåtkomst för att skanna QR-koder",
+    "qrInvalidSeed": "QR-koden innehåller inget giltigt seed eller privatnyckel",
+    "qrMnemonicError": "QR innehåller ingen giltig hemlig fras",
+    "qrUnknownError": "Kunde inte läse QR-kod",
+    "rawSeed": "Seed",
+    "receive": "Ta emot",
+    "received": "Mottagit",
+    "removeContact": "Ta bort kontakt",
+    "removeContactConfirmation": "Är du säker på att du vill radera {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Kräv lösenord för att öppna Kaspium?",
+    "rootWarning": "Det verkar som att din enhet har \"rootats\", \"jailbreakats\" eller modififierats på ett sätt som kan äventyra säkerheten. Det är rekommenderat att du återställer din enhet till sitt ursprungliga tillstånd.",
+    "scanInstructions": "Skanna en Kaspa\nadress QR-kod",
+    "scanQrCode": "Skanna QR-kod",
+    "secretInfo": "På nästa skärm kommer du att se din hemliga fras. Det är ett lösenord för att komma åt dina tillgångar. Det är viktigt att du sparar ner den och aldrig delar den med någon.",
+    "secretInfoHeader": "Säkerheten först!",
+    "secretPhrase": "Hemlig fras",
+    "secretWarning": "Om du tappar bort din enhet eller avinstallerar applikationen, behöver du din hemliga fras eller ditt seed för att återfå dina tillgångar!",
+    "securityHeader": "Säkerhet",
+    "seed": "Seed",
+    "seedBackupInfo": "Detta är din plånboks seed. Det är av extrem vikt att du sparar detta seed på ett säkert sätt. Spara aldrig ditt seed i text- eller bildformat.",
+    "seedInvalid": "Angivet seed är ogiltigt",
+    "send": "Skicka",
+    "sendError": "Ett fel inträffade. Försök igen senare.",
+    "sending": "Skickar",
+    "sent": "Skickat",
+    "sentTo": "Skickat till",
+    "setPassword": "Ställ in lösenord",
+    "setPasswordSuccess": "Lösenordet har ställts in",
+    "setWalletPassword": "Ställ in plånbokslösenord",
+    "settingsHeader": "Inställningar",
+    "settingsTransfer": "Ladda från pappersplånbok",
+    "shareKaspium": "Dela Kaspium",
+    "shareKaspiumText": "Prova Kaspium! Kaspas officiella mobilplånbok",
+    "systemDefault": "Systemfel",
+    "tapToHide": "Tryck för att dölja",
+    "tapToReveal": "Tryck för att visa",
+    "themeHeader": "Tema",
+    "to": "Till",
+    "tooManyFailedAttempts": "För många ogiltiga försök.",
+    "transfer": "Överför",
+    "transferClose": "Tryck någonstans för att stänga fönstret.",
+    "transferComplete": "{amount} KAS har överförts till din Kaspium-plånbok.",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "En plånbok med ett saldo på {amount} KAS har upptäckts.\n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Tryck på bekräfta för att överföra tillgångar.\n",
+    "transferConfirmInfoThird": "Överföringen kan ta upp till flera sekunder att genomföras.",
+    "transferError": "Ett fel uppstod vid överföringen. Försök igen senare.",
+    "transferHeader": "Överför\nmedel",
+    "transferIntro": "Den här processen kommer att överföra tillgångar från en pappersplånbok till din Kaspium-plånbok.\n\nTryck på \"%1\" knappen för att starta.",
+    "transferLoading": "Överför",
+    "transferManualHint": "Vänligen ange PIN nedan.",
+    "transferNoFunds": "Detta seed innehåller inga KAS.",
+    "transferQrScanError": "Denna QR-kod innehåller inget giltigt seed.",
+    "transferQrScanHint": "Skanna en Kaspa \nseed eller en privat nyckel",
+    "unconfirmed": "obekräftade",
+    "unlock": "Lås upp",
+    "unlockBiometrics": "Verifiera för att låsa upp Kaspium",
+    "unlockPin": "Ange PIN för att låsa upp Kaspium",
+    "warning": "Varning",
+    "welcomeText": "Välkommen till Kaspium. För att fortsätta, behöver du skapa en ny plånbok eller importera en befintlig.",
+    "xMinutes": "Efter {minutes, plural, =1{1 minut} other{{minutes} minuter}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Ja",
+    "yesButton": "Ja"
+}

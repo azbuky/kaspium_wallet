@@ -9,6 +9,7 @@ import '../app_providers.dart';
 import '../contacts/contact_labels.dart';
 import '../contacts/contacts_widget.dart';
 import '../kaspa/kaspa.dart';
+import '../l10n/l10n.dart';
 import '../send_sheet/send_sheet.dart';
 import '../settings/available_currency.dart';
 import '../settings/available_language.dart';
@@ -192,7 +193,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
     return Consumer(builder: (context, ref, _) {
       final theme = ref.watch(themeProvider);
       final styles = ref.watch(stylesProvider);
-      final l10n = ref.watch(l10nProvider);
+      final l10n = l10nOf(context);
 
       final network = ref.watch(networkProvider);
 
@@ -232,15 +233,15 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           onPressed: _showCurrencyDialog,
                         );
                       }),
-                      // Divider(height: 2, color: theme.text15),
-                      // Consumer(builder: (context, ref, _) {
-                      //   return DoubleLineItem(
-                      //     heading: l10n.language,
-                      //     defaultMethod: ref.watch(languageProvider),
-                      //     icon: AppIcons.language,
-                      //     onPressed: _showLanguageDialog,
-                      //   );
-                      // }),
+                      Divider(height: 2, color: theme.text15),
+                      Consumer(builder: (context, ref, _) {
+                        return DoubleLineItem(
+                          heading: l10n.language,
+                          defaultMethod: ref.watch(languageProvider),
+                          icon: AppIcons.language,
+                          onPressed: _showLanguageDialog,
+                        );
+                      }),
                       Divider(height: 2, color: theme.text15),
                       Consumer(builder: (context, ref, _) {
                         final themeSetting = ref.watch(themeSettingProvider);
@@ -365,7 +366,6 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           );
                         },
                       ),
-
                       Divider(height: 2, color: theme.text15),
                       SingleLineItem(
                         heading: l10n.logoutOrSwitchWallet,
@@ -375,7 +375,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                             context,
                             l10n.areYouSure,
                             l10n.logoutDialogContent,
-                            l10n.YES,
+                            l10n.yesUppercase,
                             () {
                               Navigator.of(context).pushNamedAndRemoveUntil(
                                 '/logout',

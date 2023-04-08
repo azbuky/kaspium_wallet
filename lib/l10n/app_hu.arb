@@ -1,0 +1,137 @@
+{
+    "@@locale": "hu",
+    "addContact": "Kontakt Hozzáadása",
+    "addressCopied": "Cím Másolva",
+    "addressMising": "Adjon meg egy célt",
+    "addressShare": "Megosztás",
+    "amountMissing": "Adjon meg egy összeget",
+    "authMethod": "Hitelesítési Módszer",
+    "autoLockHeader": "Automatikus Feloldás",
+    "backupSeed": "Seed Másolása",
+    "backupSeedConfirm": "Biztos vagy benne, hogy elmentetted a seeded?",
+    "backupYourSeed": "Seed másolása",
+    "biometricsMethod": "Biometria",
+    "cancel": "Mégse",
+    "changeCurrency": "Valuta Megváltoztatása",
+    "close": "Bezárás",
+    "confirm": "Megerősít",
+    "contactAdded": "{contactName} hozzá lett adva a kontaktokhoz!",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Ez a kontakt már létezik!",
+    "contactHeader": "Kontakt",
+    "contactInvalid": "Helytelen kontakt név",
+    "contactNameHint": "Írj be egy nevet @",
+    "contactNameMissing": "Nincsenek exportálható kontaktok",
+    "contactRemoved": "Törölted {contactName}-t a kontaktjaid közül!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Kontaktok",
+    "contactsImportErr": "Sikertelen kontakt importálás",
+    "contactsImportSuccess": "Sikeresen importáltál {noContacts} kontaktot",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copyAddress": "Cím Másolása",
+    "enterAddress": "Küldés Erre A Címre",
+    "enterAmount": "Küldött Mennyiség",
+    "exampleCardIntro": "Üdvözöllek a Kaspiumban! Így fogod látni a tranzakcióid, amikor kapsz KAS-t.",
+    "fingerprintSeedBackup": "Erősítsd meg az ujjlenyomatoddal, hogy szeretnéd elmenteni a seeded.",
+    "importSeed": "Seed importálása",
+    "importSeedHint": "Írd be a seeded.",
+    "importWallet": "Tárca Importálása",
+    "instantly": "Azonnal",
+    "insufficientBalance": "Elégtelen Számlaegyenleg",
+    "invalidAddress": "Helytelen Cím",
+    "language": "Nyelv",
+    "lockAppSetting": "Hitelesítés az Indításnál",
+    "locked": "Lezárva",
+    "logout": "Kijelentkezés",
+    "manage": "Kezelés",
+    "newWallet": "Új Tárca",
+    "no": "Nem",
+    "noContactsExport": "Nincsenek exportálható kontaktok",
+    "noContactsImport": "Nincsenek importálható kontaktok",
+    "notificationBody": "Nyisd meg a Kaspiumot, hogy megnézhesd a tranzakciót.",
+    "notificationHeaderSupplement": "Koppints a megnyitáshoz",
+    "notificationTitle": "Kaptál {amount} KAS-t",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Értesítések",
+    "off": "Ki",
+    "on": "Be",
+    "pinConfirmError": "PIN-kódok nem egyeznek",
+    "pinConfirmTitle": "Erősítsd meg a PIN-kódod",
+    "pinCreateTitle": "Hozz létre egy 6 számjegyű PIN-kódot",
+    "pinEnterTitle": "Írd be a PIN-kódod",
+    "pinInvalid": "Helytelen PIN-kód",
+    "pinMethod": "PIN",
+    "pinSeedBackup": "Írd be a PIN-kódod, hogy megjelenjen a seeded.",
+    "preferences": "Preferenciák",
+    "privacyPolicy": "Adatvédelmi Szabályzat",
+    "qrInvalidSeed": "QR-kód nem tartalmaz érvényes seedet vagy privát kulcsot",
+    "receive": "Fogadás",
+    "received": "Fogadott",
+    "removeContact": "Kontakt Törlése",
+    "removeContactConfirmation": "Biztos, hogy törölni szeretnéd {contactName}-t?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "scanInstructions": "Olvass be QR kóddal egy Kaspa \ncímet",
+    "scanQrCode": "Olvasd be a QR Kódot",
+    "securityHeader": "Biztonság",
+    "seed": "Seed",
+    "seedBackupInfo": "Ez itt a tárcád seedje. Nagyon fontos, hogy megőrizd, és soha ne készíts róla screenshotot, vagy őrizd egyszerű szöveg formátumban.",
+    "seedInvalid": "Helytelen Seed",
+    "send": "Küldés",
+    "sendError": "Hiba történt. Próbálkozz később.",
+    "sending": "Küldés folyamatban",
+    "sent": "Küldött",
+    "sentTo": "Elküldve ide",
+    "settingsHeader": "Beállítások",
+    "shareKaspium": "Oszd meg a Kaspiumot",
+    "shareKaspiumText": "Próbáld ki a Kaspiumot, a Kaspa hivatalos Androidos tárcáját!",
+    "systemDefault": "Rendszer alapértelmezett",
+    "themeHeader": "Téma",
+    "to": "Küldés ide",
+    "tooManyFailedAttempts": "Túl sok hibás feloldási kísérlet.",
+    "transfer": "Küldés",
+    "transferManualHint": "Írd be a seedet.",
+    "unlock": "Feloldás",
+    "unlockBiometrics": "Hitelesítés Szükséges a Kaspiumba való bejelentkezéshez",
+    "unlockPin": "Írd be a PIN-t a Bejelentkezéshez a Kaspiumba",
+    "warning": "FIGYELEM",
+    "welcomeText": "Üdvözöllek a Kaspiumban! Hozz létre egy új tárcát, vagy importálj egy létezőt.",
+    "xMinutes": "{minutes, plural, =1{1 perc után} other{{minutes} perc után}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Igen"
+}

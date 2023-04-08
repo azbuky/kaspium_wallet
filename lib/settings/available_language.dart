@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import 'setting_item.dart';
 
 enum AvailableLanguage {
@@ -36,21 +35,21 @@ enum AvailableLanguage {
   TURKISH,
   VIETNAMESE,
   UKRAINIAN,
-  NORWEGIAN
+  NORWEGIAN,
+  BENGALI,
 }
 
 /// Represent the available languages our app supports
 class LanguageSetting implements SettingSelectionItem {
   static bool isAvailable(AvailableLanguage language) {
-    return language == AvailableLanguage.ENGLISH ||
-        language == AvailableLanguage.DEFAULT;
+    return true;
   }
 
   final AvailableLanguage language;
 
   const LanguageSetting(this.language);
 
-  String getDisplayName(WidgetRef ref) {
+  String getDisplayName(BuildContext context) {
     switch (language) {
       case AvailableLanguage.ENGLISH:
         return "English (en)";
@@ -114,8 +113,10 @@ class LanguageSetting implements SettingSelectionItem {
         return "Ukrainian (uk)";
       case AvailableLanguage.NORWEGIAN:
         return "Norsk (no)";
+      case AvailableLanguage.BENGALI:
+        return "Bengali (bn)";
       default:
-        return ref.read(l10nProvider).systemDefault;
+        return l10nOf(context).systemDefault;
     }
   }
 
@@ -183,15 +184,17 @@ class LanguageSetting implements SettingSelectionItem {
         return "uk";
       case AvailableLanguage.NORWEGIAN:
         return "no";
+      case AvailableLanguage.BENGALI:
+        return "bn";
       default:
         return "DEFAULT";
     }
   }
 
-  Locale getLocale() {
+  Locale? getLocale() {
     String localeStr = getLocaleString();
     if (localeStr == 'DEFAULT') {
-      return Locale('en');
+      return null;
     } else if (localeStr == 'zh-Hans' || localeStr == 'zh-Hant') {
       return Locale.fromSubtags(
           languageCode: 'zh', scriptCode: localeStr.split('-')[1]);

@@ -1,4 +1,3 @@
-
 import 'package:barcode_finder/barcode_finder.dart' as bf;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../util/platform.dart';
 import '../util/ui_util.dart';
 import 'app_icon_button.dart';
@@ -39,7 +39,7 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
   @override
   Widget build(BuildContext context) {
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final scanArea = (MediaQuery.of(context).size.width < 400 ||
             MediaQuery.of(context).size.height < 400)
@@ -160,7 +160,7 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
 
   void _onPermissionSet(QRViewController ctrl, bool p) {
     if (!p) {
-      final l10n = ref.read(l10nProvider);
+      final l10n = l10nOf(context);
       UIUtil.showSnackbar(l10n.checkCameraPermission, context);
     }
   }

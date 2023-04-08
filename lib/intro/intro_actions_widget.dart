@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../core/core_providers.dart';
+import '../l10n/l10n.dart';
 import '../widgets/buttons.dart';
 import 'intro_providers.dart';
 
@@ -9,7 +9,7 @@ class IntroActionsWidget extends ConsumerWidget {
   const IntroActionsWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     void newWallet() {
       final notifier = ref.read(introStateProvider.notifier);

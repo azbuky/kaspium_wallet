@@ -40,9 +40,8 @@ final themeSettingProvider =
 
 final currencyProvider =
     StateNotifierProvider<CurrencyNotifier, AvailableCurrency>((ref) {
-  final deviceLocale = ref.watch(deviceLocaleProvider);
   final sharedPrefsUtil = ref.watch(sharedPrefsUtilProvider);
-  final currency = sharedPrefsUtil.getCurrency(deviceLocale);
+  final currency = sharedPrefsUtil.getCurrency();
   return CurrencyNotifier(currency, sharedPrefsUtil);
 });
 

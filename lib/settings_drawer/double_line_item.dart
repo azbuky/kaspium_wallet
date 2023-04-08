@@ -71,7 +71,7 @@ class DoubleLineItem extends ConsumerWidget {
                   ),
                   Container(
                     child: AutoSizeText(
-                      defaultMethod.getDisplayName(ref),
+                      defaultMethod.getDisplayName(context),
                       style: disabled
                           ? styles.textStyleSettingItemSubheader30
                           : styles.textStyleSettingItemSubheader,

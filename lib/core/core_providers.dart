@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../app_localization.dart';
 import '../app_styles.dart';
 import '../database/database.dart';
 import '../kaspa/grpc/rpc.pb.dart';
@@ -57,11 +55,6 @@ final stylesProvider = Provider((ref) {
   return AppStyles(theme);
 });
 
-final localeProvider = Provider((ref) {
-  final language = ref.watch(languageProvider);
-  return Locale(language.getLocaleString());
-});
-
 final blockExplorerProvider = Provider((ref) {
   final settings = ref.watch(blockExplorerSettingsProvider);
   final network = ref.watch(networkProvider);
@@ -81,7 +74,6 @@ final walletServiceProvider = Provider.autoDispose((ref) {
 final sharedPrefsProvider =
     Provider<SharedPreferences>((ref) => throw UnimplementedError());
 
-final l10nProvider = Provider((ref) => const AppLocalization());
 final hapticUtilProvider = Provider((ref) => const HapticUtil());
 final authUtilProvider = Provider((ref) => AuthUtil(ref));
 final biometricUtilProvider = Provider(
@@ -148,15 +140,6 @@ final mainCardProvider =
 final themeProvider = Provider((ref) {
   final themeSetting = ref.watch(themeSettingProvider);
   return themeSetting.getTheme();
-});
-
-final deviceLocaleProvider = StateProvider<Locale>((ref) {
-  return Locale('en', 'US');
-});
-
-final currencyLocaleProvider = Provider((ref) {
-  final currency = ref.watch(currencyProvider);
-  return currency.getLocale().toString();
 });
 
 // final initialDeepLinkProvider = FutureProvider((ref) {

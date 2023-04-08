@@ -7,6 +7,7 @@ import '../app_providers.dart';
 import '../intro/intro_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../kaspa/wallet/version.dart';
+import '../l10n/l10n.dart';
 import '../wallet/wallet_types.dart';
 import '../wallet_address/wallet_address.dart';
 import '../wallet_address/wallet_address_manager.dart';
@@ -20,7 +21,7 @@ class SetupWalletScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final setupFailed = useState(false);
     final setupError = useRef<Object?>(null);

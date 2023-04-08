@@ -1,0 +1,244 @@
+{
+    "@@locale": "vi",
+    "account": "Tài khoản",
+    "accounts": "Các tài khoản",
+    "ackBackedUp": "Bạn có chắc chắn rằng đã sao lưu cụm từ bí mật hoặc hạt giống của bạn?",
+    "addAccount": "Thêm tài khoản",
+    "addContact": "Thêm liên hệ",
+    "addressCopied": "Đã sao chép địa chỉ",
+    "addressHint": "Nhập địa chỉ",
+    "addressMising": "Hãy nhập một địa chỉ",
+    "addressShare": "Chia sẻ địa chỉ",
+    "amountMissing": "Hãy nhập lượng tiền",
+    "authMethod": "Phương thức xác nhận",
+    "autoLockHeader": "Mở khoá tự động",
+    "backupConfirmButton": "Tôi đã sao lưu",
+    "backupSecretPhrase": "Sao lưu cụm từ bí mật",
+    "backupSeed": "Sao lưu hạt giống (seed)",
+    "backupSeedConfirm": "Bạn có chắc rằng bạn đã sao lưu hạt giống của mình?",
+    "backupYourSeed": "Sao lưu hạt giống của bạn",
+    "biometricsMethod": "Sinh trắc học",
+    "blockExplorer": "Trình khám phá khối",
+    "cancel": "Hủy",
+    "changeCurrency": "Đổi loại tiền pháp định",
+    "close": "Đóng",
+    "confirm": "Xác nhận",
+    "confirmPasswordHint": "Xác nhận mật khẩu",
+    "contactAdded": "Đã thêm {contactName} vào danh bạ.",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Liên hệ đã tồn tại",
+    "contactHeader": "Liên hệ",
+    "contactInvalid": "Tên liên hệ không phù hợp",
+    "contactNameHint": "Nhập tên",
+    "contactNameMissing": "Nhập tên cho liên hệ này",
+    "contactRemoved": "Đã loại {contactName} khỏi danh bạ.",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Danh bạ",
+    "contactsImportErr": "Nhập liên hệ thất bại",
+    "contactsImportSuccess": "Đã nhập thành công {noContacts} liên hệ.",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Đã sao chép",
+    "copy": "Sao chép",
+    "copyAddress": "Sao chép địa chỉ",
+    "createAPasswordHeader": "Tạo mật khẩu.",
+    "createPasswordFirstParagraph": "Bạn có thể tạo mật khẩu để tăng tính bảo mật cho ví của bạn.",
+    "createPasswordHint": "Tạo mật khẩu",
+    "createPasswordSecondParagraph": "Mật khẩu là tùy chọn không bắt buộc, và ví của bạn sẽ được bảo vệ với mã PIN hoặc sinh trắc học. ",
+    "createPasswordSheetHeader": "Tạo",
+    "currency": "Tiền tệ",
+    "defaultAccountName": "Tài khoản chính",
+    "defaultNewAccountName": "Tài khoản {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "Vô hiệu hoá",
+    "disablePasswordSuccess": "Đã vô hiệu hoá mật khẩu",
+    "disableWalletPassword": "Vô hiệu hoá mật khẩu ví",
+    "dismiss": "Bỏ qua",
+    "encryptionFailedError": "Đặt mật khẩu ví không thành công",
+    "enterAddress": "Nhập địa chỉ",
+    "enterAmount": "Nhập số lượng",
+    "enterPasswordHint": "Nhập mật khẩu",
+    "exampleCardIntro": "Chào mừng đến với Kaspium. Khi bạn nhận Kaspa, các giao dịch sẽ được hiển thị như sau:",
+    "exit": "Thoát",
+    "fingerprintSeedBackup": "Xác minh để xem hạt giống.",
+    "goBackButton": "Quay lại",
+    "gotItButton": "Đã hiểu!",
+    "hideAccountHeader": "Ẩn tài khoản?",
+    "iUnderstandTheRisks": "Tôi hiểu những rủi ro",
+    "ignore": "Bỏ qua",
+    "import": "Nhập vào",
+    "importSecretPhrase": "Nhập cụm từ bí mật",
+    "importSecretPhraseHint": "Hãy nhập 24 từ bí mật vào dưới đây. Mỗi từ phải được cách nhau bởi dấu cách.",
+    "importSeed": "Nhập hạt giống",
+    "importSeedHint": "Nhập hạt giống của bạn vào phần dưới đây.",
+    "importWallet": "Nhập ví hiện có",
+    "instantly": "Ngay tức thì",
+    "insufficientBalance": "Số dư không đủ",
+    "invalidAddress": "Địa chỉ đã nhập không hợp lệ",
+    "invalidPassword": "Mật khẩu không hợp lệ",
+    "language": "Ngôn ngữ",
+    "lockAppSetting": "Xác thực khi khởi chạy",
+    "locked": "Đã khoá",
+    "logout": "Đăng xuất",
+    "manage": "Quản lí",
+    "manualEntry": "Nhập thủ công",
+    "messageHeader": "Tin nhắn",
+    "mnemonicInvalidWord": "{word} không phải từ hợp lệ",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Cụm từ ghi nhớ",
+    "mnemonicSizeError": "Cụm từ bí mật chỉ có thể gồm 24 từ",
+    "newWallet": "Tạo ví mới",
+    "nextButton": "Tiếp theo",
+    "no": "Không",
+    "noContactsExport": "Không có liên hệ nào để xuất ra.",
+    "noContactsImport": "Không có liên hệ nào để nhập.",
+    "noSkipButton": "Không, bỏ qua",
+    "notificationBody": "Mở Kaspium để xem giao dịch này",
+    "notificationHeaderSupplement": "Chạm để mở",
+    "notificationTitle": "Đã nhận {amount} BAN",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Thông báo",
+    "off": "Tắt",
+    "on": "Bật",
+    "paperWallet": "Ví giấy",
+    "passwordBlank": "Không thể bỏ trống mật khẩu",
+    "passwordNoLongerRequiredToOpenParagraph": "Bạn sẽ không cần mật khẩu để mở Kaspium nữa.",
+    "passwordWillBeRequiredToOpenParagraph": "Mật khẩu này sẽ được yêu cầu để mở Kaspium.",
+    "passwordsDontMatch": "Mật khẩu không khớp",
+    "pending": "đang chờ xác nhận",
+    "pinConfirmError": "Mã PIN không khớp",
+    "pinConfirmTitle": "Xác nhận mã PIN của bạn",
+    "pinCreateTitle": "Tạo mã PIN 6 chữ số",
+    "pinEnterTitle": "Nhập PIN",
+    "pinInvalid": "Mã PIN đã nhập không hợp lệ",
+    "pinMethod": "Mã PIN",
+    "pinSeedBackup": "Nhập mã PIN để sao lưu hạt giống",
+    "preferences": "Tuỳ chọn",
+    "privacyPolicy": "Chính sách bảo mật",
+    "qrInvalidAddress": "Mã QR không chứa điểm đến hợp lệ",
+    "qrInvalidPermissions": "Vui lòng cấp quyền truy cập máy ảnh để quét mã QR",
+    "qrInvalidSeed": "Mã QR không chứa hạt giống hoặc khoá riêng tư hợp lệ",
+    "qrMnemonicError": "Mã QR không chứa cụm từ bí mật hợp lệ",
+    "qrUnknownError": "Không thể đọc mã QR",
+    "rawSeed": "Hạt giống",
+    "receive": "Nhận",
+    "received": "Đã nhận",
+    "removeContact": "Xóa liên hệ",
+    "removeContactConfirmation": "Bạn chắc chắn muốn xóa {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Yêu cầu mật khẩu để mở Kaspium?",
+    "rootWarning": "Có vẻ như thiết bị của bạn đã được \"root\", \"jailbreak\" hoặc được sửa đổi gây ảnh hưởng đến tính bảo mật. Bạn nên đặt lại thiết bị của bạn về trạng thái ban đầu trước khi tiếp tục.",
+    "scanInstructions": "Quét \nmã QR địa chỉ Kaspa",
+    "scanQrCode": "Quét mã QR",
+    "secretInfo": "Tiếp theo, bạn sẽ nhìn thấy một cụm từ bí mật. Nó là mật khẩu để truy cập vào ví của bạn. Đừng quên sao lưu nó lại và tuyệt đối không chia sẻ cho bất kỳ ai",
+    "secretInfoHeader": "An toàn là trên hết!",
+    "secretPhrase": "Cụm từ bí mật",
+    "secretWarning": "Nếu bạn đánh mất thiết bị hoặc gỡ cài đặt ứng dụng, bạn sẽ cần cụm từ bí mật hoặc hạt giống để khôi phục ví của bạn.",
+    "securityHeader": "Bảo mật",
+    "seed": "Hạt giống",
+    "seedBackupInfo": "Dưới đây là ví của bạn. Điều quan trọng là bạn sao lưu hạt giống này và không bao giờ lưu trữ nó dưới dạng văn bản thông thường hoặc dưới dạng ảnh chụp màn hình.",
+    "seedInvalid": "Hạt giống (seed) không hợp lệ",
+    "send": "Gửi",
+    "sendError": "Đã xảy ra lỗi, vui lòng thử lại sau.",
+    "sending": "Đang gửi",
+    "sent": "Đã gửi",
+    "sentTo": "Đã gửi tới",
+    "setPassword": "Đặt mật khẩu",
+    "setPasswordSuccess": "Đã đặt mật khẩu thành công",
+    "setWalletPassword": "Đặt mật khẩu ví",
+    "settingsHeader": "Cài đặt",
+    "settingsTransfer": "Nhập từ ví giấy",
+    "shareKaspium": "Chia sẻ Kaspium",
+    "shareKaspiumText": "Thử ngay Kaspium! Ví Kaspa di động chính thức!",
+    "systemDefault": "Mặc định hệ thống",
+    "tapToHide": "Nhấn để ẩn",
+    "tapToReveal": "Nhấn để hiển thị",
+    "themeHeader": "Chủ đề",
+    "to": "tới",
+    "tooManyFailedAttempts": "Quá nhiều lần mở khoá thất bại.",
+    "transfer": "Chuyển giao",
+    "transferClose": "Chạm một chỗ bất kỳ để đóng cửa sổ.",
+    "transferComplete": "{amount} Kaspa đã được chuyển vào ví Kaspium của bạn.\n",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Đã tìm thấy một ví với số dư là {amount} BAN. \n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Nhấn xác nhận để chuyển tiền.\n",
+    "transferConfirmInfoThird": "Có thể mất vài giây để hoàn thành giao dịch.",
+    "transferError": "Đã có lỗi trong quá trình giao dịch, vui lòng thử lại sau.",
+    "transferHeader": "Chuyển tiền",
+    "transferIntro": "Quá trình này sẽ chuyển toàn bộ số dư từ ví giấy sang ví Kaspium của bạn.\n\nNhấn nút \"%1\" để bắt đầu.",
+    "transferLoading": "Đang chuyển",
+    "transferManualHint": "Hãy nhập hạt giống dưới đây",
+    "transferNoFunds": "Hạt giống này không chứa chút Kaspa nào",
+    "transferQrScanError": "Mã QR này không chứa hạt giống hợp lệ.",
+    "transferQrScanHint": "Quét \nhạt giống Kaspa hoặc khoá riêng tư",
+    "unconfirmed": "chưa xác nhận",
+    "unlock": "Mở khoá",
+    "unlockBiometrics": "Xác nhận mở khoá Kaspium",
+    "unlockPin": "Nhập mã PIN để mở khoá Kaspium",
+    "warning": "CẢNH BÁO!",
+    "welcomeText": "Chào mừng đến với Kaspium. Để bắt đầu, bạn có thể tạo ví mới hoặc nhập ví hiện có.",
+    "xMinutes": "Sau {minutes, plural, =1{1 phút} other{{minutes} phút}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Có",
+    "yesButton": "Đồng ý"
+}

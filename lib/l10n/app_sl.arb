@@ -1,0 +1,205 @@
+{
+    "@@locale": "sl",
+    "account": "Račun",
+    "accounts": "Računi",
+    "ackBackedUp": "Ste prepričani, da ste varno shranili vaš skrivni niz ali zasebni ključ?",
+    "addAccount": "Dodaj račun",
+    "addContact": "Dodaj stik",
+    "addressCopied": "Naslov skopiran",
+    "addressMising": "Prosim vnesite naslov",
+    "addressShare": "Deli naslov",
+    "amountMissing": "Prosim vnesite znesek",
+    "authMethod": "Način avtentikacije",
+    "autoLockHeader": "Samodejno zakleni",
+    "backupConfirmButton": "Varno shranjeno",
+    "backupSeed": "Shrani ključ",
+    "backupSeedConfirm": "Ste prepričani, da ste shranili zasebni ključ?",
+    "backupYourSeed": "Shrani zasebni ključ",
+    "biometricsMethod": "Prstni odtis",
+    "cancel": "Prekliči",
+    "changeCurrency": "Spremeni valuto",
+    "close": "Zapri",
+    "confirm": "Potrdi",
+    "contactAdded": "{contactName} dodan stikom.",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Stik že obstaja",
+    "contactHeader": "Stik",
+    "contactInvalid": "Neveljavno ime",
+    "contactNameHint": "Vnesite ime @",
+    "contactNameMissing": "Izberite ime za ta stik",
+    "contactRemoved": "{contactName} je bil odstranjen iz stikov!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Stiki",
+    "contactsImportErr": "Ni možno uvoziti stikov",
+    "contactsImportSuccess": "Uspešen uvoz {noContacts} stikov.",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Skopirano",
+    "copy": "Kopiraj",
+    "copyAddress": "Kopiraj naslov",
+    "defaultAccountName": "Glavni račun",
+    "defaultNewAccountName": "Račun {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "enterAddress": "Vnesite naslov",
+    "enterAmount": "Vnesite znesek",
+    "exampleCardIntro": "Dobrodošli v Kaspium. Ko boste prejeli KAS, bodo transakcije prikazane takole:",
+    "fingerprintSeedBackup": "Avtenticiraj za shranitev ključa.",
+    "gotItButton": "Razumem!",
+    "hideAccountHeader": "Skrij račun?",
+    "import": "Uvozi",
+    "importSecretPhrase": "Uvozi skrivni niz",
+    "importSecretPhraseHint": "Spodaj vnesite vaš skrivni 24-besedni niz. Vsaka beseda naj bo ločena s presledkom.",
+    "importSeed": "Uvozi ključ",
+    "importSeedHint": "Spodaj vnesite ključ.",
+    "importWallet": "Uvozi denarnico",
+    "instantly": "Takoj",
+    "insufficientBalance": "Premalo na računu",
+    "invalidAddress": "Naslov je neveljaven",
+    "language": "Jezik",
+    "lockAppSetting": "Avtenticiraj ob zagonu",
+    "locked": "Zaklenjeno",
+    "logout": "Odjava",
+    "manage": "Upravljaj",
+    "manualEntry": "Ročni vnos",
+    "mnemonicInvalidWord": "{word} ni veljavna beseda",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Besedna fraza",
+    "mnemonicSizeError": "Skrivni niz lahko vsebuje samo 24 besed",
+    "newWallet": "Nova denarnica",
+    "no": "Ne",
+    "noContactsExport": "Ni stikov za izvoz.",
+    "noContactsImport": "Ni novih stikov za uvoz.",
+    "notificationBody": "Odpri Kaspium za ogled transakcije",
+    "notificationHeaderSupplement": "Dotik za ogled",
+    "notificationTitle": "Prejeto {amount} KAS",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Opozorila",
+    "off": "Izklopi",
+    "on": "Vklopi",
+    "paperWallet": "Papirna denarnica",
+    "pinConfirmError": "PIN se ne ujema",
+    "pinConfirmTitle": "Potrdi PIN",
+    "pinCreateTitle": "Ustvari 6-mestni PIN",
+    "pinEnterTitle": "Vnesite PIN",
+    "pinInvalid": "Neveljaven PIN",
+    "pinMethod": "PIN",
+    "pinSeedBackup": "Vnesite PIN za shranitev ključa",
+    "preferences": "Splošno",
+    "privacyPolicy": "Zasebnost",
+    "qrInvalidSeed": "QR koda ne vsebuje veljavnega zasebnega ključa",
+    "qrMnemonicError": "QR koda ne vsebuje veljavnega skrivnega niza",
+    "rawSeed": "Surov ključ",
+    "receive": "Prejmi",
+    "received": "Prejeto",
+    "removeContact": "Odstrani stik",
+    "removeContactConfirmation": "Ste prepričani, da hočete izbrisati {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "scanInstructions": "Zajemi Kaspa \nnaslov QR kodo",
+    "scanQrCode": "Zajemi QR kodo",
+    "secretInfo": "Na naslednjem zaslonu boste videli vaš skrivni niz. Ta niz je geslo za dostop do vašega računa. Nujno je, da ga varno shranite in ne delite z nikomur.",
+    "secretInfoHeader": "Najprej varnost!",
+    "secretPhrase": "Skrivni niz",
+    "secretWarning": "Če izgubite napravo ali odstranite aplikacijo, boste potrebovali vaš skrivni niz ali zasebni ključ za ponoven dostop do računa!",
+    "securityHeader": "Varnost",
+    "seed": "Zasebni ključ",
+    "seedBackupInfo": "Spodaj je prikazan zasebni ključ denarnice. Obvezno ga shranite, vendar nikoli v navadni tekstovni obliki ali s posnetkom zaslona.",
+    "seedInvalid": "Zasebni ključ je neveljaven",
+    "send": "Pošlji",
+    "sendError": "Napaka. Poskusite kasneje.",
+    "sending": "Pošiljam",
+    "sent": "Poslano",
+    "sentTo": "Poslano",
+    "settingsHeader": "Nastavitve",
+    "settingsTransfer": "Naloži iz papirnate denarnice",
+    "shareKaspium": "Deli Kaspium",
+    "shareKaspiumText": "Preveri Kaspium! Uradna mobilna Kaspa denarnica!",
+    "systemDefault": "Sistemski",
+    "tapToHide": "Pritisnite za skrivanje",
+    "tapToReveal": "Pritisnite za ogled",
+    "themeHeader": "Tema",
+    "to": "Na",
+    "tooManyFailedAttempts": "Preveč neuspešnih poizkusov.",
+    "transfer": "Prenesi",
+    "transferClose": "Pritisni kjerkoli za izhod.",
+    "transferComplete": "{amount} KAS uspešno prenešenih v vašo Kaspium denarnico.\n",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Denarnica z zneskom {amount} KAS je bila zaznana.\n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Pritisni za prenos zneska.\n",
+    "transferConfirmInfoThird": "Prenos lahko traja nekaj sekund.",
+    "transferError": "Napaka med prenosom. Poskusite kasneje.",
+    "transferHeader": "Prenesi znesek",
+    "transferIntro": "Postopek bo prenesel znesek iz papirnate denarnice v vašo Kaspium denarnico.\n\nPritisnite \"%1\" gumb za začetek.",
+    "transferLoading": "Prenašam",
+    "transferManualHint": "Spodaj vnesite ključ.",
+    "transferNoFunds": "Ključ ne vsebuje nobenega KAS zneska.",
+    "transferQrScanError": "QR koda ne vsebuje veljavnega ključa.",
+    "transferQrScanHint": "Zajemi Kaspa \nključ",
+    "unlock": "Odkleni",
+    "unlockBiometrics": "Avtenticiraj za odklep Kaspium",
+    "unlockPin": "Vnesite PIN za odklep Kaspium",
+    "warning": "Opozorilo",
+    "welcomeText": "Dobrodošli v Kaspium. Za začetek ustvarite novo denarnico ali uvozite že obstoječo.",
+    "xMinutes": "Po {minutes, plural, =1{1 minuti} other{{minutes} minutah}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Da"
+}

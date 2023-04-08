@@ -1,0 +1,116 @@
+{
+    "@@locale": "ko",
+    "addContact": "연락처 추가",
+    "addressCopied": "주소가 복사되었습니다 ",
+    "addressHint": "주소를 입력하세요",
+    "addressMising": "주소를 입력하세요",
+    "addressShare": "공유",
+    "amountMissing": "금액을 입력하세요",
+    "authMethod": "인증 방법",
+    "backupSeed": "시드 백업",
+    "backupSeedConfirm": "지갑의 시드를 확실히 백업하셨습니까?",
+    "backupYourSeed": "시드를 백업하세요",
+    "biometricsMethod": "생체 인식",
+    "cancel": "취소",
+    "changeCurrency": "통화 변경",
+    "close": "닫기",
+    "confirm": "확인",
+    "contactAdded": "{contactName} 님이 연락처에 추가되었습니다.",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "이미 존재하는 연락처",
+    "contactHeader": "연락처",
+    "contactInvalid": "잘못된 연락처 입력",
+    "contactNameHint": "이름 입력 @@",
+    "contactNameMissing": "내보낼 연락처가 존재하지 않습니다.",
+    "contactRemoved": "{contactName} 님이 연락처에서 삭제되었습니다!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "연락처",
+    "contactsImportErr": "연락처를 가져오지 못했습니다.",
+    "contactsImportSuccess": "{noContacts}개의 연락처를 성공적으로 가져왔습니다.",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copyAddress": "주소 복사",
+    "enterAmount": "금액을 입력하세요",
+    "exampleCardIntro": "Kaspium에 오신 것을 환영합니다. KAS를 받으시면 거래가 다음과 같이 표시됩니다.",
+    "fingerprintSeedBackup": "지문을 확인하여 시드 지갑를 백업하세요",
+    "importSeed": "시드를 가져 옵니다",
+    "importSeedHint": "아래에 시드를 입력하세요",
+    "importWallet": "기존 지갑",
+    "insufficientBalance": "잔액이 부족합니다",
+    "invalidAddress": "목적지 주소가 잘못되었습니다",
+    "language": "언어",
+    "logout": "로그 아웃",
+    "manage": "설정",
+    "newWallet": "새 지갑",
+    "no": "아니요",
+    "noContactsExport": "내보낼 연락처가 존재하지 않습니다.",
+    "noContactsImport": "가져올 연락처를 찾을 수 없습니다.",
+    "notificationBody": "이 거래를 보려면 Kaspium을 여십시오.",
+    "notificationHeaderSupplement": "열려면 누르십시오.",
+    "notificationTitle": "{amount} 개의 KAS을 받았습니다",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "알림",
+    "off": "끄기",
+    "on": "켜기",
+    "pinConfirmError": "비밀번호가 일치하지 않습니다",
+    "pinConfirmTitle": "비밀번호를 확인 하세요",
+    "pinCreateTitle": "6자리 비밀번호를 만드세요",
+    "pinEnterTitle": "비밀번호를 입력 하세요",
+    "pinInvalid": "잘못된 비밀번호가 입력되었습니다.",
+    "pinMethod": "비밀번호",
+    "pinSeedBackup": "시드 지갑 를 보시려면 비밀번호을 입력하세요",
+    "preferences": "환경 설정",
+    "receive": "받기",
+    "received": "수신 완료",
+    "removeContact": "연락처 삭제",
+    "removeContactConfirmation": "{contactName} 을 (를) 삭제 하시겠습니까?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "scanInstructions": "Kaspa QR 코드 주소를 스캔하하세요",
+    "scanQrCode": "QR 코드를 스캔하세요",
+    "seed": "시드 코드",
+    "seedBackupInfo": "아래는 지갑의 시드(seed)입니다. 시드를 백업 하세요! 일반텍스트나 스크린샷으로 저장하면 안 됩니다.",
+    "seedInvalid": "시드가 부적절합니다",
+    "send": "보내기",
+    "sendError": "문제가 발생했습니다. 나중에 다시 시도하시오.",
+    "sending": "전송중",
+    "sent": "전송 완료",
+    "sentTo": "받는 사람",
+    "settingsHeader": "설정",
+    "shareKaspium": "Kaspium 공유 ",
+    "shareKaspiumText": "Kaspium을 확인하세요! Kaspa의 공식 Android 지갑!",
+    "systemDefault": "전화 언어",
+    "themeHeader": "테마",
+    "to": "받는 사람",
+    "warning": "경고",
+    "welcomeText": "Kaspium에 오신 것을 환영합니다. 계속하려면, 새 지갑을 만들거나 기존 지갑을 불러오세요.",
+    "yes": "네"
+}

@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../util/formatters.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
@@ -40,7 +41,7 @@ class IntroImportSeed extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final mnemonicIsValid = ref.watch(_mnemonicIsValidProvider);
 
@@ -240,7 +241,7 @@ class IntroImportSeed extends HookConsumerWidget {
                       ),
                     ),
                     Consumer(builder: (context, ref, _) {
-                      final l10n = ref.watch(l10nProvider);
+                      final l10n = l10nOf(context);
                       final showInvalidChecksum =
                           ref.watch(_showInvalidChecksumProvider);
                       final invalidChecksumText = showInvalidChecksum

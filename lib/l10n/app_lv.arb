@@ -1,0 +1,205 @@
+{
+    "@@locale": "lv",
+    "account": "Konts",
+    "accounts": "Konti",
+    "ackBackedUp": "Vai esat drošs ka izveidojāt rezerves kopiju slepenajai frāzei vai privātajai atslēgai?",
+    "addAccount": "Pievienot kontu",
+    "addContact": "Pievienot kontaktu",
+    "addressCopied": "Adrese nokopēta",
+    "addressMising": "Lūdzu ievadiet adresi",
+    "addressShare": "Kopīgot adresi",
+    "amountMissing": "Lūdzu ievadiet daudzumu",
+    "authMethod": "Autentificēšanās metode",
+    "autoLockHeader": "Automātiski aizslēgt",
+    "backupConfirmButton": "Esmu izveidojis rezerves kopiju",
+    "backupSeed": "Kopēt sēklu",
+    "backupSeedConfirm": "Vai esat drošs, ka saglabājāt sēklas rezerves kopiju?",
+    "backupYourSeed": "Izveidojiet sēklas rezerves kopiju",
+    "biometricsMethod": "Biometriskā atpazīšana",
+    "cancel": "Atcelt",
+    "changeCurrency": "Mainīt valūtu",
+    "close": "Aizvērt",
+    "confirm": "Apstiprināt",
+    "contactAdded": "{contactName} pievienots kontaktiem.",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Kontakts jau eksistē",
+    "contactHeader": "Kontakts",
+    "contactInvalid": "Nederīgs kontakta nosaukums",
+    "contactNameHint": "Ievadiet nosaukumu @",
+    "contactNameMissing": "Izvēlieties kontakta nosaukumu",
+    "contactRemoved": "{contactName} dzēsts no kontaktiem!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Kontakti",
+    "contactsImportErr": "Neizdevās importēt kontaktus",
+    "contactsImportSuccess": "Sekmīgi importēti {noContacts} kontakti.",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Nokopēts",
+    "copy": "Kopēt",
+    "copyAddress": "Kopēt adresi",
+    "defaultAccountName": "Pamata konts",
+    "defaultNewAccountName": "Konts {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "enterAddress": "Ievadiet adresi",
+    "enterAmount": "Ievadiet daudzumu",
+    "exampleCardIntro": "Sveicināti Kaspium. Tiklīdz saņemsiet KAS, transakcijas būs redzamas šādi:",
+    "fingerprintSeedBackup": "Autorizējieties, lai kopētu sēklu.",
+    "gotItButton": "Sapratu!",
+    "hideAccountHeader": "Paslēpt kontu?",
+    "import": "Importēt",
+    "importSecretPhrase": "Importēt slepeno frāzi",
+    "importSecretPhraseHint": "Lūdzu ievadiet jūsu 24 vārdu slepeno frāzi. Katram vārdam jābūt atdalītam ar atstarpi.",
+    "importSeed": "Importēt sēklu",
+    "importSeedHint": "Zemāk norādiet sēklu.",
+    "importWallet": "Importēt maku",
+    "instantly": "Uzreiz",
+    "insufficientBalance": "Nepietiek līdzekļu",
+    "invalidAddress": "Ievadītā adrese nav derīga",
+    "language": "Valoda",
+    "lockAppSetting": "Autentificēties palaižot",
+    "locked": "Aizslēgts",
+    "logout": "Iziet",
+    "manage": "Pārvaldīt",
+    "manualEntry": "Manuālā ievade",
+    "mnemonicInvalidWord": "{word} nav derīgs vārds",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Mnemoniskā frāze",
+    "mnemonicSizeError": "Slepenā frāze var saturēt tikai 24 vārdus",
+    "newWallet": "Jauns maks",
+    "no": "Nē",
+    "noContactsExport": "Nav kontaktu ko eksportēt.",
+    "noContactsImport": "Nav jauni kontakti, ko importēt.",
+    "notificationBody": "Atveriet Kaspium, lai apskatītu šo transakciju",
+    "notificationHeaderSupplement": "Pieskaries, lai atvērtu",
+    "notificationTitle": "Saņemts {amount} KAS",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Paziņojumi",
+    "off": "Izslēgts",
+    "on": "Ieslēgts",
+    "paperWallet": "Papīra maks",
+    "pinConfirmError": "PIN nesakrīt",
+    "pinConfirmTitle": "Apstipriniet savu PIN",
+    "pinCreateTitle": "Izveidojiet sešu ciparu PIN",
+    "pinEnterTitle": "Ievadiet PIN",
+    "pinInvalid": "Nepareizs PIN",
+    "pinMethod": "PIN",
+    "pinSeedBackup": "Ievadiet PIN, lai kopētu sēklu",
+    "preferences": "Preferences",
+    "privacyPolicy": "Privātuma politika",
+    "qrInvalidSeed": "QR kods nesatur derīgu sēklu vai privāto atslēgu",
+    "qrMnemonicError": "QR kods nesatur derīgu slepeno frāzi",
+    "rawSeed": "Plikā sēkla",
+    "receive": "Saņemt",
+    "received": "Saņemtie",
+    "removeContact": "Dzēst kontaktu",
+    "removeContactConfirmation": "Vai esat drošs, ka vēlaties dzēst kontaktu {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "scanInstructions": "Noskenējiet Kaspa \nadreses QR kodu",
+    "scanQrCode": "Skenēt QR kodu",
+    "secretInfo": "Nākamajā sadaļā redzēsiet jūsu slepeno frāzi. Tā ir parole ar kuru varat piekļūt jūsu līdzekļiem. Ir ārkārtīgi svarīgi izveidot rezerves kopiju un turēt to noslēpumā.",
+    "secretInfoHeader": "Drošība pirmajā vietā!",
+    "secretPhrase": "Slepenā frāze",
+    "secretWarning": "Gadījumā, ja nozaudējat telefonu, vai atinstalējat šo aplikāciju, jums būs nepieciešama slepenā frāze, vai privātā atslēga, lai piekļūtu jūsu līdzekļiem!",
+    "securityHeader": "Drošība",
+    "seed": "Sēkla",
+    "seedBackupInfo": "Zemāk atrodas jūsu maka sēkla. Ārkārtīgi svarīgi sēklai izveidot rezerves kopiju, kā arī to neglabāt vienkārša teksta formātā vai kā ekrānšāviņu.",
+    "seedInvalid": "Sēkla nav derīga",
+    "send": "Sūtīt",
+    "sendError": "Notika kļūda. Pēc laika mēģiniet atkal.",
+    "sending": "Sūta",
+    "sent": "Nosūtītie",
+    "sentTo": "Nosūtīts",
+    "settingsHeader": "Iestatījumi",
+    "settingsTransfer": "Ielādēt no papīra maka",
+    "shareKaspium": "Dalīties ar Kaspium",
+    "shareKaspiumText": "Uzmet aci Kaspium! Izcils KAS viedais maks!",
+    "systemDefault": "Noklusētie iestatījumi",
+    "tapToHide": "Pieskaries, lai paslēptu",
+    "tapToReveal": "Pieskaries, lai parādītu",
+    "themeHeader": "Motīvs",
+    "to": "Adresāts",
+    "tooManyFailedAttempts": "Pārāk daudz atslēgšanas mēģinājumi.",
+    "transfer": "Pārsūtīt",
+    "transferClose": "Pieskarieties jebkur, lai aizvērtu.",
+    "transferComplete": "{amount} KAS sekmīgi pārskaitīti uz jūsu Kaspium maku.\n",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Maks ar {amount} KAS bilanci ir atrasts.\n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Pieskarieties, lai apstiprinātu līdzekļu pārskaitīšanu.\n",
+    "transferConfirmInfoThird": "Pārskaitīšana var prasīt vairākas sekundes.",
+    "transferError": "Pārsūtīšanas laikā notika kļūda. Lūdzu vēlāk mēģiniet vēlreiz.",
+    "transferHeader": "Pārsūtīt līdzekļus",
+    "transferIntro": "Šis process pārskaitīs jūsu papīra maka līdzekļus uz jūsu Kaspium maku.\n\nPieskaries \"%1\" pogai, lai sāktu.",
+    "transferLoading": "Pārsūta",
+    "transferManualHint": "Lūdzu, zemāk ievadiet sēklu",
+    "transferNoFunds": "Šai sēklai nav piesaistīti līdzekļi",
+    "transferQrScanError": "Šis QR kods nesatur derīgu sēklu",
+    "transferQrScanHint": "Skenē Kaspa \nsēklu vai privāto atslēgu",
+    "unlock": "Atslēgt",
+    "unlockBiometrics": "Autorizējieties, lai piekļūtu Kaspium",
+    "unlockPin": "Ievadiet PIN, lai piekļūtu Kaspium",
+    "warning": "Brīdinājums",
+    "welcomeText": "Sveicināti Kaspium. Izveidojiet jaunu maku vai importējiet eksistējošu",
+    "xMinutes": "Pēc {minutes, plural, =1{1 minūtes} other{{minutes} minūtēm}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Jā"
+}

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
+import '../l10n/l10n.dart';
 import '../util/numberutil.dart';
 import '../widgets/buttons/primary_button.dart';
 import '../widgets/buttons/primary_outline_button.dart';
@@ -53,7 +54,7 @@ class _AppTransferConfirmSheetState extends State<AppTransferConfirmSheet> {
     return Consumer(
       builder: (context, ref, _) {
         final styles = ref.watch(stylesProvider);
-        final l10n = ref.watch(l10nProvider);
+        final l10n = l10nOf(context);
 
         return SafeArea(
           minimum: EdgeInsets.only(
@@ -87,8 +88,7 @@ class _AppTransferConfirmSheetState extends State<AppTransferConfirmSheet> {
                         Container(
                             margin: EdgeInsets.symmetric(horizontal: 60),
                             child: Text(
-                              l10n.transferConfirmInfo
-                                  .replaceAll("%1", totalAsReadableAmount),
+                              l10n.transferConfirmInfo(totalAsReadableAmount),
                               style: styles.textStyleParagraphPrimary,
                               textAlign: TextAlign.start,
                             )),

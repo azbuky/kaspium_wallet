@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
+import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
 import '../utils.dart';
@@ -35,7 +36,7 @@ class _TransferOverviewSheetState extends ConsumerState<TransferOverviewSheet> {
   Widget build(BuildContext context) {
     //final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     return SafeArea(
       minimum: EdgeInsets.only(
@@ -111,7 +112,7 @@ class _TransferOverviewSheetState extends ConsumerState<TransferOverviewSheet> {
                       vertical: 20,
                     ),
                     child: AutoSizeText(
-                      l10n.transferIntro.replaceAll("%1", l10n.scanQrCode),
+                      l10n.transferIntro(l10n.scanQrCode),
                       style: styles.textStyleParagraph,
                       textAlign: TextAlign.start,
                       maxLines: 6,
@@ -168,7 +169,7 @@ class _TransferOverviewSheetState extends ConsumerState<TransferOverviewSheet> {
     bool manualEntry = false,
   }) async {
     final theme = ref.read(themeProvider);
-    final l10n = ref.read(l10nProvider);
+    final l10n = l10nOf(context);
 
     // Show loading overlay
     _animationOpen = true;

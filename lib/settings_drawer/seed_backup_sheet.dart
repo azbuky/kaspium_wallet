@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../widgets/buttons.dart';
 import '../widgets/mnemonic_display.dart';
 import '../widgets/sheet_widget.dart';
@@ -13,7 +13,7 @@ class SeedBackupSheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final showMnemonic = useState(true);
 

@@ -1,0 +1,241 @@
+{
+    "@@locale": "ro",
+    "account": "Cont",
+    "accounts": "Conturi",
+    "ackBackedUp": "Sunteți sigur/ă că ați salvat formula secretă ori seed-ul portofelului?",
+    "addAccount": "Adăugare cont",
+    "addContact": "Adaugă contact",
+    "addressCopied": "Adresă copiată",
+    "addressHint": "Introdu adresa",
+    "addressMising": "Introduceți o destinație",
+    "addressShare": "Share",
+    "amountMissing": "Introduceți o sumă",
+    "authMethod": "Metoda de Autentificare",
+    "autoLockHeader": "Blocare automată",
+    "backupConfirmButton": "Am pus-o într-un loc sigur",
+    "backupSecretPhrase": "Backup formulă secretă",
+    "backupSeed": "Copie de rezervă pentru seed",
+    "backupSeedConfirm": "Sunteți sigur/ă că ați salvat seed-ul portofelului?",
+    "backupYourSeed": "Salvați-vă seed-ul (backup)",
+    "biometricsMethod": "Biometria",
+    "cancel": "Renunţare",
+    "change": "Change",
+    "changeCurrency": "Schimbă valuta",
+    "close": "Închide",
+    "confirm": "Confirmare",
+    "confirmPasswordHint": "Confirmă parola",
+    "contactAdded": "{contactName} a fost adăugat la contacte!",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Contact deja existent",
+    "contactHeader": "Contact",
+    "contactInvalid": "Nume invalid",
+    "contactNameHint": "Introdu un nume @",
+    "contactNameMissing": "Nu există contacte pentru exportare",
+    "contactRemoved": "{contactName} a fost șters din lista contactelor!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Contacte",
+    "contactsImportErr": "Importarea contactelor a eșuat",
+    "contactsImportSuccess": "Am importat {noContacts} contacte",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Copiat",
+    "copy": "Copiere",
+    "copyAddress": "Copiază adresa",
+    "createAPasswordHeader": "Creați o parolă.",
+    "createPasswordFirstParagraph": "Puteți adauga o parolă pentru a spori securitatea portofelului.",
+    "createPasswordHint": "Creeaza parola",
+    "createPasswordSecondParagraph": "Parola este opțională, portofelul este protejat indiferent de către codul PIN sau datele biometrice.",
+    "createPasswordSheetHeader": "Gata",
+    "currency": "Valută",
+    "defaultAccountName": "Cont principal",
+    "defaultNewAccountName": "Contul nr. {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "Dezactivare",
+    "disablePasswordSuccess": "Parola a fost dezactivată",
+    "disableWalletPassword": "Dezactivați parola portofelului",
+    "encryptionFailedError": "Setarea parolei a eșuat",
+    "enterAddress": "Introdu adresa",
+    "enterAmount": "Introdu suma",
+    "enterPasswordHint": "Introduceți parola",
+    "exampleCardIntro": "Bine ai venit! Odată ce primești sau trimiți KAS, tranzacțiile vor arăta astfel",
+    "exit": "Ieșire",
+    "fingerprintSeedBackup": "Confirmați cu amprenta pentru a copia seed-ul.",
+    "goBackButton": "Înapoi",
+    "gotItButton": "Am înțeles!",
+    "hideAccountHeader": "Ascundere cont?",
+    "iUnderstandTheRisks": "Înțeleg riscurile",
+    "import": "Import",
+    "importSecretPhrase": "Importare formulă secretă",
+    "importSecretPhraseHint": "Introduceți fraza de 24 de cuvinte mai jos. Fiecare cuvânt trebuie să fie separat printr-un spațiu.",
+    "importSeed": "Importă seed-ul",
+    "importSeedHint": "Introdu seed-ul mai jos.",
+    "importWallet": "Importă portofelul",
+    "instantly": "Imediat",
+    "insufficientBalance": "Fonduri insuficiente",
+    "invalidAddress": "Adresa introdusă este invalidă",
+    "invalidPassword": "Parolă incorectă",
+    "language": "Limba",
+    "lockAppSetting": "Autentificare la deschidere",
+    "locked": "Închis",
+    "logout": "Deconectare",
+    "manage": "Administrare",
+    "manualEntry": "Introducere manuală",
+    "mnemonicInvalidWord": "{word} nu este un cuvânt valid",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Frază de memorat",
+    "mnemonicSizeError": "Formula secretă conține doar 24 de cuvinte",
+    "newWallet": "Portofel nou",
+    "nextButton": "Continuă",
+    "no": "Nu",
+    "noContactsExport": "Nu există contacte pentru exportare",
+    "noContactsImport": " Nu am gasit contacte pentru importare",
+    "noSkipButton": "Sari peste",
+    "noUppercase": "NU",
+    "notificationBody": "Deschide Kaspium pentru a vizualiza tranzacția.",
+    "notificationHeaderSupplement": "Apasă pentru deschidere",
+    "notificationTitle": "Ai primit {amount} KAS",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Notificări",
+    "off": "Dezactivate",
+    "on": "Activate",
+    "paperWallet": "Paper Wallet",
+    "passwordBlank": "Parola nu poate fi goală",
+    "passwordNoLongerRequiredToOpenParagraph": "Deschideți aplicația fără a mai introduce parola.",
+    "passwordWillBeRequiredToOpenParagraph": "Această parolă va fi necesară pentru a deschide Kaspium.",
+    "passwordsDontMatch": "Parolele nu corespund",
+    "pinConfirmError": "PIN-urile nu corespund",
+    "pinConfirmTitle": "Confirmă PIN-ul",
+    "pinCreateTitle": "Creați un PIN cu 6 cifre",
+    "pinEnterTitle": "Introdu PIN-ul",
+    "pinInvalid": "PIN invalid",
+    "pinMethod": "PIN",
+    "pinSeedBackup": "Introdu PIN-ul pentru a vedea seed-ul portofelului.",
+    "preferences": "Preferințe",
+    "privacyPolicy": "Politica de confidențialitate",
+    "qrInvalidAddress": "Codul QR este invalid",
+    "qrInvalidPermissions": "Acordați permisiunile camerei pentru a scana coduri QR",
+    "qrInvalidSeed": "Codul QR nu conține un seed sau private key valid",
+    "qrMnemonicError": "Codul QR nu conține o formulă secretă corectă",
+    "qrUnknownError": "Codul QR nu a putut fi citit",
+    "rawSeed": "Seed simplu",
+    "receive": "Primește",
+    "received": "Ai primit",
+    "removeContact": "Șterge contactul",
+    "removeContactConfirmation": "Dorești să elimini contactul {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Doriți să setați o parolă pentru a deschide Kaspium?",
+    "rootWarning": "Se pare că acest dispozitiv este \"rootat\" / \"jailbroken\" sau modificat astfel încât securitatea este pusă în pericol. Recomandăm să resetați dispozitivul la starea originală înainte de a continua.",
+    "scanInstructions": "Scanează o adresă KAS de tip cod QR",
+    "scanQrCode": "Scanare cod QR",
+    "secretInfo": "În continuare, veți vedea formula secretă a portofelului. Aceasta este o parolă care permite accesul la fonduri. Este vital să fie notată într-un caiet și să nu fie arătată vreodată nimănui.",
+    "secretInfoHeader": "Siguranța înainte de toate!",
+    "secretPhrase": "Formula secretă",
+    "secretWarning": "Dacă vă pierdeți dispozitivul sau dezinstalați aplicația, aveți nevoie de seed sau de formula secretă pentru a recupera fondurile!",
+    "securityHeader": "Securitate",
+    "seed": "Seed",
+    "seedBackupInfo": "Mai jos se află seed-ul dumneavoastră. Este foarte important să îi faceți o copie de rezervă (backup). Nu fotografiați niciodată seed-ul și nu îl stocați digital.",
+    "seedInvalid": "Seed invalid",
+    "send": "Trimite",
+    "sendError": "A apărut o eroare. Încercați din nou mai târziu.",
+    "sending": "Trimitere...",
+    "sent": "Ai trimis",
+    "sentTo": "Trimis către",
+    "setPassword": "Setează parola",
+    "setPasswordSuccess": "Parola a fost setată cu succes",
+    "setWalletPassword": "Setați o parolă portofelului",
+    "settingsHeader": "Setări",
+    "settingsTransfer": "Încarcă din Paper Wallet",
+    "shareKaspium": "Share Kaspium",
+    "shareKaspiumText": "Încearcă Kaspium! Portofelul mobil KAS de talie mondială!",
+    "systemDefault": "Limba implicită",
+    "tapToHide": "Apăsați pentru a ascunde",
+    "tapToReveal": "Apăsați pentru a afișa",
+    "themeHeader": "Aspect",
+    "to": "Către",
+    "tooManyFailedAttempts": "Prea multe încercări de deblocare eșuate.",
+    "transfer": "Transferă",
+    "transferClose": "Apăsați oriunde pentru a închide această fereastră.",
+    "transferComplete": "{amount} KAS au fost transferate cu succes în portofelul dvs. Kaspium.",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Un portofel cu un sold de {amount} KAS a fost găsit.\n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Apăsați pentru a confirma transferul.\n",
+    "transferConfirmInfoThird": "Transferul poate dura câteva secunde.",
+    "transferError": "A avut loc o eroare în timpul transferului. Vă rugăm să încercați din nou mai târziu.",
+    "transferHeader": "Transferă\nFonduri",
+    "transferIntro": "Acest proces va transfera fondurile dintr-un Paper Wallet către contul dvs. Kaspium.\n\nAtingeți butonul \"%1\" pentru a începe.",
+    "transferLoading": "Se transferă...",
+    "transferManualHint": "Introduceți seed-ul mai jos.",
+    "transferNoFunds": "Acest seed nu conține KAS.",
+    "transferQrScanError": "Acest cod QR nu conține un seed valid.",
+    "transferQrScanHint": "Scanați un seed pentru KAS\n sau un private key",
+    "unlock": "Deblochează",
+    "unlockBiometrics": "Autentificaţi-vă pentru a debloca Kaspium",
+    "unlockPin": "Introduceți codul PIN pentru a debloca Kaspium",
+    "warning": "AVERTISMENT",
+    "welcomeText": "Bine ai venit! Pentru a continua, creează un portofel nou sau importă unul deja existent.",
+    "xMinutes": "După {minutes, plural, =1{1 minut} other{{minutes} minute}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Da",
+    "yesButton": "Da",
+    "yesUppercase": "DA"
+}

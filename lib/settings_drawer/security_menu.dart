@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../settings/authentication_method.dart';
 import '../settings/device_lock_timeout.dart';
 import '../settings/device_unlock_option.dart';
@@ -61,7 +62,7 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
   Widget build(BuildContext context) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final walletAuth = ref.watch(walletAuthProvider);
     final encryptedSecret = walletAuth.encryptedSecret;
@@ -196,7 +197,7 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
   Future<void> _authMethodDialog() async {
     final theme = ref.read(themeProvider);
     final styles = ref.read(stylesProvider);
-    final l10n = ref.read(l10nProvider);
+    final l10n = l10nOf(context);
     final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
 
     switch (await showDialog<AuthMethod>(
@@ -262,7 +263,7 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
   Future<void> _lockDialog() async {
     final theme = ref.read(themeProvider);
     final styles = ref.read(stylesProvider);
-    final l10n = ref.read(l10nProvider);
+    final l10n = l10nOf(context);
     final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
 
     switch (await showDialog<UnlockOption>(
@@ -330,7 +331,7 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Text(
-            LockTimeoutSetting(value).getDisplayName(ref),
+            LockTimeoutSetting(value).getDisplayName(context),
             style: ref.read(stylesProvider).textStyleDialogOptions,
           ),
         ),
@@ -346,7 +347,7 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
             title: Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: Text(
-                ref.read(l10nProvider).autoLockHeader,
+                l10nOf(context).autoLockHeader,
                 style: ref.read(stylesProvider).textStyleDialogHeader,
               ),
             ),

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -121,7 +120,7 @@ class SharedPrefsUtil {
   Future<void> setCurrency(AvailableCurrency currency) =>
       set(cur_currency, currency.getId());
 
-  AvailableCurrency getCurrency(Locale deviceLocale) =>
+  AvailableCurrency getCurrency() =>
       AvailableCurrency(AvailableCurrencies.values.byName(get(
         cur_currency,
         defaultValue: AvailableCurrencies.USD.name,

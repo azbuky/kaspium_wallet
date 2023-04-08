@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 
 import '../settings/setting_item.dart';
 
@@ -8,5 +8,5 @@ class SelectionItem extends SettingSelectionItem {
   SelectionItem(this.displayName);
 
   @override
-  String getDisplayName(WidgetRef ref) => displayName;
+  String getDisplayName(BuildContext context) => displayName;
 }

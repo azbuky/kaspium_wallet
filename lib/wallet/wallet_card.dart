@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../util/caseconverter.dart';
 import '../widgets/dialog.dart';
 import 'wallet_types.dart';
@@ -18,7 +19,7 @@ class WalletCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final wallet = ref.watch(walletItemProvider);
 
@@ -52,7 +53,7 @@ class WalletCard extends ConsumerWidget {
         context,
         l10n.areYouSure,
         l10n.removeWalletReassurance,
-        l10n.YES,
+        l10n.yesUppercase,
         checkAuth,
       );
     }

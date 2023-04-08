@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 
 /// A widget for displaying a mnemonic phrase
 class MnemonicDisplay extends HookConsumerWidget {
@@ -100,10 +101,9 @@ class MnemonicDisplay extends HookConsumerWidget {
           if (obscured)
             Consumer(builder: (context, ref, _) {
               final styles = ref.watch(stylesProvider);
-              final l10n = ref.watch(l10nProvider);
+              final l10n = l10nOf(context);
 
-              final text = isObscured.value
-                  ? l10n.tapToReveal : l10n.tapToHide;
+              final text = isObscured.value ? l10n.tapToReveal : l10n.tapToHide;
               return Container(
                 margin: EdgeInsetsDirectional.only(top: 8),
                 child: FittedBox(

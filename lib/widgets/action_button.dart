@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/core_providers.dart';
+import '../l10n/l10n.dart';
 import '../receive/receive_sheet.dart';
 import '../send_sheet/send_sheet.dart';
 import 'sheet_util.dart';
@@ -55,7 +56,7 @@ class ReceiveActionButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     return ActionButton(
       title: l10n.receive,
@@ -73,14 +74,16 @@ class ReceiveActionButton extends ConsumerWidget {
 
 class SendActionButton extends ConsumerWidget {
   final VoidCallback? onPressed;
+
   const SendActionButton({
     Key? key,
     this.onPressed,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     return ActionButton(
       title: l10n.send,

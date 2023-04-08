@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 
 import 'block_explorers.dart';
 import 'setting_item.dart';
@@ -9,7 +9,7 @@ class BlockExplorerSetting extends SettingSelectionItem {
   const BlockExplorerSetting(this.explorer);
 
   @override
-  String getDisplayName(WidgetRef ref) {
+  String getDisplayName(BuildContext context) {
     return explorer.name;
   }
 }

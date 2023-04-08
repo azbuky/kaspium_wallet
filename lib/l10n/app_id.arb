@@ -1,0 +1,242 @@
+{
+    "@@locale": "id",
+    "account": "Akun",
+    "accounts": "Semua Akun",
+    "ackBackedUp": "Anda yakin sudah menyimpan benih / Kalimat Rahasia anda?",
+    "addAccount": "Tambah Akun",
+    "addContact": "Tambah Kontak",
+    "addressCopied": "Alamat berhasil disalin.",
+    "addressHint": "Masukkan Alamat",
+    "addressMising": "Masukkan alamat",
+    "addressShare": "Bagikan",
+    "amountMissing": "Masukkan jumlah",
+    "authMethod": "Metode Otentikasi",
+    "autoLockHeader": "Kunci Otomatis",
+    "backupConfirmButton": "Sudah Saya Simpan",
+    "backupSecretPhrase": "Cadangkan Frase Rahasia",
+    "backupSeed": "Simpan Benih",
+    "backupSeedConfirm": "Apakah anda yakin sudah menyimpan benih anda dengan aman?",
+    "backupYourSeed": "Simpan benih anda",
+    "biometricsMethod": "Biometrik",
+    "blockExplorer": "Penjelajah Blok",
+    "cancel": "Batal",
+    "changeCurrency": "Ubah Mata Uang",
+    "close": "Tutup",
+    "confirm": "Konfirmasi",
+    "confirmPasswordHint": "Konfirmasi kata sandi",
+    "contactAdded": "{contactName} ditambahkan ke kontak!",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Kontak Sudah Ada",
+    "contactHeader": "Kontak",
+    "contactInvalid": "Kontak Tidak Valid",
+    "contactNameHint": "Masukkan Nama @",
+    "contactNameMissing": "Tidak ada kontak yg bisa di ekspor",
+    "contactRemoved": "{contactName} kontak berhasil dihapus!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Kontak",
+    "contactsImportErr": "Gagal mengimpor kontak",
+    "contactsImportSuccess": "Berhasil mengimpor {noContacts} kontak",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Disalin",
+    "copy": "Salin",
+    "copyAddress": "Salin Alamat",
+    "createAPasswordHeader": "Buat sebuah kata sandi",
+    "createPasswordFirstParagraph": "Anda dapat membuat kata sandi untuk menambahkan keamanan tambahan ke dompet Anda.",
+    "createPasswordHint": "Buat kata sandi",
+    "createPasswordSecondParagraph": "Kata sandi adalah opsional, dan dompet Anda akan dilindungi dengan PIN atau biometrik Anda.",
+    "createPasswordSheetHeader": "Buat",
+    "currency": "Mata Uang",
+    "defaultAccountName": "Akun Utama",
+    "defaultNewAccountName": "Akun {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "Nonaktifkan",
+    "disablePasswordSuccess": "Kata sandi telah dinonaktifkan",
+    "disableWalletPassword": "Nonaktifkan Kata Sandi Dompet",
+    "dismiss": "Memberhentikan",
+    "encryptionFailedError": "Gagal menetapkan kata sandi dompet",
+    "enterAddress": "Masukkan Alamat",
+    "enterAmount": "Masukkan Jumlah",
+    "enterPasswordHint": "Masukkan kata sandi anda",
+    "exampleCardIntro": "Hai, Saat anda mengirim dan menerima KAS, akan terlihat seperti ini",
+    "exit": "Keluar",
+    "fingerprintSeedBackup": "Konfirmasi sidik jari untuk menyimpan benih.",
+    "goBackButton": "Kembali",
+    "gotItButton": "Baiklah!",
+    "hideAccountHeader": "Sembunyikan Akun?",
+    "iUnderstandTheRisks": "Saya memahami resiko",
+    "ignore": "Abaikan",
+    "import": "Impor",
+    "importSecretPhrase": "Impor Kata Rahasia",
+    "importSecretPhraseHint": "Masukkan 24 kata rahasia dibawah ini . Setiap kata harus dipisahkan dengan spasi",
+    "importSeed": "Impor Benih",
+    "importSeedHint": "Masukkan benih dompet anda dibawah ini.",
+    "importWallet": "Impor Dompet",
+    "instantly": "Segera",
+    "insufficientBalance": "Saldo Tidak mencukupi",
+    "invalidAddress": "Alamat Tujuan Tidak Valid",
+    "invalidPassword": "Kata sandi tidak cocok",
+    "language": "Bahasa",
+    "lockAppSetting": "Otentikasi saat diluncurkan.",
+    "locked": "Terkunci",
+    "logout": "Keluar",
+    "manage": "Mengelola",
+    "manualEntry": "Entri Manual",
+    "messageHeader": "Pesan",
+    "mnemonicInvalidWord": "{word} bukanlah kata yang valid",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Frase Mnemonic",
+    "mnemonicSizeError": "Kalimat rahasia hanya terdiri dari 24 kata.",
+    "newWallet": "Buat Dompet",
+    "nextButton": "Berikutnya",
+    "no": "Tidak",
+    "noContactsExport": "Tidak ada kontak yg bisa di ekspor",
+    "noContactsImport": "Tidak menemukan untuk impor",
+    "noSkipButton": "Tidak, lewati",
+    "notificationBody": "Buka Natrium untuk melihat transaksi.",
+    "notificationHeaderSupplement": "Tekan untuk membuka",
+    "notificationTitle": "Menerima {amount} KAS",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Notifikasi",
+    "off": "Mati",
+    "on": "Hidup",
+    "paperWallet": "Dompet Kertas",
+    "passwordBlank": "Kata sandi tidak boleh kosong",
+    "passwordNoLongerRequiredToOpenParagraph": "Anda tidak akan memerlukan kata sandi lagi untuk membuka Natrium.",
+    "passwordWillBeRequiredToOpenParagraph": "Kata sandi digunakan untuk membuka Natrium.",
+    "passwordsDontMatch": "Kata sandi tidak cocok",
+    "pending": "tertunda",
+    "pinConfirmError": "Pin tidak sama",
+    "pinConfirmTitle": "Konfirmasi pin anda",
+    "pinCreateTitle": "Buat pin 6 angka",
+    "pinEnterTitle": "Masukkan pin",
+    "pinInvalid": "Pin yang dimasukkan salah",
+    "pinMethod": "PIN",
+    "pinSeedBackup": "Masukkan pin untuk melihat benih dompet Anda.",
+    "preferences": "Preferensi",
+    "privacyPolicy": "Kebijakan Privasi",
+    "qrInvalidAddress": "Kode QR tidak berisikan alamat yang benar",
+    "qrInvalidPermissions": "Mohon Berikan Izin Kamera untuk memindai Kode QR",
+    "qrInvalidSeed": "Kode QR tidak mengandung benih atau kunci pribadi yg valid",
+    "qrMnemonicError": "Kode QR tidak memiliki kata rahasia yang valid",
+    "qrUnknownError": "Tidak dapat membaca Kode QR",
+    "rawSeed": "Benih Mentah",
+    "receive": "Terima",
+    "received": "Diterima",
+    "removeContact": "Hapus Kontak",
+    "removeContactConfirmation": "Anda yakib akan menghapus {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Membutuhkan kata sandi untuk membuka Natrium?",
+    "rootWarning": "Tampaknya perangkat Anda \"di-root\", \"jailbroken\", atau dimodifikasi dengan cara yang membahayakan keamanan. Anda disarankan untuk mereset perangkat Anda ke keadaan semula sebelum melanjutkan.",
+    "scanInstructions": "Pindai QR code\n alamat Kaspa",
+    "scanQrCode": "Pindai QR Code",
+    "secretInfo": "Pada layar berikutnya, anda akan melihat kalimat rahasia. Ini adalah sebuah password untuk akses uanh anda. Sangat penting untuk anda menyimpan dan jangan pernah membagikannya.",
+    "secretInfoHeader": "Keselamatan Utama!",
+    "secretPhrase": "Kalimat Rahasia",
+    "secretWarning": "Jika anda kehilangan ponsel atau menghapus aplikasi, Anda memerlukan Kalimat Rahasia untuk mengakses uang anda!",
+    "securityHeader": "Keamanan",
+    "seed": "Benih",
+    "seedBackupInfo": "Dibawah ini adalah benih dompet anda. Sangat penting bahwa anda harus menyimpan benih dompet anda dan tidak pernah menyimpannya dalam bentuk dokumen tertulis atau tangkapan layar.",
+    "seedInvalid": "Benih tidak sesuai",
+    "send": "Kirim",
+    "sendError": "Terjadi kesalahan. Coba lagi nanti.",
+    "sending": "Mengirim",
+    "sent": "Terkirim",
+    "sentTo": "Terkirim Kepada",
+    "setPassword": "Setel kata sandi",
+    "setPasswordSuccess": "Kata sandi berhasil ditetapkan",
+    "setWalletPassword": "Setel kata sandi dompet",
+    "settingsHeader": "Pengaturan",
+    "settingsTransfer": "Muat dari Dompet Kertas",
+    "systemDefault": "Default Sistem",
+    "tapToHide": "Sentuh untuk Menutup",
+    "tapToReveal": "Sentuh untuk Melihat",
+    "themeHeader": "Tema",
+    "to": "Kepada",
+    "tooManyFailedAttempts": "Terlalu banyak percobaan gagal.",
+    "transfer": "Transfer",
+    "transferClose": "Ketuk di mana saja untuk melanjutkan.",
+    "transferComplete": "{amount} KAS berhasil ditransfer ke Dompet Natrium Anda.",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Dompet dengan saldo {amount} KAS telah terdeteksi.\n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Ketuk konfirmasi untuk mentransfer dana.\n",
+    "transferConfirmInfoThird": "Transfer membutuhkan beberapa detik.",
+    "transferError": "Terjadi kesalahan selama transfer. Silakan coba lagi nanti.",
+    "transferHeader": "Transfer\nDana",
+    "transferIntro": "Proses ini akan mentransfer dana dari dompet kertas ke dompet Natrium Anda.\n\nKetuk \"%1\" tombol untuk memulai.",
+    "transferLoading": "Mentransfer",
+    "transferManualHint": "Mohon masukkan benih dibawah ini.",
+    "transferNoFunds": "Tidak ada KAS di dalam benih ini.",
+    "transferQrScanError": "Kode QR ini tidak mengandung benih yg valid.",
+    "transferQrScanHint": "Pindai Benih\n atau kunci pribadi",
+    "unconfirmed": "belum dikonfirmasi",
+    "unlock": "Terbuka",
+    "unlockBiometrics": "Otentikasi untuk Membuka Natrium",
+    "unlockPin": "Masukkan PIN untuk membuka KALIUM",
+    "warning": "PERINGATAN",
+    "welcomeText": "Selamat datang di Natrium. Untuk melanjutkan, anda bisa membuat dompet baru atau mengimpor dompet lama anda.",
+    "xMinutes": "Setelah {minutes, plural, =1{1 menit} other{{minutes} menit}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Ya",
+    "yesButton": "Ya"
+}

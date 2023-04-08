@@ -1,0 +1,244 @@
+{
+    "@@locale": "cs",
+    "account": "Účet",
+    "accounts": "Účty",
+    "ackBackedUp": "Jste si jisti, že jste zálohovali svou tajnou frázi nebo semínko?",
+    "addAccount": "Přidat účet",
+    "addContact": "Přidat kontakt",
+    "addressCopied": "Adresa zkopírována",
+    "addressHint": "Zadejte adresu",
+    "addressMising": "Prosím zadejte adresu",
+    "addressShare": "Sdílet adresu",
+    "amountMissing": "Prosím zadejte částku",
+    "authMethod": "Metoda ověření",
+    "autoLockHeader": "Automaticky zamknout",
+    "backupConfirmButton": "Zálohoval jsem to",
+    "backupSecretPhrase": "Zálohovat tajnou frázi",
+    "backupSeed": "Zálohovat semínko",
+    "backupSeedConfirm": "Jste si jisti, že jste zálohovali své semínko peněženky?",
+    "backupYourSeed": "Zálohujte své semínko",
+    "biometricsMethod": "Biometrie",
+    "blockExplorer": "Průzkumník bloků",
+    "cancel": "Zrušit",
+    "changeCurrency": "Změna měny",
+    "close": "Zavřít",
+    "confirm": "Potvrdit",
+    "confirmPasswordHint": "Potvrďte heslo",
+    "contactAdded": "{contactName} přidán do kontaktů.",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Kontakt již existuje.",
+    "contactHeader": "Kontakt",
+    "contactInvalid": "Zadejte jméno kontaktu",
+    "contactNameHint": "Zadejte jméno @",
+    "contactNameMissing": "Zadejte nové jméno pro tento kontakt",
+    "contactRemoved": "{contactName} byl úspěšně odstraněn z kontaktů!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Kontakty",
+    "contactsImportErr": "Import kontaktů se nezdařil",
+    "contactsImportSuccess": "{noContacts} kontaktů bylo úspěšně importováno.",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Zkopírováno",
+    "copy": "Kopírovat",
+    "copyAddress": "Kopírovat adresu",
+    "createAPasswordHeader": "Vytvořte si heslo.",
+    "createPasswordFirstParagraph": "Můžete si vytvořit heslo a přidat tak do své peněženky další zabezpečení.",
+    "createPasswordHint": "Vytvořit heslo",
+    "createPasswordSecondParagraph": "Heslo je volitelné a vaše peněženka bude bez ohledu na to chráněna vaším PIN nebo biometrickými údaji.",
+    "createPasswordSheetHeader": "Vytvořit",
+    "currency": "Měna",
+    "defaultAccountName": "Hlavní účet",
+    "defaultNewAccountName": "Účet {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "Vypnout",
+    "disablePasswordSuccess": "Heslo bylo vypnuto úspěšně",
+    "disableWalletPassword": "Vypnout heslo peněženky",
+    "dismiss": "Zavrhnout",
+    "encryptionFailedError": "Nastavení hesla k peněžence se nezdařilo",
+    "enterAddress": "Zadejte adresu",
+    "enterAmount": "Zadejte částku",
+    "enterPasswordHint": "Zadejte vaše heslo",
+    "exampleCardIntro": "Vítejte v Natriu. Jakmile obdržíte KAS, transakce se zobrazí takto:",
+    "exit": "Odejít",
+    "fingerprintSeedBackup": "Ověřte se pro zálohu semínka.",
+    "goBackButton": "Zpět",
+    "gotItButton": "Chápu!",
+    "hideAccountHeader": "Skrýt účet",
+    "iUnderstandTheRisks": "Chápu rizika",
+    "ignore": "Ignorovat",
+    "import": "Importovat",
+    "importSecretPhrase": "Importujte tajnou frázi",
+    "importSecretPhraseHint": "Níže zadejte svoji 24slovnou tajnou frázi. Každé slovo by mělo být odděleno mezerou.",
+    "importSeed": "Importovat semínko",
+    "importSeedHint": "Prosím, zadejte vaše semínko níže.",
+    "importWallet": "Importovat pěněženku",
+    "instantly": "Ihned",
+    "insufficientBalance": "Nedostatečný zůstatek",
+    "invalidAddress": "Zadaná adresa není platná",
+    "invalidPassword": "Neplatné heslo",
+    "language": "Jazyk",
+    "lockAppSetting": "Ověřit při spuštění",
+    "locked": "Zamčeno",
+    "logout": "Odhlásit",
+    "manage": "Spravovat",
+    "manualEntry": "Ruční zadání",
+    "messageHeader": "Zpráva",
+    "mnemonicInvalidWord": "{word} není platné slovo",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Mnemonická fráze",
+    "mnemonicSizeError": "Tajná fráze může obsahovat pouze 24 slov",
+    "newWallet": "Nová peněženka",
+    "nextButton": "Další",
+    "no": "Ne",
+    "noContactsExport": "Neexistují žádné kontakty k exportu.",
+    "noContactsImport": "Žádné nové kontakty k importu.",
+    "noSkipButton": "Ne, přeskočit",
+    "notificationBody": "Otevřete Kaspium pro zobrazení této transakce",
+    "notificationHeaderSupplement": "Klepnutím otevřete",
+    "notificationTitle": "Přijato {amount} KAS",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Upozornění",
+    "off": "Off",
+    "on": "On",
+    "paperWallet": "Papírová Peněženka",
+    "passwordBlank": "Heslo nemůže být prázdné",
+    "passwordNoLongerRequiredToOpenParagraph": "Už nebudete potřebovat heslo pro otevření Kaspium.",
+    "passwordWillBeRequiredToOpenParagraph": "Toto heslo bude vyžadováno k otevření Kaspium.",
+    "passwordsDontMatch": "Heslo se neshoduje",
+    "pending": "nevyřízený",
+    "pinConfirmError": "Pin se neshoduje",
+    "pinConfirmTitle": "Potvrdit Váš pin",
+    "pinCreateTitle": "Vytvořte si šestimístný pin",
+    "pinEnterTitle": "Zadejte pin",
+    "pinInvalid": "Neplatný pin",
+    "pinMethod": "PIN",
+    "pinSeedBackup": "Zadejte PIN pro zálohu semínka",
+    "preferences": "Předvolby",
+    "privacyPolicy": "Zásady ochrany osobních údajů",
+    "qrInvalidAddress": "QR kód neobsahuje platnou destinaci.",
+    "qrInvalidPermissions": "Udělte oprávnění fotoaparátu ke skenování QR kódů",
+    "qrInvalidSeed": "QR kód neobsahuje platné semínko ani soukromý klíč",
+    "qrMnemonicError": "QR neobsahuje platnou tajnou frázi",
+    "qrUnknownError": "Nelze přečíst QR kód",
+    "rawSeed": "Hrubé semínko",
+    "receive": "Přijmout",
+    "received": "Přijmuto",
+    "removeContact": "Odstranit kontakt",
+    "removeContactConfirmation": "Opravdu chcete odstranit {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Vyžadovat heslo k otevření Kaspium?",
+    "rootWarning": "Zdá se, že vaše zařízení je \"rootováno\", \"jailbroken\" nebo upraveno způsobem, který ohrožuje zabezpečení. Před pokračováním se doporučuje resetovat zařízení do původního stavu.",
+    "scanInstructions": "Naskenujte QR kód Kaspa \n adresy",
+    "scanQrCode": "Oskenovat QR kód",
+    "secretInfo": "Na další obrazovce uvidíte svoji tajnou frázi. Jedná se o heslo pro přístup k vašim finančním prostředkům. Je zásadní, abyste jej zálohovali a nikdy s nikým nesdíleli.",
+    "secretInfoHeader": "Bezpečnost především!",
+    "secretPhrase": "Tajná fráze",
+    "secretWarning": "Pokud ztratíte zařízení nebo odinstalujete aplikaci, budete potřebovat tajnou frázi nebo semínko, abyste mohli získat zpět své prostředky!",
+    "securityHeader": "Zabezpečení",
+    "seed": "Semínko",
+    "seedBackupInfo": "Níže je semínko vaší peněženky. Je zásadní, abyste zálohovali své semínko a nikdy ho neukládali jako prostý text nebo snímek obrazovky.",
+    "seedInvalid": "Semínko není platné",
+    "send": "Poslat",
+    "sendError": "Došlo k chybě. Zkuste to později.",
+    "sending": "Odesílání",
+    "sent": "Odesláno",
+    "sentTo": "Odeslat",
+    "setPassword": "Nastavit heslo",
+    "setPasswordSuccess": "Heslo bylo úspěšně nastaveno",
+    "setWalletPassword": "Nastavit heslo peněženky",
+    "settingsHeader": "Nastavení",
+    "settingsTransfer": "Načíst z papírové penězenky",
+    "shareKaspium": "Sdílet Kaspium",
+    "shareKaspiumText": "Vyzkoušejte Kaspium! Špičková mobilní peněženka Kaspa!",
+    "systemDefault": "Výchozí systému",
+    "tapToHide": "Klepnutím skryjete",
+    "tapToReveal": "Klikněte pro zobrazení",
+    "themeHeader": "Tématika",
+    "to": "Pro",
+    "tooManyFailedAttempts": "Příliš mnoho neúspěšných pokusů o odemknutí.",
+    "transfer": "Převod",
+    "transferClose": "Klepnutím kamkoli zavřete okno.",
+    "transferComplete": "{amount} KAS úspěšně převedeno do vaší peněženky Kaspium. \n",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Byla nalezena peněženka se zůstatkem {amount} KAS. \n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Prostředky převedete klepnutím na potvrzení. \n",
+    "transferConfirmInfoThird": "Dokončení přenosu může trvat několik sekund.",
+    "transferError": "Během přenosu došlo k chybě. Prosím zkuste to znovu později.",
+    "transferHeader": "Převést finanční prostředky",
+    "transferIntro": "Tento proces přenese prostředky z papírové peněženky do vaší peněženky Kaspium. \n\n Začněte klepnutím na tlačítko \"% 1\".",
+    "transferLoading": "Přenáší se",
+    "transferManualHint": "Zadejte semínko níže.",
+    "transferNoFunds": "Toto semínko nemá na sobě žádné KAS",
+    "transferQrScanError": "Tento QR kód neobsahuje platné semínko.",
+    "transferQrScanHint": "Naskenujte počáteční \n nebo soukromý klíč Kaspa",
+    "unconfirmed": "nepotvrzený",
+    "unlock": "Odemknout",
+    "unlockBiometrics": "Ověřte a odemkněte Kaspium",
+    "unlockPin": "Zadejte PIN pro odemčení Natria",
+    "warning": "Varování",
+    "welcomeText": "Vítejte v Kaspium. Nejprve můžete vytvořit novou peněženku nebo importovat stávající.",
+    "xMinutes": "Po {minutes, plural, =1{1 minutě} other{{minutes} minutách}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Ano",
+    "yesButton": "Ano"
+}

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_constants.dart';
 import '../core/core_providers.dart';
+import '../l10n/l10n.dart';
 import '../wallet/wallet_list_widget.dart';
 import 'intro_actions_widget.dart';
 
@@ -13,7 +14,7 @@ class IntroWallets extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

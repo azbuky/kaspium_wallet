@@ -8,6 +8,7 @@ import '../app_icons.dart';
 import '../app_providers.dart';
 import '../contacts/contact.dart';
 import '../kaspa/kaspa.dart';
+import '../l10n/l10n.dart';
 import '../transactions/send_tx.dart';
 import '../util/numberutil.dart';
 import '../util/ui_util.dart';
@@ -199,7 +200,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(themeProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
     final styles = ref.watch(stylesProvider);
 
     // final receiveAddress = ref.watch(receiveWalletAddressProvider);
@@ -568,7 +569,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   /// Validate form data to see if valid
   /// @returns true if valid, false otherwise
   bool _validateRequest() {
-    final l10n = ref.read(l10nProvider);
+    final l10n = l10nOf(context);
 
     _amountFocusNode.unfocus();
     _addressFocusNode.unfocus();
@@ -628,7 +629,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
     return Consumer(builder: (context, ref, _) {
       final theme = ref.watch(themeProvider);
       final styles = ref.watch(stylesProvider);
-      final l10n = ref.watch(l10nProvider);
+      final l10n = l10nOf(context);
 
       final formatter = ref.watch(kaspaFormatterProvider);
       final maxSend = ref.watch(maxSendProvider);
@@ -709,7 +710,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   Widget getEnterAddressContainer() {
     return Consumer(builder: (context, ref, _) {
       final theme = ref.watch(themeProvider);
-      final l10n = ref.watch(l10nProvider);
+      final l10n = l10nOf(context);
       final styles = ref.watch(stylesProvider);
 
       return AppTextField(
@@ -882,7 +883,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   Widget getEnterNoteContainer() {
     return Consumer(builder: (context, ref, _) {
       final theme = ref.watch(themeProvider);
-      final l10n = ref.watch(l10nProvider);
+      final l10n = l10nOf(context);
 
       return AppTextField(
         padding: _noteValidAndUnfocused
@@ -897,7 +898,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
         textInputAction: TextInputAction.done,
         maxLines: null,
         autocorrect: false,
-        hintText: l10n.enterMemo,
+        hintText: l10n.enterNote,
         prefixButton: TextFieldButton(
           icon: AppIcons.scan,
           onPressed: () async {

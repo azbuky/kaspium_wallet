@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../app_styles.dart';
+import '../l10n/l10n.dart';
 import '../util/formatters.dart';
 import '../util/kaspa_util.dart';
 import '../util/user_data_util.dart';
@@ -38,7 +39,7 @@ class _TransferManualEntrySheetState
   Widget build(BuildContext context) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     return TapOutsideUnfocus(
       child: SafeArea(

@@ -1,6 +1,6 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 
-import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import 'setting_item.dart';
 
 enum AuthMethod { PIN, BIOMETRICS }
@@ -11,8 +11,8 @@ class AuthenticationMethod extends SettingSelectionItem {
 
   const AuthenticationMethod(this.method);
 
-  String getDisplayName(WidgetRef ref) {
-    final l10n = ref.read(l10nProvider);
+  String getDisplayName(BuildContext context) {
+    final l10n = l10nOf(context);
     switch (method) {
       case AuthMethod.BIOMETRICS:
         return l10n.biometricsMethod;

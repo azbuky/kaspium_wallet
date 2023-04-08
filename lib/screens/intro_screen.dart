@@ -6,6 +6,7 @@ import '../intro/intro.dart';
 import '../intro/intro_providers.dart';
 import '../intro/intro_types.dart';
 import '../intro/intro_wallet_name.dart';
+import '../l10n/l10n.dart';
 import '../widgets/pin_screen.dart';
 
 class IntroScreen extends HookConsumerWidget {
@@ -20,7 +21,7 @@ class IntroScreen extends HookConsumerWidget {
       final pinIsSet = await vault.pinIsSet;
 
       if (pinIsSet) {
-        final l10n = ref.read(l10nProvider);
+        final l10n = l10nOf(context);
         final authUtil = ref.read(authUtilProvider);
         final auth = authUtil.authenticate(
           context,

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import 'transaction_types.dart';
 
 class TransactionStateTag extends ConsumerWidget {
@@ -16,7 +17,7 @@ class TransactionStateTag extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     return Container(
       padding: EdgeInsetsDirectional.fromSTEB(6, 2, 6, 2),
@@ -41,7 +42,7 @@ class TransactionStateTag extends ConsumerWidget {
             );
           }
           return Text(
-            l10n.confirmations.replaceAll('%1', confirmations.toString()),
+            l10n.confirmations(confirmations.toString()),
             style: styles.tagText,
           );
         },

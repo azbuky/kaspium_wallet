@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../widgets/buttons/primary_button.dart';
 import '../widgets/mnemonic_display.dart';
 import 'intro_back_button.dart';
@@ -14,7 +15,7 @@ class IntroBackupSeed extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final introData = ref.watch(introDataProvider);
     final mnemonic = introData.mnemonic?.split(' ');

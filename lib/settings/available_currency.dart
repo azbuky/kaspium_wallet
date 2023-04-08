@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'setting_item.dart';
 
@@ -55,7 +54,7 @@ class AvailableCurrency extends SettingSelectionItem {
     return currency.toString().split('.')[1];
   }
 
-  String getDisplayName(WidgetRef ref) {
+  String getDisplayName(BuildContext context) {
     return getCurrencySymbol() + " " + getDisplayNameNoSymbol();
   }
 
@@ -224,90 +223,6 @@ class AvailableCurrency extends SettingSelectionItem {
       case "USD":
       default:
         return "\$";
-    }
-  }
-
-  Locale getLocale() {
-    switch (getIso4217Code()) {
-      case "ARS":
-        return Locale("es", "AR");
-      case "AUD":
-        return Locale("en", "AU");
-      case "BRL":
-        return Locale("pt", "BR");
-      case "CAD":
-        return Locale("en", "CA");
-      case "CHF":
-        return Locale("de", "CH");
-      case "CLP":
-        return Locale("es", "CL");
-      case "CNY":
-        return Locale("zh", "CN");
-      case "CZK":
-        return Locale("cs", "CZ");
-      case "DKK":
-        return Locale("da", "DK");
-      case "EUR":
-        return Locale("fr", "FR");
-      case "GBP":
-        return Locale("en", "GB");
-      case "HKD":
-        return Locale("zh", "HK");
-      case "HUF":
-        return Locale("hu", "HU");
-      case "IDR":
-        return Locale("id", "ID");
-      case "ILS":
-        return Locale("he", "IL");
-      case "INR":
-        return Locale("hi", "IN");
-      case "JPY":
-        return Locale("ja", "JP");
-      case "KRW":
-        return Locale("ko", "KR");
-      case "KWD":
-        return Locale("ar", "KW");
-      case "MXN":
-        return Locale("es", "MX");
-      case "MYR":
-        return Locale("ta", "MY");
-      case "NOK":
-        return Locale("no", "NO");
-      case "NZD":
-        return Locale("en", "NZ");
-      case "PHP":
-        return Locale("tl", "PH");
-      case "PKR":
-        return Locale("ur", "PK");
-      case "PLN":
-        return Locale("pl", "PL");
-      case "RUB":
-        return Locale("ru", "RU");
-      case "SAR":
-        return Locale("ar", "SA");
-      case "SEK":
-        return Locale("sv", "SE");
-      case "SGD":
-        return Locale("zh", "SG");
-      case "THB":
-        return Locale("th", "TH");
-      case "TRY":
-        return Locale("tr", "TR");
-      case "TWD":
-        return Locale("en", "TW");
-      case "AED":
-        return Locale("ar", "AE");
-      case "VES":
-        return Locale("es", "VE");
-      case "ZAR":
-        return Locale("en", "ZA");
-      case "UAH":
-        return Locale("uk", "UA");
-      case "VND":
-        return Locale("vi", "VN");
-      case "USD":
-      default:
-        return Locale("en", "US");
     }
   }
 

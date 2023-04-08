@@ -7,6 +7,7 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
+import '../l10n/l10n.dart';
 import '../utxos/utxos_providers.dart';
 import '../wallet/wallet_types.dart';
 import '../wallet_address/address_providers.dart';
@@ -103,7 +104,7 @@ class TransactionsWidget extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final wallet = ref.watch(selectedWalletProvider);
     if (wallet == null) {

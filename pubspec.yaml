@@ -84,6 +84,7 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
+  generate: true
   fonts:
     - family: NunitoSans
       fonts:

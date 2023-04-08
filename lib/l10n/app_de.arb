@@ -1,0 +1,244 @@
+{
+    "@@locale": "de",
+    "account": "Konto",
+    "accounts": "Konten",
+    "ackBackedUp": "Bist du dir sicher, dass du deine Geheimsequenz oder deinen Seed gesichert hast?",
+    "addAccount": "Konto hinzufügen",
+    "addContact": "Neuer Kontakt",
+    "addressCopied": "Adresse kopiert",
+    "addressHint": "Adresse eingeben",
+    "addressMising": "Bitte Adresse eingeben",
+    "addressShare": "Teilen",
+    "amountMissing": "Bitte Betrag eingeben",
+    "authMethod": "Authentifizierungs-Verfahren",
+    "autoLockHeader": "Automatisch sperren",
+    "backupConfirmButton": "Ich habe den Seed gesichert",
+    "backupSecretPhrase": "Geheimsequenz sichern",
+    "backupSeed": "Seed sichern",
+    "backupSeedConfirm": "Bist du sicher, dass du deinen Seed gesichert hast?",
+    "backupYourSeed": "Sichere deinen Seed",
+    "biometricsMethod": "Biometrie",
+    "blockExplorer": "Block Explorer",
+    "cancel": "Abbrechen",
+    "changeCurrency": "Währung ändern",
+    "close": "Schließen",
+    "confirm": "Bestätigen",
+    "confirmPasswordHint": "Passwort bestätigen",
+    "contactAdded": "{contactName} zu Kontakten hinzugefügt!",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Kontakt bereits vorhanden",
+    "contactHeader": "Kontakt",
+    "contactInvalid": "Ungültiger Kontaktname",
+    "contactNameHint": "Namen eingeben @",
+    "contactNameMissing": "Gib diesem Kontakt einen Namen",
+    "contactRemoved": "{contactName} wurde aus den Kontakten gelöscht!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Kontakte",
+    "contactsImportErr": "Import fehlgeschlagen",
+    "contactsImportSuccess": "{noContacts} Kontakte wurden importiert",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Kopiert",
+    "copy": "Kopieren",
+    "copyAddress": "Adresse kopieren",
+    "createAPasswordHeader": "Wähle ein Passwort.",
+    "createPasswordFirstParagraph": "Für zusätzliche Sicherheit kannst du ein Passwort festlegen.",
+    "createPasswordHint": "Ein Passwort wählen",
+    "createPasswordSecondParagraph": "Das Passwort ist optional. Dein Wallet wird immer mithilfe einer PIN oder biometrischen Daten geschützt.",
+    "createPasswordSheetHeader": "Wählen",
+    "currency": "Währung",
+    "defaultAccountName": "Hauptkonto",
+    "defaultNewAccountName": "Name des neuen Kontos {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "Deaktivieren",
+    "disablePasswordSuccess": "Passwort wurde deaktiviert",
+    "disableWalletPassword": "Wallet-Passwort deaktivieren",
+    "dismiss": "Schließen",
+    "encryptionFailedError": "Wallet-Passwort konnte nicht festgelegt werden",
+    "enterAddress": "Adresse eingeben",
+    "enterAmount": "Betrag eingeben",
+    "enterPasswordHint": "Passwort eingeben",
+    "exampleCardIntro": "Willkommen bei Kaspium. Wenn du KAS sendest oder empfängst, sieht es aus wie folgt: ",
+    "exit": "Verlassen",
+    "fingerprintSeedBackup": "Fingerabdruck scannen, um Seed zu sichern.",
+    "goBackButton": "Zurück",
+    "gotItButton": "Verstanden!",
+    "hideAccountHeader": "Konto verbergen?",
+    "iUnderstandTheRisks": "Ich verstehe die Risiken",
+    "ignore": "Ignorieren",
+    "import": "Importieren",
+    "importSecretPhrase": "Geheimsequenz importieren",
+    "importSecretPhraseHint": "Bitte gib unten deine 24-wörtige Geheimsequenz ein. Trenne die Wörter dabei mit Leerzeichen.",
+    "importSeed": "Seed importieren",
+    "importSeedHint": "Bitte füge deinen Seed ein.",
+    "importWallet": "Wallet importieren",
+    "instantly": "Sofort",
+    "insufficientBalance": "Nicht genügend Guthaben",
+    "invalidAddress": "Ungültige Empfänger-Adresse",
+    "invalidPassword": "Ungültiges Passwort",
+    "language": "Sprache",
+    "lockAppSetting": "Authentifizierung beim Öffnen",
+    "locked": "Gesperrt",
+    "logout": "Ausloggen",
+    "manage": "Verwaltung",
+    "manualEntry": "Manueller Eintrag",
+    "messageHeader": "Nachricht",
+    "mnemonicInvalidWord": "{word} ist kein gültiges Wort",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Wortfolge",
+    "mnemonicSizeError": "Die Geheimsequenz muss 24 Wörter enthalten",
+    "newWallet": "Neues Wallet",
+    "nextButton": "Weiter",
+    "no": "Nein",
+    "noContactsExport": "Keine Kontakte zum Exportieren gefunden",
+    "noContactsImport": "Keine Kontakte zum Importieren gefunden",
+    "noSkipButton": "Überspringen",
+    "notificationBody": "Öffne Kaspium, um diese Transaktion zu sehen.",
+    "notificationHeaderSupplement": "Zum Öffnen tippen",
+    "notificationTitle": "{amount} KAS erhalten",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Benachrichtigungen",
+    "off": "Aus",
+    "on": "An",
+    "paperWallet": "Paper Wallet",
+    "passwordBlank": "Passwort darf nicht leer sein",
+    "passwordNoLongerRequiredToOpenParagraph": "Zum Öffnen der App wird jetzt kein Passwort mehr benötigt.",
+    "passwordWillBeRequiredToOpenParagraph": "Dieses Passwort wird benötigt, um Kaspium zu öffnen.",
+    "passwordsDontMatch": "Passwörter stimmen nicht überein",
+    "pending": "ausstehend",
+    "pinConfirmError": "PINs stimmen nicht überein",
+    "pinConfirmTitle": "Bestätige deine PIN",
+    "pinCreateTitle": "Erstelle eine 6-stellige PIN",
+    "pinEnterTitle": "PIN eingeben",
+    "pinInvalid": "Falsche PIN eingegeben",
+    "pinMethod": "PIN",
+    "pinSeedBackup": "PIN eingeben, um Seed zu sehen.",
+    "preferences": "Einstellungen",
+    "privacyPolicy": "Datenschutz",
+    "qrInvalidAddress": "QR-Code enthält kein gültiges Ziel",
+    "qrInvalidPermissions": "Bitte Kamerazugriff erlauben, um QR-Codes zu scannen",
+    "qrInvalidSeed": "Der QR-Code enthält keinen gültigen Seed oder Private Key",
+    "qrMnemonicError": "Der QR-Code enthält keine gültige Geheimsequenz",
+    "qrUnknownError": "QR-Code konnte nicht gelesen werden",
+    "rawSeed": "Seed",
+    "receive": "Empfangen",
+    "received": "Empfangen",
+    "removeContact": "Kontakt löschen",
+    "removeContactConfirmation": "Willst du {contactName} wirklich löschen?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Passwortabfrage beim Öffnen der App?",
+    "rootWarning": "Es sieht aus, als seien Änderungen an deinem Gerät vorgenommen worden, welche dessen Sicherheit beeinträchtigen. Es wird empfohlen, das Gerät in seinen Originalzustand zurückzusetzen.",
+    "scanInstructions": "Scanne einen\nKaspa-Address-QR-Code",
+    "scanQrCode": "QR-Code scannen",
+    "secretInfo": "Auf der nächsten Seite siehst du deine Geheimsequenz. Diese erlaubt dir Zugriff auf dein Guthaben. Es ist sehr wichtig, dass du sie sicherst und geheim hältst.",
+    "secretInfoHeader": "Sicherheit geht vor!",
+    "secretPhrase": "Geheimsequenz",
+    "secretWarning": "Solltest du dein Gerät verlieren oder die App löschen, benötigst du deine Geheimsequenz oder deinen Seed, um auf dein Guthaben zugreifen zu können!",
+    "securityHeader": "Sicherheit",
+    "seed": "Seed",
+    "seedBackupInfo": "Unten siehst du deinen Seed. Es ist extrem wichtig, dass du ein Backup deines Seeds erstellst. Sichere deinen Seed niemals als Klartext oder mit einem Screenshot.",
+    "seedInvalid": "Seed ist ungültig.",
+    "send": "Senden",
+    "sendError": "Ein Fehler ist aufgetreten. Versuche es später erneut.",
+    "sending": "Sende",
+    "sent": "Gesendet",
+    "sentTo": "Gesendet an",
+    "setPassword": "Passwort festlegen",
+    "setPasswordSuccess": "Passwort erfolgreich festgelegt",
+    "setWalletPassword": "Wallet-Passwort festlegen",
+    "settingsHeader": "Einstellungen",
+    "settingsTransfer": "Von Paper Wallet importieren",
+    "shareKaspium": "Teile Kaspium",
+    "shareKaspiumText": "Probier Kaspium, Kaspas offizielles mobiles Wallet!",
+    "systemDefault": "Systemsprache",
+    "tapToHide": "Zum Verbergen tippen",
+    "tapToReveal": "Zum Anzeigen tippen",
+    "themeHeader": "Thema",
+    "to": "An",
+    "tooManyFailedAttempts": "Zu viele Fehlversuche.",
+    "transfer": "Transferieren",
+    "transferClose": "Tippe, um das Fenster zu schließen.",
+    "transferComplete": "{amount} KAS wurden erfolgreich an dein Kaspium Wallet gesendet.",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Ein Wallet mit einem Guthaben von {amount} KAS wurde gefunden.\n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Tippe, um den Transfer zu bestätigen.\n",
+    "transferConfirmInfoThird": "Der Vorgang kann einige Sekunden dauern.",
+    "transferError": "Während des Transfers ist ein Fehler aufgetreten. Bitte versuche es später erneut.",
+    "transferHeader": "Guthaben\ntransferieren",
+    "transferIntro": "Dieser Vorgang wird das Guthaben vom Paper Wallet in dein Kaspium Wallet transferieren.\n\nTippe zum Starten auf \"%1\" .",
+    "transferLoading": "Transfer läuft",
+    "transferManualHint": "Seed eingeben.",
+    "transferNoFunds": "Dieser Seed enthält keine KAS.",
+    "transferQrScanError": "Dieser QR Code enthält keinen gültigen Seed.",
+    "transferQrScanHint": "Scanne einen Kaspa \nSeed oder Private Key",
+    "unconfirmed": "unbestätigt",
+    "unlock": "Entsperrt",
+    "unlockBiometrics": "Authentifizieren, um Kaspium zu entsperren",
+    "unlockPin": "PIN eingeben, um Kaspium zu entsperren",
+    "warning": "WARNUNG",
+    "welcomeText": "Willkommen bei Kaspium. Um fortzufahren, benötigst du ein Wallet. Erstelle bitte ein neues Wallet oder importiere ein bereits existierendes Wallet.",
+    "xMinutes": "Nach {minutes, plural, =1{1 minute} other{{minutes} minutes}} Minute",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Ja",
+    "yesButton": "Ja"
+}

@@ -1,0 +1,238 @@
+{
+    "@@locale": "tl",
+    "account": "Account",
+    "accounts": "Mga Account",
+    "ackBackedUp": "Sigurado ka ba na naback-up mo ang iyong secret phrase or seed?",
+    "addAccount": "Magdagdag ng Account",
+    "addContact": "Mag-add ng kontak",
+    "addressCopied": "Ang Address ay nakopya",
+    "addressHint": "Ilagay ang Address",
+    "addressMising": "Mangyaring magpasok ng patutunguhan",
+    "addressShare": "I-share",
+    "amountMissing": "Mangyaring magpasok ng isang halaga",
+    "authMethod": "Pamamaraan Authentication",
+    "autoLockHeader": "I-lock ng automatic",
+    "backupConfirmButton": "Na-backup ko na ito",
+    "backupSecretPhrase": "Backup Secret Phrase",
+    "backupSeed": "I-back up ang Seed",
+    "backupSeedConfirm": "Sigurado ka ba na na-back up mo na ang iyong wallet seed?",
+    "backupYourSeed": "I-back up ang iyong seed",
+    "biometricsMethod": "Biometrics",
+    "cancel": "Kanselahin",
+    "changeCurrency": "Palitan ang Currency",
+    "close": "Isara",
+    "confirm": "Kumpirmahin",
+    "confirmPasswordHint": "Kumpirmahin ang password",
+    "contactAdded": "{contactName} ay nadagdag sa mga kontak!",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Mayroon nang kapareho",
+    "contactHeader": "Kontak",
+    "contactInvalid": "Hindi tugma sa kontak",
+    "contactNameHint": "Ilagay ang pangalan @",
+    "contactNameMissing": "Walang kontak na ma-export",
+    "contactRemoved": "{contactName} ay natanggal sa mga kontak!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Mga kontak",
+    "contactsImportErr": "Hindi ma-import ang mga kontak",
+    "contactsImportSuccess": "Na-import na ang {noContacts} kontak",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Nakopya",
+    "copy": "Kopyahin",
+    "copyAddress": "Kopyahin ang Address",
+    "createAPasswordHeader": "Gumawa ng password",
+    "createPasswordFirstParagraph": "Pwede kang gumawa ng password para may dagdag seguridad ang iyong wallet",
+    "createPasswordHint": "Gumawa ng password",
+    "createPasswordSecondParagraph": "Ang password ay opsyonal, at ang iyong wallet ay protektado ng PIN o biometrics.",
+    "createPasswordSheetHeader": "Gumawa",
+    "currency": "Currency",
+    "defaultAccountName": "Pangunahing Account",
+    "defaultNewAccountName": "Account {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "Disable",
+    "disablePasswordSuccess": "Ang password ay na-disabled",
+    "disableWalletPassword": "I-disable ang Wallet Password",
+    "encryptionFailedError": "Nabigo sa paglagay ng wallet password",
+    "enterAddress": "Ilagay ang Address",
+    "enterAmount": "Ilagay ang Amount",
+    "enterPasswordHint": "Ilagay ang password",
+    "exampleCardIntro": "Maligayang pagdating sa Kaspium. Ganito ang makikita mong transaksyon pag nakatanggap ka ng KAS",
+    "exit": "Lumabas",
+    "fingerprintSeedBackup": "Kumpirmahin ang fingerprint para i-back up ang wallet seed.",
+    "goBackButton": "Bumalik",
+    "gotItButton": "Nakuha ko!",
+    "hideAccountHeader": "Itago ang Account?",
+    "iUnderstandTheRisks": "Naiintindihan ko ang risks",
+    "import": "Import",
+    "importSecretPhrase": "I-import ang secret phrase",
+    "importSecretPhraseHint": "Pakilagay ang iyong 24 na salita na iyong secret phrase sa ibaba. Ang bawat salita ay dapat may ispasyo sa pagitan.",
+    "importSeed": "I-import ang iyong seed",
+    "importSeedHint": "Ilagay ang iyong seed sa ibaba.",
+    "importWallet": "Dating Wallet",
+    "instantly": "Agad",
+    "insufficientBalance": "Hindi sapat ang balanse",
+    "invalidAddress": "Hindi wasto ang Destination Address",
+    "invalidPassword": "Maling Password",
+    "language": "Wika",
+    "lockAppSetting": "I-authenticate sa paglunsad",
+    "locked": "Nakalock",
+    "logout": "Logout",
+    "manage": "Pamamahala",
+    "manualEntry": "Manual na ipasok",
+    "mnemonicInvalidWord": "{word} ay hindi valid na salita",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Mnemonic Phrase",
+    "mnemonicSizeError": "Secret phrase ay may 24 na salita lamang",
+    "newWallet": "Bagong Wallet",
+    "nextButton": "Susunod",
+    "no": "Hindi",
+    "noContactsExport": "Walang kontak na ma-export",
+    "noContactsImport": "Walang kontak na ma-import",
+    "noSkipButton": "Hindi, laktawan ito.",
+    "notificationBody": "Buksan ang Kaspium para tingnan ito.",
+    "notificationHeaderSupplement": "Tapikin para mabuksan",
+    "notificationTitle": "Nakatanggap ng {amount} KAS",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Abiso",
+    "off": "Off",
+    "on": "On",
+    "paperWallet": "Paper Wallet",
+    "passwordBlank": "Ang password ay hindi pwedeng blangko",
+    "passwordNoLongerRequiredToOpenParagraph": "Hindi mo na kailangan ng password para mabuksan ang Kaspium",
+    "passwordWillBeRequiredToOpenParagraph": "Itong password ay kailangan para mabuksan ang Kaspium",
+    "passwordsDontMatch": "Ang passwords ay hindi tugma",
+    "pinConfirmError": "Hindi magkatugma ang pins",
+    "pinConfirmTitle": "Kumpirmahin ang iyong pin",
+    "pinCreateTitle": "Gumawa ng 6-digit pin",
+    "pinEnterTitle": "Ilagay ang pin",
+    "pinInvalid": "Hindi tama ang pin na nilagay",
+    "pinMethod": "PIN",
+    "pinSeedBackup": "Ilagay ang pin para tingnan ang wallet seed.",
+    "preferences": "Kagustuhan",
+    "privacyPolicy": "Patakaran sa privacy",
+    "qrInvalidAddress": "QR code ay walang wasto na destinasyon",
+    "qrInvalidPermissions": "Pakiusap bigyan ng Camera Permissions para ma-scan ang QR Codes",
+    "qrInvalidSeed": "Ang QR code ay walang laman na valid seed o private key",
+    "qrMnemonicError": "QR ay walang valid na secret phrase.",
+    "qrUnknownError": "Hindi mabasa ang QR Code",
+    "rawSeed": "Raw Seed",
+    "receive": "Tumanggap",
+    "received": "Natanggap",
+    "removeContact": "Alisin ang kontak",
+    "removeContactConfirmation": "Sigurado ka ba gusto mong tanggalin ang {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Gumawa ng password para mabuksan ang Kaspium?",
+    "rootWarning": "Ang iyong device ay \"rooted\", \"jailbroken\", o nabago ang security settings. Mabuti na i-reset mo ang iyong device sa orihinal na estado bago magpatuloy.",
+    "scanInstructions": "I-scan ang Kaspa \naddress QR code",
+    "scanQrCode": "I-scan ang QR Code",
+    "secretInfo": "Sa susunod na screen, makikita mo ang iyong secret phrase. Ito ay password para ma-access mo ang iyong pondo. Importante na iback-up mo ito at wag mong i-share sa iba.",
+    "secretInfoHeader": "Maging maingat!",
+    "secretPhrase": "Secret Phrase",
+    "secretWarning": "Pag nawala mo ang iyong device o tinanggal mo ang application, kakailanganin mo ang secret phrase o seed para marecover ang iyong pondo!",
+    "securityHeader": "Seguridad",
+    "seed": "Seed",
+    "seedBackupInfo": "Ang nasa ibaba ay ang seed ng iyong wallet. Importante na i-back up ang iyong seed at huwag i-save bilang plaintext o screenshot.",
+    "seedInvalid": "Ang seed ay hindi wasto",
+    "send": "Magpadala",
+    "sendError": "Nagkaroon ng error. Subukan ulit mamaya.",
+    "sending": "Pinapadala",
+    "sent": "Naipadala",
+    "sentTo": "Pinadala sa",
+    "setPassword": "Maglagay ng Password",
+    "setPasswordSuccess": "Ang password ay nakalagay na",
+    "setWalletPassword": "Maglagay ng Wallet Password",
+    "settingsHeader": "Mga setting",
+    "settingsTransfer": "Ilipat galing sa Paper Wallet",
+    "shareKaspium": "I-share ang Kaspium",
+    "shareKaspiumText": "Tignan ang Kaspium! Opisyal na mobile wallet ng Kaspa!",
+    "systemDefault": "Default na System",
+    "tapToHide": "Tapikin para itago",
+    "tapToReveal": "Tapikin para buksan",
+    "themeHeader": "Tema",
+    "to": "Sa",
+    "tooManyFailedAttempts": "Masyadong madaming maling unlock attempts.",
+    "transfer": "Ilipat",
+    "transferClose": "I-tap kahit saan para isara itong window.",
+    "transferComplete": "{amount} KAS ay nalipat na sa iyong Kaspium Wallet.",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Ang wallet na may balanse na {amount} KAS ay na-detect.\n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "I-tap ang confirm para ilipat ang pondo.\n",
+    "transferConfirmInfoThird": "Ang paglipat ay maaring tumagal ng ilang segundo.",
+    "transferError": "Nagkaroon ng error sa paglipat. Pakiulit mamaya.",
+    "transferHeader": "Transfer\nFunds",
+    "transferIntro": "Ang prosesong ito ay ang paglipat ng pondo galing sa paper wallet.\n\nI-tap ang \"%1\" button para umpisahan.",
+    "transferLoading": "Nililipat na",
+    "transferManualHint": "Pakilagay seed sa ibaba.",
+    "transferNoFunds": "Ang seed na ito ay walang KAS.",
+    "transferQrScanError": "Ang QR code na ito ay hindi valid na seed.",
+    "transferQrScanHint": "Mag-scan ng Kaspa \nseed o private key",
+    "unlock": "I-unlock",
+    "unlockBiometrics": "I-Authenticate para ma-unlock",
+    "unlockPin": "Ilagay ang PIN mabuksan",
+    "warning": "BABALA",
+    "welcomeText": "Maligayang pagdating sa Kaspium. Para magpatuloy, gumawa ng bagong wallet o gamitin ang dating wallet.",
+    "xMinutes": "Pagkatapos ng {minutes, plural, =1{1 minuto} other{{minutes} minuto}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Oo",
+    "yesButton": "Oo"
+}

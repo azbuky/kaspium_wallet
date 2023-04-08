@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import 'intro_actions_widget.dart';
 
 class IntroWelcome extends ConsumerWidget {
@@ -10,9 +11,9 @@ class IntroWelcome extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(l10nProvider);
     final styles = ref.watch(stylesProvider);
     final theme = ref.watch(themeProvider);
+    final l10n = l10nOf(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

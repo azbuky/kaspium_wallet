@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../widgets/buttons.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_widget.dart';
@@ -16,7 +17,7 @@ class AccountsSheet extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final addressNotifier = ref.watch(addressNotifierProvider);
 

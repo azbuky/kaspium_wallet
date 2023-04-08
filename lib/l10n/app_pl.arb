@@ -1,0 +1,238 @@
+{
+    "@@locale": "pl",
+    "account": "Konto",
+    "accounts": "Konta",
+    "ackBackedUp": "Czy jesteś pewny że zapisałeś sekretną frazę albo nasiono?",
+    "addAccount": "Dodaj Konto",
+    "addContact": "Dodaj Kontakt",
+    "addressCopied": "Adres Skopiowany",
+    "addressHint": "Wpisz Adres",
+    "addressMising": "Wpisz Adres",
+    "addressShare": "Udostępnij",
+    "amountMissing": "Wpisz ilość",
+    "authMethod": "Metoda Uwierzytelniania",
+    "autoLockHeader": "Automatycznie Zablokuj",
+    "backupConfirmButton": "Zapisałem frazę",
+    "backupSecretPhrase": "Zapisz Sekretną Frazę",
+    "backupSeed": "Zapisz Nasiono",
+    "backupSeedConfirm": "Czy jesteś pewny że zapisałeś nasiono portfela?",
+    "backupYourSeed": "Zapisałeś swoje nasiono?",
+    "biometricsMethod": "Biometria",
+    "cancel": "Anuluj",
+    "changeCurrency": "Zmień walutę",
+    "close": "Zamknij",
+    "confirm": "Potwierdz",
+    "confirmPasswordHint": "Potwierdź hasło",
+    "contactAdded": "{contactName} został dodany do kontaktów!",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Kontakt już istnieje",
+    "contactHeader": "Kontakt",
+    "contactInvalid": "Niewłaściwe imię Kontaktu",
+    "contactNameHint": "Wpisz imię @",
+    "contactNameMissing": "Nie ma kontaktów do eksportowania",
+    "contactRemoved": "{contactName} został usunięty z kontaktów",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Kontakty",
+    "contactsImportErr": "Nie udało się importować kontaktów",
+    "contactsImportSuccess": "Z powodzeniem importowao {noContacts} contacts",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Skopiowane",
+    "copy": "Skopiuj",
+    "copyAddress": "Skopiuj Adres",
+    "createAPasswordHeader": "Stwórz hasło",
+    "createPasswordFirstParagraph": "Możesz stworzyć hasło aby zabezpieczyć portfel.",
+    "createPasswordHint": "Stwórz hasło",
+    "createPasswordSecondParagraph": "Hasło jest opcjonalne, twój portfel i tak będzię zabezpieczony PINem i odciskiem palca.",
+    "createPasswordSheetHeader": "Stwórz",
+    "currency": "Waluta",
+    "defaultAccountName": "Główne konto",
+    "defaultNewAccountName": "Konto {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "Usuń",
+    "disablePasswordSuccess": "Hasło zostało wyłączone",
+    "disableWalletPassword": "Wyłącz hasło portfela",
+    "encryptionFailedError": "Nie udało się ustawić hasło portfelu",
+    "enterAddress": "Wpisz Adres",
+    "enterAmount": "Wpisz Ilość",
+    "enterPasswordHint": "Wpisz swoje hasło",
+    "exampleCardIntro": "Witam w Kaspium. Kiedy dostaniesz KAS, transakcje pokażą się w ten sposób",
+    "exit": "Wyjdz",
+    "fingerprintSeedBackup": "Potwierdz odcisk palca żeby zapisać nasiono portfela.",
+    "goBackButton": "Wróć",
+    "gotItButton": "Rozumiem!",
+    "hideAccountHeader": "Schowaj Konto?",
+    "iUnderstandTheRisks": "Rozumiem ryzyka",
+    "import": "Importuj",
+    "importSecretPhrase": "Importuj Sekretną Frazę",
+    "importSecretPhraseHint": "Wpisz swoją frazę która ma 24 słowa. Każde słowo powinno być oddzielone spacją.",
+    "importSeed": "Importuj nasiono.",
+    "importSeedHint": "Prosze zapisz swoje nasiono poniżej.",
+    "importWallet": "Importuj Portfel",
+    "instantly": "Instantly",
+    "insufficientBalance": "Niewystarczające środki",
+    "invalidAddress": "Wpisany Addres jest nieważny",
+    "invalidPassword": "Błędne Hasło",
+    "language": "Język",
+    "lockAppSetting": "Potwierdź tożsamość kiedy włączysz Kaspium",
+    "locked": "Zablokowane",
+    "logout": "Wyloguj",
+    "manage": "Zarządzaj",
+    "manualEntry": "Wpisanie Manualne",
+    "mnemonicInvalidWord": "{word} nie jest ważnym słowem",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Fraza Mnemnoniczna",
+    "mnemonicSizeError": "Sekretna fraza może zawierać tylko 24 słowa",
+    "newWallet": "Nowy Portfel",
+    "nextButton": "Następne",
+    "no": "Nie",
+    "noContactsExport": "Nie ma kontaktów do eksportowania",
+    "noContactsImport": "Nie znaleziono kontaktów do importowania",
+    "noSkipButton": "Nie, pomiń",
+    "notificationBody": "Otwórz Kaspium żeby zobaczyć tą transakcje.",
+    "notificationHeaderSupplement": "Naciśnij aby Otworzyć",
+    "notificationTitle": "Otrzymano {amount} KAS",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Powiadomienia",
+    "off": "Wyłączone",
+    "on": "Włączone",
+    "paperWallet": "Papierowy Portfel",
+    "passwordBlank": "Pole hasła nie może być pustę",
+    "passwordNoLongerRequiredToOpenParagraph": "Od teraz nie będziesz potrzebował hasła aby otworzyć Kaspium.",
+    "passwordWillBeRequiredToOpenParagraph": "To hasło będzie potrzebne aby otworzyć Kaspium",
+    "passwordsDontMatch": "Hasła się nie zgadzają",
+    "pinConfirmError": "PIN'y nie pasują",
+    "pinConfirmTitle": "Potwierdz swój PIN",
+    "pinCreateTitle": "Utwórz sześciocyfrowy kod PIN",
+    "pinEnterTitle": "Wpisz PIN",
+    "pinInvalid": "Wprowadzono nieważny kod PIN",
+    "pinMethod": "PIN",
+    "pinSeedBackup": "Wpisz PIN żeby zobaczyć nasiono portfela.",
+    "preferences": "Preferencje",
+    "privacyPolicy": "Polityka Prywatności",
+    "qrInvalidAddress": "Kod QR jest nieprawidłowy",
+    "qrInvalidPermissions": "Proszę udostępnij uprawnienia do aparatu aby odczytać kod QR",
+    "qrInvalidSeed": "Kod QR nie zawiera nasiona lub kluczu prywatnego",
+    "qrMnemonicError": "Kod QR nie zawiera sekretnej frazy",
+    "qrUnknownError": "Nie można odczytać kodu QR",
+    "rawSeed": "Surowe Nasiono",
+    "receive": "Odbierz",
+    "received": "Odebrane",
+    "removeContact": "Usuń kontakt",
+    "removeContactConfirmation": "Czy jesteś pewny że chcesz usunąć {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Chcesz, żeby żądać hasło aby otworzyć Kaspium?",
+    "rootWarning": "Wygląda na to, że twoje urządzenie zostało zmodyfikowane. Jest rekomendowane żeby zresetować urządzenie do oryginalnego stanu przed kontynuacją.",
+    "scanInstructions": "Zeskanuj  \naddres Kod QR ",
+    "scanQrCode": "Skanuj Kod QR",
+    "secretInfo": "Na następnym ekranie zobaczysz swoją sekretną frazę. Jest ona hasłem do twoich funduszy. Jest istotne aby ją zapisać i nigdy nie podawać komukolwiek.",
+    "secretInfoHeader": "Bezpieczeństwo na pierwszym miejscu!",
+    "secretPhrase": "Sekretna fraza",
+    "secretWarning": "Jeżeli zgubisz urządzenie lub odinstalujesz aplikacje, będziesz potrzebował sekretnej frazy albo nasiona aby odzyskać fundusze!",
+    "securityHeader": "Bezpieczeństwo",
+    "seed": "Nasiono",
+    "seedBackupInfo": "Pod tym jest nasiono twojego portfela. Ważne jest, aby je zapisać (np. na kartce) i nigdy nie zapisywać jako plaintext albo screenshot.",
+    "seedInvalid": "Nasiono jest nieważne",
+    "send": "Wyślij",
+    "sendError": "Wystąpił błąd. Spróbuj póżniej",
+    "sending": "Wysyłanie",
+    "sent": "Wysłane",
+    "sentTo": "Wysłane Do",
+    "setPassword": "Ustaw hasło",
+    "setPasswordSuccess": "Hasło zostało zapisane pomyślnie",
+    "setWalletPassword": "Ustaw hasło portfela",
+    "settingsHeader": "Ustawienia",
+    "settingsTransfer": "Załaduj z Papierowego Portfela",
+    "shareKaspium": "Udostępnij Kaspium",
+    "shareKaspiumText": "Sprawdź Kaspium! Oficjalny portfel Kaspa!",
+    "systemDefault": "Domyślny język systemu",
+    "tapToHide": "Naciśnij aby schować",
+    "tapToReveal": "Dotknij aby odsłonić",
+    "themeHeader": "Motyw",
+    "to": "Do",
+    "tooManyFailedAttempts": "Za dużo nieudanych prób odblokowania.",
+    "transfer": "Transferuj",
+    "transferClose": "Naciśnij gdziekolwiek żeby zamknąć okno.",
+    "transferComplete": "{amount} KAS zostało z powodzeniem przesłane do twojego portfela Kaspium.",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Portfel z saldem {amount} KAS został wykryty.\n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Naciśnij potwierdz aby transferować środki.\n",
+    "transferConfirmInfoThird": "Transfer może zająć kilka sekund żeby się zakończyć.",
+    "transferError": "Podczas transferu wystąpił błąd. Proszę spróbować póżniej.",
+    "transferHeader": "Transferuj\nŚrodki",
+    "transferIntro": "Ten proces trensferuje środki z portfela papierowego do twojego portfela Kaspium.\n\nNaciśnij \"%1\" przycisk aby zacząć.",
+    "transferLoading": "Transferuje",
+    "transferManualHint": "Proszę wpisz nasiono poniżej",
+    "transferNoFunds": "To nasiono nie zawiera żadnego KAS.",
+    "transferQrScanError": "Ten kod QR nie zawiera ważnego nasiona.",
+    "transferQrScanHint": "Skanuj Nasiono \nKaspa lub klucz prywatny",
+    "unlock": "Odblokuj",
+    "unlockBiometrics": "Potwierdź tożsamość aby odblokować Kaspium",
+    "unlockPin": "Wpisz PIN aby odblokować Kaspium",
+    "warning": "UWAGA",
+    "welcomeText": "Witam w Kaspium. Żeby kontynuować, możesz stworzyć nowy portfel albo importować go.",
+    "xMinutes": "Po {minutes, plural, =1{1 minucie} other{{minutes} minutach}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Tak",
+    "yesButton": "Tak"
+}

@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
@@ -15,7 +16,7 @@ class SetPasswordSheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
     final styles = ref.watch(stylesProvider);
 
     final createFocusNode = useFocusNode();

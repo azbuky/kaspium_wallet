@@ -6,6 +6,7 @@ import '../app_icons.dart';
 import '../app_providers.dart';
 import '../app_styles.dart';
 import '../kaspa/kaspa.dart';
+import '../l10n/l10n.dart';
 import '../util/numberutil.dart';
 import '../wallet_address/address_providers.dart';
 import '../widgets/sheet_util.dart';
@@ -27,7 +28,7 @@ class TransactionCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
     final styles = ref.watch(stylesProvider);
 
     final addressNotifier = ref.watch(addressNotifierProvider.notifier);
@@ -187,7 +188,6 @@ class TransactionCard extends ConsumerWidget {
                                         style: styles
                                             .textStyleTransactionAmountSmall,
                                       ),
-
                                     ],
                                   ],
                                 ),

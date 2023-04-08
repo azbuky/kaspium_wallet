@@ -11,10 +11,11 @@ import 'package:share_plus/share_plus.dart';
 import '../app_providers.dart';
 import '../contacts/contact.dart';
 import '../kaspa/kaspa.dart';
+import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 
 Future<void> exportContacts(WidgetRef ref, BuildContext context) async {
-  final l10n = ref.read(l10nProvider);
+  final l10n = l10nOf(context);
 
   List<Contact> contacts = await ref.read(contactsProvider).contacts;
 
@@ -37,7 +38,7 @@ Future<void> exportContacts(WidgetRef ref, BuildContext context) async {
 }
 
 Future<void> importContacts(WidgetRef ref, BuildContext context) async {
-  final l10n = ref.read(l10nProvider);
+  final l10n = l10nOf(context);
   //UIUtil.cancelLockEvent();
   FilePickerResult? result = await FilePicker.platform.pickFiles(
     allowMultiple: false,
@@ -75,8 +76,7 @@ Future<void> importContacts(WidgetRef ref, BuildContext context) async {
       // Save all the new contacts and update states
       int numSaved = await contactsManager.saveContacts(contactsToAdd);
       if (numSaved > 0) {
-        final message =
-            l10n.contactsImportSuccess.replaceAll("%1", numSaved.toString());
+        final message = l10n.contactsImportSuccess('$numSaved');
         UIUtil.showSnackbar(message, context);
       } else {
         UIUtil.showSnackbar(l10n.noContactsImport, context);

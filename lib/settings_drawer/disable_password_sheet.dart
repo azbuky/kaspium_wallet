@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
@@ -16,7 +17,7 @@ class DisablePasswordSheet extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final passwordFocusNode = useFocusNode();
     final passwordController = useTextEditingController();

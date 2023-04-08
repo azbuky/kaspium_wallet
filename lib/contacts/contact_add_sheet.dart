@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
+import '../l10n/l10n.dart';
 import '../util/formatters.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
@@ -82,8 +83,8 @@ class _ContactAddSheetState extends ConsumerState<ContactAddSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = ref.watch(l10nProvider);
     final styles = ref.watch(stylesProvider);
+    final l10n = l10nOf(context);
 
     final addressPrefix = ref.watch(addressPrefixProvider);
 
@@ -281,16 +282,13 @@ class _ContactAddSheetState extends ConsumerState<ContactAddSheet> {
     );
     final contacts = ref.read(contactsProvider);
     await contacts.addContact(newContact);
-    final l10n = ref.read(l10nProvider);
-    UIUtil.showSnackbar(
-      l10n.contactAdded.replaceAll("%1", newContact.name),
-      context,
-    );
+    final l10n = l10nOf(context);
+    UIUtil.showSnackbar(l10n.contactAdded(newContact.name), context);
     Navigator.of(context).pop();
   }
 
   Future<bool> _validateForm() async {
-    final l10n = ref.read(l10nProvider);
+    final l10n = l10nOf(context);
     final prefix = ref.read(addressPrefixProvider);
     bool isValid = true;
     // Address Validations

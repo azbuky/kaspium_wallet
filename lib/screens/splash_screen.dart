@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
 import '../intro/intro_providers.dart';
+import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../widgets/notice_dialog.dart';
 
@@ -42,8 +43,7 @@ class SplashScreen extends HookConsumerWidget {
         final pinIsSet = await vault.pinIsSet;
         // if pin is set but no wallets
         if (pinIsSet && wallets.wallets.isEmpty) {
-
-            // no alpha seed so remove pin and any vault data
+          // no alpha seed so remove pin and any vault data
           await vault.deleteAll();
         }
 
@@ -54,7 +54,7 @@ class SplashScreen extends HookConsumerWidget {
 
       final walletAuthNotifier = ref.read(walletAuthNotifierProvider);
       if (walletAuthNotifier == null) {
-        final l10n = ref.read(l10nProvider);
+        final l10n = l10nOf(context);
         UIUtil.showSnackbar(l10n.somethingWentWrong, context);
         Navigator.of(context).pushReplacementNamed('/intro');
         return;
@@ -83,13 +83,6 @@ class SplashScreen extends HookConsumerWidget {
 
       Navigator.of(context).pushReplacementNamed('/home');
     }
-
-    useOnAppLifecycleStateChange((previous, current) {
-      if (current == AppLifecycleState.resumed) {
-        final deviceLocale = ref.read(deviceLocaleProvider.notifier);
-        deviceLocale.state = Localizations.localeOf(context);
-      }
-    });
 
     useEffect(() {
       Future.delayed(Duration.zero, () async {

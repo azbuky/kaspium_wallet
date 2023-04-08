@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 
 import '../settings/setting_item.dart';
 import 'node_types.dart';
@@ -8,7 +8,7 @@ class NodeSetting implements SettingSelectionItem {
   NodeSetting(this.config);
 
   @override
-  String getDisplayName(WidgetRef ref) {
+  String getDisplayName(BuildContext context) {
     return this.config.name;
   }
 }

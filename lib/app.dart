@@ -1,14 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'app_constants.dart';
-import 'app_localization.dart';
 import 'app_providers.dart';
 import 'app_styles.dart';
 import 'screens/home_screen.dart';
@@ -18,8 +16,6 @@ import 'screens/logout_screen.dart';
 import 'screens/password_lock_screen.dart';
 import 'screens/setup_wallet_screen.dart';
 import 'screens/splash_screen.dart';
-import 'settings/available_language.dart';
-import 'supported_locales.dart';
 import 'themes/themes.dart';
 import 'util/platform.dart';
 import 'util/routes.dart';
@@ -93,16 +89,9 @@ class App extends HookConsumerWidget {
                     )
                     .copyWith(background: theme.backgroundDark),
               ),
-              localizationsDelegates: [
-                AppLocalizationsDelegate(language),
-                GlobalMaterialLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate
-              ],
-              locale: language.language == AvailableLanguage.DEFAULT
-                  ? null
-                  : language.getLocale(),
-              supportedLocales: supportedLocales,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              locale: language.getLocale(),
               initialRoute: '/',
               onGenerateRoute: (RouteSettings settings) {
                 switch (settings.name) {

@@ -1,0 +1,244 @@
+{
+    "@@locale": "nl",
+    "account": "Account",
+    "accounts": "Accounts",
+    "ackBackedUp": "Weet je zeker dat je een back-up hebt gemaakt van jouw geheime zin of seed?",
+    "addAccount": "Account toevoegen",
+    "addContact": "Contact toevoegen",
+    "addressCopied": "Adres gekopieerd",
+    "addressHint": "Voer adres in",
+    "addressMising": "Voer a.u.b. een adres in",
+    "addressShare": "Deel",
+    "amountMissing": "Voer a.u.b. een bedrag in",
+    "authMethod": "Verificatiemethode",
+    "autoLockHeader": "Automatisch vergrendelen",
+    "backupConfirmButton": "Ik heb er een back-up van gemaakt",
+    "backupSecretPhrase": "Backup geheime zin",
+    "backupSeed": "Maak seed back-up",
+    "backupSeedConfirm": "Weet je zeker dat jouw wallet seed is opgeslagen?",
+    "backupYourSeed": "Maak een back-up van jouw seed",
+    "biometricsMethod": "Biometrie",
+    "blockExplorer": "Blok verkenner",
+    "cancel": "Annuleer",
+    "changeCurrency": "Verander valuta",
+    "close": "Sluiten",
+    "confirm": "Bevestig",
+    "confirmPasswordHint": "Bevestig het wachtwoord",
+    "contactAdded": "{contactName} is toegevoegd aan contacten!",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Contact bestaat al",
+    "contactHeader": "Contact",
+    "contactInvalid": "Ongeldige contact naam",
+    "contactNameHint": "Voer naam in @",
+    "contactNameMissing": "Kies een naam voor dit contact",
+    "contactRemoved": "{contactName} is verwijderd uit contacten!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Contacten",
+    "contactsImportErr": "Contacten importeren mislukt",
+    "contactsImportSuccess": "{noContacts} contacten succesvol geïmporteerd",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Gekopieerd",
+    "copy": "Kopiëren",
+    "copyAddress": "Kopieer adres",
+    "createAPasswordHeader": "Creëer een wachten",
+    "createPasswordFirstParagraph": "Je kan een wachtwoord maken om extra beveiliging aan jouw wallet toe te voegen.",
+    "createPasswordHint": "Creëer een wachtwoord",
+    "createPasswordSecondParagraph": "Wachtwoord is optioneel en jouw wallet wordt sowieso met je pincode of biometrisch beveiligd.",
+    "createPasswordSheetHeader": "Creëer",
+    "currency": "Valuta",
+    "defaultAccountName": "Hoofd Account",
+    "defaultNewAccountName": "Account {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "Uitschakelen",
+    "disablePasswordSuccess": "Wachtwoord is uitgeschakeld",
+    "disableWalletPassword": "Wachtwoord uitschakelen",
+    "dismiss": "Afwijzen",
+    "encryptionFailedError": "Kan geen Wallet-wachtwoord instellen",
+    "enterAddress": "Vul adres in",
+    "enterAmount": "Vul bedrag in",
+    "enterPasswordHint": "Voer je wachtwoord in",
+    "exampleCardIntro": "Welkom bij Kaspium. Zodra je KAS ontvangt zullen jouw transacties op deze manier verschijnen",
+    "exit": "Verlaten",
+    "fingerprintSeedBackup": "Bevestig je vingerafdruk om een back-up te maken.",
+    "goBackButton": "Ga terug",
+    "gotItButton": "Begrepen!",
+    "hideAccountHeader": "Account verbergen?",
+    "iUnderstandTheRisks": "Ik begrijp de risico's",
+    "ignore": "Negeren",
+    "import": "Importeren",
+    "importSecretPhrase": "Importeer geheime zin",
+    "importSecretPhraseHint": "Voer hieronder jouw geheime zin van 24 woorden in. Elk woord moet worden gescheiden door een spatie.",
+    "importSeed": "Importeer seed",
+    "importSeedHint": "Vul je seed in.",
+    "importWallet": "Importeer wallet",
+    "instantly": "Direct",
+    "insufficientBalance": "Onvoldoende saldo",
+    "invalidAddress": "Ongeldige ontvanger",
+    "invalidPassword": "Wachtwoord ongeldig",
+    "language": "Taal",
+    "lockAppSetting": "Verifiëren bij starten",
+    "locked": "Vergrendeld",
+    "logout": "Uitloggen",
+    "manage": "Beheren",
+    "manualEntry": "Handmatige invoer",
+    "messageHeader": "Bericht",
+    "mnemonicInvalidWord": "{word} is geen geldig woord",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Woordvolgorde",
+    "mnemonicSizeError": "De geheime zin mag slechts 24 woorden bevatten",
+    "newWallet": "Nieuwe wallet",
+    "nextButton": "Volgende",
+    "no": "Nee",
+    "noContactsExport": "Er zijn geen contacten aanwezig om te verwijderen",
+    "noContactsImport": "Geen contacten gevonden om te importeren",
+    "noSkipButton": "Nee, overslaan",
+    "notificationBody": "Open Kaspium om de transactie te zien.",
+    "notificationHeaderSupplement": "Tik om te openen",
+    "notificationTitle": "{amount} KAS ontvangen",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Notificaties",
+    "off": "Uit",
+    "on": "Aan",
+    "paperWallet": "Papieren wallet",
+    "passwordBlank": "Wachtwoord mag niet leeg zijn",
+    "passwordNoLongerRequiredToOpenParagraph": "Je hebt geen wachtwoord meer nodig om Kaspium te openen.",
+    "passwordWillBeRequiredToOpenParagraph": "Dit wachtwoord is vereist om Kaspium te openen.",
+    "passwordsDontMatch": "Wachtwoorden kom niet overeen",
+    "pending": "in afwachting",
+    "pinConfirmError": "Pincodes komen niet overeen",
+    "pinConfirmTitle": "Bevestig pincode",
+    "pinCreateTitle": "Creëer een 6-cijferige pincode",
+    "pinEnterTitle": "Voer pincode in",
+    "pinInvalid": "Ongeldige pincode ingevoerd",
+    "pinMethod": "Pincode",
+    "pinSeedBackup": "Vul je pincode in om jouw wallet seed te zien.",
+    "preferences": "Voorkeuren",
+    "privacyPolicy": "Privacybeleid",
+    "qrInvalidAddress": "QR code bevat geen geldig adres",
+    "qrInvalidPermissions": "Geef de camera toestemming om QR-codes te scannen",
+    "qrInvalidSeed": "QR code bevat geen geldige seed of privé sleutel",
+    "qrMnemonicError": "QR code bevat geen geldige geheime zin",
+    "qrUnknownError": "Kan QR code niet lezen",
+    "rawSeed": "Rauwe Seed",
+    "receive": "Ontvang",
+    "received": "Ontvangen",
+    "removeContact": "Verwijder contact",
+    "removeContactConfirmation": "Weet je zeker dat je het contact {contactName} wil verwijderen?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Wachtwoord vereisen om Kaspium te openen?",
+    "rootWarning": "Het lijkt erop dat jouw apparaat is \"geroot\", \"gejailbreakt\" of is aangepast op een manier die de beveiliging in gevaar brengt. Het wordt aanbevolen dat je jouw apparaat in de oorspronkelijke staat reset voordat je doorgaat.",
+    "scanInstructions": "Scan een Kaspa\nadres QR code",
+    "scanQrCode": "Scan QR Code",
+    "secretInfo": "In het volgende scherm zie je jouw geheime zin. Het is een wachtwoord voor toegang tot jouw saldo. Het is cruciaal dat je er een back-up van maakt en het nooit met iemand deelt.",
+    "secretInfoHeader": "Veiligheid eerst!",
+    "secretPhrase": "Geheime zin",
+    "secretWarning": "Als je jouw apparaat verliest of deze app verwijdert, heb je jouw geheime zin of seed nodig om je saldo te herstellen!",
+    "securityHeader": "Beveiliging",
+    "seed": "Seed",
+    "seedBackupInfo": "Hieronder staat de seed van jouw wallet. Maak hier altijd een back-up van en sla deze veilig op.",
+    "seedInvalid": "Seed is ongeldig",
+    "send": "Verstuur",
+    "sendError": "Er is een fout opgetreden. Probeer het later nog eens.",
+    "sending": "Versturen",
+    "sent": "Verstuurd",
+    "sentTo": "Verstuurd naar",
+    "setPassword": "Wachtwoord aanmaken",
+    "setPasswordSuccess": "Wachtwoord is succesvol ingesteld",
+    "setWalletPassword": "Stel een Wallet-wachtwoord in",
+    "settingsHeader": "Instellingen",
+    "settingsTransfer": "Van papieren wallet importeren",
+    "shareKaspium": "Deel Kaspium",
+    "shareKaspiumText": "Probeer Kaspium! De officiële wallet voor Kaspa!",
+    "systemDefault": "Systeem standaard",
+    "tapToHide": "Tik om te verbergen",
+    "tapToReveal": "Tik om zichtbaar te maken",
+    "themeHeader": "Thema",
+    "to": "Naar",
+    "tooManyFailedAttempts": "Te veel mislukte ontgrendelpogingen.",
+    "transfer": "Overzetten",
+    "transferClose": "Tik ergens om het venster te sluiten.",
+    "transferComplete": "{amount} Kaspa succesvol overgezet naar jouw Kaspium wallet.",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Een wallet met een saldo van {amount} Kaspa is gedetecteerd.\n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Tik op bevestigen om het saldo over te zetten.\n",
+    "transferConfirmInfoThird": "Het overzetten kan enkele seconden duren om te voltooien.",
+    "transferError": "Tijdens het overzetten is er een fout opgetreden. Probeer het later nog eens.",
+    "transferHeader": "Saldo overzetten",
+    "transferIntro": "Met dit proces wordt het saldo van een papieren wallet overgezet naar jouw Kaspium-wallet.\n\nTik op de \"%1\" knop om te starten.",
+    "transferLoading": "Overzetten",
+    "transferManualHint": "A.u.b. hieronder de seed invoeren.",
+    "transferNoFunds": "Deze seed bevat geen Kaspa.",
+    "transferQrScanError": "Deze QR-code bevat geen geldige seed.",
+    "transferQrScanHint": "Scan een Kaspa \nseed of private key",
+    "unconfirmed": "onbevestigd",
+    "unlock": "Ontgrendelen",
+    "unlockBiometrics": "Verifiëren om Kaspium te ontgrendelen",
+    "unlockPin": "PIN invoeren om Kaspium te ontgrendelen",
+    "warning": "WAARSCHUWING",
+    "welcomeText": "Welkom bij Kaspium. Creëer een nieuwe wallet of importeer een bestaande wallet om verder te gaan.",
+    "xMinutes": "Na {minutes, plural, =1{1 minuten} other{{minutes} minuut}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Ja",
+    "yesButton": "Ja"
+}

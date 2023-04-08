@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../kaspa/types.dart';
+import '../l10n/l10n.dart';
 import '../send_sheet/send_sheet.dart';
 import '../themes/kaspium_light_theme.dart';
 import '../util/ui_util.dart';
@@ -25,7 +26,7 @@ class MainCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final kaspaBalance = ref.watch(formatedTotalBalanceProvider);
     final scaffoldKey = ref.watch(homePageScaffoldKeyProvider);

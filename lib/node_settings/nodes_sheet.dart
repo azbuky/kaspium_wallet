@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../widgets/buttons.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_util.dart';
@@ -38,10 +39,9 @@ class ViteNodesSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final items = ref.watch(kaspaNodeOptionsProvider);
-    final title = l10n.nodesSheetTitle;
 
     void addNode() {
       Sheets.showAppHeightNineSheet(
@@ -52,7 +52,7 @@ class ViteNodesSheet extends ConsumerWidget {
     }
 
     return SheetWidget(
-      title: title,
+      title: l10n.nodesSheetTitle,
       mainWidget: Stack(
         children: [
           ListView.builder(

@@ -1,6 +1,6 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 
-import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import 'setting_item.dart';
 
 enum NotificationOptions { ON, OFF }
@@ -11,11 +11,11 @@ class NotificationSetting extends SettingSelectionItem {
 
   const NotificationSetting(this.setting);
 
-  String getDisplayName(WidgetRef ref) {
-    final l10n = ref.read(l10nProvider);
+  String getDisplayName(BuildContext context) {
+    final l10n = l10nOf(context);
     switch (setting) {
       case NotificationOptions.ON:
-        return l10n.onStr;
+        return l10n.on;
       case NotificationOptions.OFF:
         return l10n.off;
     }

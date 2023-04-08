@@ -1,0 +1,235 @@
+{
+    "@@locale": "ja",
+    "account": "アカウント",
+    "accounts": "アカウント",
+    "ackBackedUp": "シークレットフレーズやシードをバックアップしましたか？",
+    "addAccount": "アカウントを追加する",
+    "addContact": "連絡先を追加する",
+    "addressCopied": "アドレスをコピーしました",
+    "addressHint": "アドレスを入力",
+    "addressMising": "アドレスを入力してください",
+    "addressShare": "アドレスを共有する",
+    "amountMissing": "金額を入力してください",
+    "authMethod": "認証方法",
+    "autoLockHeader": "自動的にロックする",
+    "backupConfirmButton": "バックアップしました",
+    "backupSecretPhrase": "シークレットフレーズをバックアップする",
+    "backupSeed": "シードをバックアップする",
+    "backupSeedConfirm": "ウォレットシードをバックアップしましたか？",
+    "backupYourSeed": "シードをバックアップする",
+    "biometricsMethod": "生体認証",
+    "cancel": "キャンセル",
+    "changeCurrency": "通貨を変更する",
+    "close": "閉じる",
+    "confirm": "確認しました",
+    "confirmPasswordHint": "パスワードを確認する",
+    "contactAdded": "{contactName}が連絡先に追加されました。",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "既に存在する連絡先です",
+    "contactHeader": "連絡先",
+    "contactInvalid": "連絡先名が無効です",
+    "contactNameHint": "@に続けて名前を入力",
+    "contactNameMissing": "この連絡先の名前を入力してください",
+    "contactRemoved": "{contactName}が連絡先から削除されました！",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "連絡先",
+    "contactsImportErr": "連絡先をインポートできませんでした",
+    "contactsImportSuccess": "{noContacts}の連絡先を正常にインポートしました。",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "コピー済み",
+    "copy": "コピーする",
+    "copyAddress": "アドレスをコピーする",
+    "createAPasswordHeader": "パスワードを作成する",
+    "createPasswordFirstParagraph": "パスワードを設定してウォレットのセキュリティを追加することができます。",
+    "createPasswordHint": "パスワードを作成する",
+    "createPasswordSecondParagraph": "パスワードの設定は任意ですが、いずれにしてもウォレットはピンまたは生体認証で保護されます。",
+    "createPasswordSheetHeader": "作成する",
+    "defaultAccountName": "メインアカウント",
+    "defaultNewAccountName": "アカウント{addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "無効にする",
+    "disablePasswordSuccess": "パスワードの無効化に成功しました。",
+    "disableWalletPassword": "ウォレットのパスワードを無効にする",
+    "encryptionFailedError": "ウォレットパスワードの作成に失敗しました。",
+    "enterAddress": "アドレスを入力する",
+    "enterAmount": "金額を入力する",
+    "enterPasswordHint": "パスワードを入力する",
+    "exampleCardIntro": "ナトリアムへようこそ。 ナノを受け取ると、トランザクションは次のように表示されます。",
+    "exit": "終了する",
+    "fingerprintSeedBackup": "シードをバックアップする認証を行います。",
+    "goBackButton": "戻る",
+    "gotItButton": "了解しました",
+    "hideAccountHeader": "アカウントを非表示にしますか？",
+    "iUnderstandTheRisks": "リスクを理解しました。",
+    "import": "インポート",
+    "importSecretPhrase": "シークレットフレーズをインポートする",
+    "importSecretPhraseHint": "以下に24語のシークレットフレーズを入力してください。各単語はスペースで区切ります。",
+    "importSeed": "シードをインポートする",
+    "importSeedHint": "シードを入力してください。",
+    "importWallet": "ウォレットをインポートする",
+    "instantly": "今すぐ",
+    "insufficientBalance": "残高不足です",
+    "invalidAddress": "入力したアドレスが無効です",
+    "invalidPassword": "パスワードが無効です",
+    "language": "言語",
+    "lockAppSetting": "起動時に認証する",
+    "locked": "ロック済み",
+    "logout": "ログアウト",
+    "manage": "管理",
+    "manualEntry": "手動で入力",
+    "mnemonicInvalidWord": "{word}は有効な単語ではありません",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "[Obsolete] ニーモニックフレーズ",
+    "mnemonicSizeError": "シークレットフレーズには24語しか含めることができません",
+    "newWallet": "新しいウォレットを作成する",
+    "nextButton": "次へ",
+    "no": "いいえ",
+    "noContactsExport": "エクスポートする連絡先はありません。",
+    "noContactsImport": "インポートする新しい連絡先はありません。",
+    "noSkipButton": "いいえ、スキップする",
+    "notificationBody": "ナトリアムを開いてこのトランザクションを表示します",
+    "notificationHeaderSupplement": "タップして開きます",
+    "notificationTitle": "{amount} ナノを着金しました",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "通知",
+    "off": "オフ",
+    "on": "オン",
+    "paperWallet": "ペーパーウォレット",
+    "passwordBlank": "パスワードは空欄にできません",
+    "passwordNoLongerRequiredToOpenParagraph": "Natriumを開く際にパスワードを必要としなくなります。",
+    "passwordWillBeRequiredToOpenParagraph": "このパスワードはNatriumを開く際に必要となります。",
+    "passwordsDontMatch": "パスワードが一致しません",
+    "pinConfirmError": "暗証番号が一致しません",
+    "pinConfirmTitle": "暗証番号が正しいことを確認しました",
+    "pinCreateTitle": "6桁の暗証番号を作成する",
+    "pinEnterTitle": "暗証番号を入力してください",
+    "pinInvalid": "入力した暗証番号が無効です",
+    "pinMethod": "ピン",
+    "pinSeedBackup": "シードをバックアップするため暗証番号を入力して下さい",
+    "preferences": "設定",
+    "privacyPolicy": "個人情報保護方針",
+    "qrInvalidAddress": "QRコードに正しい送金先が含まれていません。",
+    "qrInvalidPermissions": "カメラがQRコードをスキャンするためを許可してください。",
+    "qrInvalidSeed": "QRコードに有効なシードまたは秘密キーが含まれていません",
+    "qrMnemonicError": "QRに有効なシークレットフレーズが含まれていません",
+    "qrUnknownError": "QRコードを読み取れ出来ません",
+    "rawSeed": "[Obsolete] 元のシード",
+    "receive": "着金",
+    "received": "着金済み",
+    "removeContact": "連絡先を削除します",
+    "removeContactConfirmation": "{contactName}を削除してもよろしいですか？",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Natriumを開く際にパスワードを要求しますか?",
+    "rootWarning": "お使いの電子機器は制限が不正に無効化されており、セキュリティが不十分な状態です。作業を進行する前に元の状態にリセットするよう推奨します。",
+    "scanInstructions": "ナノ \n アドレスのQRコードをスキャンします",
+    "scanQrCode": "QRコードをスキャン",
+    "secretInfo": "次の画面で、シークレットフレーズが表示されます。資金にアクセスするためのパスワードです。バックアップして、誰とも共有しないでください。",
+    "secretInfoHeader": "安全のために",
+    "secretPhrase": "シークレットフレーズ",
+    "secretWarning": "デバイスを紛失したり、アプリケーションをアンインストールした場合、資金を回収するためにシークレットフレーズまたはシードが必要になります！",
+    "securityHeader": "セキュリティ",
+    "seed": "シード",
+    "seedBackupInfo": "あなたのウォレットシードは以下の通りです。シードをバックアップし、プレーンテキストまたはスクリーンショットで保存しないでください。",
+    "seedInvalid": "シードが無効です",
+    "send": "送金",
+    "sendError": "エラーが発生しました。後で再び実行してください。",
+    "sending": "送金金額",
+    "sent": "送金した",
+    "sentTo": "送金先",
+    "setPassword": "ウォレットのパスワードを作成する",
+    "setPasswordSuccess": "パスワードの設定に成功しました。",
+    "setWalletPassword": "ウォレットのパスワードを作成する",
+    "settingsHeader": "設定",
+    "settingsTransfer": "ペーパーウォレットから読み込む",
+    "systemDefault": "システムのデフォルト言語",
+    "tapToHide": "タップして非表示にする",
+    "tapToReveal": "タップして表示する",
+    "themeHeader": "壁紙",
+    "to": "送金先",
+    "tooManyFailedAttempts": "既定のロック解除の失敗回数を超えています。",
+    "transfer": "転送",
+    "transferClose": "任意の場所をタップしてウィンドウを閉じます。",
+    "transferComplete": "{amount} ナノがナトリアムウォレットに正常に転送されました。\n",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "残高{amount} ナノのウォレットが検出されました。\n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "確認をタップして資金を転送します。\n",
+    "transferConfirmInfoThird": "転送が完了するまでに数秒かかる場合があります。",
+    "transferError": "転送中にエラーが発生しました。後で再び実行してください。",
+    "transferHeader": "資金を転送する",
+    "transferIntro": "このプロセスにより、資金がペーパーウォレットからNatriumウォレットに転送されます。\n \n「％1」ボタンをタップして開始します。",
+    "transferLoading": "転送中",
+    "transferManualHint": "シードを入力してください。",
+    "transferNoFunds": "このシードにはナノが含まれていません",
+    "transferQrScanError": "このQRコードには有効なシードが含まれていません。",
+    "transferQrScanHint": "ナノ \n シードまたは秘密キーをスキャンします",
+    "unlock": "ロックを解除する",
+    "unlockBiometrics": "ナトリアムのロックを解除するよう認証する",
+    "unlockPin": "ピンを入力してナトリアムのロックを解除する",
+    "warning": "警告",
+    "welcomeText": "ナトリアムへようこそ。最初に、新しいウォレットを作成するか、既存のウォレットをインポートします。",
+    "xMinutes": "{minutes, plural, other{{minutes}}}分後",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "はい",
+    "yesButton": "はい"
+}

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../app_providers.dart';
 import '../kaspa/transaction/types.dart';
 import '../kaspa/types.dart';
+import '../l10n/l10n.dart';
 import '../transactions/transaction_details_sheet.dart';
 import '../util/numberutil.dart';
 import '../wallet_balance/wallet_balance_providers.dart';
@@ -20,7 +21,7 @@ class UtxoCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
     final styles = ref.watch(stylesProvider);
 
     final amount = Amount.raw(item.utxoEntry.amount);

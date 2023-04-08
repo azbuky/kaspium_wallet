@@ -1,0 +1,177 @@
+{
+    "@@locale": "he",
+    "account": "חשבון",
+    "accounts": "חשבונות",
+    "addAccount": "הוסף חשבון",
+    "addContact": "הוסף איש קשר",
+    "addressCopied": "כתובת הועתקה",
+    "addressMising": "הזן יעד",
+    "addressShare": "שתף",
+    "amountMissing": "הזן סכום",
+    "authMethod": "שיטת אימות",
+    "autoLockHeader": "נעל באופן אוטומטי",
+    "backupSeed": "גבה סיד",
+    "backupSeedConfirm": "אתה בטוח שגיבית את הסיד של הארנק שלך?",
+    "backupYourSeed": "גבה את הסיד שלך",
+    "biometricsMethod": "ביומטריה",
+    "cancel": "בטל",
+    "changeCurrency": "שנה מטבע חליפין",
+    "close": "סגור",
+    "confirm": "אשר",
+    "contactAdded": "  !נוסף לאנשי הקשר {contactName} ",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "איש קשר כבר קיים",
+    "contactHeader": "איש קשר",
+    "contactInvalid": "שם איש קשר לא תקין",
+    "contactNameHint": "הכנס שם @",
+    "contactNameMissing": "לא קיימים אנשי קשר לייצא",
+    "contactRemoved": "{contactName} הוסר מאנשי הקשר!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "אנשי קשר",
+    "contactsImportErr": "ייבוא איש קשר נכשל",
+    "contactsImportSuccess": "יבוא אנשי הקשר של {noContacts} עבר בהצלחה",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copyAddress": "העתק כתובת",
+    "defaultAccountName": "חשבון ראשי",
+    "defaultNewAccountName": "חשבון {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "enterAddress": "הכנס כתובת",
+    "enterAmount": "הכנס כמות",
+    "exampleCardIntro": "ברוך הבא לנאטריום. בכדי להמשיך, אתה רשאי לייצר ארנק חדש או לייבא אחד קיים",
+    "fingerprintSeedBackup": "אשר טביעות אצבע בכדי לגבות סיד.",
+    "hideAccountHeader": "הסתר חשבון?",
+    "importSeed": "ייבא סיד",
+    "importSeedHint": "בבקשה תכניס את הסיד שלך.",
+    "importWallet": "ייבא ארנק",
+    "instantly": "באופן מידי",
+    "insufficientBalance": "אין מספיק מטבעות בחשבון",
+    "invalidAddress": "כתובת יעד אינה תקינה",
+    "language": "שפה",
+    "lockAppSetting": "בצע אימות בעת הפעלה",
+    "locked": "נעל",
+    "manage": "נהל",
+    "manualEntry": "הכנסה ידנית",
+    "mnemonicPhrase": "פתגם זכרון",
+    "newWallet": "ארנק חדש",
+    "no": "לא",
+    "noContactsExport": "לא קיימים אנשי קשר לייצא",
+    "noContactsImport": "לא נמצאו אנשי קשר לייבוא",
+    "notificationBody": "פתח את נאטריום בשביל לצפות בטרנסקציה.",
+    "notificationHeaderSupplement": "לחץ בשביל לפתוח",
+    "notificationTitle": "{amount} נאנו התקבלו",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "התראות",
+    "off": "כבוי",
+    "on": "פועל",
+    "paperWallet": "ארנק נייר",
+    "pinConfirmError": "הקודים אינם תואמים",
+    "pinConfirmTitle": "אשר את הקוד",
+    "pinCreateTitle": "יצר קוד באורך 6 ספרות",
+    "pinEnterTitle": "הכנס קוד",
+    "pinInvalid": "הוכנס קוד לא תקין",
+    "pinMethod": "קוד",
+    "pinSeedBackup": "הכנס קוד בכדי לראות את הסיד של הארנק.",
+    "preferences": "העדפות",
+    "privacyPolicy": "פרטיות",
+    "qrInvalidSeed": "הברקוד אינו מכיל סיד ולידי של מפתח פרטי",
+    "rawSeed": "סיד",
+    "receive": "קבל",
+    "received": "התקבל",
+    "removeContact": "הסר איש קשר",
+    "removeContactConfirmation": "האם אתה בטוח שאתה רוצה למחוק את {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "scanInstructions": "סרוק כתובת ברקוד \n של נאנו",
+    "scanQrCode": "סרוק ברקוד",
+    "securityHeader": "אבטחה",
+    "seed": "סיד",
+    "seedBackupInfo": "\tמתחת נמצא הסיד של הארנקים שלך. זה מאוד קריטי שתגבה את הסיד שלך ולא תשמור אותו בקובץ טקסט או כתמונת מסך.",
+    "seedInvalid": "הסיד לא תקין",
+    "send": "שלח",
+    "sendError": "קרתה תקלה. נסה שוב מאוחר יותר",
+    "sending": "נשלח",
+    "sent": "נשלח",
+    "sentTo": "נשלח ל",
+    "settingsHeader": "הגדרות",
+    "settingsTransfer": "טען מארנק נייר",
+    "systemDefault": "בְּרִירַת מֶחדָל",
+    "themeHeader": "נושא",
+    "to": "מ",
+    "tooManyFailedAttempts": "יותר מדי נסיונות כושלים לשחרור הנעילה.",
+    "transfer": "העבר",
+    "transferClose": "לחץ בכל מקום בכדי לסגור את החלון.",
+    "transferComplete": "{amount} נאנו הועברו לארנק נאטריום.",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "\nארנק עם מאזן של {amount} נאנו אותר.",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "\nלחץ על אשר בכדי להעביר את הסכום.",
+    "transferConfirmInfoThird": "יתכן שיקחו כמה שניות עד תחילת ההעברה.",
+    "transferError": "חלה תקלה במהלך ההעברה. בבקשה נסה מאוחר יותר.",
+    "transferHeader": "העברת\nסכום",
+    "transferIntro": "התהליך יעביר את הסכום שברשותך מארנק הנייר לארנק נאטריום\n\nלחץ על כפתור ה \"%1\" בכדי להתחיל.",
+    "transferLoading": "מעביר",
+    "transferManualHint": "בבקשה הכנס את הסיד הנ\"ל",
+    "transferNoFunds": "אין שום נאנו בסיד המצורף.",
+    "transferQrScanError": "הברקוד אינו מכיל סיד תקין.",
+    "transferQrScanHint": "סרוק סיד של \nנאנו או ארנק נייר",
+    "unlock": "שחרר מנעילה",
+    "unlockBiometrics": "בצע אימות בכדי לשחרר את נאטריום מנעילה",
+    "unlockPin": "הכנס קוד בשביל לשחרר את נאטריום מנעילה",
+    "welcomeText": "ברוך הבא לנאטריום. בכדי להמשיך, אתה רשאי לייצר ארנק חדש או לייבא אחד קיים.",
+    "xMinutes": "אחרי {minutes, plural, =1{1 דקה} other{{minutes} דקות}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "כן"
+}

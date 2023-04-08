@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../wallet_address/address_providers.dart';
 import '../widgets/address/address_three_line_left_text.dart';
 
@@ -11,7 +12,7 @@ class AccountWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final address = ref.watch(receiveWalletAddressProvider);
 

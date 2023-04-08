@@ -7,6 +7,7 @@ import 'package:validators/validators.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
+import '../l10n/l10n.dart';
 import '../util/random_util.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
@@ -23,7 +24,7 @@ class NodeAddSheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final stateNotifier = useState(const AddNodeSheetState());
     final state = stateNotifier.value;
@@ -140,7 +141,8 @@ class NodeAddSheet extends HookConsumerWidget {
         }
         final log = ref.read(loggerProvider);
         log.e('Failed to add node', e, st);
-        final message = l10n.addNodeFailedMessage.replaceAll('%1', '$e');
+
+        final message = l10n.addNodeFailedMessage('$e');
         UIUtil.showSnackbar(message, context);
       } finally {
         client?.close();

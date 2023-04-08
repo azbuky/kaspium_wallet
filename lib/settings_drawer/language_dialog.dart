@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../settings/available_language.dart';
 import '../widgets/app_simpledialog.dart';
 
@@ -11,7 +12,7 @@ class LanguageDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final style = styles.textStyleDialogOptions;
     final uStyle = style.copyWith(color: Colors.grey);
@@ -34,7 +35,7 @@ class LanguageDialog extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Text(
-                  LanguageSetting(value).getDisplayName(ref),
+                  LanguageSetting(value).getDisplayName(context),
                   style: isAvailable ? style : uStyle,
                 ),
               ),

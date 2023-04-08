@@ -10,6 +10,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../send_sheet/account_address_widget.dart';
 import '../wallet_address/address_providers.dart';
 import '../widgets/buttons/primary_button.dart';
@@ -24,7 +25,7 @@ class ReceiveSheet extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final receiveAddress = ref.watch(receiveWalletAddressProvider);
     final address = receiveAddress.encoded;

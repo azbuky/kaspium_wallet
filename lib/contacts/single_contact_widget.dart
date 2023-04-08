@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../widgets/address_widgets.dart';
 import '../widgets/app_icon_button.dart';
@@ -33,8 +34,9 @@ class SingleContactWidget extends ConsumerWidget {
 
     Future<void> copyAddress() async {
       await Clipboard.setData(ClipboardData(text: contact.address));
-      final l10n = ref.read(l10nProvider);
-      UIUtil.showSnackbar(l10n.contactAddressCopied, context);
+      final l10n = l10nOf(context);
+      final message = l10n.contactAddressCopied(contact.address);
+      UIUtil.showSnackbar(message, context);
     }
 
     return TextButton(

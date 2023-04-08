@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../app_providers.dart';
 import '../app_styles.dart';
+import '../l10n/l10n.dart';
 import '../widgets/dialog.dart';
 import 'node_providers.dart';
 import 'node_types.dart';
@@ -18,7 +19,7 @@ class NodeItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final item = ref.watch(kaspaNodeConfigItemProvider);
     final config = ref.watch(kaspaNodeConfigProvider);
@@ -52,9 +53,9 @@ class NodeItem extends ConsumerWidget {
         context,
         title,
         content,
-        l10n.YES,
+        l10n.yesUppercase,
         delete,
-        cancelText: l10n.NO,
+        cancelText: l10n.noUppercase,
       );
     }
 

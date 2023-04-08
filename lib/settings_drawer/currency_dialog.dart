@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../settings/available_currency.dart';
 import '../widgets/app_simpledialog.dart';
 
@@ -12,7 +13,7 @@ class CurrencyDialog extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     return AppSimpleDialog(
       title: Padding(
@@ -29,7 +30,7 @@ class CurrencyDialog extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Text(
-                AvailableCurrency(value).getDisplayName(ref),
+                AvailableCurrency(value).getDisplayName(context),
                 style: styles.textStyleDialogOptions,
               ),
             ),

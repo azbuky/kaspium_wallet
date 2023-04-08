@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../settings/authentication_method.dart';
 import '../util/caseconverter.dart';
 import '../util/routes.dart';
@@ -108,7 +109,7 @@ class _LockScreenState extends ConsumerState<LockScreen> {
   }
 
   Future<void> authenticateWithBiometrics() async {
-    final l10n = ref.read(l10nProvider);
+    final l10n = l10nOf(context);
     final biometricUtil = ref.read(biometricUtilProvider);
     final authenticated = await biometricUtil.authenticateWithBiometrics(
       l10n.unlockBiometrics,
@@ -124,7 +125,7 @@ class _LockScreenState extends ConsumerState<LockScreen> {
 
   Future<void> authenticateWithPin({bool useTransition = false}) async {
     final theme = ref.read(themeProvider);
-    final l10n = ref.read(l10nProvider);
+    final l10n = l10nOf(context);
 
     String? expectedPin = await ref.read(vaultProvider).getPin();
 
@@ -201,8 +202,8 @@ class _LockScreenState extends ConsumerState<LockScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(themeProvider);
-    final l10n = ref.watch(l10nProvider);
     final styles = ref.watch(stylesProvider);
+    final l10n = l10nOf(context);
 
     return Scaffold(
       body: Container(

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import 'pin_screen_button.dart';
 
 enum PinOverlayType { NEW_PIN, ENTER_PIN }
@@ -59,7 +60,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
   @override
   void initState() {
     super.initState();
-    final l10n = ref.read(l10nProvider);
+    final l10n = l10nOf(context);
 
     // Initialize list all empty
     if (widget.type == PinOverlayType.ENTER_PIN) {
@@ -103,7 +104,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
               } else {
                 setState(() {
                   _pin = '';
-                  _header = ref.read(l10nProvider).pinInvalid;
+                  _header = l10n.pinInvalid;
                   _dotStates = List.filled(_pinLength, AppIcons.dotemtpy);
                   _controller.value = 0;
                 });
@@ -115,7 +116,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
               _dotStates = List.filled(_pinLength, AppIcons.dotemtpy);
               _pin = '';
               _pinConfirmed = '';
-              _header = ref.read(l10nProvider).pinConfirmError;
+              _header = l10n.pinConfirmError;
               _controller.value = 0;
             });
           }
@@ -187,7 +188,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
   Widget build(BuildContext context) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     void onKeyTap(String key) {
       if (_controller.status == AnimationStatus.forward ||

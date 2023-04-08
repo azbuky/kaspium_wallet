@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../send_sheet/send_sheet.dart';
 import '../util/ui_util.dart';
 import '../util/util.dart';
@@ -31,15 +32,14 @@ class ContactDetails extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final addressCopied = useState(false);
     final addressCopiedTimer = useRef<Timer?>(null);
 
     void deleteContact() {
       ref.read(contactsProvider).removeContact(contact);
-      final message =
-          l10n.contactRemoved.replaceAll("%1", contact.name);
+      final message = l10n.contactRemoved(contact.name);
       UIUtil.showSnackbar(message, context);
       Navigator.of(context).pop();
     }
@@ -48,10 +48,10 @@ class ContactDetails extends HookConsumerWidget {
       AppDialogs.showConfirmDialog(
         context,
         l10n.removeContact,
-        l10n.removeContactConfirmation.replaceAll('%1', contact.name),
-        l10n.YES,
+        l10n.removeContactConfirmation(contact.name),
+        l10n.yesUppercase,
         deleteContact,
-        cancelText: l10n.NO,
+        cancelText: l10n.noUppercase,
       );
     }
 

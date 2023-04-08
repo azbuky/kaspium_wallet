@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../util/caseconverter.dart';
 import 'app_simpledialog.dart';
 
@@ -20,7 +21,7 @@ class AppDialogs {
       builder: (context) => WillPopScope(
         onWillPop: () async => false,
         child: Consumer(builder: (context, ref, _) {
-          final l10n = ref.watch(l10nProvider);
+          final l10n = l10nOf(context);
           final styles = ref.watch(stylesProvider);
 
           final contentPadding = contentWidget != null
@@ -72,7 +73,7 @@ class AppDialogs {
       builder: (context) => WillPopScope(
         onWillPop: () async => false,
         child: Consumer(builder: (context, ref, _) {
-          final l10n = ref.watch(l10nProvider);
+          final l10n = l10nOf(context);
           final styles = ref.watch(stylesProvider);
 
           final contentPadding = contentWidget != null
@@ -124,7 +125,7 @@ class AppDialogs {
       builder: (BuildContext context) {
         return Consumer(builder: (context, ref, _) {
           if (cancelText == null) {
-            final l10n = ref.watch(l10nProvider);
+            final l10n = l10nOf(context);
             cancelText = l10n.cancel.toUpperCase();
           }
           final styles = ref.watch(stylesProvider);
@@ -302,11 +303,9 @@ class AnimationLoadingOverlay extends ModalRoute<void> {
                   children: [
                     Consumer(builder: (context, ref, _) {
                       final styles = ref.watch(stylesProvider);
+                      final l10n = l10nOf(context);
                       return Text(
-                        CaseChange.toUpperCase(
-                          ref.watch(l10nProvider).transferLoading,
-                          ref,
-                        ),
+                        CaseChange.toUpperCase(l10n.transferLoading, ref),
                         style: styles.textStyleHeader2Colored,
                       );
                     }),

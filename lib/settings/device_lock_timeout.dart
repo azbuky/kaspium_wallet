@@ -1,6 +1,6 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 
-import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import 'setting_item.dart';
 
 enum LockTimeoutOption { ZERO, ONE, FIVE, FIFTEEN, THIRTY, SIXTY }
@@ -11,21 +11,21 @@ class LockTimeoutSetting extends SettingSelectionItem {
 
   const LockTimeoutSetting(this.setting);
 
-  String getDisplayName(WidgetRef ref) {
-    final l10n = ref.read(l10nProvider);
+  String getDisplayName(BuildContext context) {
+    final l10n = l10nOf(context);
     switch (setting) {
       case LockTimeoutOption.ZERO:
         return l10n.instantly;
       case LockTimeoutOption.ONE:
-        return l10n.xMinute.replaceAll("%1", "1");
+        return l10n.xMinutes(1);
       case LockTimeoutOption.FIVE:
-        return l10n.xMinutes.replaceAll("%1", "5");
+        return l10n.xMinutes(5);
       case LockTimeoutOption.FIFTEEN:
-        return l10n.xMinutes.replaceAll("%1", "15");
+        return l10n.xMinutes(15);
       case LockTimeoutOption.THIRTY:
-        return l10n.xMinutes.replaceAll("%1", "30");
+        return l10n.xMinutes(30);
       case LockTimeoutOption.SIXTY:
-        return l10n.xMinutes.replaceAll("%1", "60");
+        return l10n.xMinutes(60);
     }
   }
 

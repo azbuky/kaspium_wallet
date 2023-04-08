@@ -1,0 +1,244 @@
+{
+    "@@locale": "ms",
+    "account": "Akaun",
+    "accounts": "Akaun",
+    "ackBackedUp": "Adakah anda pasti bahawa anda telah menyokong frasa atau benih rahsia anda?",
+    "addAccount": "Tambah akaun",
+    "addContact": "Tambah Kenalan",
+    "addressCopied": "Alamat disalinkan",
+    "addressHint": "Masukkan Alamat",
+    "addressMising": "Sila masukkan destinasi",
+    "addressShare": "Kongsi",
+    "amountMissing": "Sila masukkan jumlah",
+    "authMethod": "Kaedah Pengesahan",
+    "autoLockHeader": "Kunci secara automatik",
+    "backupConfirmButton": "Saya telah menyokongnya",
+    "backupSecretPhrase": "Cadangkan Frasa Rahsia ",
+    "backupSeed": "Sandarkan Benih",
+    "backupSeedConfirm": "Adakan anda pasti anda telah menyandarkan benih dompet anda?",
+    "backupYourSeed": "Sandarkan Benih Anda",
+    "biometricsMethod": "Biometrik",
+    "blockExplorer": "Blok Penjelajah",
+    "cancel": "Batal",
+    "changeCurrency": "Tukar Mata Wang",
+    "close": "Tutup",
+    "confirm": "Konfirm",
+    "confirmPasswordHint": "Sahkan kata laluan",
+    "contactAdded": "{contactName} telah ditambah sebagai kenalan!",
+    "@contactAdded": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Kenalan telah wujud",
+    "contactHeader": "Kenalan",
+    "contactInvalid": "Nama Kenalan tidak sah",
+    "contactNameHint": "Masukkan Nama @",
+    "contactNameMissing": "Tidak ada kontak yg bisa di ekspor",
+    "contactRemoved": "{contactName} kontak berhasil dihapus!",
+    "@contactRemoved": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "contactsHeader": "Kenalan",
+    "contactsImportErr": "Gagal mengimpor kontak",
+    "contactsImportSuccess": "Berhasil mengimpor {noContacts} kontak",
+    "@contactsImportSuccess": {
+        "placeholders": {
+            "noContacts": {
+                "type": "String"
+            }
+        }
+    },
+    "copied": "Disalin",
+    "copy": "Menyalin",
+    "copyAddress": "Salinkan alamat",
+    "createAPasswordHeader": "Buat kata laluan.",
+    "createPasswordFirstParagraph": "Anda boleh membuat kata laluan untuk menambah keselamatan tambahan pada dompet anda.",
+    "createPasswordHint": "Buat kata laluan",
+    "createPasswordSecondParagraph": "Kata laluan adalah pilihan, dan dompet anda akan dilindungi dengan PIN atau biometrik anda tanpa mengira.",
+    "createPasswordSheetHeader": "Buat",
+    "currency": "Mata wang",
+    "defaultAccountName": "Akaun Utama",
+    "defaultNewAccountName": "Akaun {addressIndex}",
+    "@defaultNewAccountName": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "int"
+            }
+        }
+    },
+    "disablePasswordSheetHeader": "Lumpuhkan",
+    "disablePasswordSuccess": "Kata laluan telah dilumpuhkan",
+    "disableWalletPassword": "Lumpuhkan Kata Laluan Dompet",
+    "dismiss": "Ketepikan",
+    "encryptionFailedError": "Gagal menetapkan kata laluan dompet",
+    "enterAddress": "Masukan Alamat",
+    "enterAmount": "Masukan Amaun",
+    "enterPasswordHint": "Masukkan kata laluan anda",
+    "exampleCardIntro": "Selamat datang ke Kaspium. Sekali anda menerima KAS, transaksi akan terlihat seperti ini",
+    "exit": "Keluar",
+    "fingerprintSeedBackup": "Konfirm cap jari untuk menyandarkan benih dompet.",
+    "goBackButton": "Pergi balik",
+    "gotItButton": "Got It!",
+    "hideAccountHeader": "Sembunyikan Akaun?",
+    "iUnderstandTheRisks": "Saya Memahami Risiko",
+    "ignore": "Abai",
+    "import": "Import",
+    "importSecretPhrase": "Import Frasa Rahsia",
+    "importSecretPhraseHint": "Sila masukkan frasa rahsia 24 perkataan anda di bawah. Setiap perkataan harus dipisahkan oleh ruang.",
+    "importSeed": "Import benih",
+    "importSeedHint": "Sila masukkan benih anda di bawah.",
+    "importWallet": "Import Dompet",
+    "instantly": "Seketika",
+    "insufficientBalance": "Baki tak mencukupi",
+    "invalidAddress": "Alamat destinasi tidak sah",
+    "invalidPassword": "kata laluan tidak sah",
+    "language": "Bahasa",
+    "lockAppSetting": "Mengesahkan saat Pelancaran",
+    "locked": "Terkunci",
+    "logout": "Log Keluar",
+    "manage": "Mengurus",
+    "manualEntry": "Kemasukan Manual",
+    "messageHeader": "Mesej",
+    "mnemonicInvalidWord": "{word} bukan perkataan yang sah",
+    "@mnemonicInvalidWord": {
+        "placeholders": {
+            "word": {
+                "type": "String"
+            }
+        }
+    },
+    "mnemonicPhrase": "Frasa Mnemonik",
+    "mnemonicSizeError": "Frasa rahsia hanya boleh mengandungi 24 perkataan",
+    "newWallet": "Dompet Baru",
+    "nextButton": "Seterusnya",
+    "no": "Tidak",
+    "noContactsExport": "Tidak ada kontak yg bisa di ekspor",
+    "noContactsImport": "Tidak menemukan untuk impor",
+    "noSkipButton": "Tidak, Langkau",
+    "notificationBody": "Buka Kaspium bagi melihat transaksi ini.",
+    "notificationHeaderSupplement": "Ketuk untuk buka",
+    "notificationTitle": "{amount} KAS diterimakan",
+    "@notificationTitle": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "notifications": "Notifikasi",
+    "off": "Off",
+    "on": "On",
+    "paperWallet": "Dompet Kertas",
+    "passwordBlank": "Kata laluan tidak boleh kosong",
+    "passwordNoLongerRequiredToOpenParagraph": "Anda tidak perlu kata laluan untuk membuka Kaspium lagi.",
+    "passwordWillBeRequiredToOpenParagraph": "Kata laluan ini diperlukan untuk membuka Kaspium.",
+    "passwordsDontMatch": "Kata laluan tidak sepadan",
+    "pending": "belum selesai",
+    "pinConfirmError": "Pin tidak sempadan",
+    "pinConfirmTitle": "Mengesahkan pin anda",
+    "pinCreateTitle": "Mencipta pin 6 digit anda",
+    "pinEnterTitle": "Masukkan pin",
+    "pinInvalid": "Pin yang tak sah dimasukkan",
+    "pinMethod": "PIN",
+    "pinSeedBackup": "Masukkan pin to melihat benih dompet.",
+    "preferences": "Keutamaan",
+    "privacyPolicy": "Dasar Privasi",
+    "qrInvalidAddress": "Kod QR tidak mengandungi destinasi yang sah",
+    "qrInvalidPermissions": "Tolong Berikan Izin Kamera untuk mengimbas Kod QR",
+    "qrInvalidSeed": "Kod QR tidak mengandungi kunci benih atau peribadi yang sah",
+    "qrMnemonicError": "QR tidak mengandungi frasa rahsia yang sah",
+    "qrUnknownError": "Tidak dapat Baca Kod QR",
+    "rawSeed": "Benih Mentah",
+    "receive": "Terima",
+    "received": "Diterima",
+    "removeContact": "Padam Kenalan",
+    "removeContactConfirmation": "Anda yakib akan menghapus {contactName}?",
+    "@removeContactConfirmation": {
+        "placeholders": {
+            "contactName": {
+                "type": "String"
+            }
+        }
+    },
+    "requireAPasswordToOpenHeader": "Memerlukan kata laluan untuk membuka Kaspium?",
+    "rootWarning": "Nampaknya peranti anda \"di-root\", \"jailbroken\", atau diubah suai dengan cara yang menjejaskan keselamatan. Adalah disyorkan bahawa anda menetapkan semula peranti anda kepada keadaan asal sebelum meneruskan.",
+    "scanInstructions": "Imbaskan Kod QR\n Alamat Kaspa anda",
+    "scanQrCode": "Imbaskan Kod QR",
+    "secretInfo": "Dalam skrin seterusnya, anda akan melihat frasa rahsia anda. Ia adalah kata laluan untuk mengakses dana anda. Adalah penting bahawa anda menyokongnya dan tidak pernah berkongsi dengan sesiapa sahaja.",
+    "secretInfoHeader": "Utamakan keselamatan!",
+    "secretPhrase": "Frasa Rahsia",
+    "secretWarning": "Jika anda kehilangan peranti anda atau menyahpasang aplikasinya, anda perlu frasa atau benih rahsia anda untuk mendapatkan semula dana anda!",
+    "securityHeader": "Keselamatan",
+    "seed": "Benih",
+    "seedBackupInfo": "Di bawah adalah benih dompet anda. Amat peting agar anda menyandarkan benih anda dan jangan menyimpan sebagai teks atau tangakapan skrin.",
+    "seedInvalid": "Benih tidak sah",
+    "send": "Hantar",
+    "sendError": "Berlaku ralat. Cuba lagi nanti.",
+    "sending": "Sedang dihantarkan",
+    "sent": "Dihantar",
+    "sentTo": "Dihantar ke",
+    "setPassword": "Tetapkan kata laluan",
+    "setPasswordSuccess": "Kata laluan telah ditetapkan dengan jayanya",
+    "setWalletPassword": "Tetapkan Kata Laluan Wallet",
+    "settingsHeader": "Tetapan",
+    "settingsTransfer": "Muatkan dari Dompet Kertas",
+    "shareKaspium": "Bahagian Kaspium",
+    "shareKaspiumText": "Semak Kaspium! Dompet mobile Kaspa!",
+    "systemDefault": "Default Sistem",
+    "tapToHide": "Ketuk untuk menyembunyikan",
+    "tapToReveal": "Ketuk untuk mendedahkan",
+    "themeHeader": "Tema",
+    "to": "Ke",
+    "tooManyFailedAttempts": "Terlalu banyak percubaan membuka kunci gagal.",
+    "transfer": "Pemindahan",
+    "transferClose": "Ketuk mana-mana sahaja untuk menutup tetingkap.",
+    "transferComplete": "{amount} KAS berjaya dipindahkan ke Dompet Kaspium anda. <Newline>",
+    "@transferComplete": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfo": "Satu dompet dengan keseimbangan {amount} KAS telah dikesan. \n",
+    "@transferConfirmInfo": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "transferConfirmInfoSecond": "Ketik Sahkan untuk memindahkan dana. \n",
+    "transferConfirmInfoThird": "Pemindahan mungkin mengambil masa beberapa saat untuk disiapkan.",
+    "transferError": "Ralat berlaku semasa pemindahan. Sila cuba sebentar lagi.",
+    "transferHeader": "Pemindahan Dana",
+    "transferIntro": "Proses ini akan memindahkan dana dari dompet kertas ke dompet Kaspium anda. <Newline> \nKetuk \"% 1\" untuk memulakan.",
+    "transferLoading": "Memindahkan",
+    "transferManualHint": "Sila masukkan benih di bawah.",
+    "transferNoFunds": "Benih ini tidak mempunyai sebarang KAS di atasnya",
+    "transferQrScanError": "Kod QR ini tidak mengandungi benih yang sah.",
+    "transferQrScanHint": "Imbas \nbenih atau kunci peribadi Kaspa.",
+    "unconfirmed": "tidak disahkan",
+    "unlock": "Buka kunci",
+    "unlockBiometrics": "Mengesahkan untuk membuka kunci Kaspium",
+    "unlockPin": "Masukkan PIN untuk Membuka Kaspium",
+    "warning": "AMARAN",
+    "welcomeText": "Selamat datang ke Kaspium. Untuk bersambung, anda boleh membuat dompet yang baru atau import dompet yang sedia ada.",
+    "xMinutes": "Selepas {minutes, plural, =1{1 minit} other{{minutes} minit}}",
+    "@xMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "yes": "Ya",
+    "yesButton": "Ya"
+}
