@@ -3,26 +3,86 @@
     "account": "Account",
     "accounts": "Accounts",
     "ackBackedUp": "Sei sicuro di aver fatto una copia della tua frase segreta o seed?",
-    "addAccount": "Aggiungi",
-    "addContact": "Aggiungi",
-    "addressCopied": "Copiato",
-    "addressHint": "Inserisci Indirizzo",
+    "add": "Aggiungi",
+    "addAccount": "Aggiungi account",
+    "addContact": "Aggiungi contatto",
+    "addNode": "Aggiungi nodo",
+    "addNodeFailed": "Impossibile aggiungere nodo Kaspa",
+    "addNodeFailedMessage": "Errore: {error}",
+    "@addNodeFailedMessage": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "addNodeSuccess": "Nodo aggiunto con successo",
+    "addingNodeMessage": "Attendi mentre contatto il nodo",
+    "addingNodeTitle": "Aggiungere nodo",
+    "address": "Indirizzo",
+    "addressCopied": "Indirizzo copiato",
+    "addressHint": "Inserisci indirizzo",
     "addressMising": "Inserisci un indirizzo",
-    "addressShare": "Condividi",
+    "addressShare": "Condividi indirizzo",
+    "advancedHeader": "Avanzate",
+    "amount": "Importo",
+    "amountConfirm": "Importo {amount} {coin}",
+    "@amountConfirm": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            },
+            "coin": {
+                "type": "String"
+            }
+        }
+    },
     "amountMissing": "Inserisci un importo",
+    "amountZero": "L'importo non può essere zero",
+    "areYouSure": "Sei sicuro?",
+    "authBiometricMessage": "Autenticazione necessaria per aggiungere un wallet",
     "authMethod": "Metodo di Autenticazione",
+    "authPinMessage": "Inserisci il PIN per aggiungere il wallet",
     "autoLockHeader": "Blocco Automatico",
-    "backupConfirmButton": "L'ho Conservata",
-    "backupSecretPhrase": "Salva Frase Segreta",
-    "backupSeed": "Salva Seed",
-    "backupSeedConfirm": "Sei sicuro di aver fatto un backup del tuo seed?",
-    "backupYourSeed": "Salva il seed",
+    "available": "Disponibile",
+    "backupConfirmButton": "L'ho salvata",
+    "backupSecretPhrase": "Esegui backup della frase segreta",
+    "backupSeed": "Esegui backup del seed",
+    "backupSeedConfirm": "Sei sicuro di aver eseguito un backup del seed?",
+    "backupYourSeed": "Esegui backup del tuo seed",
     "biometricsMethod": "Biometrica",
+    "blockExplorer": "Explorer",
     "cancel": "Annulla",
-    "changeCurrency": "Cambia Valuta",
+    "change": "Resto",
+    "changeAddress": "Indirizzo di resto",
+    "changeAddressCopied": "Indirizzo di resto copiato",
+    "changeCurrency": "Valuta di resto",
+    "changeIndex": "Indice di resto",
+    "changeIndexParam": "Resto {addressIndex}",
+    "@changeIndexParam": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "String",
+                "example": "1"
+            }
+        }
+    },
+    "checkCameraPermission": "Verifica le autorizzazioni della camera",
+    "clipboardEmpty": "Gli appunti sono vuoti",
     "close": "Chiudi",
     "confirm": "Conferma",
     "confirmPasswordHint": "Conferma la password",
+    "confirmations": "{confirmations} conferme",
+    "@confirmations": {
+        "placeholders": {
+            "confirmations": {
+                "type": "String",
+                "example": "2"
+            }
+        }
+    },
+    "confirmed": "confermato",
+    "confirming": "in attesa di conferma",
     "contactAdded": "{contactName} è stato aggiunto ai contatti!",
     "@contactAdded": {
         "placeholders": {
@@ -31,11 +91,19 @@
             }
         }
     },
-    "contactExists": "Contatto Già Esistente",
+    "contactAddressCopied": "{address} indirizzo copiato",
+    "@contactAddressCopied": {
+        "placeholders": {
+            "address": {
+                "type": "String"
+            }
+        }
+    },
+    "contactExists": "Contatto già esistente",
     "contactHeader": "Contatto",
-    "contactInvalid": "Nome Contatto Invalido",
-    "contactNameHint": "Inserisci un Nome @",
-    "contactNameMissing": "Non ci sono contatti da esportare",
+    "contactInvalid": "Nome contatto non valido",
+    "contactNameHint": "Inserisci un nome @",
+    "contactNameMissing": "Scegli un nome per questo contatto",
     "contactRemoved": "{contactName} è stato rimosso dai contatti!",
     "@contactRemoved": {
         "placeholders": {
@@ -57,8 +125,9 @@
     "copied": "Copiato",
     "copy": "Copia",
     "copyAddress": "Copia Indirizzo",
-    "createAPasswordHeader": "Crea una password.",
-    "createPasswordFirstParagraph": "Puoi creare una password per rendere il tuo portafoglio ancora più sicuro.",
+    "copyErrorButton": "Errore durante la copia",
+    "createAPasswordHeader": "Crea una password",
+    "createPasswordFirstParagraph": "Puoi creare una password per rendere il tuo wallet ancora più sicuro.",
     "createPasswordHint": "Crea una password",
     "createPasswordSecondParagraph": "La password è opzionale, e il tuo portafoglio sarà comunque protetto dal PIN o dal riconoscimento biometrico.",
     "createPasswordSheetHeader": "Crea",
@@ -72,36 +141,70 @@
             }
         }
     },
+    "defaultWalletName": "Il mio wallet",
     "disablePasswordSheetHeader": "Disabilita",
     "disablePasswordSuccess": "La password è stata disabilitata",
-    "disableWalletPassword": "Disabilita Password Portafoglio",
+    "disableWalletPassword": "Disabilita la password del portafoglio",
+    "dismiss": "Ignora",
+    "donate": "Dona",
+    "emptyCardIntroUtxos": "Questa è la sezione dedicata agli UTXO. Tutti gli UTXO nel tuo wallet appariranno qui",
+    "emptyResult": "Nessun risultato",
+    "emptyWalletName": "Il nome del wallet non può essere vuoto",
     "encryptionFailedError": "Errore nell’impostazione della password",
-    "enterAddress": "Inserisci Indirizzo",
-    "enterAmount": "Inserisci Importo",
+    "enterAddress": "Inserisci indirizzo",
+    "enterAmount": "Inserisci importo",
+    "enterNote": "Inserisci note",
     "enterPasswordHint": "Inserisci la password",
-    "exampleCardIntro": "Benvenuto in Kaspium. Una volta ricevuti dei KAS, le transazioni compariranno in questo modo",
+    "errorMessageCopied": "Messaggio d'errore copiato negli appunti",
+    "exampleCardIntro": "Questa è la sezione dedicata alle transazioni. Quando invierai o riceverai una transazione, sarà visualizzata qui.",
     "exit": "Esci",
-    "fingerprintSeedBackup": "Conferma l'impronta per salvare il seed.",
+    "export": "Esporta",
+    "feeConfirm": "Fee {amount} {coin}",
+    "@feeConfirm": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            },
+            "coin": {
+                "type": "String"
+            }
+        }
+    },
+    "feeTitle": "Fee",
+    "fetchingTransactions": "Sto recuperando le transazioni",
+    "fingerprintSeedBackup": "Conferma l'impronta per eseguire il backup del seed.",
     "goBackButton": "Indietro",
     "gotItButton": "Capito!",
-    "hideAccountHeader": "Nascondere l'Account?",
-    "iUnderstandTheRisks": "Sono Consapevole dei Rischi",
+    "hideAccountHeader": "Vuoi nascondere l'account?",
+    "iUnderstandTheRisks": "Sono consapevole dei rischi",
+    "ignore": "Ignora",
     "import": "Importa",
-    "importSecretPhrase": "Importa Frase Segreta",
-    "importSecretPhraseHint": "Inserisci la tua frase segreta da 24 parole qui sotto. Ogni parola deve essere separata da uno spazio.",
-    "importSeed": "Importa seed",
+    "importSecretPhrase": "Importa frase segreta",
+    "importSecretPhraseHint": "Inserisci la tua frase segreta da 24 parole qui sotto.",
+    "importSeed": "Importa il seed",
     "importSeedHint": "Inserisci il seed qui in basso.",
     "importWallet": "Importa",
     "instantly": "Subito",
-    "insufficientBalance": "Saldo Insufficiente",
-    "invalidAddress": "Indirizzo invalido",
-    "invalidPassword": "Password Invalida",
+    "insufficientBalance": "Saldo insufficiente",
+    "insufficientBalanceDetails": "Non hai abbastanza KAS per questa transazione",
+    "invalidAddress": "L'indirizzo inserito non è valido",
+    "invalidAmount": "L'importo inserito non è valido",
+    "invalidChecksumMessage": "Verifica che la tua frase segreta\n sia inserita correttamente!",
+    "invalidDestinationAddress": "L'indirizzo di destinazione inserito non è valido",
+    "invalidPassword": "La password inserita non è valida",
+    "kaspaDevFund": "Fondo sviluppo Kaspa",
+    "kaspiumWallet": "Kaspium Wallet",
     "language": "Lingua",
-    "lockAppSetting": "Autenticazione all'Avvio",
+    "loadingTransactions": "Caricamento delle transazioni in corso...",
+    "lockAppSetting": "Autenticazione all'avvio",
     "locked": "Bloccato",
+    "loggingOutMessage": "Disconnessione in corso...",
     "logout": "Logout",
+    "logoutDialogContent": "Sei sicuro di volerti disconnettere da questo wallet?",
+    "logoutOrSwitchWallet": "Disconnessione / Cambia Wallet",
     "manage": "Gestisci",
-    "manualEntry": "Inserisci Manualmente",
+    "manualEntry": "Inserisci manualmente",
+    "messageHeader": "Messaggio",
     "mnemonicInvalidWord": "{word} non è una parola valida",
     "@mnemonicInvalidWord": {
         "placeholders": {
@@ -110,15 +213,27 @@
             }
         }
     },
-    "mnemonicPhrase": "Frase Mnemonica",
+    "mnemonicPhrase": "Frase mnemonica",
     "mnemonicSizeError": "La frase segreta può contenere solo 24 parole",
-    "newWallet": "Nuovo",
+    "networkHeader": "Rete",
+    "newAddress": "Nuovo indirizzo",
+    "newWallet": "Nuovo wallet",
     "nextButton": "Avanti",
     "no": "No",
     "noContactsExport": "Non ci sono contatti da esportare",
-    "noContactsImport": "Nessun contatto da importare trovato",
-    "noSkipButton": "No, Salta",
-    "notificationBody": "Apri Kaspium per vedere la transazione.",
+    "noContactsImport": "Non ci sono nuovi contatti da importare",
+    "noQrCodeFound": "Nessun QR code trovato",
+    "noSkipButton": "No, salta",
+    "noUppercase": "NO",
+    "nodeAddress": "Nodo Kaspa",
+    "nodeDeleteMessage": "Sei sicuro di voler cancellare?",
+    "nodeDeleteTitle": "Vuoi cancellare la configurazione del nodo Kaspa?",
+    "nodeNameEmpty": "Il nome del nodo non può essere vuoto",
+    "nodeNameHint": "Inserisci il nome del nodo",
+    "nodeUrlHint": "Inserisci l'URL del nodo",
+    "nodeUrlInvalid": "L'URL inserito non è valido",
+    "nodesSheetTitle": "Nodi Kaspa",
+    "notificationBody": "Apri Kaspium per vedere la transazione",
     "notificationHeaderSupplement": "Tocca per aprire",
     "notificationTitle": "Ricevuti {amount} KAS",
     "@notificationTitle": {
@@ -131,29 +246,43 @@
     "notifications": "Notifiche",
     "off": "Off",
     "on": "On",
-    "paperWallet": "Portafoglio Cartaceo",
+    "paperWallet": "Wallet cartaceo",
     "passwordBlank": "La password non può essere vuota",
-    "passwordNoLongerRequiredToOpenParagraph": "Non avrai più bisogno di una password per aprire Kaspium.",
-    "passwordWillBeRequiredToOpenParagraph": "Questa password sarà richiesta per aprire Kaspium.",
+    "passwordNoLongerRequiredToOpenParagraph": "Non avrai più bisogno di una password per aprire questo wallet.",
+    "passwordWillBeRequiredToOpenParagraph": "Questa password sarà richiesta per aprire questo wallet.",
     "passwordsDontMatch": "Le password non corrispondono",
-    "pinConfirmError": "I pin non combaciano",
-    "pinConfirmTitle": "Conferma il pin",
-    "pinCreateTitle": "Crea un pin a 6 cifre",
-    "pinEnterTitle": "Inserisci pin",
-    "pinInvalid": "Pin errato",
+    "pasteMnemonicError": "Il contenuto degli appunti non è una frase segreta valida",
+    "pending": "in attesa",
+    "pinConfirmError": "I PIN non combaciano",
+    "pinConfirmTitle": "Conferma il PIN",
+    "pinCreateTitle": "Crea un PIN a 6 cifre",
+    "pinEnterTitle": "Inserisci PIN",
+    "pinInvalid": "Il PIN inserito non è valido",
     "pinMethod": "PIN",
-    "pinSeedBackup": "Inserisci il pin per vedere il seed.",
+    "pinSeedBackup": "Inserisci il PIN per eseguire il backup della frase segreta",
     "preferences": "Preferenze",
-    "privacyPolicy": "Politica sulla Privacy",
-    "qrInvalidAddress": "Il codice QR non contiene una destinazione valida",
-    "qrInvalidPermissions": "Abilita l’accesso alla fotocamera per scansionare i codici QR",
-    "qrInvalidSeed": "Il codice QR non contiene un seed o una chiave privata validi",
+    "privacyPolicy": "Privacy policy",
+    "qrInvalidAddress": "Il QR code non contiene una destinazione valida",
+    "qrInvalidPermissions": "Abilita l’accesso alla fotocamera per scansionare i QR code",
+    "qrInvalidSeed": "Il QR code non contiene un seed o una chiave privata validi",
     "qrMnemonicError": "Il QR non contiene una frase segreta valida",
-    "qrUnknownError": "Errore nella Lettura del codice QR",
+    "qrUnknownError": "Errore nella lettura del QR code",
     "rawSeed": "Seed",
     "receive": "Ricevi",
+    "receiveAddress": "Indirizzo di ricezione",
+    "receiveAddressCopied": "Indirizzo di ricezione copiato",
+    "receiveIndex": "Indice di ricezione",
+    "receiveIndexParam": "Receive {addressIndex}",
+    "@receiveIndexParam": {
+        "placeholders": {
+            "addressIndex": {
+                "type": "String",
+                "example": "1"
+            }
+        }
+    },
     "received": "Ricevuti",
-    "removeContact": "Rimuovi Contatto",
+    "removeContact": "Rimuovi contatto",
     "removeContactConfirmation": "Sei sicuro di voler rimuovere {contactName}?",
     "@removeContactConfirmation": {
         "placeholders": {
@@ -162,6 +291,8 @@
             }
         }
     },
+    "removeWalletAction": "Rimuovi wallet",
+    ##########################################
     "requireAPasswordToOpenHeader": "Richiedi una password per aprire Kaspium?",
     "rootWarning": "Sembra che il tuo dispositivo sia “rooted”, “jailbroken”, o abbia una modifica che ne compromette la sicurezza. Prima di procedere, è consigliato eseguire un ripristino del dispositivo al suo stato originale.",
     "scanInstructions": "Scansiona un \ncodice QR Kaspa",
