@@ -2,7 +2,7 @@
     "@@locale": "id",
     "account": "Akun",
     "accounts": "Semua Akun",
-    "ackBackedUp": "Anda yakin sudah menyimpan benih / Kalimat Rahasia anda?",
+    "ackBackedUp": "Apa Anda sudah yakin menyimpan kalimat Rahasia anda?",
     "addAccount": "Tambah Akun",
     "addContact": "Tambah Kontak",
     "addressCopied": "Alamat berhasil disalin.",
@@ -13,8 +13,8 @@
     "authMethod": "Metode Otentikasi",
     "autoLockHeader": "Kunci Otomatis",
     "backupConfirmButton": "Sudah Saya Simpan",
-    "backupSecretPhrase": "Cadangkan Frase Rahasia",
-    "backupSeed": "Simpan Benih",
+    "backupSecretPhrase": "Cadangkan Frasa Rahasia",
+    "backupSeed": "Simpan benih",
     "backupSeedConfirm": "Apakah anda yakin sudah menyimpan benih anda dengan aman?",
     "backupYourSeed": "Simpan benih anda",
     "biometricsMethod": "Biometrik",
@@ -36,7 +36,7 @@
     "contactHeader": "Kontak",
     "contactInvalid": "Kontak Tidak Valid",
     "contactNameHint": "Masukkan Nama @",
-    "contactNameMissing": "Tidak ada kontak yg bisa di ekspor",
+    "contactNameMissing": "Tidak ada kontak yang bisa di ekspor",
     "contactRemoved": "{contactName} kontak berhasil dihapus!",
     "@contactRemoved": {
         "placeholders": {
@@ -114,7 +114,7 @@
             }
         }
     },
-    "mnemonicPhrase": "Frase Mnemonic",
+    "mnemonicPhrase": "Frasa Acak",
     "mnemonicSizeError": "Kalimat rahasia hanya terdiri dari 24 kata.",
     "newWallet": "Buat Dompet",
     "nextButton": "Berikutnya",
@@ -122,9 +122,9 @@
     "noContactsExport": "Tidak ada kontak yg bisa di ekspor",
     "noContactsImport": "Tidak menemukan untuk impor",
     "noSkipButton": "Tidak, lewati",
-    "notificationBody": "Buka Natrium untuk melihat transaksi.",
+    "notificationBody": "Buka Kaspium untuk melihat transaksi.",
     "notificationHeaderSupplement": "Tekan untuk membuka",
-    "notificationTitle": "Menerima {amount} KAS",
+    "notificationTitle": "Diterima {amount} KAS",
     "@notificationTitle": {
         "placeholders": {
             "amount": {
@@ -137,17 +137,17 @@
     "on": "Hidup",
     "paperWallet": "Dompet Kertas",
     "passwordBlank": "Kata sandi tidak boleh kosong",
-    "passwordNoLongerRequiredToOpenParagraph": "Anda tidak akan memerlukan kata sandi lagi untuk membuka Natrium.",
-    "passwordWillBeRequiredToOpenParagraph": "Kata sandi digunakan untuk membuka Natrium.",
+    "passwordNoLongerRequiredToOpenParagraph": "Anda tidak akan memerlukan kata sandi lagi untuk membuka Kaspium.",
+    "passwordWillBeRequiredToOpenParagraph": "Kata sandi digunakan untuk membuka Kaspium.",
     "passwordsDontMatch": "Kata sandi tidak cocok",
     "pending": "tertunda",
-    "pinConfirmError": "Pin tidak sama",
-    "pinConfirmTitle": "Konfirmasi pin anda",
-    "pinCreateTitle": "Buat pin 6 angka",
-    "pinEnterTitle": "Masukkan pin",
-    "pinInvalid": "Pin yang dimasukkan salah",
+    "pinConfirmError": "PIN tidak sama",
+    "pinConfirmTitle": "Konfirmasi PIN anda",
+    "pinCreateTitle": "Buat PIN 6 angka",
+    "pinEnterTitle": "Masukkan PIN",
+    "pinInvalid": "PIN yang dimasukkan salah",
     "pinMethod": "PIN",
-    "pinSeedBackup": "Masukkan pin untuk melihat benih dompet Anda.",
+    "pinSeedBackup": "Masukkan PIN untuk melihat benih dompet Anda.",
     "preferences": "Preferensi",
     "privacyPolicy": "Kebijakan Privasi",
     "qrInvalidAddress": "Kode QR tidak berisikan alamat yang benar",
@@ -159,7 +159,7 @@
     "receive": "Terima",
     "received": "Diterima",
     "removeContact": "Hapus Kontak",
-    "removeContactConfirmation": "Anda yakib akan menghapus {contactName}?",
+    "removeContactConfirmation": "Anda yakin hendak menghapus {contactName}?",
     "@removeContactConfirmation": {
         "placeholders": {
             "contactName": {
@@ -167,7 +167,7 @@
             }
         }
     },
-    "requireAPasswordToOpenHeader": "Membutuhkan kata sandi untuk membuka Natrium?",
+    "requireAPasswordToOpenHeader": "Membutuhkan kata sandi untuk membuka Kaspium?",
     "rootWarning": "Tampaknya perangkat Anda \"di-root\", \"jailbroken\", atau dimodifikasi dengan cara yang membahayakan keamanan. Anda disarankan untuk mereset perangkat Anda ke keadaan semula sebelum melanjutkan.",
     "scanInstructions": "Pindai QR code\n alamat Kaspa",
     "scanQrCode": "Pindai QR Code",
@@ -197,7 +197,7 @@
     "tooManyFailedAttempts": "Terlalu banyak percobaan gagal.",
     "transfer": "Transfer",
     "transferClose": "Ketuk di mana saja untuk melanjutkan.",
-    "transferComplete": "{amount} KAS berhasil ditransfer ke Dompet Natrium Anda.",
+    "transferComplete": "{amount} KAS berhasil ditransfer ke Dompet Kaspium Anda.",
     "@transferComplete": {
         "placeholders": {
             "amount": {
@@ -217,7 +217,7 @@
     "transferConfirmInfoThird": "Transfer membutuhkan beberapa detik.",
     "transferError": "Terjadi kesalahan selama transfer. Silakan coba lagi nanti.",
     "transferHeader": "Transfer\nDana",
-    "transferIntro": "Proses ini akan mentransfer dana dari dompet kertas ke dompet Natrium Anda.\n\nKetuk \"%1\" tombol untuk memulai.",
+    "transferIntro": "Proses ini akan mentransfer dana dari dompet kertas ke dompet Kaspium Anda.\n\nKetuk \"%1\" tombol untuk memulai.",
     "transferLoading": "Mentransfer",
     "transferManualHint": "Mohon masukkan benih dibawah ini.",
     "transferNoFunds": "Tidak ada KAS di dalam benih ini.",
@@ -225,10 +225,10 @@
     "transferQrScanHint": "Pindai Benih\n atau kunci pribadi",
     "unconfirmed": "belum dikonfirmasi",
     "unlock": "Terbuka",
-    "unlockBiometrics": "Otentikasi untuk Membuka Natrium",
-    "unlockPin": "Masukkan PIN untuk membuka KALIUM",
+    "unlockBiometrics": "Otentikasi untuk Membuka Kaspium",
+    "unlockPin": "Masukkan PIN untuk membuka KASPIUM",
     "warning": "PERINGATAN",
-    "welcomeText": "Selamat datang di Natrium. Untuk melanjutkan, anda bisa membuat dompet baru atau mengimpor dompet lama anda.",
+    "welcomeText": "Selamat datang di Kaspium. Untuk melanjutkan, anda bisa membuat dompet baru atau mengimpor dompet lama anda.",
     "xMinutes": "Setelah {minutes, plural, =1{1 menit} other{{minutes} menit}}",
     "@xMinutes": {
         "placeholders": {
