@@ -214,7 +214,14 @@
     "transferConfirmInfoThird": "Ang paglipat ay maaring tumagal ng ilang segundo.",
     "transferError": "Nagkaroon ng error sa paglipat. Pakiulit mamaya.",
     "transferHeader": "Transfer\nFunds",
-    "transferIntro": "Ang prosesong ito ay ang paglipat ng pondo galing sa paper wallet.\n\nI-tap ang \"%1\" button para umpisahan.",
+    "transferIntro": "Ang prosesong ito ay ang paglipat ng pondo galing sa paper wallet.\n\nI-tap ang \"{button}\" button para umpisahan.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Nililipat na",
     "transferManualHint": "Pakilagay seed sa ibaba.",
     "transferNoFunds": "Ang seed na ito ay walang KAS.",

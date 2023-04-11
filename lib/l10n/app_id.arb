@@ -217,7 +217,14 @@
     "transferConfirmInfoThird": "Transfer membutuhkan beberapa detik.",
     "transferError": "Terjadi kesalahan selama transfer. Silakan coba lagi nanti.",
     "transferHeader": "Transfer\nDana",
-    "transferIntro": "Proses ini akan mentransfer dana dari dompet kertas ke dompet Natrium Anda.\n\nKetuk \"%1\" tombol untuk memulai.",
+    "transferIntro": "Proses ini akan mentransfer dana dari dompet kertas ke dompet Natrium Anda.\n\nKetuk \"{button}\" tombol untuk memulai.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Mentransfer",
     "transferManualHint": "Mohon masukkan benih dibawah ini.",
     "transferNoFunds": "Tidak ada KAS di dalam benih ini.",

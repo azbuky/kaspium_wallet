@@ -214,7 +214,14 @@
     "transferConfirmInfoThird": "Transfer może zająć kilka sekund żeby się zakończyć.",
     "transferError": "Podczas transferu wystąpił błąd. Proszę spróbować póżniej.",
     "transferHeader": "Transferuj\nŚrodki",
-    "transferIntro": "Ten proces trensferuje środki z portfela papierowego do twojego portfela Kaspium.\n\nNaciśnij \"%1\" przycisk aby zacząć.",
+    "transferIntro": "Ten proces trensferuje środki z portfela papierowego do twojego portfela Kaspium.\n\nNaciśnij \"{button}\" przycisk aby zacząć.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Transferuje",
     "transferManualHint": "Proszę wpisz nasiono poniżej",
     "transferNoFunds": "To nasiono nie zawiera żadnego KAS.",

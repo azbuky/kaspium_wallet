@@ -219,7 +219,14 @@
     "transferConfirmInfoThird": "Der Vorgang kann einige Sekunden dauern.",
     "transferError": "Während des Transfers ist ein Fehler aufgetreten. Bitte versuche es später erneut.",
     "transferHeader": "Guthaben\ntransferieren",
-    "transferIntro": "Dieser Vorgang wird das Guthaben vom Paper Wallet in dein Kaspium Wallet transferieren.\n\nTippe zum Starten auf \"%1\" .",
+    "transferIntro": "Dieser Vorgang wird das Guthaben vom Paper Wallet in dein Kaspium Wallet transferieren.\n\nTippe zum Starten auf \"{button}\" .",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Transfer läuft",
     "transferManualHint": "Seed eingeben.",
     "transferNoFunds": "Dieser Seed enthält keine KAS.",

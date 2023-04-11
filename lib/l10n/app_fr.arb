@@ -219,7 +219,14 @@
     "transferConfirmInfoThird": "Le transfert pourrait prendre quelques secondes.",
     "transferError": "Une erreur s’est produite durant le transfert. Veuillez réessayer plus tard.",
     "transferHeader": "Transférer",
-    "transferIntro": "Transférer le contenu d'un portefeuille papier vers votre portefeuille Kaspium.",
+    "transferIntro": "Transférer le contenu d'un portefeuille papier vers votre portefeuille Kaspium.\n\n{button}",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Transfert",
     "transferManualHint": "Merci d'entrer votre clé privée ci-dessous",
     "transferNoFunds": "Ce seed ne contient pas de KAS.",
