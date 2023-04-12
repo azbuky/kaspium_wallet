@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-12T20:15:02.340Z",
+  "@@last_modified": "2023-04-12T20:50:21.055Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konten",
@@ -178,7 +178,7 @@
   "qrUnknownError": "QR-Code konnte nicht gelesen werden",
   "rawSeed": "Seed",
   "receive": "Empfangen",
-  "receiveAddress": "Adresse empfangen",
+  "receiveAddress": "Empfangsadresse",
   "receiveAddressCopied": "Empfangene Adresse kopiert",
   "receiveIndex": "Empfangsindex",
   "receiveIndexParam": "Empfange {addressIndex} ",
