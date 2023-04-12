@@ -214,7 +214,14 @@
     "transferConfirmInfoThird": "传送需要几秒钟完成，请稍等一下。",
     "transferError": "传送出现了问题，请稍后再尝试。",
     "transferHeader": "传送钱币",
-    "transferIntro": "这个过程会将纸钱包的钱币转移到您的 Kaspium 钱包。\n\n请按 \"%1\" 键开始。",
+    "transferIntro": "这个过程会将纸钱包的钱币转移到您的 Kaspium 钱包。\n\n请按 \"{button}\" 键开始。",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "传送中",
     "transferManualHint": "请输入种子。",
     "transferNoFunds": "这个种子没有包含任何 KAS",

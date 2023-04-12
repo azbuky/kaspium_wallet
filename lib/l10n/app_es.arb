@@ -214,7 +214,14 @@
     "transferConfirmInfoThird": "La transferencia puede tardar varios segundos en completarse.",
     "transferError": "Ha ocurrido un error durante la transferencia. Por favor, inténtelo de nuevo más tarde.",
     "transferHeader": "Transferir fondos",
-    "transferIntro": "Este proceso transferirá los fondos de una billetera de papel a su billetera en Kaspium.\n\nPulse el botón \"%1\"  para empezar.",
+    "transferIntro": "Este proceso transferirá los fondos de una billetera de papel a su billetera en Kaspium.\n\nPulse el botón \"{button}\"  para empezar.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Transfiriendo",
     "transferManualHint": "Por favor, introduzca la semilla a continuación.",
     "transferNoFunds": "Esta semilla no contiene ningún KAS.",

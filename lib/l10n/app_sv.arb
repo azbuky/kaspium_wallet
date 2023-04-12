@@ -219,7 +219,14 @@
     "transferConfirmInfoThird": "Överföringen kan ta upp till flera sekunder att genomföras.",
     "transferError": "Ett fel uppstod vid överföringen. Försök igen senare.",
     "transferHeader": "Överför\nmedel",
-    "transferIntro": "Den här processen kommer att överföra tillgångar från en pappersplånbok till din Kaspium-plånbok.\n\nTryck på \"%1\" knappen för att starta.",
+    "transferIntro": "Den här processen kommer att överföra tillgångar från en pappersplånbok till din Kaspium-plånbok.\n\nTryck på \"{button}\" knappen för att starta.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Överför",
     "transferManualHint": "Vänligen ange PIN nedan.",
     "transferNoFunds": "Detta seed innehåller inga KAS.",

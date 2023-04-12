@@ -219,7 +219,14 @@
     "transferConfirmInfoThird": "Dokončení přenosu může trvat několik sekund.",
     "transferError": "Během přenosu došlo k chybě. Prosím zkuste to znovu později.",
     "transferHeader": "Převést finanční prostředky",
-    "transferIntro": "Tento proces přenese prostředky z papírové peněženky do vaší peněženky Kaspium. \n\n Začněte klepnutím na tlačítko \"% 1\".",
+    "transferIntro": "Tento proces přenese prostředky z papírové peněženky do vaší peněženky Kaspium. \n\n Začněte klepnutím na tlačítko \"{button}\".",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Přenáší se",
     "transferManualHint": "Zadejte semínko níže.",
     "transferNoFunds": "Toto semínko nemá na sobě žádné KAS",

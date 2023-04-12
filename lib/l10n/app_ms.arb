@@ -219,7 +219,14 @@
     "transferConfirmInfoThird": "Pemindahan mungkin mengambil masa beberapa saat untuk disiapkan.",
     "transferError": "Ralat berlaku semasa pemindahan. Sila cuba sebentar lagi.",
     "transferHeader": "Pemindahan Dana",
-    "transferIntro": "Proses ini akan memindahkan dana dari dompet kertas ke dompet Kaspium anda. <Newline> \nKetuk \"% 1\" untuk memulakan.",
+    "transferIntro": "Proses ini akan memindahkan dana dari dompet kertas ke dompet Kaspium anda. <Newline> \nKetuk \"{button}\" untuk memulakan.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Memindahkan",
     "transferManualHint": "Sila masukkan benih di bawah.",
     "transferNoFunds": "Benih ini tidak mempunyai sebarang KAS di atasnya",

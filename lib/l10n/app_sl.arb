@@ -182,7 +182,14 @@
     "transferConfirmInfoThird": "Prenos lahko traja nekaj sekund.",
     "transferError": "Napaka med prenosom. Poskusite kasneje.",
     "transferHeader": "Prenesi znesek",
-    "transferIntro": "Postopek bo prenesel znesek iz papirnate denarnice v vašo Kaspium denarnico.\n\nPritisnite \"%1\" gumb za začetek.",
+    "transferIntro": "Postopek bo prenesel znesek iz papirnate denarnice v vašo Kaspium denarnico.\n\nPritisnite \"{button}\" gumb za začetek.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Prenašam",
     "transferManualHint": "Spodaj vnesite ključ.",
     "transferNoFunds": "Ključ ne vsebuje nobenega KAS zneska.",

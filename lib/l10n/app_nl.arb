@@ -219,7 +219,14 @@
     "transferConfirmInfoThird": "Het overzetten kan enkele seconden duren om te voltooien.",
     "transferError": "Tijdens het overzetten is er een fout opgetreden. Probeer het later nog eens.",
     "transferHeader": "Saldo overzetten",
-    "transferIntro": "Met dit proces wordt het saldo van een papieren wallet overgezet naar jouw Kaspium-wallet.\n\nTik op de \"%1\" knop om te starten.",
+    "transferIntro": "Met dit proces wordt het saldo van een papieren wallet overgezet naar jouw Kaspium-wallet.\n\nTik op de \"{button}\" knop om te starten.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Overzetten",
     "transferManualHint": "A.u.b. hieronder de seed invoeren.",
     "transferNoFunds": "Deze seed bevat geen Kaspa.",

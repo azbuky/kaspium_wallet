@@ -214,7 +214,14 @@
     "transferConfirmInfoThird": "移轉需要幾秒鐘完成，請稍等。",
     "transferError": "轉帳過程遇到障礙，請稍後再試。",
     "transferHeader": "自紙錢包移轉資產",
-    "transferIntro": "這過程會將紙錢包的資產移轉至您的 Kaspium 錢包。\n\n輕觸 \"%1\" 按鈕開始。",
+    "transferIntro": "這過程會將紙錢包的資產移轉至您的 Kaspium 錢包。\n\n輕觸 \"{button}\" 按鈕開始。",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "移轉中",
     "transferManualHint": "請輸入紙錢包的種子",
     "transferNoFunds": "這個種子不含任何 KAS",
