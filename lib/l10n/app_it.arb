@@ -81,7 +81,7 @@
             }
         }
     },
-    "confirmed": "confermato",
+    "confirmed": "confermata",
     "confirming": "in attesa di conferma",
     "contactAdded": "{contactName} è stato aggiunto ai contatti!",
     "@contactAdded": {
@@ -265,14 +265,14 @@
     "qrInvalidAddress": "Il QR code non contiene una destinazione valida",
     "qrInvalidPermissions": "Abilita l’accesso alla fotocamera per scansionare i QR code",
     "qrInvalidSeed": "Il QR code non contiene un seed o una chiave privata validi",
-    "qrMnemonicError": "Il QR non contiene una frase segreta valida",
+    "qrMnemonicError": "Il QR code non contiene una frase segreta valida",
     "qrUnknownError": "Errore nella lettura del QR code",
     "rawSeed": "Seed",
     "receive": "Ricevi",
     "receiveAddress": "Indirizzo di ricezione",
     "receiveAddressCopied": "Indirizzo di ricezione copiato",
     "receiveIndex": "Indice di ricezione",
-    "receiveIndexParam": "Receive {addressIndex}",
+    "receiveIndexParam": "Recevi {addressIndex}",
     "@receiveIndexParam": {
         "placeholders": {
             "addressIndex": {
@@ -292,39 +292,59 @@
         }
     },
     "removeWalletAction": "Rimuovi wallet",
-    "requireAPasswordToOpenHeader": "Richiedi una password per aprire Kaspium?",
-    "rootWarning": "Sembra che il tuo dispositivo sia “rooted”, “jailbroken”, o abbia una modifica che ne compromette la sicurezza. Prima di procedere, è consigliato eseguire un ripristino del dispositivo al suo stato originale.",
-    "scanInstructions": "Scansiona un \ncodice QR Kaspa",
-    "scanQrCode": "Codice QR",
+    "removeWalletBiometricsMessage": "Autenticati per rimuovere il wallet",
+    "removeWalletDetail": "Rimuovendo questo wallet la frase segreta e tutti i dati del wallet saranno rimossi da questo dispositivo. Se non hai effettuato un backup della frase segreta, non sarai più in grado di accedere ai tuoi fondi.",
+    "removeWalletPinMessage": "Inserisci il PIN per rimuovere il wallet",
+    "removeWalletReassurance": "Se hai effettuato correttamente il backup della frase segreta, puoi stare tranquillo.",
+    "requireAPasswordToOpenHeader": "Richiedi una password per aprire questo wallet?",
+    "restartSetupButton": "Riavvia l'installazione",
+    "rootWarning": "Sembra che il tuo dispositivo sia stato sottoposto a \"root\", \"jailbrake\", o ad una modifica che ne compromette la sicurezza. Prima di procedere, è consigliato eseguire un ripristino del dispositivo al suo stato originale.",
+    "scanInstructions": "Scansiona un \nQR code Kaspa",
+    "scanQrCode": "Scansiona QR code",
+    "scanQrCodeError": "Non è possibile leggere correttamente il QR code",
     "secretInfo": "Nella prossima schermata, vedrai la tua frase segreta. È la password per accedere ai tuoi fondi. È fondamentale che tu ne faccia una copia e che non la condivida con nessuno.",
-    "secretInfoHeader": "Sicurezza al primo posto!",
-    "secretPhrase": "Frase Segreta",
-    "secretWarning": "Se perdi il tuo device o disinstalli l'applicazione, avrai bisogno della tua frase segreta o del seed per recuperare i tuoi fondi!",
+    "secretInfoHeader": "La sicurezza prima di tutto!",
+    "secretPhrase": "Frase segreta",
+    "secretWarning": "Se perdi il tuo dispositivo o disinstalli l'applicazione, avrai bisogno della tua frase segreta per recuperare i tuoi fondi!",
     "securityHeader": "Sicurezza",
     "seed": "Seed",
-    "seedBackupInfo": "Qui sotto c'è il seed del tuo portafoglio. È fondamentale che tu faccia un backup del seed evitando di conservarlo in chiaro o con uno screenshot.",
+    "seedBackupInfo": "Qui sotto c'è il seed del tuo wallet. È fondamentale che tu esegua un backup del seed, evitando di conservarlo in modo visibile o effettuando uno screenshot.",
     "seedInvalid": "Seed non valido",
     "send": "Invia",
+    "sendConfirm": "Invia",
     "sendError": "Si è verificato un errore. Riprova più tardi.",
-    "sending": "Inviando",
-    "sent": "Inviati",
-    "sentTo": "Inviato A",
+    "sendNote": "NOTE",
+    "sendToAddressTitle": "Invia a",
+    "sendTxProgressDescription": "Attendi l'invio della transazione",
+    "sendTxProgressTitle": "Invio della transazione in corso",
+    "sending": "Invio in corso",
+    "sent": "Inviata",
+    "sentTo": "Inviata a",
     "setPassword": "Imposta Password",
     "setPasswordSuccess": "La password è stata impostata correttamente",
-    "setWalletPassword": "Imposta Password Portafoglio",
+    "setWalletPassword": "Imposta la password del wallet",
     "settingsHeader": "Impostazioni",
-    "settingsTransfer": "Carica Portafoglio Cartaceo",
+    "settingsTransfer": "Carica wallet cartaceo",
+    "setupFailedMessage": "Qualcosa è andato storto",
     "shareKaspium": "Condividi Kaspium",
-    "shareKaspiumText": "Dai un'occhiata a Kaspium! Il mobile wallet ufficiale di Kaspa!",
+    "shareKaspiumSubject": "Dai un'occhiata al wallet Kaspium",
+    "shareKaspiumText": "Dai un'occhiata a Kaspium, il wallet mobile di Kaspa!\nWebsite - kaspium.io",
+    "somethingWentWrong": "Qualcosa è andato storto",
     "systemDefault": "Predefinito",
     "tapToHide": "Tocca per nascondere",
     "tapToReveal": "Tocca per visualizzare",
     "themeHeader": "Tema",
+    "thisWallet": "#Questo wallet",
     "to": "A",
+    "toAddress": "All'indirizzo",
+    "tokens": "Gettoni",
     "tooManyFailedAttempts": "Troppi tentativi di sblocco falliti.",
+    "totalValue": "Valore totale",
+    "transactionId": "ID transazione",
+    "transactionsUppercase": "TRANSAZIONI",
     "transfer": "Trasferisci",
     "transferClose": "Premi dove vuoi per chiudere la finestra.",
-    "transferComplete": "{amount} KAS trasferiti con successo sul tuo portafoglio Kaspium.",
+    "transferComplete": "{amount} KAS trasferiti con successo sul tuo wallet Kaspium.",
     "@transferComplete": {
         "placeholders": {
             "amount": {
@@ -332,7 +352,7 @@
             }
         }
     },
-    "transferConfirmInfo": "Rilevato un portafoglio con un saldo di {amount} KAS.\n",
+    "transferConfirmInfo": "Rilevato un wallet con un saldo di {amount} KAS.\n",
     "@transferConfirmInfo": {
         "placeholders": {
             "amount": {
@@ -340,11 +360,11 @@
             }
         }
     },
-    "transferConfirmInfoSecond": "Premi conferma per trasferire i fondi.\n",
+    "transferConfirmInfoSecond": "Premi Conferma per trasferire i fondi.\n",
     "transferConfirmInfoThird": "Il trasferimento potrebbe richiedere parecchi secondi.",
     "transferError": "Si è verificato un errore durante il trasferimento. Riprova più tardi.",
-    "transferHeader": "Trasferisci\nFondi",
-    "transferIntro": "Questo processo trasferirà i fondi da un portafoglio cartaceo al tuo portafoglio Kaspium.\n\nPremi il pulsante \"{button}\" per iniziare.",
+    "transferHeader": "Trasferisci fondi",
+    "transferIntro": "Questo processo trasferirà i fondi da un wallet cartaceo al tuo wallet Kaspium.\n\nPremi il pulsante \"{button}\" per iniziare.",
     "@transferIntro": {
         "placeholders": {
             "button": {
@@ -352,24 +372,38 @@
             }
         }
     },
-    "transferLoading": "Trasferimento",
+    "transferLoading": "Trasferimento in corso",
     "transferManualHint": "Inserisci il tuo seed.",
-    "transferNoFunds": "Questo seed non contiene alcun KAS al suo interno.",
-    "transferQrScanError": "Questo codice QR non contiene un seed valido.",
+    "transferNoFunds": "Questo seed non contiene alcun KAS.",
+    "transferQrScanError": "Questo QR code non contiene un seed valido.",
     "transferQrScanHint": "Scansiona un seed \no una chiave privata",
+    "unconfirmed": "non confermata",
+    "unknown": "sconosciuta",
     "unlock": "Sblocca",
-    "unlockBiometrics": "Autenticati per Sbloccare Kaspium",
-    "unlockPin": "Inserisci il PIN per Sbloccare Kaspium",
-    "warning": "ATTENZIONE",
-    "welcomeText": "Benvenuto in Kaspium. Per continuare, puoi creare un nuovo portafoglio o importarne uno esistente.",
+    "unlockBiometrics": "Autenticati per sbloccare il wallet",
+    "unlockPin": "Inserisci il PIN per sbloccare il wallet",
+    "utxosUppercase": "UTXO",
+    "viewAddress": "Visualizza indirizzo",
+    "viewTransaction": "Visualizza transazione",
+    "walletAddresses": "Indirizzo del wallet",
+    "walletName": "Nome del wallet",
+    "walletNameDescription": "Inserisci un nome per il tuo wallet",
+    "walletNameHint": "Node del wallet",
+    "walletSetupAddressDiscovery": "Analisi degli indirizzi in corso",
+    "walletSetupMessage": "Configurazione del wallet in corso",
+    "walletsTitle": "Wallet",
+    "warning": "Attenzione",
+    "welcomeText": "Benvenuto in Kaspium. Per iniziare, puoi creare un nuovo wallet o importare un wallet già esistente.",
     "xMinutes": "Dopo {minutes, plural, =1{1 minuto} other{{minutes} minuti}}",
     "@xMinutes": {
         "placeholders": {
             "minutes": {
-                "type": "int"
+                "type": "int",
+                "format": "compact"
             }
         }
     },
     "yes": "Si",
-    "yesButton": "Si"
+    "yesButton": "Si",
+    "yesUppercase": "SI"
 }
