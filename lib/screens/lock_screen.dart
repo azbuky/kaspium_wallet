@@ -134,6 +134,7 @@ class _LockScreenState extends ConsumerState<LockScreen> {
       expectedPin: expectedPin,
       description: l10n.unlockPin,
       pinScreenBackgroundColor: theme.backgroundDark,
+      l10n: l10n,
     );
 
     final transition = useTransition

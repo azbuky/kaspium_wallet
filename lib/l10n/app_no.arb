@@ -219,7 +219,14 @@
     "transferConfirmInfoThird": "Det kan ta flere sekunder å gjennomføre overførselen.",
     "transferError": "Det oppsto en feil under overføringen. Prøv igjen senere.",
     "transferHeader": "Overfør midler",
-    "transferIntro": "Denne prosessen vil overføre midler fra en papirlommebok til din Kaspium lommebok.\n\nTrykk på \"%1\" knappen for å starte.",
+    "transferIntro": "Denne prosessen vil overføre midler fra en papirlommebok til din Kaspium lommebok.\n\nTrykk på \"{button}\" knappen for å starte.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Overfører",
     "transferManualHint": "Tast inn Seed nedenfor.",
     "transferNoFunds": "Det er ingen KAS i dette Seed",

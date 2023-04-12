@@ -155,7 +155,14 @@
     "transferConfirmInfoThird": "יתכן שיקחו כמה שניות עד תחילת ההעברה.",
     "transferError": "חלה תקלה במהלך ההעברה. בבקשה נסה מאוחר יותר.",
     "transferHeader": "העברת\nסכום",
-    "transferIntro": "התהליך יעביר את הסכום שברשותך מארנק הנייר לארנק נאטריום\n\nלחץ על כפתור ה \"%1\" בכדי להתחיל.",
+    "transferIntro": "התהליך יעביר את הסכום שברשותך מארנק הנייר לארנק נאטריום\n\nלחץ על כפתור ה \"{button}\" בכדי להתחיל.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "מעביר",
     "transferManualHint": "בבקשה הכנס את הסיד הנ\"ל",
     "transferNoFunds": "אין שום נאנו בסיד המצורף.",

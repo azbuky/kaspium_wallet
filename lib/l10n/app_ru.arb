@@ -217,7 +217,14 @@
     "transferConfirmInfoThird": "Перевод может занять несколько секунд.",
     "transferError": "Во время передачи произошла ошибка.Пожалуйста, попробуйте позже.",
     "transferHeader": "Перевод Средств",
-    "transferIntro": "Этот процесс переведёт средства с бумажного кошелька на ваш Natrium кошелёк.\n\nНажмите кнопку \"%1\" чтобы начать.",
+    "transferIntro": "Этот процесс переведёт средства с бумажного кошелька на ваш Natrium кошелёк.\n\nНажмите кнопку \"{button}\" чтобы начать.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Перевод",
     "transferManualHint": "Введите Seed ниже.",
     "transferNoFunds": "На этом seed нет KAS.",

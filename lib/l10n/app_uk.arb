@@ -219,7 +219,14 @@
     "transferConfirmInfoThird": "Переказ може зайняти декілька секунд.",
     "transferError": "Під час переказу трапилася помилка. Будь ласка спробуйте пізніше.",
     "transferHeader": "Переказати кошти",
-    "transferIntro": "Цією дією ви перекажете кошти з паперового гаманця у ваш Kaspium гаманець. \n\n Натисніть \"%1\" конпку щоб почати.",
+    "transferIntro": "Цією дією ви перекажете кошти з паперового гаманця у ваш Kaspium гаманець. \n\n Натисніть \"{button}\" конпку щоб почати.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Переказується",
     "transferManualHint": "Будь ласка введіть ваш seed нижче.",
     "transferNoFunds": "За цим seed знайдено лише нульовий баланс",

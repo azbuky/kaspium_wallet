@@ -219,7 +219,14 @@
     "transferConfirmInfoThird": "Overførslen kan tage adskillige sekunder at gennemføre.",
     "transferError": "Der opstod en fejl under overførslen. Prøv igen senere.",
     "transferHeader": "Overfør midler",
-    "transferIntro": "Denne proces overfører midler fra en Papir tegnebog til din Kaspium tegnebog.\n\nTryk på \"%1\" knappen for at begynde.",
+    "transferIntro": "Denne proces overfører midler fra en Papir tegnebog til din Kaspium tegnebog.\n\nTryk på \"{button}\" knappen for at begynde.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Overfører",
     "transferManualHint": "Indtast Seed nedenfor.",
     "transferNoFunds": "Der er ingen KAS i dette Seed.",

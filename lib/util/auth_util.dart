@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../screens/password_lock_screen.dart';
 import '../settings/authentication_method.dart';
 import '../widgets/pin_screen.dart';
@@ -46,10 +47,12 @@ class AuthUtil {
 
     bool? auth = await Navigator.of(context).push(
       MaterialPageRoute(builder: (context) {
+        final l10n = l10nOf(context);
         return PinScreen(
           PinOverlayType.ENTER_PIN,
           expectedPin: expectedPin,
           description: message,
+          l10n: l10n,
         );
       }),
     );

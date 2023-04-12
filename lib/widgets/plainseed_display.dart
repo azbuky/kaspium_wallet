@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import 'seed_three_line_text.dart';
 
 class PlainSeedDisplay extends HookConsumerWidget {
@@ -19,7 +20,7 @@ class PlainSeedDisplay extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = l10nOf(context);
 
     final _obscuredSeed = useState('•' * seed.length);
     final _seedObscured = useState(true);
@@ -30,7 +31,7 @@ class PlainSeedDisplay extends HookConsumerWidget {
         margin: EdgeInsets.only(left: 40, right: 40, top: 15),
         alignment: Alignment.centerLeft,
         child: Text(
-          l10n.seedDescription,
+          'Seed description placeholder',
           style: styles.textStyleParagraph,
           maxLines: 5,
         ),
@@ -63,8 +64,7 @@ class PlainSeedDisplay extends HookConsumerWidget {
             Container(
               margin: EdgeInsetsDirectional.only(top: 8),
               child: Text(
-                _seedObscured.value
-                    ? l10n.tapToReveal : l10n.tapToHide,
+                _seedObscured.value ? l10n.tapToReveal : l10n.tapToHide,
                 style: styles.textStyleParagraphThinPrimary,
               ),
             )
