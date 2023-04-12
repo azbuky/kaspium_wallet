@@ -292,7 +292,6 @@
         }
     },
     "removeWalletAction": "Rimuovi wallet",
-    ##########################################
     "requireAPasswordToOpenHeader": "Richiedi una password per aprire Kaspium?",
     "rootWarning": "Sembra che il tuo dispositivo sia “rooted”, “jailbroken”, o abbia una modifica che ne compromette la sicurezza. Prima di procedere, è consigliato eseguire un ripristino del dispositivo al suo stato originale.",
     "scanInstructions": "Scansiona un \ncodice QR Kaspa",
