@@ -57,7 +57,7 @@
     "changeAddress": "Indirizzo di resto",
     "changeAddressCopied": "Indirizzo di resto copiato",
     "changeCurrency": "Valuta di resto",
-    "changeIndex": "Indice di resto",
+    "changeIndex": "Indirizzo di resto",
     "changeIndexParam": "Resto {addressIndex}",
     "@changeIndexParam": {
         "placeholders": {
@@ -129,7 +129,7 @@
     "createAPasswordHeader": "Crea una password",
     "createPasswordFirstParagraph": "Puoi creare una password per rendere il tuo wallet ancora più sicuro.",
     "createPasswordHint": "Crea una password",
-    "createPasswordSecondParagraph": "La password è opzionale, e il tuo portafoglio sarà comunque protetto dal PIN o dal riconoscimento biometrico.",
+    "createPasswordSecondParagraph": "La password è opzionale e il tuo wallet sarà comunque protetto dal PIN o dal riconoscimento biometrico.",
     "createPasswordSheetHeader": "Crea",
     "currency": "Valuta",
     "defaultAccountName": "Principale",
@@ -144,7 +144,7 @@
     "defaultWalletName": "Il mio wallet",
     "disablePasswordSheetHeader": "Disabilita",
     "disablePasswordSuccess": "La password è stata disabilitata",
-    "disableWalletPassword": "Disabilita la password del portafoglio",
+    "disableWalletPassword": "Disabilita la password del wallet",
     "dismiss": "Ignora",
     "donate": "Dona",
     "emptyCardIntroUtxos": "Questa è la sezione dedicata agli UTXO. Tutti gli UTXO nel tuo wallet appariranno qui",
@@ -180,7 +180,7 @@
     "ignore": "Ignora",
     "import": "Importa",
     "importSecretPhrase": "Importa frase segreta",
-    "importSecretPhraseHint": "Inserisci la tua frase segreta da 24 parole qui sotto.",
+    "importSecretPhraseHint": "Inserisci la tua frase segreta di 24 parole.",
     "importSeed": "Importa il seed",
     "importSeedHint": "Inserisci il seed qui in basso.",
     "importWallet": "Importa",
@@ -271,8 +271,8 @@
     "receive": "Ricevi",
     "receiveAddress": "Indirizzo di ricezione",
     "receiveAddressCopied": "Indirizzo di ricezione copiato",
-    "receiveIndex": "Indice di ricezione",
-    "receiveIndexParam": "Recevi {addressIndex}",
+    "receiveIndex": "Indirizzo di ricezione",
+    "receiveIndexParam": "Ricevi {addressIndex}",
     "@receiveIndexParam": {
         "placeholders": {
             "addressIndex": {
@@ -331,8 +331,8 @@
     "shareKaspiumText": "Dai un'occhiata a Kaspium, il wallet mobile di Kaspa!\nWebsite - kaspium.io",
     "somethingWentWrong": "Qualcosa è andato storto",
     "systemDefault": "Predefinito",
-    "tapToHide": "Tocca per nascondere",
-    "tapToReveal": "Tocca per visualizzare",
+    "tapToHide": "Tocca qui per nascondere",
+    "tapToReveal": "Tocca qui per visualizzare",
     "themeHeader": "Tema",
     "thisWallet": "#Questo wallet",
     "to": "A",
