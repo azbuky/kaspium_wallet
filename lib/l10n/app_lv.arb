@@ -182,7 +182,14 @@
     "transferConfirmInfoThird": "Pārskaitīšana var prasīt vairākas sekundes.",
     "transferError": "Pārsūtīšanas laikā notika kļūda. Lūdzu vēlāk mēģiniet vēlreiz.",
     "transferHeader": "Pārsūtīt līdzekļus",
-    "transferIntro": "Šis process pārskaitīs jūsu papīra maka līdzekļus uz jūsu Kaspium maku.\n\nPieskaries \"%1\" pogai, lai sāktu.",
+    "transferIntro": "Šis process pārskaitīs jūsu papīra maka līdzekļus uz jūsu Kaspium maku.\n\nPieskaries \"{button}\" pogai, lai sāktu.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Pārsūta",
     "transferManualHint": "Lūdzu, zemāk ievadiet sēklu",
     "transferNoFunds": "Šai sēklai nav piesaistīti līdzekļi",

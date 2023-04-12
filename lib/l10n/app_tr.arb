@@ -217,7 +217,14 @@
     "transferConfirmInfoThird": "Bu işlem birkaç saniye sürebilir.",
     "transferError": "Aktarma esnasında bir problem oluştu. Lütfen daha sonra tekrar dene.",
     "transferHeader": "Bakiye\nTransferi",
-    "transferIntro": "Bu işlem bir kağıt cüzdanda bulunan bakiyeyi senin Natrium cüzdanına aktaracak.\n\nBaşlamak için \"%1\" butonuna bas.",
+    "transferIntro": "Bu işlem bir kağıt cüzdanda bulunan bakiyeyi senin Natrium cüzdanına aktaracak.\n\nBaşlamak için \"{button}\" butonuna bas.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Aktarılıyor",
     "transferManualHint": "Lütfen seedi gir.",
     "transferNoFunds": "Bu seedin içinde hiç KAS yok.",

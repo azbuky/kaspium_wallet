@@ -216,7 +216,14 @@
     "transferConfirmInfoThird": "Transferul poate dura câteva secunde.",
     "transferError": "A avut loc o eroare în timpul transferului. Vă rugăm să încercați din nou mai târziu.",
     "transferHeader": "Transferă\nFonduri",
-    "transferIntro": "Acest proces va transfera fondurile dintr-un Paper Wallet către contul dvs. Kaspium.\n\nAtingeți butonul \"%1\" pentru a începe.",
+    "transferIntro": "Acest proces va transfera fondurile dintr-un Paper Wallet către contul dvs. Kaspium.\n\nAtingeți butonul \"{button}\" pentru a începe.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Se transferă...",
     "transferManualHint": "Introduceți seed-ul mai jos.",
     "transferNoFunds": "Acest seed nu conține KAS.",

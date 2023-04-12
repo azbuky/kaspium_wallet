@@ -33,7 +33,10 @@ class IntroScreen extends HookConsumerWidget {
 
       final pin = await Navigator.of(context).push(
         MaterialPageRoute<String>(
-          builder: (context) => PinScreen(PinOverlayType.NEW_PIN),
+          builder: (context) {
+            final l10n = l10nOf(context);
+            return PinScreen(PinOverlayType.NEW_PIN, l10n: l10n);
+          },
         ),
       );
       if (pin != null && pin.length > 5) {

@@ -217,7 +217,14 @@
     "transferConfirmInfoThird": "La transferència pot tardar uns quants segons a completar-se.",
     "transferError": "S'ha produït un error en la transferència. Si us plau, intenta-ho més tard.",
     "transferHeader": "Transferir fons",
-    "transferIntro": "Aquest procés transferirà els fons des d'un moneder de paper al teu moneder Natrium.\n\nPrem el botó \"%1\" per començar.",
+    "transferIntro": "Aquest procés transferirà els fons des d'un moneder de paper al teu moneder Natrium.\n\nPrem el botó \"{button}\" per començar.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Transferint",
     "transferManualHint": "Si us plau, introdueix la llavor a sota.",
     "transferNoFunds": "Aquesta llavor no conté cap KAS",

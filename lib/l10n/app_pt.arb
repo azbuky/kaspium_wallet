@@ -214,7 +214,14 @@
     "transferConfirmInfoThird": "A transferência pode levar vários segundos para concluir.",
     "transferError": "Ocorreu um erro durante a transferência. Por favor, tente novamente mais tarde.",
     "transferHeader": "Transferir\nFundos",
-    "transferIntro": "Este processo transferirá os fundos de uma carteira de papel para sua carteira Kaspium.\n\nToque no botão \"%1\" para começar.",
+    "transferIntro": "Este processo transferirá os fundos de uma carteira de papel para sua carteira Kaspium.\n\nToque no botão \"{button}\" para começar.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Transferindo",
     "transferManualHint": "Por favor, insira a seed abaixo.",
     "transferNoFunds": "Não há nenhuma KAS nesta seed.",

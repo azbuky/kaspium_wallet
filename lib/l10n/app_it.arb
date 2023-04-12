@@ -344,7 +344,14 @@
     "transferConfirmInfoThird": "Il trasferimento potrebbe richiedere parecchi secondi.",
     "transferError": "Si è verificato un errore durante il trasferimento. Riprova più tardi.",
     "transferHeader": "Trasferisci\nFondi",
-    "transferIntro": "Questo processo trasferirà i fondi da un portafoglio cartaceo al tuo portafoglio Kaspium.\n\nPremi il pulsante \"%1\" per iniziare.",
+    "transferIntro": "Questo processo trasferirà i fondi da un portafoglio cartaceo al tuo portafoglio Kaspium.\n\nPremi il pulsante \"{button}\" per iniziare.",
+    "@transferIntro": {
+        "placeholders": {
+            "button": {
+                "type": "String"
+            }
+        }
+    },
     "transferLoading": "Trasferimento",
     "transferManualHint": "Inserisci il tuo seed.",
     "transferNoFunds": "Questo seed non contiene alcun KAS al suo interno.",
