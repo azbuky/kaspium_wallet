@@ -35,16 +35,27 @@ class LogoutScreen extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: theme.backgroundDark,
-      body: Center(
+      body: SafeArea(
+        minimum: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height * 0.035,
+          top: MediaQuery.of(context).size.height * 0.075,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            FractionallySizedBox(
-              widthFactor: 0.4,
-              child: FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Image.asset('assets/kaspa.png'),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: FractionallySizedBox(
+                    widthFactor: 0.4,
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Image.asset('assets/kaspa.png'),
+                    ),
+                  ),
+                ),
+              ],
             ),
             Text(
               l10n.loggingOutMessage,
