@@ -146,7 +146,9 @@
     "disablePasswordSuccess": "Password has been disabled",
     "disableWalletPassword": "Disable Wallet Password",
     "dismiss": "Dismiss",
+    "doContinue": "Continue",
     "donate": "Donate",
+    "dontShowAgain": "Don't show again",
     "emptyCardIntroUtxos": "This is the UTXOs tab. All UTXOs in your wallet will appear here",
     "emptyResult": "Empty Result",
     "emptyWalletName": "Wallet Name cannot be empty",
@@ -393,6 +395,14 @@
     "walletSetupMessage": "Setting up wallet",
     "walletsTitle": "Wallets",
     "warning": "Warning",
+    "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
+    "@welcomeMessage": {
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
     "welcomeText": "Welcome to Kaspium. To begin, you may create a new wallet or import an existing one.",
     "xMinutes": "After {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
     "@xMinutes": {
