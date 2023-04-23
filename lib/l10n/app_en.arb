@@ -132,6 +132,7 @@
     "createPasswordSecondParagraph": "Password is optional, and your wallet will be protected with your PIN or biometrics regardless.",
     "createPasswordSheetHeader": "Create",
     "currency": "Currency",
+    "currencyPoweredBy": "Powered by CoinGecko",
     "defaultAccountName": "Address 1",
     "defaultNewAccountName": "Receive {addressIndex}",
     "@defaultNewAccountName": {
