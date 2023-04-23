@@ -7,19 +7,6 @@ part 'block_explorers.g.dart';
 
 const kParamPattern = '{0}';
 
-const kBlockExplorerOptions = {
-  KaspaNetwork.mainnet: [
-    kKaspaExplorerMainnet,
-    kKasFyiMainnet,
-    kKatnipMainnet,
-  ],
-  KaspaNetwork.testnet: [
-    kKatnipTestnet,
-  ],
-  KaspaNetwork.devnet: [],
-  KaspaNetwork.simnet: [],
-};
-
 @freezed
 class BlockExplorer with _$BlockExplorer {
   const BlockExplorer._();
@@ -56,6 +43,14 @@ const kKasFyiMainnet = BlockExplorer(
   txUrl: 'https://kas.fyi/transaction/$kParamPattern',
 );
 
+const kKasFyiTestnet = BlockExplorer(
+  network: KaspaNetwork.testnet,
+  name: 'Kas.fyi Testnet',
+  url: 'testnet.kas.fyi',
+  addressUrl: 'https://testnet.kas.fyi/address/$kParamPattern',
+  txUrl: 'https://testnet.kas.fyi/transaction/$kParamPattern',
+);
+
 const kKatnipMainnet = BlockExplorer(
   network: KaspaNetwork.mainnet,
   name: 'Katnip',
@@ -71,3 +66,17 @@ const kKatnipTestnet = BlockExplorer(
   addressUrl: 'https://katnip-testnet.kaspad.net/addr/$kParamPattern',
   txUrl: 'https://katnip-testnet.kaspad.net/tx/$kParamPattern',
 );
+
+const kBlockExplorerOptions = {
+  KaspaNetwork.mainnet: [
+    kKaspaExplorerMainnet,
+    kKasFyiMainnet,
+    kKatnipMainnet,
+  ],
+  KaspaNetwork.testnet: [
+    kKatnipTestnet,
+    kKasFyiTestnet,
+  ],
+  KaspaNetwork.devnet: [],
+  KaspaNetwork.simnet: [],
+};
