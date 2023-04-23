@@ -297,7 +297,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
                 child: RichText(
                   textAlign: TextAlign.start,
                   text: TextSpan(
-                    text: 'Available',
+                    text: l10n.available,
                     style: styles.textStyleAccount,
                   ),
                 ),
