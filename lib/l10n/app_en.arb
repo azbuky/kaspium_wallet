@@ -270,7 +270,7 @@
     "rawSeed": "Raw Seed",
     "receive": "Receive",
     "receiveAddress": "Receive Address",
-    "receiveAddressCopied": "Received address copied",
+    "receiveAddressCopied": "Receive address copied",
     "receiveIndex": "Receive Index",
     "receiveIndexParam": "Receive {addressIndex}",
     "@receiveIndexParam": {
