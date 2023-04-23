@@ -4,14 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../settings/settings_providers.dart';
 import 'node_types.dart';
 
-const kNodeConfigKey = '_kNodeConfigKey';
+const kNodeConfigKey = '_kNodeConfigKeyV2';
 
 extension NodeSettingsExtension on SettingsRepository {
   NodeConfigSettings getNodeConfigSettings() {
     return box.tryGet<NodeConfigSettings>(
           kNodeConfigKey,
-          typeFactory: <T>(value) =>
-              NodeConfigSettings.fromJson(value) as T,
+          typeFactory: NodeConfigSettings.fromJson,
         ) ??
         const NodeConfigSettings();
   }
@@ -59,8 +58,7 @@ class NodeSettingsNotifier extends StateNotifier<NodeConfigSettings> {
 }
 
 final kaspaNodeSettingsProvider =
-    StateNotifierProvider<NodeSettingsNotifier, NodeConfigSettings>(
-        (ref) {
+    StateNotifierProvider<NodeSettingsNotifier, NodeConfigSettings>((ref) {
   final repository = ref.watch(settingsRepositoryProvider);
   final notifier = NodeSettingsNotifier(repository);
   return notifier;

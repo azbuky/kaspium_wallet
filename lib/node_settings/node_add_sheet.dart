@@ -33,7 +33,7 @@ class NodeAddSheet extends HookConsumerWidget {
     final nameFocusNode = useFocusNode();
 
     final urlController = useTextEditingController();
-    final httpFocusNode = useFocusNode();
+    final urlFocusNode = useFocusNode();
 
     useEffect(() {
       final listener = () {
@@ -48,12 +48,12 @@ class NodeAddSheet extends HookConsumerWidget {
     useEffect(() {
       final listener = () {
         stateNotifier.value = state.copyWith(
-          showUrlHint: !httpFocusNode.hasFocus,
+          showUrlHint: !urlFocusNode.hasFocus,
         );
       };
-      httpFocusNode.addListener(listener);
-      return () => httpFocusNode.removeListener(listener);
-    }, [httpFocusNode]);
+      urlFocusNode.addListener(listener);
+      return () => urlFocusNode.removeListener(listener);
+    }, [urlFocusNode]);
 
     bool inputValid() {
       final name = nameController.text;
@@ -69,7 +69,7 @@ class NodeAddSheet extends HookConsumerWidget {
       }
       if (!isIP(url)) {
         final validUri = Uri.tryParse(url);
-        if (validUri == null || validUri.host.isEmpty) {
+        if (validUri == null) {
           state = state.copyWith(
             urlValidationText: l10n.nodeUrlInvalid,
           );
@@ -101,18 +101,29 @@ class NodeAddSheet extends HookConsumerWidget {
       );
 
       try {
-        final port = int.tryParse(url.split(':').last) ?? 16110;
-        client = KaspaClient.url(url);
+        final port = int.tryParse(url.split(':').last) ?? kMainnetRpcPort;
+        bool isSecure;
+        var nodeInfo;
+        try {
+          // Try secure connection first
+          client = KaspaClient.url(url, isSecure: true);
+          nodeInfo = await client.getInfo();
+          isSecure = true;
+        } catch (_) {
+          // Fallback to insecure connection
+          client = KaspaClient.url(url, isSecure: false);
+          nodeInfo = await client.getInfo();
+          isSecure = false;
+        }
 
-        final nodeInfo = await client.getInfo();
         final network = networkForPort(port);
 
         if (!nodeInfo.isSynced) {
-          throw Exception('Node is not synced');
+          throw Exception(l10n.nodeNotSyncedException);
         }
 
         if (!nodeInfo.isUtxoIndexed) {
-          throw Exception('Node is not utxo indexed');
+          throw Exception(l10n.nodeNoUTXOIndexException);
         }
 
         final notifier = ref.read(kaspaNodeSettingsProvider.notifier);
@@ -121,6 +132,7 @@ class NodeAddSheet extends HookConsumerWidget {
           name: name,
           urls: [url],
           network: network,
+          isSecure: isSecure,
         );
 
         if (!cancelled) {
@@ -185,7 +197,7 @@ class NodeAddSheet extends HookConsumerWidget {
           ValidationText(state.nameValidationText),
           AppTextField(
             controller: urlController,
-            focusNode: httpFocusNode,
+            focusNode: urlFocusNode,
             hintText: state.showUrlHint ? l10n.nodeUrlHint : '',
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.url,

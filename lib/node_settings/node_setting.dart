@@ -8,7 +8,5 @@ class NodeSetting implements SettingSelectionItem {
   NodeSetting(this.config);
 
   @override
-  String getDisplayName(BuildContext context) {
-    return this.config.name;
-  }
+  String getDisplayName(BuildContext context) => config.name;
 }

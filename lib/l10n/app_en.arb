@@ -419,5 +419,8 @@
   },
   "yes": "Yes",
   "yesButton": "Yes",
-  "yesUppercase": "YES"
+  "yesUppercase": "YES",
+  "nodeNotSyncedException": "Node is not synced",
+  "nodeNoUTXOIndexException": "Node does not have UTXO index",
+  "nodeSecureConnection": "Secure connection"
 }

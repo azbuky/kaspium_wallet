@@ -5,6 +5,7 @@ import 'package:grpc/grpc.dart';
 
 import '../grpc/messages.pbgrpc.dart';
 import '../grpc/rpc.pb.dart';
+import '../types.dart';
 
 class RpcException implements Exception {
   final RPCError error;
@@ -52,16 +53,18 @@ class KaspaClient {
 
   KaspaClient({required this.channel}) : rpcClient = RPCClient(channel);
 
-  factory KaspaClient.url(String url) {
+  factory KaspaClient.url(String url, {bool isSecure = false}) {
     final components = url.split(':');
     final host = components.first;
-    final port = int.tryParse(components.last) ?? 16110;
+    final port = int.tryParse(components.last) ?? kMainnetRpcPort;
 
     final channel = ClientChannel(
       host,
       port: port,
       options: ChannelOptions(
-        credentials: ChannelCredentials.insecure(),
+        credentials: isSecure
+            ? ChannelCredentials.secure()
+            : ChannelCredentials.insecure(),
       ),
     );
 

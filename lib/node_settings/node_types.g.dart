@@ -9,7 +9,7 @@ part of 'node_types.dart';
 _$_NodeConfigSettings _$$_NodeConfigSettingsFromJson(Map json) =>
     _$_NodeConfigSettings(
       options: json['options'] == null
-          ? const IListConst([mainnetNodeConfig, testnetNodeConfig])
+          ? const IListConst([mainnetNodeConfig])
           : IList<NodeConfig>.fromJson(
               json['options'],
               (value) =>
@@ -33,6 +33,7 @@ _$_NodeConfig _$$_NodeConfigFromJson(Map json) => _$_NodeConfig(
       id: json['id'] as String,
       name: json['name'] as String,
       isDns: json['isDns'] as bool? ?? false,
+      isSecure: json['isSecure'] as bool? ?? false,
       urls: (json['urls'] as List<dynamic>).map((e) => e as String).toList(),
       network: $enumDecode(_$KaspaNetworkEnumMap, json['network']),
     );
@@ -42,6 +43,7 @@ Map<String, dynamic> _$$_NodeConfigToJson(_$_NodeConfig instance) =>
       'id': instance.id,
       'name': instance.name,
       'isDns': instance.isDns,
+      'isSecure': instance.isSecure,
       'urls': instance.urls,
       'network': _$KaspaNetworkEnumMap[instance.network]!,
     };

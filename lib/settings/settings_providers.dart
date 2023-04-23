@@ -32,6 +32,12 @@ final settingsRepositoryProvider = Provider((ref) {
   return SettingsRepository(box);
 });
 
+final blockExplorerSettingsProvider =
+    StateNotifierProvider<BlockExplorerNotifier, BlockExplorerSettings>((ref) {
+  final repository = ref.watch(settingsRepositoryProvider);
+  return BlockExplorerNotifier(repository);
+});
+
 final themeSettingProvider =
     StateNotifierProvider<ThemeSettingNotifier, ThemeSetting>((ref) {
   final sharedPrefsUtil = ref.watch(sharedPrefsUtilProvider);
@@ -43,12 +49,6 @@ final currencyProvider =
   final sharedPrefsUtil = ref.watch(sharedPrefsUtilProvider);
   final currency = sharedPrefsUtil.getCurrency();
   return CurrencyNotifier(currency, sharedPrefsUtil);
-});
-
-final blockExplorerSettingsProvider =
-    StateNotifierProvider<BlockExplorerNotifier, BlockExplorerSettings>((ref) {
-  final repository = ref.watch(settingsRepositoryProvider);
-  return BlockExplorerNotifier(repository);
 });
 
 final languageProvider =

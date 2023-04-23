@@ -115,7 +115,9 @@ final kaspaClientProvider = Provider((ref) {
   final config = ref.watch(kaspaNodeConfigProvider);
   final inBackground = ref.watch(inBackgroundProvider);
 
-  final client = inBackground ? VoidKaspaClient() : KaspaClient.url(config.url);
+  final client = inBackground
+      ? VoidKaspaClient()
+      : KaspaClient.url(config.url, isSecure: config.isSecure);
 
   ref.onDispose(() {
     client.close();

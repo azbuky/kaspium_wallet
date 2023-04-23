@@ -122,7 +122,7 @@ class __$$_NodeConfigSettingsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_NodeConfigSettings implements _NodeConfigSettings {
   const _$_NodeConfigSettings(
-      {this.options = const IListConst([mainnetNodeConfig, testnetNodeConfig]),
+      {this.options = const IListConst([mainnetNodeConfig]),
       this.selected = mainnetNodeConfig});
 
   factory _$_NodeConfigSettings.fromJson(Map<String, dynamic> json) =>
@@ -197,6 +197,7 @@ mixin _$NodeConfig {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   bool get isDns => throw _privateConstructorUsedError;
+  bool get isSecure => throw _privateConstructorUsedError;
   List<String> get urls => throw _privateConstructorUsedError;
   KaspaNetwork get network => throw _privateConstructorUsedError;
 
@@ -216,6 +217,7 @@ abstract class $NodeConfigCopyWith<$Res> {
       {String id,
       String name,
       bool isDns,
+      bool isSecure,
       List<String> urls,
       KaspaNetwork network});
 }
@@ -236,6 +238,7 @@ class _$NodeConfigCopyWithImpl<$Res, $Val extends NodeConfig>
     Object? id = null,
     Object? name = null,
     Object? isDns = null,
+    Object? isSecure = null,
     Object? urls = null,
     Object? network = null,
   }) {
@@ -251,6 +254,10 @@ class _$NodeConfigCopyWithImpl<$Res, $Val extends NodeConfig>
       isDns: null == isDns
           ? _value.isDns
           : isDns // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSecure: null == isSecure
+          ? _value.isSecure
+          : isSecure // ignore: cast_nullable_to_non_nullable
               as bool,
       urls: null == urls
           ? _value.urls
@@ -276,6 +283,7 @@ abstract class _$$_NodeConfigCopyWith<$Res>
       {String id,
       String name,
       bool isDns,
+      bool isSecure,
       List<String> urls,
       KaspaNetwork network});
 }
@@ -294,6 +302,7 @@ class __$$_NodeConfigCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? isDns = null,
+    Object? isSecure = null,
     Object? urls = null,
     Object? network = null,
   }) {
@@ -309,6 +318,10 @@ class __$$_NodeConfigCopyWithImpl<$Res>
       isDns: null == isDns
           ? _value.isDns
           : isDns // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSecure: null == isSecure
+          ? _value.isSecure
+          : isSecure // ignore: cast_nullable_to_non_nullable
               as bool,
       urls: null == urls
           ? _value._urls
@@ -329,6 +342,7 @@ class _$_NodeConfig extends _NodeConfig {
       {required this.id,
       required this.name,
       this.isDns = false,
+      this.isSecure = false,
       required final List<String> urls,
       required this.network})
       : _urls = urls,
@@ -344,6 +358,9 @@ class _$_NodeConfig extends _NodeConfig {
   @override
   @JsonKey()
   final bool isDns;
+  @override
+  @JsonKey()
+  final bool isSecure;
   final List<String> _urls;
   @override
   List<String> get urls {
@@ -357,7 +374,7 @@ class _$_NodeConfig extends _NodeConfig {
 
   @override
   String toString() {
-    return 'NodeConfig(id: $id, name: $name, isDns: $isDns, urls: $urls, network: $network)';
+    return 'NodeConfig(id: $id, name: $name, isDns: $isDns, isSecure: $isSecure, urls: $urls, network: $network)';
   }
 
   @override
@@ -368,13 +385,15 @@ class _$_NodeConfig extends _NodeConfig {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.isDns, isDns) || other.isDns == isDns) &&
+            (identical(other.isSecure, isSecure) ||
+                other.isSecure == isSecure) &&
             const DeepCollectionEquality().equals(other._urls, _urls) &&
             (identical(other.network, network) || other.network == network));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, isDns,
+  int get hashCode => Object.hash(runtimeType, id, name, isDns, isSecure,
       const DeepCollectionEquality().hash(_urls), network);
 
   @JsonKey(ignore: true)
@@ -396,6 +415,7 @@ abstract class _NodeConfig extends NodeConfig {
       {required final String id,
       required final String name,
       final bool isDns,
+      final bool isSecure,
       required final List<String> urls,
       required final KaspaNetwork network}) = _$_NodeConfig;
   const _NodeConfig._() : super._();
@@ -409,6 +429,8 @@ abstract class _NodeConfig extends NodeConfig {
   String get name;
   @override
   bool get isDns;
+  @override
+  bool get isSecure;
   @override
   List<String> get urls;
   @override

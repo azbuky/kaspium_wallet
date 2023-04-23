@@ -22,7 +22,7 @@ class NodeItem extends ConsumerWidget {
     final l10n = l10nOf(context);
 
     final item = ref.watch(kaspaNodeConfigItemProvider);
-    final config = ref.watch(kaspaNodeConfigProvider);
+    final activeConfig = ref.watch(kaspaNodeConfigProvider);
 
     Future<void> change() async {
       final oldNetwork = ref.read(networkProvider);
@@ -60,7 +60,7 @@ class NodeItem extends ConsumerWidget {
     }
 
     return Slidable(
-      enabled: item != config,
+      enabled: item != activeConfig,
       endActionPane: ActionPane(
         extentRatio: 0.16,
         motion: const StretchMotion(),
@@ -86,7 +86,7 @@ class NodeItem extends ConsumerWidget {
                 children: [
                   Radio<ActiveNodeConfig>(
                     value: item,
-                    groupValue: config,
+                    groupValue: activeConfig,
                     activeColor: theme.primary,
                     onChanged: (_) {
                       change();
@@ -121,12 +121,26 @@ class NodeItem extends ConsumerWidget {
                             ),
                           ],
                         ),
-                        Text(
-                          item.url.toString(),
-                          style: styles.textStyleAddressText60.copyWith(
-                            fontSize: AppFontSizes.smallest,
-                            height: 1.2,
-                          ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 3),
+                              child: Text(
+                                item.url.toString(),
+                                style: styles.textStyleAddressText60.copyWith(
+                                  fontSize: AppFontSizes.smallest,
+                                  height: 1.2,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            if (item.isSecure)
+                              Tooltip(
+                                message: l10n.nodeSecureConnection,
+                                child: Icon(Icons.lock,
+                                    size: 12, color: theme.text60),
+                              )
+                          ],
                         ),
                       ],
                     ),
