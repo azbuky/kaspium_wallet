@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-12T20:50:21.055Z",
+  "@@last_modified": "2023-04-24T21:20:17.332Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konten",
@@ -95,6 +95,7 @@
   "exampleCardIntro": "Dies ist der Transaktions-Reiter. Wenn Sie KAS senden oder empfangen, wird das hier zu sehen sein.",
   "exit": "Verlassen",
   "export": "Exportieren",
+  "fee": "Gebühr",
   "feeConfirm": "Gebühr {amount} {coin}",
   "feeTitle": "GEBÜHR",
   "fetchingTransactions": "Rufe Transaktionen ab",
