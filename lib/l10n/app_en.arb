@@ -162,6 +162,7 @@
     "exampleCardIntro": "This is the transactions tab. Once you send or receive a transaction, it will show up here.",
     "exit": "Exit",
     "export": "Export",
+    "fee": "Fee",
     "feeConfirm": "Fee {amount} {coin}",
     "@feeConfirm": {
         "placeholders": {
