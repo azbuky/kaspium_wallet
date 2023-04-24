@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import 'app_simpledialog.dart';
 
 class NoticeDialog extends HookConsumerWidget {
@@ -12,9 +13,13 @@ class NoticeDialog extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
-    final title = 'Kaspium Beta';
-    final content =
-        'Welcome to Kaspium!\n\nThis is a beta version of Kaspium - the mobile wallet for Kaspa.';
+    final l10n = l10nOf(context);
+
+    // Version should be the real app version
+    final version = "0.2.0 (Beta)";
+
+    final title = l10n.kaspiumWallet;
+    final content = l10n.welcomeMessage(version);
 
     final isChecked = useState(false);
 
@@ -45,7 +50,7 @@ class NoticeDialog extends HookConsumerWidget {
                   isChecked.value = value!;
                 },
               ),
-              Text('Don\'t show again')
+              Text(l10n.dontShowAgain)
             ]),
           ],
         ),
@@ -62,7 +67,7 @@ class NoticeDialog extends HookConsumerWidget {
         TextButton(
           style: styles.dialogButtonStyle,
           child: Text(
-            'Continue',
+            l10n.doContinue,
             style: styles.textStyleDialogOptions,
           ),
           onPressed: () async {
