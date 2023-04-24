@@ -6,7 +6,6 @@ import 'package:hex/hex.dart';
 import 'package:pointycastle/digests/blake2b.dart';
 // ignore: implementation_imports
 import 'package:pointycastle/src/utils.dart' as p_utils;
-import 'package:string_validator/string_validator.dart';
 
 import 'util/bip39_wordlist.dart';
 
@@ -57,7 +56,9 @@ Uint8List bigIntToBytes(BigInt bigInt) => p_utils.encodeBigInt(bigInt);
 Uint8List bigIntToBytesUnsigned(BigInt bigInt) =>
     p_utils.encodeBigIntAsUnsigned(bigInt);
 
-bool isHex(String hex) => isHexadecimal(hex);
+RegExp _hexRegExp = RegExp(r'^[0-9a-fA-F]+$');
+
+bool isHex(String hex) => _hexRegExp.hasMatch(hex);
 
 Uint8List digest({required Uint8List data, int digestSize = 32}) {
   final blake2b = Blake2bDigest(digestSize: digestSize);
@@ -78,7 +79,7 @@ bool isValidMnemonicWord(String word) {
 bool isValidMnemonic(String mnemonic, {bool verifyChecksum = true}) {
   final words = mnemonic.split(' ');
   // allow 24 words mnemonics
-  return (words.length == 24) &&
+  return (words.length == 24 || words.length == 12) &&
       words.every((word) => isValidMnemonicWord(word)) &&
       (verifyChecksum ? bip39.validateMnemonic(mnemonic) : true);
 }
