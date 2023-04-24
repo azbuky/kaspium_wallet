@@ -348,7 +348,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                               context: context,
                               theme: theme,
                               widget: SendSheet(
-                                title: 'DONATE',
+                                title: l10n.donate.toUpperCase(),
                                 address: kKaspaDevFundAddress,
                               ),
                             );
