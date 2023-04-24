@@ -72,6 +72,7 @@
   "createPasswordSecondParagraph": "Das Passwort ist optional. Ihr Wallet wird immer mithilfe einer PIN oder biometrischen Daten geschützt.",
   "createPasswordSheetHeader": "Erzeugen",
   "currency": "Währung",
+  "currencyPoweredBy": "Zur Verfügung gestellt von CoinGecko",
   "defaultAccountName": "Hauptkonto",
   "defaultNewAccountName": "Empfange {addressIndex}",
   "defaultWalletName": "Mein Wallet",
