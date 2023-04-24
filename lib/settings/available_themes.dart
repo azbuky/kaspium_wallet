@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
 import '../themes/themes.dart';
 import 'setting_item.dart';
 
@@ -23,6 +24,8 @@ class ThemeSetting extends SettingSelectionItem {
   const ThemeSetting(this.theme);
 
   String getDisplayName(BuildContext context) {
+    final l10n = l10nOf(context);
+
     switch (theme) {
       // case ThemeOptions.CARBON:
       //   return "Carbon";
@@ -43,9 +46,9 @@ class ThemeSetting extends SettingSelectionItem {
       // case ThemeOptions.PILLIUM:
       //   return "Pillium";
       case ThemeOptions.KASPIUM_LIGHT:
-        return "Light Theme";
+        return l10n.themeLight;
       case ThemeOptions.KASPIUM_DARK:
-        return "Dark Theme";
+        return l10n.themeDark;
     }
   }
 
