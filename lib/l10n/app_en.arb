@@ -132,6 +132,7 @@
     "createPasswordSecondParagraph": "Password is optional, and your wallet will be protected with your PIN or biometrics regardless.",
     "createPasswordSheetHeader": "Create",
     "currency": "Currency",
+    "currencyPoweredBy": "Powered by CoinGecko",
     "defaultAccountName": "Address 1",
     "defaultNewAccountName": "Receive {addressIndex}",
     "@defaultNewAccountName": {
@@ -146,7 +147,9 @@
     "disablePasswordSuccess": "Password has been disabled",
     "disableWalletPassword": "Disable Wallet Password",
     "dismiss": "Dismiss",
+    "doContinue": "Continue",
     "donate": "Donate",
+    "dontShowAgain": "Don't show again",
     "emptyCardIntroUtxos": "This is the UTXOs tab. All UTXOs in your wallet will appear here",
     "emptyResult": "Empty Result",
     "emptyWalletName": "Wallet Name cannot be empty",
@@ -159,6 +162,7 @@
     "exampleCardIntro": "This is the transactions tab. Once you send or receive a transaction, it will show up here.",
     "exit": "Exit",
     "export": "Export",
+    "fee": "Fee",
     "feeConfirm": "Fee {amount} {coin}",
     "@feeConfirm": {
         "placeholders": {
@@ -333,7 +337,9 @@
     "systemDefault": "System Default",
     "tapToHide": "Tap to hide",
     "tapToReveal": "Tap to reveal",
+    "themeDark": "Dark Theme",
     "themeHeader": "Theme",
+    "themeLight": "Light Theme",
     "thisWallet": "#This Wallet",
     "to": "To",
     "toAddress": "To Address",
@@ -393,6 +399,14 @@
     "walletSetupMessage": "Setting up wallet",
     "walletsTitle": "Wallets",
     "warning": "Warning",
+    "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
+    "@welcomeMessage": {
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
     "welcomeText": "Welcome to Kaspium. To begin, you may create a new wallet or import an existing one.",
     "xMinutes": "After {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
     "@xMinutes": {

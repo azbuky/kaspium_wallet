@@ -42,7 +42,7 @@ class CurrencyDialog extends ConsumerWidget {
         Padding(
           padding: const EdgeInsetsDirectional.only(start: 24, top: 12),
           child: Text(
-            'Powered by CoinGecko',
+            l10n.currencyPoweredBy,
             style: styles.textStyleDialogOptions,
           ),
         ),
