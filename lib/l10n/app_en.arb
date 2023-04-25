@@ -174,7 +174,6 @@
             }
         }
     },
-    "feeTitle": "FEE",
     "fetchingTransactions": "Fetching Transactions",
     "fingerprintSeedBackup": "Authenticate to Backup Secret Phrase.",
     "goBackButton": "Go Back",
@@ -228,7 +227,6 @@
     "noContactsImport": "No new contacts to import",
     "noQrCodeFound": "No QR code found",
     "noSkipButton": "No, Skip",
-    "noUppercase": "NO",
     "nodeAddress": "Kaspa Node",
     "nodeDeleteMessage": "Are you sure you want to delete?",
     "nodeDeleteTitle": "Delete Kaspa Node Config?",
@@ -417,7 +415,5 @@
             }
         }
     },
-    "yes": "Yes",
-    "yesButton": "Yes",
-    "yesUppercase": "YES"
+    "yes": "Yes"
 }

@@ -92,7 +92,7 @@ class IntroPasswordOnLaunch extends ConsumerWidget {
               ),
               const SizedBox(height: 16),
               PrimaryOutlineButton(
-                title: l10n.yesButton,
+                title: l10n.yes,
                 onPressed: setPassword,
               ),
             ]),

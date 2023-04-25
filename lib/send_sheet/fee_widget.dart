@@ -36,7 +36,7 @@ class FeeWidget extends ConsumerWidget {
       child: Column(
         children: [
           Text(
-            l10n.feeTitle,
+            l10n.fee.toUpperCase(),
             style: styles.textStyleDataTypeHeaderHighlight,
           ),
           Text(

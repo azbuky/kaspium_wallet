@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-25T09:37:57.095Z",
+  "@@last_modified": "2023-04-25T19:44:56.830Z",
   "@@author": "arb-converter-cli",
   "account": "Account",
   "accounts": "Accounts",
@@ -97,7 +97,6 @@
   "export": "Esporta",
   "fee": "Commissione",
   "feeConfirm": "Commissioni {amount} {coin}",
-  "feeTitle": "Commissioni",
   "fetchingTransactions": "Sto recuperando le transazioni",
   "fingerprintSeedBackup": "Conferma l'impronta per eseguire il backup del seed.",
   "goBackButton": "Indietro",
@@ -144,7 +143,6 @@
   "noContactsImport": "Non ci sono nuovi contatti da importare",
   "noQrCodeFound": "Nessun QR code trovato",
   "noSkipButton": "No, salta",
-  "noUppercase": "NO",
   "nodeAddress": "Nodo Kaspa",
   "nodeDeleteMessage": "Sei sicuro di voler cancellare?",
   "nodeDeleteTitle": "Vuoi cancellare la configurazione del nodo Kaspa?",
@@ -275,7 +273,5 @@
   "welcomeMessage": "Benvenuto!\n\nQuesta è la versione {version} di Kaspium - il wallet mobile per Kaspa ",
   "welcomeText": "Benvenuto in Kaspium. Per iniziare, puoi creare un nuovo wallet o importare un wallet già esistente.",
   "xMinutes": "Dopo {minutes, plural, =1{1 minuto} other{{minutes} minuti}}",
-  "yes": "Si",
-  "yesButton": "Si",
-  "yesUppercase": "SI"
+  "yes": "Si"
 }
