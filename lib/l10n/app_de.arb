@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-24T21:20:17.332Z",
+  "@@last_modified": "2023-04-25T05:45:43.189Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konten",
@@ -82,7 +82,7 @@
   "dismiss": "Schließen",
   "doContinue": "Fortfahren",
   "donate": "Spenden",
-  "dontShowAgain": "Nicht mehr anzeigen",
+  "dontShowAgain": "Nicht nochmal anzeigen",
   "emptyCardIntroUtxos": "Dies ist der UTXO-Reiter. Alle UTXOs in Ihrem Wallet werden hier aufgeführt.",
   "emptyResult": "Leeres Ergebnis",
   "emptyWalletName": "Wallet-Name kann nicht leer sein",
