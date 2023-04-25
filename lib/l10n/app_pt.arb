@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-25T05:45:43.189Z",
+  "@@last_modified": "2023-04-25T10:46:27.960Z",
   "@@author": "arb-converter-cli",
   "account": "Conta",
   "accounts": "Contas",
@@ -30,7 +30,7 @@
   "autoLockHeader": "Bloquear Automaticamente",
   "available": "Disponível",
   "backupConfirmButton": "Eu Fiz o Backup",
-  "backupSecretPhrase": "Backup da Frase secreta",
+  "backupSecretPhrase": "Backup da Frase Secreta",
   "backupSeed": "Backup da Frase-Seed",
   "backupSeedConfirm": "Você tem certeza de que fez o backup da frase-seed da sua carteira?",
   "backupYourSeed": "Faça backup de sua frase-seed",
@@ -220,7 +220,7 @@
   "sentTo": "Enviar para",
   "setPassword": "Definir senha",
   "setPasswordSuccess": "A senha foi definida com sucesso",
-  "setWalletPassword": "Definir senha da carteira",
+  "setWalletPassword": "Definir Senha da Carteira",
   "settingsHeader": "Configurações",
   "settingsTransfer": "Carregue Usando a Carteira de Papel",
   "setupFailedMessage": "Algo deu errado",
@@ -274,7 +274,7 @@
   "warning": "ATENÇÃO",
   "welcomeMessage": "Bem-vindo\n\nEsta é a versão {version} da Kaspium - a carteira móvel de Kaspa",
   "welcomeText": "Bem-vindo a Kaspium. Para continuar, você pode criar uma nova carteira ou importar uma existente.",
-  "xMinutes": "Após {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
+  "xMinutes": "Após {minutes, plural, =1{1 minuto} other{{minutes} minutos}}",
   "yes": "Sim",
   "yesButton": "Sim",
   "yesUppercase": "SIM"
