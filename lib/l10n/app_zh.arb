@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-28T16:03:39.717Z",
+  "@@last_modified": "2023-04-29T19:13:01.027Z",
   "@@author": "arb-converter-cli",
   "account": "账户",
   "accounts": "账户",
@@ -92,7 +92,7 @@
   "enterNote": "输入笔记",
   "enterPasswordHint": "输入您的密码",
   "errorMessageCopied": "错误信息已复制到粘贴板",
-  "exampleCardIntro": "欢迎来到Kaspium。当您收到或发送KAS时，交易将如下出现。",
+  "exampleCardIntro": "欢迎来到交易选项卡。您发送或收到的交易记录将会在此显示。",
   "exit": "退出",
   "export": "导出",
   "fee": "费用",
