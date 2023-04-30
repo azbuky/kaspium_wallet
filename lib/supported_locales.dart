@@ -1,21 +1,25 @@
 import 'dart:ui';
 
 const supportedLocales = const [
+  // Base language:
   const Locale('en', 'US'), // English
-  const Locale('he', 'IL'), // Hebrew
-  const Locale('de', 'DE'), // German
-  const Locale('da'), // Danish
+
+  // Translations:
   const Locale('bg'), // Bulgarian
+  const Locale('ca'), // Catalan
+  const Locale('da'), // Danish
+  const Locale('de', 'DE'), // German
   const Locale('es'), // Spanish
+  const Locale('he', 'IL'), // Hebrew
   const Locale('hi'), // Hindi
   const Locale('hu'), // Hungarian
-  const Locale('hi'), // Hindi
   const Locale('id'), // Indonesian
   const Locale('it'), // Italian
   const Locale('ja'), // Japanese
   const Locale('ko'), // Korean
   const Locale('ms'), // Malay
   const Locale('nl'), // Dutch
+  const Locale('no'), // Norwegian
   const Locale('pl'), // Polish
   const Locale('pt'), // Portugese
   const Locale('ro'), // Romanian
@@ -24,10 +28,8 @@ const supportedLocales = const [
   const Locale('sv'), // Swedish
   const Locale('tl'), // Tagalog
   const Locale('tr'), // Turkish
-  const Locale('vi'), // Vietnamese
-  const Locale('ca'), // Catalan
   const Locale('uk'), // Ukrainian
-  const Locale('no'), // Norwegian
+  const Locale('vi'), // Vietnamese
   const Locale.fromSubtags(
     languageCode: 'zh',
     scriptCode: 'Hans',
