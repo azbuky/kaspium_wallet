@@ -5,11 +5,18 @@ const supportedLocales = const [
   const Locale('en', 'US'), // English
 
   // Translations:
+  const Locale('af'), // Afrikaans
+  const Locale('ar'), // Arabic
   const Locale('bg'), // Bulgarian
+  const Locale('bn'), // Bengali
   const Locale('ca'), // Catalan
+  const Locale('cs'), // Czech
   const Locale('da'), // Danish
   const Locale('de', 'DE'), // German
   const Locale('es'), // Spanish
+  const Locale('fa'), // Persian
+  const Locale('fi'), // Finnish
+  const Locale('fr'), // French
   const Locale('he', 'IL'), // Hebrew
   const Locale('hi'), // Hindi
   const Locale('hu'), // Hungarian
@@ -17,6 +24,7 @@ const supportedLocales = const [
   const Locale('it'), // Italian
   const Locale('ja'), // Japanese
   const Locale('ko'), // Korean
+  const Locale('lv'), // Latvian
   const Locale('ms'), // Malay
   const Locale('nl'), // Dutch
   const Locale('no'), // Norwegian
@@ -25,11 +33,14 @@ const supportedLocales = const [
   const Locale('ro'), // Romanian
   const Locale('ru'), // Russian
   const Locale('sl'), // Slovenian
+  const Locale('sq'), // Albanian
   const Locale('sv'), // Swedish
   const Locale('tl'), // Tagalog
   const Locale('tr'), // Turkish
   const Locale('uk'), // Ukrainian
+  const Locale('ur'), // Urdu
   const Locale('vi'), // Vietnamese
+  const Locale('zh'), // Chinese
   const Locale.fromSubtags(
     languageCode: 'zh',
     scriptCode: 'Hans',
@@ -38,8 +49,6 @@ const supportedLocales = const [
     languageCode: 'zh',
     scriptCode: 'Hant',
   ), // Chinese Traditional
-  const Locale('ar'), // Arabic
-  const Locale('lv'), // Latvian
   // Currency-default requires country included
   const Locale("es", "AR"),
   const Locale("en", "AU"),
