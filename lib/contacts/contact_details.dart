@@ -49,9 +49,9 @@ class ContactDetails extends HookConsumerWidget {
         context,
         l10n.removeContact,
         l10n.removeContactConfirmation(contact.name),
-        l10n.yes.toUpperCase(),
+        l10n.yesUppercase,
         deleteContact,
-        cancelText: l10n.no.toUpperCase(),
+        cancelText: l10n.noUppercase,
       );
     }
 

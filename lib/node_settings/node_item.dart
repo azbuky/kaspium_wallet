@@ -53,9 +53,9 @@ class NodeItem extends ConsumerWidget {
         context,
         title,
         content,
-        l10n.yes.toUpperCase(),
+        l10n.yesUppercase,
         delete,
-        cancelText: l10n.no.toUpperCase(),
+        cancelText: l10n.noUppercase,
       );
     }
 

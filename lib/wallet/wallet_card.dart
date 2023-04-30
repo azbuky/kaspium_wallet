@@ -53,7 +53,7 @@ class WalletCard extends ConsumerWidget {
         context,
         l10n.areYouSure,
         l10n.removeWalletReassurance,
-        l10n.yes.toUpperCase(),
+        l10n.yesUppercase,
         checkAuth,
       );
     }

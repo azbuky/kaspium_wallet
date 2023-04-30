@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-26T16:47:21.051Z",
+  "@@last_modified": "2023-04-25T19:44:56.830Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konten",
@@ -97,6 +97,7 @@
   "export": "Exportieren",
   "fee": "Gebühr",
   "feeConfirm": "Gebühr {amount} {coin}",
+  "feeTitle": "GEBÜHR",
   "fetchingTransactions": "Rufe Transaktionen ab",
   "fingerprintSeedBackup": "Authentifizieren, um Seed zu sichern.",
   "goBackButton": "Zurück",
@@ -143,6 +144,7 @@
   "noContactsImport": "Keine Kontakte zum Importieren gefunden",
   "noQrCodeFound": "Kein QR-Code gefunden",
   "noSkipButton": "Nein, überspringen",
+  "noUppercase": "NEIN",
   "nodeAddress": "Kaspa-Knoten",
   "nodeDeleteMessage": "Wirklich löschen?",
   "nodeDeleteTitle": "Konfiguration des Kaspa-Knoten löschen?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Willkommen!\n\nDies ist Version {version} von Kaspium - dem mobilen Wallet für Kaspa",
   "welcomeText": "Willkommen bei Kaspium. Um fortzufahren, bitte ein neues Wallet erstellen oder ein bereits existierendes Wallet importieren.",
   "xMinutes": "Nach {minutes, plural, =1{1 Minute} other{{minutes} Minuten}}",
-  "yes": "Ja"
+  "yes": "Ja",
+  "yesButton": "Ja",
+  "yesUppercase": "JA"
 }

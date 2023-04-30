@@ -77,12 +77,12 @@ class IntroBackupConfirm extends ConsumerWidget {
             Column(
               children: [
                 PrimaryButton(
-                  title: l10n.yes.toUpperCase(),
+                  title: l10n.yesUppercase,
                   margin: const EdgeInsets.fromLTRB(28, 0, 28, 8),
                   onPressed: confirm,
                 ),
                 PrimaryOutlineButton(
-                  title: l10n.no.toUpperCase(),
+                  title: l10n.noUppercase,
                   margin: const EdgeInsets.fromLTRB(28, 8, 28, 0),
                   onPressed: goBack,
                 ),

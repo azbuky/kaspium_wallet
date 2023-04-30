@@ -24,7 +24,7 @@ class LogoutButton extends ConsumerWidget {
         context,
         l10n.areYouSure,
         l10n.logoutDialogContent,
-        l10n.yes.toUpperCase(),
+        l10n.yesUppercase,
         logout,
       );
     }

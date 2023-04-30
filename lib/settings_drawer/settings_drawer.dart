@@ -375,7 +375,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                             context,
                             l10n.areYouSure,
                             l10n.logoutDialogContent,
-                            l10n.yes.toUpperCase(),
+                            l10n.yesUppercase,
                             () {
                               Navigator.of(context).pushNamedAndRemoveUntil(
                                 '/logout',
