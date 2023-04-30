@@ -4,8 +4,13 @@ import '../l10n/l10n.dart';
 import 'setting_item.dart';
 
 enum AvailableLanguage {
+  // Default and base language
   DEFAULT("default", "Default"),
   ENGLISH("en", "English (en)"),
+
+  // Supported languages
+  // This list is sorted by the 2nd parameter, as this order is
+  // used within the app on the language selection list.
   AFRICAANS("af","Afrikaans (af)"),
   ARABIC("ar", "العَرَبِيَّة‎ (ar)"),
   INDONESIAN("id", "Bahasa Indonesia (id)"),
@@ -22,6 +27,7 @@ enum AvailableLanguage {
   SPANISH("es", "Español (es)"),
   FINNISH("fi", "Finnish (fi)"),
   FRENCH("fr", "Français (fr)"),
+  // GREEK("el", "Greek (el)"),
   HEBREW("he", "Hebrew (he)"),
   HINDI("hi", "हिन्दी (hi)"),
   ITALIAN("it", "Italiano (it)"),
