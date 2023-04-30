@@ -4,7 +4,7 @@ import '../l10n/l10n.dart';
 import 'setting_item.dart';
 
 enum AvailableLanguage {
-  DEFAULT("en", "Default"),
+  DEFAULT("default", "Default"),
   ENGLISH("en", "English (en)"),
   ARABIC("ar", "العَرَبِيَّة‎ (ar)"),
   INDONESIAN("id", "Bahasa Indonesia (id)"),
@@ -39,10 +39,10 @@ enum AvailableLanguage {
   UKRAINIAN("uk", "Ukrainian (uk)"),
   ;
 
-  const AvailableLanguage(this.localeString, this.name);
+  const AvailableLanguage(this.localeString, this.descriptiveName);
 
   final String localeString;
-  final String name;
+  final String descriptiveName;
 }
 
 /// Represent the available languages our app supports
@@ -56,7 +56,7 @@ class LanguageSetting implements SettingSelectionItem {
   const LanguageSetting(this.language);
 
   String getDisplayName(BuildContext context) {
-    return language.name;
+    return language.descriptiveName;
     // ...
     // case AvailableLanguage.BENGALI:
     //   return ;
@@ -71,7 +71,7 @@ class LanguageSetting implements SettingSelectionItem {
 
   Locale? getLocale() {
     String localeStr = getLocaleString();
-    if (localeStr == 'DEFAULT') {
+    if (localeStr == 'default') {
       return null;
     } else if (localeStr == 'zh-Hans' || localeStr == 'zh-Hant') {
       return Locale.fromSubtags(
