@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-26T16:47:21.051Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Kontoer",
@@ -97,6 +97,7 @@
   "export": "Export",
   "fee": "Fee",
   "feeConfirm": "Fee {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Fetching Transactions",
   "fingerprintSeedBackup": "Verifiser for å sikkerhetskopiere Seed.",
   "goBackButton": "Gå tilbake",
@@ -143,6 +144,7 @@
   "noContactsImport": "Ingen nye kontakter å importere.",
   "noQrCodeFound": "No QR code found",
   "noSkipButton": "Nei, hopp over",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa Node",
   "nodeDeleteMessage": "Are you sure you want to delete?",
   "nodeDeleteTitle": "Delete Kaspa Node Config?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
   "welcomeText": "Velkommen til Kaspium. For å starte, kan du opprette en ny lommebok eller importere en eksisterende.",
   "xMinutes": "Etter {minutes, plural, =1{1 minutt} other{{minutes} minutter}}",
-  "yes": "Ja"
+  "yes": "Ja",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

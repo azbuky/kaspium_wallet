@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-26T16:47:21.051Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "Account",
   "accounts": "Accounts",
@@ -97,6 +97,7 @@
   "export": "Export",
   "fee": "Fee",
   "feeConfirm": "Fee {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Fetching Transactions",
   "fingerprintSeedBackup": "지문을 확인하여 시드 지갑를 백업하세요",
   "goBackButton": "Go Back",
@@ -143,6 +144,7 @@
   "noContactsImport": "가져올 연락처를 찾을 수 없습니다.",
   "noQrCodeFound": "No QR code found",
   "noSkipButton": "No, Skip",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa Node",
   "nodeDeleteMessage": "Are you sure you want to delete?",
   "nodeDeleteTitle": "Delete Kaspa Node Config?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
   "welcomeText": "Kaspium에 오신 것을 환영합니다. 계속하려면, 새 지갑을 만들거나 기존 지갑을 불러오세요.",
   "xMinutes": "After {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
-  "yes": "네"
+  "yes": "네",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

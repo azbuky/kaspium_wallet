@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-26T16:47:21.051Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konti",
@@ -97,6 +97,7 @@
   "export": "Export",
   "fee": "Fee",
   "feeConfirm": "Fee {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Fetching Transactions",
   "fingerprintSeedBackup": "Verificer for at sikkerhedskopiere Seed.",
   "goBackButton": "Gå tilbage",
@@ -143,6 +144,7 @@
   "noContactsImport": "Ingen kontakter at importere.",
   "noQrCodeFound": "No QR code found",
   "noSkipButton": "Nej, spring over",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa Node",
   "nodeDeleteMessage": "Are you sure you want to delete?",
   "nodeDeleteTitle": "Delete Kaspa Node Config?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
   "welcomeText": "Velkommen til Kaspium. For at fortsætte kan du oprette en ny tegnebog eller importere en eksisterende.",
   "xMinutes": "Efter {minutes, plural, =1{1 minut} other{{minutes} minutter}}",
-  "yes": "Ja"
+  "yes": "Ja",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-29T19:13:01.027Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "Акаунт",
   "accounts": "Акаунти",
@@ -97,6 +97,7 @@
   "export": "Експортирай",
   "fee": "Такса",
   "feeConfirm": "Такса {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Извличане на транзакциите",
   "fingerprintSeedBackup": "Удостоверете се за да направите резервно копие на тайната фраза.",
   "goBackButton": "Върни се назад",
@@ -143,6 +144,7 @@
   "noContactsImport": "Няма нови контакти за импорт.",
   "noQrCodeFound": "Няма открит QR код",
   "noSkipButton": "Не, пропусни",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa Node",
   "nodeDeleteMessage": "Потвърждавате ли изтриването",
   "nodeDeleteTitle": "Изтриване на конфигурацията за Kaspa Node?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Добре дошли!\n\nТова е версия {version} на Kaspium - мобилният портфейл за Kaspa",
   "welcomeText": "Добре дошли в Kaspium. За да започнете, създайте нов портфейл или импортирайте вече съществуващ такъв.",
   "xMinutes": "След {minutes, plural, =1{1 минута} other{{minutes} минути}}",
-  "yes": "Да"
+  "yes": "Да",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

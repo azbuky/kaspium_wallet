@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-26T16:47:21.051Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "Akaun",
   "accounts": "Akaun",
@@ -97,6 +97,7 @@
   "export": "Export",
   "fee": "Fee",
   "feeConfirm": "Fee {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Fetching Transactions",
   "fingerprintSeedBackup": "Konfirm cap jari untuk menyandarkan benih dompet.",
   "goBackButton": "Pergi balik",
@@ -143,6 +144,7 @@
   "noContactsImport": "Tidak menemukan untuk impor",
   "noQrCodeFound": "No QR code found",
   "noSkipButton": "Tidak, Langkau",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa Node",
   "nodeDeleteMessage": "Are you sure you want to delete?",
   "nodeDeleteTitle": "Delete Kaspa Node Config?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
   "welcomeText": "Selamat datang ke Kaspium. Untuk bersambung, anda boleh membuat dompet yang baru atau import dompet yang sedia ada.",
   "xMinutes": "Selepas {minutes, plural, =1{1 minit} other{{minutes} minit}}",
-  "yes": "Ya"
+  "yes": "Ya",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

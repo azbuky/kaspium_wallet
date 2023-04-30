@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-28T16:03:39.717Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "Account",
   "accounts": "Accounts",
@@ -97,6 +97,7 @@
   "export": "Exporteren",
   "fee": "Tarief",
   "feeConfirm": "Tarief {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Transacties ophalen",
   "fingerprintSeedBackup": "Bevestig je vingerafdruk om een back-up te maken.",
   "goBackButton": "Ga terug",
@@ -143,6 +144,7 @@
   "noContactsImport": "Geen contacten gevonden om te importeren",
   "noQrCodeFound": "Geen QR code gevonden",
   "noSkipButton": "Nee, overslaan",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa Node",
   "nodeDeleteMessage": "Weet je zeker dat je het wil verwijderen?",
   "nodeDeleteTitle": "Verwijderen Kaspa Node configuratie?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Welkom!\n\nDit is versie {version} van Kaspium - de mobiele portemonnee voor Kaspa",
   "welcomeText": "Welkom bij Kaspium. Creëer een nieuwe portemonnee of importeer een bestaande portemonnee om verder te gaan.",
   "xMinutes": "Na {minutes, plural, =1{1 minuten} other{{minutes} minuut}}",
-  "yes": "Ja"
+  "yes": "Ja",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

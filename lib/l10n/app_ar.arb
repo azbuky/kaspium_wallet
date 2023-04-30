@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-26T16:47:21.051Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "الحساب",
   "accounts": "الحسابات",
@@ -97,6 +97,7 @@
   "export": "Export",
   "fee": "Fee",
   "feeConfirm": "Fee {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Fetching Transactions",
   "fingerprintSeedBackup": "المصادقة على نسخ المفتاح الخاص.",
   "goBackButton": "عد\n",
@@ -143,6 +144,7 @@
   "noContactsImport": "لا توجد جهات اتصال جديدة للجلب.",
   "noQrCodeFound": "No QR code found",
   "noSkipButton": "لا ، تخطي\n",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa Node",
   "nodeDeleteMessage": "Are you sure you want to delete?",
   "nodeDeleteTitle": "Delete Kaspa Node Config?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
   "welcomeText": "أهلا بك في نتريوم. لتبدأ، إحدث محفظة أو إجلب محفظة موجودة.",
   "xMinutes": "بعد {minutes, plural, =1{1 دقيقة} other{{minutes} دقائق}}",
-  "yes": "نعم"
+  "yes": "نعم",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

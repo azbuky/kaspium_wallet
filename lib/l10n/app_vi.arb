@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-26T16:47:21.051Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "Tài khoản",
   "accounts": "Các tài khoản",
@@ -97,6 +97,7 @@
   "export": "Export",
   "fee": "Fee",
   "feeConfirm": "Fee {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Fetching Transactions",
   "fingerprintSeedBackup": "Xác minh để xem hạt giống.",
   "goBackButton": "Quay lại",
@@ -143,6 +144,7 @@
   "noContactsImport": "Không có liên hệ nào để nhập.",
   "noQrCodeFound": "No QR code found",
   "noSkipButton": "Không, bỏ qua",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa Node",
   "nodeDeleteMessage": "Are you sure you want to delete?",
   "nodeDeleteTitle": "Delete Kaspa Node Config?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
   "welcomeText": "Chào mừng đến với Kaspium. Để bắt đầu, bạn có thể tạo ví mới hoặc nhập ví hiện có.",
   "xMinutes": "Sau {minutes, plural, =1{1 phút} other{{minutes} phút}}",
-  "yes": "Có"
+  "yes": "Có",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

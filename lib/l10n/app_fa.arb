@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-29T19:13:01.027Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "حساب",
   "accounts": "حساب ها",
@@ -23,7 +23,7 @@
   "amountConfirm": "مقدار {amount} {coin}",
   "amountMissing": "لطفا مقدار را وارد کنید",
   "amountZero": "مقدار نمی تواند صفر باشد",
-  "areYouSure": "آیا اطمینان دارید؟",
+  "areYouSure": "آیا مطمئن هستید؟",
   "authBiometricMessage": "هویت سنجی برای اضافه کردن کیف پول",
   "authMethod": "روش هویت سنجی",
   "authPinMessage": "برای اضافه کردن کیف پول، پین را وارد کنید",
@@ -97,6 +97,7 @@
   "export": "صدور",
   "fee": "کارمزد",
   "feeConfirm": "کارمزد {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "در حال گرفتن تراکنش ها",
   "fingerprintSeedBackup": "هویت سنجی برای بکاپ گیری عبارت مخفی",
   "goBackButton": "بازگشت",
@@ -143,8 +144,9 @@
   "noContactsImport": "هیچ مخاطب جدیدی برای ورود، موجود نیست",
   "noQrCodeFound": "هیچ QR کدی یافت نشد",
   "noSkipButton": "خیر، رد شو",
+  "noUppercase": "NO",
   "nodeAddress": "نود Kaspa",
-  "nodeDeleteMessage": "آیا مطمئنید که می خواهید حذف کنید؟",
+  "nodeDeleteMessage": "آیا مطمئن هستید که می خواهید حذف کنید؟",
   "nodeDeleteTitle": "پیکربندی نود Kaspa حذف شود؟",
   "nodeNameEmpty": "نام نود نمی تواند خالی باشد",
   "nodeNameHint": "نام نود را وارد کنید",
@@ -186,7 +188,7 @@
   "receiveIndexParam": "دریافت {addressIndex}",
   "received": "دریافت شد",
   "removeContact": "حذف مخاطب",
-  "removeContactConfirmation": "آیا از حذف {contactName} اطمینان دارید؟",
+  "removeContactConfirmation": "آیا از حذف {contactName} مطمئن هستید؟",
   "removeWalletAction": "حذف کیف پول",
   "removeWalletBiometricsMessage": "هویت سنجی برای حذف کیف پول",
   "removeWalletDetail": "حذف این کیف پول عبارت مخفی و تمام داده های مربوط به کیف پول را از این دستگاه حذف می کند. اگر عبارت مخفی بکاپ گیری نشود، دیگر هرگز نمی توانید به ارزهای خود مجددا دسترسی پیدا کنید.",
@@ -273,5 +275,7 @@
   "welcomeMessage": "خوش آمدید!\n\nاین نسخه شماره {version} Kaspium است - کیف پول موبایلی Kaspa",
   "welcomeText": "به Kaspium خوش آمدید. برای شروع، می توانید یک کیف پول جدید بسازید یا کیف پول موجود را وارد کنید.",
   "xMinutes": "بعد از {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
-  "yes": "بله"
+  "yes": "بله",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

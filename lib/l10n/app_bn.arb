@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-26T16:47:21.051Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "অ্যাকাউন্ট",
   "accounts": "অ্যাকাউন্টস",
@@ -97,6 +97,7 @@
   "export": "Export",
   "fee": "Fee",
   "feeConfirm": "Fee {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Fetching Transactions",
   "fingerprintSeedBackup": "ব্যাকআপ সীড প্রমাণীকরণ করুন।",
   "goBackButton": "পেছনে যান",
@@ -143,6 +144,7 @@
   "noContactsImport": "পরিবহন এর জন্য নুতন কন্টাক্ট নেই",
   "noQrCodeFound": "No QR code found",
   "noSkipButton": "না, এড়িয়ে যান",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa Node",
   "nodeDeleteMessage": "Are you sure you want to delete?",
   "nodeDeleteTitle": "Delete Kaspa Node Config?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
   "welcomeText": "নাট্রিয়ামে স্বাগতম। শুরু করার জন্য, আপনি একটি নতুন ওয়ালেট তৈরি করতে পারেন অথবা বিদ্যমান একটি ব্যবহার করতে পারেন।",
   "xMinutes": "{minutes, plural, =1{1 মিনিট} other{{minutes} মিনিট}} এর পরে",
-  "yes": "হ্যাঁ"
+  "yes": "হ্যাঁ",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

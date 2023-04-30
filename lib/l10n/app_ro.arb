@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-26T16:47:21.051Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "Cont",
   "accounts": "Conturi",
@@ -97,6 +97,7 @@
   "export": "Export",
   "fee": "Fee",
   "feeConfirm": "Fee {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Fetching Transactions",
   "fingerprintSeedBackup": "Confirmați cu amprenta pentru a copia seed-ul.",
   "goBackButton": "Înapoi",
@@ -143,6 +144,7 @@
   "noContactsImport": " Nu am gasit contacte pentru importare",
   "noQrCodeFound": "No QR code found",
   "noSkipButton": "Sari peste",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa Node",
   "nodeDeleteMessage": "Are you sure you want to delete?",
   "nodeDeleteTitle": "Delete Kaspa Node Config?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
   "welcomeText": "Bine ai venit! Pentru a continua, creează un portofel nou sau importă unul deja existent.",
   "xMinutes": "După {minutes, plural, =1{1 minut} other{{minutes} minute}}",
-  "yes": "Da"
+  "yes": "Da",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

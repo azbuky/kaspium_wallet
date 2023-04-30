@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-29T19:13:01.027Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "खाता",
   "accounts": "खाते",
@@ -97,6 +97,7 @@
   "export": "निर्यात",
   "fee": "शुल्क",
   "feeConfirm": "शुल्क  {coin} {amount}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "लेन-देन लाया जा रहा है",
   "fingerprintSeedBackup": "बैकअप गुप्त वाक्यांश को प्रमाणित करें।",
   "goBackButton": "वापस जाओ",
@@ -143,6 +144,7 @@
   "noContactsImport": "आयात करने के लिए कोई संपर्क नहीं मिले।",
   "noQrCodeFound": "कोई QR कोड नहीं मिला",
   "noSkipButton": "नहीं, छोड़ें",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa नोड",
   "nodeDeleteMessage": "क्या आप आश्वस्त है कि आपको डिलीट करना है?",
   "nodeDeleteTitle": "Kaspa नोड कॉन्फ़िग हटाएं?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "स्वागत है!यह कस्पियम का संस्करण {version} है - कस्पा के लिए मोबाइल वॉलेट",
   "welcomeText": "नेट्रियम में आपका स्वागत है। आगे बढ़ने के लिए, आप एक नया वॉलेट बना सकते हैं या एक मौजूदा वॉलेट को आयात कर सकते हैं।",
   "xMinutes": "{minutes, plural, =1{1 मिनट} other{{minutes} मिनट}} के बाद",
-  "yes": "हाँ"
+  "yes": "हाँ",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

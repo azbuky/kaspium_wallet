@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-29T19:13:01.027Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "Tunnus",
   "accounts": "Tunnukset",
@@ -97,6 +97,7 @@
   "export": "Vie",
   "fee": "Kulut",
   "feeConfirm": "Kulut {amount} {coin}",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Fetching Transactions",
   "fingerprintSeedBackup": "Tunnistaudu tallentaaksesi turvasanat",
   "goBackButton": "Mene takaisin",
@@ -143,6 +144,7 @@
   "noContactsImport": "Ei uutta yhteystietoa, jota tuoda",
   "noQrCodeFound": "QR koodia ei löytynyt",
   "noSkipButton": "Ei, ohita",
+  "noUppercase": "NO",
   "nodeAddress": "Kaspa solmu",
   "nodeDeleteMessage": "Haluatko varmasti poistaa?",
   "nodeDeleteTitle": "Poista Kaspa solmun asetukset?",
@@ -273,5 +275,7 @@
   "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
   "welcomeText": "Welcome to Kaspium. To begin, you may create a new wallet or import an existing one.",
   "xMinutes": "After {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
-  "yes": "Yes"
+  "yes": "Yes",
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }

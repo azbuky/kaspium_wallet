@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-25T10:46:27.960Z",
+  "@@last_modified": "2023-04-30T18:47:24.253Z",
   "@@author": "arb-converter-cli",
   "account": "Conta",
   "accounts": "Contas",
@@ -97,7 +97,7 @@
   "export": "Exportar",
   "fee": "Taxa",
   "feeConfirm": "Taxa {amount} {coin}",
-  "feeTitle": "TAXA",
+  "feeTitle": "FEE",
   "fetchingTransactions": "Buscando transações",
   "fingerprintSeedBackup": "Autentique para fazer o backup da seed da carteira. ",
   "goBackButton": "Voltar",
@@ -144,7 +144,7 @@
   "noContactsImport": "Não há contatos para importar",
   "noQrCodeFound": "Nenhum código QR encontrado",
   "noSkipButton": "Não, pular",
-  "noUppercase": "NÃO",
+  "noUppercase": "NO",
   "nodeAddress": "Nó Kaspa",
   "nodeDeleteMessage": "Tem certeza de que deseja excluir?",
   "nodeDeleteTitle": "Excluir a Configuração do Nó Kaspa?",
@@ -276,6 +276,6 @@
   "welcomeText": "Bem-vindo a Kaspium. Para continuar, você pode criar uma nova carteira ou importar uma existente.",
   "xMinutes": "Após {minutes, plural, =1{1 minuto} other{{minutes} minutos}}",
   "yes": "Sim",
-  "yesButton": "Sim",
-  "yesUppercase": "SIM"
+  "yesButton": "Yes",
+  "yesUppercase": "YES"
 }
