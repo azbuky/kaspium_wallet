@@ -27,7 +27,6 @@ const supportedLocales = const [
   const Locale("en", "CA"),
   const Locale("en", "GB"),
   const Locale("en", "IE"),
-
   const Locale("en", "MT"),
   const Locale("en", "NZ"),
   const Locale("en", "TW"),
