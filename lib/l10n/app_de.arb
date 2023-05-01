@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-25T19:44:56.830Z",
+  "@@last_modified": "2023-05-01T14:53:49.581Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konten",
@@ -107,7 +107,7 @@
   "ignore": "Ignorieren",
   "import": "Importieren",
   "importSecretPhrase": "Geheimsequenz importieren",
-  "importSecretPhraseHint": "Bitte gib unten deine 24-wörtige Geheimsequenz ein. Trenne die Wörter dabei mit Leerzeichen.",
+  "importSecretPhraseHint": "Bitte geben Sie unten Ihre 24-wörtige Geheimsequenz ein. Trennen Sie dabei die Wörter mit Leerzeichen.",
   "importSeed": "Seed importieren",
   "importSeedHint": "Bitte Ihren Seed eingeben.",
   "importWallet": "Wallet importieren",
