@@ -41,13 +41,13 @@ enum AvailableLanguage {
   POLISH("pl", "Polski (pl)"),
   PORTUGUESE("pt", "Português (pt)"),
   ROMANIAN("ro", "Română (ro)"),
-  RUSSIAN("ru", "Русский язык (ru)"),
+  RUSSIAN("ru", "Русский (ru)"),
   SLOVENIAN("sl", "Slovenščina (sl)"),
   SWEDISH("sv", "Svenska (sv)"),
   TAGALOG("tl", "Tagalog (tl)"),
   VIETNAMESE("vi", "Tiếng Việt (vi)"),
   TURKISH("tr", "Türkçe (tr)"),
-  UKRAINIAN("uk", "Ukrainian (uk)"),
+  UKRAINIAN("uk", "Українська (uk)"),
   URDU("ur", "Urdu (ur)"),
   ;
 
