@@ -37,7 +37,7 @@ enum AvailableLanguage {
   HUNGARIAN("hu", "Magyar (hu)"),
   DUTCH("nl", "Nederlands (nl)"),
   NORWEGIAN("no", "Norsk (no)"),
-  PERSIAN("fa", "Persian (fa)"),
+  PERSIAN("fa", "فارسی (fa)"),
   POLISH("pl", "Polski (pl)"),
   PORTUGUESE("pt", "Português (pt)"),
   ROMANIAN("ro", "Română (ro)"),
