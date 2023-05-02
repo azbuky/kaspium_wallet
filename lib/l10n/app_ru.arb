@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-30T18:47:24.253Z",
+  "@@last_modified": "2023-05-02T18:44:47.857Z",
   "@@author": "arb-converter-cli",
   "account": "Счёт",
   "accounts": "Счета",
@@ -97,7 +97,7 @@
   "export": "Экспорт",
   "fee": "Комиссия",
   "feeConfirm": "Комиссия {amount} {coin}",
-  "feeTitle": "FEE",
+  "feeTitle": "КОМИССИЯ",
   "fetchingTransactions": "Получение списка транзакций",
   "fingerprintSeedBackup": "Аутентификация для резервного копирования seed-фразы.",
   "goBackButton": "Назад",
@@ -144,7 +144,7 @@
   "noContactsImport": "Нет контактов для импорта",
   "noQrCodeFound": "QR-код не обнаружен",
   "noSkipButton": "Нет, пропустить",
-  "noUppercase": "NO",
+  "noUppercase": "Нет",
   "nodeAddress": "Нода Kaspa",
   "nodeDeleteMessage": "Вы уверены, что хотите удалить?",
   "nodeDeleteTitle": "Удалить конфигурацию ноды Kaspa?",
@@ -276,6 +276,6 @@
   "welcomeText": "Добро пожаловать в Kaspium. Вы можете создать новый кошелек или импортировать уже существующий.",
   "xMinutes": "Через {minutes, plural, =1{1 минуту} other{{minutes} минут}}.",
   "yes": "Да",
-  "yesButton": "Yes",
-  "yesUppercase": "YES"
+  "yesButton": "Да",
+  "yesUppercase": "ДА"
 }

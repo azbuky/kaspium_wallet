@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-01T14:53:49.581Z",
+  "@@last_modified": "2023-05-02T18:44:47.857Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konten",
@@ -125,8 +125,8 @@
   "loadingTransactions": "Lade Transaktionen...",
   "lockAppSetting": "Authentifizierung beim Öffnen",
   "locked": "Gesperrt",
-  "loggingOutMessage": "Ausloggen...",
-  "logout": "Ausloggen",
+  "loggingOutMessage": "Melde ab...",
+  "logout": "Abmelden",
   "logoutDialogContent": "Sind Sie sicher, dass Sie sich von diesem Wallet abmelden wollen?",
   "logoutOrSwitchWallet": "Abmelden / Wallet wechseln",
   "manage": "Verwalten",

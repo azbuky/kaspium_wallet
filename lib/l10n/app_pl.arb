@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-30T18:47:24.253Z",
+  "@@last_modified": "2023-05-02T18:44:47.857Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konta",
@@ -97,7 +97,7 @@
   "export": "Eksportuj",
   "fee": "Opłata",
   "feeConfirm": "Opłata {amount} {coin}",
-  "feeTitle": "FEE",
+  "feeTitle": "OPŁATA",
   "fetchingTransactions": "Pobieranie transakcji",
   "fingerprintSeedBackup": "Autoryzuj się, aby utworzyć kopię zapasową sekretnego hasła.",
   "goBackButton": "Wróć",
@@ -144,7 +144,7 @@
   "noContactsImport": "Brak nowych kontaktów do importowania",
   "noQrCodeFound": "Nie znaleziono kodu QR",
   "noSkipButton": "Nie, pomiń",
-  "noUppercase": "NO",
+  "noUppercase": "NIE",
   "nodeAddress": "Węzeł sieciowy Kaspa",
   "nodeDeleteMessage": "Czy na pewno chcesz usunąć?",
   "nodeDeleteTitle": "Usunąć konfigurację węzła sieciowego Kaspa?",
@@ -276,6 +276,6 @@
   "welcomeText": "Witaj w Kaspium. Aby rozpocząć, możesz stworzyć nowy portfel lub zaimportować istniejący.",
   "xMinutes": "Po {minutes, plural, =1{1 minucie} other{{minutes} minutach}}",
   "yes": "Tak",
-  "yesButton": "Yes",
-  "yesUppercase": "YES"
+  "yesButton": "Tak",
+  "yesUppercase": "TAK"
 }

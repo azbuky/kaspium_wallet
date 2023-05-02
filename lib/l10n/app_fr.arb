@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-30T18:47:24.253Z",
+  "@@last_modified": "2023-05-02T18:44:47.857Z",
   "@@author": "arb-converter-cli",
   "account": "Compte",
   "accounts": "Comptes",
@@ -97,7 +97,7 @@
   "export": "Exporter",
   "fee": "Frais",
   "feeConfirm": "Frais {amount} {coin}",
-  "feeTitle": "FEE",
+  "feeTitle": "FRAIS",
   "fetchingTransactions": "Récupération des transactions",
   "fingerprintSeedBackup": "Merci de vous authentifier pour sauvegarder la Seed.",
   "goBackButton": "Retour",
@@ -144,7 +144,7 @@
   "noContactsImport": "Aucun contact à importer",
   "noQrCodeFound": "QR Code introuvable",
   "noSkipButton": "Passer",
-  "noUppercase": "NO",
+  "noUppercase": "NON",
   "nodeAddress": "Nœud Kaspa",
   "nodeDeleteMessage": "Êtes-vous sûr de vouloir supprimer ?",
   "nodeDeleteTitle": "Supprimer la configuration du nœud Kaspa ?",
@@ -276,6 +276,6 @@
   "welcomeText": "Bienvenue dans Kaspium. Avant de continuer, veuillez créer un nouveau portefeuille ou en importer un déjà existant.",
   "xMinutes": "Après {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
   "yes": "Oui",
-  "yesButton": "Yes",
-  "yesUppercase": "YES"
+  "yesButton": "Oui",
+  "yesUppercase": "OUI"
 }
