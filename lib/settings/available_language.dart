@@ -12,6 +12,7 @@ enum AvailableLanguage {
   // This list is sorted by the 2nd parameter, as this order is
   // used within the app on the language selection list.
   AFRICAANS("af","Afrikaans (af)"),
+  ALBANIAN("sq","Albanian (sq)"),
   ARABIC("ar", "العَرَبِيَّة‎ (ar)"),
   INDONESIAN("id", "Bahasa Indonesia (id)"),
   MALAY("ms", "Bahasa Melayu (ms)"),
