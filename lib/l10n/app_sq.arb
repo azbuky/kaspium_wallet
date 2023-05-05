@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-02T18:44:47.857Z",
+  "@@last_modified": "2023-05-05T18:07:04.463Z",
   "@@author": "arb-converter-cli",
   "account": "Llogaria",
   "accounts": "Llogaritë",
@@ -274,7 +274,7 @@
   "warning": "Paralajmërim",
   "welcomeMessage": "Mirë se vini!\n\nKy është versioni {version} i Kaspium - portofoli celular për Kaspa",
   "welcomeText": "Mirë se vini në Kaspium. Për të filluar, mund të krijoni një portofol të ri ose të importoni një ekzistues.",
-  "xMinutes": "After {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
+  "xMinutes": "Pas {minutes, plural, =1{1 minuti} other{{minutes} minutash}}",
   "yes": "Po",
   "yesButton": "Po",
   "yesUppercase": "PO"
