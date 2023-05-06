@@ -20,7 +20,7 @@ final _mnemonicProvider = StateProvider.autoDispose((ref) => '');
 final _mnemonicIsValidProvider = Provider.autoDispose((ref) {
   final mnemonic = ref.watch(_mnemonicProvider);
   return mnemonic.endsWith(' ') &&
-      isValidMnemonic(mnemonic.trim()) &&
+      isValidMnemonic(mnemonic.trim(), verifyChecksum: false) &&
       mnemonic.trim().split(' ').length == 24;
 });
 
