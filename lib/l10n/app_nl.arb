@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-02T18:44:47.857Z",
+  "@@last_modified": "2023-05-08T19:57:46.232Z",
   "@@author": "arb-converter-cli",
   "account": "Account",
   "accounts": "Accounts",
@@ -73,7 +73,7 @@
   "createPasswordSheetHeader": "Creëer",
   "currency": "Valuta",
   "currencyPoweredBy": "Powered by CoinGecko",
-  "defaultAccountName": "Addres 1 (Hoofd Account)",
+  "defaultAccountName": "Adres 1",
   "defaultNewAccountName": "Ontvang {addressIndex}",
   "defaultWalletName": "Mijn portemonee",
   "disablePasswordSheetHeader": "Uitschakelen",

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-30T18:47:24.253Z",
+  "@@last_modified": "2023-05-08T19:57:46.232Z",
   "@@author": "arb-converter-cli",
   "account": "Account",
   "accounts": "Accounts",
@@ -97,7 +97,7 @@
   "export": "Esporta",
   "fee": "Commissione",
   "feeConfirm": "Commissioni: {amount} {coin}",
-  "feeTitle": "FEE",
+  "feeTitle": "COMMISSIONE",
   "fetchingTransactions": "Sto recuperando le transazioni",
   "fingerprintSeedBackup": "Conferma l'impronta per eseguire il backup della frase segreta",
   "goBackButton": "Indietro",
@@ -276,6 +276,6 @@
   "welcomeText": "Benvenuto in Kaspium. Per iniziare, puoi creare un nuovo wallet o importare un wallet già esistente.",
   "xMinutes": "Dopo {minutes, plural, =1{1 minuto} other{{minutes} minuti}}",
   "yes": "Si",
-  "yesButton": "Yes",
-  "yesUppercase": "YES"
+  "yesButton": "Si",
+  "yesUppercase": "SI"
 }
