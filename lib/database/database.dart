@@ -6,7 +6,6 @@ import '../contacts/contact.dart';
 import '../kaspa/kaspa.dart';
 import '../transactions/transaction_types.dart';
 import '../txnotes/txnotes_types.dart';
-import '../util/random_util.dart';
 import '../util/vault.dart';
 import '../utils.dart';
 import '../wallet_address/wallet_address.dart';
@@ -86,12 +85,7 @@ class Database {
     await Hive.initFlutter('kaspium_wallet');
 
     final vault = Vault();
-    const key = 'aa721440b4f52bca';
-    var secureKey = await vault.get(key);
-    if (secureKey == null) {
-      secureKey = RandomUtil.generateKey();
-      await vault.set(key, secureKey);
-    }
+    var secureKey = await vault.getDbKey();
 
     const kContactsBoxId = '_contactsBox';
     const kSettingsBoxId = '_settingsBox';

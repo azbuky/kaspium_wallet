@@ -5,6 +5,7 @@ import '../util/random_util.dart';
 class Vault {
   static const _pinKey = 'fkaspium_pin';
   static const _sessionKey = 'fkaspium_session';
+  static const _dbKey = 'aa721440b4f52bca';
 
   final _secureStorage = const FlutterSecureStorage();
 
@@ -24,7 +25,17 @@ class Vault {
   Future<String?> getPin() => get(_pinKey);
   Future<void> setPin(String? pin) => set(_pinKey, pin);
   Future<void> deletePin() => _secureStorage.delete(key: _pinKey);
-  Future<bool> get pinIsSet async => await get(_pinKey) != null;
+  Future<bool> get pinIsSet async => (await get(_pinKey)) != null;
+
+  Future<String> getDbKey() async {
+    final key = await get(_dbKey);
+    if (key == null) {
+      final newKey = RandomUtil.generateKey();
+      await set(_dbKey, newKey);
+      return newKey;
+    }
+    return key;
+  }
 
   /// Used to keep the seed in-memory in the session without being plaintext
   Future<String> getSessionKey() async =>
