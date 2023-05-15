@@ -153,7 +153,7 @@ class IntroImportSeed extends HookConsumerWidget {
       final mnemonic = ref.read(_mnemonicProvider).trim();
       final intro = ref.read(introStateProvider.notifier);
 
-      if (isValidMnemonic(mnemonic)) {
+      if (isValidMnemonic(mnemonic, verifyChecksum: false)) {
         intro.setMnemonic(mnemonic, walletName: walletName.value);
       }
     }
