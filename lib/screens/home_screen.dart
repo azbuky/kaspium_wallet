@@ -36,8 +36,6 @@ class HomeScreen extends HookConsumerWidget {
         lockStreamListener.value = delayed.asStream().listen((_) {
           final notifier = ref.read(walletAuthNotifierProvider);
           notifier?.lock();
-
-          Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
         });
       }
     }
@@ -59,12 +57,15 @@ class HomeScreen extends HookConsumerWidget {
           break;
         case AppLifecycleState.resumed:
           await cancelLockEvent();
+          final notifier = ref.read(walletAuthNotifierProvider);
+          if (notifier?.walletLocked == true) {
+            Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
+          }
 
           final inBackground = ref.read(inBackgroundProvider.notifier);
           Future.delayed(const Duration(milliseconds: 100), () {
             inBackground.state = false;
           });
-
           break;
         default:
           break;
