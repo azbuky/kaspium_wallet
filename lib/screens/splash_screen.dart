@@ -41,14 +41,6 @@ class SplashScreen extends HookConsumerWidget {
       final wallets = ref.read(walletBundleProvider);
       final wallet = wallets.selected;
       if (wallet == null) {
-        final vault = ref.read(vaultProvider);
-        final pinIsSet = await vault.pinIsSet;
-        // if pin is set but no wallets
-        if (pinIsSet && wallets.wallets.isEmpty) {
-          // no alpha seed so remove pin and any vault data
-          await vault.deleteAll();
-        }
-
         ref.read(introDataProvider.notifier).clear();
         Navigator.of(context).pushReplacementNamed('/intro');
         return;
