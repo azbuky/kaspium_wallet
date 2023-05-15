@@ -7,16 +7,14 @@ import '../l10n/l10n.dart';
 import 'app_simpledialog.dart';
 
 class NoticeDialog extends HookConsumerWidget {
-  const NoticeDialog({Key? key}) : super(key: key);
+  final String version;
+  const NoticeDialog({Key? key, required this.version}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
-
-    // Version should be the real app version
-    final version = "0.2.0 (Beta)";
 
     final title = l10n.kaspiumWallet;
     final content = l10n.welcomeMessage(version);

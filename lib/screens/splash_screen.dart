@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../app_providers.dart';
 import '../intro/intro_providers.dart';
@@ -26,12 +27,13 @@ class SplashScreen extends HookConsumerWidget {
       if (noticeShown.state) {
         return;
       }
+      final version = (await PackageInfo.fromPlatform()).version + " (Beta)";
       noticeShown.state = true;
       await showDialog(
         barrierColor: ref.read(themeProvider).barrier,
         context: context,
         barrierDismissible: false,
-        builder: (context) => const NoticeDialog(),
+        builder: (context) => NoticeDialog(version: version),
       );
     }
 
