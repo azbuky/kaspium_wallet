@@ -11,8 +11,8 @@ enum AvailableLanguage {
   // Supported languages
   // This list is sorted by the 2nd parameter, as this order is
   // used within the app on the language selection list.
-  AFRICAANS("af","Afrikaans (af)"),
-  ALBANIAN("sq","Albanian (sq)"),
+  AFRICAANS("af", "Afrikaans (af)"),
+  ALBANIAN("sq", "Albanian (sq)"),
   ARABIC("ar", "العَرَبِيَّة‎ (ar)"),
   INDONESIAN("id", "Bahasa Indonesia (id)"),
   MALAY("ms", "Bahasa Melayu (ms)"),
@@ -69,13 +69,10 @@ class LanguageSetting implements SettingSelectionItem {
   const LanguageSetting(this.language);
 
   String getDisplayName(BuildContext context) {
+    if (language == AvailableLanguage.DEFAULT) {
+      return l10nOf(context).systemDefault;
+    }
     return language.descriptiveName;
-    // ...
-    // case AvailableLanguage.BENGALI:
-    //   return ;
-    // default:
-    //   return l10nOf(context).systemDefault;
-    // ...
   }
 
   String getLocaleString() {
