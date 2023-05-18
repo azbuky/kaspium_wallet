@@ -2,11 +2,11 @@ name: kaspium_wallet
 description: The Ultimate Self-Custodial Wallet for the Kaspa Network.
 publish_to: "none"
 
-version: 0.2.0+3
+version: 0.2.1+5
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
-  flutter: '>=3.7.0'
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
 
 dependencies:
   flutter:
@@ -15,56 +15,56 @@ dependencies:
     sdk: flutter
 
   flutter_secure_storage: 8.0.0
-  shared_preferences: 2.1.0
-  package_info_plus: 3.0.3
-  device_info_plus: 8.2.0
-  json_annotation: 4.8.0
-  intl: 0.17.0
+  shared_preferences: 2.1.1
+  package_info_plus: 4.0.0
+  device_info_plus: 9.0.0
+  json_annotation: 4.8.1
+  intl: 0.18.0
   decimal: 2.3.2
-  logger: 1.1.0
+  logger: 1.3.0
   hive_flutter: 1.1.0
-  path_provider: 2.0.14
+  path_provider: 2.0.15
   local_auth: 2.1.6
-  qr_flutter: 4.0.0
+  qr_flutter: 4.1.0
   qr_code_scanner: 1.0.1
-  share_plus: 6.3.1
-  file_picker: 5.2.7
+  share_plus: 7.0.0
+  file_picker: 5.3.0
   #uni_links: 0.5.1
-  http: 0.13.5
+  http: 0.13.6
   flutter_vibrate: 1.3.0
   flutter_slidable: 3.0.0
   validators: 3.0.0
   auto_size_text: 3.0.0
-  url_launcher: 6.1.10
-  flutter_riverpod: 2.3.4
-  hooks_riverpod: 2.3.4
+  url_launcher: 6.1.11
+  flutter_riverpod: 2.3.6
+  hooks_riverpod: 2.3.6
   flutter_hooks: 0.18.6
   freezed_annotation: 2.2.0
-  fast_immutable_collections: 9.0.0
+  fast_immutable_collections: 9.1.1
   cupertino_icons: 1.0.5
   oktoast: 3.3.1
   automatic_animated_list: 1.1.0
   lazy_load_scrollview: 1.3.0
-  image_picker: 0.8.7+1
+  image_picker: 0.8.7+5
   barcode_finder: 0.0.5
-  flutter_displaymode: 0.5.0
-  push: 0.1.3
+  flutter_displaymode: 0.6.0
+  push: 1.0.0
   crypton: 2.1.0
   cross_file: 0.3.3+4
   protobuf: 2.1.0
   grpc: 3.1.0
   coinslib: 3.1.7
-  collection: 1.17.0
-  fixnum: 1.0.1
-  pointycastle: 3.7.2
+  collection: 1.17.1
+  fixnum: 1.1.0
+  pointycastle: 3.7.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: 2.3.3
-  json_serializable: 6.6.1
+  build_runner: 2.4.4
+  json_serializable: 6.6.2
   flutter_lints: 2.0.1
-  freezed: 2.3.2
+  freezed: 2.3.4
   flutter_launcher_icons: 0.13.1
 
 # Flutter launcher icons

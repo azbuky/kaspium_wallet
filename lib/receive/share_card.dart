@@ -75,7 +75,7 @@ class _AppShareCardState extends State<AppShareCard> {
                           width: 90,
                           //padding: const EdgeInsets.all(4),
                           child: Center(
-                            child: QrImage(
+                            child: QrImageView(
                               size: 80,
                               padding: EdgeInsets.zero,
                               gapless: false,

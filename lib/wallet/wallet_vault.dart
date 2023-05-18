@@ -1,4 +1,3 @@
-
 import '../util/kaspa_util.dart';
 import '../util/vault.dart';
 
@@ -11,8 +10,7 @@ class WalletVault {
   final String _seedKey;
 
   const WalletVault(String wid, this.vault)
-      :
-        _mnemonicKey = '$_kMnemonicKey#$wid',
+      : _mnemonicKey = '$_kMnemonicKey#$wid',
         _seedKey = '$_kSeedKey#$wid';
 
   Future<String> getMnemonic({String? password}) async {

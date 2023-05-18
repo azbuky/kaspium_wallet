@@ -132,7 +132,7 @@ class AddressDetailsSheet extends HookConsumerWidget {
                       shape: BoxShape.rectangle,
                       border: Border.all(color: theme.primary, width: 2),
                     ),
-                    child: QrImage(
+                    child: QrImageView(
                       data: '${address.encoded}',
                       gapless: false,
                       embeddedImage: AssetImage('assets/qr_code_icon.png'),

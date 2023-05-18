@@ -1,4 +1,3 @@
-
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
@@ -15,7 +14,7 @@ class HapticUtil {
       return false;
     }
     IosDeviceInfo deviceInfo = await DeviceInfoPlugin().iosInfo;
-    String deviceIdentifier = deviceInfo.utsname.machine ?? '';
+    String deviceIdentifier = deviceInfo.utsname.machine;
     switch (deviceIdentifier) {
       case 'iPhone5,1': // iPhone 5
       case 'iPhone5,2': // iPhone 5
