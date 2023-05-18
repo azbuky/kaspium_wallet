@@ -39,7 +39,7 @@ class MnemonicDisplay extends HookConsumerWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: FittedBox(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   fit: BoxFit.scaleDown,
                   child: RichText(
                     textAlign: TextAlign.start,

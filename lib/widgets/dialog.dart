@@ -293,10 +293,11 @@ class AnimationLoadingOverlay extends ModalRoute<void> {
                 child: _getAnimation(context),
               ),
               Container(
-                margin: EdgeInsets.only(
-                    left: 10,
-                    top: 20,
-                    bottom: MediaQuery.of(context).size.height * 0.15),
+                margin: EdgeInsetsDirectional.only(
+                  start: 10,
+                  top: 20,
+                  bottom: MediaQuery.of(context).size.height * 0.15,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,

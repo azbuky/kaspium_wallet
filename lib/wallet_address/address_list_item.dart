@@ -166,7 +166,8 @@ class AccountListItem extends ConsumerWidget {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 4, left: 20),
+                        padding:
+                            const EdgeInsetsDirectional.only(top: 4, start: 20),
                         child: BalanceRowWidget(address: address),
                       )
                     ],

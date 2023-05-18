@@ -115,7 +115,7 @@ class MainCard extends ConsumerWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 14),
+              padding: const EdgeInsetsDirectional.only(start: 14),
               child: Text(
                 l10n.totalValue,
                 style: styles.textStyleTotalValue,

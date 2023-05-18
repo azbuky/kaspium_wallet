@@ -68,7 +68,7 @@ class WordsWidget extends ConsumerWidget {
     return Container(
       height: 48,
       child: ListView.builder(
-        padding: const EdgeInsets.only(left: 4),
+        padding: const EdgeInsetsDirectional.only(start: 4),
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemCount: words.length,
@@ -216,7 +216,7 @@ class KeyboardWidget extends ConsumerWidget {
             ),
             const SizedBox(height: 4),
             Padding(
-              padding: const EdgeInsets.only(left: 42, right: 4),
+              padding: const EdgeInsetsDirectional.only(start: 42, end: 4),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: const [

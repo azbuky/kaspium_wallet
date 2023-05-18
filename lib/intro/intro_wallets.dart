@@ -49,7 +49,7 @@ class IntroWallets extends ConsumerWidget {
                   ),
                   const SizedBox(height: 26),
                   Padding(
-                    padding: const EdgeInsets.only(left: 34),
+                    padding: const EdgeInsetsDirectional.only(start: 34),
                     child: Text(
                       l10n.walletsTitle.toUpperCase(),
                       style: styles.textStyleLogoutButton,

@@ -67,7 +67,7 @@ class IntroBackupSafety extends ConsumerWidget {
                   // The paragraph
                   Container(
                     margin: const EdgeInsets.only(left: 40, right: 40, top: 15),
-                    alignment: Alignment.centerLeft,
+                    alignment: AlignmentDirectional.centerStart,
                     child: Column(
                       children: [
                         AutoSizeText(

@@ -37,7 +37,7 @@ class SelectedWalletButton extends ConsumerWidget {
           child: Container(
             width: size.width,
             height: size.height,
-            alignment: AlignmentDirectional(-1, 0),
+            alignment: Alignment(-1, 0),
             child: Icon(
               AppIcons.accountwallet,
               color: theme.success,

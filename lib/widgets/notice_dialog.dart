@@ -26,12 +26,12 @@ class NoticeDialog extends HookConsumerWidget {
         title,
         style: styles.textStyleButtonPrimaryOutline,
       ),
-      contentPadding: const EdgeInsets.fromLTRB(12, 20, 24, 12),
+      contentPadding: const EdgeInsetsDirectional.fromSTEB(12, 20, 24, 12),
       content: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 12),
+              padding: const EdgeInsetsDirectional.only(start: 12),
               child: Text(
                 content,
                 style: styles.textStyleParagraph,
