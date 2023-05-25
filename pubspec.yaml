@@ -2,7 +2,7 @@ name: kaspium_wallet
 description: The Ultimate Self-Custodial Wallet for the Kaspa Network.
 publish_to: "none"
 
-version: 0.2.1+5
+version: 0.3.0+7
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
