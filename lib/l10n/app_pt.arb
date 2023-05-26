@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-01T14:53:49.581Z",
+  "@@last_modified": "2023-05-26T20:29:28.791Z",
   "@@author": "arb-converter-cli",
   "account": "Conta",
   "accounts": "Contas",
@@ -277,5 +277,8 @@
   "xMinutes": "Após {minutes, plural, =1{1 minuto} other{{minutes} minutos}}",
   "yes": "Sim",
   "yesButton": "Sim",
-  "yesUppercase": "SIM"
+  "yesUppercase": "SIM",
+  "nodeNotSyncedException": "Nó não está sincronizado",
+  "nodeNoUTXOIndexException": "Nó não tem o índice UTXO sincronizado ",
+  "nodeSecureConnection": "Conexão segura "
 }
