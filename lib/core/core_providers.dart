@@ -21,7 +21,6 @@ import '../util/hapticutil.dart';
 import '../util/sharedprefsutil.dart';
 import '../util/vault.dart';
 import '../utxos/utxos_providers.dart';
-import '../wallet_address/wallet_address_manager.dart';
 import '../wallet_signer/wallet_signer.dart';
 
 final timeProvider = StreamProvider.autoDispose<DateTime>((ref) {
@@ -98,7 +97,7 @@ final networkProvider = Provider((ref) {
 
 final addressPrefixProvider = Provider((ref) {
   final network = ref.watch(networkProvider);
-  final prefix = addressPrefixForNetwork(network);
+  final prefix = AddressPrefix.forNetwork(network);
 
   return prefix;
 });

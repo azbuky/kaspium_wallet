@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
 import '../database/database.dart';
-import '../wallet_address/wallet_address_manager.dart';
+import '../kaspa/kaspa.dart';
 import 'contact.dart';
 import 'contacts_notifier.dart';
 
@@ -16,7 +16,7 @@ final contactsProvider = ChangeNotifierProvider((ref) {
   final contactsBox = ref.watch(contactsBoxProvider);
   final sharedPrefsUtil = ref.watch(sharedPrefsUtilProvider);
 
-  final prefix = addressPrefixForNetwork(network).toString() + ':';
+  final prefix = AddressPrefix.forNetwork(network).toString() + ':';
 
   return ContactsNotifier(contactsBox, sharedPrefsUtil, prefix: prefix);
 });
