@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-09T19:39:21.905Z",
+  "@@last_modified": "2023-05-27T17:46:12.229Z",
   "@@author": "arb-converter-cli",
   "account": "حساب کاربری",
   "accounts": "حساب ها",
@@ -277,5 +277,8 @@
   "xMinutes": "بعد از {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
   "yes": "بله",
   "yesButton": "بله",
-  "yesUppercase": "بله"
+  "yesUppercase": "بله",
+  "nodeNotSyncedException": "نود همگام سازی نمی شود",
+  "nodeNoUTXOIndexException": "نود شاخص UTXO ندارد",
+  "nodeSecureConnection": "ارتباط امن"
 }

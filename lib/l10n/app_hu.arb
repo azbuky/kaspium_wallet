@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-05T18:07:04.463Z",
+  "@@last_modified": "2023-05-27T17:46:12.229Z",
   "@@author": "arb-converter-cli",
   "account": "Fiók",
   "accounts": "Fiókok",
@@ -277,5 +277,8 @@
   "xMinutes": "{minutes, plural, =1{1 perc után} other{{minutes} perc után}}",
   "yes": "Igen",
   "yesButton": "Igen",
-  "yesUppercase": "IGEN"
+  "yesUppercase": "IGEN",
+  "nodeNotSyncedException": "A csomópont nincs szinkronizálva",
+  "nodeNoUTXOIndexException": "A csomóponton nincs UTXO index ",
+  "nodeSecureConnection": "Biztonságos kapcsolat"
 }
