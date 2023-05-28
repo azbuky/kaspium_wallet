@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-02T18:44:47.857Z",
+  "@@last_modified": "2023-05-27T17:46:12.229Z",
   "@@author": "arb-converter-cli",
   "account": "Счёт",
   "accounts": "Счета",
@@ -277,5 +277,8 @@
   "xMinutes": "Через {minutes, plural, =1{1 минуту} other{{minutes} минут}}.",
   "yes": "Да",
   "yesButton": "Да",
-  "yesUppercase": "ДА"
+  "yesUppercase": "ДА",
+  "nodeNotSyncedException": "Node is not synced",
+  "nodeNoUTXOIndexException": "Node does not have UTXO index",
+  "nodeSecureConnection": "Secure connection"
 }

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-02T18:44:47.857Z",
+  "@@last_modified": "2023-05-27T17:46:12.229Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konta",
@@ -277,5 +277,8 @@
   "xMinutes": "Po {minutes, plural, =1{1 minucie} other{{minutes} minutach}}",
   "yes": "Tak",
   "yesButton": "Tak",
-  "yesUppercase": "TAK"
+  "yesUppercase": "TAK",
+  "nodeNotSyncedException": "Node is not synced",
+  "nodeNoUTXOIndexException": "Node does not have UTXO index",
+  "nodeSecureConnection": "Secure connection"
 }

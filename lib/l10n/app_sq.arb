@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-05T18:07:04.463Z",
+  "@@last_modified": "2023-05-27T17:46:12.229Z",
   "@@author": "arb-converter-cli",
   "account": "Llogaria",
   "accounts": "Llogaritë",
@@ -277,5 +277,8 @@
   "xMinutes": "Pas {minutes, plural, =1{1 minuti} other{{minutes} minutash}}",
   "yes": "Po",
   "yesButton": "Po",
-  "yesUppercase": "PO"
+  "yesUppercase": "PO",
+  "nodeNotSyncedException": "Node is not synced",
+  "nodeNoUTXOIndexException": "Node does not have UTXO index",
+  "nodeSecureConnection": "Secure connection"
 }

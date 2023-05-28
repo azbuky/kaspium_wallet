@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-26T19:56:51.166Z",
+  "@@last_modified": "2023-05-27T17:46:12.229Z",
   "@@author": "arb-converter-cli",
   "account": "Účet",
   "accounts": "Účty",
@@ -277,5 +277,8 @@
   "xMinutes": "Po {minutes, plural, =1{1 minutě} other{{minutes} minutách}}",
   "yes": "Ano",
   "yesButton": "Ano",
-  "yesUppercase": "ANO"
+  "yesUppercase": "ANO",
+  "nodeNotSyncedException": "Node is not synced",
+  "nodeNoUTXOIndexException": "Node does not have UTXO index",
+  "nodeSecureConnection": "Secure connection"
 }

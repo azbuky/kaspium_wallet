@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-30T18:47:24.253Z",
+  "@@last_modified": "2023-05-27T17:46:12.229Z",
   "@@author": "arb-converter-cli",
   "account": "Akun",
   "accounts": "Semua Akun",
@@ -277,5 +277,8 @@
   "xMinutes": "Setelah {minutes, plural, =1{1 menit} other{{minutes} menit}}",
   "yes": "Ya",
   "yesButton": "Ya",
-  "yesUppercase": "YA"
+  "yesUppercase": "YA",
+  "nodeNotSyncedException": "Node is not synced",
+  "nodeNoUTXOIndexException": "Node does not have UTXO index",
+  "nodeSecureConnection": "Secure connection"
 }
