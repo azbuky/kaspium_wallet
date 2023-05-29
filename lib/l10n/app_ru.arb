@@ -277,7 +277,7 @@
   "yes": "Да",
   "yesButton": "Да",
   "yesUppercase": "ДА",
-  "nodeNotSyncedException": "Node is not synced",
-  "nodeNoUTXOIndexException": "Node does not have UTXO index",
-  "nodeSecureConnection": "Secure connection"
+  "nodeNotSyncedException": "Нода не синхронизирована",
+  "nodeNoUTXOIndexException": "Нода не имеет индекса UTXO ",
+  "nodeSecureConnection": "Безопасное соединение"
 }

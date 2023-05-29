@@ -277,7 +277,7 @@
   "yes": "جی ہاں",
   "yesButton": "جی ہاں",
   "yesUppercase": "جی ہاں",
-  "nodeNotSyncedException": "Node is not synced",
-  "nodeNoUTXOIndexException": "Node does not have UTXO index",
-  "nodeSecureConnection": "Secure connection"
+  "nodeNotSyncedException": "نوڈ مطابقت پذیر نہیں ہے",
+  "nodeNoUTXOIndexException": "نوڈ میں UTXO انڈیکس نہیں ہے",
+  "nodeSecureConnection": "محفوظ کنکشن"
 }

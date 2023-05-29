@@ -277,7 +277,7 @@
   "yes": "כן",
   "yesButton": "כן",
   "yesUppercase": "כן",
-  "nodeNotSyncedException": "Node is not synced",
-  "nodeNoUTXOIndexException": "Node does not have UTXO index",
-  "nodeSecureConnection": "Secure connection"
+  "nodeNotSyncedException": "צומת אינה בסנכרון מלא",
+  "nodeNoUTXOIndexException": "בצומת אין אינדקס UTXO",
+  "nodeSecureConnection": "חיבור מאובטח"
 }

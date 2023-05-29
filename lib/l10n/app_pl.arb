@@ -277,7 +277,7 @@
   "yes": "Tak",
   "yesButton": "Tak",
   "yesUppercase": "TAK",
-  "nodeNotSyncedException": "Node is not synced",
-  "nodeNoUTXOIndexException": "Node does not have UTXO index",
-  "nodeSecureConnection": "Secure connection"
+  "nodeNotSyncedException": "Węzeł nie jest zsynchronizowany",
+  "nodeNoUTXOIndexException": "Węzeł nie zawiera indeksu UTXO",
+  "nodeSecureConnection": "Bezpieczne połączenie"
 }
