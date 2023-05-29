@@ -20,8 +20,6 @@ enum AvailableLanguage {
   BULGARIAN("bg", "Български език (bg)"),
   CATALAN("ca", "Català (ca)"),
   CHINESE("zh", "中文 (zh)"),
-  // CHINESE_SIMPLIFIED("zh-Hans", "简体中文 (zh-Hans)"),
-  // CHINESE_TRADITIONAL("zh-Hant", "繁體中文 (zh-Hant)"),
   CZECH("cs", "Czech (cs)"),
   DANISH("da", "Dansk (da)"),
   GERMAN("de", "Deutsch (de)"),
