@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Llogaria",
   "accounts": "Llogaritë",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Kërkohet një fjalëkalim për të hapur këtë portofol?",
   "restartSetupButton": "Rinis konfigurimin",
   "rootWarning": "Duket se pajisja juaj është \"rooted\", \"jailbroken\" ose modifikuar në një mënyrë që rrezikon sigurinë. Rekomandohet që të rivendosni pajisjen tuaj në gjendjen e saj origjinale përpara se të vazhdoni.",
-  "scanInstructions": "Skanoni një Kaspa\nadresa kodi QR",
   "scanQrCode": "Skanoni kodin QR",
   "scanQrCodeError": "Analizimi i kodit qr dështoi",
   "secretInfo": "Në ekranin tjetër, do të shihni frazën tuaj sekrete. Është një fjalëkalim për të hyrë në fondet tuaja. Është thelbësore që ta mbështesni atë dhe të mos e ndani kurrë me askënd.",

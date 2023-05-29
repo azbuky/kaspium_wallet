@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Compte",
   "accounts": "Comptes",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Besoin d'un mot de passe pour ouvrir Kaspium ?",
   "restartSetupButton": "Redémarrer la configuration",
   "rootWarning": "Il semble que votre appareil soit \"rooté\", \"jailbreaké\" ou modifié d'une manière qui compromet sa sécurité. Il est recommandé de réinitialiser votre appareil à son état d'origine avant de continuer.",
-  "scanInstructions": "Scanner le QR Code d’une adresse Kaspa",
   "scanQrCode": "Scanner le QR Code",
   "scanQrCodeError": "Échec de l'analyse du QR Code",
   "secretInfo": "Dans l'écran suivant, vous verrez votre phrase secrète. Il s'agit d'un mot de passe qui permet d'accéder à vos fonds. Il est crucial que vous le sauvegardiez et que vous ne le partagiez jamais avec qui que ce soit.",

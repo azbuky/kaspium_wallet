@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konta",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Wymagać hasła, aby otworzyć ten portfel?",
   "restartSetupButton": "Ponowne uruchomienie konfiguracji",
   "rootWarning": "Wygląda na to, że twoje urządzenie jest \"zrootowane\", \"jailbroken\" lub zmodyfikowane w sposób, który zagraża bezpieczeństwu. Zaleca się, aby zresetować urządzenie do oryginalnego stanu przed kontynuowaniem.",
-  "scanInstructions": "Zeskanuj kod QR\nadresu Kaspa",
   "scanQrCode": "Skanuj kod QR",
   "scanQrCodeError": "Nie udało się odczytać kodu QR",
   "secretInfo": "Na następnym ekranie zobaczysz swoją sekretną frazę. Jest to hasło umożliwiające dostęp do twoich środków. Ważne jest, aby ją zapisać i nigdy nie udostępniać komukolwiek.",

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Cuenta",
   "accounts": "Cuentas",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "¿Deseas requerir una contraseña para abrir esta billetera?",
   "restartSetupButton": "Reiniciar configuración",
   "rootWarning": "Parece que su dispositivo está \"rooteado\", \"jailbreakeado\" o modificado de alguna manera que compromete la seguridad. Se recomienda que restaure su dispositivo a su estado original antes de continuar.",
-  "scanInstructions": "Escanear un código QR \nde dirección de Kaspa",
   "scanQrCode": "Escanear código QR",
   "scanQrCodeError": "No se pudo analizar el código QR",
   "secretInfo": "En la siguiente pantalla, verá su frase secreta. Es una contraseña para acceder a sus fondos. Es crucial que la respalde y nunca la comparta con nadie.",

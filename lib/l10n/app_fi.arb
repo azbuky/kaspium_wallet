@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Tili",
   "accounts": "Tilit",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Vaadi salasana avataksesi tämä lompakko?",
   "restartSetupButton": "Käynnistä alustus uudelleen",
   "rootWarning": "Näyttää että laitteesi on \"rootattu\" tai modifioitu ja tämä vaarantaa laitteesi turvallisuuden. On suositeltavaa että palautat laitteesi alkuperäiseen tilaan ennen kuin jatkat.",
-  "scanInstructions": "Skannaa Kaspa-\nosoite QR-koodista",
   "scanQrCode": "Skannaa QR-koodi",
   "scanQrCodeError": "QR-koodin jäsentäminen epäonnistui",
   "secretInfo": "Seuraavalla sivulla näet turvasanasi. Ne ovat salasanasi päästäksesi käsiksi varoihisi. On todella tärkeää, että varmuuskopioit ne etkä ikinä jaa niitä kenellekään.",

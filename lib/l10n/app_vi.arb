@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Tài khoản",
   "accounts": "Các tài khoản",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Yêu cầu mật khẩu để mở Kaspium?",
   "restartSetupButton": "Restart Setup",
   "rootWarning": "Có vẻ như thiết bị của bạn đã được \"root\", \"jailbreak\" hoặc được sửa đổi gây ảnh hưởng đến tính bảo mật. Bạn nên đặt lại thiết bị của bạn về trạng thái ban đầu trước khi tiếp tục.",
-  "scanInstructions": "Quét \nmã QR địa chỉ Kaspa",
   "scanQrCode": "Quét mã QR",
   "scanQrCodeError": "Failed to parse qr code",
   "secretInfo": "Tiếp theo, bạn sẽ nhìn thấy một cụm từ bí mật. Nó là mật khẩu để truy cập vào ví của bạn. Đừng quên sao lưu nó lại và tuyệt đối không chia sẻ cho bất kỳ ai",

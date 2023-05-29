@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Compte",
   "accounts": "Comptes",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Vols requerir una contrasenya per obrir Natrium?",
   "restartSetupButton": "Reiniciar configuració",
   "rootWarning": "Sembla que el teu dispositiu té accés \"root\", \"jailbreak\", o està modificat de forma que en compromet la seguretat. És recomanable que es retorni el dispositiu a l'estat original abans de continuar.",
-  "scanInstructions": "Escaneja el codi QR\nd'una adreça Kaspa",
   "scanQrCode": "Escanejar codi QR",
   "scanQrCodeError": "Error al obtenir codi QR",
   "secretInfo": "En la següent pantalla, veuràs una frase secreta. És una contrasenya per accedir als teus fons. És crucial que en facis una còpia de seguretat i no la comparteixis amb ningú.",

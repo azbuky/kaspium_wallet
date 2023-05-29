@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "الحساب",
   "accounts": "الحسابات",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "مطالبة كلمة مرور لفتح نتريم ؟",
   "restartSetupButton": "Restart Setup",
   "rootWarning": "يبدو أن جهازك \"rooted\" أو \"jailbroken\" أو تم تعديله بطريقة تعرض الأمان للخطر. يرجى إعادة ضبط جهازك إلى حالته الأصلية قبل المتابعة.\n",
-  "scanInstructions": "مسح \nعنوان رمز الاستجابة السريعة",
   "scanQrCode": "مسح رمز الاستجابة السريعة",
   "scanQrCodeError": "Failed to parse qr code",
   "secretInfo": "في الشاشة التالية ، سترى العبارة السرية الخاصة بك. إنها كلمة مرور للوصول إلى أموالك. من الأهمية أن تقوم بنسخه احتياطيًا وأن لا تشاركه أبدًا مع أي شخص.",

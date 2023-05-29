@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Cont",
   "accounts": "Conturi",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Doriți să setați o parolă pentru a deschide Kaspium?",
   "restartSetupButton": "Restart Setup",
   "rootWarning": "Se pare că acest dispozitiv este \"rootat\" / \"jailbroken\" sau modificat astfel încât securitatea este pusă în pericol. Recomandăm să resetați dispozitivul la starea originală înainte de a continua.",
-  "scanInstructions": "Scanează o adresă KAS de tip cod QR",
   "scanQrCode": "Scanare cod QR",
   "scanQrCodeError": "Failed to parse qr code",
   "secretInfo": "În continuare, veți vedea formula secretă a portofelului. Aceasta este o parolă care permite accesul la fonduri. Este vital să fie notată într-un caiet și să nu fie arătată vreodată nimănui.",

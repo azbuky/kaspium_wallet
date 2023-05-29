@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Hesap",
   "accounts": "Hesaplar",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Natrium'u açarken şifre sorulsun mu?",
   "restartSetupButton": "Restart Setup",
   "rootWarning": "Cihazın \"root\" veya \"jailbreak\" edilmiş gibi görünüyor. Bu durum bir güvenlik riski oluşturuyor. Devam etmeden önce cihazını sıfırlamanı ve eski haline döndürmeni tavsiye ederiz.",
-  "scanInstructions": "Kaspa Adresi'nin \n QR Kodu'nu tarayın",
   "scanQrCode": "QR Kodu Tara",
   "scanQrCodeError": "Failed to parse qr code",
   "secretInfo": "Sonraki ekranda gizlini cümleni göreceksin. Gizli cümle, cüzdanına ve bakiyene erişmeni sağlayan bir çeşit şifre. Gizli cümleni güvenli bir yere yedeklemen ve kimseyle paylaşmaman çok önemli.",

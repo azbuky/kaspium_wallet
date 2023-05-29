@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Wachtwoord vereisen om deze portemonnee te openen?",
   "restartSetupButton": "Setup herstarten",
   "rootWarning": "Het lijkt erop dat jouw apparaat is \"geroot\", \"gejailbreakt\" of is aangepast op een manier die de beveiliging in gevaar brengt. Het wordt aanbevolen dat je jouw apparaat in de oorspronkelijke staat reset voordat je doorgaat.",
-  "scanInstructions": "Scan een Kaspa\nadres QR code",
   "scanQrCode": "Scan QR Code",
   "scanQrCodeError": "Kan qr-code niet analyseren",
   "secretInfo": "In het volgende scherm zie je jouw geheime zin. Het is een wachtwoord voor toegang tot jouw saldo. Het is cruciaal dat je er een back-up van maakt en het nooit met iemand deelt.",

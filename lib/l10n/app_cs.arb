@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Účet",
   "accounts": "Účty",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Vyžadovat heslo k otevření této peněženky?",
   "restartSetupButton": "Restartovat Nastavení?",
   "rootWarning": "Zdá se, že vaše zařízení je \"zakořeněné\", \"jailbreaknuté\" nebo upravené způsobem, který ohrožuje zabezpečení. Před pokračováním se doporučuje resetovat zařízení do původního stavu.",
-  "scanInstructions": "Naskenujte QR kód Kaspa \n adresy",
   "scanQrCode": "Naskenovat QR kód",
   "scanQrCodeError": "Selhání rozebrání qr kódu",
   "secretInfo": "Na následující obrazovce uvidíte svoji tajnou frázi. Jedná se o heslo pro přístup k vašim finančním prostředkům. Je klíčové, abyste jej zálohovali a nikdy s nikým nesdíleli.",

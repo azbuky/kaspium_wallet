@@ -303,7 +303,6 @@
   "requireAPasswordToOpenHeader": "Require a password to open this wallet?",
   "restartSetupButton": "Restart Setup",
   "rootWarning": "It appears your device is \"rooted\", \"jailbroken\", or modified in a way that compromises security. It is recommended that you reset your device to its original state before proceeding.",
-  "scanInstructions": "Scan a Kaspa \naddress QR code",
   "scanQrCode": "Scan QR Code",
   "scanQrCodeError": "Failed to parse qr code",
   "secretInfo": "In the next screen, you will see your secret phrase. It is a password to access your funds. It is crucial that you back it up and never share it with anyone.",

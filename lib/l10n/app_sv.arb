@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konton",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Kräv lösenord för att öppna Kaspium?",
   "restartSetupButton": "Starta om setup",
   "rootWarning": "Det verkar som att din enhet har \"rootats\", \"jailbreakats\" eller modififierats på ett sätt som kan äventyra säkerheten. Det är rekommenderat att du återställer din enhet till sitt ursprungliga tillstånd.",
-  "scanInstructions": "Skanna en Kaspa\nadress QR-kod",
   "scanQrCode": "Skanna QR-kod",
   "scanQrCodeError": "Misslyckades att tolka QR-kod",
   "secretInfo": "På nästa skärm kommer du att se din hemliga fras. Det är ett lösenord för att komma åt dina tillgångar. Det är viktigt att du sparar ner den och aldrig delar den med någon.",

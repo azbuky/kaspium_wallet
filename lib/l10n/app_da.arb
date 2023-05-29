@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konti",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Kræv en adgangskode for at åbne Kaspium?",
   "restartSetupButton": "Restart Setup",
   "rootWarning": "Din enhed er tilsyneladende \"rooted\", \"jailbroken\" eller ændret på en måde, der kompromitterer din sikkerhed. Det anbefales, at du nulstiller enheden til dens oprindelige tilstand, inden du fortsætter.",
-  "scanInstructions": "Scan en KAS \nadresse QR-kode",
   "scanQrCode": "Scan QR-kode",
   "scanQrCodeError": "Failed to parse qr code",
   "secretInfo": "På den næste skærm vil du se din Tilknytningskode, som er en adgangskode til dine midler. Det er afgørende, at du sikkerhedskopierer den og aldrig deler den med nogen.",

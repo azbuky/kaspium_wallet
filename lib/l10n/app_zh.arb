@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "账户",
   "accounts": "账户",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "需要密码来打开 Kaspium 吗？",
   "restartSetupButton": "重新设置",
   "rootWarning": "您的设备似乎被“越狱”或被修改，从而存在安全隐患。建议您在继续之前把设备还原到初始状态。",
-  "scanInstructions": "扫描 Kaspa 二维码地址",
   "scanQrCode": "扫描二维码",
   "scanQrCodeError": "解析二维码已失败",
   "secretInfo": "下一屏，将会看到您的助记词，它是存取资金的密码。请确保备份好，且不要与任何人透露。",

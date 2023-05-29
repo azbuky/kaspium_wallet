@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Account",
   "accounts": "Accounts",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Vuoi impostare una password per accedere a questo wallet?",
   "restartSetupButton": "Riavvia l'installazione",
   "rootWarning": "Sembra che il tuo dispositivo sia stato sottoposto a \"root\", \"jailbrake\", o ad una modifica che ne compromette la sicurezza. Prima di procedere, è consigliato eseguire un ripristino del dispositivo al suo stato originale.",
-  "scanInstructions": "Scansiona un \ncodice QR con l'indirizzo Kaspa",
   "scanQrCode": "Scansiona codice QR",
   "scanQrCodeError": "Non è possibile decifrare il codice QR",
   "secretInfo": "Nella prossima schermata, vedrai la tua frase segreta. È la password per accedere ai tuoi fondi. È fondamentale che tu ne faccia una copia e che non la condivida con nessuno.",

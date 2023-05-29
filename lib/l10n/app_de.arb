@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-26T20:29:28.791Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konten",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Passwortabfrage beim Öffnen der App?",
   "restartSetupButton": "Setup erneut beginnen",
   "rootWarning": "Es sieht aus, als seien Änderungen an Ihrem Gerät vorgenommen worden, welche dessen Sicherheit beeinträchtigen. Es wird empfohlen, das Gerät in seinen Originalzustand zurückzusetzen.",
-  "scanInstructions": "Scanne QR-Code mit\neiner Kaspa-Adresse",
   "scanQrCode": "QR-Code scannen",
   "scanQrCodeError": "Auswertung des QR-Codes fehlgeschlagen",
   "secretInfo": "Auf der nächsten Seite sehen Sie Ihre Geheimsequenz. Diese erlaubt den Zugriff auf Ihr Guthaben. Es ist sehr wichtig, dass Sie sie sichern und geheim halten.",

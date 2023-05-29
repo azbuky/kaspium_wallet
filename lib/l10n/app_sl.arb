@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Račun",
   "accounts": "Računi",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Require a password to open this wallet?",
   "restartSetupButton": "Restart Setup",
   "rootWarning": "It appears your device is \"rooted\", \"jailbroken\", or modified in a way that compromises security. It is recommended that you reset your device to its original state before proceeding.",
-  "scanInstructions": "Zajemi Kaspa \nnaslov QR kodo",
   "scanQrCode": "Zajemi QR kodo",
   "scanQrCodeError": "Failed to parse qr code",
   "secretInfo": "Na naslednjem zaslonu boste videli vaš skrivni niz. Ta niz je geslo za dostop do vašega računa. Nujno je, da ga varno shranite in ne delite z nikomur.",

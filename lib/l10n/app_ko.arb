@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-27T17:46:12.229Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "계정",
   "accounts": "계정",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Require a password to open this wallet?",
   "restartSetupButton": "Restart Setup",
   "rootWarning": "It appears your device is \"rooted\", \"jailbroken\", or modified in a way that compromises security. It is recommended that you reset your device to its original state before proceeding.",
-  "scanInstructions": "Kaspa QR 코드 주소를 스캔하하세요",
   "scanQrCode": "QR 코드를 스캔하세요",
   "scanQrCodeError": "Failed to parse qr code",
   "secretInfo": "In the next screen, you will see your secret phrase. It is a password to access your funds. It is crucial that you back it up and never share it with anyone.",
