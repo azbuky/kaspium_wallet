@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-29T17:51:08.430Z",
+  "@@last_modified": "2023-06-07T03:22:23.378Z",
   "@@author": "arb-converter-cli",
   "account": "Compte",
   "accounts": "Comptes",
@@ -277,7 +277,7 @@
   "yes": "Oui",
   "yesButton": "Oui",
   "yesUppercase": "OUI",
-  "nodeNotSyncedException": "Node is not synced",
-  "nodeNoUTXOIndexException": "Node does not have UTXO index",
-  "nodeSecureConnection": "Secure connection"
+  "nodeNotSyncedException": "Le nœud n'est pas synchronisé",
+  "nodeNoUTXOIndexException": "Le nœud ne possède pas d'index UTXO",
+  "nodeSecureConnection": "Connexion sécurisée"
 }
