@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-29T17:51:08.430Z",
+  "@@last_modified": "2023-06-16T22:33:37.945Z",
   "@@author": "arb-converter-cli",
   "account": "Tili",
   "accounts": "Tilit",
@@ -277,7 +277,7 @@
   "yes": "Kyllä",
   "yesButton": "Kyllä",
   "yesUppercase": "KYLLÄ",
-  "nodeNotSyncedException": "Node is not synced",
-  "nodeNoUTXOIndexException": "Node does not have UTXO index",
-  "nodeSecureConnection": "Secure connection"
+  "nodeNotSyncedException": "Solmua ei ole synkronoitu",
+  "nodeNoUTXOIndexException": "Solmulla ei ole UTXO-indeksiä",
+  "nodeSecureConnection": "Salattu yhteys"
 }
