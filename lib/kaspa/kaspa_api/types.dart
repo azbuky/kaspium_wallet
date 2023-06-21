@@ -77,6 +77,18 @@ class ApiTxLink with _$ApiTxLink {
 }
 
 @freezed
+class ApiTxId with _$ApiTxId {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory ApiTxId({
+    required String transactionId,
+    int? blockTime,
+  }) = _ApiTxId;
+
+  factory ApiTxId.fromJson(Map<String, dynamic> json) =>
+      _$ApiTxIdFromJson(json);
+}
+
+@freezed
 class ApiTxInput with _$ApiTxInput {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ApiTxInput({
@@ -87,6 +99,9 @@ class ApiTxInput with _$ApiTxInput {
     required BigInt previousOutpointIndex,
     required String signatureScript,
     required BigInt sigOpCount,
+    // new fields
+    String? previousOutpointAddress,
+    int? previousOutpointAmount,
   }) = _ApiTxInput;
 
   factory ApiTxInput.fromJson(Map<String, dynamic> json) =>
@@ -104,7 +119,6 @@ class ApiTxOutput with _$ApiTxOutput {
     required String scriptPublicKey,
     required String scriptPublicKeyAddress,
     required String scriptPublicKeyType,
-    // String? acceptingBlockHash,
   }) = _ApiTxOutput;
 
   factory ApiTxOutput.fromJson(Map<String, dynamic> json) =>

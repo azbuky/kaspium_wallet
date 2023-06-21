@@ -105,9 +105,9 @@ final addressPrefixProvider = Provider((ref) {
 final kaspaApiProvider = Provider<KaspaApi>((ref) {
   final network = ref.watch(networkProvider);
   if (network == KaspaNetwork.mainnet) {
-    return MainnetKaspaApi('https://api.kaspa.org');
+    return KaspaApiMainnet('https://api.kaspa.org');
   }
-  return EmptyKaspaApi();
+  return KaspaApiEmpty();
 });
 
 final kaspaClientProvider = Provider((ref) {
