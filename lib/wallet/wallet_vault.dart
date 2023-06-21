@@ -77,7 +77,7 @@ class WalletVault {
   }) async {
     if (password != null) {
       // encrypt mnemonic with password for vault
-      mnemonic = KaspaUtil.tryEncryptText(mnemonic, password);
+      mnemonic = KaspaUtil.maybeEncryptText(mnemonic, password);
       // encrypt seed with password for vault
       seed = KaspaUtil.encryptHex(seed, password);
     }

@@ -91,7 +91,7 @@ class NodeAddSheet extends HookConsumerWidget {
       final url = urlController.text;
 
       KaspaClient? client;
-      var cancelled = false;
+      bool cancelled = false;
 
       AppDialogs.showInProgressDialog(
         context,

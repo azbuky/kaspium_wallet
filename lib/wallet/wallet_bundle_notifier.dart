@@ -104,28 +104,19 @@ class WalletBundleNotifier extends StateNotifier<WalletBundle> {
       simnet: genBoxInfo(wid: wid, network: KaspaNetwork.simnet),
     );
 
-    final mainnetPublicKey = Wallet.hdPublicKeyFromSeed(
-      hexToBytes(walletData.seed),
-      networkType: kaspaMainnet,
-    );
-
-    final testnetPublicKey = Wallet.hdPublicKeyFromSeed(
-      hexToBytes(walletData.seed),
-      networkType: kaspaTestnet,
-    );
-
-    final simnetPublicKey = Wallet.hdPublicKeyFromSeed(
-      hexToBytes(walletData.seed),
-      networkType: kaspaSimnet,
-    );
-
-    final devnetPublicKey = Wallet.hdPublicKeyFromSeed(
-      hexToBytes(walletData.seed),
-      networkType: kaspaDevnet,
-    );
+    final seed = hexToBytes(walletData.seed);
+    final mainnetPublicKey =
+        HdWallet.hdPublicKeyFromSeed(seed, networkType: kaspaMainnet);
+    final testnetPublicKey =
+        HdWallet.hdPublicKeyFromSeed(seed, networkType: kaspaTestnet);
+    final simnetPublicKey =
+        HdWallet.hdPublicKeyFromSeed(seed, networkType: kaspaSimnet);
+    final devnetPublicKey =
+        HdWallet.hdPublicKeyFromSeed(seed, networkType: kaspaDevnet);
 
     return WalletInfo(
       name: walletData.name,
+      kind: walletData.kind,
       wid: wid,
       boxInfo: boxInfo,
       mainnetPublicKey: mainnetPublicKey,

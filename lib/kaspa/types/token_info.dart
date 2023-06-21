@@ -11,13 +11,10 @@ class TokenInfo with _$TokenInfo {
     required int decimals,
   }) = _TokenInfo;
 
-  static const TokenInfo kaspa = TokenInfo(
-    tokenId: 'tti_72f4cbbed88a5902c78a896f',
-    decimals: 8,
-  );
+  static const TokenInfo kaspa = TokenInfo(tokenId: 'KAS', decimals: 8);
 
   factory TokenInfo.fromJson(Map<String, dynamic> json) =>
       _$TokenInfoFromJson(json);
 
-  String get symbolLabel => 'KAS';
+  String get symbolLabel => tokenId;
 }
