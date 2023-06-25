@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../core/core_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../util/numberutil.dart';
+import 'fiat_value_container.dart';
 
 class AmountLabel extends HookConsumerWidget {
   final Amount amount;
@@ -28,40 +29,42 @@ class AmountLabel extends HookConsumerWidget {
           ' ${amount.symbolLabel}';
     }, [amount]);
 
-    return Container(
-      margin: EdgeInsets.only(
-        left: MediaQuery.of(context).size.width * 0.105,
-        right: MediaQuery.of(context).size.width * 0.105,
-      ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 25,
-        vertical: 15,
-      ),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: theme.backgroundDarkest,
-        borderRadius: BorderRadius.circular(50),
-      ),
-      // Amount text
-      child: Tooltip(
-        message: exactAmount,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: formatedAmount,
-                    style: styles.textStyleApproxAmountSuccess,
-                  ),
-                  TextSpan(
-                    text: ' ${amount.symbolLabel}',
-                    style: styles.textStyleTokenSymbolSuccess,
-                  ),
-                ],
+    return FiatValueContainer(
+      amount: amount,
+      child: Container(
+        margin: EdgeInsets.only(
+          left: MediaQuery.of(context).size.width * 0.105,
+          right: MediaQuery.of(context).size.width * 0.105,
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 25,
+          vertical: 15,
+        ),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: theme.backgroundDarkest,
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: Tooltip(
+          message: exactAmount,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: formatedAmount,
+                      style: styles.textStyleApproxAmountSuccess,
+                    ),
+                    TextSpan(
+                      text: ' ${amount.symbolLabel}',
+                      style: styles.textStyleTokenSymbolSuccess,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

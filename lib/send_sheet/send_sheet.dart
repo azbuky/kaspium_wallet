@@ -18,6 +18,7 @@ import '../wallet_balance/wallet_balance_providers.dart';
 import '../widgets/address_widgets.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
+import '../widgets/fiat_value_container.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/kas_icon_widget.dart';
 import '../widgets/sheet_handle.dart';
@@ -673,7 +674,11 @@ class _SendSheetState extends ConsumerState<SendSheet> {
         }
       }
 
-      return AppTextField(
+      final amount = Amount.raw(amountRaw ?? BigInt.zero);
+
+      return FiatValueContainer(
+        amount: amount,
+        child: AppTextField(
           focusNode: _amountFocusNode,
           controller: _amountController,
           topMargin: 15,
@@ -715,6 +720,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
               FocusScope.of(context).requestFocus(_addressFocusNode);
             }
           },
+        ),
       );
     });
   }
