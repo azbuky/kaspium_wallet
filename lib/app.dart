@@ -1,3 +1,4 @@
+import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
@@ -45,6 +46,14 @@ class App extends HookConsumerWidget {
         });
       }
       return null;
+    }, const []);
+
+    useEffect(() {
+      final appLinks = AppLinks();
+      final sub = appLinks.allStringLinkStream.listen((appLink) {
+        ref.read(appLinkProvider.notifier).state = appLink;
+      });
+      return sub.cancel;
     }, const []);
 
     return Container(

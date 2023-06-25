@@ -127,11 +127,6 @@ class _$_Amount extends _Amount {
   final TokenInfo tokenInfo;
 
   @override
-  String toString() {
-    return 'Amount(raw: $raw, tokenInfo: $tokenInfo)';
-  }
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

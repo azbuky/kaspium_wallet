@@ -143,14 +143,6 @@ final themeProvider = Provider((ref) {
   return themeSetting.getTheme();
 });
 
-// final initialDeepLinkProvider = FutureProvider((ref) {
-//   return uniLinks.getInitialLink();
-// });
-
-// final deepLinkProvider = StreamProvider.autoDispose((ref) {
-//   return uniLinks.linkStream;
-// });
-
 final lastKnownVirtualDaaScoreProvider =
     StateProvider<BigInt>((ref) => BigInt.zero);
 
@@ -208,4 +200,8 @@ final kaspaFormatterProvider = Provider((ref) {
   );
 
   return formatter;
+});
+
+final appLinkProvider = StateProvider<String?>((ref) {
+  return null;
 });

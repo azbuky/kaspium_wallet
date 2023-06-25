@@ -5,3 +5,4 @@ export 'types/address_prefix.dart';
 export 'types/amount.dart';
 export 'types/network.dart';
 export 'types/token_info.dart';
+export 'types/kaspa_uri.dart';

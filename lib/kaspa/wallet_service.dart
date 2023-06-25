@@ -43,7 +43,10 @@ class WalletService {
     final fee = BigInt.from(selectedUtxos.length) * feePerInput;
 
     return SendTx(
-      toAddress: toAddress,
+      uri: KaspaUri(
+        address: toAddress,
+        amount: Amount.raw(amountRaw),
+      ),
       amountRaw: amountRaw,
       utxos: selectedUtxos,
       fee: fee,

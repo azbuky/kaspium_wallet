@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../main_card/main_card.dart';
 import '../transactions/transactions_widget.dart';
+import '../util/ui_util.dart';
 import '../utxos/utxos_providers.dart';
 import '../utxos/utxos_widget.dart';
 import '../wallet_address/address_providers.dart';
@@ -35,6 +38,29 @@ class WalletHome extends HookConsumerWidget {
     final l10n = l10nOf(context);
 
     ref.watch(_walletWatcherProvider);
+
+    useEffect(() {
+      final notifier = ref.read(appLinkProvider.notifier);
+      return notifier.addListener(
+        (appLink) {
+          if (appLink == null) {
+            return;
+          }
+          final prefix = ref.read(addressPrefixProvider);
+          final uri = KaspaUri.tryParse(appLink, prefix: prefix);
+          Future.microtask(() {
+            UIUtil.showSendFlow(
+              context,
+              ifNullMessage: l10n.kaspaUriInvalid,
+              theme: theme,
+              uri: uri,
+            );
+            notifier.state = null;
+          });
+        },
+        fireImmediately: true,
+      );
+    }, const []);
 
     return Column(
       children: [

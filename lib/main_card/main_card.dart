@@ -7,14 +7,12 @@ import '../app_icons.dart';
 import '../app_providers.dart';
 import '../kaspa/types.dart';
 import '../l10n/l10n.dart';
-import '../send_sheet/send_sheet.dart';
 import '../themes/kaspium_light_theme.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
 import '../wallet_balance/wallet_balance_providers.dart';
 import '../widgets/app_icon_button.dart';
 import '../widgets/balance_widget.dart';
-import '../widgets/sheet_util.dart';
 
 final homePageScaffoldKeyProvider =
     Provider((ref) => GlobalKey<ScaffoldState>());
@@ -38,18 +36,13 @@ class MainCard extends ConsumerWidget {
         return;
       }
 
-      // Check for ViteUri
       final prefix = ref.read(addressPrefixProvider);
-      final address = Address.tryParse(data, expectedPrefix: prefix);
-      if (address == null) {
-        UIUtil.showSnackbar(l10n.scanQrCodeError, context);
-        return;
-      }
-
-      Sheets.showAppHeightNineSheet(
-        context: context,
+      final uri = KaspaUri.tryParse(data, prefix: prefix);
+      UIUtil.showSendFlow(
+        context,
+        ifNullMessage: l10n.scanQrCodeError,
         theme: theme,
-        widget: SendSheet(address: address.encoded),
+        uri: uri,
       );
     }
 

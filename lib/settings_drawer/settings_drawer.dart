@@ -344,12 +344,16 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           defaultMethod: DonateSettingItem(),
                           icon: Icons.handshake_rounded,
                           onPressed: () {
+                            final uri = KaspaUri(
+                              address:
+                                  Address.decodeAddress(kKaspaDevFundAddress),
+                            );
                             Sheets.showAppHeightNineSheet(
                               context: context,
                               theme: theme,
                               widget: SendSheet(
                                 title: l10n.donate.toUpperCase(),
-                                address: kKaspaDevFundAddress,
+                                uri: uri,
                               ),
                             );
                           },
