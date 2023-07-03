@@ -43,6 +43,7 @@ enum AvailableLanguage {
   RUSSIAN("ru", "Русский (ru)"),
   SLOVENIAN("sl", "Slovenščina (sl)"),
   SWEDISH("sv", "Svenska (sv)"),
+  TELUGU("te", "Telugu (te)"),
   TAGALOG("tl", "Tagalog (tl)"),
   VIETNAMESE("vi", "Tiếng Việt (vi)"),
   TURKISH("tr", "Türkçe (tr)"),
