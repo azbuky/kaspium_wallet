@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-29T17:51:08.430Z",
+  "@@last_modified": "2023-07-03T17:30:06.058Z",
   "@@author": "arb-converter-cli",
   "account": "Λογαριασμός",
   "accounts": "Λογαριασμοί",
@@ -277,7 +277,7 @@
   "yes": "Ναι",
   "yesButton": "Ναι",
   "yesUppercase": "ΝΑΙ",
-  "nodeNotSyncedException": "Node is not synced",
-  "nodeNoUTXOIndexException": "Node does not have UTXO index",
-  "nodeSecureConnection": "Secure connection"
+  "nodeNotSyncedException": "Ο κόμβος δεν είναι συγχρονισμένος.",
+  "nodeNoUTXOIndexException": "Ο κόμβος δεν έχει δείκτη UTXO.",
+  "nodeSecureConnection": "Ασφαλής σύνδεση."
 }

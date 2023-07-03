@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-06-07T03:22:23.378Z",
+  "@@last_modified": "2023-07-03T17:30:06.058Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konton",
@@ -277,7 +277,7 @@
   "yes": "Ja",
   "yesButton": "Ja",
   "yesUppercase": "JA",
-  "nodeNotSyncedException": "Node is not synced",
+  "nodeNotSyncedException": "Noden är inte synkroniserad ",
   "nodeNoUTXOIndexException": "Noden har inte ett UTXO index",
-  "nodeSecureConnection": "Secure connection"
+  "nodeSecureConnection": "Säkra anslutning"
 }

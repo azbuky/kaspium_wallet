@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-06-22T20:23:29.243Z",
+  "@@last_modified": "2023-07-03T17:30:06.058Z",
   "@@author": "arb-converter-cli",
   "account": "অ্যাকাউন্ট",
   "accounts": "অ্যাকাউন্টস",
@@ -273,7 +273,7 @@
   "warning": "সতর্ক থাকুন",
   "welcomeMessage": "স্বাগতম! \n\nএটি ক্যাস্পিয়ামের সংস্করণ {version} - কাস্পার জন্য মোবাইল ওয়ালেট",
   "welcomeText": "কাস্পিয়ামে স্বাগতম। শুরু করার জন্য, আপনি একটি নতুন ওয়ালেট তৈরি করতে পারেন অথবা বিদ্যমান একটি ব্যবহার করতে পারেন।",
-  "xMinutes": "{minutes, plural, =1{1 minute} other{{minutes} minutes}} পরে",
+  "xMinutes": "{minutes, plural, =1{1 মিনিট} other{{minutes} মিনিটের}} পরে",
   "yes": "হ্যাঁ",
   "yesButton": "হ্যাঁ",
   "yesUppercase": "হ্যাঁ",
