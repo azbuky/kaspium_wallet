@@ -16,6 +16,7 @@ enum AvailableLanguage {
   ARABIC("ar", "العَرَبِيَّة‎ (ar)"),
   INDONESIAN("id", "Bahasa Indonesia (id)"),
   MALAY("ms", "Bahasa Melayu (ms)"),
+  BASQUE("eu", "Basque (eu)"),
   BENGALI("bn", "Bengali (bn)"),
   BULGARIAN("bg", "Български език (bg)"),
   CATALAN("ca", "Català (ca)"),
