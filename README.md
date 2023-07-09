@@ -2,7 +2,7 @@
 
 ## What is Kaspium?
 
-Kaspium is a non-custodial wallet for Kaspa, avaialble for Android and iOS. It is written in [Dart](https://dart.dev) using [Flutter](https://flutter.dev).
+Kaspium is a non-custodial wallet for Kaspa, available for Android and iOS. It is written in [Dart](https://dart.dev) using [Flutter](https://flutter.dev).
 
 | Link | Description |
 | :----- | :------ |
@@ -17,14 +17,35 @@ Kaspium is a non-custodial wallet for Kaspa, avaialble for Android and iOS. It i
 
 ## Building
 
-Android: `flutter build apk`
-iOS: `flutter build ios`
+Android: 
+```bash
+flutter build apk
+```
 
-If you have a connected device or emulator you can run the app with `flutter run` for debug or `flutter run --release` for release mode.
+iOS: 
+```bash
+flutter build ios
+```
+
+If you have a connected device or emulator you can run the app right from your development machine.
+
+Debug mode:
+```bash
+flutter run
+``` 
+
+Release mode:
+```bash
+flutter run --release
+```
+
+## Translations
+
+For some details regarding translations, have a look at [Translations and translators](./TRANSLATORS.md).
 
 ## Have a question?
 
-If you need any help, feel free to file an issue if you do not manage to find a solution.
+If you need any help, feel free to [file a feature request or an issue](https://github.com/azbuky/kaspium_wallet/issues/new/choose) if you do not manage to find a solution.
 
 ## License
 
