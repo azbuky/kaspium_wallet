@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-29T17:51:08.430Z",
+  "@@last_modified": "2023-07-14T06:17:08.292Z",
   "@@author": "arb-converter-cli",
   "account": "Cuenta",
   "accounts": "Cuentas",
@@ -90,7 +90,7 @@
   "enterAddress": "Ingresar billetera",
   "enterAmount": "Ingresar cantidad",
   "enterNote": "Ingresar nota",
-  "enterPasswordHint": "Ingresar tu contraseña",
+  "enterPasswordHint": "Ingrese su contraseña",
   "errorMessageCopied": "Mensaje de error copiado al portapapeles",
   "exampleCardIntro": "Esta es la pestaña de transacciones. Una vez que envíe o reciba una transacción, aparecerá aquí.",
   "exit": "Salir",
