@@ -271,7 +271,7 @@
   "walletSetupMessage": "Diru kartera konfiguratzen",
   "walletsTitle": "Karterak",
   "warning": "Abisua",
-  "welcomeMessage": "Ongi etorri!\n\nHau da  {bertsioa} Kaspium-en bertsioa - Kaspa-ren mugikorren kartera",
+  "welcomeMessage": "Ongi etorri!\n\nHau da {version} Kaspium-en bertsioa - Kaspa-ren mugikorren kartera",
   "welcomeText": "Ongi etorri Kaspium-era. Hasteko, diru kartera berri bat sor dezakezu edo lehendik dagoen bat inporta dezakezu.",
   "xMinutes": "Gero eta {minutes, plural, =1{1 minutu} other{{minutes} minutuak}}",
   "yes": "Bai",
