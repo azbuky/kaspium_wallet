@@ -57,8 +57,46 @@ Map<String, dynamic> _$$_BoxInfoByNetworkToJson(_$_BoxInfoByNetwork instance) =>
       'simnet': instance.simnet.toJson(),
     };
 
+_$_WalletKindLocalHdSchnorr _$$_WalletKindLocalHdSchnorrFromJson(Map json) =>
+    _$_WalletKindLocalHdSchnorr(
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$_WalletKindLocalHdSchnorrToJson(
+        _$_WalletKindLocalHdSchnorr instance) =>
+    <String, dynamic>{
+      'runtimeType': instance.$type,
+    };
+
+_$_WalletKindLocalHdEcdsa _$$_WalletKindLocalHdEcdsaFromJson(Map json) =>
+    _$_WalletKindLocalHdEcdsa(
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$_WalletKindLocalHdEcdsaToJson(
+        _$_WalletKindLocalHdEcdsa instance) =>
+    <String, dynamic>{
+      'runtimeType': instance.$type,
+    };
+
+_$_WalletKindLocalHdLegacy _$$_WalletKindLocalHdLegacyFromJson(Map json) =>
+    _$_WalletKindLocalHdLegacy(
+      mainPubKey: json['mainPubKey'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$_WalletKindLocalHdLegacyToJson(
+        _$_WalletKindLocalHdLegacy instance) =>
+    <String, dynamic>{
+      'mainPubKey': instance.mainPubKey,
+      'runtimeType': instance.$type,
+    };
+
 _$_WalletInfo _$$_WalletInfoFromJson(Map json) => _$_WalletInfo(
       name: json['name'] as String,
+      kind: json['kind'] == null
+          ? const WalletKind.localHdSchnorr()
+          : WalletKind.fromJson(Map<String, dynamic>.from(json['kind'] as Map)),
       wid: json['wid'] as String,
       boxInfo: BoxInfoByNetwork.fromJson(
           Map<String, dynamic>.from(json['boxInfo'] as Map)),
@@ -71,6 +109,7 @@ _$_WalletInfo _$$_WalletInfoFromJson(Map json) => _$_WalletInfo(
 Map<String, dynamic> _$$_WalletInfoToJson(_$_WalletInfo instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'kind': instance.kind.toJson(),
       'wid': instance.wid,
       'boxInfo': instance.boxInfo.toJson(),
       'mainnetPublicKey': instance.mainnetPublicKey,

@@ -59,10 +59,32 @@ class BoxInfoByNetwork with _$BoxInfoByNetwork {
 }
 
 @freezed
+class WalletKind with _$WalletKind {
+  const WalletKind._();
+
+  const factory WalletKind.localHdSchnorr() = _WalletKindLocalHdSchnorr;
+
+  const factory WalletKind.localHdEcdsa() = _WalletKindLocalHdEcdsa;
+
+  const factory WalletKind.localHdLegacy({required String mainPubKey}) =
+      _WalletKindLocalHdLegacy;
+
+  factory WalletKind.fromJson(Map<String, dynamic> json) =>
+      _$WalletKindFromJson(json);
+
+  HdWalletType get type => when(
+        localHdSchnorr: () => HdWalletType.schnorr,
+        localHdEcdsa: () => HdWalletType.ecdsa,
+        localHdLegacy: (_) => HdWalletType.legacy,
+      );
+}
+
+@freezed
 class WalletInfo with _$WalletInfo {
   const WalletInfo._();
   const factory WalletInfo({
     required String name,
+    @Default(WalletKind.localHdSchnorr()) WalletKind kind,
     required String wid,
     required BoxInfoByNetwork boxInfo,
     // HDPublic key base58 encoded
@@ -123,6 +145,7 @@ class WalletBundle with _$WalletBundle {
 class WalletData with _$WalletData {
   const factory WalletData({
     required String name,
+    required WalletKind kind,
     required String seed,
     String? mnemonic,
     String? password,
