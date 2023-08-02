@@ -11,8 +11,8 @@ import '../utxos/utxos_providers.dart';
 import '../wallet_address/address_providers.dart';
 import 'wallet_balance_notifier.dart';
 
-final kaspaPriceProvider = Provider.autoDispose((ref) {
-  return ref.watch(coingeckoKaspaPriceProvider);
+final _coinGeckoPriceProvider = Provider.autoDispose((ref) {
+  return  ref.watch(coinGeckoPriceProvider);
 });
 
 final _addressBalanceBoxProvider = Provider.autoDispose((ref) {
@@ -107,7 +107,7 @@ final formatedTotalBalanceProvider = Provider.autoDispose((ref) {
 
 final formatedTotalFiatProvider = Provider.autoDispose((ref) {
   final balance = ref.watch(totalBalanceProvider);
-  final price = ref.watch(kaspaPriceProvider);
+  final price = ref.watch(_coinGeckoPriceProvider);
   final currency = ref.watch(currencyProvider);
   final fiat = balance.value * price.price;
   final decimals = fiat >= Decimal.parse('0.01')
@@ -125,7 +125,7 @@ final formatedTotalFiatProvider = Provider.autoDispose((ref) {
 });
 
 final totalBtcValueProvider = Provider.autoDispose((ref) {
-  final price = ref.watch(kaspaPriceProvider);
+  final price = ref.watch(_coinGeckoPriceProvider);
   final balance = ref.watch(totalBalanceProvider);
   final value = balance.value * price.priceBtc;
 
@@ -148,7 +148,7 @@ final formatedTotalBtcProvider = Provider.autoDispose((ref) {
 
 final fiatValueForAddressProvider =
     Provider.autoDispose.family<Decimal, String>((ref, address) {
-  final price = ref.watch(kaspaPriceProvider);
+  final price = ref.watch(_coinGeckoPriceProvider);
   final balance = ref.watch(balanceForAddressProvider(address));
 
   return balance.value * price.price;
@@ -167,7 +167,7 @@ final formatedFiatForAddressProvider =
 
 final formatedFiatForAmountProvider =
     Provider.autoDispose.family<String, Amount>((ref, value) {
-  final price = ref.watch(kaspaPriceProvider);
+  final price = ref.watch(_coinGeckoPriceProvider);
   final currency = ref.watch(currencyProvider);
 
   final fiatValue = value.value * price.price;

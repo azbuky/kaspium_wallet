@@ -66,6 +66,7 @@ dev_dependencies:
   flutter_lints: 2.0.1
   freezed: 2.3.4
   flutter_launcher_icons: 0.13.1
+  mockito: 5.4.2
 
 # Flutter launcher icons
 flutter_icons:

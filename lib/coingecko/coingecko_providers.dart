@@ -1,14 +1,13 @@
-import 'dart:convert';
-
-import 'package:decimal/decimal.dart';
+import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
+import 'package:kaspium_wallet/coingecko/coingecko_repository.dart';
+import 'package:decimal/decimal.dart';
 
-import '../app_providers.dart';
-import '../settings/available_currency.dart';
+import '../../../app_providers.dart';
 import 'coingecko_types.dart';
+import '../../../settings/available_currency.dart';
 
-final _kaspaPriceCacheProvider = StateProvider<CoinGeckoPrice>((ref) {
+final _coinGeckoPriceCacheProvider = StateProvider<CoinGeckoPrice>((ref) {
   return CoinGeckoPrice(
     currency: AvailableCurrencies.USD,
     price: Decimal.zero,
@@ -16,95 +15,24 @@ final _kaspaPriceCacheProvider = StateProvider<CoinGeckoPrice>((ref) {
   );
 });
 
-final _kaspaPriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
-  ref.watch(remoteRefreshProvider);
-
+final _coinGeckoRemotePriceProvider = FutureProvider((ref) async {
   final currency = ref.watch(currencyProvider);
-  final fiat = currency.getIso4217Code().toLowerCase();
+  final coinGeckoRepo = ref.watch(coinGeckoRepositoryProvider);
 
-  final log = ref.read(loggerProvider);
-  final cached = ref.read(_kaspaPriceCacheProvider);
-
-  final uri = Uri.parse(
-      'https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=$fiat,btc');
-  final response = await http.get(uri, headers: {
-    'Accept': 'application/json',
-  });
-
-  if (response.statusCode != 200) {
-    return cached;
-  }
-
-  try {
-    final data = json.decode(response.body);
-    if (data is! Map) {
-      throw Exception('Returned data is not a Map');
-    }
-    final rates = data['kaspa'] as Map<String, dynamic>;
-    final price = rates[fiat] as num;
-    final priceBtc = rates['btc'] as num;
-    return CoinGeckoPrice(
-      currency: currency.currency,
-      price: Decimal.parse(price.toString()),
-      priceBtc: Decimal.parse(priceBtc.toString()),
-    );
-  } catch (e, st) {
-    log.e('Failed to fetch CoinGecko exchange rates', e, st);
-    return cached;
-  }
+  return coinGeckoRepo.fetchPrice(currency);
 });
 
-final coingeckoKaspaPriceProvider = Provider.autoDispose((ref) {
-  final cache = ref.watch(_kaspaPriceCacheProvider.notifier);
-  final remote = ref.watch(_kaspaPriceRemoteProvider);
+final coinGeckoPriceProvider = Provider.autoDispose((ref) {
+  ref.watch(remoteRefreshProvider);
+  final cache = ref.watch(_coinGeckoPriceCacheProvider.notifier);
+  final remotePrice = ref.watch(_coinGeckoRemotePriceProvider);
 
-  remote.whenOrNull(data: (data) {
+  remotePrice.whenOrNull(data: (data) {
     Future.delayed(
       Duration.zero,
-      () => cache.state = data,
+          () => cache.state = data,
     );
   });
 
-  return remote.asData?.value ?? cache.state;
-});
-
-final _coingeckoRatesCacheProvider = StateProvider<CoinGeckoRates>((ref) {
-  return CoinGeckoRates();
-});
-
-final _coingeckoRatesRemoteProvider =
-    FutureProvider<CoinGeckoRates>((ref) async {
-  ref.watch(remoteRefreshProvider);
-
-  final log = ref.read(loggerProvider);
-
-  final uri = Uri.parse('https://api.coingecko.com/api/v3/exchange_rates');
-  final response = await http.get(uri);
-
-  if (response.statusCode != 200) {
-    return CoinGeckoRates();
-  }
-
-  try {
-    final data = json.decode(response.body);
-    if (data is! Map) {
-      throw Exception('Returned data is not a Map');
-    }
-    final rates = CoinGeckoRates.fromJson(data.cast<String, dynamic>());
-    return rates;
-  } catch (e, st) {
-    log.e('Failed to fetch CoinGecko exchange rates', e, st);
-    return CoinGeckoRates();
-  }
-});
-
-final coingeckoRatesProvider = Provider((ref) {
-  final cache = ref.watch(_coingeckoRatesCacheProvider.notifier);
-  final remote = ref.watch(_coingeckoRatesRemoteProvider);
-
-  remote.whenOrNull(data: (data) {
-    cache.state = data;
-  });
-
-  return remote.asData?.value ?? cache.state;
+  return remotePrice.asData?.value ?? cache.state;
 });
