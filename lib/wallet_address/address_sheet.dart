@@ -34,7 +34,7 @@ class AccountsSheet extends HookConsumerWidget {
           if (addingAddress.value) return;
           addingAddress.value = true;
 
-          final newAddress = addressNotifier.nextReceiveAddress;
+          final newAddress = await addressNotifier.nextReceiveAddress;
           addressNotifier.addAddress(newAddress);
           addingAddress.value = false;
 

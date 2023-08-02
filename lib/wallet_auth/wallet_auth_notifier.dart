@@ -2,7 +2,9 @@ import 'dart:typed_data';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../kaspa/kaspa.dart';
 import '../util/kaspa_util.dart';
+import '../utils.dart';
 import '../wallet/wallet_vault.dart';
 import 'wallet_auth_types.dart';
 
@@ -48,9 +50,13 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
     required int typeIndex,
     required int index,
   }) async {
+    final walletKind = state.wallet.kind;
+
     final seed = await _getSeed();
-    final privKey = KaspaUtil.seedToPrivateKey(seed, typeIndex, index);
-    final signature = await KaspaUtil.computeSignData(data, privKey);
+    final wallet = HdWallet.forSeedHex(seed, type: walletKind.type);
+    final keyPair = wallet.deriveKeyPair(typeIndex: typeIndex, index: index);
+    final signature =
+        await KaspaUtil.computeSignDataSchnorr(data, keyPair.privateKey);
     return signature;
   }
 
@@ -133,5 +139,42 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
     } catch (e) {
       throw Exception('Failed to remove password');
     }
+  }
+
+  Future<Uint8List> _pubKeyLegacy({
+    required int typeIndex,
+    required int index,
+  }) async {
+    final seed = await _getSeed();
+    final wallet = HdWallet.forSeedHex(seed, type: HdWalletType.legacy);
+    final keyPair = wallet.deriveKeyPair(
+      typeIndex: typeIndex,
+      index: index,
+    );
+    return keyPair.publicKey;
+  }
+
+  HdAddressGenerator addressGenerator(KaspaNetwork network) {
+    final wallet = state.wallet;
+    final prefix = AddressPrefix.forNetwork(network);
+    final hdPubKey = wallet.hdPublicKey(network);
+
+    return state.wallet.kind.when(
+      localHdSchnorr: () => SchnorrAddressGenerator(
+        hdPublicKey: hdPubKey,
+        addressPrefix: prefix,
+      ),
+      localHdEcdsa: () => EcdsaAddressGenerator(
+        hdPublicKey: hdPubKey,
+        addressPrefix: prefix,
+      ),
+      localHdLegacy: (mainPubKey) => LegacyAddressGenerator(
+        pubKeyCallback: _pubKeyLegacy,
+        mainAddress: Address.publicKey(
+          prefix: prefix,
+          publicKey: hexToBytes(mainPubKey),
+        ),
+      ),
+    );
   }
 }

@@ -8,64 +8,89 @@ import 'wallet/version.dart';
 
 const kSeedSize = 64;
 
+const kKaspaDerivationPath = "m/44'/111111'/0'";
+const kLegacyDerivationPath = "m/44'/972/0'";
+
+enum HdWalletType {
+  schnorr,
+  ecdsa,
+  legacy,
+}
+
 class KeyPair {
   final Uint8List privateKey;
   final Uint8List publicKey;
-  const KeyPair({
-    required this.privateKey,
-    required this.publicKey,
+
+  const KeyPair({required this.privateKey, required this.publicKey});
+}
+
+abstract class HdWalletView {
+  Uint8List derivePublicKey({
+    required int typeIndex,
+    required int index,
   });
 }
 
-class Wallet {
-  final Uint8List _seed;
-  final bool _isKDXCompatible;
-  const Wallet._(this._seed, this._isKDXCompatible);
+class HdWalletViewECDSA extends HdWalletView {
+  late final BIP32 _bip32;
 
-  String hdPublicKey(NetworkType networkType) =>
-      Wallet.hdPublicKeyFromSeed(_seed, networkType: networkType);
+  HdWalletViewECDSA(String hdPublicKey) {
+    _bip32 = BIP32.fromBase58(hdPublicKey, kaspaMainnet);
+  }
 
-  factory Wallet.forSeed(Uint8List seed, {bool isKDXCompatible = false}) {
+  @override
+  Uint8List derivePublicKey({
+    required int typeIndex,
+    required int index,
+  }) {
+    final key = _bip32.derive(typeIndex).derive(index);
+    return key.publicKey;
+  }
+}
+
+class HdWalletViewSchnorr extends HdWalletViewECDSA {
+  HdWalletViewSchnorr(String hdPublicKey) : super(hdPublicKey);
+
+  @override
+  Uint8List derivePublicKey({
+    required int typeIndex,
+    required int index,
+  }) {
+    final pubKey = super.derivePublicKey(typeIndex: typeIndex, index: index);
+    return pubKey.sublist(1);
+  }
+}
+
+abstract class HdWallet implements HdWalletView {
+  HdWalletType get type;
+
+  const HdWallet._();
+
+  factory HdWallet.forSeed(Uint8List seed, {required HdWalletType type}) {
     if (seed.length != kSeedSize) {
       throw Exception('Invalid seed length');
     }
-    return Wallet._(seed, isKDXCompatible);
+    return switch (type) {
+      HdWalletType.ecdsa => HdWalletEcdsa(seed),
+      HdWalletType.schnorr => HdWalletSchnorr(seed),
+      HdWalletType.legacy => HdWalletLegacy(seed),
+    };
   }
 
-  factory Wallet.forSeedHex(String seed) => Wallet.forSeed(hexToBytes(seed));
-
-  factory Wallet.forEntropy(Uint8List entropy) =>
-      Wallet.forEntropyHex(entropy.hex);
-
-  factory Wallet.forEntropyHex(String entropyHex) =>
-      Wallet.forMnemonic(entropyHexToMnemonic(entropyHex));
-
-  factory Wallet.forMnemonic(String mnemonic) =>
-      Wallet.forSeed(mnemonicToSeed(mnemonic),
-          isKDXCompatible: mnemonic.length == 12);
+  factory HdWallet.forSeedHex(String seed, {required HdWalletType type}) =>
+      HdWallet.forSeed(hexToBytes(seed), type: type);
 
   KeyPair deriveKeyPair({
     required int typeIndex,
     required int index,
-  }) {
-    return _isKDXCompatible
-        ? deriveKeyPairFromSeedKdx(_seed, typeIndex: typeIndex, index: index)
-        : deriveKeyPairFromSeed(_seed, typeIndex: typeIndex, index: index);
-  }
+  });
 
-  static KeyPair deriveKeyPairFromSeed(
-    Uint8List seed, {
+  Uint8List derivePublicKey({
     required int typeIndex,
     required int index,
   }) {
-    final bip32 = BIP32.fromSeed(seed, kaspaMainnet);
-    final child = bip32.derivePath("m/44'/111111'/0'");
-    final key = child.derive(typeIndex).derive(index);
-
-    return KeyPair(
-      privateKey: key.privateKey!,
-      publicKey: key.publicKey.sublist(1),
-    );
+    final keyPair = deriveKeyPair(typeIndex: typeIndex, index: index);
+    return keyPair.publicKey;
   }
 
   static String hdPublicKeyFromSeed(
@@ -73,31 +98,65 @@ class Wallet {
     required NetworkType networkType,
   }) {
     final bip32 = BIP32.fromSeed(seed, networkType);
-    final child = bip32.derivePath("m/44'/111111'/0'");
+    final child = bip32.derivePath(kKaspaDerivationPath);
     return child.neutered().toBase58();
   }
+}
 
-  static KeyPair deriveKeyPairFromSeedKdx(
-    Uint8List seed, {
-    required int typeIndex,
-    required int index,
-  }) {
-    final bip32 = BIP32Kdx.fromSeed(seed, kaspaMainnet);
-    final key = bip32.derivePath("m/44'/972/0'/$typeIndex'/$index'");
+class HdWalletEcdsa extends HdWallet {
+  late final BIP32 _bip32;
+
+  HdWalletEcdsa(Uint8List seed) : super._() {
+    _bip32 = BIP32.fromSeed(seed).derivePath(kKaspaDerivationPath);
+  }
+
+  @override
+  HdWalletType get type => HdWalletType.ecdsa;
+
+  @override
+  KeyPair deriveKeyPair({required int typeIndex, required int index}) {
+    final key = _bip32.derive(typeIndex).derive(index);
+
+    return KeyPair(
+      privateKey: key.privateKey!,
+      publicKey: key.publicKey,
+    );
+  }
+}
+
+class HdWalletSchnorr extends HdWalletEcdsa {
+  HdWalletSchnorr(Uint8List seed) : super(seed);
+
+  @override
+  HdWalletType get type => HdWalletType.schnorr;
+
+  @override
+  KeyPair deriveKeyPair({required int typeIndex, required int index}) {
+    final key = super.deriveKeyPair(typeIndex: typeIndex, index: index);
+
+    return KeyPair(
+      privateKey: key.privateKey,
+      publicKey: key.publicKey.sublist(1),
+    );
+  }
+}
+
+class HdWalletLegacy extends HdWallet {
+  late final BIP32 _bip32;
+
+  HdWalletLegacy(Uint8List seed) : super._() {
+    _bip32 = BIP32Kdx.fromSeed(seed);
+  }
+
+  @override
+  HdWalletType get type => HdWalletType.legacy;
+
+  @override
+  KeyPair deriveKeyPair({required int typeIndex, required int index}) {
+    final key = _bip32.derivePath("$kLegacyDerivationPath/$typeIndex'/$index'");
     return KeyPair(
       privateKey: key.privateKey!,
       publicKey: key.publicKey.sublist(1),
     );
-  }
-
-  static Uint8List derivePublicKeyFromHDPublicKey(
-    String hdPublicKey, {
-    required typeIndex,
-    required int index,
-  }) {
-    final bip32 = BIP32.fromBase58(hdPublicKey, kaspaMainnet);
-    final key = bip32.derive(typeIndex).derive(index);
-
-    return key.publicKey.sublist(1);
   }
 }

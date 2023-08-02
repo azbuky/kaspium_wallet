@@ -1,17 +1,16 @@
-import 'package:coinslib/coinslib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
 import '../intro/intro_providers.dart';
+import '../intro/intro_types.dart';
 import '../kaspa/kaspa.dart';
-import '../kaspa/wallet/version.dart';
 import '../l10n/l10n.dart';
+import '../utils.dart';
 import '../wallet/wallet_types.dart';
+import '../wallet_address/address_discovery.dart';
 import '../wallet_address/wallet_address.dart';
-import '../wallet_address/wallet_address_manager.dart';
-import '../wallet_address/wallet_address_notifier.dart';
 import 'setup_failed_page.dart';
 
 class SetupWalletScreen extends HookConsumerWidget {
@@ -39,8 +38,20 @@ class SetupWalletScreen extends HookConsumerWidget {
           throw Exception('Missing seed');
         }
 
+        WalletKind getWalletKind(IntroData data) {
+          if (data.mnemonic?.split(' ').length == 12) {
+            final wallet = HdWallet.forSeedHex(seed, type: HdWalletType.legacy);
+            final pubKey = wallet.derivePublicKey(typeIndex: 0, index: 0);
+            return WalletKind.localHdLegacy(mainPubKey: pubKey.hex);
+          }
+          return WalletKind.localHdSchnorr();
+        }
+
+        final walletKind = getWalletKind(introData);
+
         final walletData = WalletData(
           name: introData.name ?? l10n.defaultWalletName,
+          kind: walletKind,
           seed: seed,
           mnemonic: introData.mnemonic,
           password: introData.password,
@@ -58,32 +69,46 @@ class SetupWalletScreen extends HookConsumerWidget {
         await auth.unlock(password: walletData.password);
 
         // address discovery
-        final addressPrefix = addressPrefixForNetwork(network);
-
+        final addressGenerator = auth.addressGenerator(network);
         final client = ref.read(kaspaClientProvider);
-        final api = ref.read(kaspaApiProvider);
+        final apiService = ref.read(kaspaApiServiceProvider);
 
-        final hdPublicKey = BIP32.fromBase58(
-          wallet.hdPublicKey(network),
-          networkTypeForNetwork(network),
-        );
-
-        var discovery = DiscoveryResult(addresses: {}, txIds: {});
+        DiscoveryResult discovery;
         if (network == KaspaNetwork.mainnet && !introData.generated) {
-          message.value = l10n.walletSetupAddressDiscovery;
-          discovery = await WalletAddressNotifier.addressDiscovery(
-            hdPublicKey: hdPublicKey,
-            addressPrefix: addressPrefix,
+          final addressDiscovery = AddressDiscovery(
+            addressGenerator: addressGenerator,
             client: client,
-            api: api,
+            api: apiService,
+          );
+          message.value = l10n.walletSetupAddressDiscovery;
+          discovery = await addressDiscovery.addressDiscovery(
             startReceiveIndex: 0,
             startChangeIndex: 0,
+            addressNameCallback: (type, index) {
+              return type == AddressType.receive
+                  ? l10n.receiveIndexParam('$index')
+                  : l10n.changeIndexParam('$index');
+            },
             onProgress: (type, index) {
               final name = type == AddressType.receive
                   ? l10n.receiveIndex
                   : l10n.changeIndex;
               details.value = '$name $index';
+              return true;
             },
+          );
+        } else {
+          const index = 0;
+          discovery = DiscoveryResult(
+            addresses: {
+              WalletAddress(
+                index: index,
+                type: AddressType.receive,
+                name: l10n.receiveIndexParam('$index'),
+                address: addressGenerator.mainAddress,
+              )
+            },
+            txIds: {},
           );
         }
         final walletRepository = ref.read(walletRepositoryProvider);
@@ -95,9 +120,10 @@ class SetupWalletScreen extends HookConsumerWidget {
 
         final addressBoxKey = boxInfo.address.boxKey;
         final box = db.getTypedBox<WalletAddress>(addressBoxKey);
+
         await box.setAll(Map.fromEntries(
           discovery.addresses.map(
-            (address) => MapEntry(address.encoded, address),
+            (address) => MapEntry(address.key, address),
           ),
         ));
 
@@ -105,7 +131,7 @@ class SetupWalletScreen extends HookConsumerWidget {
         details.value = '';
 
         final service = ref.read(txServiceProvider(wallet));
-        await service.cacheTxsWithIds(discovery.txIds);
+        await service.cacheWalletTxIds(discovery.txIds);
 
         await walletRepository.closeWalletBoxes(wallet, network: network);
         Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);

@@ -8,7 +8,7 @@ class WalletAddressManager {
   final _addresses = <int, WalletAddress>{};
   final _addressIndexMap = <String, int>{};
 
-  int _lastUsedIndex = 0;
+  late int _lastUsedIndex = type == AddressType.receive ? 0 : -1;
 
   WalletAddress? addressAtIndex(int index) => _addresses[index];
 
