@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-02T18:44:47.857Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konta",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Wymagać hasła, aby otworzyć ten portfel?",
   "restartSetupButton": "Ponowne uruchomienie konfiguracji",
   "rootWarning": "Wygląda na to, że twoje urządzenie jest \"zrootowane\", \"jailbroken\" lub zmodyfikowane w sposób, który zagraża bezpieczeństwu. Zaleca się, aby zresetować urządzenie do oryginalnego stanu przed kontynuowaniem.",
-  "scanInstructions": "Zeskanuj kod QR\nadresu Kaspa",
   "scanQrCode": "Skanuj kod QR",
   "scanQrCodeError": "Nie udało się odczytać kodu QR",
   "secretInfo": "Na następnym ekranie zobaczysz swoją sekretną frazę. Jest to hasło umożliwiające dostęp do twoich środków. Ważne jest, aby ją zapisać i nigdy nie udostępniać komukolwiek.",
@@ -277,5 +276,8 @@
   "xMinutes": "Po {minutes, plural, =1{1 minucie} other{{minutes} minutach}}",
   "yes": "Tak",
   "yesButton": "Tak",
-  "yesUppercase": "TAK"
+  "yesUppercase": "TAK",
+  "nodeNotSyncedException": "Węzeł nie jest zsynchronizowany",
+  "nodeNoUTXOIndexException": "Węzeł nie zawiera indeksu UTXO",
+  "nodeSecureConnection": "Bezpieczne połączenie"
 }

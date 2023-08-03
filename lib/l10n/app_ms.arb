@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-30T18:47:24.253Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Akaun",
   "accounts": "Akaun",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Memerlukan kata laluan untuk membuka Kaspium?",
   "restartSetupButton": "Restart Setup",
   "rootWarning": "Nampaknya peranti anda \"di-root\", \"jailbroken\", atau diubah suai dengan cara yang menjejaskan keselamatan. Adalah disyorkan bahawa anda menetapkan semula peranti anda kepada keadaan asal sebelum meneruskan.",
-  "scanInstructions": "Imbaskan Kod QR\n Alamat Kaspa anda",
   "scanQrCode": "Imbaskan Kod QR",
   "scanQrCodeError": "Failed to parse qr code",
   "secretInfo": "Dalam skrin seterusnya, anda akan melihat frasa rahsia anda. Ia adalah kata laluan untuk mengakses dana anda. Adalah penting bahawa anda menyokongnya dan tidak pernah berkongsi dengan sesiapa sahaja.",
@@ -277,5 +276,8 @@
   "xMinutes": "Selepas {minutes, plural, =1{1 minit} other{{minutes} minit}}",
   "yes": "Ya",
   "yesButton": "Yes",
-  "yesUppercase": "YES"
+  "yesUppercase": "YES",
+  "nodeNotSyncedException": "Node is not synced",
+  "nodeNoUTXOIndexException": "Node does not have UTXO index",
+  "nodeSecureConnection": "Secure connection"
 }

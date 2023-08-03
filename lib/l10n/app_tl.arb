@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-30T18:47:24.253Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Account",
   "accounts": "Mga Account",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Gumawa ng password para mabuksan ang Kaspium?",
   "restartSetupButton": "Restart Setup",
   "rootWarning": "Ang iyong device ay \"rooted\", \"jailbroken\", o nabago ang security settings. Mabuti na i-reset mo ang iyong device sa orihinal na estado bago magpatuloy.",
-  "scanInstructions": "I-scan ang Kaspa \naddress QR code",
   "scanQrCode": "I-scan ang QR Code",
   "scanQrCodeError": "Failed to parse qr code",
   "secretInfo": "Sa susunod na screen, makikita mo ang iyong secret phrase. Ito ay password para ma-access mo ang iyong pondo. Importante na iback-up mo ito at wag mong i-share sa iba.",
@@ -277,5 +276,8 @@
   "xMinutes": "Pagkatapos ng {minutes, plural, =1{1 minuto} other{{minutes} minuto}}",
   "yes": "Oo",
   "yesButton": "Yes",
-  "yesUppercase": "YES"
+  "yesUppercase": "YES",
+  "nodeNotSyncedException": "Node is not synced",
+  "nodeNoUTXOIndexException": "Node does not have UTXO index",
+  "nodeSecureConnection": "Secure connection"
 }

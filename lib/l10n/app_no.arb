@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-08T14:46:42.237Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Kontoer",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Krev et passord for å åpne denne lommeboken?",
   "restartSetupButton": "Start oppsett på nytt",
   "rootWarning": "Din enhet er tilsynelatende \"rooted\", \"jailbroken\", eller endret på en måte som kompromitterer din sikkerhet. Det er anbefalt at du tilbakestiller enheten til opprinnelig tilstand, før du fortsetter.",
-  "scanInstructions": "Skan en KAS \nadresse QR-kode",
   "scanQrCode": "Skan QR-kode",
   "scanQrCodeError": "Klarte ikke å lese QR-kode",
   "secretInfo": "På neste skjerm vil du se din hemmelige frase. Den er et passord som gir tilgang til midlene dine. Det er avgjørende at du sikkerhetskopierer denne og aldri deler den med noen.",
@@ -277,5 +276,8 @@
   "xMinutes": "Etter {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
   "yes": "Ja",
   "yesButton": "Ja",
-  "yesUppercase": "JA"
+  "yesUppercase": "JA",
+  "nodeNotSyncedException": "Noden er ikke synkronisert",
+  "nodeNoUTXOIndexException": "Noden har ikke UTXO-indeksering aktivert",
+  "nodeSecureConnection": "Sikker tilkobling"
 }

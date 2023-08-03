@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-04-30T18:47:24.253Z",
+  "@@last_modified": "2023-06-07T03:22:23.378Z",
   "@@author": "arb-converter-cli",
   "account": "Akun",
   "accounts": "Semua Akun",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Memerlukan kata sandi untuk membuka dompet ini?",
   "restartSetupButton": "Mengulang Susunan",
   "rootWarning": "Tampaknya perangkat Anda \"di-root\", \"di-jailbreak\", atau dimodifikasi dengan cara yang membahayakan keamanannya. Disarankan agar Anda mengatur ulang perangkat Anda ke dalam keadaan semula sebelum melanjutkan.",
-  "scanInstructions": "Pindai Kaspa\nalamat kode QR",
   "scanQrCode": "Pindai Kode QR",
   "scanQrCodeError": "Gagal mengurai kode QR",
   "secretInfo": "Pada layar berikutnya, Anda akan melihat frasa rahasia Anda. Ini adalah kata sandi untuk mengakses dana Anda. Sangat penting bagi Anda untuk mencadangkannya dan tidak pernah membaginya dengan siapa pun.",
@@ -277,5 +276,8 @@
   "xMinutes": "Setelah {minutes, plural, =1{1 menit} other{{minutes} menit}}",
   "yes": "Ya",
   "yesButton": "Ya",
-  "yesUppercase": "YA"
+  "yesUppercase": "YA",
+  "nodeNotSyncedException": "Node tidak disinkronkan",
+  "nodeNoUTXOIndexException": "Node tidak memiliki indeks UTXO",
+  "nodeSecureConnection": "Koneksi Aman"
 }

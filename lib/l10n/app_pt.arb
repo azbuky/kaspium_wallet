@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-01T14:53:49.581Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Conta",
   "accounts": "Contas",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Exigir uma senha para abrir esta carteira?",
   "restartSetupButton": "Reiniciar a Configuração",
   "rootWarning": "Aparentemente o seu dispositivo é \"rooted\", \"jailbroken\" ou modificado de uma maneira que comprometa a sua segurança. É recomendável que você redefina o dispositivo para o estado original antes de continuar.",
-  "scanInstructions": "Escaneie o código QR \nde um endereço Kaspa",
   "scanQrCode": "Escanear QR Code",
   "scanQrCodeError": "Falha ao analisar o código QR",
   "secretInfo": "Na próxima tela, você verá sua frase secreta. É uma senha para acessar seus fundos. É crucial que você faça o backup e nunca o compartilhe com ninguém.",
@@ -277,5 +276,8 @@
   "xMinutes": "Após {minutes, plural, =1{1 minuto} other{{minutes} minutos}}",
   "yes": "Sim",
   "yesButton": "Sim",
-  "yesUppercase": "SIM"
+  "yesUppercase": "SIM",
+  "nodeNotSyncedException": "Nó não está sincronizado",
+  "nodeNoUTXOIndexException": "Nó não tem o índice UTXO sincronizado ",
+  "nodeSecureConnection": "Conexão segura "
 }

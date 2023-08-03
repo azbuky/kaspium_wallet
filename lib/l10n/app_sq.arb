@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-05T18:07:04.463Z",
+  "@@last_modified": "2023-06-07T03:22:23.378Z",
   "@@author": "arb-converter-cli",
   "account": "Llogaria",
   "accounts": "Llogaritë",
@@ -62,7 +62,7 @@
   "contactsHeader": "Kontaktet",
   "contactsImportErr": "Importimi i kontakteve dështoi",
   "contactsImportSuccess": "Kontaktet e {noContacts} u importuan me sukses",
-  "copied": "E kopjuar",
+  "copied": "U kopjua",
   "copy": "Kopjo",
   "copyAddress": "Kopjo Adrresën",
   "copyErrorButton": "Gabim ne kopim",
@@ -146,7 +146,7 @@
   "noSkipButton": "Jo, Kalo",
   "noUppercase": "JO",
   "nodeAddress": "Nyje Kaspa",
-  "nodeDeleteMessage": "Jeni i sigurt që dëshironi të fshini?",
+  "nodeDeleteMessage": "Jeni i sigurt që dëshironi ta fshini?",
   "nodeDeleteTitle": "Të fshihet konfigurimi i Nyjes Kaspa?",
   "nodeNameEmpty": "Emri i nyjes nuk mund të jetë bosh",
   "nodeNameHint": "Futni emrin e nyjes",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Kërkohet një fjalëkalim për të hapur këtë portofol?",
   "restartSetupButton": "Rinis konfigurimin",
   "rootWarning": "Duket se pajisja juaj është \"rooted\", \"jailbroken\" ose modifikuar në një mënyrë që rrezikon sigurinë. Rekomandohet që të rivendosni pajisjen tuaj në gjendjen e saj origjinale përpara se të vazhdoni.",
-  "scanInstructions": "Skanoni një Kaspa\nadresa kodi QR",
   "scanQrCode": "Skanoni kodin QR",
   "scanQrCodeError": "Analizimi i kodit qr dështoi",
   "secretInfo": "Në ekranin tjetër, do të shihni frazën tuaj sekrete. Është një fjalëkalim për të hyrë në fondet tuaja. Është thelbësore që ta mbështesni atë dhe të mos e ndani kurrë me askënd.",
@@ -277,5 +276,8 @@
   "xMinutes": "Pas {minutes, plural, =1{1 minuti} other{{minutes} minutash}}",
   "yes": "Po",
   "yesButton": "Po",
-  "yesUppercase": "PO"
+  "yesUppercase": "PO",
+  "nodeNotSyncedException": "Nyja nuk sinkronizohet",
+  "nodeNoUTXOIndexException": "Nyja nuk ka indeks UTXO",
+  "nodeSecureConnection": "Lidhje e sigurt"
 }

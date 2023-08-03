@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-09T19:39:21.905Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "حساب کاربری",
   "accounts": "حساب ها",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "آیا برای باز کردن این کیف پول به کلمه عبور نیاز دارید؟",
   "restartSetupButton": "راه اندازی مجدد",
   "rootWarning": "به نظر می رسد دستگاه شما \"روت شده\"، \"جیل بریک شده\" یا به گونه ای تغییر یافته که امنیت را به خطر می اندازد. توصیه می شود قبل از ادامه، دستگاه خود را به حالت اولیه بازنشانی کنید.",
-  "scanInstructions": "اسکن کنید Kaspa\nآدرس QR کد",
   "scanQrCode": "اسکن QR کد",
   "scanQrCodeError": "عدم موفقیت در تفکیک QR کد",
   "secretInfo": "در صفحه بعدی، عبارت مخفی خود را خواهید دید. این کلمه عبور شما برای دسترسی به ارزهای شما است. بسیار ضروری است که از آن بکاپ تهیه کنید و هرگز آن را با کسی به اشتراک نگذارید.",
@@ -277,5 +276,8 @@
   "xMinutes": "بعد از {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
   "yes": "بله",
   "yesButton": "بله",
-  "yesUppercase": "بله"
+  "yesUppercase": "بله",
+  "nodeNotSyncedException": "نود همگام سازی نمی شود",
+  "nodeNoUTXOIndexException": "نود شاخص UTXO ندارد",
+  "nodeSecureConnection": "ارتباط امن"
 }

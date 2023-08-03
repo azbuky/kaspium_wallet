@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-05T18:07:04.463Z",
+  "@@last_modified": "2023-07-14T06:17:08.292Z",
   "@@author": "arb-converter-cli",
   "account": "Cuenta",
   "accounts": "Cuentas",
@@ -90,7 +90,7 @@
   "enterAddress": "Ingresar billetera",
   "enterAmount": "Ingresar cantidad",
   "enterNote": "Ingresar nota",
-  "enterPasswordHint": "Ingresar tu contraseña",
+  "enterPasswordHint": "Ingrese su contraseña",
   "errorMessageCopied": "Mensaje de error copiado al portapapeles",
   "exampleCardIntro": "Esta es la pestaña de transacciones. Una vez que envíe o reciba una transacción, aparecerá aquí.",
   "exit": "Salir",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "¿Deseas requerir una contraseña para abrir esta billetera?",
   "restartSetupButton": "Reiniciar configuración",
   "rootWarning": "Parece que su dispositivo está \"rooteado\", \"jailbreakeado\" o modificado de alguna manera que compromete la seguridad. Se recomienda que restaure su dispositivo a su estado original antes de continuar.",
-  "scanInstructions": "Escanear un código QR \nde dirección de Kaspa",
   "scanQrCode": "Escanear código QR",
   "scanQrCodeError": "No se pudo analizar el código QR",
   "secretInfo": "En la siguiente pantalla, verá su frase secreta. Es una contraseña para acceder a sus fondos. Es crucial que la respalde y nunca la comparta con nadie.",
@@ -277,5 +276,8 @@
   "xMinutes": "Después de {minutes, plural, =1{1 minuto} other{{minutes} minutos}} ",
   "yes": "Sí",
   "yesButton": "Si",
-  "yesUppercase": "SI"
+  "yesUppercase": "SI",
+  "nodeNotSyncedException": "Nodo no sincronizado",
+  "nodeNoUTXOIndexException": "Nodo no contiene índice UTXO",
+  "nodeSecureConnection": "Conexión segura"
 }

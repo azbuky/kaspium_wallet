@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-05T18:07:04.463Z",
+  "@@last_modified": "2023-05-29T17:51:08.430Z",
   "@@author": "arb-converter-cli",
   "account": "Fiók",
   "accounts": "Fiókok",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Szeretnél jelszót használni a megnyitáshoz?    ",
   "restartSetupButton": "Beállítás újraindítása",
   "rootWarning": "Úgy tűnik, hogy az eszköz \"rootolt\", \"jailbreakelt\", vagy olyan módon módosították, amely veszélyezteti a biztonságot. Javasoljuk, hogy a folytatás előtt állítsd vissza a készüléket az eredeti állapotába.",
-  "scanInstructions": "Olvass be egy Kaspa címet \nQR-kóddal",
   "scanQrCode": "QR-kód beolvasás",
   "scanQrCodeError": "Nem sikerült a QR-kód elemzése",
   "secretInfo": "A következő képernyőn látni fogod a Seed Phrase-t. Ez a 24 szó az, amivel mindig el fogod tudni érni a tárcád. NAGYON fontos, hogy  másolatot készíts róla -ÍRD LE- és soha ne oszd meg senkivel.  ",
@@ -277,5 +276,8 @@
   "xMinutes": "{minutes, plural, =1{1 perc után} other{{minutes} perc után}}",
   "yes": "Igen",
   "yesButton": "Igen",
-  "yesUppercase": "IGEN"
+  "yesUppercase": "IGEN",
+  "nodeNotSyncedException": "A csomópont nincs szinkronizálva",
+  "nodeNoUTXOIndexException": "A csomóponton nincs UTXO index ",
+  "nodeSecureConnection": "Biztonságos kapcsolat"
 }

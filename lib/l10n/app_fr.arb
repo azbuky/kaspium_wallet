@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-05-02T18:44:47.857Z",
+  "@@last_modified": "2023-06-07T03:22:23.378Z",
   "@@author": "arb-converter-cli",
   "account": "Compte",
   "accounts": "Comptes",
@@ -197,7 +197,6 @@
   "requireAPasswordToOpenHeader": "Besoin d'un mot de passe pour ouvrir Kaspium ?",
   "restartSetupButton": "Redémarrer la configuration",
   "rootWarning": "Il semble que votre appareil soit \"rooté\", \"jailbreaké\" ou modifié d'une manière qui compromet sa sécurité. Il est recommandé de réinitialiser votre appareil à son état d'origine avant de continuer.",
-  "scanInstructions": "Scanner le QR Code d’une adresse Kaspa",
   "scanQrCode": "Scanner le QR Code",
   "scanQrCodeError": "Échec de l'analyse du QR Code",
   "secretInfo": "Dans l'écran suivant, vous verrez votre phrase secrète. Il s'agit d'un mot de passe qui permet d'accéder à vos fonds. Il est crucial que vous le sauvegardiez et que vous ne le partagiez jamais avec qui que ce soit.",
@@ -277,5 +276,8 @@
   "xMinutes": "Après {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
   "yes": "Oui",
   "yesButton": "Oui",
-  "yesUppercase": "OUI"
+  "yesUppercase": "OUI",
+  "nodeNotSyncedException": "Le nœud n'est pas synchronisé",
+  "nodeNoUTXOIndexException": "Le nœud ne possède pas d'index UTXO",
+  "nodeSecureConnection": "Connexion sécurisée"
 }
