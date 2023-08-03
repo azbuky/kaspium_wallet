@@ -111,6 +111,11 @@ final kaspaApiProvider = Provider<KaspaApi>((ref) {
   return KaspaApiEmpty();
 });
 
+final kaspaApiServiceProvider = Provider<KaspaApiService>((ref) {
+  final api = ref.watch(kaspaApiProvider);
+  return KaspaApiService(api);
+});
+
 final kaspaClientProvider = Provider((ref) {
   final config = ref.watch(kaspaNodeConfigProvider);
   final inBackground = ref.watch(inBackgroundProvider);

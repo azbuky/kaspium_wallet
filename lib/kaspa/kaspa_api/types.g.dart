@@ -114,7 +114,6 @@ Map<String, dynamic> _$$_ApiTxIdToJson(_$_ApiTxId instance) {
 }
 
 _$_ApiTxInput _$$_ApiTxInputFromJson(Map json) => _$_ApiTxInput(
-      id: json['id'] as int,
       transactionId: json['transaction_id'] as String,
       index: json['index'] as int,
       previousOutpointHash: json['previous_outpoint_hash'] as String,
@@ -128,7 +127,6 @@ _$_ApiTxInput _$$_ApiTxInputFromJson(Map json) => _$_ApiTxInput(
 
 Map<String, dynamic> _$$_ApiTxInputToJson(_$_ApiTxInput instance) {
   final val = <String, dynamic>{
-    'id': instance.id,
     'transaction_id': instance.transactionId,
     'index': instance.index,
     'previous_outpoint_hash': instance.previousOutpointHash,
@@ -149,7 +147,6 @@ Map<String, dynamic> _$$_ApiTxInputToJson(_$_ApiTxInput instance) {
 }
 
 _$_ApiTxOutput _$$_ApiTxOutputFromJson(Map json) => _$_ApiTxOutput(
-      id: json['id'] as int,
       transactionId: json['transaction_id'] as String,
       index: json['index'] as int,
       amount: json['amount'] as int,
@@ -160,7 +157,6 @@ _$_ApiTxOutput _$$_ApiTxOutputFromJson(Map json) => _$_ApiTxOutput(
 
 Map<String, dynamic> _$$_ApiTxOutputToJson(_$_ApiTxOutput instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'transaction_id': instance.transactionId,
       'index': instance.index,
       'amount': instance.amount,
@@ -172,8 +168,6 @@ Map<String, dynamic> _$$_ApiTxOutputToJson(_$_ApiTxOutput instance) =>
 _$_Transaction _$$_TransactionFromJson(Map json) => _$_Transaction(
       subnetworkId: json['subnetwork_id'] as String?,
       transactionId: json['transaction_id'] as String,
-      hash: json['hash'] as String?,
-      mass: json['mass'] == null ? null : BigInt.parse(json['mass'] as String),
       blockHash: (json['block_hash'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -205,8 +199,6 @@ Map<String, dynamic> _$$_TransactionToJson(_$_Transaction instance) {
 
   writeNotNull('subnetwork_id', instance.subnetworkId);
   val['transaction_id'] = instance.transactionId;
-  writeNotNull('hash', instance.hash);
-  writeNotNull('mass', instance.mass?.toString());
   val['block_hash'] = instance.blockHash;
   val['block_time'] = instance.blockTime;
   val['is_accepted'] = instance.isAccepted;
