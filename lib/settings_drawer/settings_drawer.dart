@@ -15,6 +15,7 @@ import '../settings/available_currency.dart';
 import '../settings/available_language.dart';
 import '../settings/available_themes.dart';
 import '../settings/setting_item.dart';
+import '../settings_advanced/advanced_menu.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/dialog.dart';
 import '../widgets/gradient_widgets.dart';
@@ -47,9 +48,13 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
   late final AnimationController _networkController;
   late final Animation<Offset> _networkOffsetFloat;
 
+  late final AnimationController _advancedController;
+  late final Animation<Offset> _advancedOffsetFloat;
+
   bool _securityOpen = false;
   bool _contactsOpen = false;
   bool _networkOpen = false;
+  bool _advancedOpen = false;
 
   @override
   void initState() {
@@ -71,6 +76,11 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       vsync: this,
       duration: const Duration(milliseconds: 220),
     );
+    // For advanced menu
+    _advancedController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 220),
+    );
 
     final beginOffset = const Offset(1.1, 0);
     final endOffset = const Offset(0, 0);
@@ -79,13 +89,17 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       end: endOffset,
     ).animate(_contactsController);
     _securityOffsetFloat = Tween<Offset>(
-      begin: const Offset(1.1, 0),
-      end: const Offset(0, 0),
+      begin: beginOffset,
+      end: endOffset,
     ).animate(_securityController);
     _networkOffsetFloat = Tween<Offset>(
-      begin: const Offset(1.1, 0),
-      end: const Offset(0, 0),
+      begin: beginOffset,
+      end: endOffset,
     ).animate(_networkController);
+    _advancedOffsetFloat = Tween<Offset>(
+      begin: beginOffset,
+      end: endOffset,
+    ).animate(_advancedController);
   }
 
   @override
@@ -93,6 +107,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
     _contactsController.dispose();
     _securityController.dispose();
     _networkController.dispose();
+    _advancedController.dispose();
 
     super.dispose();
   }
@@ -143,6 +158,10 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       setState(() => _networkOpen = false);
       _networkController.reverse();
       return false;
+    } else if (_advancedOpen) {
+      setState(() => _advancedOpen = false);
+      _advancedController.reverse();
+      return false;
     }
     return true;
   }
@@ -182,6 +201,13 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
             child: NetworkMenu(onBackAction: () {
               setState(() => _networkOpen = false);
               _networkController.reverse();
+            }),
+          ),
+          SlideTransition(
+            position: _advancedOffsetFloat,
+            child: AdvancedMenu(onBackAction: () {
+              setState(() => _advancedOpen = false);
+              _advancedController.reverse();
             }),
           ),
         ]),
@@ -269,6 +295,16 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                         onPressed: () {
                           setState(() => _networkOpen = true);
                           _networkController.forward();
+                        },
+                      ),
+                      Divider(height: 2, color: theme.text15),
+                      SingleLineItem(
+                        heading: l10n.advancedHeader,
+                        settingIcon: Icons.settings_applications_outlined,
+                        iconSize: 28,
+                        onPressed: () {
+                          setState(() => _advancedOpen = true);
+                          _advancedController.forward();
                         },
                       ),
                       Divider(height: 2, color: theme.text15),
