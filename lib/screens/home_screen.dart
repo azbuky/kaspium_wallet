@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../chain_state/chain_state.dart';
 import '../l10n/l10n.dart';
 import '../main_card/main_card.dart';
 import '../settings_drawer/settings_drawer.dart';
@@ -46,12 +47,26 @@ class HomeScreen extends HookConsumerWidget {
       await lockStreamListener.value?.cancel();
     }
 
+    Future<void> saveChainState() async {
+      final virtualDaaScore = ref.read(lastKnownVirtualDaaScoreProvider);
+      final blueScore = ref.read(virtualSelectedParentBlueScoreProvider);
+      final repository = ref.read(settingsRepositoryProvider);
+      await repository.setChainState(
+        ChainState(
+          virtualDaaScore: virtualDaaScore,
+          virtualSelectedParentBlueScore: blueScore,
+        ),
+      );
+    }
+
     useOnAppLifecycleStateChange((previous, state) async {
       final log = ref.read(loggerProvider);
       log.d('didChangeAppLifecycleState $state');
 
       switch (state) {
         case AppLifecycleState.paused:
+          await saveChainState();
+
           final inBackground = ref.read(inBackgroundProvider.notifier);
           inBackground.state = true;
 

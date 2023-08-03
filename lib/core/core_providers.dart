@@ -7,6 +7,7 @@ import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_styles.dart';
+import '../chain_state/chain_state.dart';
 import '../database/database.dart';
 import '../kaspa/grpc/rpc.pb.dart';
 import '../kaspa/kaspa.dart';
@@ -143,8 +144,15 @@ final themeProvider = Provider((ref) {
   return themeSetting.getTheme();
 });
 
-final lastKnownVirtualDaaScoreProvider =
-    StateProvider<BigInt>((ref) => BigInt.zero);
+final chainStateProvider = Provider((ref) {
+  final repository = ref.watch(settingsRepositoryProvider);
+  return repository.getChainState();
+});
+
+final lastKnownVirtualDaaScoreProvider = StateProvider<BigInt>((ref) {
+  final chainState = ref.watch(chainStateProvider);
+  return chainState.virtualDaaScore;
+});
 
 final virtualDaaScoreProvider = StreamProvider((ref) {
   final client = ref.watch(kaspaClientProvider);
@@ -158,8 +166,10 @@ final virtualDaaScoreProvider = StreamProvider((ref) {
   });
 });
 
-final virtualSelectedParentBlueScoreProvider =
-    StateProvider<BigInt>((ref) => BigInt.zero);
+final virtualSelectedParentBlueScoreProvider = StateProvider<BigInt>((ref) {
+  final chainState = ref.watch(chainStateProvider);
+  return chainState.virtualSelectedParentBlueScore;
+});
 
 final virtualSelectedParentBlueScoreStreamProvider = StreamProvider((ref) {
   final client = ref.watch(kaspaClientProvider);
