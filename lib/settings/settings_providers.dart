@@ -47,8 +47,7 @@ final themeSettingProvider =
 final currencyProvider =
     StateNotifierProvider<CurrencyNotifier, AvailableCurrency>((ref) {
   final sharedPrefsUtil = ref.watch(sharedPrefsUtilProvider);
-  final currency = sharedPrefsUtil.getCurrency();
-  return CurrencyNotifier(currency, sharedPrefsUtil);
+  return CurrencyNotifier(sharedPrefsUtil);
 });
 
 final languageProvider =
