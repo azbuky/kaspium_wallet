@@ -4,11 +4,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
+import '../widgets/app_simpledialog.dart';
 import '../widgets/buttons.dart';
 import '../widgets/gradient_widgets.dart';
+import '../widgets/sheet_header_button.dart';
 import '../widgets/sheet_widget.dart';
+import 'address_filter_dialog.dart';
 import 'address_list_widget.dart';
 import 'address_providers.dart';
+import 'address_settings.dart';
 
 class AccountsSheet extends HookConsumerWidget {
   const AccountsSheet({Key? key}) : super(key: key);
@@ -26,6 +30,17 @@ class AccountsSheet extends HookConsumerWidget {
     final addingAddress = useState(false);
     final receiveScrollController = useScrollController();
     final changeScrollController = useScrollController();
+
+    Future<void> showAddressFilterOptions() async {
+      final selection = await showAppDialog<AddressFilter>(
+        context: context,
+        builder: (_) => const AddressFilterDialog(),
+      );
+      if (selection != null) {
+        final notifier = ref.read(addressSettingsProvider.notifier);
+        notifier.setAddressFilter(selection);
+      }
+    }
 
     return DefaultTabController(
       length: 2,
@@ -48,6 +63,10 @@ class AccountsSheet extends HookConsumerWidget {
 
         return SheetWidget(
           title: l10n.walletAddresses,
+          rightWidget: SheetHeaderButton(
+            icon: Icons.remove_red_eye,
+            onPressed: showAddressFilterOptions,
+          ),
           mainWidget: Column(
             children: [
               Container(

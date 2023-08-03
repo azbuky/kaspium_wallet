@@ -22,16 +22,25 @@ class ChangeAddressListWidget extends HookConsumerWidget {
 
     useAutomaticKeepAlive();
 
-    return ListView.builder(
+    if (addresses.isEmpty) {
+      return Column(children: [
+        Text(
+          'Change address list is empty',
+          style: TextStyle(color: theme.text10),
+        ),
+      ]);
+    }
+
+    return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      itemCount: addresses.length + 1,
+      itemCount: addresses.length,
       controller: scrollController,
       itemBuilder: (context, index) {
-        if (index == addresses.length) {
-          return Divider(height: 2, color: theme.text15);
-        }
         final account = addresses[index];
         return AccountListItem(address: account);
+      },
+      separatorBuilder: (context, index) {
+        return Divider(height: 2, color: theme.text15);
       },
     );
   }
@@ -53,16 +62,25 @@ class ReceiveAddressListWidget extends HookConsumerWidget {
 
     useAutomaticKeepAlive();
 
-    return ListView.builder(
+    if (addresses.isEmpty) {
+      return Column(children: [
+        Text(
+          'Receive address list is empty',
+          style: TextStyle(color: theme.text10),
+        ),
+      ]);
+    }
+
+    return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      itemCount: addresses.length + 1,
+      itemCount: addresses.length,
       controller: scrollController,
       itemBuilder: (context, index) {
-        if (index == addresses.length) {
-          return Divider(height: 2, color: theme.text15);
-        }
         final account = addresses[index];
         return AccountListItem(address: account);
+      },
+      separatorBuilder: (context, index) {
+        return Divider(height: 2, color: theme.text15);
       },
     );
   }

@@ -7,6 +7,7 @@ import '../kaspa/wallet/version.dart';
 import '../utxos/utxos_providers.dart';
 import '../wallet/wallet_types.dart';
 import '../wallet_balance/wallet_balance_providers.dart';
+import 'address_settings.dart';
 import 'wallet_address.dart';
 import 'wallet_address_manager.dart';
 import 'wallet_address_notifier.dart';
@@ -50,16 +51,32 @@ final allAddressesProvider = Provider.autoDispose((ref) {
 });
 
 final reversedReceiveAddressesProvider = Provider.autoDispose((ref) {
+  final filter = ref.watch(addressFilterProvider);
+  final balanceNotifier = ref.watch(balanceNotifierProvider);
   final receiveAddresses = ref.watch(
     addressNotifierProvider.select((value) => value.receiveAddresses),
   );
+  if (filter == AddressFilter.nonZero) {
+    return receiveAddresses
+        .removeWhere((address) =>
+            balanceNotifier.balanceForAddress(address.encoded) == Amount.zero)
+        .reversed;
+  }
   return receiveAddresses.reversed;
 });
 
 final reversedChangeAddressesProvider = Provider.autoDispose((ref) {
+  final filter = ref.watch(addressFilterProvider);
+  final balanceNotifier = ref.watch(balanceNotifierProvider);
   final changeAddresses = ref.watch(
     addressNotifierProvider.select((value) => value.changeAddresses),
   );
+  if (filter == AddressFilter.nonZero) {
+    return changeAddresses
+        .removeWhere((address) =>
+            balanceNotifier.balanceForAddress(address.encoded) == Amount.zero)
+        .reversed;
+  }
   return changeAddresses.reversed;
 });
 
