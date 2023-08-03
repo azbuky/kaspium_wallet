@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../l10n/l10n.dart';
 import '../main_card/main_card.dart';
 import '../settings_drawer/settings_drawer.dart';
 import '../util/ui_util.dart';
@@ -17,6 +18,7 @@ class HomeScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
+    l10nWrapper.l10n = l10nOf(context);
 
     // whether we should avoid locking the app
     final lockDisabled = ref.watch(lockDisabledProvider);
