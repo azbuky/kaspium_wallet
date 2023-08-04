@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kaspium_wallet/coingecko/coingecko_repository.dart';
+
 import 'package:decimal/decimal.dart';
 
-import '../../../app_providers.dart';
+import '../app_providers.dart';
+import '../settings/available_currency.dart';
+
 import 'coingecko_types.dart';
-import '../../../settings/available_currency.dart';
+import 'coingecko_repository.dart';
 
 final _coinGeckoPriceCacheProvider = StateProvider<CoinGeckoPrice>((ref) {
   return CoinGeckoPrice(
@@ -16,6 +18,7 @@ final _coinGeckoPriceCacheProvider = StateProvider<CoinGeckoPrice>((ref) {
 });
 
 final _coinGeckoRemotePriceProvider = FutureProvider((ref) async {
+  ref.watch(remoteRefreshProvider);
   final currency = ref.watch(currencyProvider);
   final coinGeckoRepo = ref.watch(coinGeckoRepositoryProvider);
 
@@ -23,7 +26,6 @@ final _coinGeckoRemotePriceProvider = FutureProvider((ref) async {
 });
 
 final coinGeckoPriceProvider = Provider.autoDispose((ref) {
-  ref.watch(remoteRefreshProvider);
   final cache = ref.watch(_coinGeckoPriceCacheProvider.notifier);
   final remotePrice = ref.watch(_coinGeckoRemotePriceProvider);
 
