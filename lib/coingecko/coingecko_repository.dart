@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'dart:developer';
 import 'package:decimal/decimal.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
 import '../settings/available_currency.dart';
@@ -13,7 +12,9 @@ abstract class CoinGeckoRepository {
   Future<CoinGeckoRates> fetchRates();
 }
 
-final coinGeckoRepositoryProvider = Provider<CoinGeckoRepository>((_) => CoinGeckoRepositoryImpl(http.Client()));
+coinGeckoRepository<CoinGeckoRepository>() {
+  return CoinGeckoRepositoryImpl(http.Client());
+}
 
 class CoinGeckoRepositoryImpl implements CoinGeckoRepository {
 

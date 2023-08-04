@@ -9,6 +9,8 @@ import '../settings/available_currency.dart';
 import 'coingecko_types.dart';
 import 'coingecko_repository.dart';
 
+final coinGeckoRepositoryProvider = Provider<CoinGeckoRepository>((_) => coinGeckoRepository());
+
 final _coinGeckoPriceCacheProvider = StateProvider<CoinGeckoPrice>((ref) {
   return CoinGeckoPrice(
     currency: AvailableCurrencies.USD,
