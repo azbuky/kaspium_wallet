@@ -12,7 +12,7 @@ import '../wallet_address/address_providers.dart';
 import 'wallet_balance_notifier.dart';
 
 final kaspaPriceProvider = Provider.autoDispose((ref) {
-  return  ref.watch(coinGeckoPriceProvider);
+  return ref.watch(coinGeckoPriceProvider);
 });
 
 final _addressBalanceBoxProvider = Provider.autoDispose((ref) {
