@@ -273,7 +273,7 @@
   "warning": "AMARAN",
   "welcomeMessage": "Selamat datang!\n\nIni ialah versi {version} Kaspium - dompet mobile untuk Kaspa",
   "welcomeText": "Selamat datang di Kaspium. Untuk bermula, anda boleh membuat dompet baharu atau mengimport dompet sedia ada.",
-  "xMinutes": "Selepas {minutes, plural,  =1{1 minute}  lain{{minutes} minit}}",
+  "xMinutes": "Selepas {minutes, plural, =1{1 minute} other{{minutes} minit}}",
   "yes": "Ya",
   "yesButton": "ya",
   "yesUppercase": "YA",
