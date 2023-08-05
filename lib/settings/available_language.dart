@@ -25,7 +25,7 @@ enum AvailableLanguage {
   DANISH("da", "Dansk (da)"),
   GERMAN("de", "Deutsch (de)"),
   SPANISH("es", "Español (es)"),
-  FINNISH("fi", "Finnish (fi)"),
+  FINNISH("fi", "Suomi (fi)"),
   FRENCH("fr", "Français (fr)"),
   GEORGIAN("ka", "ქართული (ka)"),
   GREEK("el", "Greek (el)"),
