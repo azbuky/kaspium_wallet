@@ -18,7 +18,7 @@ enum AvailableLanguage {
   MALAY("ms", "Bahasa Melayu (ms)"),
   BASQUE("eu", "Euskera (eu)"),
   BENGALI("bn", "Bengali (bn)"),
-  BULGARIAN("bg", "Български език (bg)"),
+  BULGARIAN("bg", "Български (bg)"),
   CATALAN("ca", "Català (ca)"),
   CHINESE("zh", "中文 (zh)"),
   CZECH("cs", "Czech (cs)"),
