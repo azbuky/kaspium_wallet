@@ -118,7 +118,7 @@ class AddressDetailsSheet extends HookConsumerWidget {
             const SizedBox(height: 22),
             AddressThreeLineText(
               address: address.encoded,
-              type: AddressThreeLineTextType.PRIMARY60,
+              type: AddressTextType.PRIMARY60,
             ),
             const SizedBox(height: 12),
             if (address.type == AddressType.receive)

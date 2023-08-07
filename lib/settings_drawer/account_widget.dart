@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
 import '../wallet_address/address_providers.dart';
-import '../widgets/address/address_three_line_left_text.dart';
+import '../widgets/address_widgets.dart';
 
 class AccountWidget extends ConsumerWidget {
   const AccountWidget({Key? key}) : super(key: key);
@@ -28,7 +28,10 @@ class AccountWidget extends ConsumerWidget {
             style: styles.textStyleAccount,
           ),
         ),
-        AddressThreeLineLeftText(address: address.encoded),
+        AddressThreeLineText(
+          address: address.encoded,
+          textAlign: TextAlign.start,
+        ),
       ],
     );
   }

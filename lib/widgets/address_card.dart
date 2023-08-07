@@ -4,19 +4,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
-import '../wallet_address/address_providers.dart';
 import 'address_widgets.dart';
 
 class AddressCard extends HookConsumerWidget {
   final Address address;
   final bool showLabel;
-  final AddressThreeLineTextType type;
+  final AddressTextType type;
 
   const AddressCard({
     Key? key,
     required this.address,
     this.showLabel = true,
-    this.type = AddressThreeLineTextType.PRIMARY,
+    this.type = AddressTextType.PRIMARY,
   }) : super(key: key);
 
   @override

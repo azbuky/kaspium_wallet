@@ -7,7 +7,7 @@ import '../app_providers.dart';
 import '../l10n/l10n.dart';
 import '../send_sheet/balance_text_widget.dart';
 import '../util/ui_util.dart';
-import '../widgets/address/address_three_line_left_text.dart';
+import '../widgets/address_widgets.dart';
 import '../widgets/sheet_util.dart';
 import 'address_details_sheet.dart';
 import 'address_providers.dart';
@@ -147,8 +147,9 @@ class AccountListItem extends ConsumerWidget {
                                 ),
                                 FittedBox(
                                   fit: BoxFit.scaleDown,
-                                  child: AddressThreeLineLeftText(
+                                  child: AddressThreeLineText(
                                     address: address.encoded,
+                                    textAlign: TextAlign.start,
                                   ),
                                 ),
                               ],

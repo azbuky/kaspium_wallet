@@ -168,8 +168,8 @@ class ContactDetails extends HookConsumerWidget {
                     child: AddressThreeLineText(
                       address: contact.address,
                       type: addressCopied.value
-                          ? AddressThreeLineTextType.SUCCESS_FULL
-                          : AddressThreeLineTextType.PRIMARY,
+                          ? AddressTextType.SUCCESS_FULL
+                          : AddressTextType.PRIMARY,
                     ),
                   ),
                 ),
