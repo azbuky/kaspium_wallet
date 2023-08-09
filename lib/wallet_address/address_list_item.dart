@@ -10,7 +10,6 @@ import '../util/ui_util.dart';
 import '../widgets/address_widgets.dart';
 import '../widgets/sheet_util.dart';
 import 'address_details_sheet.dart';
-import 'address_providers.dart';
 import 'wallet_address.dart';
 
 class AccountListItem extends ConsumerWidget {

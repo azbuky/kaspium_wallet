@@ -4,8 +4,9 @@ import 'package:decimal/decimal.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
-import '../app_providers.dart';
+import '../core/core_providers.dart';
 import '../settings/available_currency.dart';
+import '../settings/settings_providers.dart';
 import 'coingecko_types.dart';
 
 final _kaspaPriceCacheProvider = StateProvider<CoinGeckoPrice>((ref) {

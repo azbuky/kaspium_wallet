@@ -6,7 +6,6 @@ import '../app_providers.dart';
 import '../l10n/l10n.dart';
 import '../settings_drawer/single_line_item.dart';
 import '../wallet_address/address_discovery.dart';
-import '../wallet_address/address_providers.dart';
 import '../wallet_address/wallet_address.dart';
 import '../widgets/app_icon_button.dart';
 import '../widgets/gradient_widgets.dart';

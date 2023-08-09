@@ -22,7 +22,6 @@ import '../util/hapticutil.dart';
 import '../util/sharedprefsutil.dart';
 import '../util/vault.dart';
 import '../utxos/utxos_providers.dart';
-import '../wallet_signer/wallet_signer.dart';
 
 final timeProvider = StreamProvider.autoDispose<DateTime>((ref) {
   return Stream.periodic(
@@ -59,16 +58,6 @@ final blockExplorerProvider = Provider((ref) {
   final settings = ref.watch(blockExplorerSettingsProvider);
   final network = ref.watch(networkProvider);
   return settings.explorerForNetwork(network);
-});
-
-final walletServiceProvider = Provider.autoDispose((ref) {
-  final signer = ref.watch(walletSignerProvider);
-  final client = ref.watch(kaspaClientProvider);
-
-  return WalletService(
-    signer: signer,
-    client: client,
-  );
 });
 
 final sharedPrefsProvider =

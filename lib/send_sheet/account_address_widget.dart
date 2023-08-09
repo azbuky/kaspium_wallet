@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
-import '../wallet_address/address_providers.dart';
 import '../widgets/address_widgets.dart';
 
 class AccountAddressWidget extends ConsumerWidget {

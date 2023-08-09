@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
-import '../wallet_address/address_providers.dart';
 import '../widgets/address_widgets.dart';
 
 class AccountWidget extends ConsumerWidget {

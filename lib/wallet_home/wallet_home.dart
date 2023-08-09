@@ -8,10 +8,7 @@ import '../l10n/l10n.dart';
 import '../main_card/main_card.dart';
 import '../transactions/transactions_widget.dart';
 import '../util/ui_util.dart';
-import '../utxos/utxos_providers.dart';
 import '../utxos/utxos_widget.dart';
-import '../wallet_address/address_providers.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
 import '../widgets/gradient_widgets.dart';
 import 'wallet_action_buttons.dart';
 

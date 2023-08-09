@@ -7,7 +7,6 @@ import '../kaspa/types.dart';
 import '../l10n/l10n.dart';
 import '../transactions/transaction_details_sheet.dart';
 import '../util/numberutil.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
 import '../widgets/sheet_util.dart';
 
 class UtxoCard extends ConsumerWidget {

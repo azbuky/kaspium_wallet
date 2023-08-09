@@ -1,9 +1,10 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app_providers.dart';
+import '../core/core_providers.dart';
 import '../database/boxes.dart';
 import '../kaspa/transaction/types.dart';
 import '../wallet_address/address_providers.dart';
+import '../wallet_auth/wallet_auth_providers.dart';
 import '../wallet_balance/wallet_balance_providers.dart';
 import 'utxos_notifier.dart';
 

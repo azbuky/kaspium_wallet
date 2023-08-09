@@ -11,7 +11,6 @@ import '../widgets/sheet_header_button.dart';
 import '../widgets/sheet_widget.dart';
 import 'address_filter_dialog.dart';
 import 'address_list_widget.dart';
-import 'address_providers.dart';
 import 'address_settings.dart';
 
 class AccountsSheet extends HookConsumerWidget {

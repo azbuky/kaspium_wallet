@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
 import '../wallet_address/address_details_sheet.dart';
-import '../wallet_address/address_providers.dart';
 import '../widgets/selected_wallet_button.dart';
 import '../widgets/sheet_util.dart';
 import 'account_switcher.dart';

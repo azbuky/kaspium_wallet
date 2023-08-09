@@ -8,8 +8,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../app_providers.dart';
 import '../contacts/contact.dart';
+import '../contacts/contacts_providers.dart';
+import '../core/core_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../util/ui_util.dart';

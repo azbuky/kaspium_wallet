@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../wallet_address/address_details_sheet.dart';
-import '../wallet_address/address_providers.dart';
 import 'sheet_util.dart';
 
 class SelectedWalletButton extends ConsumerWidget {
@@ -19,6 +18,7 @@ class SelectedWalletButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
+
     final account = ref.watch(receiveWalletAddressProvider);
     final wallet = ref.watch(walletProvider);
 

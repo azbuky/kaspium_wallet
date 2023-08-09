@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
 
 class FiatValueWidget extends ConsumerWidget {
   final Amount amount;

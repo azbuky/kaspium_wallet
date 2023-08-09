@@ -10,7 +10,6 @@ import '../l10n/l10n.dart';
 import '../themes/kaspium_light_theme.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
 import '../widgets/app_icon_button.dart';
 import '../widgets/balance_widget.dart';
 

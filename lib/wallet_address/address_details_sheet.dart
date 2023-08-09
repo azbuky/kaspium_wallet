@@ -15,7 +15,6 @@ import '../widgets/buttons.dart';
 import '../widgets/contact_info_button.dart';
 import '../widgets/sheet_widget.dart';
 import '../widgets/tap_outside_unfocus.dart';
-import 'address_providers.dart';
 import 'wallet_address.dart';
 
 final _accountNameProvider = StateProvider<String?>((ref) => null);

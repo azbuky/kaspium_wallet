@@ -3,11 +3,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
-import '../wallet_address/address_providers.dart';
 import '../widgets/reactive_refresh.dart';
 import 'utxo_card.dart';
 import 'utxos_empty_card.dart';
-import 'utxos_providers.dart';
 
 class UtxosWidget extends HookConsumerWidget {
   const UtxosWidget({Key? key}) : super(key: key);

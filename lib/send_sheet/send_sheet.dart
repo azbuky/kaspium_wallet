@@ -13,8 +13,6 @@ import '../transactions/send_tx.dart';
 import '../util/numberutil.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
-import '../utxos/utxos_providers.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
 import '../widgets/address_widgets.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
@@ -641,12 +639,12 @@ class _SendSheetState extends ConsumerState<SendSheet> {
 
       final formatter = ref.watch(kaspaFormatterProvider);
       final maxSend = ref.watch(maxSendProvider);
-      final isMaxSend = amountRaw == maxSend;
+      final isMaxSend = amountRaw == maxSend || maxSend == 0;
 
       void onValueChanged(String text) {
         final value = formatter.tryParse(text);
         if (value == null) {
-          amountRaw = null;
+          setState(() => amountRaw = null);
           return;
         }
         amountRaw = Amount.value(value).raw;

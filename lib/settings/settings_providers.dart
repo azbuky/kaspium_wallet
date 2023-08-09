@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app_providers.dart';
+import '../core/core_providers.dart';
 import '../database/boxes.dart';
 import '../database/database.dart';
 import 'available_currency.dart';

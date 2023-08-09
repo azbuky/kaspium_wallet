@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../app_providers.dart';
-import '../wallet_address/address_providers.dart';
 
 class AppShareCard extends StatefulWidget {
   final GlobalKey? globalKey;

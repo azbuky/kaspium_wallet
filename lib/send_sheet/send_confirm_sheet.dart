@@ -7,11 +7,8 @@ import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../transactions/send_tx.dart';
-import '../txnotes/txnotes_provider.dart';
 import '../util/numberutil.dart';
 import '../util/ui_util.dart';
-import '../wallet_address/address_providers.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
 import '../widgets/address_card.dart';
 import '../widgets/amount_card.dart';
 import '../widgets/buttons.dart';
@@ -57,7 +54,7 @@ class SendConfirmSheet extends HookConsumerWidget {
         );
 
         final addressNotifier = ref.read(addressNotifierProvider);
-        final changeAddress = addressNotifier.nextChangeAddress;
+        final changeAddress = await addressNotifier.nextChangeAddress;
 
         final result = await walletService.sendTransaction(
           tx,
