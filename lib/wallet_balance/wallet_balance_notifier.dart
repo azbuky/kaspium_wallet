@@ -6,17 +6,17 @@ import '../util/safe_change_notifier.dart';
 import '../wallet_address/wallet_address_notifier.dart';
 
 class WalletBalanceNotifier extends SafeChangeNotifier {
-  final TypedBox<AddressBalance> balanceBox;
+  final TypedBox<AddressBalance> _balanceBox;
   final WalletAddressAware addressAware;
 
   final Map<String, BigInt> _balances = {};
   BigInt _totalBalance = BigInt.zero;
 
   WalletBalanceNotifier({
-    required this.balanceBox,
+    required TypedBox<AddressBalance> balanceBox,
     required this.addressAware,
-  }) {
-    final balances = balanceBox.getAll();
+  }) : _balanceBox = balanceBox {
+    final balances = _balanceBox.getAll();
     for (final balance in balances.values) {
       final newBalance = balance.balance;
       if (!addressAware.containsAddress(balance.address)) {
@@ -48,7 +48,7 @@ class WalletBalanceNotifier extends SafeChangeNotifier {
 
         final key = addressAware.keyForAddress(entry.address);
         if (key != null) {
-          balanceBox.set(key, entry);
+          _balanceBox.set(key, entry);
         }
         _totalBalance += newBalance - oldBalance;
       }
@@ -110,7 +110,7 @@ class WalletBalanceNotifier extends SafeChangeNotifier {
     }
 
     if (balanceChanges.isNotEmpty) {
-      balanceBox.setAll(balanceChanges);
+      _balanceBox.setAll(balanceChanges);
     }
 
     notifyListeners();
