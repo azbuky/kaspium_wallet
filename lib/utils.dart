@@ -76,10 +76,10 @@ bool isValidMnemonicWord(String word) {
   return kBip39EnglishWords.contains(word);
 }
 
+// Generic bip39 validation
 bool isValidMnemonic(String mnemonic, {bool verifyChecksum = true}) {
   final words = mnemonic.split(' ');
-  // allow 24 words mnemonics
-  return (words.length == 24 || words.length == 12) &&
+  return (words.length >= 12 && words.length <= 24 && words.length % 3 == 0) &&
       words.every((word) => isValidMnemonicWord(word)) &&
       (verifyChecksum ? bip39.validateMnemonic(mnemonic) : true);
 }
