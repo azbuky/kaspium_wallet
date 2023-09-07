@@ -62,7 +62,7 @@ class ReceiveActionButton extends ConsumerWidget {
       title: l10n.receive,
       onPressed: () {
         onPressed?.call();
-        Sheets.showAppHeightEightSheet(
+        Sheets.showAppHeightNineSheet(
           context: context,
           widget: const ReceiveSheet(),
           theme: theme,
