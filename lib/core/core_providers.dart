@@ -87,7 +87,7 @@ final networkProvider = Provider((ref) {
 
 final addressPrefixProvider = Provider((ref) {
   final network = ref.watch(networkProvider);
-  final prefix = AddressPrefix.forNetwork(network);
+  final prefix = addressPrefixForNetwork(network);
 
   return prefix;
 });

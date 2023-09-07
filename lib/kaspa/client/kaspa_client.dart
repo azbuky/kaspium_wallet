@@ -5,7 +5,7 @@ import 'package:grpc/grpc.dart';
 
 import '../grpc/messages.pbgrpc.dart';
 import '../grpc/rpc.pb.dart';
-import '../types.dart';
+import '../network.dart';
 
 class RpcException implements Exception {
   final RPCError error;

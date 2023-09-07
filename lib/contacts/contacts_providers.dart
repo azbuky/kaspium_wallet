@@ -16,7 +16,7 @@ final contactsProvider = ChangeNotifierProvider((ref) {
   final contactsBox = ref.watch(contactsBoxProvider);
   final sharedPrefsUtil = ref.watch(sharedPrefsUtilProvider);
 
-  final prefix = AddressPrefix.forNetwork(network).toString() + ':';
+  final prefix = addressPrefixForNetwork(network).toString() + ':';
 
   return ContactsNotifier(contactsBox, sharedPrefsUtil, prefix: prefix);
 });

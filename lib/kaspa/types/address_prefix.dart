@@ -1,5 +1,3 @@
-import 'network.dart';
-
 enum AddressPrefix {
   unknown,
   kaspa,
@@ -19,19 +17,6 @@ enum AddressPrefix {
         return AddressPrefix.kaspaSim;
       default:
         return AddressPrefix.unknown;
-    }
-  }
-
-  static AddressPrefix forNetwork(KaspaNetwork network) {
-    switch (network) {
-      case KaspaNetwork.mainnet:
-        return AddressPrefix.kaspa;
-      case KaspaNetwork.testnet:
-        return AddressPrefix.kaspaTest;
-      case KaspaNetwork.devnet:
-        return AddressPrefix.kaspaDev;
-      case KaspaNetwork.simnet:
-        return AddressPrefix.kaspaSim;
     }
   }
 

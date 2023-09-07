@@ -4,12 +4,26 @@ import 'package:coinslib/coinslib.dart';
 
 import '../utils.dart';
 import 'bip32_kdx.dart';
-import 'wallet/version.dart';
+import 'network.dart';
+import 'types/address_prefix.dart';
 
 const kSeedSize = 64;
 
 const kKaspaDerivationPath = "m/44'/111111'/0'";
 const kLegacyDerivationPath = "m/44'/972/0'";
+
+AddressPrefix addressPrefixForNetwork(KaspaNetwork network) {
+  switch (network) {
+    case KaspaNetwork.mainnet:
+      return AddressPrefix.kaspa;
+    case KaspaNetwork.testnet:
+      return AddressPrefix.kaspaTest;
+    case KaspaNetwork.devnet:
+      return AddressPrefix.kaspaDev;
+    case KaspaNetwork.simnet:
+      return AddressPrefix.kaspaSim;
+  }
+}
 
 enum HdWalletType {
   schnorr,

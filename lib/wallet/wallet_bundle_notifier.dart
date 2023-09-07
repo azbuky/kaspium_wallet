@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../database/database.dart';
 import '../kaspa/kaspa.dart';
-import '../kaspa/wallet/version.dart';
 import '../util/random_util.dart';
 import '../utils.dart';
 import 'wallet_repository.dart';
