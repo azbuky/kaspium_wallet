@@ -28,6 +28,9 @@ class AppStyles {
     );
   }
 
+  late final textStyleParagraphNormal =
+      textStyleParagraph.copyWith(fontWeight: FontWeight.w400);
+
   late final textStyleParagraphSmall = TextStyle(
     fontFamily: kDefaultFontFamily,
     fontSize: AppFontSizes.small,
@@ -51,6 +54,9 @@ class AppStyles {
     fontWeight: FontWeight.w700,
     color: theme.primary,
   );
+
+  late final textStyleParagraphPrimaryNormal =
+      textStyleParagraphPrimary.copyWith(fontWeight: FontWeight.w400);
 
   late final textStyleParagraphPrimaryW100 =
       textStyleParagraphPrimary.copyWith(fontWeight: FontWeight.w100);
