@@ -24,7 +24,6 @@ class AccountsArea extends ConsumerWidget {
         context: context,
         theme: theme,
         widget: AddressDetailsSheet(address: account),
-        onDisposed: () => AddressDetailsSheet.saveChanges(ref, account),
       );
     }
 

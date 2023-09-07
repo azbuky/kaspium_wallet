@@ -30,27 +30,8 @@ class AccountListItem extends ConsumerWidget {
         context: context,
         theme: ref.read(themeProvider),
         widget: AddressDetailsSheet(address: address),
-        onDisposed: () => AddressDetailsSheet.saveChanges(ref, address),
       );
     }
-
-    // void removeAccount() {
-    //   accounts.removeAccount(account);
-    // }
-
-    // void confirmDeleteAccount() {
-    //   AppDialogs.showConfirmDialog(
-    //     context,
-    //     l10n.hideAccountHeader,
-    //     l10n.hideAccountText.replaceAll(
-    //       "%1",
-    //       l10n.addAccount,
-    //     ),
-    //     l10n.YES,
-    //     removeAccount,
-    //     cancelText: l10n.NO,
-    //   );
-    // }
 
     Future<void> copyAddress() async {
       await Clipboard.setData(ClipboardData(text: address.encoded));
@@ -60,39 +41,14 @@ class AccountListItem extends ConsumerWidget {
       UIUtil.showSnackbar(message, context);
     }
 
-    // return Slidable(
-    //   secondaryActions: [
-    //     SlideAction(
-    //       child: Container(
-    //         margin: EdgeInsetsDirectional.only(start: 2, top: 1, bottom: 1),
-    //         constraints: BoxConstraints.expand(),
-    //         decoration: BoxDecoration(color: theme.primary),
-    //         child: Icon(Icons.edit, color: theme.backgroundDark),
-    //       ),
-    //       onTap: showAddressDetails,
-    //     ),
-    // if (account.index > 0)
-    //   SlideAction(
-    //     child: Container(
-    //       margin: EdgeInsetsDirectional.only(start: 2, top: 1, bottom: 1),
-    //       constraints: BoxConstraints.expand(),
-    //       decoration: BoxDecoration(color: theme.primary),
-    //       child: Icon(Icons.delete, color: theme.backgroundDark),
-    //     ),
-    //     onTap: confirmDeleteAccount,
-    //   ),
-    //   ],
-    //   actionExtentRatio: 0.2,
-    //   actionPane: const SlidableStrechActionPane(),
-    //   child:
     return Column(
       children: [
-        Divider(height: 2, color: theme.text15),
         TextButton(
           style: styles.defaultTextButtonStyle,
           onPressed: showAddressDetails,
           child: Container(
             height: 120,
+            padding: const EdgeInsets.only(top: 8),
             margin: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -178,7 +134,6 @@ class AccountListItem extends ConsumerWidget {
           ),
         ),
       ],
-      //),
     );
   }
 }
