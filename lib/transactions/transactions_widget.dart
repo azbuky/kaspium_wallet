@@ -1,7 +1,6 @@
 import 'package:automatic_animated_list/automatic_animated_list.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
@@ -17,9 +16,9 @@ final _txListItemsProvider =
     Provider.autoDispose.family<List<TxListItem>, WalletInfo>((ref, wallet) {
   final addressNotifier = ref.watch(addressNotifierProvider.notifier);
   final utxoNotifier = ref.watch(utxoNotifierProvider.notifier);
-  final historyNotifier = ref.watch(txNotifierForWalletProvider(wallet));
+  final txNotifier = ref.watch(txNotifierForWalletProvider(wallet));
 
-  final txItems = historyNotifier.loadedTxs.expand((tx) {
+  final txItems = txNotifier.loadedTxs.expand((tx) {
     final hasWalletInputs = tx.inputData.whereNotNull().any(
               (input) => addressNotifier.containsAddress(input.address),
             ) ||
@@ -85,10 +84,10 @@ final _txListItemsProvider =
     return listItems;
   });
 
-  return [...txItems, TxListItem.loader(historyNotifier.hasMore)];
+  return [...txItems, TxListItem.loader(txNotifier.hasMore)];
 });
 
-class TransactionsWidget extends HookConsumerWidget {
+class TransactionsWidget extends ConsumerWidget {
   final String tokenSymbol;
 
   const TransactionsWidget({
@@ -107,18 +106,10 @@ class TransactionsWidget extends HookConsumerWidget {
       return const SizedBox();
     }
 
-    final txHistory = ref.watch(txNotifierForWalletProvider(wallet));
+    final txNotifier = ref.watch(txNotifierForWalletProvider(wallet));
     final items = ref.watch(_txListItemsProvider(wallet));
 
-    final isLoading = txHistory.loading;
-    final isRefreshing = useState(false);
-    final isMounted = useIsMounted();
-
     Future<void> refresh() async {
-      if (isRefreshing.value) {
-        return;
-      }
-      isRefreshing.value = true;
       ref.read(hapticUtilProvider).success();
 
       final networkError = ref.read(networkErrorProvider);
@@ -127,25 +118,28 @@ class TransactionsWidget extends HookConsumerWidget {
       }
 
       final balanceNotifier = ref.refresh(balanceNotifierProvider);
+      // TODO - fixme
       await Future.delayed(const Duration(milliseconds: 500));
 
-      await txHistory.refreshWalletTxs(balanceNotifier.balances);
+      await txNotifier.refreshWalletTxs(balanceNotifier.balances);
+    }
 
-      if (isMounted()) {
-        isRefreshing.value = false;
-      }
+    void loadMore() {
+      // wait for scroll to settle before loading more txs
+      Future.delayed(const Duration(milliseconds: 500), () {
+        if (txNotifier.hasMore) {
+          txNotifier.loadMore();
+        }
+      });
     }
 
     return LazyLoadScrollView(
-      onEndOfPage: () async {
-        await Future.delayed(const Duration(milliseconds: 500));
-        txHistory.loadMore();
-      },
-      child: ReactiveRefreshIndicator(
+      onEndOfPage: loadMore,
+      child: RefreshIndicator(
+        color: theme.primary,
         backgroundColor: theme.backgroundDark,
-        isRefreshing: isRefreshing.value,
         onRefresh: refresh,
-        child: !isLoading && items.length == 1
+        child: !txNotifier.loading && items.length == 1
             ? TransactionEmptyList(tokenSymbol: tokenSymbol)
             : AutomaticAnimatedList<TxListItem>(
                 key: PageStorageKey(wallet),

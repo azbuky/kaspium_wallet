@@ -39,7 +39,7 @@ class Tx with _$Tx {
   factory Tx.fromJson(Map<String, dynamic> json) => _$TxFromJson(json);
 }
 
-enum TxItemType { send, receive }
+enum TxItemType { send, receive, compound }
 
 @freezed
 class TxItem with _$TxItem {
