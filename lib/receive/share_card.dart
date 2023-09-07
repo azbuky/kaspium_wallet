@@ -104,10 +104,10 @@ class _AppShareCardState extends State<AppShareCard> {
                           // Currency Icon
                           Container(
                             width: 30,
-                            child: ImageIcon(
-                              AssetImage('assets/kaspa.png'),
-                              color: theme.primary,
-                              size: 30,
+                            child: Image.asset(
+                              'assets/kas_icon.png',
+                              width: 30,
+                              height: 30,
                             ),
                           ),
                           Container(
