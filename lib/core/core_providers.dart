@@ -186,13 +186,16 @@ final maxSendProvider = Provider.autoDispose((ref) {
   final maxInputs = min(utxos.length, kMaxInputsPerTransaction);
 
   final maxWithFees =
-      utxos.take(maxInputs).fold<BigInt>(BigInt.zero, (previousValue, element) {
-    return previousValue + element.utxoEntry.amount;
+      utxos.take(maxInputs).fold<BigInt>(BigInt.zero, (total, element) {
+    return total + element.utxoEntry.amount;
   });
 
   final maxSend = maxWithFees - kFeePerInput * BigInt.from(maxInputs);
+  if (maxSend < BigInt.zero) {
+    return Amount.zero;
+  }
 
-  return maxSend;
+  return Amount.raw(maxSend);
 });
 
 final kaspaFormatterProvider = Provider((ref) {

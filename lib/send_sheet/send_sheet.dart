@@ -657,10 +657,9 @@ class _SendSheetState extends ConsumerState<SendSheet> {
           return;
         }
 
-        amountRaw = maxSend;
-        final maxAmount = Amount.raw(maxSend);
+        setState(() => amountRaw = maxSend.raw);
 
-        _amountController.text = NumberUtil.textFieldFormatedAmount(maxAmount);
+        _amountController.text = NumberUtil.textFieldFormatedAmount(maxSend);
 
         if (_addressController.text.isEmpty) {
           _addressController.selection = TextSelection.fromPosition(
