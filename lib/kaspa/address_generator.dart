@@ -56,10 +56,7 @@ class EcdsaAddressGenerator extends HdAddressGenerator {
   }) {
     wallet = HdWalletViewECDSA(hdPublicKey);
     final pubKey = wallet.derivePublicKey(typeIndex: 0, index: 0);
-    mainAddress = Address.pubKeyECDSA(
-      prefix: addressPrefix,
-      publicKey: pubKey,
-    );
+    mainAddress = Address.pubKeyECDSA(prefix: addressPrefix, publicKey: pubKey);
   }
 
   Future<Address> addressAtIndex({
@@ -83,10 +80,7 @@ class LegacyAddressGenerator extends HdAddressGenerator {
     required int typeIndex,
     required int index,
   }) async {
-    final publicKey = await pubKeyCallback(
-      typeIndex: typeIndex,
-      index: index,
-    );
+    final publicKey = await pubKeyCallback(index: index, typeIndex: typeIndex);
     return Address.publicKey(prefix: addressPrefix, publicKey: publicKey);
   }
 }
