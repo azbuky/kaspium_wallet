@@ -65,8 +65,7 @@ class SendConfirmSheet extends HookConsumerWidget {
           await addressNotifier.addAddress(changeAddress);
         }
 
-        final txNote = tx.note;
-        if (txNote != null) {
+        if (tx.note case final txNote?) {
           final notes = ref.read(txNotesProvider);
           notes.addNoteForTxId(result.txId, txNote);
         }
