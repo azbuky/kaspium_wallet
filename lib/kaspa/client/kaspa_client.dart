@@ -396,7 +396,9 @@ class KaspaClient {
   }) async {
     final message = KaspadMessage(
       getBlockRequest: GetBlockRequestMessage(
-          hash: hash, includeTransactions: includeTransactions),
+        hash: hash,
+        includeTransactions: includeTransactions,
+      ),
     );
 
     final result = await _singleRequest(message);
