@@ -69,26 +69,28 @@ class SetupWalletScreen extends HookConsumerWidget {
         await auth.unlock(password: walletData.password);
 
         // address discovery
-        final addressGenerator = auth.addressGenerator(network);
         final client = ref.read(kaspaClientProvider);
         final apiService = ref.read(kaspaApiServiceProvider);
+        final addressGenerator = auth.addressGenerator(network);
 
-        DiscoveryResult discovery;
+        final addressDiscovery = AddressDiscovery(
+          client: client,
+          api: apiService,
+          addressGenerator: addressGenerator,
+          addressNameCallback: (type, index) {
+            return type == AddressType.receive
+                ? l10n.receiveIndexParam('$index')
+                : l10n.changeIndexParam('$index');
+          },
+        );
+
+        WalletDiscoveryResult discovery;
+
         if (network == KaspaNetwork.mainnet && !introData.generated) {
-          final addressDiscovery = AddressDiscovery(
-            addressGenerator: addressGenerator,
-            client: client,
-            api: apiService,
-          );
           message.value = l10n.walletSetupAddressDiscovery;
           discovery = await addressDiscovery.addressDiscovery(
             startReceiveIndex: 0,
             startChangeIndex: 0,
-            addressNameCallback: (type, index) {
-              return type == AddressType.receive
-                  ? l10n.receiveIndexParam('$index')
-                  : l10n.changeIndexParam('$index');
-            },
             onProgress: (type, index) {
               final name = type == AddressType.receive
                   ? l10n.receiveIndex
@@ -97,38 +99,39 @@ class SetupWalletScreen extends HookConsumerWidget {
               return true;
             },
           );
+
+          if (discovery.receive.addresses.isEmpty) {
+            discovery = (
+              receive: DiscoveryResult(
+                addresses: {0: addressDiscovery.mainAddress},
+                txIds: {},
+                scanIndexes: discovery.receive.scanIndexes,
+              ),
+              change: discovery.change,
+            );
+          }
         } else {
-          const index = 0;
-          discovery = DiscoveryResult(
-            addresses: {
-              WalletAddress(
-                index: index,
-                type: AddressType.receive,
-                name: l10n.receiveIndexParam('$index'),
-                address: addressGenerator.mainAddress,
-              )
-            },
-            txIds: {},
-          );
+          discovery = addressDiscovery.newWalletDiscoveryResult;
         }
+
         final walletRepository = ref.read(walletRepositoryProvider);
         await walletRepository.openWalletBoxes(wallet, network: network);
 
-        final db = ref.read(dbProvider);
+        final addressBox = ref.read(addressBoxProvider(wallet));
 
-        final boxInfo = wallet.boxInfo.getBoxInfo(KaspaNetwork.mainnet);
-
-        final addressBoxKey = boxInfo.address.boxKey;
-        final box = db.getTypedBox<WalletAddress>(addressBoxKey);
-
-        await box.setAll(Map.fromEntries(
-          discovery.addresses.map(
-            (address) => MapEntry(address.key, address),
+        await addressBox.setAll(
+          discovery.receive.addresses.map(
+            (_, address) => MapEntry(address.key, address),
           ),
-        ));
+        );
 
-        message.value = l10n.fetchingTransactions;
-        details.value = '';
+        if (discovery.change.addresses.isNotEmpty) {
+          await addressBox.setAll(
+            discovery.change.addresses.map(
+              (_, address) => MapEntry(address.key, address),
+          ),
+          );
+        }
 
         final service = ref.read(txServiceProvider(wallet));
         await service.cacheWalletTxIds(discovery.txIds);

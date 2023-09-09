@@ -23,6 +23,7 @@ class WalletAddress with _$WalletAddress {
     required AddressType type,
     required String name,
     required Address address,
+    @Default(true) bool used,
   }) = _WalletAddress;
 
   static keyForAddressAtIndex(int index, {required AddressType type}) =>

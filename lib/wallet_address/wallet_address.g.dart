@@ -11,6 +11,7 @@ _$_WalletAddress _$$_WalletAddressFromJson(Map json) => _$_WalletAddress(
       type: $enumDecode(_$AddressTypeEnumMap, json['type']),
       name: json['name'] as String,
       address: Address.fromJson(json['address'] as String),
+      used: json['used'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$$_WalletAddressToJson(_$_WalletAddress instance) =>
@@ -19,6 +20,7 @@ Map<String, dynamic> _$$_WalletAddressToJson(_$_WalletAddress instance) =>
       'type': _$AddressTypeEnumMap[instance.type]!,
       'name': instance.name,
       'address': instance.address.toJson(),
+      'used': instance.used,
     };
 
 const _$AddressTypeEnumMap = {
