@@ -68,22 +68,18 @@ class IntroScreen extends HookConsumerWidget {
     });
 
     Widget widgetForPage(IntroPage page) {
-      switch (page) {
-        case IntroPage.walletName:
-          return const IntroWalletName();
-        case IntroPage.passwordOnLaunch:
-          return const IntroPasswordOnLaunch();
-        case IntroPage.password:
-          return const IntroPassword();
-        case IntroPage.importSeed:
-          return const IntroImportSeed();
-        case IntroPage.backupSeed:
-          return const IntroBackupSeed();
-        case IntroPage.backupSafety:
-          return const IntroBackupSafety();
-        case IntroPage.backupConfirm:
-          return const IntroBackupConfirm();
-      }
+      return switch (page) {
+        IntroPage.walletName => const IntroWalletName(),
+        IntroPage.passwordOnLaunch => const IntroPasswordOnLaunch(),
+        IntroPage.password => const IntroPassword(),
+        IntroPage.importSelect => const IntroImportSelect(),
+        IntroPage.importSeed => const IntroImportSeed(),
+        IntroPage.importLegacySeed => const IntroImportSeed(isLegacy: true),
+        IntroPage.importKpub => const IntroImportKpub(),
+        IntroPage.backupSeed => const IntroBackupSeed(),
+        IntroPage.backupSafety => const IntroBackupSafety(),
+        IntroPage.backupConfirm => const IntroBackupConfirm(),
+      };
     }
 
     ref.listen<IntroState>(introStateProvider, (_, state) {

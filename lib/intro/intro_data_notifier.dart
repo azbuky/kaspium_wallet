@@ -13,6 +13,7 @@ class IntroDataNotifier extends StateNotifier<IntroData> {
   IntroDataNotifier() : super(const IntroData());
 
   bool get isSeedGenerated => state.generated;
+  bool get skipPassword => state.kpub != null;
 
   void complete() {
     state = state.copyWith(completed: true);
@@ -33,13 +34,17 @@ class IntroDataNotifier extends StateNotifier<IntroData> {
       mnemonic: mnemonic,
       generated: generated,
       seed: seed,
+      kpub: null,
     );
   }
 
-  void setSeed(String seed) {
+  void setKpub(String kpub) {
     state = state.copyWith(
-      userSeed: seed,
-      seed: Future.value(seed),
+      kpub: kpub,
+      mnemonic: null,
+      seed: null,
+      password: null,
+      generated: false,
     );
   }
 

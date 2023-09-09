@@ -6,7 +6,10 @@ enum IntroPage {
   walletName,
   password,
   passwordOnLaunch,
+  importSelect,
   importSeed,
+  importLegacySeed,
+  importKpub,
   backupSeed,
   backupSafety,
   backupConfirm,
@@ -15,9 +18,7 @@ enum IntroPage {
 @freezed
 class IntroState with _$IntroState {
   const factory IntroState.init() = _IntroStateInit;
-  const factory IntroState.push({
-    required IntroPage page,
-  }) = _IntroStatePush;
+  const factory IntroState.push({required IntroPage page}) = _IntroStatePush;
   const factory IntroState.pop() = _IntroStatePop;
 }
 
@@ -25,7 +26,7 @@ class IntroState with _$IntroState {
 class IntroData with _$IntroData {
   const factory IntroData({
     String? mnemonic,
-    String? userSeed,
+    String? kpub,
     Future<String>? seed,
     String? name,
     String? pin,

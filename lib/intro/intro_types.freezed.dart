@@ -439,7 +439,7 @@ abstract class _IntroStatePop implements IntroState {
 /// @nodoc
 mixin _$IntroData {
   String? get mnemonic => throw _privateConstructorUsedError;
-  String? get userSeed => throw _privateConstructorUsedError;
+  String? get kpub => throw _privateConstructorUsedError;
   Future<String>? get seed => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get pin => throw _privateConstructorUsedError;
@@ -459,7 +459,7 @@ abstract class $IntroDataCopyWith<$Res> {
   @useResult
   $Res call(
       {String? mnemonic,
-      String? userSeed,
+      String? kpub,
       Future<String>? seed,
       String? name,
       String? pin,
@@ -482,7 +482,7 @@ class _$IntroDataCopyWithImpl<$Res, $Val extends IntroData>
   @override
   $Res call({
     Object? mnemonic = freezed,
-    Object? userSeed = freezed,
+    Object? kpub = freezed,
     Object? seed = freezed,
     Object? name = freezed,
     Object? pin = freezed,
@@ -495,9 +495,9 @@ class _$IntroDataCopyWithImpl<$Res, $Val extends IntroData>
           ? _value.mnemonic
           : mnemonic // ignore: cast_nullable_to_non_nullable
               as String?,
-      userSeed: freezed == userSeed
-          ? _value.userSeed
-          : userSeed // ignore: cast_nullable_to_non_nullable
+      kpub: freezed == kpub
+          ? _value.kpub
+          : kpub // ignore: cast_nullable_to_non_nullable
               as String?,
       seed: freezed == seed
           ? _value.seed
@@ -536,7 +536,7 @@ abstract class _$$_IntroDataCopyWith<$Res> implements $IntroDataCopyWith<$Res> {
   @useResult
   $Res call(
       {String? mnemonic,
-      String? userSeed,
+      String? kpub,
       Future<String>? seed,
       String? name,
       String? pin,
@@ -557,7 +557,7 @@ class __$$_IntroDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object? mnemonic = freezed,
-    Object? userSeed = freezed,
+    Object? kpub = freezed,
     Object? seed = freezed,
     Object? name = freezed,
     Object? pin = freezed,
@@ -570,9 +570,9 @@ class __$$_IntroDataCopyWithImpl<$Res>
           ? _value.mnemonic
           : mnemonic // ignore: cast_nullable_to_non_nullable
               as String?,
-      userSeed: freezed == userSeed
-          ? _value.userSeed
-          : userSeed // ignore: cast_nullable_to_non_nullable
+      kpub: freezed == kpub
+          ? _value.kpub
+          : kpub // ignore: cast_nullable_to_non_nullable
               as String?,
       seed: freezed == seed
           ? _value.seed
@@ -607,7 +607,7 @@ class __$$_IntroDataCopyWithImpl<$Res>
 class _$_IntroData implements _IntroData {
   const _$_IntroData(
       {this.mnemonic,
-      this.userSeed,
+      this.kpub,
       this.seed,
       this.name,
       this.pin,
@@ -618,7 +618,7 @@ class _$_IntroData implements _IntroData {
   @override
   final String? mnemonic;
   @override
-  final String? userSeed;
+  final String? kpub;
   @override
   final Future<String>? seed;
   @override
@@ -636,7 +636,7 @@ class _$_IntroData implements _IntroData {
 
   @override
   String toString() {
-    return 'IntroData(mnemonic: $mnemonic, userSeed: $userSeed, seed: $seed, name: $name, pin: $pin, password: $password, generated: $generated, completed: $completed)';
+    return 'IntroData(mnemonic: $mnemonic, kpub: $kpub, seed: $seed, name: $name, pin: $pin, password: $password, generated: $generated, completed: $completed)';
   }
 
   @override
@@ -646,8 +646,7 @@ class _$_IntroData implements _IntroData {
             other is _$_IntroData &&
             (identical(other.mnemonic, mnemonic) ||
                 other.mnemonic == mnemonic) &&
-            (identical(other.userSeed, userSeed) ||
-                other.userSeed == userSeed) &&
+            (identical(other.kpub, kpub) || other.kpub == kpub) &&
             (identical(other.seed, seed) || other.seed == seed) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.pin, pin) || other.pin == pin) &&
@@ -660,8 +659,8 @@ class _$_IntroData implements _IntroData {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mnemonic, userSeed, seed, name,
-      pin, password, generated, completed);
+  int get hashCode => Object.hash(runtimeType, mnemonic, kpub, seed, name, pin,
+      password, generated, completed);
 
   @JsonKey(ignore: true)
   @override
@@ -673,7 +672,7 @@ class _$_IntroData implements _IntroData {
 abstract class _IntroData implements IntroData {
   const factory _IntroData(
       {final String? mnemonic,
-      final String? userSeed,
+      final String? kpub,
       final Future<String>? seed,
       final String? name,
       final String? pin,
@@ -684,7 +683,7 @@ abstract class _IntroData implements IntroData {
   @override
   String? get mnemonic;
   @override
-  String? get userSeed;
+  String? get kpub;
   @override
   Future<String>? get seed;
   @override

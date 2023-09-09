@@ -14,8 +14,20 @@ class IntroStateNotifier extends StateNotifier<IntroState> {
     _goToPage(IntroPage.walletName);
   }
 
+  void importSelect() {
+    _goToPage(IntroPage.importSelect);
+  }
+
   void importWallet() {
     _goToPage(IntroPage.importSeed);
+  }
+
+  void importLegacyWallet() {
+    _goToPage(IntroPage.importLegacySeed);
+  }
+
+  void importViewOnlyWallet() {
+    _goToPage(IntroPage.importKpub);
   }
 
   void skipPassword() {
@@ -32,6 +44,11 @@ class IntroStateNotifier extends StateNotifier<IntroState> {
 
   void setName(String name) {
     introData.setName(name);
+    if (introData.skipPassword) {
+      skipPassword();
+      return;
+    }
+
     _goToPage(IntroPage.passwordOnLaunch);
   }
 
@@ -50,6 +67,11 @@ class IntroStateNotifier extends StateNotifier<IntroState> {
       introData.setName(walletName);
     }
     introData.setMnemonic(mnemonic);
+    _goToPage(IntroPage.walletName);
+  }
+
+  void setKpub(String kpub) {
+    introData.setKpub(kpub);
     _goToPage(IntroPage.walletName);
   }
 

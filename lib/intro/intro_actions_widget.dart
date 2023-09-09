@@ -18,7 +18,7 @@ class IntroActionsWidget extends ConsumerWidget {
 
     void importWallet() {
       final notifier = ref.read(introStateProvider.notifier);
-      notifier.importWallet();
+      notifier.importSelect();
     }
 
     return Padding(
