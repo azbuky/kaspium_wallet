@@ -160,11 +160,11 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
     final hdPubKey = wallet.hdPublicKey(network);
 
     return state.wallet.kind.when(
-      localHdSchnorr: () => SchnorrAddressGenerator(
+      localHdSchnorr: (_) => SchnorrAddressGenerator(
         hdPublicKey: hdPubKey,
         addressPrefix: prefix,
       ),
-      localHdEcdsa: () => EcdsaAddressGenerator(
+      localHdEcdsa: (_) => EcdsaAddressGenerator(
         hdPublicKey: hdPubKey,
         addressPrefix: prefix,
       ),

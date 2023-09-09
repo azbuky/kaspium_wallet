@@ -103,15 +103,21 @@ class WalletBundleNotifier extends StateNotifier<WalletBundle> {
       simnet: genBoxInfo(wid: wid, network: KaspaNetwork.simnet),
     );
 
-    final seed = hexToBytes(walletData.seed);
-    final mainnetPublicKey =
-        HdWallet.hdPublicKeyFromSeed(seed, networkType: kaspaMainnet);
-    final testnetPublicKey =
-        HdWallet.hdPublicKeyFromSeed(seed, networkType: kaspaTestnet);
-    final simnetPublicKey =
-        HdWallet.hdPublicKeyFromSeed(seed, networkType: kaspaSimnet);
-    final devnetPublicKey =
-        HdWallet.hdPublicKeyFromSeed(seed, networkType: kaspaDevnet);
+    final mainnetPublicKey = walletData.map(
+      seed: (data) {
+        final seed = hexToBytes(data.seed);
+        return HdWallet.hdPublicKeyFromSeed(
+          seed,
+          networkType: kaspaMainnet,
+        );
+      },
+      kpub: (data) {
+        return convertHdPublicKey(
+          data.kpub,
+          KaspaNetwork.mainnet,
+        );
+      },
+    );
 
     return WalletInfo(
       name: walletData.name,
@@ -119,22 +125,20 @@ class WalletBundleNotifier extends StateNotifier<WalletBundle> {
       wid: wid,
       boxInfo: boxInfo,
       mainnetPublicKey: mainnetPublicKey,
-      testnetPublicKey: testnetPublicKey,
-      simnetPublicKey: simnetPublicKey,
-      devnetPublicKey: devnetPublicKey,
     );
   }
 
   Future<WalletInfo> setupWallet(WalletData walletData) async {
     final wallet = generateWalletInfo(walletData);
 
-    // set seed and mnemonic to vault
-    final walletVault = WalletVault(wallet.wid, repository.vault);
-    await walletVault.setSeed(
-      walletData.seed,
-      mnemonic: walletData.mnemonic,
-      password: walletData.password,
-    );
+    await walletData.mapOrNull(seed: (data) async {
+      final walletVault = WalletVault(wallet.wid, repository.vault);
+      await walletVault.setSeed(
+        data.seed,
+        mnemonic: data.mnemonic,
+        password: data.password,
+      );
+    });
 
     await addWallet(wallet);
     return wallet;

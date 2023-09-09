@@ -59,23 +59,27 @@ Map<String, dynamic> _$$_BoxInfoByNetworkToJson(_$_BoxInfoByNetwork instance) =>
 
 _$_WalletKindLocalHdSchnorr _$$_WalletKindLocalHdSchnorrFromJson(Map json) =>
     _$_WalletKindLocalHdSchnorr(
+      viewOnly: json['viewOnly'] as bool? ?? false,
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$_WalletKindLocalHdSchnorrToJson(
         _$_WalletKindLocalHdSchnorr instance) =>
     <String, dynamic>{
+      'viewOnly': instance.viewOnly,
       'runtimeType': instance.$type,
     };
 
 _$_WalletKindLocalHdEcdsa _$$_WalletKindLocalHdEcdsaFromJson(Map json) =>
     _$_WalletKindLocalHdEcdsa(
+      viewOnly: json['viewOnly'] as bool? ?? false,
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$_WalletKindLocalHdEcdsaToJson(
         _$_WalletKindLocalHdEcdsa instance) =>
     <String, dynamic>{
+      'viewOnly': instance.viewOnly,
       'runtimeType': instance.$type,
     };
 
@@ -101,9 +105,6 @@ _$_WalletInfo _$$_WalletInfoFromJson(Map json) => _$_WalletInfo(
       boxInfo: BoxInfoByNetwork.fromJson(
           Map<String, dynamic>.from(json['boxInfo'] as Map)),
       mainnetPublicKey: json['mainnetPublicKey'] as String,
-      testnetPublicKey: json['testnetPublicKey'] as String,
-      simnetPublicKey: json['simnetPublicKey'] as String,
-      devnetPublicKey: json['devnetPublicKey'] as String,
     );
 
 Map<String, dynamic> _$$_WalletInfoToJson(_$_WalletInfo instance) =>
@@ -113,9 +114,6 @@ Map<String, dynamic> _$$_WalletInfoToJson(_$_WalletInfo instance) =>
       'wid': instance.wid,
       'boxInfo': instance.boxInfo.toJson(),
       'mainnetPublicKey': instance.mainnetPublicKey,
-      'testnetPublicKey': instance.testnetPublicKey,
-      'simnetPublicKey': instance.simnetPublicKey,
-      'devnetPublicKey': instance.devnetPublicKey,
     };
 
 _$_WalletBundle _$$_WalletBundleFromJson(Map json) => _$_WalletBundle(

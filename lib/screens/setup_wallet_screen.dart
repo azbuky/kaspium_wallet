@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
 import '../intro/intro_providers.dart';
-import '../intro/intro_types.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../utils.dart';
@@ -34,28 +33,36 @@ class SetupWalletScreen extends HookConsumerWidget {
         final introData = ref.read(introDataProvider);
 
         final seed = await introData.seed;
-        if (seed == null) {
-          throw Exception('Missing seed');
-        }
 
-        WalletKind getWalletKind(IntroData data) {
-          if (data.mnemonic?.split(' ').length == 12) {
+        final walletData;
+        if (introData.kpub case final kpub?) {
+          final walletKind = WalletKind.localHdSchnorr(viewOnly: true);
+          walletData = WalletData.kpub(
+            name: introData.name ?? l10n.defaultWalletName,
+            kind: walletKind,
+            kpub: kpub,
+          );
+        } else {
+          if (seed == null) {
+            throw Exception('Missing seed');
+          }
+          WalletKind walletKind;
+          if (introData.mnemonic?.split(' ').length == 12) {
             final wallet = HdWallet.forSeedHex(seed, type: HdWalletType.legacy);
             final pubKey = wallet.derivePublicKey(typeIndex: 0, index: 0);
-            return WalletKind.localHdLegacy(mainPubKey: pubKey.hex);
+            walletKind = WalletKind.localHdLegacy(mainPubKey: pubKey.hex);
+          } else {
+            walletKind = WalletKind.localHdSchnorr();
           }
-          return WalletKind.localHdSchnorr();
+
+          walletData = WalletData.seed(
+            name: introData.name ?? l10n.defaultWalletName,
+            kind: walletKind,
+            seed: seed,
+            mnemonic: introData.mnemonic,
+            password: introData.password,
+          );
         }
-
-        final walletKind = getWalletKind(introData);
-
-        final walletData = WalletData(
-          name: introData.name ?? l10n.defaultWalletName,
-          kind: walletKind,
-          seed: seed,
-          mnemonic: introData.mnemonic,
-          password: introData.password,
-        );
 
         // setup wallet
         final network = ref.read(networkProvider);
@@ -66,7 +73,7 @@ class SetupWalletScreen extends HookConsumerWidget {
         final auth = ref.read(walletAuthNotifierProvider);
         if (auth == null) throw Exception('No active wallet');
         await auth.checkEncryptedState();
-        await auth.unlock(password: walletData.password);
+        await auth.unlock(password: introData.password);
 
         // address discovery
         final client = ref.read(kaspaClientProvider);
@@ -129,7 +136,7 @@ class SetupWalletScreen extends HookConsumerWidget {
           await addressBox.setAll(
             discovery.change.addresses.map(
               (_, address) => MapEntry(address.key, address),
-          ),
+            ),
           );
         }
 
@@ -137,6 +144,9 @@ class SetupWalletScreen extends HookConsumerWidget {
         await service.cacheWalletTxIds(discovery.txIds);
 
         await walletRepository.closeWalletBoxes(wallet, network: network);
+
+        message.value = l10n.fetchingTransactions;
+        details.value = '';
         Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
       } catch (e, st) {
         final log = ref.read(loggerProvider);

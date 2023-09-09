@@ -12,6 +12,19 @@ const kSeedSize = 64;
 const kKaspaDerivationPath = "m/44'/111111'/0'";
 const kLegacyDerivationPath = "m/44'/972/0'";
 
+String convertHdPublicKey(String hdPubKey, KaspaNetwork toNetwork) {
+  final network = networkForKpub(hdPubKey);
+  if (network == toNetwork) {
+    return hdPubKey;
+  }
+
+  final networkType = networkTypeForNetwork(network);
+  final bip32 = BIP32.fromBase58(hdPubKey, networkType);
+  final toNetworkType = networkTypeForNetwork(toNetwork);
+  bip32.network = toNetworkType;
+  return bip32.toBase58();
+}
+
 AddressPrefix addressPrefixForNetwork(KaspaNetwork network) {
   switch (network) {
     case KaspaNetwork.mainnet:
@@ -49,7 +62,9 @@ class HdWalletViewECDSA extends HdWalletView {
   late final BIP32 _bip32;
 
   HdWalletViewECDSA(String hdPublicKey) {
-    _bip32 = BIP32.fromBase58(hdPublicKey, kaspaMainnet);
+    final network = networkForKpub(hdPublicKey);
+    final networkType = networkTypeForNetwork(network);
+    _bip32 = BIP32.fromBase58(hdPublicKey, networkType);
   }
 
   @override
