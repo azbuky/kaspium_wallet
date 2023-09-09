@@ -62,7 +62,7 @@ class SendConfirmSheet extends HookConsumerWidget {
         );
 
         if (result.changeAddressUsed) {
-          addressNotifier.addAddress(changeAddress);
+          await addressNotifier.addAddress(changeAddress);
         }
 
         final txNote = tx.note;
