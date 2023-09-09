@@ -43,14 +43,7 @@ final _txListItemsProvider =
           TxItem(
             tx: tx,
             outputIndex: 0,
-            type: TxItemType.receive,
-          ),
-        ),
-        TxListItem.txItem(
-          TxItem(
-            tx: tx,
-            outputIndex: 0,
-            type: TxItemType.send,
+            type: TxItemType.compound,
           ),
         ),
       ];
