@@ -54,6 +54,31 @@ class WalletService {
     );
   }
 
+  SendTx createCompoundTx({
+    required Address compoundAddress,
+    required List<Utxo> spendableUtxos,
+    required BigInt feePerInput,
+  }) {
+    final selectedUtxos =
+        spendableUtxos.take(kMaxInputsPerTransaction).toList();
+    final fee = BigInt.from(selectedUtxos.length) * feePerInput;
+    final selectedTotal = selectedUtxos.fold<BigInt>(
+      BigInt.zero,
+      (sum, utxo) => sum + utxo.utxoEntry.amount,
+    );
+    final amountRaw = selectedTotal - fee;
+
+    return SendTx(
+      uri: KaspaUri(
+        address: compoundAddress,
+        amount: Amount.raw(amountRaw),
+      ),
+      amountRaw: amountRaw,
+      utxos: selectedUtxos,
+      fee: fee,
+    );
+  }
+
   Future<SendResult> sendTransaction(
     SendTx rawTx, {
     required Address changeAddress,
