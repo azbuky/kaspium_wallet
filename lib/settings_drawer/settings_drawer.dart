@@ -222,7 +222,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       final l10n = l10nOf(context);
 
       final network = ref.watch(networkProvider);
-
+      final wallet = ref.watch(walletProvider);
       final hasMnemonic = ref.watch(walletHasMnemonic);
 
       return Container(
@@ -373,7 +373,8 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           },
                         ),
                       ],
-                      if (network == KaspaNetwork.mainnet) ...[
+                      if (network == KaspaNetwork.mainnet &&
+                          !wallet.isViewOnly) ...[
                         Divider(height: 2, color: theme.text15),
                         DoubleLineItem(
                           heading: l10n.donate,

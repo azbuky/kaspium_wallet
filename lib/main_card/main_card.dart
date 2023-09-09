@@ -25,6 +25,7 @@ class MainCard extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
+    final wallet = ref.watch(walletProvider);
     final kaspaBalance = ref.watch(formatedTotalBalanceProvider);
     final scaffoldKey = ref.watch(homePageScaffoldKeyProvider);
 
@@ -99,10 +100,13 @@ class MainCard extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  AppIconButton(
-                    icon: Icons.qr_code_scanner,
-                    onPressed: scanQrCode,
-                  ),
+                  if (!wallet.isViewOnly)
+                    AppIconButton(
+                      icon: Icons.qr_code_scanner,
+                      onPressed: scanQrCode,
+                    )
+                  else
+                    const SizedBox(width: 40, height: 40),
                 ],
               ),
             ),
