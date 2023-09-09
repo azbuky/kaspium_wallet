@@ -64,13 +64,13 @@ class HomeScreen extends HookConsumerWidget {
       log.d('didChangeAppLifecycleState $state');
 
       switch (state) {
-        case AppLifecycleState.paused:
+        case AppLifecycleState.hidden:
           await saveChainState();
-
+          setAppLockEvent();
+          break;
+        case AppLifecycleState.paused:
           final inBackground = ref.read(inBackgroundProvider.notifier);
           inBackground.state = true;
-
-          setAppLockEvent();
           break;
         case AppLifecycleState.resumed:
           await cancelLockEvent();
