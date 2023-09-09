@@ -83,6 +83,10 @@ class HomeScreen extends HookConsumerWidget {
           Future.delayed(const Duration(milliseconds: 100), () {
             inBackground.state = false;
           });
+
+          // refresh remote data
+          final remote = ref.read(remoteRefreshProvider.notifier);
+          remote.update((state) => state + 1);
           break;
         default:
           break;
