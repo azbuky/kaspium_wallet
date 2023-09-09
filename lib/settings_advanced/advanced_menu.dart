@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
-import '../settings_drawer/single_line_item.dart';
-import '../wallet_address/address_discovery.dart';
-import '../wallet_address/wallet_address.dart';
+import '../settings_drawer/double_line_item_two.dart';
 import '../widgets/app_icon_button.dart';
+import '../widgets/app_simpledialog.dart';
 import '../widgets/gradient_widgets.dart';
+import 'address_discovery_dialog.dart';
+import 'compound_utxos_dialog.dart';
 
 class AdvancedMenu extends ConsumerWidget {
   final VoidCallback onBackAction;
@@ -23,46 +24,20 @@ class AdvancedMenu extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
+    final wallet = ref.watch(walletProvider);
+
     Future<void> compoundUtxos() async {
-      print('Compound UTXOs');
+      await showAppDialog(
+        context: context,
+        builder: (_) => const CompoundUtxosDialog(),
+      );
     }
 
     Future<void> scanMoreAddresses() async {
-      print('Scan more addresses');
-
-      final l10n = l10nOf(context);
-
-      final network = ref.read(networkProvider);
-      final auth = ref.read(walletAuthProvider.notifier);
-      final addressGenerator = auth.addressGenerator(network);
-      final client = ref.read(kaspaClientProvider);
-      final api = ref.read(kaspaApiServiceProvider);
-
-      final addresses = ref.read(addressNotifierProvider);
-
-      final addressDiscovery = AddressDiscovery(
-        addressGenerator: addressGenerator,
-        client: client,
-        api: api,
+      await showAppDialog(
+        context: context,
+        builder: (_) => const AddressDiscoveryDialog(),
       );
-
-      bool cancelled = false;
-
-      final result = await addressDiscovery.addressDiscovery(
-        startReceiveIndex: addresses.nextUnusedReceiveIndex,
-        startChangeIndex: addresses.nextUnusedChangeIndex,
-        maxGap: 10,
-        addressNameCallback: (type, index) {
-          return type == AddressType.receive
-              ? l10n.receiveIndexParam('$index')
-              : l10n.changeIndexParam('$index');
-        },
-        onProgress: (type, index) {
-          print('Progress: $type $index');
-          return !cancelled;
-        },
-      );
-      print(result);
     }
 
     return Container(
@@ -113,21 +88,25 @@ class AdvancedMenu extends ConsumerWidget {
                           bottom: 10,
                         ),
                         child: Text(
-                          l10n.preferences,
+                          l10n.manage,
                           style: styles.textStyleAppTextFieldHint,
                         ),
                       ),
+                      if (!wallet.isViewOnly) ...[
+                        Divider(height: 2, color: theme.text15),
+                        DoubleLineItemTwo(
+                          heading: l10n.compoundUtxos,
+                          text: l10n.compoundUtxosDescription,
+                          icon: Icons.refresh,
+                          iconSize: 28,
+                          onPressed: compoundUtxos,
+                        ),
+                      ],
                       Divider(height: 2, color: theme.text15),
-                      SingleLineItem(
-                        heading: l10n.compoundUtxos,
-                        settingIcon: Icons.refresh,
-                        iconSize: 28,
-                        onPressed: compoundUtxos,
-                      ),
-                      Divider(height: 2, color: theme.text15),
-                      SingleLineItem(
-                        heading: l10n.scanMoreAddresses,
-                        settingIcon: Icons.account_balance_wallet,
+                      DoubleLineItemTwo(
+                        heading: l10n.addressDiscovery,
+                        text: l10n.scanMoreAddresses,
+                        icon: Icons.account_balance_wallet,
                         iconSize: 28,
                         onPressed: scanMoreAddresses,
                       ),

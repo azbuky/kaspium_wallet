@@ -8,6 +8,7 @@ class DoubleLineItemTwo extends ConsumerWidget {
   final String heading;
   final String text;
   final IconData icon;
+  final double iconSize;
   final VoidCallback onPressed;
   final bool disabled;
 
@@ -16,6 +17,7 @@ class DoubleLineItemTwo extends ConsumerWidget {
     required this.heading,
     required this.text,
     required this.icon,
+    this.iconSize = 24,
     required this.onPressed,
     this.disabled = false,
   }) : super(key: key);
@@ -42,7 +44,7 @@ class DoubleLineItemTwo extends ConsumerWidget {
                   child: Icon(
                     icon,
                     color: disabled ? theme.primary45 : theme.primary,
-                    size: 24,
+                    size: iconSize,
                   ),
                   margin: const EdgeInsets.all(3),
                 ),

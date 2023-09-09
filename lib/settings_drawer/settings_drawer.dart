@@ -298,16 +298,6 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                         },
                       ),
                       Divider(height: 2, color: theme.text15),
-                      SingleLineItem(
-                        heading: l10n.advancedHeader,
-                        settingIcon: Icons.settings_applications_outlined,
-                        iconSize: 28,
-                        onPressed: () {
-                          setState(() => _advancedOpen = true);
-                          _advancedController.forward();
-                        },
-                      ),
-                      Divider(height: 2, color: theme.text15),
                       Container(
                         margin: const EdgeInsetsDirectional.only(
                           start: 30,
@@ -326,6 +316,16 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                         onPressed: () {
                           setState(() => _contactsOpen = true);
                           _contactsController.forward();
+                        },
+                      ),
+                      Divider(height: 2, color: theme.text15),
+                      SingleLineItem(
+                        heading: l10n.advancedHeader,
+                        settingIcon: Icons.settings_applications,
+                        iconSize: 32,
+                        onPressed: () {
+                          setState(() => _advancedOpen = true);
+                          _advancedController.forward();
                         },
                       ),
                       if (hasMnemonic.asData?.value == true) ...[
