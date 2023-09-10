@@ -143,32 +143,35 @@ class TransactionsWidget extends ConsumerWidget {
                 keyingFunction: (item) => Key(item.id),
                 items: items,
                 itemBuilder: (context, item, animation) {
+                  final card = item.when(
+                    txItem: (item) => TransactionCard(item: item),
+                    loader: (hasMore) {
+                      if (!hasMore) return const SizedBox();
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            l10n.loadingTransactions,
+                            style: styles.textStyleParagraph,
+                          ),
+                        ),
+                      );
+                    },
+                  );
                   return FadeTransition(
                     key: Key(item.id),
                     opacity: animation,
-                    child: SizeTransition(
-                      sizeFactor: CurvedAnimation(
-                        parent: animation,
-                        curve: Curves.easeOut,
-                        reverseCurve: Curves.easeIn,
-                      ),
-                      child: item.when(
-                        txItem: (item) => TransactionCard(item: item),
-                        loader: (hasMore) {
-                          if (!hasMore) return const SizedBox();
-                          return Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                l10n.loadingTransactions,
-                                style: styles.textStyleParagraph,
-                              ),
+                    child: txNotifier.firstLoad
+                        ? card
+                        : SizeTransition(
+                            sizeFactor: CurvedAnimation(
+                              parent: animation,
+                              curve: Curves.easeOut,
+                              reverseCurve: Curves.easeIn,
                             ),
-                          );
-                        },
-                      ),
-                    ),
+                            child: card,
+                          ),
                   );
                 },
               ),
