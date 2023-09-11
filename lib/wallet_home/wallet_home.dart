@@ -21,8 +21,6 @@ final _walletWatcherProvider = Provider.autoDispose((ref) {
   ref.watch(txNotifierProvider);
   ref.watch(utxoNotifierProvider);
   ref.watch(utxoListProvider);
-
-  ref.watch(receiveAddressMonitorProvider);
 });
 
 class WalletHome extends HookConsumerWidget {
