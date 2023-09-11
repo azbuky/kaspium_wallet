@@ -8,6 +8,7 @@ import '../wallet_address/wallet_address_notifier.dart';
 class WalletBalanceNotifier extends SafeChangeNotifier {
   final TypedBox<AddressBalance> _balanceBox;
   final WalletAddressAware addressAware;
+  final KaspaClient client;
 
   final Map<String, BigInt> _balances = {};
   BigInt _totalBalance = BigInt.zero;
@@ -15,6 +16,7 @@ class WalletBalanceNotifier extends SafeChangeNotifier {
   WalletBalanceNotifier({
     required TypedBox<AddressBalance> balanceBox,
     required this.addressAware,
+    required this.client,
   }) : _balanceBox = balanceBox {
     final balances = _balanceBox.getAll();
     for (final balance in balances.values) {
@@ -24,26 +26,42 @@ class WalletBalanceNotifier extends SafeChangeNotifier {
       }
       _balances[balance.address] = newBalance;
     }
-    _totalBalance += _balances.values.fold(BigInt.zero, (a, b) => a + b);
+    _totalBalance = _balances.values.fold(BigInt.zero, (a, b) => a + b);
   }
 
-  IMap<String, BigInt> get balances => _balances.toIMap();
+  IMap<String, BigInt>? _cachedBalances;
+  IMap<String, BigInt> get balances {
+    if (_cachedBalances == null) {
+      _cachedBalances = _balances.toIMap();
+    }
+    return _cachedBalances!;
+  }
+
   Amount get totalBalance => Amount.raw(_totalBalance);
 
-  ISet<AddressBalance> _lastRefreshChanges = ISet();
-  Iterable<AddressBalance> get lastRefreshChanges => _lastRefreshChanges;
+  IMap<String, AddressBalance> _lastRefreshChanges = IMap();
+  IMap<String, AddressBalance> get lastRefreshChanges => _lastRefreshChanges;
 
   Amount balanceForAddress(String address) =>
       Amount.raw(_balances[address] ?? BigInt.zero);
 
-  void updateBalances(Iterable<AddressBalance> entries) {
-    final changes = <AddressBalance>{};
+  Future<void> refresh([Iterable<String>? addresses]) async {
+    if (addresses == null) {
+      addresses = addressAware.allAddresses;
+    }
+    if (addresses.isEmpty) {
+      return;
+    }
+    final newBalances = await client.getBalancesByAddresses(addresses);
+    final entries = newBalances.map(AddressBalance.fromRpc);
+
+    final changes = <String, AddressBalance>{};
     for (final entry in entries) {
       final newBalance = entry.balance;
       final oldBalance = _balances[entry.address] ?? BigInt.zero;
 
       if (newBalance != oldBalance) {
-        changes.add(entry);
+        changes[entry.address] = entry;
         _balances[entry.address] = newBalance;
 
         final key = addressAware.keyForAddress(entry.address);
@@ -55,64 +73,10 @@ class WalletBalanceNotifier extends SafeChangeNotifier {
     }
 
     if (changes.isNotEmpty) {
-      _lastRefreshChanges = changes.toISet();
+      _lastRefreshChanges = changes.toIMap();
     }
 
-    notifyListeners();
-  }
-
-  void updateWithUtxoChanges({
-    required Iterable<Utxo> added,
-    required Iterable<Utxo> removed,
-  }) {
-    final balanceChanges = <String, AddressBalance>{};
-
-    for (final utxo in removed) {
-      final address = utxo.address;
-      final amount = utxo.utxoEntry.amount;
-
-      final balance = _balances.update(
-        address,
-        (value) => value - amount,
-        ifAbsent: () => BigInt.zero,
-      );
-
-      final key = addressAware.keyForAddress(address);
-      if (key != null) {
-        balanceChanges[key] = AddressBalance(
-          address: address,
-          balance: balance,
-        );
-      }
-
-      _totalBalance -= amount;
-    }
-
-    for (final utxo in added) {
-      final address = utxo.address;
-      final amount = utxo.utxoEntry.amount;
-
-      final balance = _balances.update(
-        address,
-        (value) => value + amount,
-        ifAbsent: () => amount,
-      );
-
-      final key = addressAware.keyForAddress(address);
-      if (key != null) {
-        balanceChanges[key] = AddressBalance(
-          address: address,
-          balance: balance,
-        );
-      }
-
-      _totalBalance += amount;
-    }
-
-    if (balanceChanges.isNotEmpty) {
-      _balanceBox.setAll(balanceChanges);
-    }
-
+    _cachedBalances = null;
     notifyListeners();
   }
 }
