@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 
 import '../numberutil.dart';
 
+final kMaxKaspa = Decimal.parse('28700000000');
+
 class CurrencyFormatter extends TextInputFormatter {
   String groupSeparator;
   String decimalSeparator;
@@ -74,6 +76,12 @@ class CurrencyFormatter extends TextInputFormatter {
       return oldValue;
     } else if (workingText.startsWith(decimalSeparator)) {
       workingText = '0' + workingText;
+    }
+
+    final value =
+        Decimal.tryParse(workingText.replaceAll(decimalSeparator, '.'));
+    if (value != null && value > kMaxKaspa) {
+      return oldValue;
     }
 
     List<String> splitStr = workingText.split(decimalSeparator);
