@@ -12,6 +12,7 @@ import '../widgets/sheet_widget.dart';
 import 'address_filter_dialog.dart';
 import 'address_list_widget.dart';
 import 'address_settings.dart';
+import 'wallet_address.dart';
 
 class AccountsSheet extends HookConsumerWidget {
   const AccountsSheet({Key? key}) : super(key: key);
@@ -111,7 +112,9 @@ class AccountsSheet extends HookConsumerWidget {
                     Stack(
                       key: receiveGlobalKey.value,
                       children: [
-                        ReceiveAddressListWidget(
+                        AddressListWidget(
+                          addressType: AddressType.receive,
+                          emptyDescription: l10n.receiveAddressListEmpty,
                           scrollController: receiveScrollController,
                         ),
                         const ListTopGradient(),
@@ -121,7 +124,9 @@ class AccountsSheet extends HookConsumerWidget {
                     Stack(
                       key: changeGlobalKey.value,
                       children: [
-                        ChangeAddressListWidget(
+                        AddressListWidget(
+                          addressType: AddressType.change,
+                          emptyDescription: l10n.changeAddressListEmpty,
                           scrollController: changeScrollController,
                         ),
                         const ListTopGradient(),

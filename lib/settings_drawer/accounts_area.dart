@@ -16,7 +16,7 @@ class AccountsArea extends ConsumerWidget {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
 
-    final account = ref.watch(receiveWalletAddressProvider);
+    final account = ref.watch(receiveAddressProvider);
     final wallet = ref.watch(walletProvider);
 
     void showAccountDetails() {

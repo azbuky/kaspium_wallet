@@ -26,7 +26,7 @@ class _AppShareCardState extends State<AppShareCard> {
       key: globalKey,
       child: Consumer(builder: (context, ref, _) {
         final theme = ref.watch(themeProvider);
-        final selected = ref.watch(receiveWalletAddressProvider);
+        final selected = ref.watch(receiveAddressProvider);
         return Container(
           height: 126,
           width: 236,

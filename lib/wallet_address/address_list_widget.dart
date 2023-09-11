@@ -5,79 +5,52 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../core/core_providers.dart';
 import 'address_list_item.dart';
 import 'address_providers.dart';
+import 'wallet_address.dart';
 
-class ChangeAddressListWidget extends HookConsumerWidget {
+class AddressListWidget extends HookConsumerWidget {
+  final AddressType addressType;
+  final String emptyDescription;
   final ScrollController scrollController;
 
-  const ChangeAddressListWidget({
-    Key? key,
+  const AddressListWidget({
+    super.key,
+    required this.addressType,
+    required this.emptyDescription,
     required this.scrollController,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
 
-    final addresses = ref.watch(reversedChangeAddressesProvider);
+    final addresses = ref.watch(filteredAddressesOfTypeProvider(addressType));
 
     useAutomaticKeepAlive();
 
     if (addresses.isEmpty) {
-      return Column(children: [
-        Text(
-          'Change address list is empty',
-          style: TextStyle(color: theme.text10),
-        ),
-      ]);
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Text(
+              emptyDescription,
+              style: TextStyle(color: theme.text10),
+            ),
+          ),
+        ],
+      );
     }
+
+    final items = addresses.unlockView.reversed;
 
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      itemCount: addresses.length,
+      itemCount: items.length,
       controller: scrollController,
       itemBuilder: (context, index) {
-        final account = addresses[index];
-        return AccountListItem(address: account);
-      },
-      separatorBuilder: (context, index) {
-        return Divider(height: 2, color: theme.text15);
-      },
-    );
-  }
-}
-
-class ReceiveAddressListWidget extends HookConsumerWidget {
-  final ScrollController scrollController;
-
-  const ReceiveAddressListWidget({
-    Key? key,
-    required this.scrollController,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(themeProvider);
-
-    final addresses = ref.watch(reversedReceiveAddressesProvider);
-
-    useAutomaticKeepAlive();
-
-    if (addresses.isEmpty) {
-      return Column(children: [
-        Text(
-          'Receive address list is empty',
-          style: TextStyle(color: theme.text10),
-        ),
-      ]);
-    }
-
-    return ListView.separated(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      itemCount: addresses.length,
-      controller: scrollController,
-      itemBuilder: (context, index) {
-        final account = addresses[index];
-        return AccountListItem(address: account);
+        final address = items.elementAt(index);
+        return AccountListItem(address: address);
       },
       separatorBuilder: (context, index) {
         return Divider(height: 2, color: theme.text15);

@@ -11,7 +11,7 @@ class AccountAddressWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final styles = ref.watch(stylesProvider);
 
-    final account = ref.watch(receiveWalletAddressProvider);
+    final account = ref.watch(receiveAddressProvider);
 
     return Column(
       children: [

@@ -29,7 +29,7 @@ class ReceiveSheet extends HookConsumerWidget {
     final theme = ref.watch(themeProvider);
     final l10n = l10nOf(context);
 
-    final receiveAddress = ref.watch(receiveWalletAddressProvider);
+    final receiveAddress = ref.watch(receiveAddressProvider);
     final address = receiveAddress.encoded;
     final amount = ref.watch(amountProvider);
 

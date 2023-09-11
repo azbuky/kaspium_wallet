@@ -50,37 +50,25 @@ final allAddressesProvider = Provider.autoDispose((ref) {
   );
 });
 
-final reversedReceiveAddressesProvider = Provider.autoDispose((ref) {
+final filteredAddressesOfTypeProvider =
+    Provider.family.autoDispose<IList<WalletAddress>, AddressType>((ref, type) {
   final filter = ref.watch(addressFilterProvider);
   final balanceNotifier = ref.watch(balanceNotifierProvider);
-  final receiveAddresses = ref.watch(
-    addressNotifierProvider.select((value) => value.receiveAddresses),
+  final addresses = ref.watch(
+    addressNotifierProvider.select((value) => type == AddressType.receive
+        ? value.receiveAddresses
+        : value.changeAddresses),
   );
   if (filter == AddressFilter.nonZero) {
-    return receiveAddresses
-        .removeWhere((address) =>
-            balanceNotifier.balanceForAddress(address.encoded) == Amount.zero)
-        .reversed;
+    return addresses
+        .where((address) =>
+            balanceNotifier.balanceForAddress(address.encoded) != Amount.zero)
+        .toIList();
   }
-  return receiveAddresses.reversed;
+  return addresses;
 });
 
-final reversedChangeAddressesProvider = Provider.autoDispose((ref) {
-  final filter = ref.watch(addressFilterProvider);
-  final balanceNotifier = ref.watch(balanceNotifierProvider);
-  final changeAddresses = ref.watch(
-    addressNotifierProvider.select((value) => value.changeAddresses),
-  );
-  if (filter == AddressFilter.nonZero) {
-    return changeAddresses
-        .removeWhere((address) =>
-            balanceNotifier.balanceForAddress(address.encoded) == Amount.zero)
-        .reversed;
-  }
-  return changeAddresses.reversed;
-});
-
-final receiveWalletAddressProvider = Provider.autoDispose((ref) {
+final receiveAddressProvider = Provider.autoDispose((ref) {
   return ref.watch(
     addressNotifierProvider.select((value) => value.receiveAddress),
   );

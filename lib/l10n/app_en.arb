@@ -448,12 +448,14 @@
   "currentIndex": "Current",
   "scannedIndex": "Scanned",
   "newIndex": "New",
-  "addressFilterDialogTitle": "View",
-  "addressFilterDialogOptionAllAddresses": "All Addresses",
-  "addressFilterDialogOptionNonZeroBalances": "With Balance",
+  "addressFilterDialogTitle": "View Wallet Addresses",
+  "addressFilterDialogOptionAllAddresses": "View All Addresses",
+  "addressFilterDialogOptionNonZeroBalances": "View Addresses With Balance",
   "importKpub": "Import View Only Wallet",
   "importKpubHint": "Please enter your extended public key",
   "importKpubClipboardError": "Clipboard content is no a valid extended public key",
   "importKpubQrCodeError": "QR code does not contain a valid extended public key",
-  "importKpubInvalidMessage": "Please check that your extended publick key is entered correctly!"
+  "importKpubInvalidMessage": "Please check that your extended publick key is entered correctly!",
+  "receiveAddressListEmpty": "Receive address list is empty",
+  "changeAddressListEmpty": "Change address list is empty"
 }

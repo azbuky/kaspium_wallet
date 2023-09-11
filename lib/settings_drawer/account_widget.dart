@@ -13,7 +13,7 @@ class AccountWidget extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
-    final address = ref.watch(receiveWalletAddressProvider);
+    final address = ref.watch(receiveAddressProvider);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
