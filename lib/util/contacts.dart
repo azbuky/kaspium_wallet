@@ -34,18 +34,25 @@ Future<void> exportContacts(WidgetRef ref, BuildContext context) async {
   final baseDirectory = await getTemporaryDirectory();
   final contactsFile = File("${baseDirectory.path}/$filename");
   await contactsFile.writeAsString(json.encode(jsonList));
-  //UIUtil.cancelLockEvent();
-  Share.shareXFiles([XFile(contactsFile.path)]);
+
+  final lockDisabled = ref.read(lockDisabledProvider.notifier);
+  lockDisabled.state = true;
+  await Share.shareXFiles([XFile(contactsFile.path)]);
+  lockDisabled.state = false;
 }
 
 Future<void> importContacts(WidgetRef ref, BuildContext context) async {
   final l10n = l10nOf(context);
-  //UIUtil.cancelLockEvent();
+
+  final lockDisabled = ref.read(lockDisabledProvider.notifier);
+  lockDisabled.state = true;
   FilePickerResult? result = await FilePicker.platform.pickFiles(
     allowMultiple: false,
     type: FileType.custom,
     allowedExtensions: ["txt"],
   );
+  lockDisabled.state = false;
+
   if (result != null) {
     File f = File(result.files.single.path!);
 
@@ -83,13 +90,9 @@ Future<void> importContacts(WidgetRef ref, BuildContext context) async {
         UIUtil.showSnackbar(l10n.noContactsImport, context);
       }
     } catch (e) {
-      ref.read(loggerProvider).e(e.toString(), e);
+      final log = ref.read(loggerProvider);
+      log.e('Failed to import contacts', e);
       UIUtil.showSnackbar(l10n.contactsImportErr, context);
     }
-  } else {
-    // Cancelled by user
-    final log = ref.read(loggerProvider);
-    log.i("FilePicker cancelled by user");
-    UIUtil.showSnackbar(l10n.contactsImportErr, context);
   }
 }
