@@ -66,9 +66,7 @@ class AddressDiscoveryDialog extends HookConsumerWidget {
           startReceiveIndex: receiveIndexes.nextScanStart,
           startChangeIndex: changeIndexes.nextScanStart,
           maxGap: 9,
-          onProgress: (type, index) {
-            return !cancelled;
-          },
+          onProgress: (type, index) => !cancelled,
         );
 
         scanIndexes.value = (
@@ -89,8 +87,7 @@ class AddressDiscoveryDialog extends HookConsumerWidget {
         );
 
         if (result.isNotEmpty) {
-          await addresses.addAddresses(result.receive.addresses.values);
-          await addresses.addAddresses(result.change.addresses.values);
+          await addresses.addAddresses(result.addresses);
 
           final txNotifier = ref.read(txNotifierProvider);
           await txNotifier.cache.addWalletTxIds(result.txIds);

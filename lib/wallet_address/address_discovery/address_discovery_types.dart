@@ -40,6 +40,8 @@ typedef WalletDiscoveryResult = ({
 });
 
 extension WalletDiscoveryResultHelper on WalletDiscoveryResult {
+  Iterable<WalletAddress> get addresses =>
+      receive.addresses.values.followedBy(change.addresses.values);
   Set<ApiTxId> get txIds => receive.txIds.union(change.txIds);
 
   bool get isEmpty => receive.addresses.isEmpty && change.addresses.isEmpty;

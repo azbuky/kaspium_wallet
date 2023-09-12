@@ -8,20 +8,14 @@ class AddressDiscovery {
   final HdAddressGenerator addressGenerator;
   final AddressNameCallback addressNameCallback;
 
+  final _cache = <(int, AddressType), WalletAddress>{};
+
   AddressDiscovery({
     required this.api,
     required this.client,
     required this.addressGenerator,
     required this.addressNameCallback,
   });
-
-  Future<bool> checkForUsedAddresses(Iterable<String> addresses) async {
-    final balances = await client.getBalancesByAddresses(addresses);
-
-    final anyUsedAddress = balances.any((balance) => balance.balance > 0);
-
-    return anyUsedAddress;
-  }
 
   WalletAddress get mainAddress {
     const index = 0;
@@ -56,6 +50,9 @@ class AddressDiscovery {
     required int index,
     required AddressType type,
   }) async {
+    if (_cache[(index, type)] case final cached?) {
+      return cached;
+    }
     final address = await addressGenerator.addressAtIndex(
       typeIndex: type.index,
       index: index,
@@ -68,6 +65,7 @@ class AddressDiscovery {
       name: name,
       used: false,
     );
+    _cache[(index, type)] = walletAddress;
     return walletAddress;
   }
 
@@ -76,14 +74,22 @@ class AddressDiscovery {
     required AddressType type,
     required int count,
   }) async {
-    final addresses = await Future.wait([
-      for (int i = startIndex; i < startIndex + count; ++i)
-        getAddress(
-          index: i,
-          type: type,
-        )
-    ]);
+    final addresses = <WalletAddress>[];
+
+    for (int i = startIndex; i < startIndex + count; ++i) {
+      final address = await getAddress(index: i, type: type);
+      addresses.add(address);
+    }
+
     return addresses;
+  }
+
+  Future<bool> _checkForUsedAddresses(Iterable<String> addresses) async {
+    final balances = await client.getBalancesByAddresses(addresses);
+
+    final anyUsedAddress = balances.any((balance) => balance.balance > 0);
+
+    return anyUsedAddress;
   }
 
   Future<DiscoveryResult> addressDiscoveryFor({
@@ -134,7 +140,6 @@ class AddressDiscovery {
 
       if (currentIndex - (lastUsedIndex ?? startIndex) >= maxGap) {
         // Look ahead for possible used addresses over maxGap by checking balances
-
         final addresses = await getAddresses(
           startIndex: currentIndex + 1,
           type: type,
@@ -142,7 +147,7 @@ class AddressDiscovery {
         );
 
         final hasUsedAddresses =
-            await checkForUsedAddresses(addresses.map((e) => e.encoded));
+            await _checkForUsedAddresses(addresses.map((e) => e.encoded));
 
         if (hasUsedAddresses) {
           lastUsedIndex = currentIndex;

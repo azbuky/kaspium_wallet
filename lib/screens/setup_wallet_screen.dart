@@ -77,12 +77,12 @@ class SetupWalletScreen extends HookConsumerWidget {
 
         // address discovery
         final client = ref.read(kaspaClientProvider);
-        final apiService = ref.read(kaspaApiServiceProvider);
+        final api = ref.read(kaspaApiServiceProvider);
         final addressGenerator = auth.addressGenerator(network);
 
         final addressDiscovery = AddressDiscovery(
           client: client,
-          api: apiService,
+          api: api,
           addressGenerator: addressGenerator,
           addressNameCallback: (type, index) {
             return type == AddressType.receive
@@ -126,19 +126,11 @@ class SetupWalletScreen extends HookConsumerWidget {
 
         final addressBox = ref.read(addressBoxProvider(wallet));
 
-        await addressBox.setAll(
-          discovery.receive.addresses.map(
-            (_, address) => MapEntry(address.key, address),
-          ),
-        );
-
-        if (discovery.change.addresses.isNotEmpty) {
-          await addressBox.setAll(
-            discovery.change.addresses.map(
-              (_, address) => MapEntry(address.key, address),
+        await addressBox.setAll(Map.fromEntries(
+          discovery.addresses.map(
+            (address) => MapEntry(address.key, address),
             ),
-          );
-        }
+        ));
 
         final service = ref.read(txServiceProvider(wallet));
         await service.cacheWalletTxIds(discovery.txIds);
