@@ -92,7 +92,7 @@ final addressPrefixProvider = Provider((ref) {
   return prefix;
 });
 
-final kaspaApiProvider = Provider<KaspaApi>((ref) {
+final _kaspaApiProvider = Provider<KaspaApi>((ref) {
   final network = ref.watch(networkProvider);
   if (network == KaspaNetwork.mainnet) {
     return KaspaApiMainnet('https://api.kaspa.org');
@@ -101,7 +101,7 @@ final kaspaApiProvider = Provider<KaspaApi>((ref) {
 });
 
 final kaspaApiServiceProvider = Provider<KaspaApiService>((ref) {
-  final api = ref.watch(kaspaApiProvider);
+  final api = ref.watch(_kaspaApiProvider);
   return KaspaApiService(api);
 });
 
