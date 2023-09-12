@@ -51,6 +51,17 @@ final addressNotifierProvider = ChangeNotifierProvider.autoDispose((ref) {
   return notifier;
 });
 
+final addressMonitorProvider = Provider.autoDispose((ref) {
+  final notifier = ref.watch(addressNotifierProvider);
+
+  ref.listen(lastBalanceChangesProvider, (_, next) {
+    final addresses = next.where((_, balance) => balance != BigInt.zero).keys;
+    notifier.markUsed(addresses);
+  });
+
+  return false;
+});
+
 final allAddressesProvider = Provider.autoDispose((ref) {
   return ref.watch(
     addressNotifierProvider.select((value) => value.allAddresses),
