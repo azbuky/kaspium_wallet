@@ -4,13 +4,8 @@ import '../database/boxes.dart';
 import '../kaspa/kaspa.dart';
 import '../util/safe_change_notifier.dart';
 import 'wallet_address.dart';
+import 'wallet_address_aware.dart';
 import 'wallet_address_manager.dart';
-
-abstract class WalletAddressAware {
-  Iterable<String> get allAddresses;
-  bool containsAddress(String address);
-  String? keyForAddress(String address);
-}
 
 class WalletAddressNotifier extends SafeChangeNotifier
     implements WalletAddressAware {

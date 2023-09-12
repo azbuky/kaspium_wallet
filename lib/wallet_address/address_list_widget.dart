@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../core/core_providers.dart';
 import 'address_list_item.dart';
-import 'address_providers.dart';
+import 'wallet_address_providers.dart';
 import 'wallet_address.dart';
 
 class AddressListWidget extends HookConsumerWidget {

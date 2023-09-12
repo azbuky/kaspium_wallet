@@ -5,7 +5,7 @@ import '../database/boxes.dart';
 import '../kaspa/kaspa.dart';
 import '../utxos/utxos_providers.dart';
 import '../wallet/wallet_types.dart';
-import '../wallet_address/address_providers.dart';
+import '../wallet_address/wallet_address_providers.dart';
 import '../wallet_auth/wallet_auth_providers.dart';
 import '../wallet_balance/wallet_balance_providers.dart';
 import 'transaction_notifier.dart';

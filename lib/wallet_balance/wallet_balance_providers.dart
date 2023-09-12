@@ -9,7 +9,7 @@ import '../kaspa/kaspa.dart';
 import '../settings/settings_providers.dart';
 import '../util/numberutil.dart';
 import '../utxos/utxos_providers.dart';
-import '../wallet_address/address_providers.dart';
+import '../wallet_address/wallet_address_providers.dart';
 import '../wallet_auth/wallet_auth_providers.dart';
 import 'wallet_balance_notifier.dart';
 
@@ -74,9 +74,11 @@ final balanceNotifierProvider = ChangeNotifierProvider.autoDispose((ref) {
   return notifier;
 });
 
-final lastRefreshBalanceChangesProvider = Provider.autoDispose((ref) {
-  final balanceNotifier = ref.watch(balanceNotifierProvider);
-  return balanceNotifier.lastRefreshChanges;
+final lastBalanceChangesProvider = Provider.autoDispose((ref) {
+  final lastRefresh = ref.watch(
+    balanceNotifierProvider.select((value) => value.lastRefreshChanges),
+  );
+  return lastRefresh;
 });
 
 final totalBalanceProvider = Provider.autoDispose((ref) {

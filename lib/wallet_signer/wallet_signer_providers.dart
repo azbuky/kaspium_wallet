@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/core_providers.dart';
 import '../kaspa/kaspa.dart';
-import '../wallet_address/address_providers.dart';
+import '../wallet_address/wallet_address_providers.dart';
 import '../wallet_auth/wallet_auth_providers.dart';
 import 'wallet_signer.dart';
 
