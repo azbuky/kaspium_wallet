@@ -50,7 +50,7 @@ class AddressListWidget extends HookConsumerWidget {
       controller: scrollController,
       itemBuilder: (context, index) {
         final address = items.elementAt(index);
-        return AccountListItem(address: address);
+        return AddressListItem(address: address);
       },
       separatorBuilder: (context, index) {
         return Divider(height: 2, color: theme.text15);

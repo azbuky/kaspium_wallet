@@ -12,10 +12,10 @@ import '../widgets/sheet_util.dart';
 import 'address_details_sheet.dart';
 import 'wallet_address.dart';
 
-class AccountListItem extends ConsumerWidget {
+class AddressListItem extends ConsumerWidget {
   final WalletAddress address;
 
-  const AccountListItem({Key? key, required this.address}) : super(key: key);
+  const AddressListItem({Key? key, required this.address}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
