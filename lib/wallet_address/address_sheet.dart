@@ -48,9 +48,7 @@ class AccountsSheet extends HookConsumerWidget {
         Future<void> newReceiveAddress() async {
           if (addingAddress.value) return;
           addingAddress.value = true;
-
-          final newAddress = await addressNotifier.nextReceiveAddress;
-          addressNotifier.addAddress(newAddress);
+          await addressNotifier.addNewReceiveAddress();
           addingAddress.value = false;
 
           DefaultTabController.of(context).animateTo(0);
