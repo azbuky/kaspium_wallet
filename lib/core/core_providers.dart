@@ -47,7 +47,7 @@ final networkErrorProvider = Provider.autoDispose<bool>((ref) {
   return timer.difference(lastUpdate) > Duration(seconds: 5);
 });
 
-final dbProvider = Provider((ref) => const Database());
+final dbProvider = StateProvider((ref) => Database());
 
 final stylesProvider = Provider((ref) {
   final theme = ref.watch(themeProvider);
