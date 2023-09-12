@@ -6,7 +6,7 @@ export 'transactions/transaction_providers.dart';
 export 'txnotes/txnotes_providers.dart';
 export 'utxos/utxos_providers.dart';
 export 'wallet/wallet_providers.dart';
-export 'wallet_address/address_providers.dart';
+export 'wallet_address/wallet_address_providers.dart';
 export 'wallet_auth/wallet_auth_providers.dart';
 export 'wallet_balance/wallet_balance_providers.dart';
 export 'wallet_signer/wallet_signer_providers.dart';
