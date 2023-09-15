@@ -56,6 +56,10 @@ final utxoNotifierProvider =
     }
   });
 
+  ref.onDispose(() {
+    notifier.disposed = true;
+  });
+
   return notifier;
 });
 
