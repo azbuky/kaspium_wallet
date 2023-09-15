@@ -112,7 +112,6 @@ class AccountsSheet extends HookConsumerWidget {
                       children: [
                         AddressListWidget(
                           addressType: AddressType.receive,
-                          emptyDescription: l10n.receiveAddressListEmpty,
                           scrollController: receiveScrollController,
                         ),
                         const ListTopGradient(),
@@ -124,7 +123,6 @@ class AccountsSheet extends HookConsumerWidget {
                       children: [
                         AddressListWidget(
                           addressType: AddressType.change,
-                          emptyDescription: l10n.changeAddressListEmpty,
                           scrollController: changeScrollController,
                         ),
                         const ListTopGradient(),
