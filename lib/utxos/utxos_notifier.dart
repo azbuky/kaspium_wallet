@@ -100,15 +100,18 @@ class UtxosNotifier extends SafeChangeNotifier {
       // update box
       final removeSet = oldSet.difference(newSet);
       final addSet = newSet.difference(oldSet);
-      _utxoBox.removeAll(removeSet.map(_utxoKey));
-      _utxoBox.setAll(
-        Map.fromEntries(addSet.map(
-          (utxo) => MapEntry(_utxoKey(utxo), utxo),
-        )),
-      );
-
-      // update id set
-      _utxoIds.addAll(addSet.map((utxo) => _utxoKey(utxo)));
+      if (removeSet.isNotEmpty) {
+        await _utxoBox.removeAll(removeSet.map(_utxoKey));
+      }
+      if (addSet.isNotEmpty) {
+        await _utxoBox.setAll(
+          Map.fromEntries(addSet.map(
+            (utxo) => MapEntry(_utxoKey(utxo), utxo),
+          )),
+        );
+        // update id set
+        _utxoIds.addAll(addSet.map((utxo) => _utxoKey(utxo)));
+      }
     }
 
     _utxoList = null;
