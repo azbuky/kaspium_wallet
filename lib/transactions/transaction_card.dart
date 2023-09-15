@@ -51,7 +51,7 @@ class TransactionCard extends ConsumerWidget {
     IconData icon;
     Color iconColor;
     final locale = Localizations.localeOf(context).languageCode;
-    final formater = DateFormat('dd-MM-yy HH:mm', locale);
+    final formater = DateFormat('dd-MM-yyyy HH:mm', locale);
     final date = formater.format(txDate);
     switch (item.type) {
       case TxItemType.send:
