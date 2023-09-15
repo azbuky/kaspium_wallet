@@ -7,6 +7,7 @@ import '../app_providers.dart';
 import '../database/database.dart';
 import '../intro/intro_providers.dart';
 import '../l10n/l10n.dart';
+import '../util/lock_settings.dart';
 import '../util/ui_util.dart';
 import '../widgets/notice_dialog.dart';
 
@@ -72,8 +73,9 @@ class SplashScreen extends HookConsumerWidget {
           Navigator.of(context).pushReplacementNamed('/password_lock_screen');
           return;
         }
-        final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
-        final authOnLaunch = sharedPrefsUtil.getLock();
+        final vault = ref.read(vaultProvider);
+        final lockSettings = LockSettings(vault);
+        final authOnLaunch = await lockSettings.getLock();
         if (authOnLaunch) {
           Navigator.of(context).pushReplacementNamed('/lock_screen');
           return;

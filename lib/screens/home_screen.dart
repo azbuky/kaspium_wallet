@@ -9,6 +9,7 @@ import '../chain_state/chain_state.dart';
 import '../l10n/l10n.dart';
 import '../main_card/main_card.dart';
 import '../settings_drawer/settings_drawer.dart';
+import '../util/lock_settings.dart';
 import '../util/ui_util.dart';
 import '../wallet_home/wallet_home.dart';
 import '../widgets/network_banner.dart';
@@ -26,15 +27,16 @@ class HomeScreen extends HookConsumerWidget {
     // To lock and unlock the app
     final lockStreamListener = useRef<StreamSubscription?>(null);
 
-    void setAppLockEvent() {
+    Future<void> setAppLockEvent() async {
       final auth = ref.read(walletAuthProvider);
-      final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
-      final locked = sharedPrefsUtil.getLock();
+      final vault = ref.read(vaultProvider);
+      final lockSettings = LockSettings(vault);
+      final locked = await lockSettings.getLock();
 
       if ((locked || auth.encryptedSecret != null) && !lockDisabled) {
         lockStreamListener.value?.cancel();
 
-        final timeout = sharedPrefsUtil.getLockTimeout();
+        final timeout = await lockSettings.getLockTimeout();
         Future<void> delayed = Future.delayed(timeout.getDuration());
         lockStreamListener.value = delayed.asStream().listen((_) {
           final notifier = ref.read(walletAuthNotifierProvider);
@@ -66,7 +68,7 @@ class HomeScreen extends HookConsumerWidget {
       switch (state) {
         case AppLifecycleState.hidden:
           await saveChainState();
-          setAppLockEvent();
+          await setAppLockEvent();
           break;
         case AppLifecycleState.paused:
           final inBackground = ref.read(inBackgroundProvider.notifier);

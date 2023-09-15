@@ -7,6 +7,7 @@ import '../l10n/l10n.dart';
 import '../settings/authentication_method.dart';
 import '../settings/device_lock_timeout.dart';
 import '../settings/device_unlock_option.dart';
+import '../util/lock_settings.dart';
 import '../widgets/app_icon_button.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/gradient_widgets.dart';
@@ -42,20 +43,26 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
 
     // Determine if they have face or fingerprint enrolled, if not hide the setting
     final biometricUtil = ref.read(biometricUtilProvider);
+    final vault = ref.read(vaultProvider);
+    final lockSettings = LockSettings(vault);
     final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
     biometricUtil.hasBiometrics().then((bool hasBiometrics) {
-      setState(() {
-        _hasBiometrics = hasBiometrics;
-      });
+      setState(() => _hasBiometrics = hasBiometrics);
     });
     // Get default auth method setting
     _curAuthMethod = sharedPrefsUtil.getAuthMethod();
     // Get default unlock settings
-    _curUnlockSetting = sharedPrefsUtil.getLock()
-        ? UnlockSetting(UnlockOption.YES)
-        : UnlockSetting(UnlockOption.NO);
+    lockSettings.getLock().then(
+      (lock) {
+        setState(() => _curUnlockSetting = lock
+            ? UnlockSetting(UnlockOption.YES)
+            : UnlockSetting(UnlockOption.NO));
+      },
+    );
 
-    _curTimeoutSetting = sharedPrefsUtil.getLockTimeout();
+    lockSettings.getLockTimeout().then((value) {
+      setState(() => _curTimeoutSetting = value);
+    });
   }
 
   @override
@@ -264,7 +271,8 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
     final theme = ref.read(themeProvider);
     final styles = ref.read(stylesProvider);
     final l10n = l10nOf(context);
-    final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
+    final vault = ref.read(vaultProvider);
+    final lockSettings = LockSettings(vault);
 
     switch (await showDialog<UnlockOption>(
         context: context,
@@ -304,17 +312,13 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
           );
         })) {
       case UnlockOption.YES:
-        sharedPrefsUtil.setLock(true).then((result) {
-          setState(() {
-            _curUnlockSetting = UnlockSetting(UnlockOption.YES);
-          });
+        lockSettings.setLock(true).then((_) {
+          setState(() => _curUnlockSetting = UnlockSetting(UnlockOption.YES));
         });
         break;
       case UnlockOption.NO:
-        sharedPrefsUtil.setLock(false).then((result) {
-          setState(() {
-            _curUnlockSetting = UnlockSetting(UnlockOption.NO);
-          });
+        lockSettings.setLock(false).then((_) {
+          setState(() => _curUnlockSetting = UnlockSetting(UnlockOption.NO));
         });
         break;
       default:
@@ -357,15 +361,14 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
     if (selection == null) {
       return;
     }
-    final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
-    sharedPrefsUtil
-        .setLockTimeout(LockTimeoutSetting(selection))
-        .then((result) {
+
+    final vault = ref.read(vaultProvider);
+    final lockSettings = LockSettings(vault);
+
+    lockSettings.setLockTimeout(LockTimeoutSetting(selection)).then((_) {
       if (_curTimeoutSetting.setting != selection) {
-        sharedPrefsUtil.setLockTimeout(LockTimeoutSetting(selection)).then((_) {
-          setState(() {
-            _curTimeoutSetting = LockTimeoutSetting(selection);
-          });
+        setState(() {
+          _curTimeoutSetting = LockTimeoutSetting(selection);
         });
       }
     });

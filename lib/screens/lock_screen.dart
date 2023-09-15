@@ -6,6 +6,7 @@ import '../app_providers.dart';
 import '../l10n/l10n.dart';
 import '../settings/authentication_method.dart';
 import '../util/caseconverter.dart';
+import '../util/pin_lockout.dart';
 import '../util/routes.dart';
 import '../widgets/buttons.dart';
 import '../widgets/logout_button.dart';
@@ -155,12 +156,14 @@ class _LockScreenState extends ConsumerState<LockScreen> {
   }
 
   Future<void> _authenticate({bool useTransition = false}) async {
-    final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
+    final sharedPrefUtil = ref.read(sharedPrefsUtilProvider);
+    final vault = ref.read(vaultProvider);
+    final pinLockout = PinLockout(vault);
     // Test if user is locked out
     // Get duration of lockout
-    DateTime? lockUntil = sharedPrefsUtil.getLockDate();
+    final lockUntil = await pinLockout.getLockDate();
     if (lockUntil == null) {
-      sharedPrefsUtil.resetLockAttempts();
+      await pinLockout.resetUnlockAttempts();
     } else {
       int countDown = lockUntil.difference(DateTime.now().toUtc()).inSeconds;
       // They're not allowed to attempt
@@ -172,7 +175,7 @@ class _LockScreenState extends ConsumerState<LockScreen> {
     setState(() {
       _lockedOut = false;
     });
-    final authMethod = sharedPrefsUtil.getAuthMethod();
+    final authMethod = sharedPrefUtil.getAuthMethod();
     if (authMethod.method == AuthMethod.BIOMETRICS) {
       final biometricsUtil = ref.read(biometricUtilProvider);
       final hasBiometrics = await biometricsUtil.hasBiometrics();
