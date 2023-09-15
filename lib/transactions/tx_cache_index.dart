@@ -1,13 +1,16 @@
 import 'package:collection/collection.dart';
 
 import '../database/boxes.dart';
-import 'transaction_types.dart';
 import 'indexable_skip_list.dart';
+import 'transaction_types.dart';
 
 class TxCacheIndex {
   final IndexedTypedBox<TxIndex> _txIndexBox;
   final _idMap = <String, TxIndex>{};
   final _indexList = IndexableSkipList<TxIndex, TxIndex>((a, b) {
+    if (a.txId == b.txId) {
+      return 0;
+    }
     final timeCompare = b.blockTime.compareTo(a.blockTime);
     if (timeCompare == 0) {
       return a.txId.compareTo(b.txId);
@@ -56,9 +59,9 @@ class TxCacheIndex {
       return;
     }
 
-    await _txIndexBox.add(txIndex);
     _idMap[txIndex.txId] = txIndex;
     _indexList.insert(txIndex, txIndex);
+    await _txIndexBox.add(txIndex);
   }
 
   Future<void> addAll(Iterable<TxIndex> txIndexes) async {
