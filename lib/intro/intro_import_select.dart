@@ -20,6 +20,7 @@ class ImportWalletTypeCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
 
     return Padding(
@@ -41,15 +42,12 @@ class ImportWalletTypeCard extends ConsumerWidget {
               children: [
                 Text(
                   title,
-                  style: styles.textStyleAccount,
+                  style: styles.textStyleAccount.copyWith(color: theme.text),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   description,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
+                  style: styles.textStyleSettingItemSubheader,
                 ),
               ],
             ),
