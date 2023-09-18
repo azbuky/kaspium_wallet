@@ -133,6 +133,19 @@ final totalBtcValueProvider = Provider.autoDispose((ref) {
   return value;
 });
 
+final formatedKaspaPriceProvider = Provider.autoDispose((ref) {
+  final price = ref.watch(kaspaPriceProvider).price;
+  final currency = ref.watch(currencyProvider);
+  final decimals = price >= Decimal.parse('1') ? 2 : 4;
+  final priceStr = NumberFormat.currency(
+    symbol: currency.getCurrencySymbol(),
+    name: currency.getIso4217Code(),
+    decimalDigits: decimals,
+  ).format(DecimalIntl(price));
+
+  return '$priceStr / KAS';
+});
+
 final formatedTotalBtcProvider = Provider.autoDispose((ref) {
   final btcBalance = ref.watch(totalBtcValueProvider);
   final decimals = btcBalance >= Decimal.parse('0.001')

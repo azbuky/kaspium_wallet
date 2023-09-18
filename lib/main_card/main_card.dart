@@ -11,7 +11,6 @@ import '../themes/kaspium_light_theme.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
 import '../widgets/app_icon_button.dart';
-import '../widgets/balance_widget.dart';
 
 final homePageScaffoldKeyProvider =
     Provider((ref) => GlobalKey<ScaffoldState>());
@@ -27,6 +26,8 @@ class MainCard extends ConsumerWidget {
 
     final wallet = ref.watch(walletProvider);
     final kaspaBalance = ref.watch(formatedTotalBalanceProvider);
+    final fiatBalance = ref.watch(formatedTotalFiatProvider);
+    final kaspaPrice = ref.watch(formatedKaspaPriceProvider);
     final scaffoldKey = ref.watch(homePageScaffoldKeyProvider);
 
     Future<void> scanQrCode() async {
@@ -53,14 +54,13 @@ class MainCard extends ConsumerWidget {
       },
       child: Container(
         margin: const EdgeInsets.only(left: 14, right: 14, top: 10),
-        height: 130,
         decoration: BoxDecoration(
           color: theme.backgroundDark,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [theme.boxShadow],
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
@@ -76,51 +76,57 @@ class MainCard extends ConsumerWidget {
                       onPressed: () => scaffoldKey.currentState?.openDrawer(),
                     );
                   }),
-                  Container(
-                    height: 60,
-                    padding: const EdgeInsets.symmetric(vertical: 6),
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            'assets/kaspa_transparent_180.png',
-                            width: 26,
-                            color: theme is KaspiumLightTheme
-                                ? theme.primary
-                                : null,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            '$kaspaBalance',
-                            textAlign: TextAlign.end,
-                            style: styles.textStyleCurrency,
-                          ),
-                        ],
+                  Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      Text(
+                        fiatBalance,
+                        textAlign: TextAlign.end,
+                        style: styles.textStyleAccount,
                       ),
-                    ),
+                      Container(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                'assets/kaspa_transparent_180.png',
+                                width: 30,
+                                color: theme is KaspiumLightTheme
+                                    ? theme.primary
+                                    : null,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                '$kaspaBalance',
+                                textAlign: TextAlign.end,
+                                style: styles.textStyleCurrency,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        kaspaPrice,
+                        textAlign: TextAlign.end,
+                        style: styles.textStyleTransactionAmountSmall.copyWith(
+                          fontSize: 13,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                    ],
                   ),
-                  if (!wallet.isViewOnly)
+                  if (wallet.isViewOnly)
+                    const SizedBox(width: 40, height: 40)
+                  else
                     AppIconButton(
                       icon: Icons.qr_code_scanner,
                       onPressed: scanQrCode,
-                    )
-                  else
-                    const SizedBox(width: 40, height: 40),
+                    ),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(start: 14),
-              child: Text(
-                l10n.totalValue,
-                style: styles.textStyleTotalValue,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10, left: 14, right: 14),
-              child: const BalanceWidget(),
-            )
           ],
         ),
       ),
