@@ -108,7 +108,8 @@ class KaspaApiMainnet implements KaspaApi {
     int retryCount = 3,
     Duration retryDelay = const Duration(seconds: 1),
   }) async {
-    final url = '$baseUrl/transactions/$id';
+    final url =
+        '$baseUrl/transactions/$id?resolve_previous_outpoints=${resolvePreviousOutpoints.name}';
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode != 200) {
@@ -139,7 +140,8 @@ class KaspaApiMainnet implements KaspaApi {
     int retryCount = 3,
     Duration retryDelay = const Duration(seconds: 1),
   }) async {
-    final url = '$baseUrl/transactions/search';
+    final url =
+        '$baseUrl/transactions/search?resolve_previous_outpoints=${resolvePreviousOutpoints.name}';
     final body = json.encode({'transactionIds': ids.toList()});
 
     try {
@@ -242,8 +244,6 @@ class KaspaApiMainnet implements KaspaApi {
 
   Future<List<ApiTxId>> getTxIdsForAddress(
     String address, {
-    ResolvePreviousOutpoints resolvePreviousOutpoints =
-        ResolvePreviousOutpoints.light,
     int limit = 500,
     int offset = 0,
     int retryCount = 3,
