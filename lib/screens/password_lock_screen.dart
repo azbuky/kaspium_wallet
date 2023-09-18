@@ -28,6 +28,7 @@ class PasswordLockScreen extends HookConsumerWidget {
     final enterFocusNode = useFocusNode();
     final enterController = useTextEditingController();
     final passwordError = useState<String>('');
+    final unlockDisabled = useState<bool>(false);
 
     Future<void> validateAndUnlock() async {
       try {
@@ -48,6 +49,12 @@ class PasswordLockScreen extends HookConsumerWidget {
         }
       } catch (e) {
         passwordError.value = l10n.invalidPassword;
+        unlockDisabled.value = true;
+        Future.delayed(const Duration(seconds: 2), () {
+          if (context.mounted) {
+            unlockDisabled.value = false;
+          }
+        });
       }
     }
 
@@ -106,7 +113,9 @@ class PasswordLockScreen extends HookConsumerWidget {
                         },
                         onSubmitted: (value) {
                           FocusScope.of(context).unfocus();
-                          validateAndUnlock();
+                          if (!unlockDisabled.value) {
+                            validateAndUnlock();
+                          }
                         },
                         hintText: l10n.enterPasswordHint,
                         keyboardType: TextInputType.text,
@@ -129,6 +138,7 @@ class PasswordLockScreen extends HookConsumerWidget {
               PrimaryButton(
                 title: l10n.unlock,
                 margin: const EdgeInsets.fromLTRB(28, 8, 28, 0),
+                disabled: unlockDisabled.value,
                 onPressed: validateAndUnlock,
               ),
             ]),
