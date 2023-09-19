@@ -31,13 +31,13 @@ class TransactionStateTag extends ConsumerWidget {
           style: styles.tagText,
         ),
         unconfirmed: () => Text(
-          l10n.unconfirmed,
+          l10n.notAccepted,
           style: styles.tagText,
         ),
         confirming: (confirmations) {
           if (confirmations < BigInt.two) {
             return Text(
-              l10n.confirming,
+              l10n.accepted,
               style: styles.tagText,
             );
           }
