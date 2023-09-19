@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
 import '../widgets/buttons.dart';
+import 'intro_back_button.dart';
 import 'intro_providers.dart';
 
 class ImportWalletTypeCard extends ConsumerWidget {
@@ -64,6 +65,7 @@ class IntroImportSelect extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
+    final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
     void importWallet() {
@@ -98,20 +100,47 @@ class IntroImportSelect extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsetsDirectional.only(start: 20),
+                child: const IntroBackButton(),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 40, right: 40, top: 10),
+              alignment: AlignmentDirectional(-1, 0),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  l10n.importWallet,
+                  style: styles.textStyleHeaderColored,
+                  maxLines: 1,
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 40, right: 40, top: 15),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                l10n.importWalletDescription,
+                style: styles.textStyleParagraph,
+                textAlign: TextAlign.start,
+              ),
+            ),
             ImportWalletTypeCard(
-              title: 'Import 24 Word Seed Phrase',
-              description: 'Compatible with Cli Wallet and Ledger',
+              title: l10n.importOption24WordsTitle,
+              description: l10n.importOption24WordsDescription,
               onPressed: importWallet,
             ),
             ImportWalletTypeCard(
-              title: 'Import 12 Word Seed Phrase',
-              description: 'Compatible with Web Wallet and KDX',
+              title: l10n.importOption12WordsTitle,
+              description: l10n.importOption12WordsDescription,
               onPressed: importLegacyWallet,
             ),
             ImportWalletTypeCard(
-              title: 'Import Watch Only Wallet',
-              description:
-                  'View the balance and transactions of a wallet without importing the Seed Phrase',
+              title: l10n.importOptionKpubTitle,
+              description: l10n.importOptionKpubDescription,
               onPressed: importViewOnlyWallet,
             ),
             Expanded(child: SizedBox()),
