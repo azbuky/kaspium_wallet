@@ -5,16 +5,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
 import '../core/core_providers.dart';
-import '../settings/available_currency.dart';
 import '../settings/settings_providers.dart';
+import 'coingecko_price_notifier.dart';
 import 'coingecko_types.dart';
 
-final _kaspaPriceCacheProvider = StateProvider<CoinGeckoPrice>((ref) {
-  return CoinGeckoPrice(
-    currency: AvailableCurrencies.USD,
-    price: Decimal.zero,
-    priceBtc: Decimal.zero,
-  );
+final _kaspaPriceCacheProvider =
+    StateNotifierProvider<CoinGeckoPriceNotifier, CoinGeckoPrice>((ref) {
+  final repository = ref.watch(settingsRepositoryProvider);
+  return CoinGeckoPriceNotifier(repository);
 });
 
 final _kaspaPriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
@@ -60,11 +58,8 @@ final coingeckoKaspaPriceProvider = Provider.autoDispose((ref) {
   final remote = ref.watch(_kaspaPriceRemoteProvider);
 
   remote.whenOrNull(data: (data) {
-    Future.delayed(
-      Duration.zero,
-      () => cache.state = data,
-    );
+    Future.microtask(() => cache.updatePrice(data));
   });
 
-  return remote.asData?.value ?? cache.state;
+  return remote.asData?.value ?? cache.price;
 });
