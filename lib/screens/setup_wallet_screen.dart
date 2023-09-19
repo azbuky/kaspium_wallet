@@ -129,11 +129,11 @@ class SetupWalletScreen extends HookConsumerWidget {
         await addressBox.setAll(Map.fromEntries(
           discovery.addresses.map(
             (address) => MapEntry(address.key, address),
-            ),
+          ),
         ));
 
-        final service = ref.read(txServiceProvider(wallet));
-        await service.cacheWalletTxIds(discovery.txIds);
+        final txCache = ref.read(txCacheServiceProvider(wallet));
+        await txCache.addWalletTxIds(discovery.txIds);
 
         await walletRepository.closeWalletBoxes(wallet, network: network);
 

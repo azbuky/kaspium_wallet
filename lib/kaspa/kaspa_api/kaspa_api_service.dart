@@ -7,7 +7,7 @@ class KaspaApiService {
   final KaspaApi _api;
   const KaspaApiService(this._api);
 
-  Future<int> getTxCount(
+  Future<int> getTxCountForAddress(
     String address, {
     int retryCount = 3,
     Duration retryDelay = const Duration(seconds: 1),

@@ -5,6 +5,7 @@ import '../core/core_providers.dart';
 import '../database/boxes.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
+import '../transactions/transaction_providers.dart';
 import '../wallet/wallet_types.dart';
 import '../wallet_auth/wallet_auth_providers.dart';
 import '../wallet_balance/wallet_balance_providers.dart';
@@ -52,11 +53,49 @@ final addressNotifierProvider = ChangeNotifierProvider.autoDispose((ref) {
 });
 
 final addressMonitorProvider = Provider.autoDispose((ref) {
-  final notifier = ref.watch(addressNotifierProvider);
-
   ref.listen(lastBalanceChangesProvider, (_, next) {
     final addresses = next.where((_, balance) => balance != BigInt.zero).keys;
+    final notifier = ref.read(addressNotifierProvider);
     notifier.markUsed(addresses);
+  });
+
+  ref.listen(
+      addressNotifierProvider.select((value) => value.lastUsedReceiveIndex),
+      (prev, next) async {
+    if (prev == null) {
+      return;
+    }
+    final addressNotifier = ref.read(addressNotifierProvider);
+    final addresses = <String>{};
+    for (int idx = prev + 1; idx < next; idx++) {
+      final address = addressNotifier.getReceiveAddressWithIndex(idx);
+      if (address != null && address.used == false) {
+        addresses.add(address.encoded);
+      }
+    }
+    if (addresses.isNotEmpty) {
+      final txNotifier = ref.read(txNotifierProvider);
+      await txNotifier.fetchNewTxsForAddresses(addresses);
+    }
+  });
+  ref.listen(
+      addressNotifierProvider.select((value) => value.lastUsedChangeIndex),
+      (prev, next) async {
+    if (prev == null) {
+      return;
+    }
+    final addressNotifier = ref.read(addressNotifierProvider);
+    final addresses = <String>{};
+    for (int idx = prev + 1; idx < next; idx++) {
+      final address = addressNotifier.getChangeAddressWithIndex(idx);
+      if (address != null && address.used == false) {
+        addresses.add(address.encoded);
+      }
+    }
+    if (addresses.isNotEmpty) {
+      final txNotifier = ref.read(txNotifierProvider);
+      await txNotifier.fetchNewTxsForAddresses(addresses);
+    }
   });
 
   return false;
@@ -65,6 +104,12 @@ final addressMonitorProvider = Provider.autoDispose((ref) {
 final allAddressesProvider = Provider.autoDispose((ref) {
   return ref.watch(
     addressNotifierProvider.select((value) => value.allAddresses),
+  );
+});
+
+final activeAddressesProvider = Provider.autoDispose((ref) {
+  return ref.watch(
+    addressNotifierProvider.select((value) => value.activeAddresses),
   );
 });
 

@@ -22,7 +22,7 @@ class UtxosWidget extends ConsumerWidget {
         ref.invalidate(kaspaClientProvider);
       }
 
-      final addresses = ref.read(allAddressesProvider);
+      final addresses = ref.read(activeAddressesProvider);
       final notifier = ref.read(utxoNotifierProvider);
       await notifier.refresh(addresses: addresses);
     }

@@ -9,6 +9,7 @@ part 'transaction_types.g.dart';
 class TxIndex with _$TxIndex {
   const factory TxIndex({
     required String txId,
+    @Default(0) int blockTime,
   }) = _TxIndex;
 
   factory TxIndex.fromJson(Map<String, dynamic> json) =>
@@ -32,6 +33,7 @@ class Tx with _$Tx {
   const factory Tx({
     required ApiTransaction apiTx,
     required List<TxInputData?> inputData,
+    @Default(0) int lastUpdate,
   }) = _Tx;
 
   String get id => apiTx.transactionId;

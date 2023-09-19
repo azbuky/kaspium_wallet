@@ -23,7 +23,7 @@ class WalletAddressManager {
   Iterable<String> get allAddresses =>
       _addresses.whereNotNull().map((e) => e.encoded);
 
-  IList<WalletAddress> get usedAddresses =>
+  IList<WalletAddress> get activeAddresses =>
       IList(_addresses.take(lastUsedIndex + 1).whereNotNull());
 
   int get lastUsedIndex => _lastUsedIndex;

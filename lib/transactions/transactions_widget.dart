@@ -1,5 +1,6 @@
 import 'package:automatic_animated_list/automatic_animated_list.dart';
 import 'package:collection/collection.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
@@ -105,24 +106,39 @@ class TransactionsWidget extends ConsumerWidget {
     Future<void> refresh() async {
       ref.read(hapticUtilProvider).success();
 
+      // refresh remote data
+      final remote = ref.read(remoteRefreshProvider.notifier);
+      remote.update((state) => state + 1);
+
       final networkError = ref.read(networkErrorProvider);
       if (networkError) {
-        ref.invalidate(kaspaClientProvider);
+        final _ = ref.refresh(kaspaClientProvider);
       }
 
-      final balanceNotifier = ref.refresh(balanceNotifierProvider);
-      // TODO - fixme
-      await Future.delayed(const Duration(milliseconds: 500));
+      final balanceNotifier = ref.read(balanceNotifierProvider);
+      final utxosNotifier = ref.read(utxoNotifierProvider);
+      final addresses = ref.read(allAddressesProvider);
+      await balanceNotifier.refresh(addresses);
+      await utxosNotifier.refresh(addresses: addresses);
 
-      await txNotifier.refreshWalletTxs(balanceNotifier.balances);
+      final addressNotifier = ref.read(addressNotifierProvider);
+      final pendingAddresses = addressNotifier.receiveAddresses
+          .followedBy(addressNotifier.changeAddresses)
+          .where((address) => address.used == false)
+          .map((e) => e.encoded)
+          .toIList();
+
+      final usedAddresses = await txNotifier.refreshWalletTxs(
+        balances: balanceNotifier.balances,
+        pendingAddresses: pendingAddresses,
+      );
+      await addressNotifier.markUsed(usedAddresses);
     }
 
     void loadMore() {
       // wait for scroll to settle before loading more txs
       Future.delayed(const Duration(milliseconds: 500), () {
-        if (txNotifier.hasMore) {
-          txNotifier.loadMore();
-        }
+        txNotifier.loadMore();
       });
     }
 

@@ -21,6 +21,7 @@ TxIndex _$TxIndexFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TxIndex {
   String get txId => throw _privateConstructorUsedError;
+  int get blockTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -32,7 +33,7 @@ abstract class $TxIndexCopyWith<$Res> {
   factory $TxIndexCopyWith(TxIndex value, $Res Function(TxIndex) then) =
       _$TxIndexCopyWithImpl<$Res, TxIndex>;
   @useResult
-  $Res call({String txId});
+  $Res call({String txId, int blockTime});
 }
 
 /// @nodoc
@@ -49,12 +50,17 @@ class _$TxIndexCopyWithImpl<$Res, $Val extends TxIndex>
   @override
   $Res call({
     Object? txId = null,
+    Object? blockTime = null,
   }) {
     return _then(_value.copyWith(
       txId: null == txId
           ? _value.txId
           : txId // ignore: cast_nullable_to_non_nullable
               as String,
+      blockTime: null == blockTime
+          ? _value.blockTime
+          : blockTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -66,7 +72,7 @@ abstract class _$$_TxIndexCopyWith<$Res> implements $TxIndexCopyWith<$Res> {
       __$$_TxIndexCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String txId});
+  $Res call({String txId, int blockTime});
 }
 
 /// @nodoc
@@ -80,12 +86,17 @@ class __$$_TxIndexCopyWithImpl<$Res>
   @override
   $Res call({
     Object? txId = null,
+    Object? blockTime = null,
   }) {
     return _then(_$_TxIndex(
       txId: null == txId
           ? _value.txId
           : txId // ignore: cast_nullable_to_non_nullable
               as String,
+      blockTime: null == blockTime
+          ? _value.blockTime
+          : blockTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -93,17 +104,20 @@ class __$$_TxIndexCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TxIndex implements _TxIndex {
-  const _$_TxIndex({required this.txId});
+  const _$_TxIndex({required this.txId, this.blockTime = 0});
 
   factory _$_TxIndex.fromJson(Map<String, dynamic> json) =>
       _$$_TxIndexFromJson(json);
 
   @override
   final String txId;
+  @override
+  @JsonKey()
+  final int blockTime;
 
   @override
   String toString() {
-    return 'TxIndex(txId: $txId)';
+    return 'TxIndex(txId: $txId, blockTime: $blockTime)';
   }
 
   @override
@@ -111,12 +125,14 @@ class _$_TxIndex implements _TxIndex {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TxIndex &&
-            (identical(other.txId, txId) || other.txId == txId));
+            (identical(other.txId, txId) || other.txId == txId) &&
+            (identical(other.blockTime, blockTime) ||
+                other.blockTime == blockTime));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, txId);
+  int get hashCode => Object.hash(runtimeType, txId, blockTime);
 
   @JsonKey(ignore: true)
   @override
@@ -133,12 +149,15 @@ class _$_TxIndex implements _TxIndex {
 }
 
 abstract class _TxIndex implements TxIndex {
-  const factory _TxIndex({required final String txId}) = _$_TxIndex;
+  const factory _TxIndex({required final String txId, final int blockTime}) =
+      _$_TxIndex;
 
   factory _TxIndex.fromJson(Map<String, dynamic> json) = _$_TxIndex.fromJson;
 
   @override
   String get txId;
+  @override
+  int get blockTime;
   @override
   @JsonKey(ignore: true)
   _$$_TxIndexCopyWith<_$_TxIndex> get copyWith =>
@@ -307,6 +326,7 @@ Tx _$TxFromJson(Map<String, dynamic> json) {
 mixin _$Tx {
   ApiTransaction get apiTx => throw _privateConstructorUsedError;
   List<TxInputData?> get inputData => throw _privateConstructorUsedError;
+  int get lastUpdate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -318,7 +338,8 @@ abstract class $TxCopyWith<$Res> {
   factory $TxCopyWith(Tx value, $Res Function(Tx) then) =
       _$TxCopyWithImpl<$Res, Tx>;
   @useResult
-  $Res call({ApiTransaction apiTx, List<TxInputData?> inputData});
+  $Res call(
+      {ApiTransaction apiTx, List<TxInputData?> inputData, int lastUpdate});
 
   $ApiTransactionCopyWith<$Res> get apiTx;
 }
@@ -337,6 +358,7 @@ class _$TxCopyWithImpl<$Res, $Val extends Tx> implements $TxCopyWith<$Res> {
   $Res call({
     Object? apiTx = null,
     Object? inputData = null,
+    Object? lastUpdate = null,
   }) {
     return _then(_value.copyWith(
       apiTx: null == apiTx
@@ -347,6 +369,10 @@ class _$TxCopyWithImpl<$Res, $Val extends Tx> implements $TxCopyWith<$Res> {
           ? _value.inputData
           : inputData // ignore: cast_nullable_to_non_nullable
               as List<TxInputData?>,
+      lastUpdate: null == lastUpdate
+          ? _value.lastUpdate
+          : lastUpdate // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -365,7 +391,8 @@ abstract class _$$_TxCopyWith<$Res> implements $TxCopyWith<$Res> {
       __$$_TxCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ApiTransaction apiTx, List<TxInputData?> inputData});
+  $Res call(
+      {ApiTransaction apiTx, List<TxInputData?> inputData, int lastUpdate});
 
   @override
   $ApiTransactionCopyWith<$Res> get apiTx;
@@ -382,6 +409,7 @@ class __$$_TxCopyWithImpl<$Res> extends _$TxCopyWithImpl<$Res, _$_Tx>
   $Res call({
     Object? apiTx = null,
     Object? inputData = null,
+    Object? lastUpdate = null,
   }) {
     return _then(_$_Tx(
       apiTx: null == apiTx
@@ -392,6 +420,10 @@ class __$$_TxCopyWithImpl<$Res> extends _$TxCopyWithImpl<$Res, _$_Tx>
           ? _value._inputData
           : inputData // ignore: cast_nullable_to_non_nullable
               as List<TxInputData?>,
+      lastUpdate: null == lastUpdate
+          ? _value.lastUpdate
+          : lastUpdate // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -400,7 +432,9 @@ class __$$_TxCopyWithImpl<$Res> extends _$TxCopyWithImpl<$Res, _$_Tx>
 @JsonSerializable()
 class _$_Tx extends _Tx {
   const _$_Tx(
-      {required this.apiTx, required final List<TxInputData?> inputData})
+      {required this.apiTx,
+      required final List<TxInputData?> inputData,
+      this.lastUpdate = 0})
       : _inputData = inputData,
         super._();
 
@@ -417,8 +451,12 @@ class _$_Tx extends _Tx {
   }
 
   @override
+  @JsonKey()
+  final int lastUpdate;
+
+  @override
   String toString() {
-    return 'Tx(apiTx: $apiTx, inputData: $inputData)';
+    return 'Tx(apiTx: $apiTx, inputData: $inputData, lastUpdate: $lastUpdate)';
   }
 
   @override
@@ -428,13 +466,15 @@ class _$_Tx extends _Tx {
             other is _$_Tx &&
             (identical(other.apiTx, apiTx) || other.apiTx == apiTx) &&
             const DeepCollectionEquality()
-                .equals(other._inputData, _inputData));
+                .equals(other._inputData, _inputData) &&
+            (identical(other.lastUpdate, lastUpdate) ||
+                other.lastUpdate == lastUpdate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, apiTx, const DeepCollectionEquality().hash(_inputData));
+  int get hashCode => Object.hash(runtimeType, apiTx,
+      const DeepCollectionEquality().hash(_inputData), lastUpdate);
 
   @JsonKey(ignore: true)
   @override
@@ -453,7 +493,8 @@ class _$_Tx extends _Tx {
 abstract class _Tx extends Tx {
   const factory _Tx(
       {required final ApiTransaction apiTx,
-      required final List<TxInputData?> inputData}) = _$_Tx;
+      required final List<TxInputData?> inputData,
+      final int lastUpdate}) = _$_Tx;
   const _Tx._() : super._();
 
   factory _Tx.fromJson(Map<String, dynamic> json) = _$_Tx.fromJson;
@@ -462,6 +503,8 @@ abstract class _Tx extends Tx {
   ApiTransaction get apiTx;
   @override
   List<TxInputData?> get inputData;
+  @override
+  int get lastUpdate;
   @override
   @JsonKey(ignore: true)
   _$$_TxCopyWith<_$_Tx> get copyWith => throw _privateConstructorUsedError;

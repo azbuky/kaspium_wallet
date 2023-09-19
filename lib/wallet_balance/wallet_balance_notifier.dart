@@ -20,11 +20,10 @@ class WalletBalanceNotifier extends SafeChangeNotifier {
   }) : _balanceBox = balanceBox {
     final balances = _balanceBox.getAll();
     for (final balance in balances.values) {
-      final newBalance = balance.balance;
       if (!addressAware.containsAddress(balance.address)) {
         continue;
       }
-      _balances[balance.address] = newBalance;
+      _balances[balance.address] = balance.balance;
     }
     _totalBalance = _balances.values.fold(BigInt.zero, (a, b) => a + b);
   }
@@ -45,10 +44,7 @@ class WalletBalanceNotifier extends SafeChangeNotifier {
   Amount balanceForAddress(String address) =>
       Amount.raw(_balances[address] ?? BigInt.zero);
 
-  Future<void> refresh([Iterable<String>? addresses]) async {
-    if (addresses == null) {
-      addresses = addressAware.allAddresses;
-    }
+  Future<void> refresh(Iterable<String> addresses) async {
     if (addresses.isEmpty) {
       return;
     }
@@ -63,20 +59,21 @@ class WalletBalanceNotifier extends SafeChangeNotifier {
       if (newBalance != oldBalance) {
         changes[entry.address] = entry;
         _balances[entry.address] = newBalance;
-
-        final key = addressAware.keyForAddress(entry.address);
-        if (key != null) {
-          _balanceBox.set(key, entry);
-        }
         _totalBalance += newBalance - oldBalance;
       }
     }
 
     if (changes.isNotEmpty) {
-      _lastRefreshChanges = changes.toIMap();
-    }
+      final balanceChanges = changes.map((_, value) {
+        final key = addressAware.keyForAddress(value.address) ?? '';
+        return MapEntry(key, value);
+      });
+      balanceChanges.remove('');
+      await _balanceBox.setAll(balanceChanges);
 
-    _cachedBalances = null;
-    notifyListeners();
+      _lastRefreshChanges = changes.toIMap();
+      _cachedBalances = null;
+      notifyListeners();
+    }
   }
 }

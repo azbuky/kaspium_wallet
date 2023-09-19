@@ -1,76 +1,87 @@
 import 'dart:async';
 
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:logger/logger.dart';
 
 import '../database/boxes.dart';
 import '../kaspa/kaspa.dart';
 import 'transaction_types.dart';
+import 'tx_cache_index.dart';
 
 class TxCacheService {
   // Index of transaction ids ordered by timestamp
-  final IndexedTypedBox<TxIndex> txIndexBox;
-  // Wallet transactions with cached imput addresses and amounts
+  final TxCacheIndex _txIndex;
+
+  // Wallet transactions with cached input addresses and amounts
   final LazyTypedBox<Tx> txBox;
 
-  final KaspaApi api;
+  // A cache of transactions that are currently loaded in memory
+  final memCache = <String, ApiTransaction>{};
+
+  late final KaspaApiService api;
   final Logger log;
 
-  // Transaction ids of this wallet
-  late final txIds = Set.of(
-    txIndexBox.getAll().map((e) => e.txId),
-  );
-
-  // A cache of transactions that are currently loaded in memory
-  late final txCache = <String, ApiTransaction>{};
-
-  late final coinbaseTxIds = <String>{};
+  int get txCount => _txIndex.length;
 
   TxCacheService({
-    required this.txIndexBox,
+    required IndexedTypedBox<TxIndex> txIndexBox,
     required this.txBox,
-    required this.api,
     required this.log,
-  });
+  }) : _txIndex = TxCacheIndex(txIndexBox);
 
-  Future<void> _cacheInputTxsFor(List<ApiTransaction> txs) async {
-    final inputIds = <String>{};
+  Future<void> _cacheInputsFor(Iterable<ApiTransaction> txs) async {
+    final missingIds = <String>{};
     for (final tx in txs) {
       for (final input in tx.inputs) {
+        if (input.previousOutpointAmount != null &&
+            input.previousOutpointAddress != null) {
+          continue;
+        }
         final hash = input.previousOutpointHash;
-        if (!txCache.containsKey(hash)) {
-          inputIds.add(hash);
+        if (!memCache.containsKey(hash)) {
+          missingIds.add(hash);
         }
       }
     }
 
-    if (inputIds.isEmpty) {
+    if (missingIds.isEmpty) {
       return;
     }
 
     final cachedIds = <String>{};
-    for (final extraId in inputIds) {
-      if (txIds.contains(extraId)) {
-        final tx = await txBox.tryGet(extraId);
+    for (final inputId in missingIds) {
+      if (_txIndex.contains(inputId)) {
+        final tx = await txBox.tryGet(inputId);
         if (tx != null) {
-          txCache[extraId] = tx.apiTx;
-          cachedIds.add(extraId);
+          memCache[inputId] = tx.apiTx;
+          cachedIds.add(inputId);
         }
       }
     }
 
-    inputIds.removeAll(cachedIds);
-    final extraTxs = await api.getTransactions(ids: inputIds);
-    txCache.addEntries(extraTxs.map((e) => MapEntry(e.transactionId, e)));
+    missingIds.removeAll(cachedIds);
+    final extraTxs = await api.getTxsWithIds(missingIds);
+    memCache.addEntries(extraTxs.map((e) => MapEntry(e.transactionId, e)));
   }
 
   // Builds a Tx object from an ApiTransaction object using cached input txs
-  Tx _txForApiTx(ApiTransaction apiTx) {
+  Tx _txForApiTx(ApiTransaction apiTx, {int? lastUpdate}) {
     final inputs = apiTx.inputs.map((input) {
-      final inputTx = txCache[input.previousOutpointHash];
+      // use new available input amount and address from apiTx
+      if (input.previousOutpointAmount != null &&
+          input.previousOutpointAddress != null) {
+        return TxInputData(
+          address: input.previousOutpointAddress!,
+          amount: input.previousOutpointAmount!,
+        );
+      }
+
+      final inputTx = memCache[input.previousOutpointHash];
       if (inputTx == null) {
         log.e('Missing input tx for $input');
         return null;
       }
+
       final outpointIndex = input.previousOutpointIndex.toInt();
       final outpoint = inputTx.outputs[outpointIndex];
       return TxInputData(
@@ -82,145 +93,192 @@ class TxCacheService {
     final tx = Tx(
       apiTx: apiTx,
       inputData: inputs,
+      lastUpdate: lastUpdate ?? _refreshTimestamp,
     );
 
     return tx;
   }
 
-  Future<Tx> txForApiTx(ApiTransaction apiTx) async {
-    await _cacheInputTxsFor([apiTx]);
+  Future<Iterable<Tx>> _txsForApiTxs(Iterable<ApiTransaction> apiTxs) async {
+    await _cacheInputsFor(apiTxs);
 
-    final tx = _txForApiTx(apiTx);
-
-    return tx;
-  }
-
-  Future<List<Tx>> txsForApiTxs(List<ApiTransaction> apiTxs) async {
-    await _cacheInputTxsFor(apiTxs);
-
-    final txs = apiTxs.map(_txForApiTx).toList();
+    final txs = apiTxs.map(_txForApiTx);
 
     return txs;
   }
 
-  Future<void> cacheTxsForAddresses(
-    Iterable<String> addresses,
-  ) async {
-    final txMap = <String, ApiTransaction>{};
-    for (final address in addresses) {
-      int offset = 0;
-      int count = 100;
-
-      while (count == 100) {
-        final txs = await api.getTxsForAddress(
-          address,
-          offset: offset,
-          limit: count,
-        );
-        try {
-          txMap.addEntries(txs.map((e) => MapEntry(e.transactionId, e)));
-        } catch (e) {
-          log.e('Failed to fetch txs', e);
-          continue;
-        }
-        count = txs.length;
-        offset += count;
-      }
+  Future<List<Tx>> cacheWalletTxs(Iterable<ApiTransaction> apiTxs) async {
+    final newTxs = apiTxs.where((tx) => !_txIndex.contains(tx.transactionId));
+    if (newTxs.isEmpty) {
+      return [];
     }
 
-    await cacheApiTxs(txMap.values.toList());
-  }
+    memCache.addEntries(newTxs.map((e) => MapEntry(e.transactionId, e)));
 
-  Future<List<Tx>> cacheApiTxs(List<ApiTransaction> apiTxs) async {
-    txCache.addEntries(apiTxs.map((e) => MapEntry(e.transactionId, e)));
+    final txs = await _txsForApiTxs(newTxs);
 
-    apiTxs.sort((t1, t2) => t1.blockTime.compareTo(t2.blockTime));
+    final txIndexes = txs.map(
+      (tx) => TxIndex(
+        txId: tx.id,
+        blockTime: tx.apiTx.blockTime,
+      ),
+    );
 
-    final sortedIds = apiTxs.map((tx) => tx.transactionId);
+    await _txIndex.addAll(txIndexes);
 
-    final txs = await txsForApiTxs(apiTxs);
-
-    final txIndexes = txs
-        .where((tx) => !txIds.contains(tx.id))
-        .map((tx) => TxIndex(txId: tx.id))
-        .toList();
-
-    txIds.addAll(sortedIds);
-    await txIndexBox.addAll(txIndexes);
     await txBox.setAll(Map.fromEntries(
       txs.map((tx) => MapEntry(tx.id, tx)),
     ));
 
-    return txs;
+    return txs.toList();
   }
 
-  Future<List<Tx>> cacheTxsWithIds(Iterable<String> ids) async {
-    try {
-      final apiTxs = await api.getTransactions(ids: ids);
-
-      final txs = await cacheApiTxs(apiTxs);
-
-      return txs;
-    } catch (e) {
-      log.e('Failed to update transactions', e);
-      return [];
-    }
+  Future<void> addWalletTxIds(Iterable<ApiTxId> apiTxIds) async {
+    await _txIndex.addAll(apiTxIds.map(
+      (e) => TxIndex(
+        txId: e.transactionId,
+        blockTime: e.blockTime ?? 0,
+      ),
+    ));
   }
 
-  bool isWalletId(String id) {
-    return txIds.contains(id) || coinbaseTxIds.contains(id);
+  bool isWalletTxId(String id) {
+    return _txIndex.contains(id);
   }
 
-  bool isCached(ApiTransaction apiTx) {
-    return txIds.contains(apiTx.transactionId);
-  }
-
-  Future<void> cacheTransaction(ApiTransaction apiTx) async {
-    txCache[apiTx.transactionId] = apiTx;
+  void addToMemcache(ApiTransaction apiTx) {
+    memCache[apiTx.transactionId] = apiTx;
   }
 
   Future<Tx> addWalletTx(ApiTransaction apiTx) async {
-    txCache[apiTx.transactionId] = apiTx;
+    addToMemcache(apiTx);
 
-    final tx = await txForApiTx(apiTx);
+    await _cacheInputsFor([apiTx]);
+
+    final tx = _txForApiTx(apiTx);
 
     await txBox.set(tx.id, tx);
 
-    // Don't add coinbase txs to index if tx is not accepted
-    if (apiTx.isAccepted || apiTx.inputs.isNotEmpty) {
-      txIds.add(apiTx.transactionId);
-      final txIndex = TxIndex(txId: tx.id);
-      await txIndexBox.add(txIndex);
-    } else {
-      coinbaseTxIds.add(apiTx.transactionId);
-    }
+    final txIndex = TxIndex(txId: tx.id, blockTime: tx.apiTx.blockTime);
+    await _txIndex.add(txIndex);
 
     return tx;
   }
 
-  Future<List<Tx>> getWalletTxs({
-    required int start,
-    required int end,
-  }) async {
-    final txs = <Tx>[];
-    for (int i = start; i < end; ++i) {
-      final txId = txIndexBox.tryGetAt(i);
-      if (txId == null) {
-        log.e('Failed to load tx id at index $i');
-        continue;
-      }
-      final tx = await txBox.tryGet(txId.txId);
-      if (tx == null) {
-        log.e('Failed to load tx with id $txId');
-        continue;
+  int get _refreshTimestamp => DateTime.now().toUtc().millisecondsSinceEpoch;
+
+  bool _needsRefresh(Tx tx) {
+    final isCoinbase = tx.apiTx.inputs.isEmpty;
+    final delta = Duration(seconds: isCoinbase ? 100 : 10).inMilliseconds;
+    final notFresh = _refreshTimestamp > tx.lastUpdate + 2000;
+    final needsRefresh = tx.lastUpdate < tx.apiTx.blockTime + delta;
+    return notFresh && needsRefresh;
+  }
+
+  Future<Iterable<Tx>> getWalletTxsAfter({String? txId, int count = 10}) async {
+    final txs = <Tx?>[];
+    final missingTxIds = <String, int>{};
+    for (final index in _txIndex.indexAfter(txId).take(count)) {
+      final tx = await txBox.tryGet(index.txId);
+      if (tx == null || _needsRefresh(tx)) {
+        missingTxIds[index.txId] = txs.length;
       }
       txs.add(tx);
     }
+    if (missingTxIds.isNotEmpty) {
+      final missingTxs = await api.getTxsWithIds(missingTxIds.keys);
+      for (final tx in missingTxs) {
+        final index = missingTxIds[tx.transactionId];
+        if (index == null) {
+          log.e('Missing tx index for ${tx.transactionId}');
+          continue;
+        }
+        txs[index] = await addWalletTx(tx);
+      }
+    }
 
-    txCache.addEntries(
-      txs.map((e) => MapEntry(e.id, e.apiTx)),
-    );
+    return txs.whereType<Tx>();
+  }
 
-    return txs;
+  Future<ApiTransaction?> _getApiTxWithId(String id) async {
+    if (memCache[id] case final apiTx?) {
+      return apiTx;
+    }
+
+    final tx = await txBox.tryGet(id);
+    if (tx?.apiTx case final apiTx?) {
+      return apiTx;
+    }
+
+    final remote = await api.getTxWithId(id);
+    return remote;
+  }
+
+  Future<void> updateAcceptedTxs(
+    Iterable<String> acceptedTxIds, {
+    required String acceptingBlockHash,
+    required int acceptingBlockBlueScore,
+  }) async {
+    final walletTxs = <ApiTransaction>[];
+    for (final id in acceptedTxIds) {
+      final tx = await _getApiTxWithId(id);
+      if (tx == null) {
+        continue;
+      }
+      walletTxs.add(tx);
+    }
+
+    for (final tx in walletTxs) {
+      final newTx = tx.copyWith(
+        isAccepted: true,
+        acceptingBlockHash: acceptingBlockHash,
+        acceptingBlockBlueScore: acceptingBlockBlueScore,
+      );
+      await addWalletTx(newTx);
+    }
+  }
+
+  // Returns cached balances and tx count for each address
+  Future<Map<String, (BigInt, int)>> getCachedBalances() async {
+    final balanceMap = <String, (BigInt, int)>{};
+
+    for (final id in _txIndex.txIds) {
+      final tx = await txBox.tryGet(id);
+      if (tx == null || tx.apiTx.isAccepted == false) {
+        continue;
+      }
+
+      for (final output in tx.apiTx.outputs) {
+        balanceMap.update(
+          output.scriptPublicKeyAddress,
+          (value) => (value.$1 + BigInt.from(output.amount), value.$2),
+          ifAbsent: () => (BigInt.from(output.amount), 0),
+        );
+      }
+      for (final input in tx.inputData) {
+        if (input == null) {
+          continue;
+        }
+        balanceMap.update(
+          input.address,
+          (value) => (value.$1 - BigInt.from(input.amount), value.$2),
+          ifAbsent: () => (BigInt.from(-input.amount), 0),
+        );
+      }
+
+      final addresses = Set.of(
+        tx.apiTx.outputs
+            .map((e) => e.scriptPublicKeyAddress)
+            .followedBy(tx.inputData.mapNotNull((e) => e?.address)),
+      );
+      for (final address in addresses) {
+        balanceMap.update(
+          address,
+          (value) => (value.$1, value.$2 + 1),
+          ifAbsent: () => (BigInt.zero, 1),
+        );
+      }
+    }
+    return balanceMap;
   }
 }

@@ -35,15 +35,21 @@ class WalletAddressNotifier extends SafeChangeNotifier
   WalletAddress? getChangeAddressWithIndex(int index) =>
       _change.addressAtIndex(index);
 
-  IList<WalletAddress> get receiveAddresses => _receive.usedAddresses
+  IList<WalletAddress> get receiveAddresses => _receive.activeAddresses
       .addAll(receiveAddress.used ? const [] : [receiveAddress]);
-  IList<WalletAddress> get changeAddresses => _change.usedAddresses;
+  IList<WalletAddress> get changeAddresses => _change.activeAddresses;
 
   int get lastUsedReceiveIndex => _receive.lastUsedIndex;
   int get lastUsedChangeIndex => _change.lastUsedIndex;
 
   IList<String> get allAddresses =>
       IList(_receive.allAddresses.followedBy(_change.allAddresses));
+
+  IList<String> get activeAddresses => IList(
+        _receive.activeAddresses
+            .followedBy(_change.activeAddresses)
+            .map((e) => e.encoded),
+      );
 
   Future<WalletAddress> get nextChangeAddress async {
     final index = _change.nextUnusedIndex;
@@ -86,20 +92,21 @@ class WalletAddressNotifier extends SafeChangeNotifier
     required this.addressGenerator,
     required this.addressNameCallback,
   }) : _walletAddressBox = addressBox {
-    final allAddresses = _walletAddressBox.getAll();
+    final addresses = _walletAddressBox.getAll();
     final bufferSize = 100;
 
     _receive = WalletAddressManager(
       type: AddressType.receive,
       bufferSize: bufferSize,
-      addresses: allAddresses.values,
+      addresses: addresses.values,
     );
 
     _change = WalletAddressManager(
       type: AddressType.change,
       bufferSize: bufferSize,
-      addresses: allAddresses.values,
+      addresses: addresses.values,
     );
+
     fillMissingAddresses();
   }
 
@@ -241,6 +248,10 @@ class WalletAddressNotifier extends SafeChangeNotifier
   }
 
   Future<void> markUsed(Iterable<String> addresses) async {
+    if (addresses.isEmpty) {
+      return;
+    }
+
     for (final address in addresses) {
       final wa = getAddress(address);
       if (wa == null || wa.used) {
