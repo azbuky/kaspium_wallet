@@ -142,7 +142,9 @@ class _ContactAddSheetState extends ConsumerState<ContactAddSheet> {
               style: _addressValid
                   ? styles.textStyleAddressText90
                   : styles.textStyleAddressText60,
-              inputFormatters: [],
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(74),
+              ],
               textInputAction: TextInputAction.done,
               maxLines: null,
               autocorrect: false,

@@ -737,7 +737,9 @@ class _SendSheetState extends ConsumerState<SendSheet> {
         controller: _addressController,
         cursorColor: theme.primary,
         inputFormatters: [
-          if (_isContact) LengthLimitingTextInputFormatter(20),
+          _isContact
+              ? LengthLimitingTextInputFormatter(20)
+              : LengthLimitingTextInputFormatter(74),
         ],
         textInputAction: TextInputAction.done,
         maxLines: null,

@@ -191,7 +191,7 @@ class NodeAddSheet extends HookConsumerWidget {
             textInputAction: TextInputAction.next,
             textCapitalization: TextCapitalization.words,
             inputFormatters: [
-              LengthLimitingTextInputFormatter(20),
+              LengthLimitingTextInputFormatter(25),
             ],
           ),
           ValidationText(state.nameValidationText),

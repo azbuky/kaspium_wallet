@@ -138,6 +138,7 @@ class IntroImportKpub extends HookConsumerWidget {
                       focusNode: kpubFocusNode,
                       controller: kpubController,
                       inputFormatters: [
+                        LengthLimitingTextInputFormatter(128),
                         FilteringTextInputFormatter.allow(
                           RegExp("[a-km-zA-HJ-NP-Z1-9]"),
                         ),
