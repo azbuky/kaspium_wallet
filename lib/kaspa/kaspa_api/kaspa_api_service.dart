@@ -4,8 +4,20 @@ import 'kaspa_api_base.dart';
 import 'types.dart';
 
 class KaspaApiService {
-  final KaspaApi api;
-  const KaspaApiService(this.api);
+  final KaspaApi _api;
+  const KaspaApiService(this._api);
+
+  Future<int> getTxCount(
+    String address, {
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) {
+    return _api.getTxCount(
+      address: address,
+      retryCount: retryCount,
+      retryDelay: retryDelay,
+    );
+  }
 
   Future<List<ApiTxId>> getTxIdsForAddress(
     String address, {
@@ -19,7 +31,7 @@ class KaspaApiService {
     final txIds = <ApiTxId>[];
 
     while (loadMore) {
-      final txPage = await api.getTxIdsForAddress(
+      final txPage = await _api.getTxIdsForAddress(
         address,
         limit: pageSize,
         offset: page * pageSize,
@@ -50,7 +62,7 @@ class KaspaApiService {
     final txs = <ApiTransaction>[];
 
     while (loadMore) {
-      final txPage = await api.getTxsForAddress(
+      final txPage = await _api.getTxsForAddress(
         address,
         resolvePreviousOutpoints: resolvePreviousOutpoints,
         limit: pageSize,
@@ -78,7 +90,7 @@ class KaspaApiService {
   }) async {
     final txs = <ApiTransaction>[];
     for (final idsSlice in ids.slices(10)) {
-      final results = await api.getTransactions(
+      final results = await _api.getTransactions(
         ids: idsSlice,
         resolvePreviousOutpoints: resolvePreviousOutpoints,
         retryCount: retryCount,
@@ -87,5 +99,20 @@ class KaspaApiService {
       txs.addAll(results);
     }
     return txs;
+  }
+
+  Future<ApiTransaction?> getTxWithId(
+    String id, {
+    ResolvePreviousOutpoints resolvePreviousOutpoints =
+        ResolvePreviousOutpoints.light,
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) {
+    return _api.getTransaction(
+      id: id,
+      resolvePreviousOutpoints: resolvePreviousOutpoints,
+      retryCount: retryCount,
+      retryDelay: retryDelay,
+    );
   }
 }
