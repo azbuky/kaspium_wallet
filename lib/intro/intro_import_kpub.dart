@@ -37,9 +37,12 @@ class IntroImportKpub extends HookConsumerWidget {
 
     final update = useValueListenable(kpubController);
 
-    final kpubIsValid = useMemoized(() => isValidKpub(update.text), [
-      update,
-    ]);
+    final kpubIsValid = useMemoized(
+      () => isValidKpub(update.text),
+      [update],
+    );
+
+    final showInvalidMessage = update.text.isNotEmpty && !kpubIsValid;
 
     Future<void> scanQrCode() async {
       if (kpubIsValid) {
@@ -164,7 +167,7 @@ class IntroImportKpub extends HookConsumerWidget {
                       alignment: const AlignmentDirectional(0, 0),
                       margin: const EdgeInsets.only(top: 6),
                       child: Text(
-                        !kpubIsValid ? l10n.invalidChecksumMessage : '',
+                        showInvalidMessage ? l10n.invalidKpubMessage : '',
                         style: styles.textStyleParagraphThinSuccess,
                         textAlign: TextAlign.center,
                       ),
