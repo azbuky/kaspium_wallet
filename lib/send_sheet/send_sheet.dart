@@ -220,6 +220,21 @@ class _SendSheetState extends ConsumerState<SendSheet> {
         return;
       }
 
+      final amount = uri?.amount;
+      if (amount != null) {
+        _amountController.text = NumberUtil.getStringFromRaw(
+          amount.raw,
+          TokenInfo.kaspa.decimals,
+        );
+        amountRaw = amount.raw;
+      }
+
+      final note = uri?.message;
+      if (note != null) {
+        _noteController.text = note;
+        _note = note;
+      }
+
       // See if this address belongs to a contact
       final contacts = ref.read(contactsProvider);
       final contact = contacts.getContactWithAddress(address.encoded);
