@@ -80,9 +80,6 @@ class ReceiveAmountField extends HookConsumerWidget {
             (amount?.value ?? Decimal.zero) > Decimal.zero,
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
         textAlign: TextAlign.center,
-        onSubmitted: (text) {
-          print('OnSubmited');
-        },
       ),
     );
   }
