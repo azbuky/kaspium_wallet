@@ -71,6 +71,7 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
+    final wallet = ref.watch(walletProvider);
     final walletAuth = ref.watch(walletAuthProvider);
     final encryptedSecret = walletAuth.encryptedSecret;
 
@@ -161,34 +162,35 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
                       disabled: _curUnlockSetting.setting == UnlockOption.NO &&
                           encryptedSecret == null,
                     ),
-                    // Encrypt option
-                    if (encryptedSecret == null) ...[
-                      Divider(height: 2, color: theme.text15),
-                      SingleLineItem(
-                        heading: l10n.setWalletPassword,
-                        settingIcon: AppIcons.walletpassword,
-                        onPressed: () {
-                          Sheets.showAppHeightNineSheet(
-                            context: context,
-                            widget: const SetPasswordSheet(),
-                            theme: ref.read(themeProvider),
-                          );
-                        },
-                      ),
-                    ] else ...[
-                      Divider(height: 2, color: theme.text15),
-                      SingleLineItem(
-                        heading: l10n.disableWalletPassword,
-                        settingIcon: AppIcons.walletpassworddisabled,
-                        onPressed: () {
-                          Sheets.showAppHeightNineSheet(
-                            context: context,
-                            widget: const DisablePasswordSheet(),
-                            theme: ref.read(themeProvider),
-                          );
-                        },
-                      ),
-                    ],
+                    if (!wallet.isViewOnly)
+                      // Encrypt option
+                      if (encryptedSecret == null) ...[
+                        Divider(height: 2, color: theme.text15),
+                        SingleLineItem(
+                          heading: l10n.setWalletPassword,
+                          settingIcon: AppIcons.walletpassword,
+                          onPressed: () {
+                            Sheets.showAppHeightNineSheet(
+                              context: context,
+                              widget: const SetPasswordSheet(),
+                              theme: ref.read(themeProvider),
+                            );
+                          },
+                        ),
+                      ] else ...[
+                        Divider(height: 2, color: theme.text15),
+                        SingleLineItem(
+                          heading: l10n.disableWalletPassword,
+                          settingIcon: AppIcons.walletpassworddisabled,
+                          onPressed: () {
+                            Sheets.showAppHeightNineSheet(
+                              context: context,
+                              widget: const DisablePasswordSheet(),
+                              theme: ref.read(themeProvider),
+                            );
+                          },
+                        ),
+                      ],
                     Divider(height: 2, color: theme.text15),
                   ],
                 ),
