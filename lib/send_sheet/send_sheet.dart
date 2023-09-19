@@ -971,6 +971,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
               _noteController.text = text;
               _notePasteButtonVisible = false;
               _noteQrButtonVisible = false;
+              _note = text;
 
               setState(() => _noteValidAndUnfocused = true);
             });
