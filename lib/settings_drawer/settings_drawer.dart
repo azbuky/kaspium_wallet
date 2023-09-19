@@ -322,7 +322,6 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                       SingleLineItem(
                         heading: l10n.advancedHeader,
                         settingIcon: Icons.settings_applications,
-                        iconSize: 32,
                         onPressed: () {
                           setState(() => _advancedOpen = true);
                           _advancedController.forward();
