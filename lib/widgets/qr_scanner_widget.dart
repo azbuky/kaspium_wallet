@@ -52,8 +52,11 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
 
       _shouldScan = false;
 
-      final picker = ImagePicker();
-      final file = await picker.pickImage(source: ImageSource.gallery);
+      XFile? file;
+      try {
+        final picker = ImagePicker();
+        file = await picker.pickImage(source: ImageSource.gallery);
+      } catch (_) {}
 
       lockDisabled.state = false;
 
