@@ -27,7 +27,7 @@ class WalletAddress with _$WalletAddress {
   }) = _WalletAddress;
 
   static keyForAddressAtIndex(int index, {required AddressType type}) =>
-      '$index#$type';
+      '$type#$index';
 
   String get encoded => address.encoded;
   String get key => keyForAddressAtIndex(index, type: type);
