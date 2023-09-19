@@ -169,7 +169,7 @@ class ReceiveSheet extends HookConsumerWidget {
                               data: '$kaspaUri',
                               gapless: false,
                               embeddedImage:
-                                  AssetImage('assets/qr_code_icon.png'),
+                                  const AssetImage('assets/qr_code_icon.png'),
                               embeddedImageStyle: QrEmbeddedImageStyle(
                                 size: const Size(40, 40),
                               ),
