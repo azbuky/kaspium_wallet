@@ -6,12 +6,14 @@ import '../app_providers.dart';
 class AppIconButton extends ConsumerWidget {
   final IconData icon;
   final Size size;
+  final Color? color;
   final VoidCallback? onPressed;
 
   const AppIconButton({
     Key? key,
     required this.icon,
     this.size = const Size(40, 40),
+    this.color,
     required this.onPressed,
   }) : super(key: key);
 
@@ -25,7 +27,7 @@ class AppIconButton extends ConsumerWidget {
       width: size.width,
       child: TextButton(
         style: styles.appIconButtonStyle,
-        child: Icon(icon, color: theme.text),
+        child: Icon(icon, color: color ?? theme.text),
         onPressed: onPressed,
       ),
     );

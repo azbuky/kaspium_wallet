@@ -118,6 +118,7 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
                   children: [
                     AppIconButton(
                       icon: Icons.arrow_back,
+                      color: Colors.white,
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                     Text(
@@ -128,6 +129,7 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
                     kPlatformIsAndroid || kPlatformIsIOS
                         ? AppIconButton(
                             icon: Icons.image_outlined,
+                            color: Colors.white,
                             onPressed: scanFromImage,
                           )
                         : const SizedBox(width: 48),
