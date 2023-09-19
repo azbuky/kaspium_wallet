@@ -92,6 +92,11 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   void initState() {
     super.initState();
 
+    // Do an UTXO refresh for all active addresses
+    final addresses = ref.read(activeAddressesProvider);
+    final utxoNotifier = ref.read(utxoNotifierProvider);
+    utxoNotifier.refresh(addresses: addresses);
+
     _contacts = [];
     if (widget.contact != null) {
       // Setup initial state for contact pre-filled
