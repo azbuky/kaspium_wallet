@@ -924,6 +924,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   Widget getEnterNoteContainer() {
     return Consumer(builder: (context, ref, _) {
       final theme = ref.watch(themeProvider);
+      final styles = ref.watch(stylesProvider);
       final l10n = l10nOf(context);
 
       return AppTextField(
@@ -933,6 +934,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
         focusNode: _noteFocusNode,
         controller: _noteController,
         cursorColor: theme.primary,
+        style: styles.textStyleParagraphPrimary,
         inputFormatters: [
           LengthLimitingTextInputFormatter(120),
         ],
@@ -1005,7 +1007,10 @@ class _SendSheetState extends ConsumerState<SendSheet> {
                     FocusScope.of(context).requestFocus(_noteFocusNode);
                   });
                 },
-                child: Text(_noteController.text),
+                child: Text(
+                  _noteController.text,
+                  style: styles.textStyleParagraphPrimary,
+                ),
               )
             : null,
       );
