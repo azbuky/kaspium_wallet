@@ -43,13 +43,28 @@ class Tx with _$Tx {
 
 enum TxItemType { send, receive, compound }
 
-@freezed
+@Freezed(equal: false)
 class TxItem with _$TxItem {
+  const TxItem._();
   const factory TxItem({
     required Tx tx,
     required int outputIndex,
     required TxItemType type,
   }) = _TxItem;
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TxItem &&
+            (identical(other.tx.id, tx.id) || other.tx.id == tx.id) &&
+            (identical(other.outputIndex, outputIndex) ||
+                other.outputIndex == outputIndex) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, tx, outputIndex, type);
 }
 
 @freezed

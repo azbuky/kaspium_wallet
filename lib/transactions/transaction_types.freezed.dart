@@ -617,9 +617,10 @@ class __$$_TxItemCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TxItem implements _TxItem {
+class _$_TxItem extends _TxItem {
   const _$_TxItem(
-      {required this.tx, required this.outputIndex, required this.type});
+      {required this.tx, required this.outputIndex, required this.type})
+      : super._();
 
   @override
   final Tx tx;
@@ -633,20 +634,6 @@ class _$_TxItem implements _TxItem {
     return 'TxItem(tx: $tx, outputIndex: $outputIndex, type: $type)';
   }
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_TxItem &&
-            (identical(other.tx, tx) || other.tx == tx) &&
-            (identical(other.outputIndex, outputIndex) ||
-                other.outputIndex == outputIndex) &&
-            (identical(other.type, type) || other.type == type));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, tx, outputIndex, type);
-
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
@@ -654,11 +641,12 @@ class _$_TxItem implements _TxItem {
       __$$_TxItemCopyWithImpl<_$_TxItem>(this, _$identity);
 }
 
-abstract class _TxItem implements TxItem {
+abstract class _TxItem extends TxItem {
   const factory _TxItem(
       {required final Tx tx,
       required final int outputIndex,
       required final TxItemType type}) = _$_TxItem;
+  const _TxItem._() : super._();
 
   @override
   Tx get tx;

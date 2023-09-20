@@ -67,6 +67,8 @@ class TransactionNotifier extends SafeChangeNotifier {
       acceptingBlockHash: acceptingBlockHash,
       acceptingBlockBlueScore: block.verboseData.blueScore.toInt(),
     );
+
+    await reload();
   }
 
   Future<void> fetchNewTxsForAddresses(Iterable<String> addresses) async {
@@ -134,6 +136,7 @@ class TransactionNotifier extends SafeChangeNotifier {
       return;
     }
     _loading = true;
+    _firstLoad = loadedTxs.isEmpty;
     try {
       loadedTxs = await _loadTxs(count: loadedTxs.length);
       _lastLoadedTxId = loadedTxs.lastOrNull?.id;
