@@ -126,7 +126,6 @@ final txNotifierForWalletProvider = ChangeNotifierProvider.autoDispose
     if (next.isEmpty) {
       return;
     }
-    print('Last balance changes: $next');
     notifier.fetchNewTxsForAddresses(next.keys);
   }, fireImmediately: true);
 
