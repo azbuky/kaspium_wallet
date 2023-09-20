@@ -43,6 +43,10 @@ class WalletHome extends HookConsumerWidget {
           if (appLink == null) {
             return;
           }
+          final auth = ref.read(walletAuthNotifierProvider);
+          if (auth?.walletLocked == true) {
+            return;
+          }
           final prefix = ref.read(addressPrefixProvider);
           final uri = KaspaUri.tryParse(appLink, prefix: prefix);
           Future.microtask(() {
