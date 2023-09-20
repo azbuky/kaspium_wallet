@@ -108,15 +108,9 @@ class TxCacheService {
   }
 
   Future<List<Tx>> cacheWalletTxs(Iterable<ApiTransaction> apiTxs) async {
-    final newTxs =
-        apiTxs.where((tx) => !_txIndex.contains(tx.transactionId)).toList();
-    if (newTxs.isEmpty) {
-      return [];
-    }
+    memCache.addEntries(apiTxs.map((e) => MapEntry(e.transactionId, e)));
 
-    memCache.addEntries(newTxs.map((e) => MapEntry(e.transactionId, e)));
-
-    final txs = (await _txsForApiTxs(newTxs)).toList();
+    final txs = (await _txsForApiTxs(apiTxs)).toList();
 
     final txIndexes = txs.map(
       (tx) => TxIndex(
