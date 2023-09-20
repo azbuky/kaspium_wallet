@@ -14,7 +14,7 @@ const _kSelectedWalletKey = '_kSelectedWalletKey';
 
 extension WalletSettings on SettingsRepository {
   List<WalletInfo>? getWalletEntries() {
-    final walletEntries = box.getList<WalletInfo>(
+    final walletEntries = box.tryGetList<WalletInfo>(
       _kWalletEntriesKey,
       typeFactory: WalletInfo.fromJson,
     );
