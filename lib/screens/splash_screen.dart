@@ -92,8 +92,8 @@ class SplashScreen extends HookConsumerWidget {
     }
 
     useEffect(() {
-      Future.delayed(Duration.zero, () async {
-        await checkNotice();
+      Future.microtask(() async {
+        //await checkNotice();
         checkWalletStatus();
       });
       return;
