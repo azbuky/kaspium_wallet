@@ -94,7 +94,8 @@ class IntroScreen extends HookConsumerWidget {
       );
     });
 
-    if (walletBundle.wallets.isNotEmpty) {
+    final wallets = walletBundle.wallets;
+    if (wallets != null && wallets.isNotEmpty) {
       return const IntroWallets();
     }
     return const IntroWelcome();

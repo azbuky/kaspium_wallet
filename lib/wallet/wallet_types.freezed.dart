@@ -1509,7 +1509,7 @@ WalletBundle _$WalletBundleFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WalletBundle {
-  IList<WalletInfo> get wallets => throw _privateConstructorUsedError;
+  IList<WalletInfo>? get wallets => throw _privateConstructorUsedError;
   WalletInfo? get selected => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1524,7 +1524,7 @@ abstract class $WalletBundleCopyWith<$Res> {
           WalletBundle value, $Res Function(WalletBundle) then) =
       _$WalletBundleCopyWithImpl<$Res, WalletBundle>;
   @useResult
-  $Res call({IList<WalletInfo> wallets, WalletInfo? selected});
+  $Res call({IList<WalletInfo>? wallets, WalletInfo? selected});
 
   $WalletInfoCopyWith<$Res>? get selected;
 }
@@ -1542,14 +1542,14 @@ class _$WalletBundleCopyWithImpl<$Res, $Val extends WalletBundle>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? wallets = null,
+    Object? wallets = freezed,
     Object? selected = freezed,
   }) {
     return _then(_value.copyWith(
-      wallets: null == wallets
+      wallets: freezed == wallets
           ? _value.wallets
           : wallets // ignore: cast_nullable_to_non_nullable
-              as IList<WalletInfo>,
+              as IList<WalletInfo>?,
       selected: freezed == selected
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
@@ -1578,7 +1578,7 @@ abstract class _$$_WalletBundleCopyWith<$Res>
       __$$_WalletBundleCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({IList<WalletInfo> wallets, WalletInfo? selected});
+  $Res call({IList<WalletInfo>? wallets, WalletInfo? selected});
 
   @override
   $WalletInfoCopyWith<$Res>? get selected;
@@ -1595,14 +1595,14 @@ class __$$_WalletBundleCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? wallets = null,
+    Object? wallets = freezed,
     Object? selected = freezed,
   }) {
     return _then(_$_WalletBundle(
-      wallets: null == wallets
+      wallets: freezed == wallets
           ? _value.wallets
           : wallets // ignore: cast_nullable_to_non_nullable
-              as IList<WalletInfo>,
+              as IList<WalletInfo>?,
       selected: freezed == selected
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
@@ -1614,15 +1614,13 @@ class __$$_WalletBundleCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_WalletBundle implements _WalletBundle {
-  const _$_WalletBundle(
-      {this.wallets = const IListConst<WalletInfo>([]), this.selected});
+  const _$_WalletBundle({this.wallets, this.selected});
 
   factory _$_WalletBundle.fromJson(Map<String, dynamic> json) =>
       _$$_WalletBundleFromJson(json);
 
   @override
-  @JsonKey()
-  final IList<WalletInfo> wallets;
+  final IList<WalletInfo>? wallets;
   @override
   final WalletInfo? selected;
 
@@ -1662,14 +1660,14 @@ class _$_WalletBundle implements _WalletBundle {
 
 abstract class _WalletBundle implements WalletBundle {
   const factory _WalletBundle(
-      {final IList<WalletInfo> wallets,
+      {final IList<WalletInfo>? wallets,
       final WalletInfo? selected}) = _$_WalletBundle;
 
   factory _WalletBundle.fromJson(Map<String, dynamic> json) =
       _$_WalletBundle.fromJson;
 
   @override
-  IList<WalletInfo> get wallets;
+  IList<WalletInfo>? get wallets;
   @override
   WalletInfo? get selected;
   @override

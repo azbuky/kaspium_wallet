@@ -137,7 +137,7 @@ class WalletInfo with _$WalletInfo {
 @freezed
 class WalletBundle with _$WalletBundle {
   const factory WalletBundle({
-    @Default(IListConst<WalletInfo>([])) IList<WalletInfo> wallets,
+    IList<WalletInfo>? wallets,
     WalletInfo? selected,
   }) = _WalletBundle;
 

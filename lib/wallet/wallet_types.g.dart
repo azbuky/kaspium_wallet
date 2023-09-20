@@ -118,7 +118,7 @@ Map<String, dynamic> _$$_WalletInfoToJson(_$_WalletInfo instance) =>
 
 _$_WalletBundle _$$_WalletBundleFromJson(Map json) => _$_WalletBundle(
       wallets: json['wallets'] == null
-          ? const IListConst<WalletInfo>([])
+          ? null
           : IList<WalletInfo>.fromJson(
               json['wallets'],
               (value) =>
@@ -130,11 +130,7 @@ _$_WalletBundle _$$_WalletBundleFromJson(Map json) => _$_WalletBundle(
     );
 
 Map<String, dynamic> _$$_WalletBundleToJson(_$_WalletBundle instance) {
-  final val = <String, dynamic>{
-    'wallets': instance.wallets.toJson(
-      (value) => value.toJson(),
-    ),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -142,6 +138,11 @@ Map<String, dynamic> _$$_WalletBundleToJson(_$_WalletBundle instance) {
     }
   }
 
+  writeNotNull(
+      'wallets',
+      instance.wallets?.toJson(
+        (value) => value.toJson(),
+      ));
   writeNotNull('selected', instance.selected?.toJson());
   return val;
 }

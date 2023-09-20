@@ -13,7 +13,7 @@ const _kWalletEntriesKey = '_kWalletEntriesKey';
 const _kSelectedWalletKey = '_kSelectedWalletKey';
 
 extension WalletSettings on SettingsRepository {
-  List<WalletInfo> getWalletEntries() {
+  List<WalletInfo>? getWalletEntries() {
     final walletEntries = box.getList<WalletInfo>(
       _kWalletEntriesKey,
       typeFactory: WalletInfo.fromJson,
@@ -44,7 +44,7 @@ class WalletRepository {
       WalletVault(wallet.wid, vault);
 
   WalletBundle get walletBundle => WalletBundle(
-        wallets: settings.getWalletEntries().lock,
+        wallets: settings.getWalletEntries()?.lock,
         selected: settings.getSelectedWallet(),
       );
 

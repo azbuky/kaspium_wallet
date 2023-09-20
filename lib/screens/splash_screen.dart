@@ -47,7 +47,7 @@ class SplashScreen extends HookConsumerWidget {
         final pinIsSet = await vault.pinIsSet;
         // on iOS the Vault is not cleared on app uninstall
         // check if pin is set but wallets is null then reset vault and database
-        if (pinIsSet && walletBundle.wallets.isEmpty) {
+        if (pinIsSet && walletBundle.wallets == null) {
           await vault.deleteAll();
           final db = await Database.reset();
           ref.read(dbProvider.notifier).state = db;
