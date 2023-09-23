@@ -1,7 +1,9 @@
 import 'dart:core';
+
 import 'package:convert/convert.dart';
 import 'package:pointycastle/ecc/api.dart';
-import './helpers.dart';
+
+import 'helpers.dart';
 
 /// Generates a schnorr signature using the BIP-340 scheme.
 ///

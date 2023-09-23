@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
 import '../wallet_address/address_details_sheet.dart';
-import '../wallet_address/address_providers.dart';
 import '../widgets/selected_wallet_button.dart';
 import '../widgets/sheet_util.dart';
 import 'account_switcher.dart';
@@ -17,7 +16,7 @@ class AccountsArea extends ConsumerWidget {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
 
-    final account = ref.watch(receiveWalletAddressProvider);
+    final account = ref.watch(receiveAddressProvider);
     final wallet = ref.watch(walletProvider);
 
     void showAccountDetails() {
@@ -25,7 +24,6 @@ class AccountsArea extends ConsumerWidget {
         context: context,
         theme: theme,
         widget: AddressDetailsSheet(address: account),
-        onDisposed: () => AddressDetailsSheet.saveChanges(ref, account),
       );
     }
 

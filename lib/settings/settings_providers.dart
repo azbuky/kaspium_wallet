@@ -1,8 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app_providers.dart';
+import '../core/core_providers.dart';
 import '../database/boxes.dart';
-import '../database/database.dart';
 import 'available_currency.dart';
 import 'available_language.dart';
 import 'available_themes.dart';
@@ -23,7 +22,7 @@ class SettingsRepository {
 
 final _settingsBoxProvider = Provider((ref) {
   final db = ref.watch(dbProvider);
-  final box = db.getGenericBox(kSettingsBox);
+  final box = db.getGenericBox(db.settingsBox);
   return box;
 });
 
@@ -47,8 +46,7 @@ final themeSettingProvider =
 final currencyProvider =
     StateNotifierProvider<CurrencyNotifier, AvailableCurrency>((ref) {
   final sharedPrefsUtil = ref.watch(sharedPrefsUtilProvider);
-  final currency = sharedPrefsUtil.getCurrency();
-  return CurrencyNotifier(currency, sharedPrefsUtil);
+  return CurrencyNotifier(sharedPrefsUtil);
 });
 
 final languageProvider =

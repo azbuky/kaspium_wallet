@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../main_card/main_card.dart';
 import '../transactions/transactions_widget.dart';
-import '../utxos/utxos_providers.dart';
+import '../util/ui_util.dart';
 import '../utxos/utxos_widget.dart';
-import '../wallet_address/address_providers.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
 import '../widgets/gradient_widgets.dart';
 import 'wallet_action_buttons.dart';
 
@@ -22,7 +22,7 @@ final _walletWatcherProvider = Provider.autoDispose((ref) {
   ref.watch(utxoNotifierProvider);
   ref.watch(utxoListProvider);
 
-  ref.watch(receiveAddressMonitorProvider);
+  ref.watch(addressMonitorProvider);
 });
 
 class WalletHome extends HookConsumerWidget {
@@ -35,6 +35,33 @@ class WalletHome extends HookConsumerWidget {
     final l10n = l10nOf(context);
 
     ref.watch(_walletWatcherProvider);
+
+    useEffect(() {
+      final notifier = ref.read(appLinkProvider.notifier);
+      return notifier.addListener(
+        (appLink) {
+          if (appLink == null) {
+            return;
+          }
+          final auth = ref.read(walletAuthNotifierProvider);
+          if (auth?.walletLocked == true) {
+            return;
+          }
+          final prefix = ref.read(addressPrefixProvider);
+          final uri = KaspaUri.tryParse(appLink, prefix: prefix);
+          Future.microtask(() {
+            UIUtil.showSendFlow(
+              context,
+              ifNullMessage: l10n.kaspaUriInvalid,
+              theme: theme,
+              uri: uri,
+            );
+            notifier.state = null;
+          });
+        },
+        fireImmediately: true,
+      );
+    }, const []);
 
     return Column(
       children: [

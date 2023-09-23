@@ -77,16 +77,30 @@ class ApiTxLink with _$ApiTxLink {
 }
 
 @freezed
+class ApiTxId with _$ApiTxId {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory ApiTxId({
+    required String transactionId,
+    int? blockTime,
+  }) = _ApiTxId;
+
+  factory ApiTxId.fromJson(Map<String, dynamic> json) =>
+      _$ApiTxIdFromJson(json);
+}
+
+@freezed
 class ApiTxInput with _$ApiTxInput {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ApiTxInput({
-    required int id,
     required String transactionId,
     required int index,
     required String previousOutpointHash,
     required BigInt previousOutpointIndex,
     required String signatureScript,
     required BigInt sigOpCount,
+    // new fields
+    String? previousOutpointAddress,
+    int? previousOutpointAmount,
   }) = _ApiTxInput;
 
   factory ApiTxInput.fromJson(Map<String, dynamic> json) =>
@@ -97,14 +111,12 @@ class ApiTxInput with _$ApiTxInput {
 class ApiTxOutput with _$ApiTxOutput {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ApiTxOutput({
-    required int id,
     required String transactionId,
     required int index,
     required int amount,
     required String scriptPublicKey,
     required String scriptPublicKeyAddress,
     required String scriptPublicKeyType,
-    // String? acceptingBlockHash,
   }) = _ApiTxOutput;
 
   factory ApiTxOutput.fromJson(Map<String, dynamic> json) =>
@@ -118,8 +130,6 @@ class ApiTransaction with _$ApiTransaction {
   factory ApiTransaction({
     String? subnetworkId,
     required String transactionId,
-    String? hash,
-    BigInt? mass,
     @Default(const []) List<String> blockHash,
     required int blockTime,
     required bool isAccepted,
@@ -139,7 +149,6 @@ class ApiTransaction with _$ApiTransaction {
       isAccepted: false,
       inputs: tx.inputs.mapIndexed((index, e) {
         return ApiTxInput(
-          id: 0,
           transactionId: tx.verboseData.transactionId,
           index: index,
           previousOutpointHash: e.previousOutpoint.transactionId,
@@ -150,7 +159,6 @@ class ApiTransaction with _$ApiTransaction {
       }).toList(),
       outputs: tx.outputs.mapIndexed((index, e) {
         return ApiTxOutput(
-          id: 0,
           transactionId: tx.verboseData.transactionId,
           index: index,
           amount: e.amount.toInt(),

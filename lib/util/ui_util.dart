@@ -3,6 +3,11 @@ import 'package:oktoast/oktoast.dart';
 
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
+import '../send_sheet/send_confirm_sheet.dart';
+import '../send_sheet/send_sheet.dart';
+import '../themes/base_theme.dart';
+import '../transactions/send_tx.dart';
+import '../widgets/sheet_util.dart';
 import '../widgets/toast_widget.dart';
 import 'numberutil.dart';
 
@@ -17,6 +22,39 @@ abstract class UIUtil {
       ToastWidget(content: content),
       dismissOtherToast: true,
       duration: Duration(milliseconds: 3000),
+    );
+  }
+
+  static void showSendFlow(
+    BuildContext context, {
+    required String ifNullMessage,
+    required BaseTheme theme,
+    required KaspaUri? uri,
+  }) {
+    if (uri == null) {
+      UIUtil.showSnackbar(ifNullMessage, context);
+      return;
+    }
+
+    final amount = uri.amount;
+    Widget widget;
+    if (amount != null) {
+      final tx = SendTx(
+        uri: uri,
+        amountRaw: amount.raw,
+        note: uri.message,
+      );
+      widget = SendConfirmSheet(tx: tx);
+    } else {
+      widget = SendSheet(
+        uri: uri,
+        note: uri.message,
+      );
+    }
+    Sheets.showAppHeightNineSheet(
+      context: context,
+      theme: theme,
+      widget: widget,
     );
   }
 

@@ -1,14 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/core_providers.dart';
-import '../database/database.dart';
 import 'txnotes_notifier.dart';
 import 'txnotes_types.dart';
 
 final _txNotesBoxProvider = Provider((ref) {
   final db = ref.watch(dbProvider);
 
-  final txNotesBox = db.getIndexedTypedBox<TxNote>(kTxNotesBox);
+  final txNotesBox = db.getIndexedTypedBox<TxNote>(db.txNotesBox);
 
   return txNotesBox;
 });

@@ -6,10 +6,7 @@ import '../util/sharedprefsutil.dart';
 class CurrencyNotifier extends StateNotifier<AvailableCurrency> {
   final SharedPrefsUtil sharedPrefsUtil;
 
-  CurrencyNotifier(
-    AvailableCurrency currency,
-    this.sharedPrefsUtil,
-  ) : super(currency);
+  CurrencyNotifier(this.sharedPrefsUtil) : super(sharedPrefsUtil.getCurrency());
 
   Future<void> updateCurrency(AvailableCurrency currency) {
     state = currency;

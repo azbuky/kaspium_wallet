@@ -93,8 +93,27 @@ Map<String, dynamic> _$$_ApiTxLinkToJson(_$_ApiTxLink instance) {
   return val;
 }
 
+_$_ApiTxId _$$_ApiTxIdFromJson(Map json) => _$_ApiTxId(
+      transactionId: json['transaction_id'] as String,
+      blockTime: json['block_time'] as int?,
+    );
+
+Map<String, dynamic> _$$_ApiTxIdToJson(_$_ApiTxId instance) {
+  final val = <String, dynamic>{
+    'transaction_id': instance.transactionId,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('block_time', instance.blockTime);
+  return val;
+}
+
 _$_ApiTxInput _$$_ApiTxInputFromJson(Map json) => _$_ApiTxInput(
-      id: json['id'] as int,
       transactionId: json['transaction_id'] as String,
       index: json['index'] as int,
       previousOutpointHash: json['previous_outpoint_hash'] as String,
@@ -102,21 +121,32 @@ _$_ApiTxInput _$$_ApiTxInputFromJson(Map json) => _$_ApiTxInput(
           BigInt.parse(json['previous_outpoint_index'] as String),
       signatureScript: json['signature_script'] as String,
       sigOpCount: BigInt.parse(json['sig_op_count'] as String),
+      previousOutpointAddress: json['previous_outpoint_address'] as String?,
+      previousOutpointAmount: json['previous_outpoint_amount'] as int?,
     );
 
-Map<String, dynamic> _$$_ApiTxInputToJson(_$_ApiTxInput instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'transaction_id': instance.transactionId,
-      'index': instance.index,
-      'previous_outpoint_hash': instance.previousOutpointHash,
-      'previous_outpoint_index': instance.previousOutpointIndex.toString(),
-      'signature_script': instance.signatureScript,
-      'sig_op_count': instance.sigOpCount.toString(),
-    };
+Map<String, dynamic> _$$_ApiTxInputToJson(_$_ApiTxInput instance) {
+  final val = <String, dynamic>{
+    'transaction_id': instance.transactionId,
+    'index': instance.index,
+    'previous_outpoint_hash': instance.previousOutpointHash,
+    'previous_outpoint_index': instance.previousOutpointIndex.toString(),
+    'signature_script': instance.signatureScript,
+    'sig_op_count': instance.sigOpCount.toString(),
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('previous_outpoint_address', instance.previousOutpointAddress);
+  writeNotNull('previous_outpoint_amount', instance.previousOutpointAmount);
+  return val;
+}
 
 _$_ApiTxOutput _$$_ApiTxOutputFromJson(Map json) => _$_ApiTxOutput(
-      id: json['id'] as int,
       transactionId: json['transaction_id'] as String,
       index: json['index'] as int,
       amount: json['amount'] as int,
@@ -127,7 +157,6 @@ _$_ApiTxOutput _$$_ApiTxOutputFromJson(Map json) => _$_ApiTxOutput(
 
 Map<String, dynamic> _$$_ApiTxOutputToJson(_$_ApiTxOutput instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'transaction_id': instance.transactionId,
       'index': instance.index,
       'amount': instance.amount,
@@ -139,8 +168,6 @@ Map<String, dynamic> _$$_ApiTxOutputToJson(_$_ApiTxOutput instance) =>
 _$_Transaction _$$_TransactionFromJson(Map json) => _$_Transaction(
       subnetworkId: json['subnetwork_id'] as String?,
       transactionId: json['transaction_id'] as String,
-      hash: json['hash'] as String?,
-      mass: json['mass'] == null ? null : BigInt.parse(json['mass'] as String),
       blockHash: (json['block_hash'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -172,8 +199,6 @@ Map<String, dynamic> _$$_TransactionToJson(_$_Transaction instance) {
 
   writeNotNull('subnetwork_id', instance.subnetworkId);
   val['transaction_id'] = instance.transactionId;
-  writeNotNull('hash', instance.hash);
-  writeNotNull('mass', instance.mass?.toString());
   val['block_hash'] = instance.blockHash;
   val['block_time'] = instance.blockTime;
   val['is_accepted'] = instance.isAccepted;

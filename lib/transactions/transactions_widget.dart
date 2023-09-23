@@ -1,18 +1,14 @@
 import 'package:automatic_animated_list/automatic_animated_list.dart';
 import 'package:collection/collection.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
-import '../utxos/utxos_providers.dart';
 import '../wallet/wallet_types.dart';
-import '../wallet_address/address_providers.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
-import '../widgets/reactive_refresh.dart';
 import 'transaction_card.dart';
 import 'transaction_empty_list.dart';
 import 'transaction_types.dart';
@@ -21,9 +17,9 @@ final _txListItemsProvider =
     Provider.autoDispose.family<List<TxListItem>, WalletInfo>((ref, wallet) {
   final addressNotifier = ref.watch(addressNotifierProvider.notifier);
   final utxoNotifier = ref.watch(utxoNotifierProvider.notifier);
-  final historyNotifier = ref.watch(txNotifierForWalletProvider(wallet));
+  final txNotifier = ref.watch(txNotifierForWalletProvider(wallet));
 
-  final txItems = historyNotifier.loadedTxs.expand((tx) {
+  final txItems = txNotifier.loadedTxs.expand((tx) {
     final hasWalletInputs = tx.inputData.whereNotNull().any(
               (input) => addressNotifier.containsAddress(input.address),
             ) ||
@@ -48,14 +44,7 @@ final _txListItemsProvider =
           TxItem(
             tx: tx,
             outputIndex: 0,
-            type: TxItemType.receive,
-          ),
-        ),
-        TxListItem.txItem(
-          TxItem(
-            tx: tx,
-            outputIndex: 0,
-            type: TxItemType.send,
+            type: TxItemType.compound,
           ),
         ),
       ];
@@ -89,10 +78,10 @@ final _txListItemsProvider =
     return listItems;
   });
 
-  return [...txItems, TxListItem.loader(historyNotifier.hasMore)];
+  return [...txItems, TxListItem.loader(txNotifier.hasMore)];
 });
 
-class TransactionsWidget extends HookConsumerWidget {
+class TransactionsWidget extends ConsumerWidget {
   final String tokenSymbol;
 
   const TransactionsWidget({
@@ -111,45 +100,55 @@ class TransactionsWidget extends HookConsumerWidget {
       return const SizedBox();
     }
 
-    final txHistory = ref.watch(txNotifierForWalletProvider(wallet));
+    final txNotifier = ref.watch(txNotifierForWalletProvider(wallet));
     final items = ref.watch(_txListItemsProvider(wallet));
 
-    final isLoading = txHistory.loading;
-    final isRefreshing = useState(false);
-    final isMounted = useIsMounted();
-
     Future<void> refresh() async {
-      if (isRefreshing.value) {
-        return;
-      }
-      isRefreshing.value = true;
       ref.read(hapticUtilProvider).success();
+
+      // refresh remote data
+      final remote = ref.read(remoteRefreshProvider.notifier);
+      remote.update((state) => state + 1);
 
       final networkError = ref.read(networkErrorProvider);
       if (networkError) {
-        ref.invalidate(kaspaClientProvider);
+        final _ = ref.refresh(kaspaClientProvider);
       }
 
-      final balanceNotifier = ref.refresh(balanceNotifierProvider);
-      await Future.delayed(const Duration(milliseconds: 500));
+      final balanceNotifier = ref.read(balanceNotifierProvider);
+      final utxosNotifier = ref.read(utxoNotifierProvider);
+      final addresses = ref.read(allAddressesProvider);
+      await balanceNotifier.refresh(addresses);
+      await utxosNotifier.refresh(addresses: addresses);
 
-      await txHistory.refreshWalletTxs(balanceNotifier.balances);
+      final addressNotifier = ref.read(addressNotifierProvider);
+      final pendingAddresses = addressNotifier.receiveAddresses
+          .followedBy(addressNotifier.changeAddresses)
+          .where((address) => address.used == false)
+          .map((e) => e.encoded)
+          .toIList();
 
-      if (isMounted()) {
-        isRefreshing.value = false;
-      }
+      final usedAddresses = await txNotifier.refreshWalletTxs(
+        balances: balanceNotifier.balances,
+        pendingAddresses: pendingAddresses,
+      );
+      await addressNotifier.markUsed(usedAddresses);
+    }
+
+    void loadMore() {
+      // wait for scroll to settle before loading more txs
+      Future.delayed(const Duration(milliseconds: 500), () {
+        txNotifier.loadMore();
+      });
     }
 
     return LazyLoadScrollView(
-      onEndOfPage: () async {
-        await Future.delayed(const Duration(milliseconds: 500));
-        txHistory.loadMore();
-      },
-      child: ReactiveRefreshIndicator(
+      onEndOfPage: loadMore,
+      child: RefreshIndicator(
+        color: theme.primary,
         backgroundColor: theme.backgroundDark,
-        isRefreshing: isRefreshing.value,
         onRefresh: refresh,
-        child: !isLoading && items.length == 1
+        child: !txNotifier.loading && items.length == 1
             ? TransactionEmptyList(tokenSymbol: tokenSymbol)
             : AutomaticAnimatedList<TxListItem>(
                 key: PageStorageKey(wallet),
@@ -160,32 +159,35 @@ class TransactionsWidget extends HookConsumerWidget {
                 keyingFunction: (item) => Key(item.id),
                 items: items,
                 itemBuilder: (context, item, animation) {
+                  final card = item.when(
+                    txItem: (item) => TransactionCard(item: item),
+                    loader: (hasMore) {
+                      if (!hasMore) return const SizedBox();
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            l10n.loadingTransactions,
+                            style: styles.textStyleParagraph,
+                          ),
+                        ),
+                      );
+                    },
+                  );
                   return FadeTransition(
                     key: Key(item.id),
                     opacity: animation,
-                    child: SizeTransition(
-                      sizeFactor: CurvedAnimation(
-                        parent: animation,
-                        curve: Curves.easeOut,
-                        reverseCurve: Curves.easeIn,
-                      ),
-                      child: item.when(
-                        txItem: (item) => TransactionCard(item: item),
-                        loader: (hasMore) {
-                          if (!hasMore) return const SizedBox();
-                          return Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                l10n.loadingTransactions,
-                                style: styles.textStyleParagraph,
-                              ),
+                    child: txNotifier.firstLoad
+                        ? card
+                        : SizeTransition(
+                            sizeFactor: CurvedAnimation(
+                              parent: animation,
+                              curve: Curves.easeOut,
+                              reverseCurve: Curves.easeIn,
                             ),
-                          );
-                        },
-                      ),
-                    ),
+                            child: card,
+                          ),
                   );
                 },
               ),

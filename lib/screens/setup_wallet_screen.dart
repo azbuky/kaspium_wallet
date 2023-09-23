@@ -1,4 +1,3 @@
-import 'package:coinslib/coinslib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -6,12 +5,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../app_providers.dart';
 import '../intro/intro_providers.dart';
 import '../kaspa/kaspa.dart';
-import '../kaspa/wallet/version.dart';
 import '../l10n/l10n.dart';
+import '../utils.dart';
 import '../wallet/wallet_types.dart';
+import '../wallet_address/address_discovery.dart';
 import '../wallet_address/wallet_address.dart';
-import '../wallet_address/wallet_address_manager.dart';
-import '../wallet_address/wallet_address_notifier.dart';
 import 'setup_failed_page.dart';
 
 class SetupWalletScreen extends HookConsumerWidget {
@@ -35,16 +33,36 @@ class SetupWalletScreen extends HookConsumerWidget {
         final introData = ref.read(introDataProvider);
 
         final seed = await introData.seed;
-        if (seed == null) {
-          throw Exception('Missing seed');
-        }
 
-        final walletData = WalletData(
-          name: introData.name ?? l10n.defaultWalletName,
-          seed: seed,
-          mnemonic: introData.mnemonic,
-          password: introData.password,
-        );
+        final walletData;
+        if (introData.kpub case final kpub?) {
+          final walletKind = WalletKind.localHdSchnorr(viewOnly: true);
+          walletData = WalletData.kpub(
+            name: introData.name ?? l10n.defaultWalletName,
+            kind: walletKind,
+            kpub: kpub,
+          );
+        } else {
+          if (seed == null) {
+            throw Exception('Missing seed');
+          }
+          WalletKind walletKind;
+          if (introData.mnemonic?.split(' ').length == 12) {
+            final wallet = HdWallet.forSeedHex(seed, type: HdWalletType.legacy);
+            final pubKey = wallet.derivePublicKey(typeIndex: 0, index: 0);
+            walletKind = WalletKind.localHdLegacy(mainPubKey: pubKey.hex);
+          } else {
+            walletKind = WalletKind.localHdSchnorr();
+          }
+
+          walletData = WalletData.seed(
+            name: introData.name ?? l10n.defaultWalletName,
+            kind: walletKind,
+            seed: seed,
+            mnemonic: introData.mnemonic,
+            password: introData.password,
+          );
+        }
 
         // setup wallet
         final network = ref.read(networkProvider);
@@ -55,27 +73,29 @@ class SetupWalletScreen extends HookConsumerWidget {
         final auth = ref.read(walletAuthNotifierProvider);
         if (auth == null) throw Exception('No active wallet');
         await auth.checkEncryptedState();
-        await auth.unlock(password: walletData.password);
+        await auth.unlock(password: introData.password);
 
         // address discovery
-        final addressPrefix = addressPrefixForNetwork(network);
-
         final client = ref.read(kaspaClientProvider);
-        final api = ref.read(kaspaApiProvider);
+        final api = ref.read(kaspaApiServiceProvider);
+        final addressGenerator = auth.addressGenerator(network);
 
-        final hdPublicKey = BIP32.fromBase58(
-          wallet.hdPublicKey(network),
-          networkTypeForNetwork(network),
+        final addressDiscovery = AddressDiscovery(
+          client: client,
+          api: api,
+          addressGenerator: addressGenerator,
+          addressNameCallback: (type, index) {
+            return type == AddressType.receive
+                ? l10n.receiveIndexParam('$index')
+                : l10n.changeIndexParam('$index');
+          },
         );
 
-        var discovery = DiscoveryResult(addresses: {}, txIds: {});
+        WalletDiscoveryResult discovery;
+
         if (network == KaspaNetwork.mainnet && !introData.generated) {
           message.value = l10n.walletSetupAddressDiscovery;
-          discovery = await WalletAddressNotifier.addressDiscovery(
-            hdPublicKey: hdPublicKey,
-            addressPrefix: addressPrefix,
-            client: client,
-            api: api,
+          discovery = await addressDiscovery.addressDiscovery(
             startReceiveIndex: 0,
             startChangeIndex: 0,
             onProgress: (type, index) {
@@ -83,31 +103,42 @@ class SetupWalletScreen extends HookConsumerWidget {
                   ? l10n.receiveIndex
                   : l10n.changeIndex;
               details.value = '$name $index';
+              return true;
             },
           );
+
+          if (discovery.receive.addresses.isEmpty) {
+            discovery = (
+              receive: DiscoveryResult(
+                addresses: {0: addressDiscovery.mainAddress},
+                txIds: {},
+                scanIndexes: discovery.receive.scanIndexes,
+              ),
+              change: discovery.change,
+            );
+          }
+        } else {
+          discovery = addressDiscovery.newWalletDiscoveryResult;
         }
+
         final walletRepository = ref.read(walletRepositoryProvider);
         await walletRepository.openWalletBoxes(wallet, network: network);
 
-        final db = ref.read(dbProvider);
+        final addressBox = ref.read(addressBoxProvider(wallet));
 
-        final boxInfo = wallet.boxInfo.getBoxInfo(KaspaNetwork.mainnet);
-
-        final addressBoxKey = boxInfo.address.boxKey;
-        final box = db.getTypedBox<WalletAddress>(addressBoxKey);
-        await box.setAll(Map.fromEntries(
+        await addressBox.setAll(Map.fromEntries(
           discovery.addresses.map(
-            (address) => MapEntry(address.encoded, address),
+            (address) => MapEntry(address.key, address),
           ),
         ));
 
-        message.value = l10n.fetchingTransactions;
-        details.value = '';
-
-        final service = ref.read(txServiceProvider(wallet));
-        await service.cacheTxsWithIds(discovery.txIds);
+        final txCache = ref.read(txCacheServiceProvider(wallet));
+        await txCache.addWalletTxIds(discovery.txIds);
 
         await walletRepository.closeWalletBoxes(wallet, network: network);
+
+        message.value = l10n.fetchingTransactions;
+        details.value = '';
         Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
       } catch (e, st) {
         final log = ref.read(loggerProvider);

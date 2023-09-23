@@ -2,8 +2,10 @@ import 'dart:typed_data';
 
 import 'package:fixnum/fixnum.dart';
 
-import '../kaspa.dart';
+import '../types.dart';
+import '../utils.dart';
 import 'txscript.dart';
+import 'types.dart';
 
 class TransactionBuilder {
   final List<Utxo> utxos;

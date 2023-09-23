@@ -1,9 +1,10 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app_providers.dart';
+import '../core/core_providers.dart';
 import '../database/boxes.dart';
 import '../kaspa/transaction/types.dart';
-import '../wallet_address/address_providers.dart';
+import '../wallet_address/wallet_address_providers.dart';
+import '../wallet_auth/wallet_auth_providers.dart';
 import '../wallet_balance/wallet_balance_providers.dart';
 import 'utxos_notifier.dart';
 
@@ -19,7 +20,7 @@ final _utxoBoxProvider = Provider.autoDispose<TypedBox<Utxo>>((ref) {
 
 final utxosChangedProvider = StreamProvider.autoDispose((ref) {
   final client = ref.watch(kaspaClientProvider);
-  final addresses = ref.watch<Iterable<String>>(allAddressesProvider);
+  final addresses = ref.watch(allAddressesProvider);
 
   return client.notifyUtxosChanged(addresses);
 });
@@ -36,48 +37,52 @@ final utxoNotifierProvider =
     log: log,
   );
 
-  ref.listen(lastRefreshBalanceChangesProvider, (_, changes) {
-    if (changes.isEmpty) {
-      return;
-    }
-
-    notifier.refresh(addresses: changes.map((e) => e.address));
-  }, fireImmediately: true);
+  ref.listen(
+    balanceNotifierProvider.select((notifier) => notifier.balances),
+    (_, balances) {
+      log.d('UTXOs - Refresh with balances for ${balances.keys}');
+      notifier.refreshWithBalances(balances: balances);
+    },
+    fireImmediately: true,
+  );
 
   ref.listen(utxosChangedProvider, (_, next) {
-    final message = next.valueOrNull;
-    if (message == null) {
-      return;
-    }
-
-    log.d(message);
-
-    Future.microtask(() {
-      notifier.utxosChanged(
-        removed: message.removed.map(Utxo.fromRpc),
-        added: message.added.map(Utxo.fromRpc),
+    if (next.asData?.value case final message?) {
+      final addresses = Set.of(
+        message.removed.followedBy(message.added).map((utxo) => utxo.address),
       );
-    });
+      log.d('UTXOs - Refresh with utxos changed for $addresses');
+      notifier.refresh(addresses: addresses);
+    }
+  });
+
+  ref.onDispose(() {
+    notifier.disposed = true;
   });
 
   return notifier;
 });
 
-final utxoListProvider = Provider.autoDispose<List<Utxo>>((ref) {
-  return ref.watch(utxoNotifierProvider.select((value) => value.utxoList));
+final utxoListProvider = Provider.autoDispose((ref) {
+  return ref.watch(
+    utxoNotifierProvider.select((notifier) => notifier.utxoList),
+  );
 });
 
-final spendableUtxosProvider = Provider.autoDispose<List<Utxo>>((ref) {
-  final spendableUtxos = ref.watch(utxoListProvider);
-
+final spendableUtxosProvider = Provider.autoDispose((ref) {
+  final utxos = ref.watch(utxoListProvider);
   final virtualDaaScore = ref.read(lastKnownVirtualDaaScoreProvider);
-  spendableUtxos
-      .sort((a, b) => b.utxoEntry.amount.compareTo(a.utxoEntry.amount));
 
-  return spendableUtxos.where((utxo) {
+  final spendableUtxos = utxos.where((utxo) {
     if (!utxo.utxoEntry.isCoinbase) {
       return true;
     }
     return utxo.utxoEntry.blockDaaScore + BigInt.from(100) < virtualDaaScore;
   }).toList();
+
+  spendableUtxos.sort(
+    (a, b) => b.utxoEntry.amount.compareTo(a.utxoEntry.amount),
+  );
+
+  return spendableUtxos;
 });

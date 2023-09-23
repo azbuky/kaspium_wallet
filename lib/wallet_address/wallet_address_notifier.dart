@@ -1,178 +1,113 @@
-import 'package:coinslib/coinslib.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 import '../database/boxes.dart';
 import '../kaspa/kaspa.dart';
 import '../util/safe_change_notifier.dart';
 import 'wallet_address.dart';
-
-String _addressKey({
-  required int index,
-  required AddressType type,
-}) =>
-    '$type#$index';
-
-abstract class WalletAddressAware {
-  Iterable<String> get allAddresses;
-  bool containsAddress(String address);
-  String? keyForAddress(String address);
-}
+import 'wallet_address_aware.dart';
+import 'wallet_address_manager.dart';
 
 class WalletAddressNotifier extends SafeChangeNotifier
     implements WalletAddressAware {
-  late final Map<int, WalletAddress> _receiveAddresses;
-  late final Map<String, int> _receiveAddressIndexMap;
+  late final WalletAddressManager _receive;
+  late final WalletAddressManager _change;
 
-  late final Map<int, WalletAddress> _changeAddresses;
-  late final Map<String, int> _changeAddressIndexMap;
+  final TypedBox<WalletAddress> _walletAddressBox;
+  final HdAddressGenerator addressGenerator;
+  final AddressNameCallback addressNameCallback;
 
-  late final TypedBox<WalletAddress> _walletAddressBox;
+  late final defaultReceiveAddress = WalletAddress(
+    index: 0,
+    type: AddressType.receive,
+    name: addressNameCallback(AddressType.receive, 0),
+    address: addressGenerator.mainAddress,
+    used: false,
+  );
 
-  final BIP32 hdPublicKey;
-  final AddressPrefix addressPrefix;
-
-  int lastUsedReceiveIndex = 0;
-  int lastUsedChangeIndex = 0;
-
-  WalletAddress get receiveAddress => _receiveAddresses[lastUsedReceiveIndex]!;
+  WalletAddress get receiveAddress =>
+      _receive.nextUnusedAddress ??
+      _receive.lastUsedAddress ??
+      defaultReceiveAddress;
   WalletAddress get selected => receiveAddress;
 
   WalletAddress? getReceiveAddressWithIndex(int index) =>
-      _receiveAddresses[index];
+      _receive.addressAtIndex(index);
   WalletAddress? getChangeAddressWithIndex(int index) =>
-      _changeAddresses[index];
+      _change.addressAtIndex(index);
 
-  IList<WalletAddress> get receiveAddresses =>
-      IList(_receiveAddresses.values).sort(
-        (a1, a2) => a1.index.compareTo(a2.index),
+  IList<WalletAddress> get receiveAddresses => _receive.activeAddresses
+      .addAll(receiveAddress.used ? const [] : [receiveAddress]);
+  IList<WalletAddress> get changeAddresses => _change.activeAddresses;
+
+  int get lastUsedReceiveIndex => _receive.lastUsedIndex;
+  int get lastUsedChangeIndex => _change.lastUsedIndex;
+
+  IList<String> get allAddresses =>
+      IList(_receive.allAddresses.followedBy(_change.allAddresses));
+
+  IList<String> get activeAddresses => IList(
+        _receive.activeAddresses
+            .followedBy(_change.activeAddresses)
+            .map((e) => e.encoded),
       );
-  IList<WalletAddress> get changeAddresses =>
-      IList(_changeAddresses.values).sort(
-        (a1, a2) => a1.index.compareTo(a2.index),
-      );
 
-  Iterable<String> get allAddresses =>
-      (_receiveAddresses.values.toList() + _changeAddresses.values.toList())
-          .map((e) => e.address.encoded);
+  Future<WalletAddress> get nextChangeAddress async {
+    final index = _change.nextUnusedIndex;
 
-  int get firstAvailableIndex {
-    return lastUsedReceiveIndex + 1;
-  }
-
-  WalletAddress get nextReceiveAddress {
-    final index = lastUsedReceiveIndex + 1;
-    final bip32 = hdPublicKey.derive(0).derive(index);
-    final address = Address.fromPublicKey(
-      bip32.publicKey.sublist(1),
-      prefix: addressPrefix,
-    );
-    final walletAddress = WalletAddress(
-      index: index,
-      type: AddressType.receive,
-      address: address,
-      name: 'Receive $index',
-    );
-    return walletAddress;
-  }
-
-  WalletAddress get nextChangeAddress {
-    final index = lastUsedChangeIndex + 1;
-    final bip32 = hdPublicKey.derive(1).derive(index);
-    final address = Address.fromPublicKey(
-      bip32.publicKey.sublist(1),
-      prefix: addressPrefix,
-    );
-    final walletAddress = WalletAddress(
+    final walletAddress = await _getWalletAddress(
       index: index,
       type: AddressType.change,
-      address: address,
-      name: 'Change $index',
     );
     return walletAddress;
   }
 
-  void initAddresses(Map<String, WalletAddress> allAddresses) {
-    for (final address in allAddresses.values) {
-      if (address.type == AddressType.receive) {
-        _receiveAddresses[address.index] = address;
-        if (lastUsedReceiveIndex < address.index) {
-          lastUsedReceiveIndex = address.index;
-        }
-      } else {
-        _changeAddresses[address.index] = address;
-        if (lastUsedChangeIndex < address.index) {
-          lastUsedChangeIndex = address.index;
-        }
-      }
+  Future<WalletAddress> _getWalletAddress({
+    required int index,
+    required AddressType type,
+  }) async {
+    final cached = switch (type) {
+      AddressType.receive => _receive.addressAtIndex(index),
+      AddressType.change => _change.addressAtIndex(index),
+    };
+    if (cached != null) {
+      return cached;
     }
 
-    final bip32 = hdPublicKey.derive(0).derive(lastUsedReceiveIndex);
-    final receiveAddress = Address.fromPublicKey(
-      bip32.publicKey.sublist(1),
-      prefix: addressPrefix,
+    final address = await addressGenerator.addressAtIndex(
+      typeIndex: type.index,
+      index: index,
     );
-
-    _receiveAddresses.putIfAbsent(
-      lastUsedReceiveIndex,
-      () {
-        final address = WalletAddress(
-          index: lastUsedReceiveIndex,
-          type: AddressType.receive,
-          address: receiveAddress,
-          name: 'Receive $lastUsedReceiveIndex',
-        );
-        _walletAddressBox.set(
-            _addressKey(
-              index: lastUsedReceiveIndex,
-              type: AddressType.receive,
-            ),
-            address);
-        return address;
-      },
+    final walletAddress = WalletAddress(
+      index: index,
+      type: type,
+      address: address,
+      name: addressNameCallback(type, index),
+      used: false,
     );
-
-    _receiveAddressIndexMap = Map.fromEntries(_receiveAddresses.values.map(
-      (e) => MapEntry(e.encoded, e.index),
-    ));
-
-    if (lastUsedChangeIndex > 0) {
-      final bip32Change = hdPublicKey.derive(1).derive(lastUsedChangeIndex);
-      final changeAddress = Address.fromPublicKey(
-        bip32Change.publicKey.sublist(1),
-        prefix: addressPrefix,
-      );
-      _changeAddresses.putIfAbsent(lastUsedChangeIndex, () {
-        final address = WalletAddress(
-            index: lastUsedChangeIndex,
-            type: AddressType.change,
-            address: changeAddress,
-            name: 'Change $lastUsedChangeIndex');
-        _walletAddressBox.set(
-            _addressKey(
-              index: lastUsedChangeIndex,
-              type: AddressType.change,
-            ),
-            address);
-        return address;
-      });
-    }
-    _changeAddressIndexMap = Map.fromEntries(_changeAddresses.values.map(
-      (e) => MapEntry(e.encoded, e.index),
-    ));
+    return walletAddress;
   }
 
   WalletAddressNotifier({
     required TypedBox<WalletAddress> addressBox,
-    required this.hdPublicKey,
-    //required KaspaApi api,
-    required this.addressPrefix,
-  }) {
-    _receiveAddresses = {};
-    _changeAddresses = {};
-    _walletAddressBox = addressBox;
+    required this.addressGenerator,
+    required this.addressNameCallback,
+  }) : _walletAddressBox = addressBox {
+    final addresses = _walletAddressBox.getAll();
+    final bufferSize = 100;
 
-    final allAddresses = _walletAddressBox.getAll();
-    initAddresses(allAddresses);
+    _receive = WalletAddressManager(
+      type: AddressType.receive,
+      bufferSize: bufferSize,
+      addresses: addresses.values,
+    );
+
+    _change = WalletAddressManager(
+      type: AddressType.change,
+      bufferSize: bufferSize,
+      addresses: addresses.values,
+    );
+
+    fillMissingAddresses();
   }
 
   bool containsAddress(String address) {
@@ -187,13 +122,10 @@ class WalletAddressNotifier extends SafeChangeNotifier
     return indexOfChangeAddress(address) != null;
   }
 
-  int? indexOfReceiveAddress(String address) {
-    return _receiveAddressIndexMap[address];
-  }
+  int? indexOfReceiveAddress(String address) =>
+      _receive.indexOfAddress(address);
 
-  int? indexOfChangeAddress(String address) {
-    return _changeAddressIndexMap[address];
-  }
+  int? indexOfChangeAddress(String address) => _change.indexOfAddress(address);
 
   bool isAddressSelected(WalletAddress address) {
     return address.type == AddressType.receive &&
@@ -201,69 +133,42 @@ class WalletAddressNotifier extends SafeChangeNotifier
   }
 
   String? nameForAddress(String address) {
-    final name = _changeAddresses[_changeAddressIndexMap[address] ?? -1]?.name;
-    if (name != null) {
-      return name;
-    }
-    return _receiveAddresses[_receiveAddressIndexMap[address] ?? -1]?.name;
+    return _receive.nameForAddress(address) ?? _change.nameForAddress(address);
   }
 
-  // Future<void> selectAccountAsync(WalletAddress address) async {
-  //   if (address == selected) {
-  //     return;
-  //   }
-
-  //   if (_receiveAddresses[address.index] == null) {
-  //     _addAddress(address);
-  //   }
-  //   notifyListeners();
-  // }
-
-  // void removeAccount(WalletAddress address) {
-  //   if (address.index == _receiveAddress.index) {
-  //     return;
-  //   }
-
-  //   _receiveAddresses.remove(address.index);
-  //   _walletAddressBox.remove(
-  //     addressKey(
-  //       index: address.index,
-  //       type: address.type,
-  //     ),
-  //   );
-  //   _receiveAddressIndexMap.remove(address.label);
-
-  //   notifyListeners();
-  // }
-
-  void _addAddress(WalletAddress address) {
+  Future<void> _addAddress(WalletAddress address) async {
     switch (address.type) {
       case AddressType.receive:
-        if (address.index > lastUsedReceiveIndex) {
-          lastUsedReceiveIndex = address.index;
-        }
-        _receiveAddresses[address.index] = address;
-        _receiveAddressIndexMap[address.encoded] = address.index;
+        _receive.updateAddress(address);
         break;
       case AddressType.change:
-        if (address.index > lastUsedChangeIndex) {
-          lastUsedChangeIndex = address.index;
-        }
-        _changeAddresses[address.index] = address;
-        _changeAddressIndexMap[address.encoded] = address.index;
+        _change.updateAddress(address);
         break;
     }
 
-    _walletAddressBox.set(
-        _addressKey(
-          index: address.index,
-          type: address.type,
-        ),
-        address);
+    return _walletAddressBox.set(address.key, address);
   }
 
-  void addAddress(WalletAddress address) {
-    _addAddress(address);
+  Future<void> addNewReceiveAddress() => markUsed([receiveAddress.encoded]);
+
+  Future<void> addAddress(WalletAddress address) async {
+    await _addAddress(address);
+
+    fillMissingAddresses();
+
+    notifyListeners();
+  }
+
+  Future<void> addAddresses(Iterable<WalletAddress> addresses) async {
+    if (addresses.isEmpty) {
+      return;
+    }
+
+    for (final address in addresses) {
+      await _addAddress(address);
+    }
+
+    fillMissingAddresses();
 
     notifyListeners();
   }
@@ -271,189 +176,90 @@ class WalletAddressNotifier extends SafeChangeNotifier
   String? keyForAddress(String address) {
     final receiveIndex = indexOfReceiveAddress(address);
     if (receiveIndex != null) {
-      return _addressKey(
-        index: receiveIndex,
+      return WalletAddress.keyForAddressAtIndex(
+        receiveIndex,
         type: AddressType.receive,
       );
     }
     final changeIndex = indexOfChangeAddress(address);
     if (changeIndex != null) {
-      return _addressKey(
-        index: changeIndex,
+      return WalletAddress.keyForAddressAtIndex(
+        changeIndex,
         type: AddressType.change,
       );
     }
     return null;
   }
 
-  void changeAddressName(WalletAddress address, String name) {
+  // Change to updateAddress
+  Future<void> changeAddressName(WalletAddress address, String name) async {
     address = address.copyWith(name: name);
-    final index = address.index;
-
     switch (address.type) {
       case AddressType.receive:
-        _receiveAddresses[index] = address;
-        _receiveAddressIndexMap[address.encoded] = index;
+        _receive.updateAddress(address);
         break;
       case AddressType.change:
-        _changeAddresses[index] = address;
-        _changeAddressIndexMap[address.encoded] = index;
+        _change.updateAddress(address);
         break;
     }
 
-    _walletAddressBox.set(
-      _addressKey(
-        index: address.index,
-        type: address.type,
-      ),
-      address,
-    );
+    await _walletAddressBox.set(address.key, address);
 
     notifyListeners();
   }
 
-  Future<Address> addressForIndex(int index, AddressType type) async {
-    final typeIndex = type == AddressType.receive ? 0 : 1;
-    final bip32 = hdPublicKey.derive(typeIndex).derive(index);
-    final address = Address.fromPublicKey(
-      bip32.publicKey.sublist(1),
-      prefix: addressPrefix,
-    );
-
-    return address;
-  }
-
-  static Future<DiscoveryResult> addressDiscoveryFor({
-    required BIP32 hdPublicKey,
-    required AddressPrefix addressPrefix,
-    required AddressType type,
-    required int currentIndex,
-    required KaspaClient client,
-    required KaspaApi api,
-    int maxGap = 5,
-    int maxRetries = 3,
-    void Function(AddressType type, int index)? onProgress,
-  }) async {
-    bool done = false;
-
-    int retryCount = 0;
-    int lastUsedIndex = currentIndex;
-
-    final typeIndex = typeIndexForAddressType(type);
-
-    final addresses = <WalletAddress>{};
-    final unused = <WalletAddress>[];
-    final txIds = <String>{};
-
-    while (!done) {
-      onProgress?.call(type, currentIndex);
-
-      final bip32 = hdPublicKey.derive(typeIndex).derive(currentIndex);
-      final address = Address.fromPublicKey(
-        bip32.publicKey.sublist(1),
-        prefix: addressPrefix,
+  Future<void> fillMissingAddresses() async {
+    bool updated = false;
+    for (final index in _receive.missingAddresses) {
+      final address = await _getWalletAddress(
+        index: index,
+        type: AddressType.receive,
       );
-
-      final name = type == AddressType.receive
-          ? 'Receive $currentIndex'
-          : 'Change $currentIndex';
-      final walletAddress = WalletAddress(
-        index: currentIndex,
-        type: type,
-        address: address,
-        name: name,
-      );
-
-      try {
-        final address = walletAddress.address.encoded;
-        final txLinks = await api.getTxLinks(address: address);
-
-        for (final txLink in txLinks) {
-          if (txLink.txReceived != null) {
-            txIds.add(txLink.txReceived!);
-          }
-          if (txLink.txSpent != null) {
-            txIds.add(txLink.txSpent!);
-          }
-        }
-
-        if (txLinks.isNotEmpty) {
-          addresses.addAll(unused);
-          unused.clear();
-          addresses.add(walletAddress);
-          lastUsedIndex = currentIndex;
-        } else {
-          unused.add(walletAddress);
-        }
-        retryCount = 0;
-      } catch (e) {
-        retryCount += 1;
-        await Future.delayed(const Duration(seconds: 1));
-      }
-
-      if (retryCount > maxRetries) {
-        done = true;
-      }
-
-      if (currentIndex - lastUsedIndex >= maxGap) {
-        if (unused.isNotEmpty && type == AddressType.receive) {
-          addresses.add(unused.first);
-        }
-        done = true;
-      }
-
-      currentIndex++;
+      _receive.updateAddress(address);
+      await _walletAddressBox.set(address.key, address);
+      updated = true;
     }
 
-    return DiscoveryResult(addresses: addresses, txIds: txIds);
+    for (final index in _change.missingAddresses) {
+      final address = await _getWalletAddress(
+        index: index,
+        type: AddressType.change,
+      );
+      _change.updateAddress(address);
+      await _walletAddressBox.set(address.key, address);
+      updated = true;
+    }
+
+    if (updated) {
+      notifyListeners();
+    }
   }
 
-  static Future<DiscoveryResult> addressDiscovery({
-    required BIP32 hdPublicKey,
-    required AddressPrefix addressPrefix,
-    required KaspaClient client,
-    required KaspaApi api,
-    required int startReceiveIndex,
-    required int startChangeIndex,
-    void Function(AddressType type, int index)? onProgress,
-  }) async {
-    final receiveResult = await addressDiscoveryFor(
-      hdPublicKey: hdPublicKey,
-      addressPrefix: addressPrefix,
-      type: AddressType.receive,
-      currentIndex: startReceiveIndex,
-      client: client,
-      api: api,
-      onProgress: onProgress,
-    );
-
-    final changeResult = await addressDiscoveryFor(
-      hdPublicKey: hdPublicKey,
-      addressPrefix: addressPrefix,
-      type: AddressType.change,
-      currentIndex: startChangeIndex,
-      client: client,
-      api: api,
-      onProgress: onProgress,
-    );
-
-    return DiscoveryResult(
-      addresses: receiveResult.addresses.union(
-        changeResult.addresses,
-      ),
-      txIds: receiveResult.txIds.union(
-        changeResult.txIds,
-      ),
-    );
+  WalletAddress? getAddress(String address) {
+    final receive = _receive.getAddress(address);
+    if (receive != null) {
+      return receive;
+    }
+    final change = _change.getAddress(address);
+    if (change != null) {
+      return change;
+    }
+    return null;
   }
-}
 
-class DiscoveryResult {
-  final Set<WalletAddress> addresses;
-  final Set<String> txIds;
+  Future<void> markUsed(Iterable<String> addresses) async {
+    if (addresses.isEmpty) {
+      return;
+    }
 
-  const DiscoveryResult({
-    required this.addresses,
-    required this.txIds,
-  });
+    for (final address in addresses) {
+      final wa = getAddress(address);
+      if (wa == null || wa.used) {
+        continue;
+      }
+      await _addAddress(wa.copyWith(used: true));
+    }
+    fillMissingAddresses();
+    notifyListeners();
+  }
 }

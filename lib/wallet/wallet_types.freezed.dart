@@ -678,6 +678,580 @@ abstract class _BoxInfoByNetwork extends BoxInfoByNetwork {
       throw _privateConstructorUsedError;
 }
 
+WalletKind _$WalletKindFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'localHdSchnorr':
+      return _WalletKindLocalHdSchnorr.fromJson(json);
+    case 'localHdEcdsa':
+      return _WalletKindLocalHdEcdsa.fromJson(json);
+    case 'localHdLegacy':
+      return _WalletKindLocalHdLegacy.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'WalletKind',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
+/// @nodoc
+mixin _$WalletKind {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool viewOnly) localHdSchnorr,
+    required TResult Function(bool viewOnly) localHdEcdsa,
+    required TResult Function(String mainPubKey) localHdLegacy,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool viewOnly)? localHdSchnorr,
+    TResult? Function(bool viewOnly)? localHdEcdsa,
+    TResult? Function(String mainPubKey)? localHdLegacy,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool viewOnly)? localHdSchnorr,
+    TResult Function(bool viewOnly)? localHdEcdsa,
+    TResult Function(String mainPubKey)? localHdLegacy,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WalletKindLocalHdSchnorr value) localHdSchnorr,
+    required TResult Function(_WalletKindLocalHdEcdsa value) localHdEcdsa,
+    required TResult Function(_WalletKindLocalHdLegacy value) localHdLegacy,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_WalletKindLocalHdSchnorr value)? localHdSchnorr,
+    TResult? Function(_WalletKindLocalHdEcdsa value)? localHdEcdsa,
+    TResult? Function(_WalletKindLocalHdLegacy value)? localHdLegacy,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WalletKindLocalHdSchnorr value)? localHdSchnorr,
+    TResult Function(_WalletKindLocalHdEcdsa value)? localHdEcdsa,
+    TResult Function(_WalletKindLocalHdLegacy value)? localHdLegacy,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WalletKindCopyWith<$Res> {
+  factory $WalletKindCopyWith(
+          WalletKind value, $Res Function(WalletKind) then) =
+      _$WalletKindCopyWithImpl<$Res, WalletKind>;
+}
+
+/// @nodoc
+class _$WalletKindCopyWithImpl<$Res, $Val extends WalletKind>
+    implements $WalletKindCopyWith<$Res> {
+  _$WalletKindCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_WalletKindLocalHdSchnorrCopyWith<$Res> {
+  factory _$$_WalletKindLocalHdSchnorrCopyWith(
+          _$_WalletKindLocalHdSchnorr value,
+          $Res Function(_$_WalletKindLocalHdSchnorr) then) =
+      __$$_WalletKindLocalHdSchnorrCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool viewOnly});
+}
+
+/// @nodoc
+class __$$_WalletKindLocalHdSchnorrCopyWithImpl<$Res>
+    extends _$WalletKindCopyWithImpl<$Res, _$_WalletKindLocalHdSchnorr>
+    implements _$$_WalletKindLocalHdSchnorrCopyWith<$Res> {
+  __$$_WalletKindLocalHdSchnorrCopyWithImpl(_$_WalletKindLocalHdSchnorr _value,
+      $Res Function(_$_WalletKindLocalHdSchnorr) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? viewOnly = null,
+  }) {
+    return _then(_$_WalletKindLocalHdSchnorr(
+      viewOnly: null == viewOnly
+          ? _value.viewOnly
+          : viewOnly // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_WalletKindLocalHdSchnorr extends _WalletKindLocalHdSchnorr {
+  const _$_WalletKindLocalHdSchnorr(
+      {this.viewOnly = false, final String? $type})
+      : $type = $type ?? 'localHdSchnorr',
+        super._();
+
+  factory _$_WalletKindLocalHdSchnorr.fromJson(Map<String, dynamic> json) =>
+      _$$_WalletKindLocalHdSchnorrFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool viewOnly;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'WalletKind.localHdSchnorr(viewOnly: $viewOnly)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WalletKindLocalHdSchnorr &&
+            (identical(other.viewOnly, viewOnly) ||
+                other.viewOnly == viewOnly));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, viewOnly);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WalletKindLocalHdSchnorrCopyWith<_$_WalletKindLocalHdSchnorr>
+      get copyWith => __$$_WalletKindLocalHdSchnorrCopyWithImpl<
+          _$_WalletKindLocalHdSchnorr>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool viewOnly) localHdSchnorr,
+    required TResult Function(bool viewOnly) localHdEcdsa,
+    required TResult Function(String mainPubKey) localHdLegacy,
+  }) {
+    return localHdSchnorr(viewOnly);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool viewOnly)? localHdSchnorr,
+    TResult? Function(bool viewOnly)? localHdEcdsa,
+    TResult? Function(String mainPubKey)? localHdLegacy,
+  }) {
+    return localHdSchnorr?.call(viewOnly);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool viewOnly)? localHdSchnorr,
+    TResult Function(bool viewOnly)? localHdEcdsa,
+    TResult Function(String mainPubKey)? localHdLegacy,
+    required TResult orElse(),
+  }) {
+    if (localHdSchnorr != null) {
+      return localHdSchnorr(viewOnly);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WalletKindLocalHdSchnorr value) localHdSchnorr,
+    required TResult Function(_WalletKindLocalHdEcdsa value) localHdEcdsa,
+    required TResult Function(_WalletKindLocalHdLegacy value) localHdLegacy,
+  }) {
+    return localHdSchnorr(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_WalletKindLocalHdSchnorr value)? localHdSchnorr,
+    TResult? Function(_WalletKindLocalHdEcdsa value)? localHdEcdsa,
+    TResult? Function(_WalletKindLocalHdLegacy value)? localHdLegacy,
+  }) {
+    return localHdSchnorr?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WalletKindLocalHdSchnorr value)? localHdSchnorr,
+    TResult Function(_WalletKindLocalHdEcdsa value)? localHdEcdsa,
+    TResult Function(_WalletKindLocalHdLegacy value)? localHdLegacy,
+    required TResult orElse(),
+  }) {
+    if (localHdSchnorr != null) {
+      return localHdSchnorr(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WalletKindLocalHdSchnorrToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WalletKindLocalHdSchnorr extends WalletKind {
+  const factory _WalletKindLocalHdSchnorr({final bool viewOnly}) =
+      _$_WalletKindLocalHdSchnorr;
+  const _WalletKindLocalHdSchnorr._() : super._();
+
+  factory _WalletKindLocalHdSchnorr.fromJson(Map<String, dynamic> json) =
+      _$_WalletKindLocalHdSchnorr.fromJson;
+
+  bool get viewOnly;
+  @JsonKey(ignore: true)
+  _$$_WalletKindLocalHdSchnorrCopyWith<_$_WalletKindLocalHdSchnorr>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_WalletKindLocalHdEcdsaCopyWith<$Res> {
+  factory _$$_WalletKindLocalHdEcdsaCopyWith(_$_WalletKindLocalHdEcdsa value,
+          $Res Function(_$_WalletKindLocalHdEcdsa) then) =
+      __$$_WalletKindLocalHdEcdsaCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool viewOnly});
+}
+
+/// @nodoc
+class __$$_WalletKindLocalHdEcdsaCopyWithImpl<$Res>
+    extends _$WalletKindCopyWithImpl<$Res, _$_WalletKindLocalHdEcdsa>
+    implements _$$_WalletKindLocalHdEcdsaCopyWith<$Res> {
+  __$$_WalletKindLocalHdEcdsaCopyWithImpl(_$_WalletKindLocalHdEcdsa _value,
+      $Res Function(_$_WalletKindLocalHdEcdsa) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? viewOnly = null,
+  }) {
+    return _then(_$_WalletKindLocalHdEcdsa(
+      viewOnly: null == viewOnly
+          ? _value.viewOnly
+          : viewOnly // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_WalletKindLocalHdEcdsa extends _WalletKindLocalHdEcdsa {
+  const _$_WalletKindLocalHdEcdsa({this.viewOnly = false, final String? $type})
+      : $type = $type ?? 'localHdEcdsa',
+        super._();
+
+  factory _$_WalletKindLocalHdEcdsa.fromJson(Map<String, dynamic> json) =>
+      _$$_WalletKindLocalHdEcdsaFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool viewOnly;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'WalletKind.localHdEcdsa(viewOnly: $viewOnly)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WalletKindLocalHdEcdsa &&
+            (identical(other.viewOnly, viewOnly) ||
+                other.viewOnly == viewOnly));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, viewOnly);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WalletKindLocalHdEcdsaCopyWith<_$_WalletKindLocalHdEcdsa> get copyWith =>
+      __$$_WalletKindLocalHdEcdsaCopyWithImpl<_$_WalletKindLocalHdEcdsa>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool viewOnly) localHdSchnorr,
+    required TResult Function(bool viewOnly) localHdEcdsa,
+    required TResult Function(String mainPubKey) localHdLegacy,
+  }) {
+    return localHdEcdsa(viewOnly);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool viewOnly)? localHdSchnorr,
+    TResult? Function(bool viewOnly)? localHdEcdsa,
+    TResult? Function(String mainPubKey)? localHdLegacy,
+  }) {
+    return localHdEcdsa?.call(viewOnly);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool viewOnly)? localHdSchnorr,
+    TResult Function(bool viewOnly)? localHdEcdsa,
+    TResult Function(String mainPubKey)? localHdLegacy,
+    required TResult orElse(),
+  }) {
+    if (localHdEcdsa != null) {
+      return localHdEcdsa(viewOnly);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WalletKindLocalHdSchnorr value) localHdSchnorr,
+    required TResult Function(_WalletKindLocalHdEcdsa value) localHdEcdsa,
+    required TResult Function(_WalletKindLocalHdLegacy value) localHdLegacy,
+  }) {
+    return localHdEcdsa(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_WalletKindLocalHdSchnorr value)? localHdSchnorr,
+    TResult? Function(_WalletKindLocalHdEcdsa value)? localHdEcdsa,
+    TResult? Function(_WalletKindLocalHdLegacy value)? localHdLegacy,
+  }) {
+    return localHdEcdsa?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WalletKindLocalHdSchnorr value)? localHdSchnorr,
+    TResult Function(_WalletKindLocalHdEcdsa value)? localHdEcdsa,
+    TResult Function(_WalletKindLocalHdLegacy value)? localHdLegacy,
+    required TResult orElse(),
+  }) {
+    if (localHdEcdsa != null) {
+      return localHdEcdsa(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WalletKindLocalHdEcdsaToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WalletKindLocalHdEcdsa extends WalletKind {
+  const factory _WalletKindLocalHdEcdsa({final bool viewOnly}) =
+      _$_WalletKindLocalHdEcdsa;
+  const _WalletKindLocalHdEcdsa._() : super._();
+
+  factory _WalletKindLocalHdEcdsa.fromJson(Map<String, dynamic> json) =
+      _$_WalletKindLocalHdEcdsa.fromJson;
+
+  bool get viewOnly;
+  @JsonKey(ignore: true)
+  _$$_WalletKindLocalHdEcdsaCopyWith<_$_WalletKindLocalHdEcdsa> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_WalletKindLocalHdLegacyCopyWith<$Res> {
+  factory _$$_WalletKindLocalHdLegacyCopyWith(_$_WalletKindLocalHdLegacy value,
+          $Res Function(_$_WalletKindLocalHdLegacy) then) =
+      __$$_WalletKindLocalHdLegacyCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String mainPubKey});
+}
+
+/// @nodoc
+class __$$_WalletKindLocalHdLegacyCopyWithImpl<$Res>
+    extends _$WalletKindCopyWithImpl<$Res, _$_WalletKindLocalHdLegacy>
+    implements _$$_WalletKindLocalHdLegacyCopyWith<$Res> {
+  __$$_WalletKindLocalHdLegacyCopyWithImpl(_$_WalletKindLocalHdLegacy _value,
+      $Res Function(_$_WalletKindLocalHdLegacy) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mainPubKey = null,
+  }) {
+    return _then(_$_WalletKindLocalHdLegacy(
+      mainPubKey: null == mainPubKey
+          ? _value.mainPubKey
+          : mainPubKey // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_WalletKindLocalHdLegacy extends _WalletKindLocalHdLegacy {
+  const _$_WalletKindLocalHdLegacy(
+      {required this.mainPubKey, final String? $type})
+      : $type = $type ?? 'localHdLegacy',
+        super._();
+
+  factory _$_WalletKindLocalHdLegacy.fromJson(Map<String, dynamic> json) =>
+      _$$_WalletKindLocalHdLegacyFromJson(json);
+
+  @override
+  final String mainPubKey;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'WalletKind.localHdLegacy(mainPubKey: $mainPubKey)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WalletKindLocalHdLegacy &&
+            (identical(other.mainPubKey, mainPubKey) ||
+                other.mainPubKey == mainPubKey));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, mainPubKey);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WalletKindLocalHdLegacyCopyWith<_$_WalletKindLocalHdLegacy>
+      get copyWith =>
+          __$$_WalletKindLocalHdLegacyCopyWithImpl<_$_WalletKindLocalHdLegacy>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool viewOnly) localHdSchnorr,
+    required TResult Function(bool viewOnly) localHdEcdsa,
+    required TResult Function(String mainPubKey) localHdLegacy,
+  }) {
+    return localHdLegacy(mainPubKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool viewOnly)? localHdSchnorr,
+    TResult? Function(bool viewOnly)? localHdEcdsa,
+    TResult? Function(String mainPubKey)? localHdLegacy,
+  }) {
+    return localHdLegacy?.call(mainPubKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool viewOnly)? localHdSchnorr,
+    TResult Function(bool viewOnly)? localHdEcdsa,
+    TResult Function(String mainPubKey)? localHdLegacy,
+    required TResult orElse(),
+  }) {
+    if (localHdLegacy != null) {
+      return localHdLegacy(mainPubKey);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WalletKindLocalHdSchnorr value) localHdSchnorr,
+    required TResult Function(_WalletKindLocalHdEcdsa value) localHdEcdsa,
+    required TResult Function(_WalletKindLocalHdLegacy value) localHdLegacy,
+  }) {
+    return localHdLegacy(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_WalletKindLocalHdSchnorr value)? localHdSchnorr,
+    TResult? Function(_WalletKindLocalHdEcdsa value)? localHdEcdsa,
+    TResult? Function(_WalletKindLocalHdLegacy value)? localHdLegacy,
+  }) {
+    return localHdLegacy?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WalletKindLocalHdSchnorr value)? localHdSchnorr,
+    TResult Function(_WalletKindLocalHdEcdsa value)? localHdEcdsa,
+    TResult Function(_WalletKindLocalHdLegacy value)? localHdLegacy,
+    required TResult orElse(),
+  }) {
+    if (localHdLegacy != null) {
+      return localHdLegacy(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WalletKindLocalHdLegacyToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WalletKindLocalHdLegacy extends WalletKind {
+  const factory _WalletKindLocalHdLegacy({required final String mainPubKey}) =
+      _$_WalletKindLocalHdLegacy;
+  const _WalletKindLocalHdLegacy._() : super._();
+
+  factory _WalletKindLocalHdLegacy.fromJson(Map<String, dynamic> json) =
+      _$_WalletKindLocalHdLegacy.fromJson;
+
+  String get mainPubKey;
+  @JsonKey(ignore: true)
+  _$$_WalletKindLocalHdLegacyCopyWith<_$_WalletKindLocalHdLegacy>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 WalletInfo _$WalletInfoFromJson(Map<String, dynamic> json) {
   return _WalletInfo.fromJson(json);
 }
@@ -685,13 +1259,11 @@ WalletInfo _$WalletInfoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$WalletInfo {
   String get name => throw _privateConstructorUsedError;
+  WalletKind get kind => throw _privateConstructorUsedError;
   String get wid => throw _privateConstructorUsedError;
   BoxInfoByNetwork get boxInfo =>
       throw _privateConstructorUsedError; // HDPublic key base58 encoded
   String get mainnetPublicKey => throw _privateConstructorUsedError;
-  String get testnetPublicKey => throw _privateConstructorUsedError;
-  String get simnetPublicKey => throw _privateConstructorUsedError;
-  String get devnetPublicKey => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -707,13 +1279,12 @@ abstract class $WalletInfoCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
+      WalletKind kind,
       String wid,
       BoxInfoByNetwork boxInfo,
-      String mainnetPublicKey,
-      String testnetPublicKey,
-      String simnetPublicKey,
-      String devnetPublicKey});
+      String mainnetPublicKey});
 
+  $WalletKindCopyWith<$Res> get kind;
   $BoxInfoByNetworkCopyWith<$Res> get boxInfo;
 }
 
@@ -731,18 +1302,20 @@ class _$WalletInfoCopyWithImpl<$Res, $Val extends WalletInfo>
   @override
   $Res call({
     Object? name = null,
+    Object? kind = null,
     Object? wid = null,
     Object? boxInfo = null,
     Object? mainnetPublicKey = null,
-    Object? testnetPublicKey = null,
-    Object? simnetPublicKey = null,
-    Object? devnetPublicKey = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      kind: null == kind
+          ? _value.kind
+          : kind // ignore: cast_nullable_to_non_nullable
+              as WalletKind,
       wid: null == wid
           ? _value.wid
           : wid // ignore: cast_nullable_to_non_nullable
@@ -755,19 +1328,15 @@ class _$WalletInfoCopyWithImpl<$Res, $Val extends WalletInfo>
           ? _value.mainnetPublicKey
           : mainnetPublicKey // ignore: cast_nullable_to_non_nullable
               as String,
-      testnetPublicKey: null == testnetPublicKey
-          ? _value.testnetPublicKey
-          : testnetPublicKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      simnetPublicKey: null == simnetPublicKey
-          ? _value.simnetPublicKey
-          : simnetPublicKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      devnetPublicKey: null == devnetPublicKey
-          ? _value.devnetPublicKey
-          : devnetPublicKey // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WalletKindCopyWith<$Res> get kind {
+    return $WalletKindCopyWith<$Res>(_value.kind, (value) {
+      return _then(_value.copyWith(kind: value) as $Val);
+    });
   }
 
   @override
@@ -789,13 +1358,13 @@ abstract class _$$_WalletInfoCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
+      WalletKind kind,
       String wid,
       BoxInfoByNetwork boxInfo,
-      String mainnetPublicKey,
-      String testnetPublicKey,
-      String simnetPublicKey,
-      String devnetPublicKey});
+      String mainnetPublicKey});
 
+  @override
+  $WalletKindCopyWith<$Res> get kind;
   @override
   $BoxInfoByNetworkCopyWith<$Res> get boxInfo;
 }
@@ -812,18 +1381,20 @@ class __$$_WalletInfoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? kind = null,
     Object? wid = null,
     Object? boxInfo = null,
     Object? mainnetPublicKey = null,
-    Object? testnetPublicKey = null,
-    Object? simnetPublicKey = null,
-    Object? devnetPublicKey = null,
   }) {
     return _then(_$_WalletInfo(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      kind: null == kind
+          ? _value.kind
+          : kind // ignore: cast_nullable_to_non_nullable
+              as WalletKind,
       wid: null == wid
           ? _value.wid
           : wid // ignore: cast_nullable_to_non_nullable
@@ -836,18 +1407,6 @@ class __$$_WalletInfoCopyWithImpl<$Res>
           ? _value.mainnetPublicKey
           : mainnetPublicKey // ignore: cast_nullable_to_non_nullable
               as String,
-      testnetPublicKey: null == testnetPublicKey
-          ? _value.testnetPublicKey
-          : testnetPublicKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      simnetPublicKey: null == simnetPublicKey
-          ? _value.simnetPublicKey
-          : simnetPublicKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      devnetPublicKey: null == devnetPublicKey
-          ? _value.devnetPublicKey
-          : devnetPublicKey // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -857,12 +1416,10 @@ class __$$_WalletInfoCopyWithImpl<$Res>
 class _$_WalletInfo extends _WalletInfo {
   const _$_WalletInfo(
       {required this.name,
+      this.kind = const WalletKind.localHdSchnorr(),
       required this.wid,
       required this.boxInfo,
-      required this.mainnetPublicKey,
-      required this.testnetPublicKey,
-      required this.simnetPublicKey,
-      required this.devnetPublicKey})
+      required this.mainnetPublicKey})
       : super._();
 
   factory _$_WalletInfo.fromJson(Map<String, dynamic> json) =>
@@ -871,22 +1428,19 @@ class _$_WalletInfo extends _WalletInfo {
   @override
   final String name;
   @override
+  @JsonKey()
+  final WalletKind kind;
+  @override
   final String wid;
   @override
   final BoxInfoByNetwork boxInfo;
 // HDPublic key base58 encoded
   @override
   final String mainnetPublicKey;
-  @override
-  final String testnetPublicKey;
-  @override
-  final String simnetPublicKey;
-  @override
-  final String devnetPublicKey;
 
   @override
   String toString() {
-    return 'WalletInfo(name: $name, wid: $wid, boxInfo: $boxInfo, mainnetPublicKey: $mainnetPublicKey, testnetPublicKey: $testnetPublicKey, simnetPublicKey: $simnetPublicKey, devnetPublicKey: $devnetPublicKey)';
+    return 'WalletInfo(name: $name, kind: $kind, wid: $wid, boxInfo: $boxInfo, mainnetPublicKey: $mainnetPublicKey)';
   }
 
   @override
@@ -895,22 +1449,17 @@ class _$_WalletInfo extends _WalletInfo {
         (other.runtimeType == runtimeType &&
             other is _$_WalletInfo &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.kind, kind) || other.kind == kind) &&
             (identical(other.wid, wid) || other.wid == wid) &&
             (identical(other.boxInfo, boxInfo) || other.boxInfo == boxInfo) &&
             (identical(other.mainnetPublicKey, mainnetPublicKey) ||
-                other.mainnetPublicKey == mainnetPublicKey) &&
-            (identical(other.testnetPublicKey, testnetPublicKey) ||
-                other.testnetPublicKey == testnetPublicKey) &&
-            (identical(other.simnetPublicKey, simnetPublicKey) ||
-                other.simnetPublicKey == simnetPublicKey) &&
-            (identical(other.devnetPublicKey, devnetPublicKey) ||
-                other.devnetPublicKey == devnetPublicKey));
+                other.mainnetPublicKey == mainnetPublicKey));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, wid, boxInfo,
-      mainnetPublicKey, testnetPublicKey, simnetPublicKey, devnetPublicKey);
+  int get hashCode =>
+      Object.hash(runtimeType, name, kind, wid, boxInfo, mainnetPublicKey);
 
   @JsonKey(ignore: true)
   @override
@@ -929,12 +1478,10 @@ class _$_WalletInfo extends _WalletInfo {
 abstract class _WalletInfo extends WalletInfo {
   const factory _WalletInfo(
       {required final String name,
+      final WalletKind kind,
       required final String wid,
       required final BoxInfoByNetwork boxInfo,
-      required final String mainnetPublicKey,
-      required final String testnetPublicKey,
-      required final String simnetPublicKey,
-      required final String devnetPublicKey}) = _$_WalletInfo;
+      required final String mainnetPublicKey}) = _$_WalletInfo;
   const _WalletInfo._() : super._();
 
   factory _WalletInfo.fromJson(Map<String, dynamic> json) =
@@ -943,17 +1490,13 @@ abstract class _WalletInfo extends WalletInfo {
   @override
   String get name;
   @override
+  WalletKind get kind;
+  @override
   String get wid;
   @override
   BoxInfoByNetwork get boxInfo;
   @override // HDPublic key base58 encoded
   String get mainnetPublicKey;
-  @override
-  String get testnetPublicKey;
-  @override
-  String get simnetPublicKey;
-  @override
-  String get devnetPublicKey;
   @override
   @JsonKey(ignore: true)
   _$$_WalletInfoCopyWith<_$_WalletInfo> get copyWith =>
@@ -966,7 +1509,7 @@ WalletBundle _$WalletBundleFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WalletBundle {
-  IList<WalletInfo> get wallets => throw _privateConstructorUsedError;
+  IList<WalletInfo>? get wallets => throw _privateConstructorUsedError;
   WalletInfo? get selected => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -981,7 +1524,7 @@ abstract class $WalletBundleCopyWith<$Res> {
           WalletBundle value, $Res Function(WalletBundle) then) =
       _$WalletBundleCopyWithImpl<$Res, WalletBundle>;
   @useResult
-  $Res call({IList<WalletInfo> wallets, WalletInfo? selected});
+  $Res call({IList<WalletInfo>? wallets, WalletInfo? selected});
 
   $WalletInfoCopyWith<$Res>? get selected;
 }
@@ -999,14 +1542,14 @@ class _$WalletBundleCopyWithImpl<$Res, $Val extends WalletBundle>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? wallets = null,
+    Object? wallets = freezed,
     Object? selected = freezed,
   }) {
     return _then(_value.copyWith(
-      wallets: null == wallets
+      wallets: freezed == wallets
           ? _value.wallets
           : wallets // ignore: cast_nullable_to_non_nullable
-              as IList<WalletInfo>,
+              as IList<WalletInfo>?,
       selected: freezed == selected
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
@@ -1035,7 +1578,7 @@ abstract class _$$_WalletBundleCopyWith<$Res>
       __$$_WalletBundleCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({IList<WalletInfo> wallets, WalletInfo? selected});
+  $Res call({IList<WalletInfo>? wallets, WalletInfo? selected});
 
   @override
   $WalletInfoCopyWith<$Res>? get selected;
@@ -1052,14 +1595,14 @@ class __$$_WalletBundleCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? wallets = null,
+    Object? wallets = freezed,
     Object? selected = freezed,
   }) {
     return _then(_$_WalletBundle(
-      wallets: null == wallets
+      wallets: freezed == wallets
           ? _value.wallets
           : wallets // ignore: cast_nullable_to_non_nullable
-              as IList<WalletInfo>,
+              as IList<WalletInfo>?,
       selected: freezed == selected
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
@@ -1071,15 +1614,13 @@ class __$$_WalletBundleCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_WalletBundle implements _WalletBundle {
-  const _$_WalletBundle(
-      {this.wallets = const IListConst<WalletInfo>([]), this.selected});
+  const _$_WalletBundle({this.wallets, this.selected});
 
   factory _$_WalletBundle.fromJson(Map<String, dynamic> json) =>
       _$$_WalletBundleFromJson(json);
 
   @override
-  @JsonKey()
-  final IList<WalletInfo> wallets;
+  final IList<WalletInfo>? wallets;
   @override
   final WalletInfo? selected;
 
@@ -1119,14 +1660,14 @@ class _$_WalletBundle implements _WalletBundle {
 
 abstract class _WalletBundle implements WalletBundle {
   const factory _WalletBundle(
-      {final IList<WalletInfo> wallets,
+      {final IList<WalletInfo>? wallets,
       final WalletInfo? selected}) = _$_WalletBundle;
 
   factory _WalletBundle.fromJson(Map<String, dynamic> json) =
       _$_WalletBundle.fromJson;
 
   @override
-  IList<WalletInfo> get wallets;
+  IList<WalletInfo>? get wallets;
   @override
   WalletInfo? get selected;
   @override
@@ -1138,9 +1679,51 @@ abstract class _WalletBundle implements WalletBundle {
 /// @nodoc
 mixin _$WalletData {
   String get name => throw _privateConstructorUsedError;
-  String get seed => throw _privateConstructorUsedError;
-  String? get mnemonic => throw _privateConstructorUsedError;
-  String? get password => throw _privateConstructorUsedError;
+  WalletKind get kind => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, WalletKind kind, String seed,
+            String? mnemonic, String? password)
+        seed,
+    required TResult Function(String name, WalletKind kind, String kpub) kpub,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String name, WalletKind kind, String seed,
+            String? mnemonic, String? password)?
+        seed,
+    TResult? Function(String name, WalletKind kind, String kpub)? kpub,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, WalletKind kind, String seed,
+            String? mnemonic, String? password)?
+        seed,
+    TResult Function(String name, WalletKind kind, String kpub)? kpub,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WalletDataMnemonic value) seed,
+    required TResult Function(_WalletDataKpub value) kpub,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_WalletDataMnemonic value)? seed,
+    TResult? Function(_WalletDataKpub value)? kpub,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WalletDataMnemonic value)? seed,
+    TResult Function(_WalletDataKpub value)? kpub,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WalletDataCopyWith<WalletData> get copyWith =>
@@ -1153,7 +1736,9 @@ abstract class $WalletDataCopyWith<$Res> {
           WalletData value, $Res Function(WalletData) then) =
       _$WalletDataCopyWithImpl<$Res, WalletData>;
   @useResult
-  $Res call({String name, String seed, String? mnemonic, String? password});
+  $Res call({String name, WalletKind kind});
+
+  $WalletKindCopyWith<$Res> get kind;
 }
 
 /// @nodoc
@@ -1170,63 +1755,74 @@ class _$WalletDataCopyWithImpl<$Res, $Val extends WalletData>
   @override
   $Res call({
     Object? name = null,
-    Object? seed = null,
-    Object? mnemonic = freezed,
-    Object? password = freezed,
+    Object? kind = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      seed: null == seed
-          ? _value.seed
-          : seed // ignore: cast_nullable_to_non_nullable
-              as String,
-      mnemonic: freezed == mnemonic
-          ? _value.mnemonic
-          : mnemonic // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
+      kind: null == kind
+          ? _value.kind
+          : kind // ignore: cast_nullable_to_non_nullable
+              as WalletKind,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WalletKindCopyWith<$Res> get kind {
+    return $WalletKindCopyWith<$Res>(_value.kind, (value) {
+      return _then(_value.copyWith(kind: value) as $Val);
+    });
   }
 }
 
 /// @nodoc
-abstract class _$$_WalletDataCopyWith<$Res>
+abstract class _$$_WalletDataMnemonicCopyWith<$Res>
     implements $WalletDataCopyWith<$Res> {
-  factory _$$_WalletDataCopyWith(
-          _$_WalletData value, $Res Function(_$_WalletData) then) =
-      __$$_WalletDataCopyWithImpl<$Res>;
+  factory _$$_WalletDataMnemonicCopyWith(_$_WalletDataMnemonic value,
+          $Res Function(_$_WalletDataMnemonic) then) =
+      __$$_WalletDataMnemonicCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String seed, String? mnemonic, String? password});
+  $Res call(
+      {String name,
+      WalletKind kind,
+      String seed,
+      String? mnemonic,
+      String? password});
+
+  @override
+  $WalletKindCopyWith<$Res> get kind;
 }
 
 /// @nodoc
-class __$$_WalletDataCopyWithImpl<$Res>
-    extends _$WalletDataCopyWithImpl<$Res, _$_WalletData>
-    implements _$$_WalletDataCopyWith<$Res> {
-  __$$_WalletDataCopyWithImpl(
-      _$_WalletData _value, $Res Function(_$_WalletData) _then)
+class __$$_WalletDataMnemonicCopyWithImpl<$Res>
+    extends _$WalletDataCopyWithImpl<$Res, _$_WalletDataMnemonic>
+    implements _$$_WalletDataMnemonicCopyWith<$Res> {
+  __$$_WalletDataMnemonicCopyWithImpl(
+      _$_WalletDataMnemonic _value, $Res Function(_$_WalletDataMnemonic) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = null,
+    Object? kind = null,
     Object? seed = null,
     Object? mnemonic = freezed,
     Object? password = freezed,
   }) {
-    return _then(_$_WalletData(
+    return _then(_$_WalletDataMnemonic(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      kind: null == kind
+          ? _value.kind
+          : kind // ignore: cast_nullable_to_non_nullable
+              as WalletKind,
       seed: null == seed
           ? _value.seed
           : seed // ignore: cast_nullable_to_non_nullable
@@ -1245,12 +1841,18 @@ class __$$_WalletDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WalletData implements _WalletData {
-  const _$_WalletData(
-      {required this.name, required this.seed, this.mnemonic, this.password});
+class _$_WalletDataMnemonic implements _WalletDataMnemonic {
+  const _$_WalletDataMnemonic(
+      {required this.name,
+      required this.kind,
+      required this.seed,
+      this.mnemonic,
+      this.password});
 
   @override
   final String name;
+  @override
+  final WalletKind kind;
   @override
   final String seed;
   @override
@@ -1260,15 +1862,16 @@ class _$_WalletData implements _WalletData {
 
   @override
   String toString() {
-    return 'WalletData(name: $name, seed: $seed, mnemonic: $mnemonic, password: $password)';
+    return 'WalletData.seed(name: $name, kind: $kind, seed: $seed, mnemonic: $mnemonic, password: $password)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WalletData &&
+            other is _$_WalletDataMnemonic &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.kind, kind) || other.kind == kind) &&
             (identical(other.seed, seed) || other.seed == seed) &&
             (identical(other.mnemonic, mnemonic) ||
                 other.mnemonic == mnemonic) &&
@@ -1277,32 +1880,271 @@ class _$_WalletData implements _WalletData {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, seed, mnemonic, password);
+  int get hashCode =>
+      Object.hash(runtimeType, name, kind, seed, mnemonic, password);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WalletDataCopyWith<_$_WalletData> get copyWith =>
-      __$$_WalletDataCopyWithImpl<_$_WalletData>(this, _$identity);
+  _$$_WalletDataMnemonicCopyWith<_$_WalletDataMnemonic> get copyWith =>
+      __$$_WalletDataMnemonicCopyWithImpl<_$_WalletDataMnemonic>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, WalletKind kind, String seed,
+            String? mnemonic, String? password)
+        seed,
+    required TResult Function(String name, WalletKind kind, String kpub) kpub,
+  }) {
+    return seed(name, kind, this.seed, mnemonic, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String name, WalletKind kind, String seed,
+            String? mnemonic, String? password)?
+        seed,
+    TResult? Function(String name, WalletKind kind, String kpub)? kpub,
+  }) {
+    return seed?.call(name, kind, this.seed, mnemonic, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, WalletKind kind, String seed,
+            String? mnemonic, String? password)?
+        seed,
+    TResult Function(String name, WalletKind kind, String kpub)? kpub,
+    required TResult orElse(),
+  }) {
+    if (seed != null) {
+      return seed(name, kind, this.seed, mnemonic, password);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WalletDataMnemonic value) seed,
+    required TResult Function(_WalletDataKpub value) kpub,
+  }) {
+    return seed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_WalletDataMnemonic value)? seed,
+    TResult? Function(_WalletDataKpub value)? kpub,
+  }) {
+    return seed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WalletDataMnemonic value)? seed,
+    TResult Function(_WalletDataKpub value)? kpub,
+    required TResult orElse(),
+  }) {
+    if (seed != null) {
+      return seed(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _WalletData implements WalletData {
-  const factory _WalletData(
+abstract class _WalletDataMnemonic implements WalletData {
+  const factory _WalletDataMnemonic(
       {required final String name,
+      required final WalletKind kind,
       required final String seed,
       final String? mnemonic,
-      final String? password}) = _$_WalletData;
+      final String? password}) = _$_WalletDataMnemonic;
 
   @override
   String get name;
   @override
+  WalletKind get kind;
   String get seed;
-  @override
   String? get mnemonic;
-  @override
   String? get password;
   @override
   @JsonKey(ignore: true)
-  _$$_WalletDataCopyWith<_$_WalletData> get copyWith =>
+  _$$_WalletDataMnemonicCopyWith<_$_WalletDataMnemonic> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_WalletDataKpubCopyWith<$Res>
+    implements $WalletDataCopyWith<$Res> {
+  factory _$$_WalletDataKpubCopyWith(
+          _$_WalletDataKpub value, $Res Function(_$_WalletDataKpub) then) =
+      __$$_WalletDataKpubCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name, WalletKind kind, String kpub});
+
+  @override
+  $WalletKindCopyWith<$Res> get kind;
+}
+
+/// @nodoc
+class __$$_WalletDataKpubCopyWithImpl<$Res>
+    extends _$WalletDataCopyWithImpl<$Res, _$_WalletDataKpub>
+    implements _$$_WalletDataKpubCopyWith<$Res> {
+  __$$_WalletDataKpubCopyWithImpl(
+      _$_WalletDataKpub _value, $Res Function(_$_WalletDataKpub) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? kind = null,
+    Object? kpub = null,
+  }) {
+    return _then(_$_WalletDataKpub(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      kind: null == kind
+          ? _value.kind
+          : kind // ignore: cast_nullable_to_non_nullable
+              as WalletKind,
+      kpub: null == kpub
+          ? _value.kpub
+          : kpub // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_WalletDataKpub implements _WalletDataKpub {
+  const _$_WalletDataKpub(
+      {required this.name, required this.kind, required this.kpub});
+
+  @override
+  final String name;
+  @override
+  final WalletKind kind;
+  @override
+  final String kpub;
+
+  @override
+  String toString() {
+    return 'WalletData.kpub(name: $name, kind: $kind, kpub: $kpub)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WalletDataKpub &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.kind, kind) || other.kind == kind) &&
+            (identical(other.kpub, kpub) || other.kpub == kpub));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, name, kind, kpub);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WalletDataKpubCopyWith<_$_WalletDataKpub> get copyWith =>
+      __$$_WalletDataKpubCopyWithImpl<_$_WalletDataKpub>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, WalletKind kind, String seed,
+            String? mnemonic, String? password)
+        seed,
+    required TResult Function(String name, WalletKind kind, String kpub) kpub,
+  }) {
+    return kpub(name, kind, this.kpub);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String name, WalletKind kind, String seed,
+            String? mnemonic, String? password)?
+        seed,
+    TResult? Function(String name, WalletKind kind, String kpub)? kpub,
+  }) {
+    return kpub?.call(name, kind, this.kpub);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, WalletKind kind, String seed,
+            String? mnemonic, String? password)?
+        seed,
+    TResult Function(String name, WalletKind kind, String kpub)? kpub,
+    required TResult orElse(),
+  }) {
+    if (kpub != null) {
+      return kpub(name, kind, this.kpub);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WalletDataMnemonic value) seed,
+    required TResult Function(_WalletDataKpub value) kpub,
+  }) {
+    return kpub(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_WalletDataMnemonic value)? seed,
+    TResult? Function(_WalletDataKpub value)? kpub,
+  }) {
+    return kpub?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WalletDataMnemonic value)? seed,
+    TResult Function(_WalletDataKpub value)? kpub,
+    required TResult orElse(),
+  }) {
+    if (kpub != null) {
+      return kpub(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _WalletDataKpub implements WalletData {
+  const factory _WalletDataKpub(
+      {required final String name,
+      required final WalletKind kind,
+      required final String kpub}) = _$_WalletDataKpub;
+
+  @override
+  String get name;
+  @override
+  WalletKind get kind;
+  String get kpub;
+  @override
+  @JsonKey(ignore: true)
+  _$$_WalletDataKpubCopyWith<_$_WalletDataKpub> get copyWith =>
       throw _privateConstructorUsedError;
 }

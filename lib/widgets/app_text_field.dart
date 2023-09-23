@@ -168,8 +168,7 @@ class AppTextField extends ConsumerWidget {
                               milliseconds: buttonFadeDurationMs,
                             ),
                             firstChild: prefixButton!,
-                            secondChild:
-                                const SizedBox(width: 48),
+                            secondChild: const SizedBox(width: 48),
                             crossFadeState: prefixShowFirstCondition!
                                 ? CrossFadeState.showFirst
                                 : CrossFadeState.showSecond,
@@ -180,8 +179,7 @@ class AppTextField extends ConsumerWidget {
                             duration:
                                 Duration(milliseconds: buttonFadeDurationMs),
                             firstChild: suffixButton!,
-                            secondChild:
-                                const SizedBox(width: 48),
+                            secondChild: const SizedBox(width: 48),
                             crossFadeState: suffixShowFirstCondition!
                                 ? CrossFadeState.showFirst
                                 : CrossFadeState.showSecond,

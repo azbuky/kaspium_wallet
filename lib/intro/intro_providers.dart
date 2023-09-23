@@ -5,7 +5,7 @@ import 'intro_state_notifier.dart';
 import 'intro_types.dart';
 
 final introDataProvider =
-    StateNotifierProvider<IntroDataNotifier, IntroData>((ref) {
+    StateNotifierProvider.autoDispose<IntroDataNotifier, IntroData>((ref) {
   return IntroDataNotifier();
 });
 
@@ -14,4 +14,3 @@ final introStateProvider =
   final introData = ref.watch(introDataProvider.notifier);
   return IntroStateNotifier(introData);
 });
-

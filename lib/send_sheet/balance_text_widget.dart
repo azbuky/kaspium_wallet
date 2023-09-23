@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
-import '../kaspa/types.dart';
+import '../kaspa/kaspa.dart';
 import '../wallet_address/wallet_address.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
 
 final _balanceProvider =
     Provider.autoDispose.family<String, WalletAddress?>((ref, address) {

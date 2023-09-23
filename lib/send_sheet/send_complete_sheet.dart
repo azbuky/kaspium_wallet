@@ -69,7 +69,7 @@ class SendCompleteSheet extends HookConsumerWidget {
                       ),
                       AddressCard(
                         address: toAddress,
-                        type: AddressThreeLineTextType.PRIMARY,
+                        type: AddressTextType.PRIMARY,
                       ),
                       if (note != null)
                         Padding(

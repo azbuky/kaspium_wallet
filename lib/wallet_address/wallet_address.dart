@@ -5,37 +5,32 @@ import '../kaspa/kaspa.dart';
 part 'wallet_address.freezed.dart';
 part 'wallet_address.g.dart';
 
+typedef AddressNameCallback = String Function(AddressType type, int index);
+
 enum AddressType {
   @JsonValue(0)
   receive,
   @JsonValue(1)
   change;
-
-  int get typeIndex => typeIndexForAddressType(this);
-}
-
-int typeIndexForAddressType(AddressType type) {
-  switch (type) {
-    case AddressType.receive:
-      return 0;
-    case AddressType.change:
-      return 1;
-  }
 }
 
 @freezed
 class WalletAddress with _$WalletAddress {
   const WalletAddress._();
+
   const factory WalletAddress({
     required int index,
     required AddressType type,
     required String name,
     required Address address,
+    @Default(true) bool used,
   }) = _WalletAddress;
 
-  String get encoded => address.encoded;
+  static keyForAddressAtIndex(int index, {required AddressType type}) =>
+      '$type#$index';
 
-  int get typeIndex => typeIndexForAddressType(type);
+  String get encoded => address.encoded;
+  String get key => keyForAddressAtIndex(index, type: type);
 
   factory WalletAddress.fromJson(Map<String, dynamic> json) =>
       _$WalletAddressFromJson(json);

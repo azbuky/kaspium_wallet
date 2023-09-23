@@ -130,16 +130,6 @@ class Address with _$Address {
   static bool isValid(String address, AddressPrefix expectedPrefix) =>
       Address.tryParse(address, expectedPrefix: expectedPrefix) != null;
 
-  static Address fromPublicKey(
-    Uint8List publicKey, {
-    required AddressPrefix prefix,
-  }) {
-    return Address.publicKey(
-      prefix: prefix,
-      publicKey: publicKey,
-    );
-  }
-
   factory Address.fromJson(String json) {
     return decodeAddress(json);
   }

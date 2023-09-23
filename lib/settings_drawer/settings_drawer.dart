@@ -15,6 +15,8 @@ import '../settings/available_currency.dart';
 import '../settings/available_language.dart';
 import '../settings/available_themes.dart';
 import '../settings/setting_item.dart';
+import '../settings_advanced/advanced_menu.dart';
+import '../util/platform.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/dialog.dart';
 import '../widgets/gradient_widgets.dart';
@@ -47,9 +49,13 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
   late final AnimationController _networkController;
   late final Animation<Offset> _networkOffsetFloat;
 
+  late final AnimationController _advancedController;
+  late final Animation<Offset> _advancedOffsetFloat;
+
   bool _securityOpen = false;
   bool _contactsOpen = false;
   bool _networkOpen = false;
+  bool _advancedOpen = false;
 
   @override
   void initState() {
@@ -71,6 +77,11 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       vsync: this,
       duration: const Duration(milliseconds: 220),
     );
+    // For advanced menu
+    _advancedController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 220),
+    );
 
     final beginOffset = const Offset(1.1, 0);
     final endOffset = const Offset(0, 0);
@@ -79,13 +90,17 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       end: endOffset,
     ).animate(_contactsController);
     _securityOffsetFloat = Tween<Offset>(
-      begin: const Offset(1.1, 0),
-      end: const Offset(0, 0),
+      begin: beginOffset,
+      end: endOffset,
     ).animate(_securityController);
     _networkOffsetFloat = Tween<Offset>(
-      begin: const Offset(1.1, 0),
-      end: const Offset(0, 0),
+      begin: beginOffset,
+      end: endOffset,
     ).animate(_networkController);
+    _advancedOffsetFloat = Tween<Offset>(
+      begin: beginOffset,
+      end: endOffset,
+    ).animate(_advancedController);
   }
 
   @override
@@ -93,6 +108,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
     _contactsController.dispose();
     _securityController.dispose();
     _networkController.dispose();
+    _advancedController.dispose();
 
     super.dispose();
   }
@@ -143,6 +159,10 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       setState(() => _networkOpen = false);
       _networkController.reverse();
       return false;
+    } else if (_advancedOpen) {
+      setState(() => _advancedOpen = false);
+      _advancedController.reverse();
+      return false;
     }
     return true;
   }
@@ -184,6 +204,13 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
               _networkController.reverse();
             }),
           ),
+          SlideTransition(
+            position: _advancedOffsetFloat,
+            child: AdvancedMenu(onBackAction: () {
+              setState(() => _advancedOpen = false);
+              _advancedController.reverse();
+            }),
+          ),
         ]),
       ),
     );
@@ -196,7 +223,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       final l10n = l10nOf(context);
 
       final network = ref.watch(networkProvider);
-
+      final wallet = ref.watch(walletProvider);
       final hasMnemonic = ref.watch(walletHasMnemonic);
 
       return Container(
@@ -292,6 +319,15 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           _contactsController.forward();
                         },
                       ),
+                      Divider(height: 2, color: theme.text15),
+                      SingleLineItem(
+                        heading: l10n.advancedHeader,
+                        settingIcon: Icons.settings_applications,
+                        onPressed: () {
+                          setState(() => _advancedOpen = true);
+                          _advancedController.forward();
+                        },
+                      ),
                       if (hasMnemonic.asData?.value == true) ...[
                         Divider(height: 2, color: theme.text15),
                         SingleLineItem(
@@ -337,19 +373,25 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           },
                         ),
                       ],
-                      if (network == KaspaNetwork.mainnet) ...[
+                      if (!kPlatformIsIOS &&
+                          network == KaspaNetwork.mainnet &&
+                          !wallet.isViewOnly) ...[
                         Divider(height: 2, color: theme.text15),
                         DoubleLineItem(
                           heading: l10n.donate,
                           defaultMethod: DonateSettingItem(),
                           icon: Icons.handshake_rounded,
                           onPressed: () {
+                            final uri = KaspaUri(
+                              address:
+                                  Address.decodeAddress(kKaspaDevFundAddress),
+                            );
                             Sheets.showAppHeightNineSheet(
                               context: context,
                               theme: theme,
                               widget: SendSheet(
                                 title: l10n.donate.toUpperCase(),
-                                address: kKaspaDevFundAddress,
+                                uri: uri,
                               ),
                             );
                           },

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../database/database.dart';
 import '../kaspa/kaspa.dart';
-import '../kaspa/wallet/version.dart';
 import '../util/random_util.dart';
 import '../utils.dart';
 import 'wallet_repository.dart';
@@ -47,7 +46,7 @@ class WalletBundleNotifier extends StateNotifier<WalletBundle> {
   }
 
   Future<void> addWallet(WalletInfo wallet) async {
-    final wallets = state.wallets;
+    final wallets = state.wallets ?? IList(const []);
     if (wallets.contains(wallet)) {
       throw Exception('Wallet already exists');
     }
@@ -104,47 +103,42 @@ class WalletBundleNotifier extends StateNotifier<WalletBundle> {
       simnet: genBoxInfo(wid: wid, network: KaspaNetwork.simnet),
     );
 
-    final mainnetPublicKey = Wallet.hdPublicKeyFromSeed(
-      hexToBytes(walletData.seed),
-      networkType: kaspaMainnet,
-    );
-
-    final testnetPublicKey = Wallet.hdPublicKeyFromSeed(
-      hexToBytes(walletData.seed),
-      networkType: kaspaTestnet,
-    );
-
-    final simnetPublicKey = Wallet.hdPublicKeyFromSeed(
-      hexToBytes(walletData.seed),
-      networkType: kaspaSimnet,
-    );
-
-    final devnetPublicKey = Wallet.hdPublicKeyFromSeed(
-      hexToBytes(walletData.seed),
-      networkType: kaspaDevnet,
+    final mainnetPublicKey = walletData.map(
+      seed: (data) {
+        final seed = hexToBytes(data.seed);
+        return HdWallet.hdPublicKeyFromSeed(
+          seed,
+          networkType: kaspaMainnet,
+        );
+      },
+      kpub: (data) {
+        return convertHdPublicKey(
+          data.kpub,
+          KaspaNetwork.mainnet,
+        );
+      },
     );
 
     return WalletInfo(
       name: walletData.name,
+      kind: walletData.kind,
       wid: wid,
       boxInfo: boxInfo,
       mainnetPublicKey: mainnetPublicKey,
-      testnetPublicKey: testnetPublicKey,
-      simnetPublicKey: simnetPublicKey,
-      devnetPublicKey: devnetPublicKey,
     );
   }
 
   Future<WalletInfo> setupWallet(WalletData walletData) async {
     final wallet = generateWalletInfo(walletData);
 
-    // set seed and mnemonic to vault
-    final walletVault = WalletVault(wallet.wid, repository.vault);
-    await walletVault.setSeed(
-      walletData.seed,
-      mnemonic: walletData.mnemonic,
-      password: walletData.password,
-    );
+    await walletData.mapOrNull(seed: (data) async {
+      final walletVault = WalletVault(wallet.wid, repository.vault);
+      await walletVault.setSeed(
+        data.seed,
+        mnemonic: data.mnemonic,
+        password: data.password,
+      );
+    });
 
     await addWallet(wallet);
     return wallet;
@@ -170,7 +164,7 @@ class WalletBundleNotifier extends StateNotifier<WalletBundle> {
     }
 
     // remove wallet from bundle
-    final wallets = state.wallets.remove(wallet);
+    final wallets = state.wallets?.remove(wallet) ?? IList(const []);
     await repository.updateWallets(wallets);
     state = state.copyWith(wallets: wallets);
   }

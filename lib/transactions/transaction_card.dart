@@ -8,7 +8,6 @@ import '../app_styles.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../util/numberutil.dart';
-import '../wallet_address/address_providers.dart';
 import '../widgets/sheet_util.dart';
 import 'transaction_details_sheet.dart';
 import 'transaction_state_tag.dart';
@@ -18,10 +17,7 @@ import 'tx_address_widget.dart';
 class TransactionCard extends ConsumerWidget {
   final TxItem item;
 
-  const TransactionCard({
-    Key? key,
-    required this.item,
-  }) : super(key: key);
+  const TransactionCard({super.key, required this.item});
 
   Tx get tx => item.tx;
 
@@ -32,7 +28,7 @@ class TransactionCard extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
 
     final addressNotifier = ref.watch(addressNotifierProvider.notifier);
-    final tx = item.tx;
+
     final output = tx.apiTx.outputs[item.outputIndex];
 
     final amountRaw = output.amount;
@@ -55,14 +51,21 @@ class TransactionCard extends ConsumerWidget {
     IconData icon;
     Color iconColor;
     final locale = Localizations.localeOf(context).languageCode;
-    final formater = DateFormat('dd-MM-yy HH:mm', locale);
+    final formater = DateFormat('dd-MM-yyyy HH:mm', locale);
     final date = formater.format(txDate);
-    if (isSendType) {
-      icon = AppIcons.sent;
-      iconColor = theme.text60;
-    } else {
-      icon = AppIcons.received;
-      iconColor = theme.primary60;
+    switch (item.type) {
+      case TxItemType.send:
+        icon = AppIcons.sent;
+        iconColor = theme.text60;
+        break;
+      case TxItemType.receive:
+        icon = AppIcons.received;
+        iconColor = theme.primary60;
+        break;
+      case TxItemType.compound:
+        icon = Icons.refresh;
+        iconColor = theme.primary60;
+        break;
     }
 
     void showTxDetails() {

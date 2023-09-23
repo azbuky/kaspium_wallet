@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../settings/authentication_method.dart';
 import '../settings/available_currency.dart';
 import '../settings/available_language.dart';
 import '../settings/available_themes.dart';
-import '../settings/device_lock_timeout.dart';
 
 /// Price conversion preference values
 enum PriceConversion { BTC, NONE, HIDDEN }
@@ -25,13 +23,8 @@ class SharedPrefsUtil {
   static const String cur_language = 'fkaspium_language_pref';
   static const String cur_theme = 'fkaspium_theme_pref';
   static const String firstcontact_added = 'fkaspium_first_contact_added';
-  static const String lock_kaspium = 'fkaspium_lock_dev';
-  static const String kaspium_lock_timeout = 'fkaspium_lock_timeout';
   // If user has seen the root/jailbreak warning yet
   static const String has_shown_root_warning = 'fkaspium_root_warn';
-  // For maximum pin attempts
-  static const String pin_attempts = 'fkaspium_pin_attempts';
-  static const String pin_lock_until = 'fkaspium_lock_duraton';
   static const String notice_shown = 'fkaspium_notice_shown';
 
   // For plain-text data
@@ -147,86 +140,11 @@ class SharedPrefsUtil {
     )));
   }
 
-  Future<void> setLock(bool value) => set(lock_kaspium, value);
-  bool getLock() => get(lock_kaspium, defaultValue: false);
-
-  Future<void> setLockTimeout(LockTimeoutSetting setting) =>
-      set(kaspium_lock_timeout, setting.getId());
-
-  LockTimeoutSetting getLockTimeout() =>
-      LockTimeoutSetting(LockTimeoutOption.values.byName(get(
-        kaspium_lock_timeout,
-        defaultValue: LockTimeoutOption.ONE.name,
-      )));
-
-  // Locking out when max pin attempts exceeded
-  int getLockAttempts() => get(pin_attempts, defaultValue: 0);
-
-  Future<void> incrementLockAttempts() =>
-      set(pin_attempts, (getLockAttempts()) + 1);
-
-  Future<void> resetLockAttempts() async {
-    await sharedPrefs.remove(pin_attempts);
-    await sharedPrefs.remove(pin_lock_until);
-  }
-
-  bool shouldLock() {
-    if (get(pin_lock_until, defaultValue: null) != null ||
-        getLockAttempts() >= 5) {
-      return true;
-    }
-    return false;
-  }
-
-  Future<void> updateLockDate() async {
-    int attempts = getLockAttempts();
-    if (attempts >= 20) {
-      // 4+ failed attempts
-      await set<String>(
-          pin_lock_until,
-          DateFormat.yMd()
-              .add_jms()
-              .format(DateTime.now().toUtc().add(Duration(hours: 24))));
-    } else if (attempts >= 15) {
-      // 3 failed attempts
-      await set<String>(
-          pin_lock_until,
-          DateFormat.yMd()
-              .add_jms()
-              .format(DateTime.now().toUtc().add(Duration(minutes: 15))));
-    } else if (attempts >= 10) {
-      // 2 failed attempts
-      await set<String>(
-          pin_lock_until,
-          DateFormat.yMd()
-              .add_jms()
-              .format(DateTime.now().toUtc().add(Duration(minutes: 5))));
-    } else if (attempts >= 5) {
-      await set<String>(
-          pin_lock_until,
-          DateFormat.yMd()
-              .add_jms()
-              .format(DateTime.now().toUtc().add(Duration(minutes: 1))));
-    }
-  }
-
-  DateTime? getLockDate() {
-    String? lockDateStr = get(pin_lock_until, defaultValue: null);
-    if (lockDateStr == null) {
-      return null;
-    }
-    return DateFormat.yMd().add_jms().parseUtc(lockDateStr);
-  }
-
   // For logging out
   Future<void> deleteAll() {
     return Future.wait([
       sharedPrefs.remove(cur_currency),
       sharedPrefs.remove(auth_method),
-      sharedPrefs.remove(lock_kaspium),
-      sharedPrefs.remove(pin_attempts),
-      sharedPrefs.remove(pin_lock_until),
-      sharedPrefs.remove(kaspium_lock_timeout),
       sharedPrefs.remove(has_shown_root_warning),
     ]);
   }

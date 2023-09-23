@@ -1,90 +1,87 @@
-import 'package:coinslib/coinslib.dart';
+import 'package:collection/collection.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
-import '../kaspa/kaspa.dart';
 import 'wallet_address.dart';
 
-AddressPrefix addressPrefixForNetwork(KaspaNetwork network) {
-  switch (network) {
-    case KaspaNetwork.mainnet:
-      return AddressPrefix.kaspa;
-    case KaspaNetwork.testnet:
-      return AddressPrefix.kaspaTest;
-    case KaspaNetwork.devnet:
-      return AddressPrefix.kaspaDev;
-    case KaspaNetwork.simnet:
-      return AddressPrefix.kaspaSim;
-  }
-}
-
-// Not used yet
 class WalletAddressManager {
   final AddressType type;
-  final KaspaNetwork network;
-
-  late final Map<int, WalletAddress> _addresses;
-  late final Map<String, int> _addressIndexMap;
-
-  int _lastIndex = 1;
-
-  WalletAddress? getAddressWithIndex(int index) => _addresses[index];
-
-  IList<WalletAddress> get addresses =>
-      IList(_addresses.values).sort((a1, a2) => a1.index.compareTo(a2.index));
-
-  int get firstAvailableIndex => _lastIndex + 1;
+  final int bufferSize;
 
   WalletAddressManager({
     required this.type,
-    required this.network,
+    required this.bufferSize,
     required Iterable<WalletAddress> addresses,
   }) {
-    _addresses = {};
-    _addressIndexMap = {};
+    addresses.forEach(_updateAddress);
+  }
 
-    for (final address in addresses) {
-      if (address.type != type) {
-        continue;
-      }
-      _addresses[address.index] = address;
-      _addressIndexMap[address.address.encoded] = address.index;
-      if (_lastIndex < address.index) {
-        _lastIndex = address.index;
-      }
+  final _addresses = <WalletAddress?>[];
+  final _addressIndexMap = <String, int>{};
+
+  int _lastUsedIndex = -1;
+
+  Iterable<String> get allAddresses =>
+      _addresses.whereNotNull().map((e) => e.encoded);
+
+  IList<WalletAddress> get activeAddresses =>
+      IList(_addresses.take(lastUsedIndex + 1).whereNotNull());
+
+  int get lastUsedIndex => _lastUsedIndex;
+  int get nextUnusedIndex => _lastUsedIndex + 1;
+
+  WalletAddress? get lastUsedAddress => addressAtIndex(lastUsedIndex);
+  WalletAddress? get nextUnusedAddress => addressAtIndex(nextUnusedIndex);
+
+  IList<int> get missingAddresses {
+    if (_addresses.length == _addressIndexMap.length) {
+      return const IListConst([]);
     }
+    return IList(_addresses.indexed
+        .where((address) => address.$2 == null)
+        .map((values) => values.$1));
+  }
+
+  WalletAddress? addressAtIndex(int index) {
+    try {
+      return _addresses[index];
+    } catch (e) {
+      return null;
+    }
+  }
+
+  WalletAddress? getAddress(String address) {
+    if (_addressIndexMap[address] case int index) {
+      return addressAtIndex(index);
+    }
+
+    return null;
   }
 
   bool containsAddress(String address) => _addressIndexMap.containsKey(address);
   int? indexOfAddress(String address) => _addressIndexMap[address];
 
-  bool isAddressSelected(WalletAddress address) {
-    return address.index == _lastIndex;
-  }
+  String? nameForAddress(String address) => getAddress(address)?.name;
 
-  WalletAddress get selectedAddress => _addresses[_lastIndex]!;
+  void updateAddress(WalletAddress address) => _updateAddress(address);
 
-  WalletAddress newAddress(BIP32 bip32) {
-    final index = firstAvailableIndex;
-    final typeIndex = type == AddressType.receive ? 0 : 1;
-    final publicKey = bip32.derive(typeIndex).derive(index).publicKey;
-    final prefix = addressPrefixForNetwork(network);
-    final name =
-        type == AddressType.receive ? 'Receive $index' : 'Change $index';
-    final address = WalletAddress(
-      index: index,
-      type: type,
-      name: name,
-      address: Address.fromPublicKey(publicKey, prefix: prefix),
-    );
-    _addAddress(address);
-    return address;
-  }
+  void updateAddresses(Iterable<WalletAddress> addresses) =>
+      addresses.forEach(_updateAddress);
 
-  void _addAddress(WalletAddress address) {
+  void _updateAddress(WalletAddress address) {
+    if (address.type != type) {
+      return;
+    }
+
+    if (address.index >= _addresses.length) {
+      _addresses.length = address.index + 1;
+    }
     _addresses[address.index] = address;
-    _addressIndexMap[address.address.encoded] = address.index;
-    if (_lastIndex < address.index) {
-      _lastIndex = address.index;
+    _addressIndexMap[address.encoded] = address.index;
+    if (address.used && address.index > _lastUsedIndex) {
+      _lastUsedIndex = address.index;
+    }
+    if (_lastUsedIndex + bufferSize >= _addresses.length) {
+      _addresses.length = _lastUsedIndex + bufferSize + 1;
     }
   }
 }

@@ -222,6 +222,7 @@ const List<int> generator = [
 var GENERATOR1 = [0x98, 0x79, 0xf3, 0xae, 0x1e];
 var GENERATOR2 = [0xf2bc8e61, 0xb76d99e2, 0x3e5fb3c4, 0x2eabe2a8, 0x4f43e470];
 
+// ignore: unused_element
 int _polymod32(List<int> data) {
   // Treat c as 8 bits + 32 bits
   var c0 = 0, c1 = 1, C = 0;

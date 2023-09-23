@@ -51,6 +51,8 @@ class TypedBox<T> {
 
   Future<void> remove(String key) => box.delete(key);
 
+  Future<void> removeAll(Iterable<String> keys) => box.deleteAll(keys);
+
   Future<int> clear() => box.clear();
 
   Future<void> close() => box.close();
@@ -75,6 +77,8 @@ class LazyTypedBox<T> {
   Future<void> setAll(Map<String, T> entries) => box.putAll(entries);
 
   Future<void> remove(String key) => box.delete(key);
+
+  Future<void> removeAll(Iterable<String> keys) => box.deleteAll(keys);
 
   Future<int> clear() => box.clear();
 
@@ -126,6 +130,19 @@ class GenericBox {
     return [];
   }
 
+  List<T>? tryGetList<T>(String key, {TypeFactory<T>? typeFactory}) {
+    final value = box.get(key);
+    if (value is List) {
+      if (typeFactory != null) {
+        return value
+            .map((e) => typeFactory(e.cast<String, dynamic>()))
+            .toList();
+      }
+      return value.cast<T>();
+    }
+    return null;
+  }
+
   Future<void> setList<T>(
     String key,
     List<T> list, {
@@ -168,6 +185,8 @@ class GenericBox {
 
   Future<void> remove(String key) => box.delete(key);
 
+  Future<void> removeAll(Iterable<String> keys) => box.deleteAll(keys);
+
   Future<int> clear() => box.clear();
 
   Future<void> close() => box.close();
@@ -194,6 +213,8 @@ class LazyGenericBox {
   }
 
   Future<void> remove(String key) => box.delete(key);
+
+  Future<void> removeAll(Iterable<String> keys) => box.deleteAll(keys);
 
   Future<int> clear() => box.clear();
 

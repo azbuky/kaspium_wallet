@@ -5,7 +5,7 @@ import 'package:grpc/grpc.dart';
 
 import '../grpc/messages.pbgrpc.dart';
 import '../grpc/rpc.pb.dart';
-import '../types.dart';
+import '../network.dart';
 
 class RpcException implements Exception {
   final RPCError error;
@@ -396,7 +396,9 @@ class KaspaClient {
   }) async {
     final message = KaspadMessage(
       getBlockRequest: GetBlockRequestMessage(
-          hash: hash, includeTransactions: includeTransactions),
+        hash: hash,
+        includeTransactions: includeTransactions,
+      ),
     );
 
     final result = await _singleRequest(message);

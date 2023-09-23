@@ -9,10 +9,10 @@ class AddressShortText extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final styles = ref.watch(stylesProvider);
+
     final separatorIndex = address.indexOf(':');
     final stringPartOne = address.substring(0, separatorIndex + 11);
-
-    final styles = ref.watch(stylesProvider);
 
     return RichText(
       textAlign: TextAlign.center,

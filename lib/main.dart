@@ -36,16 +36,6 @@ void main() async {
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  // TODO - enable on app store release
-  // if (kPlatformIsIOS) {
-  //   // iOS workaround for clearing keychain on first launch after an uninstall
-  //   if (sharedPrefsUtil.getFirstLaunch()) {
-  //     sharedPrefsUtil.setFirstLaunch();
-  //     final vault = Vault();
-  //     await vault.deleteAll();
-  //   }
-  // }
-
   // Init database
   await Database.init();
 

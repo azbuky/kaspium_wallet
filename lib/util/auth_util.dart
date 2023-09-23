@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app_providers.dart';
+import '../core/core_providers.dart';
 import '../l10n/l10n.dart';
 import '../screens/password_lock_screen.dart';
 import '../settings/authentication_method.dart';

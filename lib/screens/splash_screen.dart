@@ -4,8 +4,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../app_providers.dart';
+import '../database/database.dart';
 import '../intro/intro_providers.dart';
 import '../l10n/l10n.dart';
+import '../util/lock_settings.dart';
 import '../util/ui_util.dart';
 import '../widgets/notice_dialog.dart';
 
@@ -38,9 +40,19 @@ class SplashScreen extends HookConsumerWidget {
     }
 
     Future<void> checkWalletStatus() async {
-      final wallets = ref.read(walletBundleProvider);
-      final wallet = wallets.selected;
+      final walletBundle = ref.read(walletBundleProvider);
+      final wallet = walletBundle.selected;
       if (wallet == null) {
+        final vault = ref.read(vaultProvider);
+        final pinIsSet = await vault.pinIsSet;
+        // on iOS the Vault is not cleared on app uninstall
+        // check if pin is set but wallets is null then reset vault and database
+        if (pinIsSet && walletBundle.wallets == null) {
+          await vault.deleteAll();
+          final db = await Database.reset();
+          ref.read(dbProvider.notifier).state = db;
+        }
+
         ref.read(introDataProvider.notifier).clear();
         Navigator.of(context).pushReplacementNamed('/intro');
         return;
@@ -61,8 +73,9 @@ class SplashScreen extends HookConsumerWidget {
           Navigator.of(context).pushReplacementNamed('/password_lock_screen');
           return;
         }
-        final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
-        final authOnLaunch = sharedPrefsUtil.getLock();
+        final vault = ref.read(vaultProvider);
+        final lockSettings = LockSettings(vault);
+        final authOnLaunch = await lockSettings.getLock();
         if (authOnLaunch) {
           Navigator.of(context).pushReplacementNamed('/lock_screen');
           return;
@@ -79,8 +92,8 @@ class SplashScreen extends HookConsumerWidget {
     }
 
     useEffect(() {
-      Future.delayed(Duration.zero, () async {
-        await checkNotice();
+      Future.microtask(() async {
+        //await checkNotice();
         checkWalletStatus();
       });
       return;

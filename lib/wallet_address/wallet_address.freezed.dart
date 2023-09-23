@@ -24,6 +24,7 @@ mixin _$WalletAddress {
   AddressType get type => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   Address get address => throw _privateConstructorUsedError;
+  bool get used => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,8 @@ abstract class $WalletAddressCopyWith<$Res> {
           WalletAddress value, $Res Function(WalletAddress) then) =
       _$WalletAddressCopyWithImpl<$Res, WalletAddress>;
   @useResult
-  $Res call({int index, AddressType type, String name, Address address});
+  $Res call(
+      {int index, AddressType type, String name, Address address, bool used});
 
   $AddressCopyWith<$Res> get address;
 }
@@ -59,6 +61,7 @@ class _$WalletAddressCopyWithImpl<$Res, $Val extends WalletAddress>
     Object? type = null,
     Object? name = null,
     Object? address = null,
+    Object? used = null,
   }) {
     return _then(_value.copyWith(
       index: null == index
@@ -77,6 +80,10 @@ class _$WalletAddressCopyWithImpl<$Res, $Val extends WalletAddress>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
+      used: null == used
+          ? _value.used
+          : used // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -97,7 +104,8 @@ abstract class _$$_WalletAddressCopyWith<$Res>
       __$$_WalletAddressCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int index, AddressType type, String name, Address address});
+  $Res call(
+      {int index, AddressType type, String name, Address address, bool used});
 
   @override
   $AddressCopyWith<$Res> get address;
@@ -118,6 +126,7 @@ class __$$_WalletAddressCopyWithImpl<$Res>
     Object? type = null,
     Object? name = null,
     Object? address = null,
+    Object? used = null,
   }) {
     return _then(_$_WalletAddress(
       index: null == index
@@ -136,6 +145,10 @@ class __$$_WalletAddressCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
+      used: null == used
+          ? _value.used
+          : used // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -147,7 +160,8 @@ class _$_WalletAddress extends _WalletAddress {
       {required this.index,
       required this.type,
       required this.name,
-      required this.address})
+      required this.address,
+      this.used = true})
       : super._();
 
   factory _$_WalletAddress.fromJson(Map<String, dynamic> json) =>
@@ -161,10 +175,13 @@ class _$_WalletAddress extends _WalletAddress {
   final String name;
   @override
   final Address address;
+  @override
+  @JsonKey()
+  final bool used;
 
   @override
   String toString() {
-    return 'WalletAddress(index: $index, type: $type, name: $name, address: $address)';
+    return 'WalletAddress(index: $index, type: $type, name: $name, address: $address, used: $used)';
   }
 
   @override
@@ -175,12 +192,14 @@ class _$_WalletAddress extends _WalletAddress {
             (identical(other.index, index) || other.index == index) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.used, used) || other.used == used));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, index, type, name, address);
+  int get hashCode =>
+      Object.hash(runtimeType, index, type, name, address, used);
 
   @JsonKey(ignore: true)
   @override
@@ -201,7 +220,8 @@ abstract class _WalletAddress extends WalletAddress {
       {required final int index,
       required final AddressType type,
       required final String name,
-      required final Address address}) = _$_WalletAddress;
+      required final Address address,
+      final bool used}) = _$_WalletAddress;
   const _WalletAddress._() : super._();
 
   factory _WalletAddress.fromJson(Map<String, dynamic> json) =
@@ -215,6 +235,8 @@ abstract class _WalletAddress extends WalletAddress {
   String get name;
   @override
   Address get address;
+  @override
+  bool get used;
   @override
   @JsonKey(ignore: true)
   _$$_WalletAddressCopyWith<_$_WalletAddress> get copyWith =>

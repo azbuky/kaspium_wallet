@@ -1,56 +1,77 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app_providers.dart';
+import '../core/core_providers.dart';
 import '../database/boxes.dart';
 import '../kaspa/kaspa.dart';
 import '../utxos/utxos_providers.dart';
 import '../wallet/wallet_types.dart';
-import '../wallet_address/address_providers.dart';
+import '../wallet_address/wallet_address_providers.dart';
+import '../wallet_auth/wallet_auth_providers.dart';
 import '../wallet_balance/wallet_balance_providers.dart';
 import 'transaction_notifier.dart';
 import 'transaction_types.dart';
 import 'tx_cache_service.dart';
 
-// All new transactions
-final _newTransactionProvider = StreamProvider((ref) {
+// All new transactions from kaspa node
+final _newTransactionProvider = StreamProvider.autoDispose((ref) {
   final client = ref.watch(kaspaClientProvider);
 
-  final newBlocks = client.notifyBlockAdded();
+  final newBlock = client.notifyBlockAdded();
 
-  return newBlocks.expand(
-    (element) => element.block.transactions.map(ApiTransaction.fromRpc),
+  return newBlock.expand(
+    (message) => message.block.transactions.map((rpcTx) {
+      var apiTx = ApiTransaction.fromRpc(rpcTx);
+      if (message.block.verboseData.isChainBlock) {
+        apiTx = apiTx.copyWith(isAccepted: true);
+      }
+      return apiTx;
+    }),
   );
 });
 
+// New transactions associated with this wallet
 final _newWalletTransactionProvider = StreamProvider.autoDispose((ref) {
-  final newTxs = ref.watch(_newTransactionProvider.stream);
-  final addressNotifier = ref.watch(addressNotifierProvider.notifier);
-  final utxosNotifier = ref.watch(utxoNotifierProvider.notifier);
+  final controller = StreamController<ApiTransaction>();
+  ref.listen(_newTransactionProvider, (_, next) {
+    final result = next.whenOrNull(data: (tx) {
+      final addressNotifier = ref.read(addressNotifierProvider);
+      final utxosNotifier = ref.read(utxoNotifierProvider);
 
-  return newTxs.where((event) {
-    return event.outputs.any((output) {
-          final address = output.scriptPublicKeyAddress;
-          return addressNotifier.containsAddress(address);
-        }) ||
-        event.inputs.any((input) {
-          final outpoint = Outpoint(
-            transactionId: input.previousOutpointHash,
-            index: input.previousOutpointIndex.toInt(),
-          );
-          return utxosNotifier.isWalletOutpoint(outpoint);
-        });
-  }).distinct((previous, next) {
-    return previous.transactionId == next.transactionId;
+      final isWalletTx = tx.outputs.any((output) {
+            final address = output.scriptPublicKeyAddress;
+            return addressNotifier.containsAddress(address);
+          }) ||
+          tx.inputs.any((input) {
+            final outpoint = Outpoint(
+              transactionId: input.previousOutpointHash,
+              index: input.previousOutpointIndex.toInt(),
+            );
+            return utxosNotifier.isWalletOutpoint(outpoint);
+          });
+      return isWalletTx ? tx : null;
+    });
+
+    if (result != null) {
+      controller.add(result);
+    }
   });
+
+  ref.onDispose(controller.close);
+
+  return controller.stream;
 });
 
-final _acceptedTransactionIdsProvider = StreamProvider((ref) {
+final _acceptedTransactionIdsProvider = StreamProvider.autoDispose((ref) {
   final client = ref.watch(kaspaClientProvider);
   return client
       .notifyVirtualSelectedParentChainChanged(
-        includeAcceptedTransactionIds: true,
-      )
-      .expand((event) => event.acceptedTransactionIds);
+    includeAcceptedTransactionIds: true,
+  )
+      .expand((message) {
+    return message.acceptedTransactionIds;
+  });
 });
 
 final _txBoxProvider =
@@ -71,76 +92,69 @@ final _txIndexBoxProvider = Provider.autoDispose
   return db.getIndexedTypedBox<TxIndex>(txIndexBoxKey);
 });
 
-final txServiceProvider =
+final txCacheServiceProvider =
     Provider.autoDispose.family<TxCacheService, WalletInfo>((ref, wallet) {
   final txIndexBox = ref.watch(_txIndexBoxProvider(wallet));
   final txBox = ref.watch(_txBoxProvider(wallet));
-  final api = ref.watch(kaspaApiProvider);
   final log = ref.watch(loggerProvider);
 
-  return TxCacheService(
+  final txCache = TxCacheService(
     txIndexBox: txIndexBox,
     txBox: txBox,
-    api: api,
     log: log,
   );
-});
 
-final txNotifierProvider = Provider.autoDispose((ref) {
-  final wallet = ref.watch(walletProvider);
-  final txNotifier = ref.watch(txNotifierForWalletProvider(wallet));
-  return txNotifier;
+  ref.listen(
+    kaspaApiServiceProvider,
+    (_, api) => txCache.api = api,
+    fireImmediately: true,
+  );
+
+  return txCache;
 });
 
 final txNotifierForWalletProvider = ChangeNotifierProvider.autoDispose
     .family<TransactionNotifier, WalletInfo>((ref, wallet) {
-  final service = ref.watch(txServiceProvider(wallet));
+  final service = ref.watch(txCacheServiceProvider(wallet));
+  final log = ref.watch(loggerProvider);
 
-  final notifier = TransactionNotifier(service: service);
+  final notifier = TransactionNotifier(cache: service);
   notifier.loadMore();
 
   // Refresh transactions when balance changes
-  ref.listen(lastRefreshBalanceChangesProvider, (_, next) {
+  ref.listen(lastBalanceChangesProvider, (_, next) {
     if (next.isEmpty) {
       return;
     }
-    notifier.updateTxsForAddresses(next.map((e) => e.address));
+    notifier.fetchNewTxsForAddresses(next.keys);
   }, fireImmediately: true);
 
   // Cache new transactions
   ref.listen(_newTransactionProvider, (_, next) {
-    final tx = next.valueOrNull;
-    if (tx == null) {
-      return;
+    if (next.asData?.value case final tx?) {
+      notifier.addToMemcache(tx);
     }
-    //log.d('Caching txId ${tx.transactionId}');
-    notifier.cacheTransaction(tx);
   });
 
   // Add new wallet transactions
   ref.listen(_newWalletTransactionProvider, (_, next) {
-    final tx = next.valueOrNull;
-    if (tx == null) {
-      return;
+    if (next.asData?.value case final tx?) {
+      log.d('New wallet tx: $tx');
+      notifier.addWalletTx(tx);
     }
-    //log.d('New wallet tx: $tx');
-    notifier.addWalletTx(tx);
   });
 
   // Update transaction status
   ref.listen(_acceptedTransactionIdsProvider, (_, next) {
-    final ids = next.valueOrNull;
-    if (ids == null) {
-      return;
-    }
-    //log.d('Got new accepted ${ids.acceptedTransactionIds}');
-    final client = ref.read(kaspaClientProvider);
+    if (next.asData?.value case final ids?) {
+      final client = ref.read(kaspaClientProvider);
 
-    notifier.processAcceptedTxIds(
-      ids.acceptedTransactionIds,
-      acceptingBlockHash: ids.acceptingBlockHash,
-      client: client,
-    );
+      notifier.processAcceptedTxIds(
+        ids.acceptedTransactionIds,
+        acceptingBlockHash: ids.acceptingBlockHash,
+        client: client,
+      );
+    }
   });
 
   ref.onDispose(() {
@@ -148,6 +162,12 @@ final txNotifierForWalletProvider = ChangeNotifierProvider.autoDispose
   });
 
   return notifier;
+});
+
+final txNotifierProvider = Provider.autoDispose((ref) {
+  final wallet = ref.watch(walletProvider);
+  final txNotifier = ref.watch(txNotifierForWalletProvider(wallet));
+  return txNotifier;
 });
 
 final txConfirmationStatusProvider =

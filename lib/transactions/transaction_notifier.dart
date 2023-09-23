@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:math';
 
-import 'package:collection/collection.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:logger/logger.dart';
 
@@ -11,38 +9,40 @@ import 'transaction_types.dart';
 import 'tx_cache_service.dart';
 
 class TransactionNotifier extends SafeChangeNotifier {
-  final TxCacheService service;
+  final TxCacheService cache;
 
-  KaspaApi get api => service.api;
-  Logger get log => service.log;
+  KaspaApiService get api => cache.api;
+  Logger get log => cache.log;
 
-  final loadedTxs = <Tx>[];
-
-  late int lastLoadedTxIndex = service.txIds.length;
-
-  bool get hasMore => lastLoadedTxIndex > 0;
+  var loadedTxs = IList<Tx>();
+  bool get hasMore => loadedTxs.length < cache.txCount;
 
   bool _loading = false;
   bool get loading => _loading;
+  String? _lastLoadedTxId;
 
-  TransactionNotifier({required this.service});
+  bool _firstLoad = true;
+  bool get firstLoad => _firstLoad;
 
-  void cacheTransaction(ApiTransaction tx) {
-    service.cacheTransaction(tx);
+  TransactionNotifier({required this.cache});
+
+  void addToMemcache(ApiTransaction tx) {
+    // Don't cache coinbase transactions
+    if (tx.inputs.isEmpty) {
+      return;
+    }
+    cache.addToMemcache(tx);
   }
 
   Future<void> addWalletTx(ApiTransaction apiTx) async {
-    if (service.isCached(apiTx)) {
+    if (cache.isWalletTxId(apiTx.transactionId)) {
       return;
     }
 
     log.d('Adding wallet transaction ${apiTx.transactionId}');
 
-    final tx = await service.addWalletTx(apiTx);
-
-    if (apiTx.isAccepted || apiTx.inputs.isNotEmpty) {
-      loadedTxs.insert(0, tx);
-    }
+    final tx = await cache.addWalletTx(apiTx);
+    loadedTxs = loadedTxs.insert(0, tx);
 
     notifyListeners();
   }
@@ -52,205 +52,147 @@ class TransactionNotifier extends SafeChangeNotifier {
     required String acceptingBlockHash,
     required KaspaClient client,
   }) async {
-    if (acceptedTxIds.isEmpty) {
+    final walletIds = acceptedTxIds.where(cache.isWalletTxId);
+    if (walletIds.isEmpty) {
       return;
     }
 
-    final walletIds = acceptedTxIds.where((id) => service.isWalletId(id));
-
-    final walletTxs = await Future.wait(
-      walletIds.map((id) async {
-        return service.txCache[id] ?? (await service.txBox.tryGet(id))?.apiTx;
-      }),
+    final block = await client.getBlockByHash(
+      acceptingBlockHash,
+      includeTransactions: false,
     );
 
-    final txs = walletTxs.whereNotNull();
-    if (txs.isEmpty) {
-      return;
-    }
+    await cache.updateAcceptedTxs(
+      walletIds,
+      acceptingBlockHash: acceptingBlockHash,
+      acceptingBlockBlueScore: block.verboseData.blueScore.toInt(),
+    );
 
-    final block = await client.getBlockByHash(acceptingBlockHash);
-
-    final acceptedTxs = txs.map((tx) {
-      final acceptedTx = tx.copyWith(
-        isAccepted: true,
-        acceptingBlockHash: acceptingBlockHash,
-        acceptingBlockBlueScore: block.verboseData.blueScore.toInt(),
-      );
-      return acceptedTx;
-    });
-
-    final acceptedIds = acceptedTxs.map((tx) => tx.transactionId);
-    log.d('Updating accepted txs $acceptedIds');
-
-    await _updateAcceptedTxs(acceptedTxs);
+    await reload();
   }
 
-  Future<void> _updateAcceptedTxs(Iterable<ApiTransaction> acceptedTxs) async {
-    if (acceptedTxs.isEmpty) {
-      return;
-    }
-
-    for (final apiTx in acceptedTxs) {
-      service.txCache[apiTx.transactionId] = apiTx;
-
-      final tx = await service.txForApiTx(apiTx);
-      service.txBox.set(tx.id, tx);
-
-      final index = loadedTxs.indexWhere((element) => element.id == tx.id);
-      if (index != -1) {
-        loadedTxs[index] = tx;
-      } else {
-        loadedTxs.insert(0, tx);
-      }
-    }
-
-    notifyListeners();
-  }
-
-  Future<void> updateTxsForAddresses(Iterable<String> addresses) async {
-    final updatedIds = <String>{};
+  Future<void> fetchNewTxsForAddresses(Iterable<String> addresses) async {
+    final apiTxs = <ApiTransaction>[];
     try {
       for (final address in addresses) {
-        final txLinks = await api.getTxLinks(address: address);
-        for (final link in txLinks) {
-          final receivedId = link.txReceived;
-          if (receivedId != null) {
-            updatedIds.add(receivedId);
-          }
-          final spentId = link.txSpent;
-          if (spentId != null) {
-            updatedIds.add(spentId);
-          }
-        }
+        final txsForAddress = await api.getTxsForAddress(
+          address,
+          pageSize: 20,
+          maxPages: 100,
+          shouldLoadMore: (txs) {
+            return !cache.isWalletTxId(txs.last.transactionId);
+          },
+        );
+        apiTxs.addAll(txsForAddress);
       }
     } catch (e) {
       log.e('Failed to update transactions', e);
+    }
+
+    if (apiTxs.isEmpty) {
       return;
     }
 
-    final newTxIds = updatedIds.difference(service.txIds);
-    if (newTxIds.isEmpty) {
-      return;
-    }
-
-    await fetchTxsWithIds(newTxIds);
-  }
-
-  Future<void> fetchTxsWithIds(Iterable<String> ids) async {
     try {
-      final txs = await service.cacheTxsWithIds(ids);
+      final newTxs = await cache.cacheWalletTxs(apiTxs);
 
-      loadedTxs.insertAll(0, txs.reversed);
+      loadedTxs = await _loadTxs(count: loadedTxs.length + newTxs.length);
+      _lastLoadedTxId = loadedTxs.lastOrNull?.id;
+
+      notifyListeners();
     } catch (e) {
       log.e('Failed to update transactions', e);
-      return;
-    }
-
-    notifyListeners();
-  }
-
-  Future<void> _checkForNotAccepted(Iterable<Tx> txs) async {
-    final notAcceptedIds =
-        txs.where((tx) => !tx.apiTx.isAccepted).map((tx) => tx.id);
-
-    if (notAcceptedIds.isEmpty) {
-      return;
-    }
-
-    final updated = await api.getTransactions(ids: notAcceptedIds);
-    final accepted = updated.where((tx) => tx.isAccepted);
-    if (accepted.isNotEmpty) {
-      await _updateAcceptedTxs(accepted);
     }
   }
 
-  Future<List<Tx>> _loadTxs({
-    required int start,
-    required int end,
-  }) async {
-    final txs = await service.getWalletTxs(start: start, end: end);
-
-    _checkForNotAccepted(txs);
+  Future<IList<Tx>> _loadTxs({String? startId, int count = 10}) async {
+    final it = await cache.getWalletTxsAfter(txId: startId, count: count);
+    final txs = it.toIList();
 
     return txs;
   }
 
-  Future<void> loadMore([int count = 20]) async {
-    if (_loading) {
+  Future<void> loadMore([int count = 10]) async {
+    if (_loading || !hasMore) {
       return;
     }
     _loading = true;
+    _firstLoad = loadedTxs.isEmpty;
     try {
-      final start = max(0, lastLoadedTxIndex - count);
-      final end = lastLoadedTxIndex;
+      final txs = await _loadTxs(startId: _lastLoadedTxId, count: count);
 
-      if (end == 0) {
-        _loading = false;
-        return;
-      }
-      final txs = await _loadTxs(start: start, end: end);
-
-      loadedTxs.addAll(txs.reversed);
-      lastLoadedTxIndex = start;
+      loadedTxs = loadedTxs.addAll(txs);
+      _lastLoadedTxId = txs.lastOrNull?.id ?? _lastLoadedTxId;
 
       notifyListeners();
     } catch (e) {
       log.e(e);
-    } finally {
-      _loading = false;
     }
+    _loading = false;
   }
 
-  Future<void> refreshWalletTxs(IMap<String, BigInt> balances) async {
+  Future<void> reload() async {
     if (_loading) {
       return;
     }
+    _loading = true;
+    _firstLoad = loadedTxs.isEmpty;
+    try {
+      loadedTxs = await _loadTxs(count: loadedTxs.length);
+      _lastLoadedTxId = loadedTxs.lastOrNull?.id;
 
+      notifyListeners();
+    } catch (e) {
+      log.e(e);
+    }
+    _loading = false;
+  }
+
+  Future<IList<String>> refreshWalletTxs({
+    required IMap<String, BigInt> balances,
+    required IList<String> pendingAddresses,
+  }) async {
+    if (_loading) {
+      return IList();
+    }
     _loading = true;
 
-    _checkForNotAccepted(loadedTxs);
+    final uncheckedAddresses = Set.of(pendingAddresses);
+    final refreshAddresses = <String>{};
 
-    final addressMap = <String, BigInt>{};
     try {
-      for (final id in service.txIds) {
-        final tx = await service.txBox.tryGet(id);
-        if (tx == null) {
+      final cachedBalances = await cache.getCachedBalances();
+
+      for (final balance in balances.entries) {
+        final cached = cachedBalances[balance.key] ?? (BigInt.zero, 0);
+        if (balance.value == cached.$1) {
+          if (balance.value != BigInt.zero) {
+            uncheckedAddresses.remove(balance.key);
+          }
           continue;
         }
-        for (final output in tx.apiTx.outputs) {
-          addressMap.update(
-            output.scriptPublicKeyAddress,
-            (value) => value + BigInt.from(output.amount),
-            ifAbsent: () => BigInt.from(output.amount),
-          );
-        }
-        for (final input in tx.inputData) {
-          if (input == null) {
-            continue;
-          }
-          addressMap.update(
-            input.address,
-            (value) => value - BigInt.from(input.amount),
-            ifAbsent: () => BigInt.from(-input.amount),
-          );
+
+        final txCount = await api.getTxCountForAddress(balance.key);
+        if (txCount != cached.$2) {
+          refreshAddresses.add(balance.key);
         }
       }
 
-      final refreshAddresses = <String>{};
-      for (final entry in balances.entries) {
-        if (entry.value != addressMap[entry.key]) {
-          refreshAddresses.add(entry.key);
+      for (final address in uncheckedAddresses) {
+        final txCount = await api.getTxCountForAddress(address);
+        if (txCount != 0) {
+          refreshAddresses.add(address);
         }
       }
 
       if (refreshAddresses.isNotEmpty) {
-        await updateTxsForAddresses(refreshAddresses);
+        await fetchNewTxsForAddresses(refreshAddresses);
       }
     } catch (e) {
       log.e(e);
-    } finally {
-      _loading = false;
     }
+    _loading = false;
+
+    return refreshAddresses.toIList();
   }
 }

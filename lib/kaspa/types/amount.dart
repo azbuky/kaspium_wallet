@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:decimal/decimal.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -43,4 +45,8 @@ class Amount with _$Amount {
   late final value = Decimal.fromBigInt(raw).shift(-tokenInfo.decimals);
   int get decimals => tokenInfo.decimals;
   String get symbolLabel => tokenInfo.symbolLabel;
+
+  @override
+  String toString() =>
+      value.toStringAsFixed(min(tokenInfo.decimals, value.scale));
 }

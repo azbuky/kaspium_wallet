@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../core/core_providers.dart';
 import '../kaspa/types.dart';
 import '../util/numberutil.dart';
+import 'fiat_value_container.dart';
 import 'kas_icon_widget.dart';
 
 class AmountCard extends HookConsumerWidget {
@@ -41,48 +42,51 @@ class AmountCard extends HookConsumerWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       // Amount text
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxHeight: 48,
-              maxWidth: 48,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(4),
-              child: const KasIconWidget(),
-            ),
-          ),
-          Expanded(
-            child: Tooltip(
-              message: exactAmount,
+      child: FiatValueContainer(
+        amount: amount,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: 48,
+                maxWidth: 48,
+              ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '$formatedAmount',
-                          style: styles.textStyleParagraphPrimary,
-                        ),
-                        TextSpan(
-                          text: ' ${amount.symbolLabel}',
-                          style: styles.textStyleParagraphPrimaryW100,
-                        ),
-                      ],
+                padding: const EdgeInsets.all(4),
+                child: const KasIconWidget(),
+              ),
+            ),
+            Expanded(
+              child: Tooltip(
+                message: exactAmount,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '$formatedAmount',
+                            style: styles.textStyleParagraphPrimary,
+                          ),
+                          TextSpan(
+                            text: ' ${amount.symbolLabel}',
+                            style: styles.textStyleParagraphPrimaryW100,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(width: 48),
-        ],
+            const SizedBox(width: 48),
+          ],
+        ),
       ),
     );
   }

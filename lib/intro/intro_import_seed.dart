@@ -17,16 +17,19 @@ import 'intro_providers.dart';
 
 final _mnemonicProvider = StateProvider.autoDispose((ref) => '');
 
-final _mnemonicIsValidProvider = Provider.autoDispose((ref) {
+final _mnemonicIsValidProvider =
+    Provider.autoDispose.family<bool, int>((ref, length) {
   final mnemonic = ref.watch(_mnemonicProvider);
+  final trimmed = mnemonic.trim();
   return mnemonic.endsWith(' ') &&
-      isValidMnemonic(mnemonic.trim(), verifyChecksum: false) &&
-      mnemonic.trim().split(' ').length == 24;
+      trimmed.split(' ').length == length &&
+      isValidMnemonic(trimmed, verifyChecksum: false);
 });
 
-final _showInvalidChecksumProvider = Provider.autoDispose((ref) {
+final _showInvalidChecksumProvider =
+    Provider.autoDispose.family<bool, int>((ref, length) {
   final mnemonic = ref.watch(_mnemonicProvider).trim();
-  final isValid = ref.watch(_mnemonicIsValidProvider);
+  final isValid = ref.watch(_mnemonicIsValidProvider(length));
   final hasValidChecksum = isValidMnemonic(
     mnemonic,
     verifyChecksum: true,
@@ -35,7 +38,10 @@ final _showInvalidChecksumProvider = Provider.autoDispose((ref) {
 });
 
 class IntroImportSeed extends HookConsumerWidget {
-  const IntroImportSeed({Key? key}) : super(key: key);
+  final bool isLegacy;
+  const IntroImportSeed({Key? key, this.isLegacy = false}) : super(key: key);
+
+  int get mnemonicLength => isLegacy ? 12 : 24;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -43,12 +49,11 @@ class IntroImportSeed extends HookConsumerWidget {
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
-    final mnemonicIsValid = ref.watch(_mnemonicIsValidProvider);
+    final mnemonicIsValid = ref.watch(_mnemonicIsValidProvider(mnemonicLength));
 
     final mnemonicFocusNode = useFocusNode();
     final mnemonicController = useTextEditingController();
     final scaffoldKey = useRef(GlobalKey<ScaffoldState>());
-    final walletName = useRef<String?>(null);
 
     void updateFocus(int offset) {
       mnemonicController.selection = TextSelection.collapsed(offset: offset);
@@ -58,8 +63,9 @@ class IntroImportSeed extends HookConsumerWidget {
     ref.listen<String>(_mnemonicProvider, (previous, next) {
       final keyboardNotifier = ref.read(keyboardEnabledProvider.notifier);
       final words = next.trim().split(' ');
-      keyboardNotifier.state = words.length < 24 ||
-          (words.length == 24 && !isValidMnemonicWord(words.last));
+      final wordsLength = isLegacy ? 12 : 24;
+      keyboardNotifier.state = words.length < wordsLength ||
+          (words.length == wordsLength && !isValidMnemonicWord(words.last));
 
       mnemonicController.text = next;
     });
@@ -100,11 +106,11 @@ class IntroImportSeed extends HookConsumerWidget {
 
       final offset = mnemonic.state.length;
       updateFocus(offset);
-      ref.read(wordPrefixProvider.notifier).update((state) => '');
+      ref.read(wordPrefixProvider.notifier).update((_) => '');
     });
 
     Future<void> scanQrCode() async {
-      final isValid = ref.read(_mnemonicIsValidProvider);
+      final isValid = ref.read(_mnemonicIsValidProvider(isLegacy ? 12 : 24));
       if (isValid) {
         return;
       }
@@ -115,7 +121,7 @@ class IntroImportSeed extends HookConsumerWidget {
       }
       final data = result!.code!.trim();
       final mData = data.toLowerCase();
-      if (isValidMnemonic(mData)) {
+      if (isValidMnemonic(mData) && mData.split(' ').length == mnemonicLength) {
         ref.read(_mnemonicProvider.notifier).state = mData + ' ';
         updateFocus(mData.length + 1);
         ref.read(wordPrefixProvider.notifier).update((state) => '');
@@ -125,7 +131,7 @@ class IntroImportSeed extends HookConsumerWidget {
     }
 
     Future<void> pasteFromClipboard() async {
-      final isValid = ref.read(_mnemonicIsValidProvider);
+      final isValid = ref.read(_mnemonicIsValidProvider(mnemonicLength));
       if (isValid) {
         return;
       }
@@ -136,7 +142,7 @@ class IntroImportSeed extends HookConsumerWidget {
         return;
       }
       final text = data.text!.trim().toLowerCase();
-      if (isValidMnemonic(text)) {
+      if (isValidMnemonic(text) && text.split(' ').length == mnemonicLength) {
         final mnemonic = ref.read(_mnemonicProvider.notifier);
         mnemonic.state = text + ' ';
         updateFocus(text.length + 1);
@@ -154,7 +160,7 @@ class IntroImportSeed extends HookConsumerWidget {
       final intro = ref.read(introStateProvider.notifier);
 
       if (isValidMnemonic(mnemonic, verifyChecksum: false)) {
-        intro.setMnemonic(mnemonic, walletName: walletName.value);
+        intro.setMnemonic(mnemonic);
       }
     }
 
@@ -196,7 +202,9 @@ class IntroImportSeed extends HookConsumerWidget {
                     margin: const EdgeInsets.only(left: 40, right: 40, top: 15),
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      l10n.importSecretPhraseHint,
+                      isLegacy
+                          ? l10n.importSecretPhraseHintLegacy
+                          : l10n.importSecretPhraseHint,
                       style: styles.textStyleParagraph,
                       textAlign: TextAlign.start,
                     ),
@@ -242,8 +250,9 @@ class IntroImportSeed extends HookConsumerWidget {
                     ),
                     Consumer(builder: (context, ref, _) {
                       final l10n = l10nOf(context);
-                      final showInvalidChecksum =
-                          ref.watch(_showInvalidChecksumProvider);
+                      final provider =
+                          _showInvalidChecksumProvider(mnemonicLength);
+                      final showInvalidChecksum = ref.watch(provider);
                       final invalidChecksumText = showInvalidChecksum
                           ? l10n.invalidChecksumMessage
                           : '';

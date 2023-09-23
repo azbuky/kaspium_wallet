@@ -7,6 +7,7 @@ import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_styles.dart';
+import '../chain_state/chain_state.dart';
 import '../database/database.dart';
 import '../kaspa/grpc/rpc.pb.dart';
 import '../kaspa/kaspa.dart';
@@ -21,8 +22,6 @@ import '../util/hapticutil.dart';
 import '../util/sharedprefsutil.dart';
 import '../util/vault.dart';
 import '../utxos/utxos_providers.dart';
-import '../wallet_address/wallet_address_manager.dart';
-import '../wallet_signer/wallet_signer.dart';
 
 final timeProvider = StreamProvider.autoDispose<DateTime>((ref) {
   return Stream.periodic(
@@ -48,7 +47,7 @@ final networkErrorProvider = Provider.autoDispose<bool>((ref) {
   return timer.difference(lastUpdate) > Duration(seconds: 5);
 });
 
-final dbProvider = Provider((ref) => const Database());
+final dbProvider = StateProvider((ref) => Database());
 
 final stylesProvider = Provider((ref) {
   final theme = ref.watch(themeProvider);
@@ -59,16 +58,6 @@ final blockExplorerProvider = Provider((ref) {
   final settings = ref.watch(blockExplorerSettingsProvider);
   final network = ref.watch(networkProvider);
   return settings.explorerForNetwork(network);
-});
-
-final walletServiceProvider = Provider.autoDispose((ref) {
-  final signer = ref.watch(walletSignerProvider);
-  final client = ref.watch(kaspaClientProvider);
-
-  return WalletService(
-    signer: signer,
-    client: client,
-  );
 });
 
 final sharedPrefsProvider =
@@ -103,12 +92,17 @@ final addressPrefixProvider = Provider((ref) {
   return prefix;
 });
 
-final kaspaApiProvider = Provider<KaspaApi>((ref) {
+final _kaspaApiProvider = Provider<KaspaApi>((ref) {
   final network = ref.watch(networkProvider);
   if (network == KaspaNetwork.mainnet) {
-    return MainnetKaspaApi('https://api.kaspa.org');
+    return KaspaApiMainnet('https://api.kaspa.org');
   }
-  return EmptyKaspaApi();
+  return KaspaApiEmpty();
+});
+
+final kaspaApiServiceProvider = Provider<KaspaApiService>((ref) {
+  final api = ref.watch(_kaspaApiProvider);
+  return KaspaApiService(api);
 });
 
 final kaspaClientProvider = Provider((ref) {
@@ -144,16 +138,15 @@ final themeProvider = Provider((ref) {
   return themeSetting.getTheme();
 });
 
-// final initialDeepLinkProvider = FutureProvider((ref) {
-//   return uniLinks.getInitialLink();
-// });
+final chainStateProvider = Provider((ref) {
+  final repository = ref.watch(settingsRepositoryProvider);
+  return repository.getChainState();
+});
 
-// final deepLinkProvider = StreamProvider.autoDispose((ref) {
-//   return uniLinks.linkStream;
-// });
-
-final lastKnownVirtualDaaScoreProvider =
-    StateProvider<BigInt>((ref) => BigInt.zero);
+final lastKnownVirtualDaaScoreProvider = StateProvider<BigInt>((ref) {
+  final chainState = ref.watch(chainStateProvider);
+  return chainState.virtualDaaScore;
+});
 
 final virtualDaaScoreProvider = StreamProvider((ref) {
   final client = ref.watch(kaspaClientProvider);
@@ -167,8 +160,10 @@ final virtualDaaScoreProvider = StreamProvider((ref) {
   });
 });
 
-final virtualSelectedParentBlueScoreProvider =
-    StateProvider<BigInt>((ref) => BigInt.zero);
+final virtualSelectedParentBlueScoreProvider = StateProvider<BigInt>((ref) {
+  final chainState = ref.watch(chainStateProvider);
+  return chainState.virtualSelectedParentBlueScore;
+});
 
 final virtualSelectedParentBlueScoreStreamProvider = StreamProvider((ref) {
   final client = ref.watch(kaspaClientProvider);
@@ -191,13 +186,16 @@ final maxSendProvider = Provider.autoDispose((ref) {
   final maxInputs = min(utxos.length, kMaxInputsPerTransaction);
 
   final maxWithFees =
-      utxos.take(maxInputs).fold<BigInt>(BigInt.zero, (previousValue, element) {
-    return previousValue + element.utxoEntry.amount;
+      utxos.take(maxInputs).fold<BigInt>(BigInt.zero, (total, element) {
+    return total + element.utxoEntry.amount;
   });
 
   final maxSend = maxWithFees - kFeePerInput * BigInt.from(maxInputs);
+  if (maxSend < BigInt.zero) {
+    return Amount.zero;
+  }
 
-  return maxSend;
+  return Amount.raw(maxSend);
 });
 
 final kaspaFormatterProvider = Provider((ref) {
@@ -209,4 +207,8 @@ final kaspaFormatterProvider = Provider((ref) {
   );
 
   return formatter;
+});
+
+final appLinkProvider = StateProvider<String?>((ref) {
+  return null;
 });

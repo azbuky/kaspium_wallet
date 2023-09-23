@@ -91,7 +91,7 @@ class NodeAddSheet extends HookConsumerWidget {
       final url = urlController.text;
 
       KaspaClient? client;
-      var cancelled = false;
+      bool cancelled = false;
 
       AppDialogs.showInProgressDialog(
         context,
@@ -191,7 +191,7 @@ class NodeAddSheet extends HookConsumerWidget {
             textInputAction: TextInputAction.next,
             textCapitalization: TextCapitalization.words,
             inputFormatters: [
-              LengthLimitingTextInputFormatter(20),
+              LengthLimitingTextInputFormatter(25),
             ],
           ),
           ValidationText(state.nameValidationText),

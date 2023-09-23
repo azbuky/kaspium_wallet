@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../app_providers.dart';
-import '../wallet_address/address_providers.dart';
 
 class AppShareCard extends StatefulWidget {
   final GlobalKey? globalKey;
@@ -27,7 +26,7 @@ class _AppShareCardState extends State<AppShareCard> {
       key: globalKey,
       child: Consumer(builder: (context, ref, _) {
         final theme = ref.watch(themeProvider);
-        final selected = ref.watch(receiveWalletAddressProvider);
+        final selected = ref.watch(receiveAddressProvider);
         return Container(
           height: 126,
           width: 236,
@@ -105,10 +104,10 @@ class _AppShareCardState extends State<AppShareCard> {
                           // Currency Icon
                           Container(
                             width: 30,
-                            child: ImageIcon(
-                              AssetImage('assets/kaspa.png'),
-                              color: theme.primary,
-                              size: 30,
+                            child: Image.asset(
+                              'assets/kas_icon.png',
+                              width: 30,
+                              height: 30,
                             ),
                           ),
                           Container(

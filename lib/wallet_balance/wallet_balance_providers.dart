@@ -3,12 +3,14 @@ import 'package:decimal/intl.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../app_providers.dart';
 import '../coingecko/coingecko_providers.dart';
+import '../core/core_providers.dart';
 import '../kaspa/kaspa.dart';
+import '../settings/settings_providers.dart';
 import '../util/numberutil.dart';
 import '../utxos/utxos_providers.dart';
-import '../wallet_address/address_providers.dart';
+import '../wallet_address/wallet_address_providers.dart';
+import '../wallet_auth/wallet_auth_providers.dart';
 import 'wallet_balance_notifier.dart';
 
 final kaspaPriceProvider = Provider.autoDispose((ref) {
@@ -28,28 +30,26 @@ final _addressBalanceBoxProvider = Provider.autoDispose((ref) {
 final balanceNotifierProvider = ChangeNotifierProvider.autoDispose((ref) {
   final balanceBox = ref.watch(_addressBalanceBoxProvider);
   final addressNotifier = ref.watch(addressNotifierProvider.notifier);
-  ref.watch(kaspaClientProvider);
+  final client = ref.watch(kaspaClientProvider);
 
   final notifier = WalletBalanceNotifier(
     balanceBox: balanceBox,
     addressAware: addressNotifier,
+    client: client,
   );
 
+  // Listen to address changes and refresh balances
   ref.listen(
     allAddressesProvider,
     (previous, next) async {
-      final log = ref.read(loggerProvider);
-      final client = ref.read(kaspaClientProvider);
-
       final previousSet = Set.of(previous ?? <String>[]);
       final addresses = previousSet.isEmpty
           ? next
-          : next.where((element) => !previousSet.contains(element));
+          : next.where((address) => !previousSet.contains(address));
 
-      log.d('Refreshing address balances for $addresses');
-
-      final balances = await client.getBalancesByAddresses(addresses);
-      notifier.updateBalances(balances.map(AddressBalance.fromRpc));
+      final log = ref.read(loggerProvider);
+      log.d('Refreshing balances for $addresses');
+      await notifier.refresh(addresses);
     },
     fireImmediately: true,
     onError: (error, stackTrace) {
@@ -58,14 +58,13 @@ final balanceNotifierProvider = ChangeNotifierProvider.autoDispose((ref) {
     },
   );
 
-  ref.listen(utxosChangedProvider, (previous, next) {
-    final message = next.asData?.value;
-    if (message == null) return;
-
-    notifier.updateWithUtxoChanges(
-      added: message.added.map(Utxo.fromRpc),
-      removed: message.removed.map(Utxo.fromRpc),
-    );
+  ref.listen(utxosChangedProvider, (_, next) async {
+    if (next.asData?.value case final message?) {
+      final addresses = Set.of(message.removed
+          .followedBy(message.added)
+          .map((utxo) => utxo.address));
+      await notifier.refresh(addresses);
+    }
   });
 
   ref.onDispose(() {
@@ -75,9 +74,11 @@ final balanceNotifierProvider = ChangeNotifierProvider.autoDispose((ref) {
   return notifier;
 });
 
-final lastRefreshBalanceChangesProvider = Provider.autoDispose((ref) {
-  final balanceNotifier = ref.watch(balanceNotifierProvider);
-  return balanceNotifier.lastRefreshChanges;
+final lastBalanceChangesProvider = Provider.autoDispose((ref) {
+  final lastRefresh = ref.watch(
+    balanceNotifierProvider.select((value) => value.lastRefreshChanges),
+  );
+  return lastRefresh;
 });
 
 final totalBalanceProvider = Provider.autoDispose((ref) {
@@ -130,6 +131,19 @@ final totalBtcValueProvider = Provider.autoDispose((ref) {
   final value = balance.value * price.priceBtc;
 
   return value;
+});
+
+final formatedKaspaPriceProvider = Provider.autoDispose((ref) {
+  final price = ref.watch(kaspaPriceProvider).price;
+  final currency = ref.watch(currencyProvider);
+  final decimals = price >= Decimal.parse('1') ? 2 : 4;
+  final priceStr = NumberFormat.currency(
+    symbol: currency.getCurrencySymbol(),
+    name: currency.getIso4217Code(),
+    decimalDigits: decimals,
+  ).format(DecimalIntl(price));
+
+  return '$priceStr / KAS';
 });
 
 final formatedTotalBtcProvider = Provider.autoDispose((ref) {

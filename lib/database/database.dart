@@ -14,11 +14,6 @@ import 'json_type_adapter.dart';
 
 typedef BoxKey = String;
 
-late final BoxKey kContactsBox;
-late final BoxKey kPushInfoBox;
-late final BoxKey kSettingsBox;
-late final BoxKey kTxNotesBox;
-
 int _getTypeId<T>() {
   switch (T) {
     case WalletAddress:
@@ -70,7 +65,44 @@ final txIndexAdapter = JsonTypeAdapter(
 );
 
 class Database {
-  const Database();
+  Database._();
+
+  static late Database _instance;
+  factory Database() => _instance;
+
+  static bool _isInitialized = false;
+  static Future<void> _initHive() async {
+    await Hive.initFlutter('kaspium_wallet');
+
+    Hive.registerAdapter(walletAddressAdapter);
+    Hive.registerAdapter(addressBalanceAdapter);
+    Hive.registerAdapter(contactAdapter);
+    Hive.registerAdapter(txAdapter);
+    Hive.registerAdapter(utxoAdapter);
+    Hive.registerAdapter(txNoteAdapter);
+    Hive.registerAdapter(txIndexAdapter);
+  }
+
+  static Future<void> init() async {
+    if (_isInitialized) return;
+    await _initHive();
+    _instance = Database._();
+    await _instance._init();
+    _isInitialized = true;
+  }
+
+  static Future<Database> reset() async {
+    await Hive.deleteFromDisk();
+
+    _instance = Database._();
+    await _instance._init();
+    return _instance;
+  }
+
+  late final BoxKey contactsBox;
+  late final BoxKey pushInfoBox;
+  late final BoxKey settingsBox;
+  late final BoxKey txNotesBox;
 
   static Future<HiveCipher> _getBoxCipher(BoxKey boxKey, Vault vault) async {
     var secureKey = await vault.get(boxKey);
@@ -81,33 +113,25 @@ class Database {
     return HiveAesCipher(base64Decode(secureKey));
   }
 
-  static Future<void> init() async {
+  Future<void> _init() async {
     await Hive.initFlutter('kaspium_wallet');
-
-    final vault = Vault();
-    var secureKey = await vault.getDbKey();
 
     const kContactsBoxId = '_contactsBox';
     const kSettingsBoxId = '_settingsBox';
     const kPushInfoBoxId = '_pushInfoBox';
     const kTxNotesBoxId = '_txNotesBox';
 
-    kContactsBox =
-        digest(data: stringToBytesUtf8('$kContactsBoxId#$secureKey')).hex;
-    kSettingsBox =
-        digest(data: stringToBytesUtf8('$kSettingsBoxId#$secureKey')).hex;
-    kPushInfoBox =
-        digest(data: stringToBytesUtf8('$kPushInfoBoxId#$secureKey')).hex;
-    kTxNotesBox =
-        digest(data: stringToBytesUtf8('$kTxNotesBoxId#$secureKey')).hex;
+    final vault = Vault();
+    var secureKey = await vault.getDbKey();
 
-    Hive.registerAdapter(walletAddressAdapter);
-    Hive.registerAdapter(addressBalanceAdapter);
-    Hive.registerAdapter(contactAdapter);
-    Hive.registerAdapter(txAdapter);
-    Hive.registerAdapter(utxoAdapter);
-    Hive.registerAdapter(txNoteAdapter);
-    Hive.registerAdapter(txIndexAdapter);
+    contactsBox =
+        digest(data: stringToBytesUtf8('$kContactsBoxId#$secureKey')).hex;
+    settingsBox =
+        digest(data: stringToBytesUtf8('$kSettingsBoxId#$secureKey')).hex;
+    pushInfoBox =
+        digest(data: stringToBytesUtf8('$kPushInfoBoxId#$secureKey')).hex;
+    txNotesBox =
+        digest(data: stringToBytesUtf8('$kTxNotesBoxId#$secureKey')).hex;
 
     Future<Box> _openBox<T>(String box, {bool encrypted = false}) async {
       return Hive.openBox<T>(
@@ -118,10 +142,10 @@ class Database {
 
     await Future.wait([
       // typed boxes
-      _openBox<Contact>(kContactsBox, encrypted: true),
-      _openBox<TxNote>(kTxNotesBox, encrypted: true),
+      _openBox<Contact>(contactsBox, encrypted: true),
+      _openBox<TxNote>(txNotesBox, encrypted: true),
       // generic boxes
-      _openBox(kSettingsBox, encrypted: true),
+      _openBox(settingsBox, encrypted: true),
     ]);
   }
 

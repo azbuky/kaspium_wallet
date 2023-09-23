@@ -12,20 +12,20 @@ String _outpointKey(Outpoint outpoint) =>
 String _utxoKey(Utxo utxo) => _outpointKey(utxo.outpoint);
 
 class UtxosNotifier extends SafeChangeNotifier {
+  final TypedBox<Utxo> _utxoBox;
   final KaspaClient client;
-  final TypedBox<Utxo> utxoBox;
   final Logger log;
 
-  late final Map<String, Set<Utxo>> utxosByAddress = {};
+  final _utxosByAddress = <String, Set<Utxo>>{};
+  final _balancesByAddress = <String, BigInt>{};
 
-  final utxoIds = <String>{};
+  final _utxoIds = <String>{};
 
-  ListSet<Utxo>? _utxoList;
-
-  ListSet<Utxo> get utxoList {
+  List<Utxo>? _utxoList;
+  List<Utxo> get utxoList {
     if (_utxoList == null) {
       _utxoList = ListSet.of(
-        utxosByAddress.values.flattened,
+        _utxosByAddress.values.flattened,
         sort: true,
         compare: (a, b) =>
             b.utxoEntry.blockDaaScore.compareTo(a.utxoEntry.blockDaaScore),
@@ -35,63 +35,46 @@ class UtxosNotifier extends SafeChangeNotifier {
   }
 
   UtxosNotifier({
+    required TypedBox<Utxo> utxoBox,
     required this.client,
-    required this.utxoBox,
     required this.log,
-  }) {
-    final utxos = utxoBox.getAll().values;
+  }) : _utxoBox = utxoBox {
+    final utxos = _utxoBox.getAll().values;
     for (final utxo in utxos) {
-      final set = utxosByAddress.putIfAbsent(utxo.address, () => <Utxo>{});
+      final set = _utxosByAddress.putIfAbsent(utxo.address, () => <Utxo>{});
       set.add(utxo);
+      _balancesByAddress.update(
+          utxo.address, (value) => value + utxo.utxoEntry.amount,
+          ifAbsent: () => utxo.utxoEntry.amount);
     }
-    utxoIds.addAll(utxos.map(_utxoKey));
+    _utxoIds.addAll(utxos.map(_utxoKey));
     _utxoList = null;
   }
 
   bool isWalletOutpoint(Outpoint outpoint) {
     final key = _outpointKey(outpoint);
-    return utxoIds.contains(key);
+    return _utxoIds.contains(key);
   }
 
-  void utxosChanged({
-    required Iterable<Utxo> removed,
-    required Iterable<Utxo> added,
-  }) {
-    log.d('Utxos changed ${removed.length} ${added.length}');
-    _removeUtxos(removed);
-    _addUtxos(added);
-
-    _utxoList = null;
-    notifyListeners();
-  }
-
-  void _removeUtxos(Iterable<Utxo> utxos) {
-    for (final utxo in utxos) {
-      final set = utxosByAddress.putIfAbsent(utxo.address, () => <Utxo>{});
-      final removed = set.remove(utxo);
-      log.d('$removed $utxo');
-      if (!removed) {
-        log.d(set.firstWhereOrNull((e) =>
-            utxo.outpoint.index == e.outpoint.index &&
-            utxo.outpoint.transactionId == e.outpoint.transactionId));
+  Future<void> refreshWithBalances({
+    required IMap<String, BigInt> balances,
+  }) async {
+    final addresses = <String>{};
+    for (final balance in balances.entries) {
+      final utxosBalance = _balancesByAddress[balance.key] ?? BigInt.zero;
+      if (balance.value != utxosBalance) {
+        addresses.add(balance.key);
       }
-      utxoBox.remove(_utxoKey(utxo));
     }
-  }
-
-  void _addUtxos(Iterable<Utxo> utxos) {
-    for (final utxo in utxos) {
-      final set = utxosByAddress.putIfAbsent(utxo.address, () => <Utxo>{});
-      set.add(utxo);
-      utxoBox.set(_utxoKey(utxo), utxo);
-      utxoIds.add(_utxoKey(utxo));
+    if (addresses.isNotEmpty) {
+      return refresh(addresses: addresses);
     }
   }
 
   Future<void> refresh({required Iterable<String> addresses}) async {
     final oldUtxos = <String, Set<Utxo>>{};
     for (final address in addresses) {
-      final set = utxosByAddress[address];
+      final set = _utxosByAddress[address];
       if (set == null || set.isEmpty) continue;
       oldUtxos[address] = Set.of(set);
     }
@@ -105,26 +88,29 @@ class UtxosNotifier extends SafeChangeNotifier {
     }
 
     for (final address in addresses) {
-      final mergeSet = utxosByAddress.putIfAbsent(address, () => <Utxo>{});
-      final oldSet = oldUtxos[address];
-      final newSet = newUtxos[address];
+      final oldSet = oldUtxos[address] ?? {};
+      final newSet = newUtxos[address] ?? {};
 
-      if (oldSet != null && oldSet.isNotEmpty) {
-        mergeSet.removeAll(oldSet);
-      }
-      if (newSet != null && newSet.isNotEmpty) {
-        mergeSet.addAll(newSet);
-      }
+      _utxosByAddress[address] = newSet;
+      _balancesByAddress[address] = newSet.fold(
+        BigInt.zero,
+        (total, utxo) => total + utxo.utxoEntry.amount,
+      );
 
       // update box
-      final removeSet = (oldSet ?? <Utxo>{}).difference(newSet ?? <Utxo>{});
-      final addSet = (newSet ?? <Utxo>{}).difference(oldSet ?? <Utxo>{});
-      for (final utxo in removeSet) {
-        utxoBox.remove(_utxoKey(utxo));
+      final removeSet = oldSet.difference(newSet);
+      final addSet = newSet.difference(oldSet);
+      if (removeSet.isNotEmpty) {
+        await _utxoBox.removeAll(removeSet.map(_utxoKey));
       }
-      for (final utxo in addSet) {
-        utxoBox.set(_utxoKey(utxo), utxo);
-        utxoIds.add(_utxoKey(utxo));
+      if (addSet.isNotEmpty) {
+        await _utxoBox.setAll(
+          Map.fromEntries(addSet.map(
+            (utxo) => MapEntry(_utxoKey(utxo), utxo),
+          )),
+        );
+        // update id set
+        _utxoIds.addAll(addSet.map((utxo) => _utxoKey(utxo)));
       }
     }
 

@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SendTx {
-  Address get toAddress => throw _privateConstructorUsedError;
+  KaspaUri get uri => throw _privateConstructorUsedError;
   Address? get changeAddress => throw _privateConstructorUsedError;
   BigInt get amountRaw => throw _privateConstructorUsedError;
   List<Utxo> get utxos => throw _privateConstructorUsedError;
@@ -33,14 +33,14 @@ abstract class $SendTxCopyWith<$Res> {
       _$SendTxCopyWithImpl<$Res, SendTx>;
   @useResult
   $Res call(
-      {Address toAddress,
+      {KaspaUri uri,
       Address? changeAddress,
       BigInt amountRaw,
       List<Utxo> utxos,
       BigInt? fee,
       String? note});
 
-  $AddressCopyWith<$Res> get toAddress;
+  $KaspaUriCopyWith<$Res> get uri;
   $AddressCopyWith<$Res>? get changeAddress;
 }
 
@@ -57,7 +57,7 @@ class _$SendTxCopyWithImpl<$Res, $Val extends SendTx>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? toAddress = null,
+    Object? uri = null,
     Object? changeAddress = freezed,
     Object? amountRaw = null,
     Object? utxos = null,
@@ -65,10 +65,10 @@ class _$SendTxCopyWithImpl<$Res, $Val extends SendTx>
     Object? note = freezed,
   }) {
     return _then(_value.copyWith(
-      toAddress: null == toAddress
-          ? _value.toAddress
-          : toAddress // ignore: cast_nullable_to_non_nullable
-              as Address,
+      uri: null == uri
+          ? _value.uri
+          : uri // ignore: cast_nullable_to_non_nullable
+              as KaspaUri,
       changeAddress: freezed == changeAddress
           ? _value.changeAddress
           : changeAddress // ignore: cast_nullable_to_non_nullable
@@ -94,9 +94,9 @@ class _$SendTxCopyWithImpl<$Res, $Val extends SendTx>
 
   @override
   @pragma('vm:prefer-inline')
-  $AddressCopyWith<$Res> get toAddress {
-    return $AddressCopyWith<$Res>(_value.toAddress, (value) {
-      return _then(_value.copyWith(toAddress: value) as $Val);
+  $KaspaUriCopyWith<$Res> get uri {
+    return $KaspaUriCopyWith<$Res>(_value.uri, (value) {
+      return _then(_value.copyWith(uri: value) as $Val);
     });
   }
 
@@ -120,7 +120,7 @@ abstract class _$$_SendTxCopyWith<$Res> implements $SendTxCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {Address toAddress,
+      {KaspaUri uri,
       Address? changeAddress,
       BigInt amountRaw,
       List<Utxo> utxos,
@@ -128,7 +128,7 @@ abstract class _$$_SendTxCopyWith<$Res> implements $SendTxCopyWith<$Res> {
       String? note});
 
   @override
-  $AddressCopyWith<$Res> get toAddress;
+  $KaspaUriCopyWith<$Res> get uri;
   @override
   $AddressCopyWith<$Res>? get changeAddress;
 }
@@ -143,7 +143,7 @@ class __$$_SendTxCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? toAddress = null,
+    Object? uri = null,
     Object? changeAddress = freezed,
     Object? amountRaw = null,
     Object? utxos = null,
@@ -151,10 +151,10 @@ class __$$_SendTxCopyWithImpl<$Res>
     Object? note = freezed,
   }) {
     return _then(_$_SendTx(
-      toAddress: null == toAddress
-          ? _value.toAddress
-          : toAddress // ignore: cast_nullable_to_non_nullable
-              as Address,
+      uri: null == uri
+          ? _value.uri
+          : uri // ignore: cast_nullable_to_non_nullable
+              as KaspaUri,
       changeAddress: freezed == changeAddress
           ? _value.changeAddress
           : changeAddress // ignore: cast_nullable_to_non_nullable
@@ -183,7 +183,7 @@ class __$$_SendTxCopyWithImpl<$Res>
 
 class _$_SendTx extends _SendTx {
   _$_SendTx(
-      {required this.toAddress,
+      {required this.uri,
       this.changeAddress,
       required this.amountRaw,
       final List<Utxo> utxos = const [],
@@ -193,7 +193,7 @@ class _$_SendTx extends _SendTx {
         super._();
 
   @override
-  final Address toAddress;
+  final KaspaUri uri;
   @override
   final Address? changeAddress;
   @override
@@ -214,7 +214,7 @@ class _$_SendTx extends _SendTx {
 
   @override
   String toString() {
-    return 'SendTx(toAddress: $toAddress, changeAddress: $changeAddress, amountRaw: $amountRaw, utxos: $utxos, fee: $fee, note: $note)';
+    return 'SendTx(uri: $uri, changeAddress: $changeAddress, amountRaw: $amountRaw, utxos: $utxos, fee: $fee, note: $note)';
   }
 
   @override
@@ -222,8 +222,7 @@ class _$_SendTx extends _SendTx {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SendTx &&
-            (identical(other.toAddress, toAddress) ||
-                other.toAddress == toAddress) &&
+            (identical(other.uri, uri) || other.uri == uri) &&
             (identical(other.changeAddress, changeAddress) ||
                 other.changeAddress == changeAddress) &&
             (identical(other.amountRaw, amountRaw) ||
@@ -234,8 +233,8 @@ class _$_SendTx extends _SendTx {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, toAddress, changeAddress,
-      amountRaw, const DeepCollectionEquality().hash(_utxos), fee, note);
+  int get hashCode => Object.hash(runtimeType, uri, changeAddress, amountRaw,
+      const DeepCollectionEquality().hash(_utxos), fee, note);
 
   @JsonKey(ignore: true)
   @override
@@ -246,7 +245,7 @@ class _$_SendTx extends _SendTx {
 
 abstract class _SendTx extends SendTx {
   factory _SendTx(
-      {required final Address toAddress,
+      {required final KaspaUri uri,
       final Address? changeAddress,
       required final BigInt amountRaw,
       final List<Utxo> utxos,
@@ -255,7 +254,7 @@ abstract class _SendTx extends SendTx {
   _SendTx._() : super._();
 
   @override
-  Address get toAddress;
+  KaspaUri get uri;
   @override
   Address? get changeAddress;
   @override

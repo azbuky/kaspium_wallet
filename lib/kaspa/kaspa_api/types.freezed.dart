@@ -1045,19 +1045,171 @@ abstract class _ApiTxLink implements ApiTxLink {
       throw _privateConstructorUsedError;
 }
 
+ApiTxId _$ApiTxIdFromJson(Map<String, dynamic> json) {
+  return _ApiTxId.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ApiTxId {
+  String get transactionId => throw _privateConstructorUsedError;
+  int? get blockTime => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ApiTxIdCopyWith<ApiTxId> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ApiTxIdCopyWith<$Res> {
+  factory $ApiTxIdCopyWith(ApiTxId value, $Res Function(ApiTxId) then) =
+      _$ApiTxIdCopyWithImpl<$Res, ApiTxId>;
+  @useResult
+  $Res call({String transactionId, int? blockTime});
+}
+
+/// @nodoc
+class _$ApiTxIdCopyWithImpl<$Res, $Val extends ApiTxId>
+    implements $ApiTxIdCopyWith<$Res> {
+  _$ApiTxIdCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transactionId = null,
+    Object? blockTime = freezed,
+  }) {
+    return _then(_value.copyWith(
+      transactionId: null == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as String,
+      blockTime: freezed == blockTime
+          ? _value.blockTime
+          : blockTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ApiTxIdCopyWith<$Res> implements $ApiTxIdCopyWith<$Res> {
+  factory _$$_ApiTxIdCopyWith(
+          _$_ApiTxId value, $Res Function(_$_ApiTxId) then) =
+      __$$_ApiTxIdCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String transactionId, int? blockTime});
+}
+
+/// @nodoc
+class __$$_ApiTxIdCopyWithImpl<$Res>
+    extends _$ApiTxIdCopyWithImpl<$Res, _$_ApiTxId>
+    implements _$$_ApiTxIdCopyWith<$Res> {
+  __$$_ApiTxIdCopyWithImpl(_$_ApiTxId _value, $Res Function(_$_ApiTxId) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transactionId = null,
+    Object? blockTime = freezed,
+  }) {
+    return _then(_$_ApiTxId(
+      transactionId: null == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as String,
+      blockTime: freezed == blockTime
+          ? _value.blockTime
+          : blockTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class _$_ApiTxId implements _ApiTxId {
+  const _$_ApiTxId({required this.transactionId, this.blockTime});
+
+  factory _$_ApiTxId.fromJson(Map<String, dynamic> json) =>
+      _$$_ApiTxIdFromJson(json);
+
+  @override
+  final String transactionId;
+  @override
+  final int? blockTime;
+
+  @override
+  String toString() {
+    return 'ApiTxId(transactionId: $transactionId, blockTime: $blockTime)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ApiTxId &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId) &&
+            (identical(other.blockTime, blockTime) ||
+                other.blockTime == blockTime));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, transactionId, blockTime);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ApiTxIdCopyWith<_$_ApiTxId> get copyWith =>
+      __$$_ApiTxIdCopyWithImpl<_$_ApiTxId>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ApiTxIdToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ApiTxId implements ApiTxId {
+  const factory _ApiTxId(
+      {required final String transactionId, final int? blockTime}) = _$_ApiTxId;
+
+  factory _ApiTxId.fromJson(Map<String, dynamic> json) = _$_ApiTxId.fromJson;
+
+  @override
+  String get transactionId;
+  @override
+  int? get blockTime;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ApiTxIdCopyWith<_$_ApiTxId> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 ApiTxInput _$ApiTxInputFromJson(Map<String, dynamic> json) {
   return _ApiTxInput.fromJson(json);
 }
 
 /// @nodoc
 mixin _$ApiTxInput {
-  int get id => throw _privateConstructorUsedError;
   String get transactionId => throw _privateConstructorUsedError;
   int get index => throw _privateConstructorUsedError;
   String get previousOutpointHash => throw _privateConstructorUsedError;
   BigInt get previousOutpointIndex => throw _privateConstructorUsedError;
   String get signatureScript => throw _privateConstructorUsedError;
-  BigInt get sigOpCount => throw _privateConstructorUsedError;
+  BigInt get sigOpCount => throw _privateConstructorUsedError; // new fields
+  String? get previousOutpointAddress => throw _privateConstructorUsedError;
+  int? get previousOutpointAmount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1072,13 +1224,14 @@ abstract class $ApiTxInputCopyWith<$Res> {
       _$ApiTxInputCopyWithImpl<$Res, ApiTxInput>;
   @useResult
   $Res call(
-      {int id,
-      String transactionId,
+      {String transactionId,
       int index,
       String previousOutpointHash,
       BigInt previousOutpointIndex,
       String signatureScript,
-      BigInt sigOpCount});
+      BigInt sigOpCount,
+      String? previousOutpointAddress,
+      int? previousOutpointAmount});
 }
 
 /// @nodoc
@@ -1094,19 +1247,16 @@ class _$ApiTxInputCopyWithImpl<$Res, $Val extends ApiTxInput>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? transactionId = null,
     Object? index = null,
     Object? previousOutpointHash = null,
     Object? previousOutpointIndex = null,
     Object? signatureScript = null,
     Object? sigOpCount = null,
+    Object? previousOutpointAddress = freezed,
+    Object? previousOutpointAmount = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
@@ -1131,6 +1281,14 @@ class _$ApiTxInputCopyWithImpl<$Res, $Val extends ApiTxInput>
           ? _value.sigOpCount
           : sigOpCount // ignore: cast_nullable_to_non_nullable
               as BigInt,
+      previousOutpointAddress: freezed == previousOutpointAddress
+          ? _value.previousOutpointAddress
+          : previousOutpointAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      previousOutpointAmount: freezed == previousOutpointAmount
+          ? _value.previousOutpointAmount
+          : previousOutpointAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -1144,13 +1302,14 @@ abstract class _$$_ApiTxInputCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String transactionId,
+      {String transactionId,
       int index,
       String previousOutpointHash,
       BigInt previousOutpointIndex,
       String signatureScript,
-      BigInt sigOpCount});
+      BigInt sigOpCount,
+      String? previousOutpointAddress,
+      int? previousOutpointAmount});
 }
 
 /// @nodoc
@@ -1164,19 +1323,16 @@ class __$$_ApiTxInputCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? transactionId = null,
     Object? index = null,
     Object? previousOutpointHash = null,
     Object? previousOutpointIndex = null,
     Object? signatureScript = null,
     Object? sigOpCount = null,
+    Object? previousOutpointAddress = freezed,
+    Object? previousOutpointAmount = freezed,
   }) {
     return _then(_$_ApiTxInput(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
@@ -1201,6 +1357,14 @@ class __$$_ApiTxInputCopyWithImpl<$Res>
           ? _value.sigOpCount
           : sigOpCount // ignore: cast_nullable_to_non_nullable
               as BigInt,
+      previousOutpointAddress: freezed == previousOutpointAddress
+          ? _value.previousOutpointAddress
+          : previousOutpointAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      previousOutpointAmount: freezed == previousOutpointAmount
+          ? _value.previousOutpointAmount
+          : previousOutpointAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -1210,19 +1374,18 @@ class __$$_ApiTxInputCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$_ApiTxInput implements _ApiTxInput {
   const _$_ApiTxInput(
-      {required this.id,
-      required this.transactionId,
+      {required this.transactionId,
       required this.index,
       required this.previousOutpointHash,
       required this.previousOutpointIndex,
       required this.signatureScript,
-      required this.sigOpCount});
+      required this.sigOpCount,
+      this.previousOutpointAddress,
+      this.previousOutpointAmount});
 
   factory _$_ApiTxInput.fromJson(Map<String, dynamic> json) =>
       _$$_ApiTxInputFromJson(json);
 
-  @override
-  final int id;
   @override
   final String transactionId;
   @override
@@ -1235,10 +1398,15 @@ class _$_ApiTxInput implements _ApiTxInput {
   final String signatureScript;
   @override
   final BigInt sigOpCount;
+// new fields
+  @override
+  final String? previousOutpointAddress;
+  @override
+  final int? previousOutpointAmount;
 
   @override
   String toString() {
-    return 'ApiTxInput(id: $id, transactionId: $transactionId, index: $index, previousOutpointHash: $previousOutpointHash, previousOutpointIndex: $previousOutpointIndex, signatureScript: $signatureScript, sigOpCount: $sigOpCount)';
+    return 'ApiTxInput(transactionId: $transactionId, index: $index, previousOutpointHash: $previousOutpointHash, previousOutpointIndex: $previousOutpointIndex, signatureScript: $signatureScript, sigOpCount: $sigOpCount, previousOutpointAddress: $previousOutpointAddress, previousOutpointAmount: $previousOutpointAmount)';
   }
 
   @override
@@ -1246,7 +1414,6 @@ class _$_ApiTxInput implements _ApiTxInput {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ApiTxInput &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.transactionId, transactionId) ||
                 other.transactionId == transactionId) &&
             (identical(other.index, index) || other.index == index) &&
@@ -1257,13 +1424,26 @@ class _$_ApiTxInput implements _ApiTxInput {
             (identical(other.signatureScript, signatureScript) ||
                 other.signatureScript == signatureScript) &&
             (identical(other.sigOpCount, sigOpCount) ||
-                other.sigOpCount == sigOpCount));
+                other.sigOpCount == sigOpCount) &&
+            (identical(
+                    other.previousOutpointAddress, previousOutpointAddress) ||
+                other.previousOutpointAddress == previousOutpointAddress) &&
+            (identical(other.previousOutpointAmount, previousOutpointAmount) ||
+                other.previousOutpointAmount == previousOutpointAmount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, transactionId, index,
-      previousOutpointHash, previousOutpointIndex, signatureScript, sigOpCount);
+  int get hashCode => Object.hash(
+      runtimeType,
+      transactionId,
+      index,
+      previousOutpointHash,
+      previousOutpointIndex,
+      signatureScript,
+      sigOpCount,
+      previousOutpointAddress,
+      previousOutpointAmount);
 
   @JsonKey(ignore: true)
   @override
@@ -1281,19 +1461,18 @@ class _$_ApiTxInput implements _ApiTxInput {
 
 abstract class _ApiTxInput implements ApiTxInput {
   const factory _ApiTxInput(
-      {required final int id,
-      required final String transactionId,
+      {required final String transactionId,
       required final int index,
       required final String previousOutpointHash,
       required final BigInt previousOutpointIndex,
       required final String signatureScript,
-      required final BigInt sigOpCount}) = _$_ApiTxInput;
+      required final BigInt sigOpCount,
+      final String? previousOutpointAddress,
+      final int? previousOutpointAmount}) = _$_ApiTxInput;
 
   factory _ApiTxInput.fromJson(Map<String, dynamic> json) =
       _$_ApiTxInput.fromJson;
 
-  @override
-  int get id;
   @override
   String get transactionId;
   @override
@@ -1306,6 +1485,10 @@ abstract class _ApiTxInput implements ApiTxInput {
   String get signatureScript;
   @override
   BigInt get sigOpCount;
+  @override // new fields
+  String? get previousOutpointAddress;
+  @override
+  int? get previousOutpointAmount;
   @override
   @JsonKey(ignore: true)
   _$$_ApiTxInputCopyWith<_$_ApiTxInput> get copyWith =>
@@ -1318,7 +1501,6 @@ ApiTxOutput _$ApiTxOutputFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ApiTxOutput {
-  int get id => throw _privateConstructorUsedError;
   String get transactionId => throw _privateConstructorUsedError;
   int get index => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
@@ -1339,8 +1521,7 @@ abstract class $ApiTxOutputCopyWith<$Res> {
       _$ApiTxOutputCopyWithImpl<$Res, ApiTxOutput>;
   @useResult
   $Res call(
-      {int id,
-      String transactionId,
+      {String transactionId,
       int index,
       int amount,
       String scriptPublicKey,
@@ -1361,7 +1542,6 @@ class _$ApiTxOutputCopyWithImpl<$Res, $Val extends ApiTxOutput>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? transactionId = null,
     Object? index = null,
     Object? amount = null,
@@ -1370,10 +1550,6 @@ class _$ApiTxOutputCopyWithImpl<$Res, $Val extends ApiTxOutput>
     Object? scriptPublicKeyType = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
@@ -1411,8 +1587,7 @@ abstract class _$$_ApiTxOutputCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String transactionId,
+      {String transactionId,
       int index,
       int amount,
       String scriptPublicKey,
@@ -1431,7 +1606,6 @@ class __$$_ApiTxOutputCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? transactionId = null,
     Object? index = null,
     Object? amount = null,
@@ -1440,10 +1614,6 @@ class __$$_ApiTxOutputCopyWithImpl<$Res>
     Object? scriptPublicKeyType = null,
   }) {
     return _then(_$_ApiTxOutput(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
@@ -1477,8 +1647,7 @@ class __$$_ApiTxOutputCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$_ApiTxOutput implements _ApiTxOutput {
   const _$_ApiTxOutput(
-      {required this.id,
-      required this.transactionId,
+      {required this.transactionId,
       required this.index,
       required this.amount,
       required this.scriptPublicKey,
@@ -1488,8 +1657,6 @@ class _$_ApiTxOutput implements _ApiTxOutput {
   factory _$_ApiTxOutput.fromJson(Map<String, dynamic> json) =>
       _$$_ApiTxOutputFromJson(json);
 
-  @override
-  final int id;
   @override
   final String transactionId;
   @override
@@ -1505,7 +1672,7 @@ class _$_ApiTxOutput implements _ApiTxOutput {
 
   @override
   String toString() {
-    return 'ApiTxOutput(id: $id, transactionId: $transactionId, index: $index, amount: $amount, scriptPublicKey: $scriptPublicKey, scriptPublicKeyAddress: $scriptPublicKeyAddress, scriptPublicKeyType: $scriptPublicKeyType)';
+    return 'ApiTxOutput(transactionId: $transactionId, index: $index, amount: $amount, scriptPublicKey: $scriptPublicKey, scriptPublicKeyAddress: $scriptPublicKeyAddress, scriptPublicKeyType: $scriptPublicKeyType)';
   }
 
   @override
@@ -1513,7 +1680,6 @@ class _$_ApiTxOutput implements _ApiTxOutput {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ApiTxOutput &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.transactionId, transactionId) ||
                 other.transactionId == transactionId) &&
             (identical(other.index, index) || other.index == index) &&
@@ -1528,7 +1694,7 @@ class _$_ApiTxOutput implements _ApiTxOutput {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, transactionId, index, amount,
+  int get hashCode => Object.hash(runtimeType, transactionId, index, amount,
       scriptPublicKey, scriptPublicKeyAddress, scriptPublicKeyType);
 
   @JsonKey(ignore: true)
@@ -1547,8 +1713,7 @@ class _$_ApiTxOutput implements _ApiTxOutput {
 
 abstract class _ApiTxOutput implements ApiTxOutput {
   const factory _ApiTxOutput(
-      {required final int id,
-      required final String transactionId,
+      {required final String transactionId,
       required final int index,
       required final int amount,
       required final String scriptPublicKey,
@@ -1558,8 +1723,6 @@ abstract class _ApiTxOutput implements ApiTxOutput {
   factory _ApiTxOutput.fromJson(Map<String, dynamic> json) =
       _$_ApiTxOutput.fromJson;
 
-  @override
-  int get id;
   @override
   String get transactionId;
   @override
@@ -1586,8 +1749,6 @@ ApiTransaction _$ApiTransactionFromJson(Map<String, dynamic> json) {
 mixin _$ApiTransaction {
   String? get subnetworkId => throw _privateConstructorUsedError;
   String get transactionId => throw _privateConstructorUsedError;
-  String? get hash => throw _privateConstructorUsedError;
-  BigInt? get mass => throw _privateConstructorUsedError;
   List<String> get blockHash => throw _privateConstructorUsedError;
   int get blockTime => throw _privateConstructorUsedError;
   bool get isAccepted => throw _privateConstructorUsedError;
@@ -1611,8 +1772,6 @@ abstract class $ApiTransactionCopyWith<$Res> {
   $Res call(
       {String? subnetworkId,
       String transactionId,
-      String? hash,
-      BigInt? mass,
       List<String> blockHash,
       int blockTime,
       bool isAccepted,
@@ -1637,8 +1796,6 @@ class _$ApiTransactionCopyWithImpl<$Res, $Val extends ApiTransaction>
   $Res call({
     Object? subnetworkId = freezed,
     Object? transactionId = null,
-    Object? hash = freezed,
-    Object? mass = freezed,
     Object? blockHash = null,
     Object? blockTime = null,
     Object? isAccepted = null,
@@ -1656,14 +1813,6 @@ class _$ApiTransactionCopyWithImpl<$Res, $Val extends ApiTransaction>
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
               as String,
-      hash: freezed == hash
-          ? _value.hash
-          : hash // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mass: freezed == mass
-          ? _value.mass
-          : mass // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
       blockHash: null == blockHash
           ? _value.blockHash
           : blockHash // ignore: cast_nullable_to_non_nullable
@@ -1707,8 +1856,6 @@ abstract class _$$_TransactionCopyWith<$Res>
   $Res call(
       {String? subnetworkId,
       String transactionId,
-      String? hash,
-      BigInt? mass,
       List<String> blockHash,
       int blockTime,
       bool isAccepted,
@@ -1731,8 +1878,6 @@ class __$$_TransactionCopyWithImpl<$Res>
   $Res call({
     Object? subnetworkId = freezed,
     Object? transactionId = null,
-    Object? hash = freezed,
-    Object? mass = freezed,
     Object? blockHash = null,
     Object? blockTime = null,
     Object? isAccepted = null,
@@ -1750,14 +1895,6 @@ class __$$_TransactionCopyWithImpl<$Res>
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
               as String,
-      hash: freezed == hash
-          ? _value.hash
-          : hash // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mass: freezed == mass
-          ? _value.mass
-          : mass // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
       blockHash: null == blockHash
           ? _value._blockHash
           : blockHash // ignore: cast_nullable_to_non_nullable
@@ -1797,8 +1934,6 @@ class _$_Transaction extends _Transaction {
   _$_Transaction(
       {this.subnetworkId,
       required this.transactionId,
-      this.hash,
-      this.mass,
       final List<String> blockHash = const [],
       required this.blockTime,
       required this.isAccepted,
@@ -1818,10 +1953,6 @@ class _$_Transaction extends _Transaction {
   final String? subnetworkId;
   @override
   final String transactionId;
-  @override
-  final String? hash;
-  @override
-  final BigInt? mass;
   final List<String> _blockHash;
   @override
   @JsonKey()
@@ -1859,7 +1990,7 @@ class _$_Transaction extends _Transaction {
 
   @override
   String toString() {
-    return 'ApiTransaction(subnetworkId: $subnetworkId, transactionId: $transactionId, hash: $hash, mass: $mass, blockHash: $blockHash, blockTime: $blockTime, isAccepted: $isAccepted, acceptingBlockHash: $acceptingBlockHash, acceptingBlockBlueScore: $acceptingBlockBlueScore, inputs: $inputs, outputs: $outputs)';
+    return 'ApiTransaction(subnetworkId: $subnetworkId, transactionId: $transactionId, blockHash: $blockHash, blockTime: $blockTime, isAccepted: $isAccepted, acceptingBlockHash: $acceptingBlockHash, acceptingBlockBlueScore: $acceptingBlockBlueScore, inputs: $inputs, outputs: $outputs)';
   }
 
   @override
@@ -1871,8 +2002,6 @@ class _$_Transaction extends _Transaction {
                 other.subnetworkId == subnetworkId) &&
             (identical(other.transactionId, transactionId) ||
                 other.transactionId == transactionId) &&
-            (identical(other.hash, hash) || other.hash == hash) &&
-            (identical(other.mass, mass) || other.mass == mass) &&
             const DeepCollectionEquality()
                 .equals(other._blockHash, _blockHash) &&
             (identical(other.blockTime, blockTime) ||
@@ -1894,8 +2023,6 @@ class _$_Transaction extends _Transaction {
       runtimeType,
       subnetworkId,
       transactionId,
-      hash,
-      mass,
       const DeepCollectionEquality().hash(_blockHash),
       blockTime,
       isAccepted,
@@ -1922,8 +2049,6 @@ abstract class _Transaction extends ApiTransaction {
   factory _Transaction(
       {final String? subnetworkId,
       required final String transactionId,
-      final String? hash,
-      final BigInt? mass,
       final List<String> blockHash,
       required final int blockTime,
       required final bool isAccepted,
@@ -1940,10 +2065,6 @@ abstract class _Transaction extends ApiTransaction {
   String? get subnetworkId;
   @override
   String get transactionId;
-  @override
-  String? get hash;
-  @override
-  BigInt? get mass;
   @override
   List<String> get blockHash;
   @override

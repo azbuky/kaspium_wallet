@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 
 import '../numberutil.dart';
 
+final kMaxKaspa = Decimal.parse('28700000000');
+
 class CurrencyFormatter extends TextInputFormatter {
   String groupSeparator;
   String decimalSeparator;
@@ -42,13 +44,21 @@ class CurrencyFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
+    String workingText = newValue.text;
     // Only allow digits and separators
-    final inputSymbols = newValue.text.split('');
+    final inputSymbols = workingText.split('');
     if (!symbols.containsAll(inputSymbols)) {
-      return oldValue;
+      if (decimalSeparator == ',' && workingText.endsWith('.')) {
+        workingText =
+            workingText.replaceRange(workingText.length - 1, null, ',');
+      } else if (decimalSeparator == '.' && workingText.endsWith(',')) {
+        workingText =
+            workingText.replaceRange(workingText.length - 1, null, '.');
+      } else {
+        return oldValue;
+      }
     }
 
-    String workingText = newValue.text;
     // Workaround for iOS Number Keyboard missmatch
     if (workingText.endsWith(groupSeparator)) {
       workingText = workingText.substring(
@@ -66,6 +76,12 @@ class CurrencyFormatter extends TextInputFormatter {
       return oldValue;
     } else if (workingText.startsWith(decimalSeparator)) {
       workingText = '0' + workingText;
+    }
+
+    final value =
+        Decimal.tryParse(workingText.replaceAll(decimalSeparator, '.'));
+    if (value != null && value > kMaxKaspa) {
+      return oldValue;
     }
 
     List<String> splitStr = workingText.split(decimalSeparator);

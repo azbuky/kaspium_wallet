@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
+import '../util/pin_lockout.dart';
 import 'pin_screen_button.dart';
 
 enum PinOverlayType { NEW_PIN, ENTER_PIN }
@@ -55,7 +56,6 @@ class _PinScreenState extends ConsumerState<PinScreen>
   // true if pin has been entered once, false if not entered once
   late bool _awaitingConfirmation;
   late String _header;
-  int _failedAttempts = 0;
 
   // Invalid animation
   late AnimationController _controller;
@@ -77,8 +77,8 @@ class _PinScreenState extends ConsumerState<PinScreen>
     _pin = '';
     _pinConfirmed = '';
     // Get adjusted failed attempts
-    final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
-    _failedAttempts = sharedPrefsUtil.getLockAttempts() % MAX_ATTEMPTS;
+    final vault = ref.read(vaultProvider);
+    final pinLockout = PinLockout(vault);
 
     // Set animation
     _controller = AnimationController(
@@ -93,13 +93,12 @@ class _PinScreenState extends ConsumerState<PinScreen>
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           if (widget.type == PinOverlayType.ENTER_PIN) {
-            sharedPrefsUtil.incrementLockAttempts().then((_) {
-              _failedAttempts++;
-              if (_failedAttempts >= MAX_ATTEMPTS) {
+            pinLockout.incrementUnlockAttempts().then((failedAttempts) {
+              if (failedAttempts >= MAX_ATTEMPTS) {
                 setState(() {
                   _controller.value = 0;
                 });
-                sharedPrefsUtil.updateLockDate().then((_) {
+                pinLockout.updateLockDate().then((_) {
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/lock_screen_transition',
                       (Route<dynamic> route) => false);
@@ -200,7 +199,8 @@ class _PinScreenState extends ConsumerState<PinScreen>
       }
       if (_setCharacter(key)) {
         final hapticUtil = ref.read(hapticUtilProvider);
-        final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
+        final vault = ref.read(vaultProvider);
+        final pinLockout = PinLockout(vault);
         // Mild delay so they can actually see the last dot get filled
         Future.delayed(Duration(milliseconds: 50), () async {
           if (widget.type == PinOverlayType.ENTER_PIN) {
@@ -209,7 +209,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
               hapticUtil.error();
               _controller.forward();
             } else {
-              await sharedPrefsUtil.resetLockAttempts();
+              await pinLockout.resetUnlockAttempts();
               Navigator.of(context, rootNavigator: true).pop(true);
             }
           } else {

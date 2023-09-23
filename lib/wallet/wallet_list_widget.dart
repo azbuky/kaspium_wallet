@@ -1,3 +1,4 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,7 +11,7 @@ class WalletListWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final wallets = ref.watch(walletsProvider);
+    final wallets = ref.watch(walletsProvider) ?? IList([]);
 
     return Stack(children: [
       ListView.builder(

@@ -59,35 +59,61 @@ class BoxInfoByNetwork with _$BoxInfoByNetwork {
 }
 
 @freezed
+class WalletKind with _$WalletKind {
+  const WalletKind._();
+
+  const factory WalletKind.localHdSchnorr({
+    @Default(false) bool viewOnly,
+  }) = _WalletKindLocalHdSchnorr;
+
+  const factory WalletKind.localHdEcdsa({
+    @Default(false) bool viewOnly,
+  }) = _WalletKindLocalHdEcdsa;
+
+  const factory WalletKind.localHdLegacy({required String mainPubKey}) =
+      _WalletKindLocalHdLegacy;
+
+  factory WalletKind.fromJson(Map<String, dynamic> json) =>
+      _$WalletKindFromJson(json);
+
+  HdWalletType get type => when(
+        localHdSchnorr: (_) => HdWalletType.schnorr,
+        localHdEcdsa: (_) => HdWalletType.ecdsa,
+        localHdLegacy: (_) => HdWalletType.legacy,
+      );
+
+  bool get isViewOnly => when(
+        localHdSchnorr: (viewOnly) => viewOnly,
+        localHdEcdsa: (viewOnly) => viewOnly,
+        localHdLegacy: (_) => false,
+      );
+}
+
+@freezed
 class WalletInfo with _$WalletInfo {
   const WalletInfo._();
   const factory WalletInfo({
     required String name,
+    @Default(WalletKind.localHdSchnorr()) WalletKind kind,
     required String wid,
     required BoxInfoByNetwork boxInfo,
     // HDPublic key base58 encoded
     required String mainnetPublicKey,
-    required String testnetPublicKey,
-    required String simnetPublicKey,
-    required String devnetPublicKey,
   }) = _WalletInfo;
 
   factory WalletInfo.fromJson(Map<String, dynamic> json) =>
       _$WalletInfoFromJson(json);
 
+  bool get isViewOnly => kind.isViewOnly;
+
   BoxInfo getBoxInfo(KaspaNetwork network) => boxInfo.getBoxInfo(network);
 
   String hdPublicKey(KaspaNetwork network) {
-    switch (network) {
-      case KaspaNetwork.mainnet:
-        return mainnetPublicKey;
-      case KaspaNetwork.testnet:
-        return testnetPublicKey;
-      case KaspaNetwork.simnet:
-        return simnetPublicKey;
-      case KaspaNetwork.devnet:
-        return devnetPublicKey;
+    if (network == KaspaNetwork.mainnet) {
+      return mainnetPublicKey;
     }
+
+    return convertHdPublicKey(mainnetPublicKey, network);
   }
 
   String getShortName() {
@@ -111,7 +137,7 @@ class WalletInfo with _$WalletInfo {
 @freezed
 class WalletBundle with _$WalletBundle {
   const factory WalletBundle({
-    @Default(IListConst<WalletInfo>([])) IList<WalletInfo> wallets,
+    IList<WalletInfo>? wallets,
     WalletInfo? selected,
   }) = _WalletBundle;
 
@@ -121,10 +147,17 @@ class WalletBundle with _$WalletBundle {
 
 @freezed
 class WalletData with _$WalletData {
-  const factory WalletData({
+  const factory WalletData.seed({
     required String name,
+    required WalletKind kind,
     required String seed,
     String? mnemonic,
     String? password,
-  }) = _WalletData;
+  }) = _WalletDataMnemonic;
+
+  const factory WalletData.kpub({
+    required String name,
+    required WalletKind kind,
+    required String kpub,
+  }) = _WalletDataKpub;
 }

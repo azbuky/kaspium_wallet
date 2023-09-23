@@ -6,3 +6,5 @@ export 'intro_password.dart';
 export 'intro_password_on_launch.dart';
 export 'intro_wallets.dart';
 export 'intro_welcome.dart';
+export 'intro_import_kpub.dart';
+export 'intro_import_select.dart';
