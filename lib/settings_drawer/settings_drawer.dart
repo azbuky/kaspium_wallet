@@ -16,6 +16,7 @@ import '../settings/available_language.dart';
 import '../settings/available_themes.dart';
 import '../settings/setting_item.dart';
 import '../settings_advanced/advanced_menu.dart';
+import '../util/platform.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/dialog.dart';
 import '../widgets/gradient_widgets.dart';
@@ -372,7 +373,8 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           },
                         ),
                       ],
-                      if (network == KaspaNetwork.mainnet &&
+                      if (!kPlatformIsIOS &&
+                          network == KaspaNetwork.mainnet &&
                           !wallet.isViewOnly) ...[
                         Divider(height: 2, color: theme.text15),
                         DoubleLineItem(
