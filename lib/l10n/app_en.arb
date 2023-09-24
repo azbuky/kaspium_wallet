@@ -430,7 +430,7 @@
   "importOptionKpubDescription": "Monitor the balance and transactions of a wallet using an extended public key",
   "importKpub": "Import Watch Only Wallet",
   "importKpubHint": "Please enter your extended public key.",
-  "importKpubClipboardError": "Clipboard content is no a valid extended public key",
+  "importKpubClipboardError": "Clipboard content is not a valid extended public key",
   "importKpubQrCodeError": "QR code does not contain a valid extended public key",
   "importKpubInvalidMessage": "Please check that your extended public key is entered correctly!",
   "receiveAddressListEmpty": "Receive address list is empty",
