@@ -659,7 +659,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
 
       final formatter = ref.watch(kaspaFormatterProvider);
       final maxSend = ref.watch(maxSendProvider);
-      final isMaxSend = amountRaw == maxSend || maxSend == 0;
+      final isMaxSend = amountRaw == maxSend.raw || maxSend.raw == BigInt.zero;
 
       void onValueChanged(String text) {
         final value = formatter.tryParse(text);
