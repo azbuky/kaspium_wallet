@@ -285,6 +285,7 @@
   "secretPhrase": "Secret Phrase",
   "secretWarning": "If you lose your device or uninstall the application, you'll need your secret phrase to recover your funds!",
   "securityHeader": "Security",
+  "seed": "Seed",
   "seedInvalid": "Seed is Invalid",
   "send": "Send",
   "sendConfirm": "Send",
