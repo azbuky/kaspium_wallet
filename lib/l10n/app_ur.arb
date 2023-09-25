@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "اکاؤنٹ",
   "accounts": "اکاؤنٹس",
@@ -186,6 +186,7 @@
   "secretPhrase": "خفیہ جملہ",
   "secretWarning": "اگر آپ اپنا آلہ کھو دیتے ہیں یا ایپلیکیشن ان انسٹال کرتے ہیں، تو آپ کو اپنے فنڈز کی وصولی کے لیے اپنے خفیہ جملے کی ضرورت ہوگی!",
   "securityHeader": "سیکورٹی",
+  "seed": "Seed",
   "seedInvalid": "سیڈ غلط ہے",
   "send": "بھیجیں",
   "sendConfirm": "بھیجیں",

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Cont",
   "accounts": "Conturi",
@@ -186,6 +186,7 @@
   "secretPhrase": "Formula secretă",
   "secretWarning": "Dacă vă pierdeți dispozitivul sau dezinstalați aplicația, aveți nevoie de seed sau de formula secretă pentru a recupera fondurile!",
   "securityHeader": "Securitate",
+  "seed": "Seed",
   "seedInvalid": "Seed invalid",
   "send": "Trimite",
   "sendConfirm": "Trimite",

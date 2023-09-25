@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Llogaria",
   "accounts": "Llogaritë",
@@ -186,6 +186,7 @@
   "secretPhrase": "Fraze Sekrete",
   "secretWarning": "Nëse humbni pajisjen tuaj ose çinstaloni aplikacionin, do t'ju duhet fraza juaj sekrete për të rikuperuar fondet tuaja!",
   "securityHeader": "Siguria",
+  "seed": "Seed",
   "seedInvalid": "Seed është i pavlefshëm",
   "send": "Dërgo",
   "sendConfirm": "Dërgo",

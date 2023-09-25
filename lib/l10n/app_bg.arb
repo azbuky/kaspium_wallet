@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Акаунт",
   "accounts": "Акаунти",
@@ -186,6 +186,7 @@
   "secretPhrase": "Тайна фраза",
   "secretWarning": "Ако изгубите устройството си или деинсталирате приложението, ще се нуждаете от тайната си фраза, за да възстановите средствата си!",
   "securityHeader": "Сигурност",
+  "seed": "Seed",
   "seedInvalid": "Невалиден Seed",
   "send": "Изпрати",
   "sendConfirm": "Изпрати",

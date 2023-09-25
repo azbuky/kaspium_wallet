@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Compte",
   "accounts": "Comptes",
@@ -186,6 +186,7 @@
   "secretPhrase": "Frase secreta",
   "secretWarning": "Si perds el teu dispositiu o desinstal·les l'aplicació, necessitaràs la teva frase secreta o llavor per recuperar els teus fons!",
   "securityHeader": "Seguretat",
+  "seed": "Seed",
   "seedInvalid": "Llavor no vàlida",
   "send": "Enviar",
   "sendConfirm": "Enviar",

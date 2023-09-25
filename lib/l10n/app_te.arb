@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "ఖాతా",
   "accounts": "ఖాతాలు",
@@ -186,6 +186,7 @@
   "secretPhrase": "రహస్య పదబంధం",
   "secretWarning": "మీరు మీ పరికరాన్ని పోగొట్టుకున్నా లేదా అప్లికేషన్‌ను అన్‌ఇన్‌స్టాల్ చేసినా, మీ నిధులను తిరిగి పొందడానికి మీకు మీ రహస్య పదబంధం అవసరం!",
   "securityHeader": "భద్రత",
+  "seed": "Seed",
   "seedInvalid": "Seed చెల్లదు",
   "send": "పంపండి",
   "sendConfirm": "పంపండి",

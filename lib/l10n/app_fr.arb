@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Compte",
   "accounts": "Comptes",
@@ -186,6 +186,7 @@
   "secretPhrase": "Phrase secrète",
   "secretWarning": "Si vous perdez votre appareil ou désinstallez l'application, vous aurez besoin de votre phrase secrète pour restaurer votre portefeuille !",
   "securityHeader": "Sécurité",
+  "seed": "Seed",
   "seedInvalid": "La Seed est invalide",
   "send": "Envoyer",
   "sendConfirm": "Envoyer",

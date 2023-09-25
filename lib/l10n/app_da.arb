@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konti",
@@ -186,6 +186,7 @@
   "secretPhrase": "Hemmelig Sætning",
   "secretWarning": "Hvis du mister din enhed eller afinstallerer appen, skal du bruge din hemmelige sætning for at gendanne dine midler!",
   "securityHeader": "Sikkerhed",
+  "seed": "Seed",
   "seedInvalid": "Seed er ugyldigt",
   "send": "Send",
   "sendConfirm": "Send",

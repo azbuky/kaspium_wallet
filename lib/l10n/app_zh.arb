@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "账户",
   "accounts": "账户",
@@ -186,6 +186,7 @@
   "secretPhrase": "助记词",
   "secretWarning": "如果手机丢失或此程序被卸载，您将需要助记词恢复钱包访问！",
   "securityHeader": "安全",
+  "seed": "助记词",
   "seedInvalid": "助记词无效",
   "send": "发送",
   "sendConfirm": "发送",

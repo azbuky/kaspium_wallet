@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Konto",
   "accounts": "Konten",
@@ -186,6 +186,7 @@
   "secretPhrase": "Geheimsequenz",
   "secretWarning": "Sollten Sie Ihr Gerät verlieren oder die App löschen, benötigen Sie die Geheimsequenz, um auf Ihr Guthaben zugreifen zu können!",
   "securityHeader": "Sicherheit",
+  "seed": "Seed",
   "seedInvalid": "Seed ist ungültig.",
   "send": "Senden",
   "sendConfirm": "Senden",

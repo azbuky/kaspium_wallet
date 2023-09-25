@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Tili",
   "accounts": "Tilit",
@@ -186,6 +186,7 @@
   "secretPhrase": "Turvasanat",
   "secretWarning": "Mikäli hävität laitteesi tai poistat sovelluksen, tarvitset turvasanasi palauttaaksesi varasi!",
   "securityHeader": "Turvallisuus",
+  "seed": "Seed",
   "seedInvalid": "Seed on virheellinen",
   "send": "Lähetä",
   "sendConfirm": "Lähetä",

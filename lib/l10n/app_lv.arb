@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Konts",
   "accounts": "Konti",
@@ -186,6 +186,7 @@
   "secretPhrase": "Slepenā frāze",
   "secretWarning": "Gadījumā, ja nozaudējat telefonu, vai atinstalējat šo aplikāciju, jums būs nepieciešama slepenā frāze, vai privātā atslēga, lai piekļūtu jūsu līdzekļiem!",
   "securityHeader": "Drošība",
+  "seed": "Seed",
   "seedInvalid": "Sēkla nav derīga",
   "send": "Sūtīt",
   "sendConfirm": "Send",

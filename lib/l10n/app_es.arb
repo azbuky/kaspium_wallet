@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Cuenta",
   "accounts": "Cuentas",
@@ -186,6 +186,7 @@
   "secretPhrase": "Frase secreta",
   "secretWarning": "Si pierde su dispositivo o desinstala la aplicación, necesitará su frase secreta para recuperar sus fondos.",
   "securityHeader": "Seguridad",
+  "seed": "Seed",
   "seedInvalid": "Semilla no válida",
   "send": "Enviar",
   "sendConfirm": "Enviar",

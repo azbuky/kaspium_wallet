@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "חשבון",
   "accounts": "חשבונות",
@@ -186,6 +186,7 @@
   "secretPhrase": "ביטוי סודי",
   "secretWarning": "אם תאבדו את המכשיר או תורידו את האפליקציה מהמכשיר אתם תצטרכו להשתמש בביטוי הסודי כדי לגשת לכספים שלכם! ",
   "securityHeader": "אבטחה",
+  "seed": "Seed",
   "seedInvalid": "הגרעין אינו תקין",
   "send": "שלח",
   "sendConfirm": "שלח",

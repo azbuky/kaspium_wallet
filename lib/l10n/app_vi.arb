@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Tài khoản",
   "accounts": "Các tài khoản",
@@ -186,6 +186,7 @@
   "secretPhrase": "Cụm từ bí mật",
   "secretWarning": "Nếu bạn đánh mất thiết bị hoặc gỡ cài đặt ứng dụng, bạn sẽ cần cụm từ bí mật hoặc hạt giống để khôi phục ví của bạn.",
   "securityHeader": "Bảo mật",
+  "seed": "Seed",
   "seedInvalid": "Hạt giống (seed) không hợp lệ",
   "send": "Gửi",
   "sendConfirm": "Send",

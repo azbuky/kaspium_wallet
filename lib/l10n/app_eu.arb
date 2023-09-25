@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Kontua",
   "accounts": "Kontuak",
@@ -186,6 +186,7 @@
   "secretPhrase": "Esaldi sekretua",
   "secretWarning": "Zure gailua galtzen baduzu edo aplikazioa desinstalatzen baduzu, zure esaldi sekretua beharko duzu zure fondoak berreskuratzeko!",
   "securityHeader": "Segurtasuna",
+  "seed": "Seed",
   "seedInvalid": "Hazia okerra da",
   "send": "Bidali",
   "sendConfirm": "Bidali",

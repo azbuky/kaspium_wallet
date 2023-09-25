@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Akun",
   "accounts": "Semua Akun",
@@ -186,6 +186,7 @@
   "secretPhrase": "Frasa Rahasia",
   "secretWarning": "Jika Anda kehilangan perangkat atau mencopot pemasangan aplikasi, Anda memerlukan frasa rahasia untuk memulihkan dana Anda!",
   "securityHeader": "Keamanan",
+  "seed": "Benih",
   "seedInvalid": "Benih tidak valid",
   "send": "Kirim",
   "sendConfirm": "Kirim",

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Účet",
   "accounts": "Účty",
@@ -186,6 +186,7 @@
   "secretPhrase": "Tajná fráze",
   "secretWarning": "Pokud ztratíte zařízení nebo odinstalujete aplikaci, budete potřebovat tajnou frázi nebo jádro, abyste mohli získat zpět své prostředky!",
   "securityHeader": "Zabezpečení",
+  "seed": "Seed",
   "seedInvalid": "Jádro je Neplatné",
   "send": "Poslat",
   "sendConfirm": "Poslat",

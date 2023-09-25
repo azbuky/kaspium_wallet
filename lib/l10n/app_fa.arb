@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "حساب کاربری",
   "accounts": "حساب ها",
@@ -186,6 +186,7 @@
   "secretPhrase": "عبارت مخفی",
   "secretWarning": "اگر دستگاه خود را گم کنید یا برنامه را حذف کنید، به عبارت مخفی خود برای بازیابی ارزهای خود نیاز دارید!",
   "securityHeader": "امنیت",
+  "seed": "Seed",
   "seedInvalid": "Seed نامعتبر است",
   "send": "ارسال",
   "sendConfirm": "ارسال",

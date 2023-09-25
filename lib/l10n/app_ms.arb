@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Akaun",
   "accounts": "Akaun",
@@ -186,6 +186,7 @@
   "secretPhrase": "Frasa Rahsia",
   "secretWarning": "Jika anda kehilangan peranti anda atau memasang aplikasinya, anda perlu frasa atau benih rahsia anda untuk mendapatkan semula dana anda!",
   "securityHeader": "Keselamatan",
+  "seed": "Benih",
   "seedInvalid": "Benih tidak sah",
   "send": "Hantar",
   "sendConfirm": "Hantar",

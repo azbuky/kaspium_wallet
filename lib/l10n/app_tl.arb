@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Account",
   "accounts": "Mga Account",
@@ -186,6 +186,7 @@
   "secretPhrase": "Secret Phrase",
   "secretWarning": "Pag nawala mo ang iyong device o tinanggal mo ang application, kakailanganin mo ang secret phrase o seed para marecover ang iyong pondo!",
   "securityHeader": "Seguridad",
+  "seed": "Seed",
   "seedInvalid": "Ang seed ay hindi wasto",
   "send": "Magpadala",
   "sendConfirm": "Send",

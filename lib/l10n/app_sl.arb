@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Račun",
   "accounts": "Računi",
@@ -186,6 +186,7 @@
   "secretPhrase": "Skrivni niz",
   "secretWarning": "Če izgubite napravo ali odstranite aplikacijo, boste potrebovali vaš skrivni niz ali zasebni ključ za ponoven dostop do računa!",
   "securityHeader": "Varnost",
+  "seed": "Seed",
   "seedInvalid": "Zasebni ključ je neveljaven",
   "send": "Pošlji",
   "sendConfirm": "Send",

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-24T18:31:37.340Z",
+  "@@last_modified": "2023-09-25T17:48:36.587Z",
   "@@author": "arb-converter-cli",
   "account": "Fiók",
   "accounts": "Fiókok",
@@ -186,6 +186,7 @@
   "secretPhrase": "Seed Phrase",
   "secretWarning": "Ha elveszted ezt az eszközt, vagy eltávolítod az alkalmazást, szükség lesz a Seed Phrase-re a Kaspium tárcád ismételt eléréséhez. ",
   "securityHeader": "Biztonság",
+  "seed": "Seed",
   "seedInvalid": "Helytelen Seed Phrase",
   "send": "Küldés",
   "sendConfirm": "Küldök",
