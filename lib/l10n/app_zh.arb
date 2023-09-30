@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-25T17:48:36.587Z",
+  "@@last_modified": "2023-09-30T20:57:42.789Z",
   "@@author": "arb-converter-cli",
   "account": "账户",
   "accounts": "账户",
@@ -265,7 +265,7 @@
   "kaspaUriInvalid": "无效的 Kaspa 地址",
   "compoundUtxos": "合并交易（化零为整）",
   "compoundUtxosDescription": "合并多个地址的零钱到一个地址。",
-  "compoundUtxosConfirmation": "化零为整？",
+  "compoundUtxosConfirmation": "合并交易（化零为整）?",
   "compoundingUtxos": "正在合并交易（化零为整）",
   "compoundingMessage": "请等待...",
   "compoundSuccess": "合并成功",

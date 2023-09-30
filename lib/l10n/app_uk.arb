@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-09-25T17:48:36.587Z",
+  "@@last_modified": "2023-09-30T20:57:42.789Z",
   "@@author": "arb-converter-cli",
   "account": "Рахунок",
   "accounts": "Рахунки",
@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Переглянути всі адреси",
   "addressFilterDialogOptionNonZeroBalances": "Переглянути адреси з балансом",
   "importOption24WordsTitle": "Імпортувати секретну фразу з 24 слів",
-  "importOption24WordsDescription": "Сумісний з консольним cli гаманцем та Ledger",
+  "importOption24WordsDescription": "Сумісний з консольним гаманцем CLI та Ledger",
   "importOption12WordsTitle": "Імпортувати секретну фразу з 12 слів",
   "importOption12WordsDescription": "Сумісний з веб-гаманцем та KDX",
   "importOptionKpubTitle": "Імпортувати гаманець тільки для перегладу",
@@ -301,5 +301,5 @@
   "importKpubInvalidMessage": "Будь ласка, перевірте, чи ваш розширений публічний ключ введено коректно!",
   "receiveAddressListEmpty": "Список адрес для отримування порожній",
   "changeAddressListEmpty": "Список адрес для решти порожній",
-  "hintAddressListEmpty": "Перевірте фільтр адрес у верхньому правому куті"
+  "hintAddressListEmpty": "Перевірте фільтр адрес у верхньому правому кутку"
 }
