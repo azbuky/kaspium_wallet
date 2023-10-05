@@ -110,11 +110,10 @@ class AddressDiscovery {
     int step = 0;
     final maxSteps = 1000;
     while (step++ < maxSteps) {
-      onProgress?.call(type, currentIndex);
-
-      final walletAddress = await getAddress(index: currentIndex, type: type);
-
       try {
+        onProgress?.call(type, currentIndex);
+
+        final walletAddress = await getAddress(index: currentIndex, type: type);
         final address = walletAddress.encoded;
         final txIdsForAddress = await api.getTxIdsForAddress(address);
 
@@ -139,21 +138,22 @@ class AddressDiscovery {
       }
 
       if (currentIndex - (lastUsedIndex ?? startIndex) >= maxGap) {
-        // Look ahead for possible used addresses over maxGap by checking balances
-        final addresses = await getAddresses(
-          startIndex: currentIndex + 1,
-          type: type,
-          count: lookAhead,
-        );
+        try {
+          // Look ahead for possible used addresses over maxGap by checking balances
+          final addresses = await getAddresses(
+            startIndex: currentIndex + 1,
+            type: type,
+            count: lookAhead,
+          );
+          final hasUsedAddresses =
+              await _checkForUsedAddresses(addresses.map((e) => e.encoded));
 
-        final hasUsedAddresses =
-            await _checkForUsedAddresses(addresses.map((e) => e.encoded));
-
-        if (hasUsedAddresses) {
-          lastUsedIndex = currentIndex;
-        }
-
-        if (!hasUsedAddresses) {
+          if (hasUsedAddresses) {
+            lastUsedIndex = currentIndex;
+          } else {
+            break;
+          }
+        } catch (e) {
           break;
         }
       }
