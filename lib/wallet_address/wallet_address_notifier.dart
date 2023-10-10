@@ -42,8 +42,14 @@ class WalletAddressNotifier extends SafeChangeNotifier
   int get lastUsedReceiveIndex => _receive.lastUsedIndex;
   int get lastUsedChangeIndex => _change.lastUsedIndex;
 
-  IList<String> get allAddresses =>
-      IList(_receive.allAddresses.followedBy(_change.allAddresses));
+  IList<String> get allAddresses {
+    final addresses =
+        IList(_receive.allAddresses.followedBy(_change.allAddresses));
+    if (addresses.isEmpty) {
+      return IList([defaultReceiveAddress.encoded]);
+    }
+    return addresses;
+  }
 
   IList<String> get activeAddresses => IList(
         _receive.activeAddresses
@@ -100,6 +106,9 @@ class WalletAddressNotifier extends SafeChangeNotifier
       bufferSize: bufferSize,
       addresses: addresses.values,
     );
+    if (!_receive.containsAddress(defaultReceiveAddress.encoded)) {
+      _receive.updateAddress(defaultReceiveAddress);
+    }
 
     _change = WalletAddressManager(
       type: AddressType.change,
