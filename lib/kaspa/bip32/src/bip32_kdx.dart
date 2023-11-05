@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:bs58check/bs58check.dart' as bs58check;
-import 'package:coinslib/coinslib.dart';
-import 'package:coinslib/src/models/networks.dart' as networks;
-import 'package:coinslib/src/utils/crypto.dart';
-import 'package:coinslib/src/utils/ecurve.dart' as ecc;
+import '../../bs58check/bs58check.dart' as bs58check;
+import 'bip32_base.dart';
+import 'models/networks.dart' as networks;
+import 'models/networks.dart';
+import 'utils/crypto.dart';
+import 'utils/ecurve.dart' as ecc;
 
 class BIP32Kdx extends BIP32 {
   BIP32Kdx(super._d, super._Q, super.chainCode, super.network);
