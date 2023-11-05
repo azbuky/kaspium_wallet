@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:bip39/bip39.dart' as bip39;
 import 'package:hex/hex.dart';
 import 'package:pointycastle/digests/blake2b.dart';
 // ignore: implementation_imports
 import 'package:pointycastle/src/utils.dart' as p_utils;
 
-import 'util/bip39_wordlist.dart';
+import 'kaspa/bip39/bip39.dart' as bip39;
 
 extension Uint8ListUtils on Uint8List {
   String get hex => bytesToHex(this);
@@ -72,8 +71,10 @@ Uint8List digest({required Uint8List data, int digestSize = 32}) {
 String generateMnemonic({int strength = 256}) =>
     bip39.generateMnemonic(strength: strength);
 
+final _kBip39EnglishWords = bip39.WORDLIST.toSet();
+
 bool isValidMnemonicWord(String word) {
-  return kBip39EnglishWords.contains(word);
+  return _kBip39EnglishWords.contains(word);
 }
 
 // Generic bip39 validation

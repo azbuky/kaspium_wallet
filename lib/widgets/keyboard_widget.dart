@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
-import '../util/bip39_wordlist.dart';
+import '../kaspa/bip39/bip39.dart' as bip39;
 
 class Event<T> {
   final T data;
@@ -13,7 +13,7 @@ class Event<T> {
 const kBackspaceKey = '⌫';
 
 final wordListProvider =
-    Provider<IList<String>>((ref) => kBip39EnglishWords.toIList());
+    Provider<IList<String>>((ref) => bip39.WORDLIST.toIList());
 
 final wordPrefixProvider = StateProvider((ref) {
   return '';
