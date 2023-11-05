@@ -121,7 +121,8 @@ class IntroImportSeed extends HookConsumerWidget {
       }
       final data = result!.code!.trim();
       final mData = data.toLowerCase();
-      if (isValidMnemonic(mData) && mData.split(' ').length == mnemonicLength) {
+      if (isValidMnemonic(mData, verifyChecksum: false) &&
+          mData.split(' ').length == mnemonicLength) {
         ref.read(_mnemonicProvider.notifier).state = mData + ' ';
         updateFocus(mData.length + 1);
         ref.read(wordPrefixProvider.notifier).update((state) => '');
@@ -142,7 +143,8 @@ class IntroImportSeed extends HookConsumerWidget {
         return;
       }
       final text = data.text!.trim().toLowerCase();
-      if (isValidMnemonic(text) && text.split(' ').length == mnemonicLength) {
+      if (isValidMnemonic(text, verifyChecksum: false) &&
+          text.split(' ').length == mnemonicLength) {
         final mnemonic = ref.read(_mnemonicProvider.notifier);
         mnemonic.state = text + ' ';
         updateFocus(text.length + 1);
