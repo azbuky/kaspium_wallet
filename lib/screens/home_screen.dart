@@ -30,7 +30,7 @@ class HomeScreen extends HookConsumerWidget {
 
     Future<void> setAppLockEvent() async {
       // whether we should avoid locking the app
-      final lockDisabled = ref.watch(lockDisabledProvider);
+      final lockDisabled = ref.read(lockDisabledProvider);
       if (lockDisabled) {
         return;
       }
