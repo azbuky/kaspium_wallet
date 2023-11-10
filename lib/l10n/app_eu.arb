@@ -229,7 +229,7 @@
   "transferConfirmInfoThird": "Baliteke transferentzia segundo batzuk behar izatea burutzeko.",
   "transferError": "Akats bat gertatu da transferentzian. Saiatu berriro geroago.",
   "transferHeader": "Funtsak transferitzea",
-  "transferIntro": "Prozesu honek funtsak paperezko kartera batetik zure Kaspium Kartera transferituko ditu. \n\nSakatu \"{botton}\" botoia hasteko.",
+  "transferIntro": "Prozesu honek funtsak paperezko kartera batetik zure Kaspium Kartera transferituko ditu. \n\nSakatu \"{button}\" botoia hasteko.",
   "transferLoading": "Bidaltzen",
   "transferManualHint": "Mesedez, sartu behean hazia.",
   "transferNoFunds": "Hazi honek ez du KASrik",
