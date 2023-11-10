@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2023-10-08T18:51:30.958Z",
+  "@@last_modified": "2023-11-10T10:15:24.600Z",
   "@@author": "arb-converter-cli",
   "account": "Cont",
   "accounts": "Conturi",
@@ -67,7 +67,7 @@
   "createPasswordFirstParagraph": "Puteți adauga o parolă pentru a spori securitatea portofelului.",
   "createPasswordHint": "Creează parola",
   "createPasswordSecondParagraph": "Parola este opțională, portofelul este protejat indiferent de către codul PIN sau datele biometrice.",
-  "createPasswordSheetHeader": "Crează",
+  "createPasswordSheetHeader": "Creează",
   "currency": "Valută",
   "currencyPoweredBy": "Susținut de CoinGecko",
   "defaultAccountName": "Adresa 1",
