@@ -12,7 +12,8 @@ class CoinGeckoPrice with _$CoinGeckoPrice {
   const factory CoinGeckoPrice({
     required AvailableCurrencies currency,
     required Decimal price,
-    required Decimal priceBtc,
+    // in milliseconds since epoch
+    @Default(0) int timestamp,
   }) = _CoinGeckoPrice;
 
   factory CoinGeckoPrice.fromJson(Map<String, dynamic> json) =>
@@ -21,6 +22,6 @@ class CoinGeckoPrice with _$CoinGeckoPrice {
   static CoinGeckoPrice empty = CoinGeckoPrice(
     currency: AvailableCurrencies.USD,
     price: Decimal.zero,
-    priceBtc: Decimal.zero,
+    timestamp: 0,
   );
 }

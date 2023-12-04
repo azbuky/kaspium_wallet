@@ -111,53 +111,40 @@ final formatedTotalFiatProvider = Provider.autoDispose((ref) {
   final price = ref.watch(kaspaPriceProvider);
   final currency = ref.watch(currencyProvider);
   final fiat = balance.value * price.price;
-  final decimals = fiat >= Decimal.parse('0.01')
+  final decimals = fiat >= Decimal.parse('1')
       ? 2
-      : fiat >= Decimal.parse('0.001')
-          ? 3
-          : 4;
+      : fiat >= Decimal.parse('0.01')
+          ? 4
+          : fiat >= Decimal.parse('0.0001')
+              ? 6
+              : 8;
 
   final formatter = NumberFormat.currency(
-      symbol: currency.getCurrencySymbol(),
-      name: currency.getIso4217Code(),
-      decimalDigits: decimals);
+    symbol: currency.symbol,
+    name: currency.name,
+    decimalDigits: decimals,
+  );
 
   return formatter.format(DecimalIntl(fiat));
-});
-
-final totalBtcValueProvider = Provider.autoDispose((ref) {
-  final price = ref.watch(kaspaPriceProvider);
-  final balance = ref.watch(totalBalanceProvider);
-  final value = balance.value * price.priceBtc;
-
-  return value;
 });
 
 final formatedKaspaPriceProvider = Provider.autoDispose((ref) {
   final price = ref.watch(kaspaPriceProvider).price;
   final currency = ref.watch(currencyProvider);
-  final decimals = price >= Decimal.parse('1') ? 2 : 4;
+  final decimals = price >= Decimal.parse('1')
+      ? 2
+      : price >= Decimal.parse('0.01')
+          ? 4
+          : price >= Decimal.parse('0.0001')
+              ? 6
+              : 8;
   final priceStr = NumberFormat.currency(
-    symbol: currency.getCurrencySymbol(),
-    name: currency.getIso4217Code(),
+    symbol: currency.symbol,
+    name: currency.name,
     decimalDigits: decimals,
   ).format(DecimalIntl(price));
 
   return '$priceStr / KAS';
-});
-
-final formatedTotalBtcProvider = Provider.autoDispose((ref) {
-  final btcBalance = ref.watch(totalBtcValueProvider);
-  final decimals = btcBalance >= Decimal.parse('0.001')
-      ? 4
-      : btcBalance >= Decimal.parse('0.00001')
-          ? 6
-          : 8;
-  return NumberFormat.currency(
-    name: '',
-    symbol: '',
-    decimalDigits: decimals,
-  ).format(DecimalIntl(btcBalance));
 });
 
 final fiatValueForAddressProvider =
@@ -174,8 +161,8 @@ final formatedFiatForAddressProvider =
   final currency = ref.watch(currencyProvider);
 
   return NumberFormat.currency(
-    symbol: currency.getCurrencySymbol(),
-    name: currency.getIso4217Code(),
+    symbol: currency.symbol,
+    name: currency.name,
   ).format(DecimalIntl(balance));
 });
 
@@ -186,7 +173,7 @@ final formatedFiatForAmountProvider =
 
   final fiatValue = value.value * price.price;
   return NumberFormat.currency(
-    symbol: currency.getCurrencySymbol(),
-    name: currency.getIso4217Code(),
+    symbol: currency.symbol,
+    name: currency.name,
   ).format(DecimalIntl(fiatValue));
 });

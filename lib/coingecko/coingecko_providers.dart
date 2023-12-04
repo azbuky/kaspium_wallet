@@ -1,12 +1,10 @@
-import 'dart:convert';
-
 import 'package:decimal/decimal.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
 
 import '../core/core_providers.dart';
 import '../settings/settings_providers.dart';
 import 'coingecko_price_notifier.dart';
+import 'coingecko_repository.dart';
 import 'coingecko_types.dart';
 
 final _kaspaPriceCacheProvider =
@@ -19,37 +17,44 @@ final _kaspaPriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
   ref.watch(remoteRefreshProvider);
 
   final currency = ref.watch(currencyProvider);
-  final fiat = currency.getIso4217Code().toLowerCase();
+  final fiat = currency.name.toLowerCase();
 
   final log = ref.read(loggerProvider);
   final cached = ref.read(_kaspaPriceCacheProvider);
 
-  final uri = Uri.parse(
-      'https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=$fiat,btc');
-  final response = await http.get(uri, headers: {
-    'Accept': 'application/json',
-  });
-
-  if (response.statusCode != 200) {
+  // 60 seconds
+  final maxCacheAge = 60 * 1000;
+  final nowTimestamp = DateTime.now().millisecondsSinceEpoch;
+  if (cached.currency == currency.currency &&
+      nowTimestamp - cached.timestamp < maxCacheAge) {
+    log.d('Using cached CoinGecko exchange rates');
     return cached;
   }
 
   try {
-    final data = json.decode(response.body);
-    if (data is! Map) {
-      throw Exception('Returned data is not a Map');
+    var price = await getKaspiumApiPrice(fiat);
+    if (price == null) {
+      price = await getCoinGeckoApiPrice(fiat);
     }
-    final rates = data['kaspa'] as Map<String, dynamic>;
-    final price = rates[fiat] as num;
-    final priceBtc = rates['btc'] as num;
+    if (price == null) {
+      throw Exception('Failed to fetch remote exchange rate');
+    }
+
     return CoinGeckoPrice(
       currency: currency.currency,
       price: Decimal.parse(price.toString()),
-      priceBtc: Decimal.parse(priceBtc.toString()),
+      timestamp: nowTimestamp,
     );
   } catch (e, st) {
     log.e('Failed to fetch CoinGecko exchange rates', e, st);
-    return cached;
+    if (cached.currency == currency.currency) {
+      return cached;
+    }
+    return CoinGeckoPrice(
+      currency: currency.currency,
+      price: Decimal.zero,
+      timestamp: nowTimestamp,
+    );
   }
 });
 

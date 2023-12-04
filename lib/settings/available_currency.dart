@@ -4,8 +4,13 @@ import 'setting_item.dart';
 
 enum AvailableCurrencies {
   USD,
+  BTC,
+  AED,
   ARS,
   AUD,
+  BDT,
+  BHD,
+  BMD,
   BRL,
   CAD,
   CHF,
@@ -15,7 +20,6 @@ enum AvailableCurrencies {
   DKK,
   EUR,
   GBP,
-  UAH,
   HKD,
   HUF,
   IDR,
@@ -24,8 +28,11 @@ enum AvailableCurrencies {
   JPY,
   KRW,
   KWD,
+  LKR,
+  MMK,
   MXN,
   MYR,
+  NGN,
   NOK,
   NZD,
   PHP,
@@ -38,192 +45,124 @@ enum AvailableCurrencies {
   THB,
   TRY,
   TWD,
-  AED,
-  // VES,
-  ZAR,
+  UAH,
+  VEF,
   VND,
+  ZAR,
 }
 
-/// Represent the available authentication methods our app supports
+/// Represent the available currency our app supports
 class AvailableCurrency extends SettingSelectionItem {
   final AvailableCurrencies currency;
 
   const AvailableCurrency(this.currency);
 
-  String getIso4217Code() {
-    return currency.toString().split('.')[1];
-  }
+  String get name => currency.name;
 
   String getDisplayName(BuildContext context) {
-    return getCurrencySymbol() + " " + getDisplayNameNoSymbol();
+    return symbol + ' ' + getDisplayNameNoSymbol();
   }
 
   String getDisplayNameNoSymbol() {
-    switch (getIso4217Code()) {
-      case "ARS":
-        return "Argentine Peso";
-      case "AUD":
-        return "Australian Dollar";
-      case "BRL":
-        return "Brazilian Real";
-      case "CAD":
-        return "Canadian Dollar";
-      case "CHF":
-        return "Swiss Franc";
-      case "CLP":
-        return "Chilean Peso";
-      case "CNY":
-        return "Chinese Yuan";
-      case "CZK":
-        return "Czech Koruna";
-      case "DKK":
-        return "Danish Krone";
-      case "EUR":
-        return "Euro";
-      case "GBP":
-        return "Great Britain Pound";
-      case "HKD":
-        return "Hong Kong Dollar";
-      case "HUF":
-        return "Hungarian Forint";
-      case "IDR":
-        return "Indonesian Rupiah";
-      case "ILS":
-        return "Israeli Shekel";
-      case "INR":
-        return "Indian Rupee";
-      case "JPY":
-        return "Japanese Yen";
-      case "KRW":
-        return "South Korean Won";
-      case "KWD":
-        return "Kuwaiti Dinar";
-      case "MXN":
-        return "Mexican Peso";
-      case "MYR":
-        return "Malaysian Ringgit";
-      case "NOK":
-        return "Norwegian Krone";
-      case "NZD":
-        return "New Zealand Dollar";
-      case "PHP":
-        return "Philippine Peso";
-      case "PKR":
-        return "Pakistani Rupee";
-      case "PLN":
-        return "Polish Zloty";
-      case "RUB":
-        return "Russian Ruble";
-      case "SAR":
-        return "Saudi Riyal";
-      case "SEK":
-        return "Swedish Krona";
-      case "SGD":
-        return "Singapore Dollar";
-      case "THB":
-        return "Thai Baht";
-      case "TRY":
-        return "Turkish Lira";
-      case "TWD":
-        return "Taiwan Dollar";
-      case "AED":
-        return "UAE Dirham";
-      case "VES":
-        return "Venezuelan Bolivar";
-      case "ZAR":
-        return "South African Rand";
-      case "UAH":
-        return "Ukraine Hryvnia";
-      case "VND":
-        return "Vietnamese Đồng";
-      case "USD":
-      default:
-        return "US Dollar";
-    }
+    return switch (currency) {
+      AvailableCurrencies.USD => 'US Dollar',
+      AvailableCurrencies.BTC => 'Bitcoin',
+      AvailableCurrencies.AED => 'Argentine Peso',
+      AvailableCurrencies.AUD => 'Australian Dollar',
+      AvailableCurrencies.ARS => 'UAE Dirham',
+      AvailableCurrencies.BDT => 'Bangladeshi Taka',
+      AvailableCurrencies.BHD => 'Bahraini Dinar',
+      AvailableCurrencies.BMD => 'Bermudian Dollar',
+      AvailableCurrencies.BRL => 'Brazilian Real',
+      AvailableCurrencies.CAD => 'Canadian Dollar',
+      AvailableCurrencies.CHF => 'Swiss Franc',
+      AvailableCurrencies.CLP => 'Chilean Peso',
+      AvailableCurrencies.CNY => 'Chinese Yuan',
+      AvailableCurrencies.CZK => 'Czech Koruna',
+      AvailableCurrencies.DKK => 'Danish Krone',
+      AvailableCurrencies.EUR => 'Euro',
+      AvailableCurrencies.GBP => 'Great Britain Pound',
+      AvailableCurrencies.HKD => 'Hong Kong Dollar',
+      AvailableCurrencies.HUF => 'Hungarian Forint',
+      AvailableCurrencies.IDR => 'Indonesian Rupiah',
+      AvailableCurrencies.ILS => 'Israeli Shekel',
+      AvailableCurrencies.INR => 'Indian Rupee',
+      AvailableCurrencies.JPY => 'Japanese Yen',
+      AvailableCurrencies.KRW => 'South Korean Won',
+      AvailableCurrencies.KWD => 'Kuwaiti Dinar',
+      AvailableCurrencies.LKR => 'Sri Lankan Rupee',
+      AvailableCurrencies.MMK => 'Myanmar Kyat',
+      AvailableCurrencies.MXN => 'Mexican Peso',
+      AvailableCurrencies.MYR => 'Malaysian Ringgit',
+      AvailableCurrencies.NGN => 'Nigerian Naira',
+      AvailableCurrencies.NOK => 'Norwegian Krone',
+      AvailableCurrencies.NZD => 'New Zealand Dollar',
+      AvailableCurrencies.PHP => 'Philippine Peso',
+      AvailableCurrencies.PKR => 'Pakistani Rupee',
+      AvailableCurrencies.PLN => 'Polish Zloty',
+      AvailableCurrencies.RUB => 'Russian Ruble',
+      AvailableCurrencies.SAR => 'Saudi Riyal',
+      AvailableCurrencies.SEK => 'Swedish Krona',
+      AvailableCurrencies.SGD => 'Singapore Dollar',
+      AvailableCurrencies.THB => 'Thai Baht',
+      AvailableCurrencies.TRY => 'Turkish Lira',
+      AvailableCurrencies.TWD => 'Taiwan Dollar',
+      AvailableCurrencies.VEF => 'Venezuelan Bolivar',
+      AvailableCurrencies.ZAR => 'South African Rand',
+      AvailableCurrencies.UAH => 'Ukraine Hryvnia',
+      AvailableCurrencies.VND => 'Vietnamese Đồng',
+    };
   }
 
-  String getCurrencySymbol() {
-    switch (getIso4217Code()) {
-      case "ARS":
-        return "\$";
-      case "AUD":
-        return "\$";
-      case "BRL":
-        return "R\$";
-      case "CAD":
-        return "\$";
-      case "CHF":
-        return "CHF";
-      case "CLP":
-        return "\$";
-      case "CNY":
-        return "¥";
-      case "CZK":
-        return "Kč";
-      case "DKK":
-        return "kr.";
-      case "EUR":
-        return "€";
-      case "GBP":
-        return "£";
-      case "HKD":
-        return "HK\$";
-      case "HUF":
-        return "Ft";
-      case "IDR":
-        return "Rp";
-      case "ILS":
-        return "₪";
-      case "INR":
-        return "₹";
-      case "JPY":
-        return "¥";
-      case "KRW":
-        return "₩";
-      case "KWD":
-        return "KD";
-      case "MXN":
-        return "\$";
-      case "MYR":
-        return "RM";
-      case "NOK":
-        return "kr";
-      case "NZD":
-        return "\$";
-      case "PHP":
-        return "₱";
-      case "PKR":
-        return "Rs";
-      case "PLN":
-        return "zł";
-      case "RUB":
-        return "\u20BD";
-      case "SAR":
-        return "SR";
-      case "SEK":
-        return "kr";
-      case "SGD":
-        return "\$";
-      case "THB":
-        return "THB";
-      case "TRY":
-        return "₺";
-      case "TWD":
-        return "NT\$";
-      case "AED":
-        return "د.إ";
-      case "VES":
-        return "VES";
-      case "ZAR":
-        return "R\$";
-      case "UAH":
-        return "₴";
-      case "VND":
-        return "₫";
-      case "USD":
-      default:
-        return "\$";
-    }
+  String get symbol {
+    return switch (currency) {
+      AvailableCurrencies.BTC => '₿',
+      AvailableCurrencies.USD => '\$',
+      AvailableCurrencies.ARS => '\$',
+      AvailableCurrencies.AUD => '\$',
+      AvailableCurrencies.BDT => '৳',
+      AvailableCurrencies.BHD => '.د.ب',
+      AvailableCurrencies.BMD => '\$',
+      AvailableCurrencies.BRL => 'R\$',
+      AvailableCurrencies.CAD => '\$',
+      AvailableCurrencies.CHF => 'CHF',
+      AvailableCurrencies.CLP => '\$',
+      AvailableCurrencies.CNY => '¥',
+      AvailableCurrencies.CZK => 'Kč',
+      AvailableCurrencies.DKK => 'kr.',
+      AvailableCurrencies.EUR => '€',
+      AvailableCurrencies.GBP => '£',
+      AvailableCurrencies.HKD => 'HK\$',
+      AvailableCurrencies.HUF => 'Ft',
+      AvailableCurrencies.IDR => 'Rp',
+      AvailableCurrencies.ILS => '₪',
+      AvailableCurrencies.INR => '₹',
+      AvailableCurrencies.JPY => '¥',
+      AvailableCurrencies.KRW => '₩',
+      AvailableCurrencies.KWD => 'KD',
+      AvailableCurrencies.LKR => 'Rs',
+      AvailableCurrencies.MMK => 'Ks.',
+      AvailableCurrencies.MXN => '\$',
+      AvailableCurrencies.MYR => 'RM',
+      AvailableCurrencies.NGN => '₦',
+      AvailableCurrencies.NOK => 'kr',
+      AvailableCurrencies.NZD => '\$',
+      AvailableCurrencies.PHP => '₱',
+      AvailableCurrencies.PKR => 'Rs',
+      AvailableCurrencies.PLN => 'zł',
+      AvailableCurrencies.RUB => '\u20BD',
+      AvailableCurrencies.SAR => 'SR',
+      AvailableCurrencies.SEK => 'kr',
+      AvailableCurrencies.SGD => '\$',
+      AvailableCurrencies.THB => '฿',
+      AvailableCurrencies.TRY => '₺',
+      AvailableCurrencies.TWD => 'NT\$',
+      AvailableCurrencies.AED => 'د.إ',
+      AvailableCurrencies.VEF => 'Bs.F',
+      AvailableCurrencies.ZAR => 'R\$',
+      AvailableCurrencies.UAH => '₴',
+      AvailableCurrencies.VND => '₫',
+    };
   }
 
   // For saving to shared prefs
