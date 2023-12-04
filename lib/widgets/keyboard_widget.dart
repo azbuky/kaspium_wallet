@@ -19,7 +19,7 @@ final wordPrefixProvider = StateProvider((ref) {
   return '';
 });
 
-final keyboardEnabledProvider = StateProvider((ref) => true);
+final keyboardEnabledProvider = StateProvider.autoDispose((ref) => true);
 
 final wordSuggestionsProvider = Provider<IList<String>>((ref) {
   final prefix = ref.watch(wordPrefixProvider);
@@ -34,7 +34,7 @@ final wordSelectedProvider = StateProvider<Event<String>>((ref) {
   return Event('');
 });
 
-final enabledKeysProvider = Provider((ref) {
+final enabledKeysProvider = Provider.autoDispose((ref) {
   final prefix = ref.watch(wordPrefixProvider);
   final words = ref.watch(wordSuggestionsProvider);
   final enabled = ref.watch(keyboardEnabledProvider);
