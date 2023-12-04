@@ -14,6 +14,7 @@ import '../widgets/app_text_field.dart';
 import '../widgets/keyboard_widget.dart';
 import 'intro_back_button.dart';
 import 'intro_providers.dart';
+import 'invalid_checksum_dialog.dart';
 
 final _mnemonicProvider = StateProvider.autoDispose((ref) => '');
 
@@ -157,9 +158,24 @@ class IntroImportSeed extends HookConsumerWidget {
       );
     }
 
-    void submitMnemonic() {
+    Future<void> submitMnemonic() async {
       final mnemonic = ref.read(_mnemonicProvider).trim();
       final intro = ref.read(introStateProvider.notifier);
+
+      final validChecksum = isValidMnemonic(mnemonic, verifyChecksum: true);
+
+      if (!validChecksum) {
+        final confirmed = await showDialog<bool>(
+          barrierColor: ref.read(themeProvider).barrier,
+          barrierDismissible: false,
+          context: context,
+          builder: (_) => InvalidChecksumDialog(),
+        );
+
+        if (confirmed != true) {
+          return;
+        }
+      }
 
       if (isValidMnemonic(mnemonic, verifyChecksum: false)) {
         intro.setMnemonic(mnemonic);
