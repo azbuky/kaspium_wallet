@@ -436,5 +436,8 @@
   "importKpubInvalidMessage": "Please check that your extended public key is entered correctly!",
   "receiveAddressListEmpty": "Receive address list is empty",
   "changeAddressListEmpty": "Change address list is empty",
-  "hintAddressListEmpty": "Check address filter from the top right corner"
+  "hintAddressListEmpty": "Check address filter from the top right corner",
+  "invalidSecretPhrase": "Invalid Secret Phrase",
+  "invalidSecretPhraseDetails": "The Secret Phrase you entered has an invalid checksum.",
+  "invalidSecretPhraseConfirmation": "I know what I'm doing"
 }
