@@ -18,3 +18,14 @@ class DonateSettingItem extends SettingSelectionItem {
     return l10n.kaspaDevFund;
   }
 }
+
+class ContactSupportItem extends SettingSelectionItem {
+  final String email;
+  const ContactSupportItem({required this.email});
+
+  @override
+  String getDisplayName(BuildContext context) {
+    final l10n = l10nOf(context);
+    return l10n.emailAction(email);
+  }
+}

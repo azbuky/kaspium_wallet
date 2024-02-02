@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../app_constants.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../contacts/contact_labels.dart';
@@ -17,6 +18,7 @@ import '../settings/available_themes.dart';
 import '../settings/setting_item.dart';
 import '../settings_advanced/advanced_menu.dart';
 import '../util/platform.dart';
+import '../util/util.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/dialog.dart';
 import '../widgets/gradient_widgets.dart';
@@ -397,6 +399,15 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           },
                         ),
                       ],
+                      Divider(height: 2, color: theme.text15),
+                      DoubleLineItem(
+                        heading: l10n.contactSupport,
+                        defaultMethod: const ContactSupportItem(
+                          email: kSupportEmail,
+                        ),
+                        icon: Icons.email,
+                        onPressed: () => openUrl('mailto:$kSupportEmail'),
+                      ),
                       Divider(height: 2, color: theme.text15),
                       SingleLineItem(
                         heading: l10n.shareKaspium,
