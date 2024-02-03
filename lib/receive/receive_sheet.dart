@@ -6,7 +6,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../app_providers.dart';
@@ -15,6 +14,7 @@ import '../l10n/l10n.dart';
 import '../send_sheet/account_address_widget.dart';
 import '../util/ui_util.dart';
 import '../widgets/buttons/primary_outline_button.dart';
+import '../widgets/qr_code_widget.dart';
 import '../widgets/sheet_handle.dart';
 import '../widgets/sheet_header_button.dart';
 import '../widgets/tap_outside_unfocus.dart';
@@ -154,30 +154,9 @@ class ReceiveSheet extends HookConsumerWidget {
                         ),
                       ),
                       Center(
-                        child: GestureDetector(
+                        child: QrCodeWidget(
+                          data: '$kaspaUri',
                           onTap: copyUri,
-                          child: Container(
-                            constraints: BoxConstraints(maxWidth: 280),
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              shape: BoxShape.rectangle,
-                              border:
-                                  Border.all(color: theme.primary, width: 2),
-                            ),
-                            child: QrImageView(
-                              data: '$kaspaUri',
-                              gapless: false,
-                              embeddedImage:
-                                  const AssetImage('assets/qr_code_icon.png'),
-                              embeddedImageStyle: QrEmbeddedImageStyle(
-                                size: const Size(40, 40),
-                              ),
-                              backgroundColor: Colors.white,
-                              errorCorrectionLevel: QrErrorCorrectLevel.Q,
-                              semanticsLabel: 'QR code for address $address',
-                            ),
-                          ),
                         ),
                       ),
                     ],

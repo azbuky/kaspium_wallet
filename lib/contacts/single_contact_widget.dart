@@ -25,7 +25,7 @@ class SingleContactWidget extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
 
     void showDetails() {
-      Sheets.showAppHeightEightSheet(
+      Sheets.showAppHeightNineSheet(
         context: context,
         theme: theme,
         widget: ContactDetails(contact: contact),
