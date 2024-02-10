@@ -439,5 +439,15 @@
   "hintAddressListEmpty": "Check address filter from the top right corner",
   "invalidSecretPhrase": "Invalid Secret Phrase",
   "invalidSecretPhraseDetails": "The Secret Phrase you entered has an invalid checksum.",
-  "invalidSecretPhraseConfirmation": "I know what I'm doing"
+  "invalidSecretPhraseConfirmation": "I know what I'm doing",
+  "contactSupport": "Contact Support",
+  "emailAction": "Email {email}",
+  "@emailAction": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "noteLabel": "Note:"
 }

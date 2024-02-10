@@ -12,6 +12,7 @@ import 'transaction_details_sheet.dart';
 import 'transaction_state_tag.dart';
 import 'transaction_types.dart';
 import 'tx_address_widget.dart';
+import 'tx_note_widget.dart';
 
 class TransactionCard extends ConsumerWidget {
   final TxItem item;
@@ -27,6 +28,7 @@ class TransactionCard extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
 
     final addressNotifier = ref.watch(addressNotifierProvider.notifier);
+    final note = ref.watch(txNoteProvider(tx.id));
 
     final output = tx.apiTx.outputs[item.outputIndex];
 
@@ -186,6 +188,10 @@ class TransactionCard extends ConsumerWidget {
                           ],
                         ),
                         TxAddressWidget(address: address),
+                        if (note != null) ...[
+                          const SizedBox(height: 4),
+                          TxNoteWidget(note: note.note),
+                        ],
                       ],
                     ),
                   ),
