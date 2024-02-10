@@ -6,17 +6,22 @@ import '../app_providers.dart';
 class SeedThreeLineText extends ConsumerWidget {
   final String seed;
   final TextStyle? textStyle;
+
   const SeedThreeLineText({
-    Key? key,
+    super.key,
     required this.seed,
     this.textStyle,
-  })  : assert(seed.length == 128),
-        super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final styles = ref.read(stylesProvider);
     final _textStyle = textStyle ?? styles.textStyleSeed;
+
+    if (seed.length != 128 && seed.length != 64) {
+      return const SizedBox();
+    }
+
     if (seed.length == 128) {
       final partOne = seed.substring(0, 33);
       final partTwo = seed.substring(33, 66);

@@ -11,17 +11,20 @@ import '../widgets/amount_label.dart';
 import '../widgets/buttons.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_handle.dart';
+import '../widgets/txid_card.dart';
 import 'send_note_widget.dart';
 
 class SendCompleteSheet extends HookConsumerWidget {
   final Amount amount;
   final Address toAddress;
+  final String txId;
   final String? note;
 
   const SendCompleteSheet({
     Key? key,
     required this.amount,
     required this.toAddress,
+    required this.txId,
     this.note,
   }) : super(key: key);
 
@@ -52,7 +55,7 @@ class SendCompleteSheet extends HookConsumerWidget {
                         margin: const EdgeInsets.only(top: 50, bottom: 25),
                         child: Icon(
                           AppIcons.success,
-                          size: 100,
+                          size: 80,
                           color: theme.primary,
                         ),
                       ),
@@ -64,19 +67,18 @@ class SendCompleteSheet extends HookConsumerWidget {
                         alignment: Alignment.center,
                         child: Text(
                           l10n.sentTo.toUpperCase(),
-                          style: styles.textStyleHeaderColored,
+                          style: styles.textStyleHeader2Colored,
                         ),
                       ),
                       AddressCard(
                         address: toAddress,
                         type: AddressTextType.PRIMARY,
                       ),
+                      const SizedBox(height: 30),
+                      TxIdCard(txId: txId),
                       if (note != null)
                         Padding(
-                          padding: const EdgeInsets.only(
-                            top: 30,
-                            bottom: 10,
-                          ),
+                          padding: const EdgeInsets.only(top: 30, bottom: 20),
                           child: SendNoteWidget(
                             note: note!,
                             success: true,

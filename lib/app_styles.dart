@@ -493,7 +493,7 @@ class AppStyles {
   );
 
   // Text style for seed text
-  TextStyle get textStyleSeed {
+  TextStyle get textStyleSeedPrimary {
     return TextStyle(
       fontSize: AppFontSizes.small,
       fontWeight: FontWeight.w100,
@@ -503,6 +503,15 @@ class AppStyles {
       letterSpacing: 1,
     );
   }
+
+  late final textStyleSeed = TextStyle(
+    fontSize: AppFontSizes.small,
+    fontWeight: FontWeight.w100,
+    fontFamily: 'OverpassMono',
+    color: theme.text,
+    height: 1.5,
+    letterSpacing: 1,
+  );
 
   TextStyle get textStyleSeedGray {
     return TextStyle(
