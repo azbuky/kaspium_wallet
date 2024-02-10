@@ -75,6 +75,7 @@ class SendConfirmSheet extends HookConsumerWidget {
         final sheet = SendCompleteSheet(
           amount: tx.amount,
           toAddress: tx.toAddress,
+          txId: result.txId,
           note: tx.note,
         );
 
