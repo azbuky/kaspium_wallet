@@ -61,9 +61,9 @@ class ReceiveSheet extends HookConsumerWidget {
     Future<void> copyUri() async {
       try {
         await Clipboard.setData(ClipboardData(text: kaspaUri.toString()));
-        UIUtil.showSnackbar(l10n.addressCopied, context);
+        UIUtil.showSnackbar(l10n.kaspaUriCopied, context);
       } catch (_) {
-        UIUtil.showSnackbar(l10n.addressCopiedFailed, context);
+        UIUtil.showSnackbar(l10n.kaspaUriCopyFailed, context);
       }
     }
 
@@ -120,7 +120,7 @@ class ReceiveSheet extends HookConsumerWidget {
                   padding: const EdgeInsetsDirectional.only(top: 10, end: 10),
                   child: SheetHeaderButton(
                     icon: Icons.copy,
-                    onPressed: copyUri,
+                    onPressed: copyAddress,
                   ),
                 ),
               ],

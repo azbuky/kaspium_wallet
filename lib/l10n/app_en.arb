@@ -25,6 +25,8 @@
   "addressHint": "Enter Address",
   "addressMising": "Please Enter an Address",
   "addressShare": "Share Address",
+  "kaspaUriCopied": "Kaspa URI Copied",
+  "kaspaUriCopyFailed": "Failed to copy Kaspa URI",
   "advancedHeader": "Advanced",
   "amount": "Amount",
   "amountConfirm": "Amount {amount} {coin}",
