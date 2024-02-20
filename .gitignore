@@ -4,7 +4,6 @@ android/key.properties
 android/app/release
 # Miscellaneous
 *.class
-*.lock
 *.log
 *.pyc
 *.swp
