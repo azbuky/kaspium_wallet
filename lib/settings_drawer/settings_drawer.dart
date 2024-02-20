@@ -24,6 +24,7 @@ import '../widgets/dialog.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_util.dart';
 import 'accounts_area.dart';
+import 'buy_sheet.dart';
 import 'currency_dialog.dart';
 import 'double_line_item.dart';
 import 'language_dialog.dart';
@@ -372,6 +373,21 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                                 widget: SeedBackupSheet(mnemonic: mnemonic!),
                               );
                             }
+                          },
+                        ),
+                      ],
+                      if (network == KaspaNetwork.mainnet) ...[
+                        Divider(height: 2, color: theme.text15),
+                        DoubleLineItem(
+                          heading: l10n.buyKaspaTitle,
+                          defaultMethod: BuySettingItem(),
+                          icon: Icons.currency_exchange,
+                          onPressed: () {
+                            Sheets.showAppHeightNineSheet(
+                              context: context,
+                              theme: theme,
+                              widget: const BuySheet(),
+                            );
                           },
                         ),
                       ],
