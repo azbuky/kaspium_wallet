@@ -10,9 +10,10 @@ import '../numberutil.dart';
 final kMaxKaspa = Decimal.parse('28700000000');
 
 class CurrencyFormatter extends TextInputFormatter {
-  String groupSeparator;
-  String decimalSeparator;
-  int maxDecimalDigits;
+  final String groupSeparator;
+  final String decimalSeparator;
+  final int maxDecimalDigits;
+  final Decimal maxAmount;
 
   final numberFormat = NumberFormat.decimalPattern();
   final symbols = <String>{};
@@ -27,6 +28,7 @@ class CurrencyFormatter extends TextInputFormatter {
     required this.groupSeparator,
     required this.decimalSeparator,
     this.maxDecimalDigits = NumberUtil.maxDecimalDigits,
+    required this.maxAmount,
   }) {
     symbols.addAll([groupSeparator, decimalSeparator]);
     symbols.addAll('0123456789'.split(''));
@@ -78,9 +80,14 @@ class CurrencyFormatter extends TextInputFormatter {
       workingText = '0' + workingText;
     }
 
+    // If contains decimal separator with zero maxDecimalDigits, return oldValue
+    if (maxDecimalDigits == 0 && workingText.contains(decimalSeparator)) {
+      return oldValue;
+    }
+
     final value =
         Decimal.tryParse(workingText.replaceAll(decimalSeparator, '.'));
-    if (value != null && value > kMaxKaspa) {
+    if (value != null && value > maxAmount) {
       return oldValue;
     }
 
@@ -101,6 +108,7 @@ class CurrencyFormatter extends TextInputFormatter {
     if (newValue.text == newText) {
       return newValue;
     }
+
     return newValue.copyWith(
       text: newText,
       selection: TextSelection.collapsed(offset: newText.length),

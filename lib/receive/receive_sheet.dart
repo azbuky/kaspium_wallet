@@ -126,7 +126,7 @@ class ReceiveSheet extends HookConsumerWidget {
               ],
             ),
             const SizedBox(height: 20),
-            const ReceiveAmountField(),
+            ReceiveAmountField(hint: l10n.optionalLabel),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(

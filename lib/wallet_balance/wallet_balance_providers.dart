@@ -7,6 +7,7 @@ import '../coingecko/coingecko_providers.dart';
 import '../core/core_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../settings/settings_providers.dart';
+import '../util/formatters.dart';
 import '../util/numberutil.dart';
 import '../utxos/utxos_providers.dart';
 import '../wallet_address/wallet_address_providers.dart';
@@ -176,4 +177,53 @@ final formatedFiatForAmountProvider =
     symbol: currency.symbol,
     name: currency.name,
   ).format(DecimalIntl(fiatValue));
+});
+
+final fiatForAmountProvider =
+    Provider.autoDispose.family<String, Amount>((ref, value) {
+  final price = ref.watch(kaspaPriceProvider);
+  final currency = ref.watch(currencyProvider);
+
+  final fiatValue = value.value * price.price;
+  if (fiatValue == Decimal.zero) {
+    return '0';
+  }
+  final formater = NumberFormat.currency(
+    symbol: currency.symbol,
+    name: currency.name,
+  );
+  return formater
+      .format(DecimalIntl(fiatValue))
+      .replaceAll(formater.currencySymbol, '');
+});
+
+final kaspaFormatterProvider = Provider((ref) {
+  final format = NumberFormat.currency(name: '', symbol: 'KAS');
+  final formatter = CurrencyFormatter(
+    groupSeparator: format.symbols.GROUP_SEP,
+    decimalSeparator: format.symbols.DECIMAL_SEP,
+    maxDecimalDigits: TokenInfo.kaspa.decimals,
+    maxAmount: kMaxKaspa,
+  );
+
+  return formatter;
+});
+
+final fiatFormatterProvider = Provider.autoDispose((ref) {
+  final price = ref.watch(kaspaPriceProvider);
+  final currency = ref.watch(currencyProvider);
+  final maxAmount = price.price * kMaxKaspa;
+
+  final format = NumberFormat.currency(
+    name: currency.name,
+    symbol: currency.symbol,
+  );
+  final formatter = CurrencyFormatter(
+    groupSeparator: format.symbols.GROUP_SEP,
+    decimalSeparator: format.symbols.DECIMAL_SEP,
+    maxDecimalDigits: format.decimalDigits ?? 2,
+    maxAmount: maxAmount,
+  );
+
+  return formatter;
 });

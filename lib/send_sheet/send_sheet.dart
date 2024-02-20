@@ -1,8 +1,10 @@
 import 'dart:math';
 
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
@@ -18,7 +20,6 @@ import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
 import '../widgets/fiat_value_container.dart';
 import '../widgets/gradient_widgets.dart';
-import '../widgets/kas_icon_widget.dart';
 import '../widgets/sheet_handle.dart';
 import '../widgets/sheet_util.dart';
 import '../widgets/tap_outside_unfocus.dart';
@@ -133,11 +134,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
     }
     // On amount focus change
     _amountFocusNode.addListener(() {
-      if (_amountFocusNode.hasFocus) {
-        setState(() => _amountHint = '');
-      } else {
-        setState(() => _amountHint = null);
-      }
+      setState(() => _amountHint = _amountFocusNode.hasFocus ? '' : null);
     });
     // On address focus change
     _addressFocusNode.addListener(() {
@@ -652,17 +649,46 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   }
 
   Widget getEnterAmountContainer() {
-    return Consumer(builder: (context, ref, _) {
+    return HookConsumer(builder: (context, ref, _) {
       final theme = ref.watch(themeProvider);
       final styles = ref.watch(stylesProvider);
       final l10n = l10nOf(context);
 
-      final formatter = ref.watch(kaspaFormatterProvider);
+      final kaspaFormatter = ref.watch(kaspaFormatterProvider);
+      final fiatFormatter = ref.watch(fiatFormatterProvider);
       final maxSend = ref.watch(maxSendProvider);
       final isMaxSend = amountRaw == maxSend.raw || maxSend.raw == BigInt.zero;
 
+      final amount = Amount.raw(amountRaw ?? BigInt.zero);
+
+      final fiatMode = ref.watch(fiatModeProvider);
+
+      final hintText = (fiatMode ? l10n.enterFiatValue : l10n.enterAmount);
+
+      useEffect(() {
+        if (amountRaw != null) {
+          _amountController.text = switch (fiatMode) {
+            true => ref.read(fiatForAmountProvider(amount)),
+            false => NumberUtil.textFieldFormatedAmount(amount),
+          };
+        }
+        return null;
+      }, [fiatMode]);
+
       void onValueChanged(String text) {
-        final value = formatter.tryParse(text);
+        final value = switch (fiatMode) {
+          true => () {
+              final price = ref.read(kaspaPriceProvider);
+              final fiatValue = fiatFormatter.tryParse(text);
+              if (price.price == Decimal.zero || fiatValue == null) {
+                return null;
+              }
+              return (fiatValue / price.price)
+                  .toDecimal(scaleOnInfinitePrecision: 8);
+            }(),
+          false => kaspaFormatter.tryParse(text),
+        };
+
         if (value == null) {
           setState(() => amountRaw = null);
           return;
@@ -679,7 +705,10 @@ class _SendSheetState extends ConsumerState<SendSheet> {
 
         setState(() => amountRaw = maxSend.raw);
 
-        _amountController.text = NumberUtil.textFieldFormatedAmount(maxSend);
+        _amountController.text = switch (fiatMode) {
+          true => ref.read(fiatForAmountProvider(maxSend)),
+          false => NumberUtil.textFieldFormatedAmount(maxSend),
+        };
 
         if (_addressController.text.isEmpty) {
           _addressController.selection = TextSelection.fromPosition(
@@ -691,32 +720,25 @@ class _SendSheetState extends ConsumerState<SendSheet> {
         }
       }
 
-      final amount = Amount.raw(amountRaw ?? BigInt.zero);
-
       return FiatValueContainer(
         amount: amount,
+        showAmount: fiatMode,
         child: AppTextField(
           focusNode: _amountFocusNode,
           controller: _amountController,
           topMargin: 15,
           cursorColor: theme.primary,
           style: styles.textStyleParagraphPrimary,
-          inputFormatters: [formatter],
+          inputFormatters: [fiatMode ? fiatFormatter : kaspaFormatter],
           onChanged: onValueChanged,
           textInputAction: TextInputAction.done,
           maxLines: null,
           autocorrect: false,
-          hintText: _amountHint ?? l10n.enterAmount,
+          hintText: _amountHint ?? hintText,
           prefixButton: TextFieldButton(
             icon: AppIcons.swapcurrency,
-            widget: Image.asset(
-              kKasIconPath,
-              width: 40,
-              height: 40,
-              filterQuality: FilterQuality.medium,
-              isAntiAlias: true,
-            ),
-            onPressed: () {},
+            onPressed: () =>
+                ref.read(fiatModeProvider.notifier).update((state) => !state),
           ),
           suffixButton: TextFieldButton(
             icon: AppIcons.max,

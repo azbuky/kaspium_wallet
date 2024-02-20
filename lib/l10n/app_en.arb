@@ -154,6 +154,7 @@
   "encryptionFailedError": "Failed to set a wallet password",
   "enterAddress": "Enter Address",
   "enterAmount": "Enter Amount",
+  "enterFiatValue": "Enter Fiat Value",
   "enterNote": "Enter Note",
   "enterPasswordHint": "Enter your password",
   "errorMessageCopied": "Error message copied to clipboard",
@@ -451,5 +452,6 @@
       }
     }
   },
-  "noteLabel": "Note:"
+  "noteLabel": "Note:",
+  "optionalLabel": "(Optional)"
 }

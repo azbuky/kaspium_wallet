@@ -7,10 +7,15 @@ import 'fiat_value_widget.dart';
 class FiatValueContainer extends ConsumerWidget {
   final Widget child;
   final Amount amount;
+  final bool showAmount;
+  final String hint;
+
   const FiatValueContainer({
     super.key,
     required this.child,
     required this.amount,
+    this.showAmount = false,
+    this.hint = '',
   });
 
   @override
@@ -19,7 +24,11 @@ class FiatValueContainer extends ConsumerWidget {
       alignment: Alignment.bottomCenter,
       children: [
         child,
-        FiatValueWidget(amount: amount),
+        FiatValueWidget(
+          amount: amount,
+          showAmount: showAmount,
+          hint: hint,
+        ),
       ],
     );
   }
