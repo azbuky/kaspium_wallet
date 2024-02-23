@@ -12,8 +12,7 @@ class CoinGeckoPrice with _$CoinGeckoPrice {
   const factory CoinGeckoPrice({
     required AvailableCurrencies currency,
     required Decimal price,
-    // in milliseconds since epoch
-    @Default(0) int timestamp,
+    @Default(0) int timestamp, // in milliseconds since epoch
   }) = _CoinGeckoPrice;
 
   factory CoinGeckoPrice.fromJson(Map<String, dynamic> json) =>

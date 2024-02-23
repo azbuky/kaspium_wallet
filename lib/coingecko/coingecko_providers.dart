@@ -32,9 +32,10 @@ final _kaspaPriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
   }
 
   try {
-    var price = await getKaspiumApiPrice(fiat);
+    var price = await getCoinGeckoApiPrice(fiat);
+    // fallback to Kaspium API if CoinGecko API fails
     if (price == null) {
-      price = await getCoinGeckoApiPrice(fiat);
+      price = await getKaspiumApiPrice(fiat);
     }
     if (price == null) {
       throw Exception('Failed to fetch remote exchange rate');
@@ -46,7 +47,7 @@ final _kaspaPriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
       timestamp: nowTimestamp,
     );
   } catch (e, st) {
-    log.e('Failed to fetch CoinGecko exchange rates', e, st);
+    log.e('Failed to fetch KAS exchange rate', e, st);
     if (cached.currency == currency.currency) {
       return cached;
     }

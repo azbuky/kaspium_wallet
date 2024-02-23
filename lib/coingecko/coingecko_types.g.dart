@@ -22,7 +22,6 @@ Map<String, dynamic> _$$_CoinGeckoPriceToJson(_$_CoinGeckoPrice instance) =>
 const _$AvailableCurrenciesEnumMap = {
   AvailableCurrencies.USD: 'USD',
   AvailableCurrencies.BTC: 'BTC',
-  AvailableCurrencies.AED: 'AED',
   AvailableCurrencies.ARS: 'ARS',
   AvailableCurrencies.AUD: 'AUD',
   AvailableCurrencies.BDT: 'BDT',
@@ -62,6 +61,7 @@ const _$AvailableCurrenciesEnumMap = {
   AvailableCurrencies.THB: 'THB',
   AvailableCurrencies.TRY: 'TRY',
   AvailableCurrencies.TWD: 'TWD',
+  AvailableCurrencies.AED: 'AED',
   AvailableCurrencies.UAH: 'UAH',
   AvailableCurrencies.VEF: 'VEF',
   AvailableCurrencies.VND: 'VND',
