@@ -7,11 +7,9 @@ import 'package:share_plus/share_plus.dart';
 import '../app_constants.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
-import '../contacts/contact_labels.dart';
 import '../contacts/contacts_widget.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
-import '../send_sheet/send_sheet.dart';
 import '../settings/available_currency.dart';
 import '../settings/available_language.dart';
 import '../settings/available_themes.dart';
@@ -26,6 +24,7 @@ import '../widgets/sheet_util.dart';
 import 'accounts_area.dart';
 import 'buy_sheet.dart';
 import 'currency_dialog.dart';
+import 'donate_menu.dart';
 import 'double_line_item.dart';
 import 'language_dialog.dart';
 import 'network_menu.dart';
@@ -55,10 +54,14 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
   late final AnimationController _advancedController;
   late final Animation<Offset> _advancedOffsetFloat;
 
+  late final AnimationController _donateController;
+  late final Animation<Offset> _donateOffsetFloat;
+
   bool _securityOpen = false;
   bool _contactsOpen = false;
   bool _networkOpen = false;
   bool _advancedOpen = false;
+  bool _donateOpen = false;
 
   @override
   void initState() {
@@ -85,6 +88,11 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       vsync: this,
       duration: const Duration(milliseconds: 220),
     );
+    // For donate menu
+    _donateController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 220),
+    );
 
     final beginOffset = const Offset(1.1, 0);
     final endOffset = const Offset(0, 0);
@@ -104,6 +112,10 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       begin: beginOffset,
       end: endOffset,
     ).animate(_advancedController);
+    _donateOffsetFloat = Tween<Offset>(
+      begin: beginOffset,
+      end: endOffset,
+    ).animate(_donateController);
   }
 
   @override
@@ -112,6 +124,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
     _securityController.dispose();
     _networkController.dispose();
     _advancedController.dispose();
+    _donateController.dispose();
 
     super.dispose();
   }
@@ -166,6 +179,10 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       setState(() => _advancedOpen = false);
       _advancedController.reverse();
       return false;
+    } else if (_donateOpen) {
+      setState(() => _donateOpen = false);
+      _donateController.reverse();
+      return false;
     }
     return true;
   }
@@ -214,6 +231,13 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
               _advancedController.reverse();
             }),
           ),
+          SlideTransition(
+            position: _donateOffsetFloat,
+            child: DonateMenu(onBackAction: () {
+              setState(() => _donateOpen = false);
+              _donateController.reverse();
+            }),
+          ),
         ]),
       ),
     );
@@ -228,6 +252,10 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       final network = ref.watch(networkProvider);
       final wallet = ref.watch(walletProvider);
       final hasMnemonic = ref.watch(walletHasMnemonic);
+
+      final canDonate = !kPlatformIsIOS &&
+          network == KaspaNetwork.mainnet &&
+          !wallet.isViewOnly;
 
       return Container(
         decoration: BoxDecoration(color: theme.backgroundDark),
@@ -391,27 +419,14 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           },
                         ),
                       ],
-                      if (!kPlatformIsIOS &&
-                          network == KaspaNetwork.mainnet &&
-                          !wallet.isViewOnly) ...[
+                      if (canDonate) ...[
                         Divider(height: 2, color: theme.text15),
-                        DoubleLineItem(
+                        SingleLineItem(
                           heading: l10n.donate,
-                          defaultMethod: DonateSettingItem(),
-                          icon: Icons.handshake_rounded,
+                          settingIcon: Icons.handshake_rounded,
                           onPressed: () {
-                            final uri = KaspaUri(
-                              address:
-                                  Address.decodeAddress(kKaspaDevFundAddress),
-                            );
-                            Sheets.showAppHeightNineSheet(
-                              context: context,
-                              theme: theme,
-                              widget: SendSheet(
-                                title: l10n.donate.toUpperCase(),
-                                uri: uri,
-                              ),
-                            );
+                            setState(() => _donateOpen = true);
+                            _donateController.forward();
                           },
                         ),
                       ],
@@ -422,7 +437,8 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           email: kSupportEmail,
                         ),
                         icon: Icons.email,
-                        onPressed: () => openUrl('mailto:$kSupportEmail'),
+                        onPressed: () => openUrl(
+                            'mailto:$kSupportEmail?subject=Kaspium support'),
                       ),
                       Divider(height: 2, color: theme.text15),
                       SingleLineItem(

@@ -147,6 +147,7 @@
   "disableWalletPassword": "Disable Wallet Password",
   "doContinue": "Continue",
   "donate": "Donate",
+  "donateTo": "Donate To",
   "dontShowAgain": "Don't show again",
   "emptyCardIntroUtxos": "This is the UTXOs tab. All UTXOs in your wallet will appear here",
   "emptyResult": "Empty Result",
