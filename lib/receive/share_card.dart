@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../app_providers.dart';
+import '../app_styles.dart';
 
 class AppShareCard extends StatefulWidget {
   final GlobalKey? globalKey;
@@ -146,7 +147,7 @@ class _AppShareCardState extends State<AppShareCard> {
                               group: addressGroup,
                               style: TextStyle(
                                 color: theme.text,
-                                fontFamily: "OverpassMono",
+                                fontFamily: kMonospaceFontFamily,
                                 fontWeight: FontWeight.w100,
                                 fontSize: 50,
                                 height: 1.2,
@@ -165,7 +166,7 @@ class _AppShareCardState extends State<AppShareCard> {
                               group: addressGroup,
                               style: TextStyle(
                                 color: theme.text,
-                                fontFamily: "OverpassMono",
+                                fontFamily: kMonospaceFontFamily,
                                 fontWeight: FontWeight.w100,
                                 fontSize: 50,
                                 height: 1.2,
@@ -184,7 +185,7 @@ class _AppShareCardState extends State<AppShareCard> {
                               group: addressGroup,
                               style: TextStyle(
                                 color: theme.text,
-                                fontFamily: "OverpassMono",
+                                fontFamily: kMonospaceFontFamily,
                                 fontWeight: FontWeight.w100,
                                 fontSize: 50,
                                 height: 1.2,

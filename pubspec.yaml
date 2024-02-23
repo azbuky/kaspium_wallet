@@ -101,6 +101,12 @@ flutter:
           weight: 600
         - asset: fonts/OverpassMono-Light.ttf
           weight: 100
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/RobotoMono-Regular.ttf
+          weight: 600
+        - asset: fonts/RobotoMono-Light.ttf
+          weight: 100
     - family: AppIcons
       fonts:
         - asset: fonts/AppIcons.ttf

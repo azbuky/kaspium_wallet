@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'themes/themes.dart';
 
 const kDefaultFontFamily = 'NunitoSans';
+const kMonospaceFontFamily = 'RobotoMono';
 
 class AppFontSizes {
   static const smallest = 12.0;
@@ -183,7 +184,7 @@ class AppStyles {
       fontSize: AppFontSizes.small,
       height: 1.5,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
     );
   }
 
@@ -193,7 +194,7 @@ class AppStyles {
       fontSize: AppFontSizes.small,
       height: 1.5,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
     );
   }
 
@@ -203,7 +204,7 @@ class AppStyles {
       fontSize: AppFontSizes.small,
       height: 1.5,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
     );
   }
 
@@ -213,7 +214,7 @@ class AppStyles {
       fontSize: AppFontSizes.small,
       height: 1.5,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
     );
   }
 
@@ -223,7 +224,7 @@ class AppStyles {
       fontSize: AppFontSizes.small,
       height: 1.5,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
     );
   }
 
@@ -385,7 +386,7 @@ class AppStyles {
   TextStyle get textStyleTransactionAddress {
     return TextStyle(
       fontSize: AppFontSizes.smallest,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       fontWeight: FontWeight.w100,
       color: theme.text60,
     );
@@ -497,7 +498,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       color: theme.primary,
       height: 1.5,
       letterSpacing: 1,
@@ -507,7 +508,7 @@ class AppStyles {
   late final textStyleSeed = TextStyle(
     fontSize: AppFontSizes.small,
     fontWeight: FontWeight.w100,
-    fontFamily: 'OverpassMono',
+    fontFamily: kMonospaceFontFamily,
     color: theme.text,
     height: 1.5,
     letterSpacing: 1,
@@ -517,7 +518,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       color: theme.text60,
       height: 1.5,
       letterSpacing: 1,
@@ -529,7 +530,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       color: theme.primary,
       height: 1,
       letterSpacing: 1,
@@ -540,7 +541,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       color: theme.text60,
       height: 1,
       letterSpacing: 1,
@@ -551,7 +552,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       color: theme.success,
       height: 1.5,
       letterSpacing: 1,
@@ -703,7 +704,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       color: theme.primary,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       fontWeight: FontWeight.w100,
     );
   }
@@ -713,7 +714,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       color: theme.success,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       fontWeight: FontWeight.w100,
     );
   }
@@ -723,7 +724,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       color: theme.text30,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       fontWeight: FontWeight.w100,
     );
   }
