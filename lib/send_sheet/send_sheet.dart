@@ -63,6 +63,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   AddressStyle _sendAddressStyle = AddressStyle.TEXT60;
   String? _amountHint;
   String? _addressHint;
+  String? _noteHint;
 
   String _amountValidationText = '';
   String _addressValidationText = '';
@@ -175,6 +176,9 @@ class _SendSheetState extends ConsumerState<SendSheet> {
           setState(() => _contactButtonVisible = true);
         }
       }
+    });
+    _noteFocusNode.addListener(() {
+      setState(() => _noteHint = _noteFocusNode.hasFocus ? '' : null);
     });
 
     // Set quick send amount
@@ -949,92 +953,108 @@ class _SendSheetState extends ConsumerState<SendSheet> {
       final styles = ref.watch(stylesProvider);
       final l10n = l10nOf(context);
 
-      return AppTextField(
-        padding: _noteValidAndUnfocused
-            ? const EdgeInsets.symmetric(horizontal: 25, vertical: 15)
-            : EdgeInsets.zero,
-        focusNode: _noteFocusNode,
-        controller: _noteController,
-        cursorColor: theme.primary,
-        style: styles.textStyleParagraphPrimary,
-        inputFormatters: [
-          LengthLimitingTextInputFormatter(120),
-        ],
-        textInputAction: TextInputAction.done,
-        maxLines: null,
-        autocorrect: false,
-        hintText: l10n.enterNote,
-        prefixButton: TextFieldButton(
-          icon: AppIcons.scan,
-          onPressed: () async {
-            FocusManager.instance.primaryFocus?.unfocus();
+      return Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          AppTextField(
+            padding: _noteValidAndUnfocused
+                ? const EdgeInsets.symmetric(horizontal: 25, vertical: 15)
+                : EdgeInsets.zero,
+            focusNode: _noteFocusNode,
+            controller: _noteController,
+            cursorColor: theme.primary,
+            style: styles.textStyleParagraphPrimary,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(120),
+            ],
+            textInputAction: TextInputAction.done,
+            maxLines: null,
+            autocorrect: false,
+            hintText: _noteHint ?? l10n.enterNote,
+            prefixButton: TextFieldButton(
+              icon: AppIcons.scan,
+              onPressed: () async {
+                FocusManager.instance.primaryFocus?.unfocus();
 
-            final qr = await UserDataUtil.scanQrCode(context);
-            final data = qr?.code;
-            if (data == null) {
-              return;
-            }
+                final qr = await UserDataUtil.scanQrCode(context);
+                final data = qr?.code;
+                if (data == null) {
+                  return;
+                }
 
-            _noteController.text = data;
-            _notePasteButtonVisible = false;
-            _noteQrButtonVisible = false;
+                _noteController.text = data;
+                _notePasteButtonVisible = false;
+                _noteQrButtonVisible = false;
 
-            setState(() => _noteValidAndUnfocused = true);
-          },
-        ),
-        fadePrefixOnCondition: true,
-        prefixShowFirstCondition: _noteQrButtonVisible,
-        suffixButton: TextFieldButton(
-          icon: AppIcons.paste,
-          onPressed: () {
-            if (!_notePasteButtonVisible) {
-              return;
-            }
+                setState(() => _noteValidAndUnfocused = true);
+              },
+            ),
+            fadePrefixOnCondition: true,
+            prefixShowFirstCondition: _noteQrButtonVisible,
+            suffixButton: TextFieldButton(
+              icon: AppIcons.paste,
+              onPressed: () {
+                if (!_notePasteButtonVisible) {
+                  return;
+                }
 
-            Clipboard.getData("text/plain").then((ClipboardData? data) {
-              final text = data?.text;
-              if (text == null) {
-                return;
+                Clipboard.getData("text/plain").then((ClipboardData? data) {
+                  final text = data?.text;
+                  if (text == null) {
+                    return;
+                  }
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  _noteController.text = text;
+                  _notePasteButtonVisible = false;
+                  _noteQrButtonVisible = false;
+                  _note = text;
+
+                  setState(() => _noteValidAndUnfocused = true);
+                });
+              },
+            ),
+            fadeSuffixOnCondition: true,
+            suffixShowFirstCondition: _notePasteButtonVisible,
+            onChanged: (text) {
+              if (text.length > 0) {
+                setState(() {
+                  _noteQrButtonVisible = false;
+                  _notePasteButtonVisible = false;
+                });
+              } else {
+                setState(() {
+                  _noteQrButtonVisible = true;
+                  _notePasteButtonVisible = true;
+                });
               }
-              FocusManager.instance.primaryFocus?.unfocus();
-              _noteController.text = text;
-              _notePasteButtonVisible = false;
-              _noteQrButtonVisible = false;
-              _note = text;
-
-              setState(() => _noteValidAndUnfocused = true);
-            });
-          },
-        ),
-        fadeSuffixOnCondition: true,
-        suffixShowFirstCondition: _notePasteButtonVisible,
-        onChanged: (text) {
-          if (text.length > 0) {
-            setState(() {
-              _noteQrButtonVisible = false;
-              _notePasteButtonVisible = false;
-            });
-          } else {
-            setState(() {
-              _noteQrButtonVisible = true;
-              _notePasteButtonVisible = true;
-            });
-          }
-        },
-        overrideTextFieldWidget: _noteValidAndUnfocused
-            ? GestureDetector(
-                onTap: () {
-                  setState(() => _noteValidAndUnfocused = false);
-                  Future.delayed(Duration(milliseconds: 50), () {
-                    FocusScope.of(context).requestFocus(_noteFocusNode);
-                  });
-                },
-                child: Text(
-                  _noteController.text,
-                  style: styles.textStyleParagraphPrimary,
+            },
+            overrideTextFieldWidget: _noteValidAndUnfocused
+                ? GestureDetector(
+                    onTap: () {
+                      setState(() => _noteValidAndUnfocused = false);
+                      Future.delayed(Duration(milliseconds: 50), () {
+                        FocusScope.of(context).requestFocus(_noteFocusNode);
+                      });
+                    },
+                    child: Text(
+                      _noteController.text,
+                      style: styles.textStyleParagraphPrimary,
+                    ),
+                  )
+                : null,
+          ),
+          Visibility(
+            visible: _noteHint == null && _noteController.text.isEmpty,
+            child: Container(
+              child: Text(
+                l10n.optionalLabel,
+                style: styles.textStyleTransactionAmount.copyWith(
+                  color: Colors.grey,
                 ),
-              )
-            : null,
+              ),
+            ),
+          ),
+        ],
       );
     });
   }
