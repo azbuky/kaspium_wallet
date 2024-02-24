@@ -79,10 +79,7 @@ class SendCompleteSheet extends HookConsumerWidget {
                       if (note != null)
                         Padding(
                           padding: const EdgeInsets.only(top: 30, bottom: 20),
-                          child: SendNoteWidget(
-                            note: note!,
-                            success: true,
-                          ),
+                          child: SendNoteWidget(note: note!),
                         ),
                     ],
                   ),

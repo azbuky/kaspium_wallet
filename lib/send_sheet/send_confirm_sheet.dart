@@ -171,10 +171,7 @@ class SendConfirmSheet extends HookConsumerWidget {
                       top: 30,
                       bottom: 10,
                     ),
-                    child: SendNoteWidget(
-                      note: note,
-                      success: true,
-                    ),
+                    child: SendNoteWidget(note: note),
                   ),
               ],
             ),

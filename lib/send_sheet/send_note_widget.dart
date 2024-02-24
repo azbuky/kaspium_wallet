@@ -6,11 +6,9 @@ import '../l10n/l10n.dart';
 
 class SendNoteWidget extends HookConsumerWidget {
   final String note;
-  final bool success;
   const SendNoteWidget({
     Key? key,
     required this.note,
-    this.success = false,
   }) : super(key: key);
 
   @override
@@ -21,10 +19,6 @@ class SendNoteWidget extends HookConsumerWidget {
 
     final title = l10n.sendNote;
     final details = note;
-    final titleStyle = success
-        ? styles.textStyleDataTypeHeaderSuccess
-        : styles.textStyleDataTypeHeaderHighlight;
-
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(
@@ -44,7 +38,7 @@ class SendNoteWidget extends HookConsumerWidget {
         children: [
           Text(
             title,
-            style: titleStyle,
+            style: styles.textStyleDataTypeHeaderHighlight,
           ),
           Text(
             details,
