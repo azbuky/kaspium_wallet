@@ -46,7 +46,7 @@ class TxIdCard extends HookConsumerWidget {
               children: [
                 Text(
                   l10n.transactionId.toUpperCase(),
-                  style: styles.textStyleDataTypeHeaderSuccess,
+                  style: styles.textStyleDataTypeHeaderHighlight,
                 ),
                 SeedThreeLineText(
                   seed: txId,
