@@ -1049,7 +1049,8 @@ class _SendSheetState extends ConsumerState<SendSheet> {
               child: Text(
                 l10n.optionalLabel,
                 style: styles.textStyleTransactionAmount.copyWith(
-                  color: Colors.grey,
+                  color: theme.text30,
+                  fontWeight: FontWeight.w100,
                 ),
               ),
             ),

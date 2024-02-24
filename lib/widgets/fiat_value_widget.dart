@@ -20,6 +20,7 @@ class FiatValueWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
 
     final fiatValue = ref.watch(formatedFiatForAmountProvider(amount));
@@ -32,7 +33,8 @@ class FiatValueWidget extends ConsumerWidget {
           : Text(
               hint,
               style: styles.textStyleTransactionAmount.copyWith(
-                color: Colors.grey,
+                color: theme.text30,
+                fontWeight: FontWeight.w100,
               ),
             ),
       child: Container(
