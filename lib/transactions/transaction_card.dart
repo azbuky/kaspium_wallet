@@ -70,12 +70,13 @@ class TransactionCard extends ConsumerWidget {
     }
 
     void showTxDetails() {
-      Sheets.showAppHeightEightSheet(
+      Sheets.showAppHeightNineSheet(
         context: context,
         widget: TransactionDetailsSheet(
           transactionId: tx.id,
           address: address,
           displayContactButton: !isContact,
+          txItem: item,
         ),
         theme: theme,
         animationDurationMs: 175,

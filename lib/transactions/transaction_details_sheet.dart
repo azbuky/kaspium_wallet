@@ -7,13 +7,17 @@ import '../contacts/contact_add_sheet.dart';
 import '../l10n/l10n.dart';
 import '../util/util.dart';
 import '../widgets/buttons.dart';
+import '../widgets/sheet_handle.dart';
 import '../widgets/sheet_util.dart';
+import 'transaction_details.dart';
+import 'transaction_types.dart';
 
 class TransactionDetailsSheet extends ConsumerWidget {
   final String transactionId;
   final String address;
   final bool displayContactButton;
   final bool displayAddressButton;
+  final TxItem? txItem;
 
   const TransactionDetailsSheet({
     Key? key,
@@ -21,6 +25,7 @@ class TransactionDetailsSheet extends ConsumerWidget {
     required this.address,
     this.displayContactButton = false,
     this.displayAddressButton = true,
+    this.txItem,
   }) : super(key: key);
 
   @override
@@ -52,53 +57,68 @@ class TransactionDetailsSheet extends ConsumerWidget {
       minimum: EdgeInsets.only(
         bottom: MediaQuery.of(context).size.height * 0.035,
       ),
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: 24),
-              if (displayAddressButton) ...[
-                Stack(children: [
-                  PrimaryButton(
-                    title: l10n.viewAddress,
-                    onPressed: viewAddress,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        child: Container(
-                          height: 55,
-                          width: 55,
-                          child: Visibility(
-                            visible: displayContactButton,
-                            child: TextButton(
-                              style: styles.innerButtonStyle,
-                              onPressed: addContact,
-                              child: Icon(
-                                AppIcons.addcontact,
-                                size: 35,
-                                color: theme.backgroundDark,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SheetHandle(),
+          if (txItem != null) ...[
+            Expanded(child: TransactionDetails(txItem: txItem!)),
+          ],
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 28),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 20),
+                  if (displayAddressButton) ...[
+                    Stack(children: [
+                      PrimaryButton(
+                        title: l10n.viewAddress,
+                        onPressed: viewAddress,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            child: Container(
+                              height: 55,
+                              width: 55,
+                              child: Visibility(
+                                visible: displayContactButton,
+                                child: TextButton(
+                                  style: styles.innerButtonStyle,
+                                  onPressed: addContact,
+                                  child: Icon(
+                                    AppIcons.addcontact,
+                                    size: 35,
+                                    color: theme.backgroundDark,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
-                ]),
-                const SizedBox(height: 16),
-              ],
-              PrimaryOutlineButton(
-                title: l10n.viewTransaction,
-                onPressed: viewTransaction,
+                    ]),
+                    const SizedBox(height: 16),
+                  ],
+                  if (txItem == null)
+                    PrimaryOutlineButton(
+                      title: l10n.viewTransaction,
+                      onPressed: viewTransaction,
+                    )
+                  else
+                    PrimaryOutlineButton(
+                      title: l10n.close,
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
