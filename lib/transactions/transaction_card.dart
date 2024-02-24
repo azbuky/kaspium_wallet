@@ -49,25 +49,18 @@ class TransactionCard extends ConsumerWidget {
 
     final txDate = DateTime.fromMillisecondsSinceEpoch(tx.apiTx.blockTime);
 
-    IconData icon;
-    Color iconColor;
     final locale = Localizations.localeOf(context).languageCode;
     final formater = DateFormat('dd-MM-yyyy HH:mm', locale);
     final date = formater.format(txDate);
-    switch (item.type) {
-      case TxItemType.send:
-        icon = Icons.remove;
-        iconColor = theme.primary;
-        break;
-      case TxItemType.receive:
-        icon = Icons.add;
-        iconColor = theme.primary;
-        break;
-      case TxItemType.compound:
-        icon = Icons.refresh;
-        iconColor = theme.primary;
-        break;
-    }
+
+    final txTypeIcon = switch (item.type) {
+      TxItemType.send => Icon(Icons.remove, color: theme.primary, size: 18),
+      TxItemType.receive => Icon(Icons.add, color: theme.primary, size: 18),
+      TxItemType.compound => Padding(
+          padding: EdgeInsetsDirectional.only(start: 2, end: 2),
+          child: Icon(Icons.refresh, color: theme.primary, size: 18),
+        ),
+    };
 
     void showTxDetails() {
       Sheets.showAppHeightNineSheet(
@@ -103,7 +96,7 @@ class TransactionCard extends ConsumerWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(icon, color: iconColor, size: 18),
+                      txTypeIcon,
                       RichText(
                         maxLines: 2,
                         text: TextSpan(
