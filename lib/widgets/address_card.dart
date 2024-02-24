@@ -32,10 +32,9 @@ class AddressCard extends HookConsumerWidget {
       );
       if (contact == null) {
         final addressNotifier = ref.read(addressNotifierProvider);
-        final isWalletAddress =
-            addressNotifier.containsAddress(address.encoded);
-        if (isWalletAddress) {
-          return '#This Wallet';
+        final addressLabel = addressNotifier.nameForAddress(address.encoded);
+        if (addressLabel != null) {
+          return addressLabel;
         }
       }
 
