@@ -76,9 +76,10 @@ class SendCompleteSheet extends HookConsumerWidget {
                       ),
                       const SizedBox(height: 30),
                       TxIdCard(txId: txId),
+                      const SizedBox(height: 20),
                       if (note != null)
                         Padding(
-                          padding: const EdgeInsets.only(top: 30, bottom: 20),
+                          padding: const EdgeInsets.only(top: 10, bottom: 20),
                           child: SendNoteWidget(note: note!),
                         ),
                     ],
