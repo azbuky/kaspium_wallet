@@ -10,7 +10,12 @@ import '../widgets/app_simpledialog.dart';
 import '../widgets/dialog.dart';
 
 class CompoundUtxosDialog extends ConsumerWidget {
-  const CompoundUtxosDialog({super.key});
+  final bool lightMode;
+
+  const CompoundUtxosDialog({
+    super.key,
+    this.lightMode = false,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -50,6 +55,13 @@ class CompoundUtxosDialog extends ConsumerWidget {
         );
         await addressNotifier.addAddress(changeAddress);
 
+        if (lightMode) {
+          // give some time for compound tx to broadcast and get accepted
+          await Future.delayed(const Duration(seconds: 5));
+          // close both dialogs
+          Navigator.of(context).pop();
+        }
+
         UIUtil.showSnackbar(l10n.compoundSuccess, context);
       } catch (e) {
         UIUtil.showSnackbar(l10n.compoundFailure, context);
@@ -69,64 +81,69 @@ class CompoundUtxosDialog extends ConsumerWidget {
 
     return AppAlertDialog(
       title: Text(
-        l10n.compoundUtxosConfirmation,
+        lightMode ? l10n.compoundRequired : l10n.compoundUtxosConfirmation,
         style: styles.textStyleDialogHeader,
       ),
-      content: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+      content: lightMode
+          ? Text(
+              l10n.compoundRequiredDescription,
+              style: styles.textStyleSettingItemHeader,
+            )
+          : Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  l10n.utxosUppercase,
-                  style: styles.textStyleSettingItemHeader,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Text(
-                    l10n.balance,
-                    style: styles.textStyleSettingItemHeader,
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.utxosUppercase,
+                        style: styles.textStyleSettingItemHeader,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Text(
+                          l10n.balance,
+                          style: styles.textStyleSettingItemHeader,
+                        ),
+                      ),
+                      Text(
+                        l10n.maxSend,
+                        style: styles.textStyleSettingItemHeader,
+                      ),
+                    ],
                   ),
                 ),
-                Text(
-                  l10n.maxSend,
-                  style: styles.textStyleSettingItemHeader,
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        child: Text(
+                          '${utxos.length}',
+                          style: styles.textStyleSettingItemHeader,
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: Text(
+                          '$balance KAS',
+                          style: styles.textStyleSettingItemHeader,
+                        ),
+                      ),
+                      Container(
+                        child: Text(
+                          '${maxSend} KAS',
+                          style: styles.textStyleSettingItemHeader,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  child: Text(
-                    '${utxos.length}',
-                    style: styles.textStyleSettingItemHeader,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 8),
-                  child: Text(
-                    '$balance KAS',
-                    style: styles.textStyleSettingItemHeader,
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    '${maxSend} KAS',
-                    style: styles.textStyleSettingItemHeader,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
       actions: [
         TextButton(
           style: styles.dialogButtonStyle,

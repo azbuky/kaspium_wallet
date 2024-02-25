@@ -11,11 +11,13 @@ import '../app_providers.dart';
 import '../contacts/contact.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
+import '../settings_advanced/compound_utxos_dialog.dart';
 import '../transactions/send_tx.dart';
 import '../util/numberutil.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
 import '../widgets/address_widgets.dart';
+import '../widgets/app_simpledialog.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
 import '../widgets/fiat_value_container.dart';
@@ -620,6 +622,15 @@ class _SendSheetState extends ConsumerState<SendSheet> {
       setState(() {
         _amountValidationText = l10n.insufficientBalance;
       });
+      return false;
+    }
+
+    final maxSend = ref.read(maxSendProvider);
+    if (amountRaw! > maxSend.raw) {
+      showAppDialog(
+        context: context,
+        builder: (_) => const CompoundUtxosDialog(lightMode: true),
+      );
       return false;
     }
 

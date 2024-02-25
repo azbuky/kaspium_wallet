@@ -403,6 +403,8 @@
   "nodeSecureConnection": "Secure connection",
   "kaspaUriInvalid": "Invalid Kaspa URI",
   "compoundUtxos": "Compound transactions",
+  "compoundRequired": "Compound required",
+  "compoundRequiredDescription": "The transaction amount requires too many UTXOs. Compounding will reduce the number of UTXOs.",
   "compoundUtxosDescription": "Combine multiple UTXOs into one",
   "compoundUtxosConfirmation": "Compound transactions?",
   "compoundingUtxos": "Compounding transactions",
