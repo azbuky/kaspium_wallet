@@ -464,5 +464,6 @@
   "getStarted": "Get Started",
   "aboutTopperTitle": "About Topper",
   "aboutTopperDescription": "Topper by Uphold is an easy to use fiat-to-crypto onramp that allows users to buy cryptocurencies using a credit/debit card or with a bank account.",
-  "moreInfo": "More Info"
+  "moreInfo": "More Info",
+  "selectAddress": "Select Address"
 }

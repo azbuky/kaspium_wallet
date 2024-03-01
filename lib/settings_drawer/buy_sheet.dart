@@ -11,6 +11,7 @@ import '../l10n/l10n.dart';
 import '../receive/receive_amount_field.dart';
 import '../settings/setting_item.dart';
 import '../util/util.dart';
+import '../wallet_address/address_selection_sheet.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/buttons.dart';
 import '../widgets/receive_address_card.dart';
@@ -61,14 +62,14 @@ class BuySettingItem extends SettingSelectionItem {
   }
 }
 
-class BuySheet extends HookConsumerWidget {
+class BuySheet extends ConsumerWidget {
   const BuySheet({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = l10nOf(context);
     final styles = ref.watch(stylesProvider);
-    final receiveAddress = ref.watch(receiveAddressProvider);
+    final receiveAddress = ref.watch(selectedAddressProvider);
 
     ref.listen(_sourceProvider, (_, __) {});
 

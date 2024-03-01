@@ -900,6 +900,24 @@ class AppStyles {
     );
   }
 
+  ButtonStyle get fieldCardButtonStyle {
+    return TextButton.styleFrom(
+      backgroundColor: theme.backgroundDarkest,
+      padding: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25),
+      ),
+    ).copyWith(
+      overlayColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        if (states.contains(MaterialState.focused)) return theme.text15;
+        if (states.contains(MaterialState.hovered)) return theme.text05;
+        if (states.contains(MaterialState.pressed)) return theme.text15;
+        return null;
+      }),
+    );
+  }
+
   ButtonStyle get defaultTextButtonStyle {
     return TextButton.styleFrom(
       padding: EdgeInsets.zero,

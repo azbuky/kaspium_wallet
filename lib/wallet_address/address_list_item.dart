@@ -14,8 +14,13 @@ import 'wallet_address.dart';
 
 class AddressListItem extends ConsumerWidget {
   final WalletAddress address;
+  final void Function(WalletAddress address)? onSelection;
 
-  const AddressListItem({Key? key, required this.address}) : super(key: key);
+  const AddressListItem({
+    super.key,
+    required this.address,
+    this.onSelection,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,6 +31,9 @@ class AddressListItem extends ConsumerWidget {
     final accounts = ref.watch(addressNotifierProvider);
 
     void showAddressDetails() {
+      if (onSelection != null) {
+        return onSelection?.call(address);
+      }
       Sheets.showAppHeightNineSheet(
         context: context,
         theme: ref.read(themeProvider),

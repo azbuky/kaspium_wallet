@@ -12,11 +12,13 @@ import 'wallet_address_providers.dart';
 class AddressListWidget extends HookConsumerWidget {
   final AddressType addressType;
   final ScrollController scrollController;
+  final void Function(WalletAddress address)? onSelection;
 
   const AddressListWidget({
     super.key,
     required this.addressType,
     required this.scrollController,
+    this.onSelection,
   });
 
   @override
@@ -71,7 +73,10 @@ class AddressListWidget extends HookConsumerWidget {
       controller: scrollController,
       itemBuilder: (context, index) {
         final address = items.elementAt(index);
-        return AddressListItem(address: address);
+        return AddressListItem(
+          address: address,
+          onSelection: onSelection,
+        );
       },
       separatorBuilder: (context, index) {
         return Divider(height: 2, color: theme.text15);

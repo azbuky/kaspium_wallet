@@ -13,10 +13,13 @@ import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../send_sheet/account_address_widget.dart';
 import '../util/ui_util.dart';
+import '../wallet_address/address_selection_sheet.dart';
+import '../wallet_address/wallet_address.dart';
 import '../widgets/buttons/primary_outline_button.dart';
 import '../widgets/qr_code_widget.dart';
 import '../widgets/sheet_handle.dart';
 import '../widgets/sheet_header_button.dart';
+import '../widgets/sheet_util.dart';
 import '../widgets/tap_outside_unfocus.dart';
 import 'receive_amount_field.dart';
 import 'share_card.dart';
@@ -29,7 +32,7 @@ class ReceiveSheet extends HookConsumerWidget {
     final theme = ref.watch(themeProvider);
     final l10n = l10nOf(context);
 
-    final receiveAddress = ref.watch(receiveAddressProvider);
+    final receiveAddress = ref.watch(selectedAddressProvider);
     final address = receiveAddress.encoded;
     final amount = ref.watch(amountProvider);
 
@@ -47,6 +50,16 @@ class ReceiveSheet extends HookConsumerWidget {
       ui.Image image = await boundary.toImage(pixelRatio: 5);
       final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       return byteData?.buffer.asUint8List();
+    }
+
+    void selectAddress() {
+      Sheets.showAppHeightNineSheet(
+        context: context,
+        theme: theme,
+        widget: const AddressSelectionSheet(
+          addressType: AddressType.receive,
+        ),
+      );
     }
 
     Future<void> copyAddress() async {
@@ -112,8 +125,9 @@ class ReceiveSheet extends HookConsumerWidget {
                 Column(children: [
                   const SheetHandle(),
                   GestureDetector(
-                    child: const AccountAddressWidget(),
-                    onTap: copyAddress,
+                    child: AccountAddressWidget(address: receiveAddress),
+                    onTap: selectAddress,
+                    onLongPress: copyAddress,
                   ),
                 ]),
                 Padding(

@@ -4,7 +4,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
+import '../wallet_address/address_selection_sheet.dart';
+import '../wallet_address/wallet_address.dart';
 import 'address_widgets.dart';
+import 'sheet_util.dart';
 
 class ReceiveAddressCard extends HookConsumerWidget {
   final Address address;
@@ -21,6 +24,7 @@ class ReceiveAddressCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
+    final styles = ref.watch(stylesProvider);
 
     final label = useMemoized(() {
       if (!showLabel) return null;
@@ -34,10 +38,6 @@ class ReceiveAddressCard extends HookConsumerWidget {
     }, [address, showLabel]);
 
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 25,
-        vertical: 15,
-      ),
       margin: EdgeInsets.only(
         left: MediaQuery.of(context).size.width * 0.105,
         right: MediaQuery.of(context).size.width * 0.105,
@@ -47,10 +47,28 @@ class ReceiveAddressCard extends HookConsumerWidget {
         color: theme.backgroundDarkest,
         borderRadius: BorderRadius.circular(25),
       ),
-      child: AddressThreeLineText(
-        address: address.encoded,
-        label: label,
-        type: type,
+      child: TextButton(
+        style: styles.fieldCardButtonStyle,
+        onPressed: () {
+          Sheets.showAppHeightNineSheet(
+            context: context,
+            theme: ref.read(themeProvider),
+            widget: AddressSelectionSheet(
+              addressType: AddressType.receive,
+            ),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 25,
+            vertical: 15,
+          ),
+          child: AddressThreeLineText(
+            address: address.encoded,
+            label: label,
+            type: type,
+          ),
+        ),
       ),
     );
   }
