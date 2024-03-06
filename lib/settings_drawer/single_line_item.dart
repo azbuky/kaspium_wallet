@@ -48,7 +48,8 @@ class SingleLineItem extends ConsumerWidget {
                   top: 3,
                   start: settingIcon == AppIcons.logout
                       ? 6
-                      : settingIcon == AppIcons.changerepresentative
+                      : settingIcon == AppIcons.changerepresentative ||
+                              settingIcon == Icons.settings_applications
                           ? 0
                           : settingIcon == AppIcons.backupseed
                               ? 1
@@ -56,7 +57,8 @@ class SingleLineItem extends ConsumerWidget {
                                   ? 2
                                   : 3,
                   bottom: 3,
-                  end: settingIcon == AppIcons.logout
+                  end: settingIcon == AppIcons.logout ||
+                          settingIcon == Icons.settings_applications
                       ? 0
                       : settingIcon == AppIcons.changerepresentative
                           ? 6

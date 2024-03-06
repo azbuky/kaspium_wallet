@@ -296,7 +296,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                         return DoubleLineItem(
                           heading: l10n.language,
                           defaultMethod: ref.watch(languageProvider),
-                          icon: AppIcons.language,
+                          icon: Icons.translate,
                           onPressed: _showLanguageDialog,
                         );
                       }),
@@ -354,6 +354,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                       SingleLineItem(
                         heading: l10n.advancedHeader,
                         settingIcon: Icons.settings_applications,
+                        iconSize: 30,
                         onPressed: () {
                           setState(() => _advancedOpen = true);
                           _advancedController.forward();

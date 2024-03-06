@@ -57,7 +57,7 @@ class TransactionCard extends ConsumerWidget {
       TxItemType.send => Icon(Icons.remove, color: theme.primary, size: 18),
       TxItemType.receive => Icon(Icons.add, color: theme.primary, size: 18),
       TxItemType.compound => Padding(
-          padding: EdgeInsetsDirectional.only(start: 2, end: 2),
+          padding: EdgeInsetsDirectional.only(end: 2),
           child: Icon(Icons.refresh, color: theme.primary, size: 18),
         ),
     };
