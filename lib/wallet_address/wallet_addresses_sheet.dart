@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
 import '../settings_advanced/kpub_sheet.dart';
+import '../util/ui_util.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/buttons.dart';
 import '../widgets/gradient_widgets.dart';
@@ -61,6 +63,26 @@ class WalletAddressesSheet extends HookConsumerWidget {
       );
     }
 
+    Future<void> copyAddresses(AddressType type) async {
+      final (addresses, typeStr) = switch (type) {
+        AddressType.receive => (
+            addressNotifier.receiveAddresses,
+            l10n.receive,
+          ),
+        AddressType.change => (
+            addressNotifier.changeAddresses,
+            l10n.change,
+          ),
+      };
+
+      try {
+        final encoded = addresses.map((address) => address.encoded).join('\n');
+        await Clipboard.setData(ClipboardData(text: encoded));
+        UIUtil.showSnackbar(l10n.walletAddressesCopied(typeStr), context);
+      } catch (_) {
+        UIUtil.showSnackbar(l10n.walletAddressesCopyFailed(typeStr), context);
+      }
+    }
 
     return DefaultTabController(
       length: 2,
@@ -104,16 +126,21 @@ class WalletAddressesSheet extends HookConsumerWidget {
                   ),
                   tabs: [
                     Tab(
+                      child: GestureDetector(
+                        onLongPress: () => copyAddresses(AddressType.receive),
                         child: Container(
                           margin: const EdgeInsets.only(top: 20),
                           child: Text(
                             l10n.receive.toUpperCase(),
                             textAlign: TextAlign.center,
                             style: styles.textStyleTabLabel,
+                          ),
                         ),
                       ),
                     ),
                     Tab(
+                      child: GestureDetector(
+                        onLongPress: () => copyAddresses(AddressType.change),
                         child: Container(
                           padding: const EdgeInsets.only(top: 20),
                           width: double.infinity,
@@ -121,6 +148,7 @@ class WalletAddressesSheet extends HookConsumerWidget {
                             l10n.change.toUpperCase(),
                             textAlign: TextAlign.center,
                             style: styles.textStyleTabLabel,
+                          ),
                         ),
                       ),
                     ),

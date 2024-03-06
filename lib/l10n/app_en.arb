@@ -471,5 +471,21 @@
   "kpubDescription": "The extended public key can be used to import your wallet as a 'watch only' wallet.",
   "copyKpub": "Copy Kpub",
   "kpubCopied": "Extended Public Key Copied",
-  "kpubCopyFailed": "Failed to copy Extended Public Key"
+  "kpubCopyFailed": "Failed to copy Extended Public Key",
+  "walletAddressesCopied": "Wallet {addressType} Addresses Copied to Clipboard",
+  "@walletAddressesCopied": {
+    "placeholders": {
+      "addressType": {
+        "type": "String"
+      }
+    }
+  },
+  "walletAddressesCopyFailed" :"Failed to Copy Wallet {addressType} Addresses",
+  "@walletAddressesCopyFailed": {
+    "placeholders": {
+      "addressType": {
+        "type": "String"
+      }
+    }
+  }
 }
