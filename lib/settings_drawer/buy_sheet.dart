@@ -79,7 +79,7 @@ class BuySheet extends ConsumerWidget {
 
     void buyKaspa() {
       final source = ref.read(_sourceProvider);
-      final address = ref.read(receiveAddressProvider);
+      final address = ref.read(selectedAddressProvider);
       final amount = ref.read(amountProvider);
 
       final uri = Uri.https('kaspa-topper.vercel.app', '/api/topper', {
