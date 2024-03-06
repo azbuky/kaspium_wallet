@@ -42,13 +42,9 @@ class AddressCard extends HookConsumerWidget {
     }, [address, showLabel]);
 
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 25,
-        vertical: 15,
-      ),
-      margin: EdgeInsets.only(
-        left: MediaQuery.of(context).size.width * 0.105,
-        right: MediaQuery.of(context).size.width * 0.105,
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      margin: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.105,
       ),
       width: double.infinity,
       decoration: BoxDecoration(

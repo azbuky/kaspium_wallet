@@ -1261,8 +1261,7 @@ mixin _$WalletInfo {
   String get name => throw _privateConstructorUsedError;
   WalletKind get kind => throw _privateConstructorUsedError;
   String get wid => throw _privateConstructorUsedError;
-  BoxInfoByNetwork get boxInfo =>
-      throw _privateConstructorUsedError; // HDPublic key base58 encoded
+  BoxInfoByNetwork get boxInfo => throw _privateConstructorUsedError;
   String get mainnetPublicKey => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1434,7 +1433,6 @@ class _$_WalletInfo extends _WalletInfo {
   final String wid;
   @override
   final BoxInfoByNetwork boxInfo;
-// HDPublic key base58 encoded
   @override
   final String mainnetPublicKey;
 
@@ -1495,7 +1493,7 @@ abstract class _WalletInfo extends WalletInfo {
   String get wid;
   @override
   BoxInfoByNetwork get boxInfo;
-  @override // HDPublic key base58 encoded
+  @override
   String get mainnetPublicKey;
   @override
   @JsonKey(ignore: true)

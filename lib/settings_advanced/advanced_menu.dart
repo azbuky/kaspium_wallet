@@ -8,8 +8,10 @@ import '../settings_drawer/double_line_item_two.dart';
 import '../widgets/app_icon_button.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/gradient_widgets.dart';
+import '../widgets/sheet_util.dart';
 import 'address_discovery_dialog.dart';
 import 'compound_utxos_dialog.dart';
+import 'kpub_sheet.dart';
 
 class AdvancedMenu extends ConsumerWidget {
   final VoidCallback onBackAction;
@@ -37,6 +39,22 @@ class AdvancedMenu extends ConsumerWidget {
       await showAppDialog(
         context: context,
         builder: (_) => const AddressDiscoveryDialog(),
+      );
+    }
+
+    Future<void> showKpub() async {
+      final authUtil = ref.read(authUtilProvider);
+      final message = l10n.kpubAuth;
+      final auth = await authUtil.authenticate(context, message, message);
+
+      if (!auth) {
+        return;
+      }
+
+      return Sheets.showAppHeightNineSheet(
+        context: context,
+        widget: const KpubSheet(),
+        theme: theme,
       );
     }
 
@@ -109,6 +127,14 @@ class AdvancedMenu extends ConsumerWidget {
                         icon: Icons.account_balance_wallet,
                         iconSize: 28,
                         onPressed: scanMoreAddresses,
+                      ),
+                      Divider(height: 2, color: theme.text15),
+                      DoubleLineItemTwo(
+                        heading: l10n.kpubTitle,
+                        text: l10n.kpubAuth,
+                        icon: Icons.vpn_key,
+                        iconSize: 28,
+                        onPressed: showKpub,
                       ),
                     ],
                   ),

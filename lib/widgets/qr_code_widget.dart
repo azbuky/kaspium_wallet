@@ -6,11 +6,13 @@ import '../app_providers.dart';
 
 class QrCodeWidget extends ConsumerWidget {
   final String data;
+  final bool showIcon;
   final VoidCallback? onTap;
 
   const QrCodeWidget({
     super.key,
     required this.data,
+    this.showIcon = true,
     this.onTap,
   });
 
@@ -31,7 +33,8 @@ class QrCodeWidget extends ConsumerWidget {
         child: QrImageView(
           data: data,
           gapless: false,
-          embeddedImage: const AssetImage('assets/qr_code_icon.png'),
+          embeddedImage:
+              showIcon ? const AssetImage('assets/qr_code_icon.png') : null,
           embeddedImageStyle: QrEmbeddedImageStyle(
             size: const Size(40, 40),
           ),

@@ -4,18 +4,20 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
+import '../settings_advanced/kpub_sheet.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/buttons.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_header_button.dart';
+import '../widgets/sheet_util.dart';
 import '../widgets/sheet_widget.dart';
 import 'address_filter_dialog.dart';
 import 'address_list_widget.dart';
 import 'address_settings.dart';
 import 'wallet_address.dart';
 
-class AccountsSheet extends HookConsumerWidget {
-  const AccountsSheet({Key? key}) : super(key: key);
+class WalletAddressesSheet extends HookConsumerWidget {
+  const WalletAddressesSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,6 +26,7 @@ class AccountsSheet extends HookConsumerWidget {
     final l10n = l10nOf(context);
 
     final addressNotifier = ref.watch(addressNotifierProvider);
+    final wallet = ref.watch(walletProvider);
 
     final receiveGlobalKey = useRef(GlobalKey());
     final changeGlobalKey = useRef(GlobalKey());
@@ -41,6 +44,23 @@ class AccountsSheet extends HookConsumerWidget {
         notifier.setAddressFilter(selection);
       }
     }
+
+    Future<void> showKpub() async {
+      final authUtil = ref.read(authUtilProvider);
+      final message = l10n.kpubAuth;
+      final auth = await authUtil.authenticate(context, message, message);
+
+      if (!auth) {
+        return;
+      }
+
+      return Sheets.showAppHeightNineSheet(
+        context: context,
+        widget: const KpubSheet(),
+        theme: theme,
+      );
+    }
+
 
     return DefaultTabController(
       length: 2,
@@ -61,6 +81,12 @@ class AccountsSheet extends HookConsumerWidget {
 
         return SheetWidget(
           title: l10n.walletAddresses,
+          leftWidget: wallet.isLegacy
+              ? null
+              : SheetHeaderButton(
+                  icon: Icons.vpn_key,
+                  onPressed: showKpub,
+                ),
           rightWidget: SheetHeaderButton(
             icon: Icons.remove_red_eye,
             onPressed: showAddressFilterOptions,
@@ -78,25 +104,23 @@ class AccountsSheet extends HookConsumerWidget {
                   ),
                   tabs: [
                     Tab(
-                      child: Container(
-                        margin:
-                            const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: Text(
-                          l10n.receive.toUpperCase(),
-                          textAlign: TextAlign.center,
-                          style: styles.textStyleTabLabel,
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 20),
+                          child: Text(
+                            l10n.receive.toUpperCase(),
+                            textAlign: TextAlign.center,
+                            style: styles.textStyleTabLabel,
                         ),
                       ),
                     ),
                     Tab(
-                      child: Container(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        width: double.infinity,
-                        child: Text(
-                          l10n.change.toUpperCase(),
-                          textAlign: TextAlign.center,
-                          style: styles.textStyleTabLabel,
+                        child: Container(
+                          padding: const EdgeInsets.only(top: 20),
+                          width: double.infinity,
+                          child: Text(
+                            l10n.change.toUpperCase(),
+                            textAlign: TextAlign.center,
+                            style: styles.textStyleTabLabel,
                         ),
                       ),
                     ),
