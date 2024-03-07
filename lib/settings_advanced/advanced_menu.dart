@@ -128,6 +128,7 @@ class AdvancedMenu extends ConsumerWidget {
                         iconSize: 28,
                         onPressed: scanMoreAddresses,
                       ),
+                      if (wallet.hasValidKpub) ...[
                       Divider(height: 2, color: theme.text15),
                       DoubleLineItemTwo(
                         heading: l10n.kpubTitle,
@@ -136,6 +137,7 @@ class AdvancedMenu extends ConsumerWidget {
                         iconSize: 28,
                         onPressed: showKpub,
                       ),
+                      ],
                     ],
                   ),
                   const ListBottomGradient(),

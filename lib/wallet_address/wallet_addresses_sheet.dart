@@ -103,12 +103,9 @@ class WalletAddressesSheet extends HookConsumerWidget {
 
         return SheetWidget(
           title: l10n.walletAddresses,
-          leftWidget: wallet.isLegacy
-              ? null
-              : SheetHeaderButton(
-                  icon: Icons.vpn_key,
-                  onPressed: showKpub,
-                ),
+          leftWidget: wallet.hasValidKpub
+              ? SheetHeaderButton(icon: Icons.vpn_key, onPressed: showKpub)
+              : null,
           rightWidget: SheetHeaderButton(
             icon: Icons.remove_red_eye,
             onPressed: showAddressFilterOptions,

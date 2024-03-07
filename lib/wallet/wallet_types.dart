@@ -114,6 +114,8 @@ class WalletInfo with _$WalletInfo {
 
   bool get isLegacy => kind.isLegacy;
 
+  bool get hasValidKpub => !kind.isLegacy;
+
   BoxInfo getBoxInfo(KaspaNetwork network) => boxInfo.getBoxInfo(network);
 
   String hdPublicKey(KaspaNetwork network) {
