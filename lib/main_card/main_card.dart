@@ -39,12 +39,13 @@ class MainCard extends ConsumerWidget {
 
       final prefix = ref.read(addressPrefixProvider);
       final uri = KaspaUri.tryParse(data, prefix: prefix);
-      UIUtil.showSendFlow(
-        context,
-        ifNullMessage: l10n.scanQrCodeError,
-        theme: theme,
-        uri: uri,
-      );
+
+      if (uri == null) {
+        UIUtil.showSnackbar(l10n.scanQrCodeError, context);
+        return;
+      }
+
+      UIUtil.showSendFlow(context, ref: ref, uri: uri);
     }
 
     return GestureDetector(

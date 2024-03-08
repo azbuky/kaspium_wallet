@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:oktoast/oktoast.dart';
 
+import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../send_sheet/send_confirm_sheet.dart';
 import '../send_sheet/send_sheet.dart';
-import '../themes/base_theme.dart';
 import '../transactions/send_tx.dart';
 import '../widgets/sheet_util.dart';
 import '../widgets/toast_widget.dart';
@@ -27,34 +28,42 @@ abstract class UIUtil {
 
   static void showSendFlow(
     BuildContext context, {
-    required String ifNullMessage,
-    required BaseTheme theme,
-    required KaspaUri? uri,
+    required WidgetRef ref,
+    required KaspaUri uri,
   }) {
-    if (uri == null) {
-      UIUtil.showSnackbar(ifNullMessage, context);
+    final theme = ref.read(themeProvider);
+
+    final amount = uri.amount;
+    if (amount == null) {
+      Sheets.showAppHeightNineSheet(
+        context: context,
+        theme: theme,
+        widget: SendSheet(uri: uri),
+      );
       return;
     }
 
-    final amount = uri.amount;
-    Widget widget;
-    if (amount != null) {
-      final tx = SendTx(
-        uri: uri,
+    final spendableUtxos = ref.read(spendableUtxosProvider);
+    final walletService = ref.read(walletServiceProvider);
+
+    final SendTx tx;
+    try {
+      tx = walletService.createSendTx(
+        toAddress: uri.address,
         amountRaw: amount.raw,
+        spendableUtxos: spendableUtxos,
+        feePerInput: kFeePerInput,
         note: uri.message,
       );
-      widget = SendConfirmSheet(tx: tx);
-    } else {
-      widget = SendSheet(
-        uri: uri,
-        note: uri.message,
-      );
+    } catch (e) {
+      UIUtil.showSnackbar(e.toString(), context);
+      return;
     }
+
     Sheets.showAppHeightNineSheet(
       context: context,
       theme: theme,
-      widget: widget,
+      widget: SendConfirmSheet(tx: tx),
     );
   }
 

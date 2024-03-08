@@ -12,7 +12,6 @@ import '../contacts/contact.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../settings_advanced/compound_utxos_dialog.dart';
-import '../transactions/send_tx.dart';
 import '../util/numberutil.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
@@ -23,11 +22,9 @@ import '../widgets/buttons.dart';
 import '../widgets/fiat_value_container.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_handle.dart';
-import '../widgets/sheet_util.dart';
 import '../widgets/tap_outside_unfocus.dart';
 import 'balance_text_widget.dart';
 import 'fee_widget.dart';
-import 'send_confirm_sheet.dart';
 import 'send_note_widget.dart';
 
 enum AddressStyle { TEXT60, TEXT90, PRIMARY }
@@ -37,7 +34,6 @@ class SendSheet extends ConsumerStatefulWidget {
   final Contact? contact;
   final KaspaUri? uri;
   final BigInt? feeRaw;
-  final String? note;
 
   const SendSheet({
     Key? key,
@@ -45,7 +41,6 @@ class SendSheet extends ConsumerStatefulWidget {
     this.contact,
     this.uri,
     this.feeRaw,
-    this.note,
   }) : super(key: key);
 
   _SendSheetState createState() => _SendSheetState();
@@ -87,7 +82,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
 
   late BigInt? amountRaw = widget.uri?.amount?.raw;
   late BigInt? feeRaw = widget.feeRaw;
-  late String? _note = widget.note;
+  late String? _note = widget.uri?.message;
 
   bool get hasNote => _note != null;
   bool get hasUri => widget.uri != null;
@@ -266,6 +261,59 @@ class _SendSheetState extends ConsumerState<SendSheet> {
       }
 
       setState(() {});
+    }
+
+    void sendAction() {
+      final validRequest = _validateRequest();
+      if (!validRequest) {
+        return;
+      }
+      final addressText = _addressController.text.trim();
+      String destination;
+
+      if (addressText.startsWith("@")) {
+        final contacts = ref.read(contactsProvider);
+        // Need to make sure its a valid contact
+        final contact = contacts.getContactWithName(addressText);
+
+        if (contact == null) {
+          setState(() {
+            _addressValidationText = l10n.contactInvalid;
+          });
+          return;
+        }
+        destination = contact.address;
+      } else {
+        destination = addressText;
+      }
+
+      final prefix = ref.read(addressPrefixProvider);
+      final toAddress = Address.tryParse(
+        destination,
+        expectedPrefix: prefix,
+      );
+      if (toAddress == null) {
+        UIUtil.showSnackbar('Invalid destination address', context);
+        return;
+      }
+
+      if (amountRaw == null) {
+        UIUtil.showSnackbar('Invalid amount', context);
+        return;
+      }
+
+      final note = _noteController.text;
+      if (_note == null && note.isNotEmpty) {
+        _note = note;
+      }
+
+      final uri = KaspaUri(
+        address: toAddress,
+        amount: Amount.raw(amountRaw!),
+        message: note,
+      );
+
+      UIUtil.showSendFlow(context, ref: ref, uri: uri);
     }
 
     return SafeArea(
@@ -461,75 +509,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
                 children: [
                   PrimaryButton(
                     title: l10n.send,
-                    onPressed: () {
-                      final validRequest = _validateRequest();
-                      if (!validRequest) {
-                        return;
-                      }
-                      final addressText = _addressController.text.trim();
-                      String destination;
-
-                      if (addressText.startsWith("@")) {
-                        final contacts = ref.read(contactsProvider);
-                        // Need to make sure its a valid contact
-                        final contact =
-                            contacts.getContactWithName(addressText);
-
-                        if (contact == null) {
-                          setState(() {
-                            _addressValidationText = l10n.contactInvalid;
-                          });
-                          return;
-                        }
-                        destination = contact.address;
-                      } else {
-                        destination = addressText;
-                      }
-
-                      final prefix = ref.read(addressPrefixProvider);
-                      final toAddress = Address.tryParse(
-                        destination,
-                        expectedPrefix: prefix,
-                      );
-                      if (toAddress == null) {
-                        UIUtil.showSnackbar(
-                            'Invalid destination address', context);
-                        return;
-                      }
-
-                      if (amountRaw == null) {
-                        UIUtil.showSnackbar('Invalid amount', context);
-                        return;
-                      }
-
-                      final note = _noteController.text;
-                      if (_note == null && note.isNotEmpty) {
-                        _note = note;
-                      }
-
-                      final spendableUtxos = ref.read(spendableUtxosProvider);
-                      final walletService = ref.read(walletServiceProvider);
-
-                      SendTx tx;
-                      try {
-                        tx = walletService.createSendTx(
-                          toAddress: toAddress,
-                          amountRaw: amountRaw!,
-                          spendableUtxos: spendableUtxos,
-                          feePerInput: kFeePerInput,
-                          note: _note,
-                        );
-                      } catch (e) {
-                        UIUtil.showSnackbar(e.toString(), context);
-                        return;
-                      }
-
-                      Sheets.showAppHeightNineSheet(
-                        context: context,
-                        theme: theme,
-                        widget: SendConfirmSheet(tx: tx),
-                      );
-                    },
+                    onPressed: sendAction,
                   ),
                   const SizedBox(height: 16),
                   if (widget.uri == null)

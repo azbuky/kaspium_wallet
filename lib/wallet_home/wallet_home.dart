@@ -38,29 +38,28 @@ class WalletHome extends HookConsumerWidget {
 
     useEffect(() {
       final notifier = ref.read(appLinkProvider.notifier);
-      return notifier.addListener(
-        (appLink) {
-          if (appLink == null) {
+      return notifier.addListener((appLink) {
+        if (appLink == null) {
+          return;
+        }
+        final auth = ref.read(walletAuthNotifierProvider);
+        if (auth == null || auth.walletLocked == true) {
+          return;
+        }
+        final prefix = ref.read(addressPrefixProvider);
+        final uri = KaspaUri.tryParse(appLink, prefix: prefix);
+
+        Future.microtask(() {
+          if (uri == null) {
+            UIUtil.showSnackbar(l10n.kaspaUriInvalid, context);
             return;
           }
-          final auth = ref.read(walletAuthNotifierProvider);
-          if (auth?.walletLocked == true) {
-            return;
-          }
-          final prefix = ref.read(addressPrefixProvider);
-          final uri = KaspaUri.tryParse(appLink, prefix: prefix);
-          Future.microtask(() {
-            UIUtil.showSendFlow(
-              context,
-              ifNullMessage: l10n.kaspaUriInvalid,
-              theme: theme,
-              uri: uri,
-            );
-            notifier.state = null;
-          });
-        },
-        fireImmediately: true,
-      );
+
+          UIUtil.showSendFlow(context, ref: ref, uri: uri);
+
+          notifier.state = null;
+        });
+      }, fireImmediately: true);
     }, const []);
 
     return Column(
