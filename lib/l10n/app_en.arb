@@ -370,6 +370,7 @@
   "viewAddress": "View Address",
   "viewTransaction": "View Transaction",
   "walletAddresses": "Wallet Addresses",
+  "walletAddress": "Wallet Address",
   "walletName": "Wallet name",
   "walletNameDescription": "Enter a name for your wallet",
   "walletNameHint": "Wallet Name",

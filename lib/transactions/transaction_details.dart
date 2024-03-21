@@ -41,7 +41,7 @@ class TransactionDetails extends ConsumerWidget {
       TxItemType.send => l10n.toAddress.toUpperCase(),
       TxItemType.receive ||
       TxItemType.compound =>
-        l10n.walletAddresses.toUpperCase(),
+        l10n.walletAddress.toUpperCase(),
     };
 
     return Stack(
