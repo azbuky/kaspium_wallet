@@ -25,6 +25,8 @@ class PasswordLockScreen extends HookConsumerWidget {
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
+    final wallet = ref.watch(walletProvider);
+
     final enterFocusNode = useFocusNode();
     final enterController = useTextEditingController();
     final passwordError = useState<String>('');
@@ -98,8 +100,10 @@ class PasswordLockScreen extends HookConsumerWidget {
                   ),
                   Expanded(
                     child: Column(children: [
+                      const SizedBox(height: 20),
+                      Text(wallet.name, style: styles.textStyleAccount),
                       AppTextField(
-                        topMargin: 30,
+                        topMargin: 10,
                         padding: EdgeInsetsDirectional.only(
                           start: 16,
                           end: 16,
