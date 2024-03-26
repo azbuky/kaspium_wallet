@@ -63,7 +63,7 @@ class WalletAddressesSheet extends HookConsumerWidget {
       );
     }
 
-    Future<void> copyAddresses(AddressType type) async {
+    Future<void> copyAddresses(AddressType? type) async {
       final (addresses, typeStr) = switch (type) {
         AddressType.receive => (
             addressNotifier.receiveAddresses,
@@ -72,6 +72,12 @@ class WalletAddressesSheet extends HookConsumerWidget {
         AddressType.change => (
             addressNotifier.changeAddresses,
             l10n.change,
+          ),
+        null => (
+            addressNotifier.receiveAddresses.followedBy(
+              addressNotifier.changeAddresses,
+            ),
+            l10n.walletAddresses
           ),
       };
 
