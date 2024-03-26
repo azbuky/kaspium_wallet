@@ -488,5 +488,50 @@
         "type": "String"
       }
     }
+  },
+  "txReport": "Transaction Report",
+  "txReportSubtitle": "Get CSV file with transaction history",
+  "txReportDetails": "Generate a transaction report, in CSV format, that contains all the wallet's transaction history.",
+  "txReportOptionIgnoreCompound" : "Ignore compound transactions",
+  "txReportOptionIgnoreSelfTxs" : "Ignore transactions sent to self",
+  "txReportOptionRefreshTxs": "Refresh transactions",
+  "txReportGenerate": "Generate",
+  "txReportStatusRefreshing": "Refreshing transactions",
+  "txReportStatusLoading": "Loading transactions",
+  "txReportStatusReady": "Transaction report is ready!",
+  "txReportGetReport": "Get Report",
+  "txReportDate": "Date",
+  "txReportSentAmount": "Sent Amount",
+  "txReportSentCurrency": "Sent Currency",
+  "txReportReceivedAmount": "Received Amount",
+  "txReportReceivedCurrency": "Received Currency",
+  "txReportFeeAmount": "Fee Amount",
+  "txReportFeeCurrency": "Fee Currency",
+  "txReportLabel": "Label",
+  "txReportDescription": "Description",
+  "txReportTxHash": "TxHash",
+  "txReportNote": "Note",
+  "txReportLabelCost": "cost",
+  "txReportFeeForCompound": "Fee for Compound Transaction",
+  "txReportFeeForSelfSend": "Fee to send to own addresses",
+  "txReportError": "Error generating report",
+  "txReportNoTxs": "Found {numberOf} transactions.",
+  "@txReportNoTxs": {
+    "placeholders": {
+      "numberOf": {
+        "type": "int"
+      }
+    }
+  },
+  "txReportNoLoadedTxs": "({loadedTxs} of {totalTxs})",
+  "@txReportNoLoadedTxs": {
+    "placeholders": {
+      "loadedTxs": {
+        "type": "int"
+      },
+      "totalTxs": {
+        "type": "int"
+      }
+    }
   }
 }

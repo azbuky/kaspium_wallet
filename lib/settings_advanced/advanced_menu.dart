@@ -5,6 +5,7 @@ import '../app_icons.dart';
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
 import '../settings_drawer/double_line_item_two.dart';
+import '../tx_report/tx_report_sheet.dart';
 import '../widgets/app_icon_button.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/gradient_widgets.dart';
@@ -55,6 +56,14 @@ class AdvancedMenu extends ConsumerWidget {
         context: context,
         widget: const KpubSheet(),
         theme: theme,
+      );
+    }
+
+    Future<void> transactionReport() async {
+      Sheets.showAppHeightEightSheet(
+        context: context,
+        theme: theme,
+        widget: const TxReportSheet(),
       );
     }
 
@@ -129,15 +138,23 @@ class AdvancedMenu extends ConsumerWidget {
                         onPressed: scanMoreAddresses,
                       ),
                       if (wallet.hasValidKpub) ...[
+                        Divider(height: 2, color: theme.text15),
+                        DoubleLineItemTwo(
+                          heading: l10n.kpubTitle,
+                          text: l10n.kpubAuth,
+                          icon: Icons.vpn_key,
+                          iconSize: 28,
+                          onPressed: showKpub,
+                        ),
+                      ],
                       Divider(height: 2, color: theme.text15),
                       DoubleLineItemTwo(
-                        heading: l10n.kpubTitle,
-                        text: l10n.kpubAuth,
-                        icon: Icons.vpn_key,
+                        heading: l10n.txReport,
+                        text: l10n.txReportSubtitle,
+                        icon: Icons.download,
                         iconSize: 28,
-                        onPressed: showKpub,
+                        onPressed: transactionReport,
                       ),
-                      ],
                     ],
                   ),
                   const ListBottomGradient(),
