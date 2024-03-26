@@ -71,7 +71,7 @@ const kBlockExplorerOptions = {
   KaspaNetwork.mainnet: [
     kKaspaExplorerMainnet,
     kKasFyiMainnet,
-    //kKatnipMainnet,
+    kKatnipMainnet,
   ],
   KaspaNetwork.testnet: [
     kKatnipTestnet,
