@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../app_icons.dart';
 import '../app_providers.dart';
 import '../app_styles.dart';
 import '../kaspa/kaspa.dart';
@@ -54,12 +55,11 @@ class TransactionCard extends ConsumerWidget {
     final date = formater.format(txDate);
 
     final txTypeIcon = switch (item.type) {
-      TxItemType.send => Icon(Icons.remove, color: theme.primary, size: 18),
-      TxItemType.receive => Icon(Icons.add, color: theme.primary, size: 18),
-      TxItemType.compound => Padding(
-          padding: EdgeInsetsDirectional.only(end: 2),
-          child: Icon(Icons.refresh, color: theme.primary, size: 18),
-        ),
+      TxItemType.send => Icon(AppIcons.sent, color: theme.primary, size: 18),
+      TxItemType.receive =>
+        Icon(AppIcons.received, color: theme.primary, size: 18),
+      TxItemType.compound =>
+        Icon(Icons.refresh, color: theme.primary, size: 18),
     };
 
     void showTxDetails() {
@@ -86,53 +86,51 @@ class TransactionCard extends ConsumerWidget {
       child: TextButton(
         style: styles.cardButtonStyle,
         onPressed: showTxDetails,
-        child: Container(
+        child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      txTypeIcon,
-                      RichText(
-                        maxLines: 2,
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: formatedValue,
-                              style: styles.textStyleTransactionAmount
-                                  .copyWith(fontSize: AppFontSizes.medium),
-                            ),
-                            TextSpan(
-                              text: ' KAS',
-                              style: styles.textStyleTransactionUnit.copyWith(
-                                fontSize: AppFontSizes.medium,
-                                fontWeight: FontWeight.w200,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    date,
-                    textAlign: TextAlign.start,
-                    style: styles.textStyleTransactionType.copyWith(
-                        fontWeight: FontWeight.w400,
-                        fontSize: AppFontSizes.smallest,
-                        color: theme.text60),
-                  ),
-                ],
+              Container(
+                margin: const EdgeInsetsDirectional.only(end: 12),
+                child: txTypeIcon,
               ),
-              const SizedBox(height: 4),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
+              Expanded(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        RichText(
+                          maxLines: 2,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: formatedValue,
+                                style: styles.textStyleTransactionAmount
+                                    .copyWith(fontSize: AppFontSizes.small),
+                              ),
+                              TextSpan(
+                                text: ' KAS',
+                                style: styles.textStyleTransactionUnit
+                                    .copyWith(fontSize: AppFontSizes.small),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          date,
+                          textAlign: TextAlign.start,
+                          style: styles.textStyleTransactionType.copyWith(
+                              fontWeight: FontWeight.w400,
+                              fontSize: AppFontSizes.smallest,
+                              color: theme.text60),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
@@ -163,7 +161,6 @@ class TransactionCard extends ConsumerWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(height: 4),
                         Row(
                           children: [
                             if (isThisWallet && isSendType) ...[
@@ -188,8 +185,8 @@ class TransactionCard extends ConsumerWidget {
                         ],
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
