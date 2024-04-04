@@ -12,14 +12,23 @@ import '../wallet/wallet_types.dart';
 import 'transaction_card.dart';
 import 'transaction_empty_list.dart';
 import 'transaction_types.dart';
+import 'tx_settings/tx_settings_providers.dart';
+import 'tx_settings/tx_settings_types.dart';
 
 final _txListItemsProvider =
     Provider.autoDispose.family<List<TxListItem>, WalletInfo>((ref, wallet) {
   final addressNotifier = ref.watch(addressNotifierProvider.notifier);
   final utxoNotifier = ref.watch(utxoNotifierProvider.notifier);
   final txNotifier = ref.watch(txNotifierForWalletProvider(wallet));
+  final txFilter = ref.watch(txFilterProvider);
 
   final txItems = txNotifier.loadedTxs.expand((tx) {
+    if (txFilter == TxFilter.hideNotAcceptedCoinbase &&
+        tx.apiTx.inputs.isEmpty &&
+        !tx.apiTx.isAccepted) {
+      return [];
+    }
+
     final hasWalletInputs = tx.inputData.whereNotNull().any(
               (input) => addressNotifier.containsAddress(input.address),
             ) ||

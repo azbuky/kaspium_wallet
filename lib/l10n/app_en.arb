@@ -533,5 +533,8 @@
         "type": "int"
       }
     }
-  }
+  },
+  "txFilterDialogTitle": "Transaction Filter",
+  "txFilterDialogOptionAllTxs": "Show All Transactions",
+  "txFilterDialogOptionHideNotAcceptedCoinbase": "Hide Not Accepted Coinbase Transactions"
 }

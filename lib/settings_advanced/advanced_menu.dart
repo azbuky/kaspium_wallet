@@ -5,6 +5,7 @@ import '../app_icons.dart';
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
 import '../settings_drawer/double_line_item_two.dart';
+import '../transactions/tx_filter_settings.dart';
 import '../tx_report/tx_report_sheet.dart';
 import '../widgets/app_icon_button.dart';
 import '../widgets/app_simpledialog.dart';
@@ -155,6 +156,8 @@ class AdvancedMenu extends ConsumerWidget {
                         iconSize: 28,
                         onPressed: transactionReport,
                       ),
+                      Divider(height: 2, color: theme.text15),
+                      const TxFilterSettings(),
                     ],
                   ),
                   const ListBottomGradient(),

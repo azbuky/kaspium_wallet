@@ -7,6 +7,7 @@ import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../main_card/main_card.dart';
 import '../transactions/transactions_widget.dart';
+import '../transactions/tx_filter_dialog.dart';
 import '../util/ui_util.dart';
 import '../utxos/utxos_widget.dart';
 import '../widgets/gradient_widgets.dart';
@@ -81,12 +82,15 @@ class WalletHome extends HookConsumerWidget {
                         const EdgeInsets.symmetric(horizontal: 20),
                     tabs: [
                       Tab(
-                        child: Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          child: Text(
-                            l10n.transactionsUppercase,
-                            textAlign: TextAlign.center,
-                            style: styles.textStyleTabLabel,
+                        child: GestureDetector(
+                          onLongPress: () => showTxFilterDialog(context, ref),
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 20),
+                            child: Text(
+                              l10n.transactionsUppercase,
+                              textAlign: TextAlign.center,
+                              style: styles.textStyleTabLabel,
+                            ),
                           ),
                         ),
                       ),
