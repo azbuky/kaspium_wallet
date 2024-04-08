@@ -596,9 +596,11 @@ class _SendSheetState extends ConsumerState<SendSheet> {
       return false;
     }
 
-    BigInt balanceRaw = ref.read(totalBalanceProvider).raw;
+    final balanceRaw = ref.read(totalBalanceProvider).raw;
+    final utxoCount = ref.read(utxoListProvider).length;
+    final maxFees = BigInt.from(utxoCount) * kFeePerInput;
 
-    if (amountRaw! > balanceRaw) {
+    if (amountRaw! > balanceRaw - maxFees) {
       setState(() {
         _amountValidationText = l10n.insufficientBalance;
       });
