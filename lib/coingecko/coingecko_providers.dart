@@ -47,7 +47,7 @@ final _kaspaPriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
       timestamp: nowTimestamp,
     );
   } catch (e, st) {
-    log.e('Failed to fetch KAS exchange rate', e, st);
+    log.e('Failed to fetch KAS exchange rate', error: e, stackTrace: st);
     if (cached.currency == currency.currency) {
       return cached;
     }

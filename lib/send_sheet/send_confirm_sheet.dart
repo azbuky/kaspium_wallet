@@ -87,7 +87,7 @@ class SendConfirmSheet extends HookConsumerWidget {
         );
       } catch (e, st) {
         final log = ref.read(loggerProvider);
-        log.e('Failed to send transaction', e, st);
+        log.e('Failed to send transaction', error: e, stackTrace: st);
 
         UIUtil.showSnackbar(l10n.sendError, context);
         Navigator.of(context).pop();

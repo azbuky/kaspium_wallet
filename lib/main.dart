@@ -31,7 +31,7 @@ void main() async {
     Logger.level = Level.debug;
     //debugRepaintRainbowEnabled = true;
   } else {
-    Logger.level = Level.nothing;
+    Logger.level = Level.off;
   }
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

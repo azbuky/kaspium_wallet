@@ -21,7 +21,7 @@ class LogoutScreen extends HookConsumerWidget {
         await notifier.logout(network);
       } catch (e, st) {
         final log = ref.read(loggerProvider);
-        log.e('Failed to logout', e, st);
+        log.e('Failed to logout', error: e, stackTrace: st);
       } finally {
         Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
       }

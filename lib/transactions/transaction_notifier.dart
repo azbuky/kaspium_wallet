@@ -86,7 +86,7 @@ class TransactionNotifier extends SafeChangeNotifier {
         apiTxs.addAll(txsForAddress);
       }
     } catch (e) {
-      log.e('Failed to update transactions', e);
+      log.e('Failed to update transactions', error: e);
     }
 
     if (apiTxs.isEmpty) {
@@ -101,7 +101,7 @@ class TransactionNotifier extends SafeChangeNotifier {
 
       notifyListeners();
     } catch (e) {
-      log.e('Failed to update transactions', e);
+      log.e('Failed to update transactions', error: e);
     }
   }
 
