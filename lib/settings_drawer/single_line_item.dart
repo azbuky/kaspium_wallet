@@ -66,10 +66,11 @@ class SingleLineItem extends ConsumerWidget {
                 ),
               ),
             ),
-            Container(
+            Expanded(
               child: Text(
                 heading,
                 style: styles.textStyleSettingItemHeader,
+                maxLines: 2,
               ),
             ),
           ],
