@@ -75,6 +75,7 @@ class App extends HookConsumerWidget {
                 debugShowCheckedModeBanner: false,
                 title: kWalletTitle,
                 theme: ThemeData(
+                  useMaterial3: false,
                   dialogBackgroundColor: theme.backgroundDark,
                   primaryColor: theme.primary,
                   fontFamily: kDefaultFontFamily,
