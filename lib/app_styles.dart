@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'themes/themes.dart';
 
 const kDefaultFontFamily = 'NunitoSans';
+const kMonospaceFontFamily = 'RobotoMono';
 
 class AppFontSizes {
   static const smallest = 12.0;
@@ -183,7 +184,7 @@ class AppStyles {
       fontSize: AppFontSizes.small,
       height: 1.5,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
     );
   }
 
@@ -193,7 +194,7 @@ class AppStyles {
       fontSize: AppFontSizes.small,
       height: 1.5,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
     );
   }
 
@@ -203,7 +204,7 @@ class AppStyles {
       fontSize: AppFontSizes.small,
       height: 1.5,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
     );
   }
 
@@ -213,7 +214,7 @@ class AppStyles {
       fontSize: AppFontSizes.small,
       height: 1.5,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
     );
   }
 
@@ -223,7 +224,7 @@ class AppStyles {
       fontSize: AppFontSizes.small,
       height: 1.5,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
     );
   }
 
@@ -385,7 +386,7 @@ class AppStyles {
   TextStyle get textStyleTransactionAddress {
     return TextStyle(
       fontSize: AppFontSizes.smallest,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       fontWeight: FontWeight.w100,
       color: theme.text60,
     );
@@ -493,22 +494,31 @@ class AppStyles {
   );
 
   // Text style for seed text
-  TextStyle get textStyleSeed {
+  TextStyle get textStyleSeedPrimary {
     return TextStyle(
       fontSize: AppFontSizes.small,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       color: theme.primary,
       height: 1.5,
       letterSpacing: 1,
     );
   }
 
+  late final textStyleSeed = TextStyle(
+    fontSize: AppFontSizes.small,
+    fontWeight: FontWeight.w100,
+    fontFamily: kMonospaceFontFamily,
+    color: theme.text,
+    height: 1.5,
+    letterSpacing: 1,
+  );
+
   TextStyle get textStyleSeedGray {
     return TextStyle(
       fontSize: AppFontSizes.small,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       color: theme.text60,
       height: 1.5,
       letterSpacing: 1,
@@ -520,7 +530,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       color: theme.primary,
       height: 1,
       letterSpacing: 1,
@@ -531,7 +541,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       color: theme.text60,
       height: 1,
       letterSpacing: 1,
@@ -542,7 +552,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       fontWeight: FontWeight.w100,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       color: theme.success,
       height: 1.5,
       letterSpacing: 1,
@@ -694,7 +704,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       color: theme.primary,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       fontWeight: FontWeight.w100,
     );
   }
@@ -704,7 +714,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       color: theme.success,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       fontWeight: FontWeight.w100,
     );
   }
@@ -714,7 +724,7 @@ class AppStyles {
     return TextStyle(
       fontSize: AppFontSizes.small,
       color: theme.text30,
-      fontFamily: 'OverpassMono',
+      fontFamily: kMonospaceFontFamily,
       fontWeight: FontWeight.w100,
     );
   }
@@ -878,6 +888,24 @@ class AppStyles {
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
+      ),
+    ).copyWith(
+      overlayColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        if (states.contains(MaterialState.focused)) return theme.text15;
+        if (states.contains(MaterialState.hovered)) return theme.text05;
+        if (states.contains(MaterialState.pressed)) return theme.text15;
+        return null;
+      }),
+    );
+  }
+
+  ButtonStyle get fieldCardButtonStyle {
+    return TextButton.styleFrom(
+      backgroundColor: theme.backgroundDarkest,
+      padding: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25),
       ),
     ).copyWith(
       overlayColor: MaterialStateProperty.resolveWith<Color?>(

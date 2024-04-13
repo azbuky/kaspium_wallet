@@ -22,7 +22,7 @@ CoinGeckoPrice _$CoinGeckoPriceFromJson(Map<String, dynamic> json) {
 mixin _$CoinGeckoPrice {
   AvailableCurrencies get currency => throw _privateConstructorUsedError;
   Decimal get price => throw _privateConstructorUsedError;
-  Decimal get priceBtc => throw _privateConstructorUsedError;
+  int get timestamp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $CoinGeckoPriceCopyWith<$Res> {
           CoinGeckoPrice value, $Res Function(CoinGeckoPrice) then) =
       _$CoinGeckoPriceCopyWithImpl<$Res, CoinGeckoPrice>;
   @useResult
-  $Res call({AvailableCurrencies currency, Decimal price, Decimal priceBtc});
+  $Res call({AvailableCurrencies currency, Decimal price, int timestamp});
 }
 
 /// @nodoc
@@ -54,7 +54,7 @@ class _$CoinGeckoPriceCopyWithImpl<$Res, $Val extends CoinGeckoPrice>
   $Res call({
     Object? currency = null,
     Object? price = null,
-    Object? priceBtc = null,
+    Object? timestamp = null,
   }) {
     return _then(_value.copyWith(
       currency: null == currency
@@ -65,10 +65,10 @@ class _$CoinGeckoPriceCopyWithImpl<$Res, $Val extends CoinGeckoPrice>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as Decimal,
-      priceBtc: null == priceBtc
-          ? _value.priceBtc
-          : priceBtc // ignore: cast_nullable_to_non_nullable
-              as Decimal,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -81,7 +81,7 @@ abstract class _$$_CoinGeckoPriceCopyWith<$Res>
       __$$_CoinGeckoPriceCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AvailableCurrencies currency, Decimal price, Decimal priceBtc});
+  $Res call({AvailableCurrencies currency, Decimal price, int timestamp});
 }
 
 /// @nodoc
@@ -97,7 +97,7 @@ class __$$_CoinGeckoPriceCopyWithImpl<$Res>
   $Res call({
     Object? currency = null,
     Object? price = null,
-    Object? priceBtc = null,
+    Object? timestamp = null,
   }) {
     return _then(_$_CoinGeckoPrice(
       currency: null == currency
@@ -108,10 +108,10 @@ class __$$_CoinGeckoPriceCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as Decimal,
-      priceBtc: null == priceBtc
-          ? _value.priceBtc
-          : priceBtc // ignore: cast_nullable_to_non_nullable
-              as Decimal,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -120,7 +120,7 @@ class __$$_CoinGeckoPriceCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CoinGeckoPrice extends _CoinGeckoPrice {
   const _$_CoinGeckoPrice(
-      {required this.currency, required this.price, required this.priceBtc})
+      {required this.currency, required this.price, this.timestamp = 0})
       : super._();
 
   factory _$_CoinGeckoPrice.fromJson(Map<String, dynamic> json) =>
@@ -131,11 +131,12 @@ class _$_CoinGeckoPrice extends _CoinGeckoPrice {
   @override
   final Decimal price;
   @override
-  final Decimal priceBtc;
+  @JsonKey()
+  final int timestamp;
 
   @override
   String toString() {
-    return 'CoinGeckoPrice(currency: $currency, price: $price, priceBtc: $priceBtc)';
+    return 'CoinGeckoPrice(currency: $currency, price: $price, timestamp: $timestamp)';
   }
 
   @override
@@ -146,13 +147,13 @@ class _$_CoinGeckoPrice extends _CoinGeckoPrice {
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.priceBtc, priceBtc) ||
-                other.priceBtc == priceBtc));
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, currency, price, priceBtc);
+  int get hashCode => Object.hash(runtimeType, currency, price, timestamp);
 
   @JsonKey(ignore: true)
   @override
@@ -172,7 +173,7 @@ abstract class _CoinGeckoPrice extends CoinGeckoPrice {
   const factory _CoinGeckoPrice(
       {required final AvailableCurrencies currency,
       required final Decimal price,
-      required final Decimal priceBtc}) = _$_CoinGeckoPrice;
+      final int timestamp}) = _$_CoinGeckoPrice;
   const _CoinGeckoPrice._() : super._();
 
   factory _CoinGeckoPrice.fromJson(Map<String, dynamic> json) =
@@ -183,7 +184,7 @@ abstract class _CoinGeckoPrice extends CoinGeckoPrice {
   @override
   Decimal get price;
   @override
-  Decimal get priceBtc;
+  int get timestamp;
   @override
   @JsonKey(ignore: true)
   _$$_CoinGeckoPriceCopyWith<_$_CoinGeckoPrice> get copyWith =>

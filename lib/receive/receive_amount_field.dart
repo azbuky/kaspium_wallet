@@ -7,6 +7,7 @@ import '../app_icons.dart';
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
+import '../util/numberutil.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/fiat_value_container.dart';
 import '../widgets/kas_icon_widget.dart';
@@ -14,8 +15,13 @@ import '../widgets/kas_icon_widget.dart';
 final amountProvider = StateProvider.autoDispose<Amount?>((ref) => null);
 
 class ReceiveAmountField extends HookConsumerWidget {
+  final String hint;
+  final bool allowFiat;
+
   const ReceiveAmountField({
     Key? key,
+    this.hint = '',
+    this.allowFiat = true,
   }) : super(key: key);
 
   @override
@@ -24,15 +30,50 @@ class ReceiveAmountField extends HookConsumerWidget {
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
-    final formatter = ref.watch(kaspaFormatterProvider);
+    final kaspaFormatter = ref.watch(kaspaFormatterProvider);
+    final fiatFormatter = ref.watch(fiatFormatterProvider);
     final amount = ref.watch(amountProvider);
 
     final amountController = useTextEditingController();
     final amountFocusNode = useFocusNode();
 
+    final fiatMode = ref.watch(fiatModeProvider);
+    final amountHint = useState<String?>(null);
+
+    final hintText = fiatMode ? l10n.enterFiatValue : l10n.enterAmount;
+
+    useEffect(() {
+      amountFocusNode.addListener(() {
+        amountHint.value = amountFocusNode.hasFocus ? '' : null;
+      });
+      return null;
+    });
+
+    useEffect(() {
+      if (amount != null) {
+        amountController.text = switch (fiatMode) {
+          true => ref.read(fiatForAmountProvider(amount)),
+          false => NumberUtil.textFieldFormatedAmount(amount),
+        };
+      }
+      return null;
+    }, [fiatMode]);
+
     void onValueChanged(String text) {
       final notifier = ref.read(amountProvider.notifier);
-      final value = formatter.tryParse(text);
+      final value = switch (fiatMode) {
+        true => () {
+            final price = ref.read(kaspaPriceProvider);
+            final fiatValue = fiatFormatter.tryParse(text);
+            if (price.price == Decimal.zero || fiatValue == null) {
+              return null;
+            }
+            return (fiatValue / price.price)
+                .toDecimal(scaleOnInfinitePrecision: 8);
+          }(),
+        false => kaspaFormatter.tryParse(text),
+      };
+
       if (value == null) {
         notifier.state = null;
         return;
@@ -48,29 +89,30 @@ class ReceiveAmountField extends HookConsumerWidget {
 
     return FiatValueContainer(
       amount: amount ?? Amount.zero,
+      showAmount: fiatMode,
+      hint: amountHint.value ?? hint,
       child: AppTextField(
         focusNode: amountFocusNode,
         controller: amountController,
         topMargin: 15,
         cursorColor: theme.primary,
         style: styles.textStyleParagraphPrimary,
-        inputFormatters: [formatter],
+        inputFormatters: [fiatMode ? fiatFormatter : kaspaFormatter],
         onChanged: onValueChanged,
         textInputAction: TextInputAction.done,
         maxLines: null,
         autocorrect: false,
-        hintText: l10n.enterAmount,
-        prefixButton: TextFieldButton(
-          icon: AppIcons.swapcurrency,
-          widget: Image.asset(
-            kKasIconPath,
-            width: 40,
-            height: 40,
-            filterQuality: FilterQuality.medium,
-            isAntiAlias: true,
-          ),
-          onPressed: () {},
-        ),
+        hintText: amountHint.value ?? hintText,
+        prefixButton: allowFiat
+            ? TextFieldButton(
+                icon: AppIcons.swapcurrency,
+                onPressed: () => ref
+                    .read(fiatModeProvider.notifier)
+                    .update((state) => !state),
+              )
+            : TextFieldButton(
+                widget: Image.asset(kKasIconPath, width: 40, height: 40),
+              ),
         suffixButton: TextFieldButton(
           icon: Icons.clear,
           onPressed: clearAmount,

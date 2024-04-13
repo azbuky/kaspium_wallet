@@ -7,6 +7,7 @@ import '../coingecko/coingecko_providers.dart';
 import '../core/core_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../settings/settings_providers.dart';
+import '../util/formatters.dart';
 import '../util/numberutil.dart';
 import '../utxos/utxos_providers.dart';
 import '../wallet_address/wallet_address_providers.dart';
@@ -111,53 +112,40 @@ final formatedTotalFiatProvider = Provider.autoDispose((ref) {
   final price = ref.watch(kaspaPriceProvider);
   final currency = ref.watch(currencyProvider);
   final fiat = balance.value * price.price;
-  final decimals = fiat >= Decimal.parse('0.01')
+  final decimals = fiat >= Decimal.parse('1')
       ? 2
-      : fiat >= Decimal.parse('0.001')
-          ? 3
-          : 4;
+      : fiat >= Decimal.parse('0.01')
+          ? 4
+          : fiat >= Decimal.parse('0.0001')
+              ? 6
+              : 8;
 
   final formatter = NumberFormat.currency(
-      symbol: currency.getCurrencySymbol(),
-      name: currency.getIso4217Code(),
-      decimalDigits: decimals);
+    symbol: currency.symbol,
+    name: currency.name,
+    decimalDigits: decimals,
+  );
 
   return formatter.format(DecimalIntl(fiat));
-});
-
-final totalBtcValueProvider = Provider.autoDispose((ref) {
-  final price = ref.watch(kaspaPriceProvider);
-  final balance = ref.watch(totalBalanceProvider);
-  final value = balance.value * price.priceBtc;
-
-  return value;
 });
 
 final formatedKaspaPriceProvider = Provider.autoDispose((ref) {
   final price = ref.watch(kaspaPriceProvider).price;
   final currency = ref.watch(currencyProvider);
-  final decimals = price >= Decimal.parse('1') ? 2 : 4;
+  final decimals = price >= Decimal.parse('1')
+      ? 2
+      : price >= Decimal.parse('0.01')
+          ? 4
+          : price >= Decimal.parse('0.0001')
+              ? 6
+              : 8;
   final priceStr = NumberFormat.currency(
-    symbol: currency.getCurrencySymbol(),
-    name: currency.getIso4217Code(),
+    symbol: currency.symbol,
+    name: currency.name,
     decimalDigits: decimals,
   ).format(DecimalIntl(price));
 
   return '$priceStr / KAS';
-});
-
-final formatedTotalBtcProvider = Provider.autoDispose((ref) {
-  final btcBalance = ref.watch(totalBtcValueProvider);
-  final decimals = btcBalance >= Decimal.parse('0.001')
-      ? 4
-      : btcBalance >= Decimal.parse('0.00001')
-          ? 6
-          : 8;
-  return NumberFormat.currency(
-    name: '',
-    symbol: '',
-    decimalDigits: decimals,
-  ).format(DecimalIntl(btcBalance));
 });
 
 final fiatValueForAddressProvider =
@@ -174,8 +162,8 @@ final formatedFiatForAddressProvider =
   final currency = ref.watch(currencyProvider);
 
   return NumberFormat.currency(
-    symbol: currency.getCurrencySymbol(),
-    name: currency.getIso4217Code(),
+    symbol: currency.symbol,
+    name: currency.name,
   ).format(DecimalIntl(balance));
 });
 
@@ -186,7 +174,56 @@ final formatedFiatForAmountProvider =
 
   final fiatValue = value.value * price.price;
   return NumberFormat.currency(
-    symbol: currency.getCurrencySymbol(),
-    name: currency.getIso4217Code(),
+    symbol: currency.symbol,
+    name: currency.name,
   ).format(DecimalIntl(fiatValue));
+});
+
+final fiatForAmountProvider =
+    Provider.autoDispose.family<String, Amount>((ref, value) {
+  final price = ref.watch(kaspaPriceProvider);
+  final currency = ref.watch(currencyProvider);
+
+  final fiatValue = value.value * price.price;
+  if (fiatValue == Decimal.zero) {
+    return '0';
+  }
+  final formater = NumberFormat.currency(
+    symbol: currency.symbol,
+    name: currency.name,
+  );
+  return formater
+      .format(DecimalIntl(fiatValue))
+      .replaceAll(formater.currencySymbol, '');
+});
+
+final kaspaFormatterProvider = Provider((ref) {
+  final format = NumberFormat.currency(name: '', symbol: 'KAS');
+  final formatter = CurrencyFormatter(
+    groupSeparator: format.symbols.GROUP_SEP,
+    decimalSeparator: format.symbols.DECIMAL_SEP,
+    maxDecimalDigits: TokenInfo.kaspa.decimals,
+    maxAmount: kMaxKaspa,
+  );
+
+  return formatter;
+});
+
+final fiatFormatterProvider = Provider.autoDispose((ref) {
+  final price = ref.watch(kaspaPriceProvider);
+  final currency = ref.watch(currencyProvider);
+  final maxAmount = price.price * kMaxKaspa;
+
+  final format = NumberFormat.currency(
+    name: currency.name,
+    symbol: currency.symbol,
+  );
+  final formatter = CurrencyFormatter(
+    groupSeparator: format.symbols.GROUP_SEP,
+    decimalSeparator: format.symbols.DECIMAL_SEP,
+    maxDecimalDigits: format.decimalDigits ?? 2,
+    maxAmount: maxAmount,
+  );
+
+  return formatter;
 });

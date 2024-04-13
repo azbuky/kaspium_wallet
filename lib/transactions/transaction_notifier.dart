@@ -157,30 +157,22 @@ class TransactionNotifier extends SafeChangeNotifier {
     }
     _loading = true;
 
-    final uncheckedAddresses = Set.of(pendingAddresses);
     final refreshAddresses = <String>{};
 
     try {
       final cachedBalances = await cache.getCachedBalances();
 
-      for (final balance in balances.entries) {
-        final cached = cachedBalances[balance.key] ?? (BigInt.zero, 0);
-        if (balance.value == cached.$1) {
-          if (balance.value != BigInt.zero) {
-            uncheckedAddresses.remove(balance.key);
-          }
+      for (final address in pendingAddresses) {
+        final balance = balances[address] ?? BigInt.zero;
+        final cached = cachedBalances[address] ?? (BigInt.zero, 0);
+
+        if (balance == cached.$1 &&
+            (balance != BigInt.zero || cached.$2 != 0)) {
           continue;
         }
 
-        final txCount = await api.getTxCountForAddress(balance.key);
-        if (txCount != cached.$2) {
-          refreshAddresses.add(balance.key);
-        }
-      }
-
-      for (final address in uncheckedAddresses) {
         final txCount = await api.getTxCountForAddress(address);
-        if (txCount != 0) {
+        if (txCount != cached.$2) {
           refreshAddresses.add(address);
         }
       }

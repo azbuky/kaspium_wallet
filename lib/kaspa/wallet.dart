@@ -1,9 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:coinslib/coinslib.dart';
-
 import '../utils.dart';
-import 'bip32_kdx.dart';
+import 'bip32/bip32.dart';
 import 'network.dart';
 import 'types/address_prefix.dart';
 
@@ -11,6 +9,17 @@ const kSeedSize = 64;
 
 const kKaspaDerivationPath = "m/44'/111111'/0'";
 const kLegacyDerivationPath = "m/44'/972/0'";
+
+String convertIfXpub(String hdPubKey) {
+  if (hdPubKey.startsWith('xpub')) {
+    try {
+      final bip32 = BIP32.fromBase58(hdPubKey);
+      bip32.network = networkTypeForNetwork(KaspaNetwork.mainnet);
+      return bip32.toBase58();
+    } catch (_) {}
+  }
+  return hdPubKey;
+}
 
 String convertHdPublicKey(String hdPubKey, KaspaNetwork toNetwork) {
   final network = networkForKpub(hdPubKey);

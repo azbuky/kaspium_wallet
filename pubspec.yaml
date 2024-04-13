@@ -50,9 +50,9 @@ dependencies:
   flutter_displaymode: 0.6.0
   #push: 1.0.0
   cross_file: 0.3.3+4
-  protobuf: 2.1.0
-  grpc: 3.2.0
-  coinslib: 3.1.7
+  protobuf: 3.1.0
+  grpc: 3.2.4
+  hex: 0.2.0
   collection: 1.17.2
   fixnum: 1.1.0
   pointycastle: 3.7.3
@@ -65,17 +65,7 @@ dev_dependencies:
   json_serializable: 6.6.2
   flutter_lints: 2.0.1
   freezed: 2.3.4
-  flutter_launcher_icons: 0.13.1
   watcher: 1.1.0
-
-# Flutter launcher icons
-flutter_icons:
-  android: "ic_launcher"
-  ios: true
-  image_path_android: "assets/icon/icon_bg.png"
-  image_path_ios: "assets/icon/icon_ios.png"
-  adaptive_icon_background: "#232323"
-  adaptive_icon_foreground: "assets/icon/icon_bg.png"
 
 # The following section is specific to Flutter.
 flutter:
@@ -100,6 +90,12 @@ flutter:
         - asset: fonts/OverpassMono-Regular.ttf
           weight: 600
         - asset: fonts/OverpassMono-Light.ttf
+          weight: 100
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/RobotoMono-Regular.ttf
+          weight: 600
+        - asset: fonts/RobotoMono-Light.ttf
           weight: 100
     - family: AppIcons
       fonts:

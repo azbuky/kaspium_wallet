@@ -6,7 +6,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../app_providers.dart';
@@ -14,9 +13,13 @@ import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../send_sheet/account_address_widget.dart';
 import '../util/ui_util.dart';
+import '../wallet_address/address_selection_sheet.dart';
+import '../wallet_address/wallet_address.dart';
 import '../widgets/buttons/primary_outline_button.dart';
+import '../widgets/qr_code_widget.dart';
 import '../widgets/sheet_handle.dart';
 import '../widgets/sheet_header_button.dart';
+import '../widgets/sheet_util.dart';
 import '../widgets/tap_outside_unfocus.dart';
 import 'receive_amount_field.dart';
 import 'share_card.dart';
@@ -29,7 +32,7 @@ class ReceiveSheet extends HookConsumerWidget {
     final theme = ref.watch(themeProvider);
     final l10n = l10nOf(context);
 
-    final receiveAddress = ref.watch(receiveAddressProvider);
+    final receiveAddress = ref.watch(selectedAddressProvider);
     final address = receiveAddress.encoded;
     final amount = ref.watch(amountProvider);
 
@@ -49,6 +52,16 @@ class ReceiveSheet extends HookConsumerWidget {
       return byteData?.buffer.asUint8List();
     }
 
+    void selectAddress() {
+      Sheets.showAppHeightNineSheet(
+        context: context,
+        theme: theme,
+        widget: const AddressSelectionSheet(
+          addressType: AddressType.receive,
+        ),
+      );
+    }
+
     Future<void> copyAddress() async {
       try {
         await Clipboard.setData(ClipboardData(text: address));
@@ -61,9 +74,9 @@ class ReceiveSheet extends HookConsumerWidget {
     Future<void> copyUri() async {
       try {
         await Clipboard.setData(ClipboardData(text: kaspaUri.toString()));
-        UIUtil.showSnackbar(l10n.addressCopied, context);
+        UIUtil.showSnackbar(l10n.kaspaUriCopied, context);
       } catch (_) {
-        UIUtil.showSnackbar(l10n.addressCopiedFailed, context);
+        UIUtil.showSnackbar(l10n.kaspaUriCopyFailed, context);
       }
     }
 
@@ -112,21 +125,22 @@ class ReceiveSheet extends HookConsumerWidget {
                 Column(children: [
                   const SheetHandle(),
                   GestureDetector(
-                    child: const AccountAddressWidget(),
-                    onTap: copyAddress,
+                    child: AccountAddressWidget(address: receiveAddress),
+                    onTap: selectAddress,
+                    onLongPress: copyAddress,
                   ),
                 ]),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(top: 10, end: 10),
                   child: SheetHeaderButton(
                     icon: Icons.copy,
-                    onPressed: copyUri,
+                    onPressed: copyAddress,
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 20),
-            const ReceiveAmountField(),
+            ReceiveAmountField(hint: l10n.optionalLabel),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -154,30 +168,9 @@ class ReceiveSheet extends HookConsumerWidget {
                         ),
                       ),
                       Center(
-                        child: GestureDetector(
+                        child: QrCodeWidget(
+                          data: '$kaspaUri',
                           onTap: copyUri,
-                          child: Container(
-                            constraints: BoxConstraints(maxWidth: 280),
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              shape: BoxShape.rectangle,
-                              border:
-                                  Border.all(color: theme.primary, width: 2),
-                            ),
-                            child: QrImageView(
-                              data: '$kaspaUri',
-                              gapless: false,
-                              embeddedImage:
-                                  const AssetImage('assets/qr_code_icon.png'),
-                              embeddedImageStyle: QrEmbeddedImageStyle(
-                                size: const Size(40, 40),
-                              ),
-                              backgroundColor: Colors.white,
-                              errorCorrectionLevel: QrErrorCorrectLevel.Q,
-                              semanticsLabel: 'QR code for address $address',
-                            ),
-                          ),
                         ),
                       ),
                     ],

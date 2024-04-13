@@ -1,4 +1,4 @@
-const kBip39EnglishWords = {
+const WORDLIST = [
   "abandon",
   "ability",
   "able",
@@ -2047,4 +2047,4 @@ const kBip39EnglishWords = {
   "zero",
   "zone",
   "zoo"
-};
+];

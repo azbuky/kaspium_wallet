@@ -7,6 +7,7 @@ import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../main_card/main_card.dart';
 import '../transactions/transactions_widget.dart';
+import '../transactions/tx_filter_dialog.dart';
 import '../util/ui_util.dart';
 import '../utxos/utxos_widget.dart';
 import '../widgets/gradient_widgets.dart';
@@ -38,29 +39,28 @@ class WalletHome extends HookConsumerWidget {
 
     useEffect(() {
       final notifier = ref.read(appLinkProvider.notifier);
-      return notifier.addListener(
-        (appLink) {
-          if (appLink == null) {
+      return notifier.addListener((appLink) {
+        if (appLink == null) {
+          return;
+        }
+        final auth = ref.read(walletAuthNotifierProvider);
+        if (auth == null || auth.walletLocked == true) {
+          return;
+        }
+        final prefix = ref.read(addressPrefixProvider);
+        final uri = KaspaUri.tryParse(appLink, prefix: prefix);
+
+        Future.microtask(() {
+          if (uri == null) {
+            UIUtil.showSnackbar(l10n.kaspaUriInvalid, context);
             return;
           }
-          final auth = ref.read(walletAuthNotifierProvider);
-          if (auth?.walletLocked == true) {
-            return;
-          }
-          final prefix = ref.read(addressPrefixProvider);
-          final uri = KaspaUri.tryParse(appLink, prefix: prefix);
-          Future.microtask(() {
-            UIUtil.showSendFlow(
-              context,
-              ifNullMessage: l10n.kaspaUriInvalid,
-              theme: theme,
-              uri: uri,
-            );
-            notifier.state = null;
-          });
-        },
-        fireImmediately: true,
-      );
+
+          UIUtil.showSendFlow(context, ref: ref, uri: uri);
+
+          notifier.state = null;
+        });
+      }, fireImmediately: true);
     }, const []);
 
     return Column(
@@ -82,12 +82,15 @@ class WalletHome extends HookConsumerWidget {
                         const EdgeInsets.symmetric(horizontal: 20),
                     tabs: [
                       Tab(
-                        child: Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          child: Text(
-                            l10n.transactionsUppercase,
-                            textAlign: TextAlign.center,
-                            style: styles.textStyleTabLabel,
+                        child: GestureDetector(
+                          onLongPress: () => showTxFilterDialog(context, ref),
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 20),
+                            child: Text(
+                              l10n.transactionsUppercase,
+                              textAlign: TextAlign.center,
+                              style: styles.textStyleTabLabel,
+                            ),
                           ),
                         ),
                       ),

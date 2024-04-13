@@ -40,7 +40,6 @@ class SendConfirmSheet extends HookConsumerWidget {
     final note = tx.note;
 
     final title = l10n.sendConfirm;
-
     final toTitle = l10n.sendToAddressTitle;
 
     Future<void> sendTransaction() async {
@@ -75,6 +74,7 @@ class SendConfirmSheet extends HookConsumerWidget {
         final sheet = SendCompleteSheet(
           amount: tx.amount,
           toAddress: tx.toAddress,
+          txId: result.txId,
           note: tx.note,
         );
 
@@ -170,10 +170,7 @@ class SendConfirmSheet extends HookConsumerWidget {
                       top: 30,
                       bottom: 10,
                     ),
-                    child: SendNoteWidget(
-                      note: note,
-                      success: true,
-                    ),
+                    child: SendNoteWidget(note: note),
                   ),
               ],
             ),

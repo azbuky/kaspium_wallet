@@ -13,6 +13,10 @@ class WalletAddressManager {
     required Iterable<WalletAddress> addresses,
   }) {
     addresses.forEach(_updateAddress);
+
+    if (addresses.isEmpty) {
+      _addresses.length = bufferSize;
+    }
   }
 
   final _addresses = <WalletAddress?>[];

@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
+import '../settings_advanced/kpub_sheet.dart';
+import '../util/ui_util.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/buttons.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_header_button.dart';
+import '../widgets/sheet_util.dart';
 import '../widgets/sheet_widget.dart';
 import 'address_filter_dialog.dart';
 import 'address_list_widget.dart';
 import 'address_settings.dart';
 import 'wallet_address.dart';
 
-class AccountsSheet extends HookConsumerWidget {
-  const AccountsSheet({Key? key}) : super(key: key);
+class WalletAddressesSheet extends HookConsumerWidget {
+  const WalletAddressesSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,6 +28,7 @@ class AccountsSheet extends HookConsumerWidget {
     final l10n = l10nOf(context);
 
     final addressNotifier = ref.watch(addressNotifierProvider);
+    final wallet = ref.watch(walletProvider);
 
     final receiveGlobalKey = useRef(GlobalKey());
     final changeGlobalKey = useRef(GlobalKey());
@@ -39,6 +44,49 @@ class AccountsSheet extends HookConsumerWidget {
       if (selection != null) {
         final notifier = ref.read(addressSettingsProvider.notifier);
         notifier.setAddressFilter(selection);
+      }
+    }
+
+    Future<void> showKpub() async {
+      final authUtil = ref.read(authUtilProvider);
+      final message = l10n.kpubAuth;
+      final auth = await authUtil.authenticate(context, message, message);
+
+      if (!auth) {
+        return;
+      }
+
+      return Sheets.showAppHeightNineSheet(
+        context: context,
+        widget: const KpubSheet(),
+        theme: theme,
+      );
+    }
+
+    Future<void> copyAddresses(AddressType? type) async {
+      final (addresses, typeStr) = switch (type) {
+        AddressType.receive => (
+            addressNotifier.receiveAddresses,
+            l10n.receive,
+          ),
+        AddressType.change => (
+            addressNotifier.changeAddresses,
+            l10n.change,
+          ),
+        null => (
+            addressNotifier.receiveAddresses.followedBy(
+              addressNotifier.changeAddresses,
+            ),
+            l10n.walletAddresses
+          ),
+      };
+
+      try {
+        final encoded = addresses.map((address) => address.encoded).join('\n');
+        await Clipboard.setData(ClipboardData(text: encoded));
+        UIUtil.showSnackbar(l10n.walletAddressesCopied(typeStr), context);
+      } catch (_) {
+        UIUtil.showSnackbar(l10n.walletAddressesCopyFailed(typeStr), context);
       }
     }
 
@@ -61,6 +109,9 @@ class AccountsSheet extends HookConsumerWidget {
 
         return SheetWidget(
           title: l10n.walletAddresses,
+          leftWidget: wallet.hasValidKpub
+              ? SheetHeaderButton(icon: Icons.vpn_key, onPressed: showKpub)
+              : null,
           rightWidget: SheetHeaderButton(
             icon: Icons.remove_red_eye,
             onPressed: showAddressFilterOptions,
@@ -78,25 +129,29 @@ class AccountsSheet extends HookConsumerWidget {
                   ),
                   tabs: [
                     Tab(
-                      child: Container(
-                        margin:
-                            const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: Text(
-                          l10n.receive.toUpperCase(),
-                          textAlign: TextAlign.center,
-                          style: styles.textStyleTabLabel,
+                      child: GestureDetector(
+                        onLongPress: () => copyAddresses(AddressType.receive),
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 20),
+                          child: Text(
+                            l10n.receive.toUpperCase(),
+                            textAlign: TextAlign.center,
+                            style: styles.textStyleTabLabel,
+                          ),
                         ),
                       ),
                     ),
                     Tab(
-                      child: Container(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        width: double.infinity,
-                        child: Text(
-                          l10n.change.toUpperCase(),
-                          textAlign: TextAlign.center,
-                          style: styles.textStyleTabLabel,
+                      child: GestureDetector(
+                        onLongPress: () => copyAddresses(AddressType.change),
+                        child: Container(
+                          padding: const EdgeInsets.only(top: 20),
+                          width: double.infinity,
+                          child: Text(
+                            l10n.change.toUpperCase(),
+                            textAlign: TextAlign.center,
+                            style: styles.textStyleTabLabel,
+                          ),
                         ),
                       ),
                     ),

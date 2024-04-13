@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
-import '../wallet_address/address_sheet.dart';
+import '../wallet_address/wallet_addresses_sheet.dart';
 import '../widgets/sheet_util.dart';
 
 class AccountSwitcher extends ConsumerWidget {
@@ -18,7 +18,7 @@ class AccountSwitcher extends ConsumerWidget {
       Sheets.showAppHeightNineSheet(
         context: context,
         theme: theme,
-        widget: const AccountsSheet(),
+        widget: const WalletAddressesSheet(),
       );
     }
 

@@ -16,7 +16,7 @@ import 'intro_providers.dart';
 
 bool isValidKpub(String kpub) {
   try {
-    final _ = HdWalletViewSchnorr(kpub);
+    final _ = HdWalletViewSchnorr(convertIfXpub(kpub));
     return true;
   } catch (_) {
     return false;
@@ -80,7 +80,7 @@ class IntroImportKpub extends HookConsumerWidget {
     }
 
     void submitKpub() {
-      final kpub = kpubController.text.trim();
+      final kpub = convertIfXpub(kpubController.text.trim());
       final intro = ref.read(introStateProvider.notifier);
 
       if (isValidKpub(kpub)) {
@@ -166,7 +166,10 @@ class IntroImportKpub extends HookConsumerWidget {
                     ),
                     Container(
                       alignment: const AlignmentDirectional(0, 0),
-                      margin: const EdgeInsets.only(top: 6),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 40,
+                      ),
                       child: Text(
                         showInvalidMessage ? l10n.invalidKpubMessage : '',
                         style: styles.textStyleParagraphThinSuccess,

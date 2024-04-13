@@ -1,4 +1,4 @@
-import 'package:coinslib/coinslib.dart' show NetworkType, Bip32Type;
+import 'bip32/bip32.dart';
 
 const int kMainnetRpcPort = 16110;
 const int kTestnetPpcPort = 16210;

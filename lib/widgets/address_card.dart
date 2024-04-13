@@ -32,10 +32,9 @@ class AddressCard extends HookConsumerWidget {
       );
       if (contact == null) {
         final addressNotifier = ref.read(addressNotifierProvider);
-        final isWalletAddress =
-            addressNotifier.containsAddress(address.encoded);
-        if (isWalletAddress) {
-          return '#This Wallet';
+        final addressLabel = addressNotifier.nameForAddress(address.encoded);
+        if (addressLabel != null) {
+          return addressLabel;
         }
       }
 
@@ -43,13 +42,9 @@ class AddressCard extends HookConsumerWidget {
     }, [address, showLabel]);
 
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 25,
-        vertical: 15,
-      ),
-      margin: EdgeInsets.only(
-        left: MediaQuery.of(context).size.width * 0.105,
-        right: MediaQuery.of(context).size.width * 0.105,
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      margin: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.105,
       ),
       width: double.infinity,
       decoration: BoxDecoration(

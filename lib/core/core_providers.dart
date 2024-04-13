@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,7 +16,6 @@ import '../node_settings/node_providers.dart';
 import '../settings/settings_providers.dart';
 import '../util/auth_util.dart';
 import '../util/biometrics.dart';
-import '../util/formatters.dart';
 import '../util/hapticutil.dart';
 import '../util/sharedprefsutil.dart';
 import '../util/vault.dart';
@@ -198,17 +196,8 @@ final maxSendProvider = Provider.autoDispose((ref) {
   return Amount.raw(maxSend);
 });
 
-final kaspaFormatterProvider = Provider((ref) {
-  final format = NumberFormat.currency(name: '');
-  final formatter = CurrencyFormatter(
-    groupSeparator: format.symbols.GROUP_SEP,
-    decimalSeparator: format.symbols.DECIMAL_SEP,
-    maxDecimalDigits: TokenInfo.kaspa.decimals,
-  );
-
-  return formatter;
-});
-
 final appLinkProvider = StateProvider<String?>((ref) {
   return null;
 });
+
+final fiatModeProvider = StateProvider<bool>((ref) => false);

@@ -1,30 +1,30 @@
 import 'dart:math';
 
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../contacts/contact.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
-import '../transactions/send_tx.dart';
+import '../settings_advanced/compound_utxos_dialog.dart';
 import '../util/numberutil.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
 import '../widgets/address_widgets.dart';
+import '../widgets/app_simpledialog.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
 import '../widgets/fiat_value_container.dart';
 import '../widgets/gradient_widgets.dart';
-import '../widgets/kas_icon_widget.dart';
 import '../widgets/sheet_handle.dart';
-import '../widgets/sheet_util.dart';
 import '../widgets/tap_outside_unfocus.dart';
 import 'balance_text_widget.dart';
 import 'fee_widget.dart';
-import 'send_confirm_sheet.dart';
 import 'send_note_widget.dart';
 
 enum AddressStyle { TEXT60, TEXT90, PRIMARY }
@@ -34,7 +34,6 @@ class SendSheet extends ConsumerStatefulWidget {
   final Contact? contact;
   final KaspaUri? uri;
   final BigInt? feeRaw;
-  final String? note;
 
   const SendSheet({
     Key? key,
@@ -42,7 +41,6 @@ class SendSheet extends ConsumerStatefulWidget {
     this.contact,
     this.uri,
     this.feeRaw,
-    this.note,
   }) : super(key: key);
 
   _SendSheetState createState() => _SendSheetState();
@@ -62,6 +60,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   AddressStyle _sendAddressStyle = AddressStyle.TEXT60;
   String? _amountHint;
   String? _addressHint;
+  String? _noteHint;
 
   String _amountValidationText = '';
   String _addressValidationText = '';
@@ -83,7 +82,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
 
   late BigInt? amountRaw = widget.uri?.amount?.raw;
   late BigInt? feeRaw = widget.feeRaw;
-  late String? _note = widget.note;
+  late String? _note = widget.uri?.message;
 
   bool get hasNote => _note != null;
   bool get hasUri => widget.uri != null;
@@ -133,11 +132,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
     }
     // On amount focus change
     _amountFocusNode.addListener(() {
-      if (_amountFocusNode.hasFocus) {
-        setState(() => _amountHint = '');
-      } else {
-        setState(() => _amountHint = null);
-      }
+      setState(() => _amountHint = _amountFocusNode.hasFocus ? '' : null);
     });
     // On address focus change
     _addressFocusNode.addListener(() {
@@ -178,6 +173,9 @@ class _SendSheetState extends ConsumerState<SendSheet> {
           setState(() => _contactButtonVisible = true);
         }
       }
+    });
+    _noteFocusNode.addListener(() {
+      setState(() => _noteHint = _noteFocusNode.hasFocus ? '' : null);
     });
 
     // Set quick send amount
@@ -263,6 +261,59 @@ class _SendSheetState extends ConsumerState<SendSheet> {
       }
 
       setState(() {});
+    }
+
+    void sendAction() {
+      final validRequest = _validateRequest();
+      if (!validRequest) {
+        return;
+      }
+      final addressText = _addressController.text.trim();
+      String destination;
+
+      if (addressText.startsWith("@")) {
+        final contacts = ref.read(contactsProvider);
+        // Need to make sure its a valid contact
+        final contact = contacts.getContactWithName(addressText);
+
+        if (contact == null) {
+          setState(() {
+            _addressValidationText = l10n.contactInvalid;
+          });
+          return;
+        }
+        destination = contact.address;
+      } else {
+        destination = addressText;
+      }
+
+      final prefix = ref.read(addressPrefixProvider);
+      final toAddress = Address.tryParse(
+        destination,
+        expectedPrefix: prefix,
+      );
+      if (toAddress == null) {
+        UIUtil.showSnackbar('Invalid destination address', context);
+        return;
+      }
+
+      if (amountRaw == null) {
+        UIUtil.showSnackbar('Invalid amount', context);
+        return;
+      }
+
+      final note = _noteController.text;
+      if (_note == null && note.isNotEmpty) {
+        _note = note;
+      }
+
+      final uri = KaspaUri(
+        address: toAddress,
+        amount: Amount.raw(amountRaw!),
+        message: note,
+      );
+
+      UIUtil.showSendFlow(context, ref: ref, uri: uri);
     }
 
     return SafeArea(
@@ -458,75 +509,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
                 children: [
                   PrimaryButton(
                     title: l10n.send,
-                    onPressed: () {
-                      final validRequest = _validateRequest();
-                      if (!validRequest) {
-                        return;
-                      }
-                      final addressText = _addressController.text.trim();
-                      String destination;
-
-                      if (addressText.startsWith("@")) {
-                        final contacts = ref.read(contactsProvider);
-                        // Need to make sure its a valid contact
-                        final contact =
-                            contacts.getContactWithName(addressText);
-
-                        if (contact == null) {
-                          setState(() {
-                            _addressValidationText = l10n.contactInvalid;
-                          });
-                          return;
-                        }
-                        destination = contact.address;
-                      } else {
-                        destination = addressText;
-                      }
-
-                      final prefix = ref.read(addressPrefixProvider);
-                      final toAddress = Address.tryParse(
-                        destination,
-                        expectedPrefix: prefix,
-                      );
-                      if (toAddress == null) {
-                        UIUtil.showSnackbar(
-                            'Invalid destination address', context);
-                        return;
-                      }
-
-                      if (amountRaw == null) {
-                        UIUtil.showSnackbar('Invalid amount', context);
-                        return;
-                      }
-
-                      final note = _noteController.text;
-                      if (_note == null && note.isNotEmpty) {
-                        _note = note;
-                      }
-
-                      final spendableUtxos = ref.read(spendableUtxosProvider);
-                      final walletService = ref.read(walletServiceProvider);
-
-                      SendTx tx;
-                      try {
-                        tx = walletService.createSendTx(
-                          toAddress: toAddress,
-                          amountRaw: amountRaw!,
-                          spendableUtxos: spendableUtxos,
-                          feePerInput: kFeePerInput,
-                          note: _note,
-                        );
-                      } catch (e) {
-                        UIUtil.showSnackbar(e.toString(), context);
-                        return;
-                      }
-
-                      Sheets.showAppHeightNineSheet(
-                        context: context,
-                        theme: theme,
-                        widget: SendConfirmSheet(tx: tx),
-                      );
-                    },
+                    onPressed: sendAction,
                   ),
                   const SizedBox(height: 16),
                   if (widget.uri == null)
@@ -613,12 +596,23 @@ class _SendSheetState extends ConsumerState<SendSheet> {
       return false;
     }
 
-    BigInt balanceRaw = ref.read(totalBalanceProvider).raw;
+    final balanceRaw = ref.read(totalBalanceProvider).raw;
+    final utxoCount = ref.read(utxoListProvider).length;
+    final maxFees = BigInt.from(utxoCount) * kFeePerInput;
 
-    if (amountRaw! > balanceRaw) {
+    if (amountRaw! > balanceRaw - maxFees) {
       setState(() {
         _amountValidationText = l10n.insufficientBalance;
       });
+      return false;
+    }
+
+    final maxSend = ref.read(maxSendProvider);
+    if (amountRaw! > maxSend.raw) {
+      showAppDialog(
+        context: context,
+        builder: (_) => const CompoundUtxosDialog(lightMode: true),
+      );
       return false;
     }
 
@@ -652,17 +646,46 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   }
 
   Widget getEnterAmountContainer() {
-    return Consumer(builder: (context, ref, _) {
+    return HookConsumer(builder: (context, ref, _) {
       final theme = ref.watch(themeProvider);
       final styles = ref.watch(stylesProvider);
       final l10n = l10nOf(context);
 
-      final formatter = ref.watch(kaspaFormatterProvider);
+      final kaspaFormatter = ref.watch(kaspaFormatterProvider);
+      final fiatFormatter = ref.watch(fiatFormatterProvider);
       final maxSend = ref.watch(maxSendProvider);
       final isMaxSend = amountRaw == maxSend.raw || maxSend.raw == BigInt.zero;
 
+      final amount = Amount.raw(amountRaw ?? BigInt.zero);
+
+      final fiatMode = ref.watch(fiatModeProvider);
+
+      final hintText = (fiatMode ? l10n.enterFiatValue : l10n.enterAmount);
+
+      useEffect(() {
+        if (amountRaw != null) {
+          _amountController.text = switch (fiatMode) {
+            true => ref.read(fiatForAmountProvider(amount)),
+            false => NumberUtil.textFieldFormatedAmount(amount),
+          };
+        }
+        return null;
+      }, [fiatMode]);
+
       void onValueChanged(String text) {
-        final value = formatter.tryParse(text);
+        final value = switch (fiatMode) {
+          true => () {
+              final price = ref.read(kaspaPriceProvider);
+              final fiatValue = fiatFormatter.tryParse(text);
+              if (price.price == Decimal.zero || fiatValue == null) {
+                return null;
+              }
+              return (fiatValue / price.price)
+                  .toDecimal(scaleOnInfinitePrecision: 8);
+            }(),
+          false => kaspaFormatter.tryParse(text),
+        };
+
         if (value == null) {
           setState(() => amountRaw = null);
           return;
@@ -679,7 +702,10 @@ class _SendSheetState extends ConsumerState<SendSheet> {
 
         setState(() => amountRaw = maxSend.raw);
 
-        _amountController.text = NumberUtil.textFieldFormatedAmount(maxSend);
+        _amountController.text = switch (fiatMode) {
+          true => ref.read(fiatForAmountProvider(maxSend)),
+          false => NumberUtil.textFieldFormatedAmount(maxSend),
+        };
 
         if (_addressController.text.isEmpty) {
           _addressController.selection = TextSelection.fromPosition(
@@ -691,32 +717,25 @@ class _SendSheetState extends ConsumerState<SendSheet> {
         }
       }
 
-      final amount = Amount.raw(amountRaw ?? BigInt.zero);
-
       return FiatValueContainer(
         amount: amount,
+        showAmount: fiatMode,
         child: AppTextField(
           focusNode: _amountFocusNode,
           controller: _amountController,
           topMargin: 15,
           cursorColor: theme.primary,
           style: styles.textStyleParagraphPrimary,
-          inputFormatters: [formatter],
+          inputFormatters: [fiatMode ? fiatFormatter : kaspaFormatter],
           onChanged: onValueChanged,
           textInputAction: TextInputAction.done,
           maxLines: null,
           autocorrect: false,
-          hintText: _amountHint ?? l10n.enterAmount,
+          hintText: _amountHint ?? hintText,
           prefixButton: TextFieldButton(
             icon: AppIcons.swapcurrency,
-            widget: Image.asset(
-              kKasIconPath,
-              width: 40,
-              height: 40,
-              filterQuality: FilterQuality.medium,
-              isAntiAlias: true,
-            ),
-            onPressed: () {},
+            onPressed: () =>
+                ref.read(fiatModeProvider.notifier).update((state) => !state),
           ),
           suffixButton: TextFieldButton(
             icon: AppIcons.max,
@@ -927,92 +946,109 @@ class _SendSheetState extends ConsumerState<SendSheet> {
       final styles = ref.watch(stylesProvider);
       final l10n = l10nOf(context);
 
-      return AppTextField(
-        padding: _noteValidAndUnfocused
-            ? const EdgeInsets.symmetric(horizontal: 25, vertical: 15)
-            : EdgeInsets.zero,
-        focusNode: _noteFocusNode,
-        controller: _noteController,
-        cursorColor: theme.primary,
-        style: styles.textStyleParagraphPrimary,
-        inputFormatters: [
-          LengthLimitingTextInputFormatter(120),
-        ],
-        textInputAction: TextInputAction.done,
-        maxLines: null,
-        autocorrect: false,
-        hintText: l10n.enterNote,
-        prefixButton: TextFieldButton(
-          icon: AppIcons.scan,
-          onPressed: () async {
-            FocusManager.instance.primaryFocus?.unfocus();
+      return Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          AppTextField(
+            padding: _noteValidAndUnfocused
+                ? const EdgeInsets.symmetric(horizontal: 25, vertical: 15)
+                : EdgeInsets.zero,
+            focusNode: _noteFocusNode,
+            controller: _noteController,
+            cursorColor: theme.primary,
+            style: styles.textStyleParagraphPrimary,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(120),
+            ],
+            textInputAction: TextInputAction.done,
+            maxLines: null,
+            autocorrect: false,
+            hintText: _noteHint ?? l10n.enterNote,
+            prefixButton: TextFieldButton(
+              icon: AppIcons.scan,
+              onPressed: () async {
+                FocusManager.instance.primaryFocus?.unfocus();
 
-            final qr = await UserDataUtil.scanQrCode(context);
-            final data = qr?.code;
-            if (data == null) {
-              return;
-            }
+                final qr = await UserDataUtil.scanQrCode(context);
+                final data = qr?.code;
+                if (data == null) {
+                  return;
+                }
 
-            _noteController.text = data;
-            _notePasteButtonVisible = false;
-            _noteQrButtonVisible = false;
+                _noteController.text = data;
+                _notePasteButtonVisible = false;
+                _noteQrButtonVisible = false;
 
-            setState(() => _noteValidAndUnfocused = true);
-          },
-        ),
-        fadePrefixOnCondition: true,
-        prefixShowFirstCondition: _noteQrButtonVisible,
-        suffixButton: TextFieldButton(
-          icon: AppIcons.paste,
-          onPressed: () {
-            if (!_notePasteButtonVisible) {
-              return;
-            }
+                setState(() => _noteValidAndUnfocused = true);
+              },
+            ),
+            fadePrefixOnCondition: true,
+            prefixShowFirstCondition: _noteQrButtonVisible,
+            suffixButton: TextFieldButton(
+              icon: AppIcons.paste,
+              onPressed: () {
+                if (!_notePasteButtonVisible) {
+                  return;
+                }
 
-            Clipboard.getData("text/plain").then((ClipboardData? data) {
-              final text = data?.text;
-              if (text == null) {
-                return;
+                Clipboard.getData("text/plain").then((ClipboardData? data) {
+                  final text = data?.text;
+                  if (text == null) {
+                    return;
+                  }
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  _noteController.text = text;
+                  _notePasteButtonVisible = false;
+                  _noteQrButtonVisible = false;
+                  _note = text;
+
+                  setState(() => _noteValidAndUnfocused = true);
+                });
+              },
+            ),
+            fadeSuffixOnCondition: true,
+            suffixShowFirstCondition: _notePasteButtonVisible,
+            onChanged: (text) {
+              if (text.length > 0) {
+                setState(() {
+                  _noteQrButtonVisible = false;
+                  _notePasteButtonVisible = false;
+                });
+              } else {
+                setState(() {
+                  _noteQrButtonVisible = true;
+                  _notePasteButtonVisible = true;
+                });
               }
-              FocusManager.instance.primaryFocus?.unfocus();
-              _noteController.text = text;
-              _notePasteButtonVisible = false;
-              _noteQrButtonVisible = false;
-              _note = text;
-
-              setState(() => _noteValidAndUnfocused = true);
-            });
-          },
-        ),
-        fadeSuffixOnCondition: true,
-        suffixShowFirstCondition: _notePasteButtonVisible,
-        onChanged: (text) {
-          if (text.length > 0) {
-            setState(() {
-              _noteQrButtonVisible = false;
-              _notePasteButtonVisible = false;
-            });
-          } else {
-            setState(() {
-              _noteQrButtonVisible = true;
-              _notePasteButtonVisible = true;
-            });
-          }
-        },
-        overrideTextFieldWidget: _noteValidAndUnfocused
-            ? GestureDetector(
-                onTap: () {
-                  setState(() => _noteValidAndUnfocused = false);
-                  Future.delayed(Duration(milliseconds: 50), () {
-                    FocusScope.of(context).requestFocus(_noteFocusNode);
-                  });
-                },
-                child: Text(
-                  _noteController.text,
-                  style: styles.textStyleParagraphPrimary,
+            },
+            overrideTextFieldWidget: _noteValidAndUnfocused
+                ? GestureDetector(
+                    onTap: () {
+                      setState(() => _noteValidAndUnfocused = false);
+                      Future.delayed(Duration(milliseconds: 50), () {
+                        FocusScope.of(context).requestFocus(_noteFocusNode);
+                      });
+                    },
+                    child: Text(
+                      _noteController.text,
+                      style: styles.textStyleParagraphPrimary,
+                    ),
+                  )
+                : null,
+          ),
+          Visibility(
+            visible: _noteHint == null && _noteController.text.isEmpty,
+            child: Container(
+              child: Text(
+                l10n.optionalLabel,
+                style: styles.textStyleTransactionAmount.copyWith(
+                  color: theme.text30,
+                  fontWeight: FontWeight.w100,
                 ),
-              )
-            : null,
+              ),
+            ),
+          ),
+        ],
       );
     });
   }

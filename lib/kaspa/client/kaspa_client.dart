@@ -190,10 +190,14 @@ class KaspaClient {
 
   // Submit Transaction
 
-  Future<String> submitTransaction(RpcTransaction transaction) async {
+  Future<String> submitTransaction(
+    RpcTransaction transaction, {
+    bool allowOrphan = false,
+  }) async {
     final message = KaspadMessage(
       submitTransactionRequest: SubmitTransactionRequestMessage(
         transaction: transaction,
+        allowOrphan: allowOrphan,
       ),
     );
 

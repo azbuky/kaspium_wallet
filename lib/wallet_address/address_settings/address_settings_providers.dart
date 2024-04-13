@@ -10,7 +10,7 @@ final addressSettingsProvider =
   return AddressSettingsStateNotifier(repository);
 });
 
-final addressFilterProvider = StateProvider.autoDispose((ref) {
+final addressFilterProvider = Provider.autoDispose((ref) {
   final settings = ref.watch(addressSettingsProvider);
   return settings.addressFilter;
 });

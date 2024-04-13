@@ -70,8 +70,9 @@ class WalletKind with _$WalletKind {
     @Default(false) bool viewOnly,
   }) = _WalletKindLocalHdEcdsa;
 
-  const factory WalletKind.localHdLegacy({required String mainPubKey}) =
-      _WalletKindLocalHdLegacy;
+  const factory WalletKind.localHdLegacy({
+    required String mainPubKey,
+  }) = _WalletKindLocalHdLegacy;
 
   factory WalletKind.fromJson(Map<String, dynamic> json) =>
       _$WalletKindFromJson(json);
@@ -87,6 +88,12 @@ class WalletKind with _$WalletKind {
         localHdEcdsa: (viewOnly) => viewOnly,
         localHdLegacy: (_) => false,
       );
+
+  bool get isLegacy => when(
+        localHdSchnorr: (_) => false,
+        localHdEcdsa: (_) => false,
+        localHdLegacy: (_) => true,
+      );
 }
 
 @freezed
@@ -97,14 +104,17 @@ class WalletInfo with _$WalletInfo {
     @Default(WalletKind.localHdSchnorr()) WalletKind kind,
     required String wid,
     required BoxInfoByNetwork boxInfo,
-    // HDPublic key base58 encoded
-    required String mainnetPublicKey,
+    required String mainnetPublicKey, // HDPublic key base58 encoded
   }) = _WalletInfo;
 
   factory WalletInfo.fromJson(Map<String, dynamic> json) =>
       _$WalletInfoFromJson(json);
 
   bool get isViewOnly => kind.isViewOnly;
+
+  bool get isLegacy => kind.isLegacy;
+
+  bool get hasValidKpub => !kind.isLegacy;
 
   BoxInfo getBoxInfo(KaspaNetwork network) => boxInfo.getBoxInfo(network);
 

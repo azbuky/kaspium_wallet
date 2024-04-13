@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_portal/flutter_portal.dart';
@@ -11,6 +12,7 @@ import '../l10n/l10n.dart';
 import '../main_card/main_card.dart';
 import '../settings_drawer/settings_drawer.dart';
 import '../util/lock_settings.dart';
+import '../util/platform.dart';
 import '../util/ui_util.dart';
 import '../wallet_home/wallet_home.dart';
 import '../widgets/network_banner.dart';
@@ -30,7 +32,7 @@ class HomeScreen extends HookConsumerWidget {
 
     Future<void> setAppLockEvent() async {
       // whether we should avoid locking the app
-      final lockDisabled = ref.watch(lockDisabledProvider);
+      final lockDisabled = ref.read(lockDisabledProvider);
       if (lockDisabled) {
         return;
       }
@@ -73,6 +75,9 @@ class HomeScreen extends HookConsumerWidget {
 
       switch (state) {
         case AppLifecycleState.inactive:
+          if (kDebugMode && kPlatformIsMacOS) {
+            break;
+          }
           inactive.value = true;
           break;
         case AppLifecycleState.hidden:

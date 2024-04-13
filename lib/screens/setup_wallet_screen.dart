@@ -31,10 +31,11 @@ class SetupWalletScreen extends HookConsumerWidget {
       try {
         setupFailed.value = false;
         final introData = ref.read(introDataProvider);
+        ref.read(introDataProvider.notifier).clear();
 
         final seed = await introData.seed;
 
-        final walletData;
+        final WalletData walletData;
         if (introData.kpub case final kpub?) {
           final walletKind = WalletKind.localHdSchnorr(viewOnly: true);
           walletData = WalletData.kpub(
