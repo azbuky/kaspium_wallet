@@ -12,7 +12,7 @@ part of 'amount.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Amount _$AmountFromJson(Map<String, dynamic> json) {
   return _Amount.fromJson(json);
@@ -76,9 +76,10 @@ class _$AmountCopyWithImpl<$Res, $Val extends Amount>
 }
 
 /// @nodoc
-abstract class _$$_AmountCopyWith<$Res> implements $AmountCopyWith<$Res> {
-  factory _$$_AmountCopyWith(_$_Amount value, $Res Function(_$_Amount) then) =
-      __$$_AmountCopyWithImpl<$Res>;
+abstract class _$$AmountImplCopyWith<$Res> implements $AmountCopyWith<$Res> {
+  factory _$$AmountImplCopyWith(
+          _$AmountImpl value, $Res Function(_$AmountImpl) then) =
+      __$$AmountImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({BigInt raw, TokenInfo tokenInfo});
@@ -88,10 +89,11 @@ abstract class _$$_AmountCopyWith<$Res> implements $AmountCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AmountCopyWithImpl<$Res>
-    extends _$AmountCopyWithImpl<$Res, _$_Amount>
-    implements _$$_AmountCopyWith<$Res> {
-  __$$_AmountCopyWithImpl(_$_Amount _value, $Res Function(_$_Amount) _then)
+class __$$AmountImplCopyWithImpl<$Res>
+    extends _$AmountCopyWithImpl<$Res, _$AmountImpl>
+    implements _$$AmountImplCopyWith<$Res> {
+  __$$AmountImplCopyWithImpl(
+      _$AmountImpl _value, $Res Function(_$AmountImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -100,7 +102,7 @@ class __$$_AmountCopyWithImpl<$Res>
     Object? raw = null,
     Object? tokenInfo = null,
   }) {
-    return _then(_$_Amount(
+    return _then(_$AmountImpl(
       raw: null == raw
           ? _value.raw
           : raw // ignore: cast_nullable_to_non_nullable
@@ -115,11 +117,11 @@ class __$$_AmountCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Amount extends _Amount {
-  _$_Amount({required this.raw, required this.tokenInfo}) : super._();
+class _$AmountImpl extends _Amount {
+  _$AmountImpl({required this.raw, required this.tokenInfo}) : super._();
 
-  factory _$_Amount.fromJson(Map<String, dynamic> json) =>
-      _$$_AmountFromJson(json);
+  factory _$AmountImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AmountImplFromJson(json);
 
   @override
   final BigInt raw;
@@ -127,10 +129,10 @@ class _$_Amount extends _Amount {
   final TokenInfo tokenInfo;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Amount &&
+            other is _$AmountImpl &&
             (identical(other.raw, raw) || other.raw == raw) &&
             (identical(other.tokenInfo, tokenInfo) ||
                 other.tokenInfo == tokenInfo));
@@ -143,12 +145,12 @@ class _$_Amount extends _Amount {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AmountCopyWith<_$_Amount> get copyWith =>
-      __$$_AmountCopyWithImpl<_$_Amount>(this, _$identity);
+  _$$AmountImplCopyWith<_$AmountImpl> get copyWith =>
+      __$$AmountImplCopyWithImpl<_$AmountImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AmountToJson(
+    return _$$AmountImplToJson(
       this,
     );
   }
@@ -157,10 +159,10 @@ class _$_Amount extends _Amount {
 abstract class _Amount extends Amount {
   factory _Amount(
       {required final BigInt raw,
-      required final TokenInfo tokenInfo}) = _$_Amount;
+      required final TokenInfo tokenInfo}) = _$AmountImpl;
   _Amount._() : super._();
 
-  factory _Amount.fromJson(Map<String, dynamic> json) = _$_Amount.fromJson;
+  factory _Amount.fromJson(Map<String, dynamic> json) = _$AmountImpl.fromJson;
 
   @override
   BigInt get raw;
@@ -168,6 +170,6 @@ abstract class _Amount extends Amount {
   TokenInfo get tokenInfo;
   @override
   @JsonKey(ignore: true)
-  _$$_AmountCopyWith<_$_Amount> get copyWith =>
+  _$$AmountImplCopyWith<_$AmountImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

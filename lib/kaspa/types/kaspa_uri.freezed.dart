@@ -12,7 +12,7 @@ part of 'kaspa_uri.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$KaspaUriParam {
@@ -63,22 +63,22 @@ class _$KaspaUriParamCopyWithImpl<$Res, $Val extends KaspaUriParam>
 }
 
 /// @nodoc
-abstract class _$$_KaspaUriParamCopyWith<$Res>
+abstract class _$$KaspaUriParamImplCopyWith<$Res>
     implements $KaspaUriParamCopyWith<$Res> {
-  factory _$$_KaspaUriParamCopyWith(
-          _$_KaspaUriParam value, $Res Function(_$_KaspaUriParam) then) =
-      __$$_KaspaUriParamCopyWithImpl<$Res>;
+  factory _$$KaspaUriParamImplCopyWith(
+          _$KaspaUriParamImpl value, $Res Function(_$KaspaUriParamImpl) then) =
+      __$$KaspaUriParamImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String key, String value});
 }
 
 /// @nodoc
-class __$$_KaspaUriParamCopyWithImpl<$Res>
-    extends _$KaspaUriParamCopyWithImpl<$Res, _$_KaspaUriParam>
-    implements _$$_KaspaUriParamCopyWith<$Res> {
-  __$$_KaspaUriParamCopyWithImpl(
-      _$_KaspaUriParam _value, $Res Function(_$_KaspaUriParam) _then)
+class __$$KaspaUriParamImplCopyWithImpl<$Res>
+    extends _$KaspaUriParamCopyWithImpl<$Res, _$KaspaUriParamImpl>
+    implements _$$KaspaUriParamImplCopyWith<$Res> {
+  __$$KaspaUriParamImplCopyWithImpl(
+      _$KaspaUriParamImpl _value, $Res Function(_$KaspaUriParamImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_KaspaUriParamCopyWithImpl<$Res>
     Object? key = null,
     Object? value = null,
   }) {
-    return _then(_$_KaspaUriParam(
+    return _then(_$KaspaUriParamImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,9 @@ class __$$_KaspaUriParamCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_KaspaUriParam extends _KaspaUriParam {
-  const _$_KaspaUriParam({required this.key, required this.value}) : super._();
+class _$KaspaUriParamImpl extends _KaspaUriParam {
+  const _$KaspaUriParamImpl({required this.key, required this.value})
+      : super._();
 
   @override
   final String key;
@@ -116,10 +117,10 @@ class _$_KaspaUriParam extends _KaspaUriParam {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_KaspaUriParam &&
+            other is _$KaspaUriParamImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.value, value) || other.value == value));
   }
@@ -130,14 +131,14 @@ class _$_KaspaUriParam extends _KaspaUriParam {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_KaspaUriParamCopyWith<_$_KaspaUriParam> get copyWith =>
-      __$$_KaspaUriParamCopyWithImpl<_$_KaspaUriParam>(this, _$identity);
+  _$$KaspaUriParamImplCopyWith<_$KaspaUriParamImpl> get copyWith =>
+      __$$KaspaUriParamImplCopyWithImpl<_$KaspaUriParamImpl>(this, _$identity);
 }
 
 abstract class _KaspaUriParam extends KaspaUriParam {
   const factory _KaspaUriParam(
       {required final String key,
-      required final String value}) = _$_KaspaUriParam;
+      required final String value}) = _$KaspaUriParamImpl;
   const _KaspaUriParam._() : super._();
 
   @override
@@ -146,7 +147,7 @@ abstract class _KaspaUriParam extends KaspaUriParam {
   String get value;
   @override
   @JsonKey(ignore: true)
-  _$$_KaspaUriParamCopyWith<_$_KaspaUriParam> get copyWith =>
+  _$$KaspaUriParamImplCopyWith<_$KaspaUriParamImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -244,10 +245,11 @@ class _$KaspaUriCopyWithImpl<$Res, $Val extends KaspaUri>
 }
 
 /// @nodoc
-abstract class _$$_KaspaUriCopyWith<$Res> implements $KaspaUriCopyWith<$Res> {
-  factory _$$_KaspaUriCopyWith(
-          _$_KaspaUri value, $Res Function(_$_KaspaUri) then) =
-      __$$_KaspaUriCopyWithImpl<$Res>;
+abstract class _$$KaspaUriImplCopyWith<$Res>
+    implements $KaspaUriCopyWith<$Res> {
+  factory _$$KaspaUriImplCopyWith(
+          _$KaspaUriImpl value, $Res Function(_$KaspaUriImpl) then) =
+      __$$KaspaUriImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -264,11 +266,11 @@ abstract class _$$_KaspaUriCopyWith<$Res> implements $KaspaUriCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_KaspaUriCopyWithImpl<$Res>
-    extends _$KaspaUriCopyWithImpl<$Res, _$_KaspaUri>
-    implements _$$_KaspaUriCopyWith<$Res> {
-  __$$_KaspaUriCopyWithImpl(
-      _$_KaspaUri _value, $Res Function(_$_KaspaUri) _then)
+class __$$KaspaUriImplCopyWithImpl<$Res>
+    extends _$KaspaUriCopyWithImpl<$Res, _$KaspaUriImpl>
+    implements _$$KaspaUriImplCopyWith<$Res> {
+  __$$KaspaUriImplCopyWithImpl(
+      _$KaspaUriImpl _value, $Res Function(_$KaspaUriImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -280,7 +282,7 @@ class __$$_KaspaUriCopyWithImpl<$Res>
     Object? message = freezed,
     Object? others = null,
   }) {
-    return _then(_$_KaspaUri(
+    return _then(_$KaspaUriImpl(
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -307,8 +309,8 @@ class __$$_KaspaUriCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_KaspaUri extends _KaspaUri {
-  const _$_KaspaUri(
+class _$KaspaUriImpl extends _KaspaUri {
+  const _$KaspaUriImpl(
       {required this.address,
       this.amount,
       this.label,
@@ -329,10 +331,10 @@ class _$_KaspaUri extends _KaspaUri {
   final IList<KaspaUriParam> others;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_KaspaUri &&
+            other is _$KaspaUriImpl &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.label, label) || other.label == label) &&
@@ -347,8 +349,8 @@ class _$_KaspaUri extends _KaspaUri {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_KaspaUriCopyWith<_$_KaspaUri> get copyWith =>
-      __$$_KaspaUriCopyWithImpl<_$_KaspaUri>(this, _$identity);
+  _$$KaspaUriImplCopyWith<_$KaspaUriImpl> get copyWith =>
+      __$$KaspaUriImplCopyWithImpl<_$KaspaUriImpl>(this, _$identity);
 }
 
 abstract class _KaspaUri extends KaspaUri {
@@ -357,7 +359,7 @@ abstract class _KaspaUri extends KaspaUri {
       final Amount? amount,
       final String? label,
       final String? message,
-      final IList<KaspaUriParam> others}) = _$_KaspaUri;
+      final IList<KaspaUriParam> others}) = _$KaspaUriImpl;
   const _KaspaUri._() : super._();
 
   @override
@@ -372,6 +374,6 @@ abstract class _KaspaUri extends KaspaUri {
   IList<KaspaUriParam> get others;
   @override
   @JsonKey(ignore: true)
-  _$$_KaspaUriCopyWith<_$_KaspaUri> get copyWith =>
+  _$$KaspaUriImplCopyWith<_$KaspaUriImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'chain_state_types.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ChainState _$ChainStateFromJson(Map<String, dynamic> json) {
   return _ChainState.fromJson(json);
@@ -69,22 +69,22 @@ class _$ChainStateCopyWithImpl<$Res, $Val extends ChainState>
 }
 
 /// @nodoc
-abstract class _$$_ChainStateCopyWith<$Res>
+abstract class _$$ChainStateImplCopyWith<$Res>
     implements $ChainStateCopyWith<$Res> {
-  factory _$$_ChainStateCopyWith(
-          _$_ChainState value, $Res Function(_$_ChainState) then) =
-      __$$_ChainStateCopyWithImpl<$Res>;
+  factory _$$ChainStateImplCopyWith(
+          _$ChainStateImpl value, $Res Function(_$ChainStateImpl) then) =
+      __$$ChainStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({BigInt virtualDaaScore, BigInt virtualSelectedParentBlueScore});
 }
 
 /// @nodoc
-class __$$_ChainStateCopyWithImpl<$Res>
-    extends _$ChainStateCopyWithImpl<$Res, _$_ChainState>
-    implements _$$_ChainStateCopyWith<$Res> {
-  __$$_ChainStateCopyWithImpl(
-      _$_ChainState _value, $Res Function(_$_ChainState) _then)
+class __$$ChainStateImplCopyWithImpl<$Res>
+    extends _$ChainStateCopyWithImpl<$Res, _$ChainStateImpl>
+    implements _$$ChainStateImplCopyWith<$Res> {
+  __$$ChainStateImplCopyWithImpl(
+      _$ChainStateImpl _value, $Res Function(_$ChainStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -93,7 +93,7 @@ class __$$_ChainStateCopyWithImpl<$Res>
     Object? virtualDaaScore = null,
     Object? virtualSelectedParentBlueScore = null,
   }) {
-    return _then(_$_ChainState(
+    return _then(_$ChainStateImpl(
       virtualDaaScore: null == virtualDaaScore
           ? _value.virtualDaaScore
           : virtualDaaScore // ignore: cast_nullable_to_non_nullable
@@ -108,13 +108,13 @@ class __$$_ChainStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChainState implements _ChainState {
-  const _$_ChainState(
+class _$ChainStateImpl implements _ChainState {
+  const _$ChainStateImpl(
       {required this.virtualDaaScore,
       required this.virtualSelectedParentBlueScore});
 
-  factory _$_ChainState.fromJson(Map<String, dynamic> json) =>
-      _$$_ChainStateFromJson(json);
+  factory _$ChainStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChainStateImplFromJson(json);
 
   @override
   final BigInt virtualDaaScore;
@@ -127,10 +127,10 @@ class _$_ChainState implements _ChainState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChainState &&
+            other is _$ChainStateImpl &&
             (identical(other.virtualDaaScore, virtualDaaScore) ||
                 other.virtualDaaScore == virtualDaaScore) &&
             (identical(other.virtualSelectedParentBlueScore,
@@ -147,12 +147,12 @@ class _$_ChainState implements _ChainState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChainStateCopyWith<_$_ChainState> get copyWith =>
-      __$$_ChainStateCopyWithImpl<_$_ChainState>(this, _$identity);
+  _$$ChainStateImplCopyWith<_$ChainStateImpl> get copyWith =>
+      __$$ChainStateImplCopyWithImpl<_$ChainStateImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChainStateToJson(
+    return _$$ChainStateImplToJson(
       this,
     );
   }
@@ -161,10 +161,10 @@ class _$_ChainState implements _ChainState {
 abstract class _ChainState implements ChainState {
   const factory _ChainState(
       {required final BigInt virtualDaaScore,
-      required final BigInt virtualSelectedParentBlueScore}) = _$_ChainState;
+      required final BigInt virtualSelectedParentBlueScore}) = _$ChainStateImpl;
 
   factory _ChainState.fromJson(Map<String, dynamic> json) =
-      _$_ChainState.fromJson;
+      _$ChainStateImpl.fromJson;
 
   @override
   BigInt get virtualDaaScore;
@@ -172,6 +172,6 @@ abstract class _ChainState implements ChainState {
   BigInt get virtualSelectedParentBlueScore;
   @override
   @JsonKey(ignore: true)
-  _$$_ChainStateCopyWith<_$_ChainState> get copyWith =>
+  _$$ChainStateImplCopyWith<_$ChainStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

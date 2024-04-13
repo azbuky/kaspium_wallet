@@ -6,8 +6,8 @@ part of 'node_types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_NodeConfigSettings _$$_NodeConfigSettingsFromJson(Map json) =>
-    _$_NodeConfigSettings(
+_$NodeConfigSettingsImpl _$$NodeConfigSettingsImplFromJson(Map json) =>
+    _$NodeConfigSettingsImpl(
       options: json['options'] == null
           ? const IListConst([mainnetNodeConfig])
           : IList<NodeConfig>.fromJson(
@@ -20,8 +20,8 @@ _$_NodeConfigSettings _$$_NodeConfigSettingsFromJson(Map json) =>
               Map<String, dynamic>.from(json['selected'] as Map)),
     );
 
-Map<String, dynamic> _$$_NodeConfigSettingsToJson(
-        _$_NodeConfigSettings instance) =>
+Map<String, dynamic> _$$NodeConfigSettingsImplToJson(
+        _$NodeConfigSettingsImpl instance) =>
     <String, dynamic>{
       'options': instance.options.toJson(
         (value) => value.toJson(),
@@ -29,7 +29,7 @@ Map<String, dynamic> _$$_NodeConfigSettingsToJson(
       'selected': instance.selected.toJson(),
     };
 
-_$_NodeConfig _$$_NodeConfigFromJson(Map json) => _$_NodeConfig(
+_$NodeConfigImpl _$$NodeConfigImplFromJson(Map json) => _$NodeConfigImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       isDns: json['isDns'] as bool? ?? false,
@@ -38,7 +38,7 @@ _$_NodeConfig _$$_NodeConfigFromJson(Map json) => _$_NodeConfig(
       network: $enumDecode(_$KaspaNetworkEnumMap, json['network']),
     );
 
-Map<String, dynamic> _$$_NodeConfigToJson(_$_NodeConfig instance) =>
+Map<String, dynamic> _$$NodeConfigImplToJson(_$NodeConfigImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

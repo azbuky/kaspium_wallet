@@ -12,7 +12,7 @@ part of 'txnotes_types.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TxNote _$TxNoteFromJson(Map<String, dynamic> json) {
   return _TxNote.fromJson(json);
@@ -66,19 +66,21 @@ class _$TxNoteCopyWithImpl<$Res, $Val extends TxNote>
 }
 
 /// @nodoc
-abstract class _$$_TxNoteCopyWith<$Res> implements $TxNoteCopyWith<$Res> {
-  factory _$$_TxNoteCopyWith(_$_TxNote value, $Res Function(_$_TxNote) then) =
-      __$$_TxNoteCopyWithImpl<$Res>;
+abstract class _$$TxNoteImplCopyWith<$Res> implements $TxNoteCopyWith<$Res> {
+  factory _$$TxNoteImplCopyWith(
+          _$TxNoteImpl value, $Res Function(_$TxNoteImpl) then) =
+      __$$TxNoteImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String txId, String note});
 }
 
 /// @nodoc
-class __$$_TxNoteCopyWithImpl<$Res>
-    extends _$TxNoteCopyWithImpl<$Res, _$_TxNote>
-    implements _$$_TxNoteCopyWith<$Res> {
-  __$$_TxNoteCopyWithImpl(_$_TxNote _value, $Res Function(_$_TxNote) _then)
+class __$$TxNoteImplCopyWithImpl<$Res>
+    extends _$TxNoteCopyWithImpl<$Res, _$TxNoteImpl>
+    implements _$$TxNoteImplCopyWith<$Res> {
+  __$$TxNoteImplCopyWithImpl(
+      _$TxNoteImpl _value, $Res Function(_$TxNoteImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +89,7 @@ class __$$_TxNoteCopyWithImpl<$Res>
     Object? txId = null,
     Object? note = null,
   }) {
-    return _then(_$_TxNote(
+    return _then(_$TxNoteImpl(
       txId: null == txId
           ? _value.txId
           : txId // ignore: cast_nullable_to_non_nullable
@@ -102,11 +104,11 @@ class __$$_TxNoteCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TxNote implements _TxNote {
-  const _$_TxNote({required this.txId, required this.note});
+class _$TxNoteImpl implements _TxNote {
+  const _$TxNoteImpl({required this.txId, required this.note});
 
-  factory _$_TxNote.fromJson(Map<String, dynamic> json) =>
-      _$$_TxNoteFromJson(json);
+  factory _$TxNoteImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TxNoteImplFromJson(json);
 
   @override
   final String txId;
@@ -119,10 +121,10 @@ class _$_TxNote implements _TxNote {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TxNote &&
+            other is _$TxNoteImpl &&
             (identical(other.txId, txId) || other.txId == txId) &&
             (identical(other.note, note) || other.note == note));
   }
@@ -134,12 +136,12 @@ class _$_TxNote implements _TxNote {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TxNoteCopyWith<_$_TxNote> get copyWith =>
-      __$$_TxNoteCopyWithImpl<_$_TxNote>(this, _$identity);
+  _$$TxNoteImplCopyWith<_$TxNoteImpl> get copyWith =>
+      __$$TxNoteImplCopyWithImpl<_$TxNoteImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TxNoteToJson(
+    return _$$TxNoteImplToJson(
       this,
     );
   }
@@ -147,9 +149,9 @@ class _$_TxNote implements _TxNote {
 
 abstract class _TxNote implements TxNote {
   const factory _TxNote(
-      {required final String txId, required final String note}) = _$_TxNote;
+      {required final String txId, required final String note}) = _$TxNoteImpl;
 
-  factory _TxNote.fromJson(Map<String, dynamic> json) = _$_TxNote.fromJson;
+  factory _TxNote.fromJson(Map<String, dynamic> json) = _$TxNoteImpl.fromJson;
 
   @override
   String get txId;
@@ -157,6 +159,6 @@ abstract class _TxNote implements TxNote {
   String get note;
   @override
   @JsonKey(ignore: true)
-  _$$_TxNoteCopyWith<_$_TxNote> get copyWith =>
+  _$$TxNoteImplCopyWith<_$TxNoteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

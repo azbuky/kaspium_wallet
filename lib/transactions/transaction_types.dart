@@ -53,10 +53,10 @@ class TxItem with _$TxItem {
   }) = _TxItem;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TxItem &&
+            other is _$TxItemImpl &&
             (identical(other.tx.id, tx.id) || other.tx.id == tx.id) &&
             (identical(other.outputIndex, outputIndex) ||
                 other.outputIndex == outputIndex) &&

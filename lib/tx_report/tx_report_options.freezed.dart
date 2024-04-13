@@ -12,7 +12,7 @@ part of 'tx_report_options.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TxReportOptions {
@@ -69,22 +69,22 @@ class _$TxReportOptionsCopyWithImpl<$Res, $Val extends TxReportOptions>
 }
 
 /// @nodoc
-abstract class _$$_TxReportOptionsCopyWith<$Res>
+abstract class _$$TxReportOptionsImplCopyWith<$Res>
     implements $TxReportOptionsCopyWith<$Res> {
-  factory _$$_TxReportOptionsCopyWith(
-          _$_TxReportOptions value, $Res Function(_$_TxReportOptions) then) =
-      __$$_TxReportOptionsCopyWithImpl<$Res>;
+  factory _$$TxReportOptionsImplCopyWith(_$TxReportOptionsImpl value,
+          $Res Function(_$TxReportOptionsImpl) then) =
+      __$$TxReportOptionsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool ignoreCompoundTxs, bool ignoreInternalTxs, bool refreshTxs});
 }
 
 /// @nodoc
-class __$$_TxReportOptionsCopyWithImpl<$Res>
-    extends _$TxReportOptionsCopyWithImpl<$Res, _$_TxReportOptions>
-    implements _$$_TxReportOptionsCopyWith<$Res> {
-  __$$_TxReportOptionsCopyWithImpl(
-      _$_TxReportOptions _value, $Res Function(_$_TxReportOptions) _then)
+class __$$TxReportOptionsImplCopyWithImpl<$Res>
+    extends _$TxReportOptionsCopyWithImpl<$Res, _$TxReportOptionsImpl>
+    implements _$$TxReportOptionsImplCopyWith<$Res> {
+  __$$TxReportOptionsImplCopyWithImpl(
+      _$TxReportOptionsImpl _value, $Res Function(_$TxReportOptionsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +94,7 @@ class __$$_TxReportOptionsCopyWithImpl<$Res>
     Object? ignoreInternalTxs = null,
     Object? refreshTxs = null,
   }) {
-    return _then(_$_TxReportOptions(
+    return _then(_$TxReportOptionsImpl(
       ignoreCompoundTxs: null == ignoreCompoundTxs
           ? _value.ignoreCompoundTxs
           : ignoreCompoundTxs // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$_TxReportOptionsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TxReportOptions implements _TxReportOptions {
-  const _$_TxReportOptions(
+class _$TxReportOptionsImpl implements _TxReportOptions {
+  const _$TxReportOptionsImpl(
       {this.ignoreCompoundTxs = false,
       this.ignoreInternalTxs = false,
       this.refreshTxs = false});
@@ -135,10 +135,10 @@ class _$_TxReportOptions implements _TxReportOptions {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TxReportOptions &&
+            other is _$TxReportOptionsImpl &&
             (identical(other.ignoreCompoundTxs, ignoreCompoundTxs) ||
                 other.ignoreCompoundTxs == ignoreCompoundTxs) &&
             (identical(other.ignoreInternalTxs, ignoreInternalTxs) ||
@@ -154,15 +154,16 @@ class _$_TxReportOptions implements _TxReportOptions {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TxReportOptionsCopyWith<_$_TxReportOptions> get copyWith =>
-      __$$_TxReportOptionsCopyWithImpl<_$_TxReportOptions>(this, _$identity);
+  _$$TxReportOptionsImplCopyWith<_$TxReportOptionsImpl> get copyWith =>
+      __$$TxReportOptionsImplCopyWithImpl<_$TxReportOptionsImpl>(
+          this, _$identity);
 }
 
 abstract class _TxReportOptions implements TxReportOptions {
   const factory _TxReportOptions(
       {final bool ignoreCompoundTxs,
       final bool ignoreInternalTxs,
-      final bool refreshTxs}) = _$_TxReportOptions;
+      final bool refreshTxs}) = _$TxReportOptionsImpl;
 
   @override
   bool get ignoreCompoundTxs;
@@ -172,7 +173,7 @@ abstract class _TxReportOptions implements TxReportOptions {
   bool get refreshTxs;
   @override
   @JsonKey(ignore: true)
-  _$$_TxReportOptionsCopyWith<_$_TxReportOptions> get copyWith =>
+  _$$TxReportOptionsImplCopyWith<_$TxReportOptionsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -290,11 +291,11 @@ class _$TxReportItemCopyWithImpl<$Res, $Val extends TxReportItem>
 }
 
 /// @nodoc
-abstract class _$$_TxReportItemCopyWith<$Res>
+abstract class _$$TxReportItemImplCopyWith<$Res>
     implements $TxReportItemCopyWith<$Res> {
-  factory _$$_TxReportItemCopyWith(
-          _$_TxReportItem value, $Res Function(_$_TxReportItem) then) =
-      __$$_TxReportItemCopyWithImpl<$Res>;
+  factory _$$TxReportItemImplCopyWith(
+          _$TxReportItemImpl value, $Res Function(_$TxReportItemImpl) then) =
+      __$$TxReportItemImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -312,11 +313,11 @@ abstract class _$$_TxReportItemCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TxReportItemCopyWithImpl<$Res>
-    extends _$TxReportItemCopyWithImpl<$Res, _$_TxReportItem>
-    implements _$$_TxReportItemCopyWith<$Res> {
-  __$$_TxReportItemCopyWithImpl(
-      _$_TxReportItem _value, $Res Function(_$_TxReportItem) _then)
+class __$$TxReportItemImplCopyWithImpl<$Res>
+    extends _$TxReportItemCopyWithImpl<$Res, _$TxReportItemImpl>
+    implements _$$TxReportItemImplCopyWith<$Res> {
+  __$$TxReportItemImplCopyWithImpl(
+      _$TxReportItemImpl _value, $Res Function(_$TxReportItemImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -334,7 +335,7 @@ class __$$_TxReportItemCopyWithImpl<$Res>
     Object? toAddress = null,
     Object? note = null,
   }) {
-    return _then(_$_TxReportItem(
+    return _then(_$TxReportItemImpl(
       timestamp: null == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
@@ -385,8 +386,8 @@ class __$$_TxReportItemCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TxReportItem implements _TxReportItem {
-  const _$_TxReportItem(
+class _$TxReportItemImpl implements _TxReportItem {
+  const _$TxReportItemImpl(
       {required this.timestamp,
       required this.isCompound,
       required this.isSendToSelf,
@@ -431,10 +432,10 @@ class _$_TxReportItem implements _TxReportItem {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TxReportItem &&
+            other is _$TxReportItemImpl &&
             (identical(other.timestamp, timestamp) ||
                 other.timestamp == timestamp) &&
             (identical(other.isCompound, isCompound) ||
@@ -473,8 +474,8 @@ class _$_TxReportItem implements _TxReportItem {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TxReportItemCopyWith<_$_TxReportItem> get copyWith =>
-      __$$_TxReportItemCopyWithImpl<_$_TxReportItem>(this, _$identity);
+  _$$TxReportItemImplCopyWith<_$TxReportItemImpl> get copyWith =>
+      __$$TxReportItemImplCopyWithImpl<_$TxReportItemImpl>(this, _$identity);
 }
 
 abstract class _TxReportItem implements TxReportItem {
@@ -489,7 +490,7 @@ abstract class _TxReportItem implements TxReportItem {
       final String description,
       required final String txHash,
       required final String toAddress,
-      final String note}) = _$_TxReportItem;
+      final String note}) = _$TxReportItemImpl;
 
   @override
   int get timestamp;
@@ -515,6 +516,6 @@ abstract class _TxReportItem implements TxReportItem {
   String get note;
   @override
   @JsonKey(ignore: true)
-  _$$_TxReportItemCopyWith<_$_TxReportItem> get copyWith =>
+  _$$TxReportItemImplCopyWith<_$TxReportItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -123,10 +123,10 @@ class UtxoEntry with _$UtxoEntry {
       );
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UtxoEntry &&
+            other is _$UtxoEntryImpl &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.scriptPublicKey, scriptPublicKey) ||
                 other.scriptPublicKey == scriptPublicKey) &&
@@ -145,7 +145,7 @@ class ScriptPublicKey with _$ScriptPublicKey {
   const ScriptPublicKey._();
   const factory ScriptPublicKey({
     @JsonKey(fromJson: hexToBytes, toJson: bytesToHex)
-        required Uint8List scriptPublicKey,
+    required Uint8List scriptPublicKey,
     /*uint16*/ required int version,
   }) = _ScriptPublicKey;
 

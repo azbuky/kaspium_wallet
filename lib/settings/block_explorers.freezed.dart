@@ -12,7 +12,7 @@ part of 'block_explorers.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 BlockExplorer _$BlockExplorerFromJson(Map<String, dynamic> json) {
   return _BlockExplorer.fromJson(json);
@@ -91,11 +91,11 @@ class _$BlockExplorerCopyWithImpl<$Res, $Val extends BlockExplorer>
 }
 
 /// @nodoc
-abstract class _$$_BlockExplorerCopyWith<$Res>
+abstract class _$$BlockExplorerImplCopyWith<$Res>
     implements $BlockExplorerCopyWith<$Res> {
-  factory _$$_BlockExplorerCopyWith(
-          _$_BlockExplorer value, $Res Function(_$_BlockExplorer) then) =
-      __$$_BlockExplorerCopyWithImpl<$Res>;
+  factory _$$BlockExplorerImplCopyWith(
+          _$BlockExplorerImpl value, $Res Function(_$BlockExplorerImpl) then) =
+      __$$BlockExplorerImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,11 +107,11 @@ abstract class _$$_BlockExplorerCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_BlockExplorerCopyWithImpl<$Res>
-    extends _$BlockExplorerCopyWithImpl<$Res, _$_BlockExplorer>
-    implements _$$_BlockExplorerCopyWith<$Res> {
-  __$$_BlockExplorerCopyWithImpl(
-      _$_BlockExplorer _value, $Res Function(_$_BlockExplorer) _then)
+class __$$BlockExplorerImplCopyWithImpl<$Res>
+    extends _$BlockExplorerCopyWithImpl<$Res, _$BlockExplorerImpl>
+    implements _$$BlockExplorerImplCopyWith<$Res> {
+  __$$BlockExplorerImplCopyWithImpl(
+      _$BlockExplorerImpl _value, $Res Function(_$BlockExplorerImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +123,7 @@ class __$$_BlockExplorerCopyWithImpl<$Res>
     Object? addressUrl = null,
     Object? txUrl = null,
   }) {
-    return _then(_$_BlockExplorer(
+    return _then(_$BlockExplorerImpl(
       network: null == network
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
@@ -150,8 +150,8 @@ class __$$_BlockExplorerCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BlockExplorer extends _BlockExplorer {
-  const _$_BlockExplorer(
+class _$BlockExplorerImpl extends _BlockExplorer {
+  const _$BlockExplorerImpl(
       {required this.network,
       required this.name,
       required this.url,
@@ -159,8 +159,8 @@ class _$_BlockExplorer extends _BlockExplorer {
       required this.txUrl})
       : super._();
 
-  factory _$_BlockExplorer.fromJson(Map<String, dynamic> json) =>
-      _$$_BlockExplorerFromJson(json);
+  factory _$BlockExplorerImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BlockExplorerImplFromJson(json);
 
   @override
   final KaspaNetwork network;
@@ -179,10 +179,10 @@ class _$_BlockExplorer extends _BlockExplorer {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BlockExplorer &&
+            other is _$BlockExplorerImpl &&
             (identical(other.network, network) || other.network == network) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.url, url) || other.url == url) &&
@@ -199,12 +199,12 @@ class _$_BlockExplorer extends _BlockExplorer {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BlockExplorerCopyWith<_$_BlockExplorer> get copyWith =>
-      __$$_BlockExplorerCopyWithImpl<_$_BlockExplorer>(this, _$identity);
+  _$$BlockExplorerImplCopyWith<_$BlockExplorerImpl> get copyWith =>
+      __$$BlockExplorerImplCopyWithImpl<_$BlockExplorerImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BlockExplorerToJson(
+    return _$$BlockExplorerImplToJson(
       this,
     );
   }
@@ -216,11 +216,11 @@ abstract class _BlockExplorer extends BlockExplorer {
       required final String name,
       required final String url,
       required final String addressUrl,
-      required final String txUrl}) = _$_BlockExplorer;
+      required final String txUrl}) = _$BlockExplorerImpl;
   const _BlockExplorer._() : super._();
 
   factory _BlockExplorer.fromJson(Map<String, dynamic> json) =
-      _$_BlockExplorer.fromJson;
+      _$BlockExplorerImpl.fromJson;
 
   @override
   KaspaNetwork get network;
@@ -234,6 +234,6 @@ abstract class _BlockExplorer extends BlockExplorer {
   String get txUrl;
   @override
   @JsonKey(ignore: true)
-  _$$_BlockExplorerCopyWith<_$_BlockExplorer> get copyWith =>
+  _$$BlockExplorerImplCopyWith<_$BlockExplorerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

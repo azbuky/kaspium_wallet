@@ -6,20 +6,20 @@ part of 'types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ApiAddressBalance _$$_ApiAddressBalanceFromJson(Map json) =>
-    _$_ApiAddressBalance(
+_$ApiAddressBalanceImpl _$$ApiAddressBalanceImplFromJson(Map json) =>
+    _$ApiAddressBalanceImpl(
       address: json['address'] as String,
       balance: json['balance'] as int,
     );
 
-Map<String, dynamic> _$$_ApiAddressBalanceToJson(
-        _$_ApiAddressBalance instance) =>
+Map<String, dynamic> _$$ApiAddressBalanceImplToJson(
+        _$ApiAddressBalanceImpl instance) =>
     <String, dynamic>{
       'address': instance.address,
       'balance': instance.balance,
     };
 
-_$_ApiUtxo _$$_ApiUtxoFromJson(Map json) => _$_ApiUtxo(
+_$ApiUtxoImpl _$$ApiUtxoImplFromJson(Map json) => _$ApiUtxoImpl(
       address: json['address'] as String,
       outpoint: ApiOutpoint.fromJson(
           Map<String, dynamic>.from(json['outpoint'] as Map)),
@@ -27,25 +27,25 @@ _$_ApiUtxo _$$_ApiUtxoFromJson(Map json) => _$_ApiUtxo(
           Map<String, dynamic>.from(json['utxoEntry'] as Map)),
     );
 
-Map<String, dynamic> _$$_ApiUtxoToJson(_$_ApiUtxo instance) =>
+Map<String, dynamic> _$$ApiUtxoImplToJson(_$ApiUtxoImpl instance) =>
     <String, dynamic>{
       'address': instance.address,
       'outpoint': instance.outpoint.toJson(),
       'utxoEntry': instance.utxoEntry.toJson(),
     };
 
-_$_Outpoint _$$_OutpointFromJson(Map json) => _$_Outpoint(
+_$OutpointImpl _$$OutpointImplFromJson(Map json) => _$OutpointImpl(
       transactionId: json['transactionId'] as String,
       index: json['index'] as int,
     );
 
-Map<String, dynamic> _$$_OutpointToJson(_$_Outpoint instance) =>
+Map<String, dynamic> _$$OutpointImplToJson(_$OutpointImpl instance) =>
     <String, dynamic>{
       'transactionId': instance.transactionId,
       'index': instance.index,
     };
 
-_$_ApiUtxoEntry _$$_ApiUtxoEntryFromJson(Map json) => _$_ApiUtxoEntry(
+_$ApiUtxoEntryImpl _$$ApiUtxoEntryImplFromJson(Map json) => _$ApiUtxoEntryImpl(
       amount: BigInt.parse(json['amount'] as String),
       scriptPublicKey: ApiScriptPublicKey.fromJson(
           Map<String, dynamic>.from(json['scriptPublicKey'] as Map)),
@@ -53,7 +53,7 @@ _$_ApiUtxoEntry _$$_ApiUtxoEntryFromJson(Map json) => _$_ApiUtxoEntry(
       isCoinbase: json['isCoinbase'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$_ApiUtxoEntryToJson(_$_ApiUtxoEntry instance) =>
+Map<String, dynamic> _$$ApiUtxoEntryImplToJson(_$ApiUtxoEntryImpl instance) =>
     <String, dynamic>{
       'amount': instance.amount.toString(),
       'scriptPublicKey': instance.scriptPublicKey.toJson(),
@@ -61,25 +61,25 @@ Map<String, dynamic> _$$_ApiUtxoEntryToJson(_$_ApiUtxoEntry instance) =>
       'isCoinbase': instance.isCoinbase,
     };
 
-_$_ApiScriptPublicKey _$$_ApiScriptPublicKeyFromJson(Map json) =>
-    _$_ApiScriptPublicKey(
+_$ApiScriptPublicKeyImpl _$$ApiScriptPublicKeyImplFromJson(Map json) =>
+    _$ApiScriptPublicKeyImpl(
       scriptPublicKey: json['scriptPublicKey'] as String,
       version: json['version'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$$_ApiScriptPublicKeyToJson(
-        _$_ApiScriptPublicKey instance) =>
+Map<String, dynamic> _$$ApiScriptPublicKeyImplToJson(
+        _$ApiScriptPublicKeyImpl instance) =>
     <String, dynamic>{
       'scriptPublicKey': instance.scriptPublicKey,
       'version': instance.version,
     };
 
-_$_ApiTxLink _$$_ApiTxLinkFromJson(Map json) => _$_ApiTxLink(
+_$ApiTxLinkImpl _$$ApiTxLinkImplFromJson(Map json) => _$ApiTxLinkImpl(
       txReceived: json['tx_received'] as String?,
       txSpent: json['tx_spent'] as String?,
     );
 
-Map<String, dynamic> _$$_ApiTxLinkToJson(_$_ApiTxLink instance) {
+Map<String, dynamic> _$$ApiTxLinkImplToJson(_$ApiTxLinkImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -93,12 +93,12 @@ Map<String, dynamic> _$$_ApiTxLinkToJson(_$_ApiTxLink instance) {
   return val;
 }
 
-_$_ApiTxId _$$_ApiTxIdFromJson(Map json) => _$_ApiTxId(
+_$ApiTxIdImpl _$$ApiTxIdImplFromJson(Map json) => _$ApiTxIdImpl(
       transactionId: json['transaction_id'] as String,
       blockTime: json['block_time'] as int?,
     );
 
-Map<String, dynamic> _$$_ApiTxIdToJson(_$_ApiTxId instance) {
+Map<String, dynamic> _$$ApiTxIdImplToJson(_$ApiTxIdImpl instance) {
   final val = <String, dynamic>{
     'transaction_id': instance.transactionId,
   };
@@ -113,7 +113,7 @@ Map<String, dynamic> _$$_ApiTxIdToJson(_$_ApiTxId instance) {
   return val;
 }
 
-_$_ApiTxInput _$$_ApiTxInputFromJson(Map json) => _$_ApiTxInput(
+_$ApiTxInputImpl _$$ApiTxInputImplFromJson(Map json) => _$ApiTxInputImpl(
       transactionId: json['transaction_id'] as String,
       index: json['index'] as int,
       previousOutpointHash: json['previous_outpoint_hash'] as String,
@@ -125,7 +125,7 @@ _$_ApiTxInput _$$_ApiTxInputFromJson(Map json) => _$_ApiTxInput(
       previousOutpointAmount: json['previous_outpoint_amount'] as int?,
     );
 
-Map<String, dynamic> _$$_ApiTxInputToJson(_$_ApiTxInput instance) {
+Map<String, dynamic> _$$ApiTxInputImplToJson(_$ApiTxInputImpl instance) {
   final val = <String, dynamic>{
     'transaction_id': instance.transactionId,
     'index': instance.index,
@@ -146,7 +146,7 @@ Map<String, dynamic> _$$_ApiTxInputToJson(_$_ApiTxInput instance) {
   return val;
 }
 
-_$_ApiTxOutput _$$_ApiTxOutputFromJson(Map json) => _$_ApiTxOutput(
+_$ApiTxOutputImpl _$$ApiTxOutputImplFromJson(Map json) => _$ApiTxOutputImpl(
       transactionId: json['transaction_id'] as String,
       index: json['index'] as int,
       amount: json['amount'] as int,
@@ -155,7 +155,7 @@ _$_ApiTxOutput _$$_ApiTxOutputFromJson(Map json) => _$_ApiTxOutput(
       scriptPublicKeyType: json['script_public_key_type'] as String,
     );
 
-Map<String, dynamic> _$$_ApiTxOutputToJson(_$_ApiTxOutput instance) =>
+Map<String, dynamic> _$$ApiTxOutputImplToJson(_$ApiTxOutputImpl instance) =>
     <String, dynamic>{
       'transaction_id': instance.transactionId,
       'index': instance.index,
@@ -165,7 +165,7 @@ Map<String, dynamic> _$$_ApiTxOutputToJson(_$_ApiTxOutput instance) =>
       'script_public_key_type': instance.scriptPublicKeyType,
     };
 
-_$_Transaction _$$_TransactionFromJson(Map json) => _$_Transaction(
+_$TransactionImpl _$$TransactionImplFromJson(Map json) => _$TransactionImpl(
       subnetworkId: json['subnetwork_id'] as String?,
       transactionId: json['transaction_id'] as String,
       blockHash: (json['block_hash'] as List<dynamic>?)
@@ -188,7 +188,7 @@ _$_Transaction _$$_TransactionFromJson(Map json) => _$_Transaction(
           const [],
     );
 
-Map<String, dynamic> _$$_TransactionToJson(_$_Transaction instance) {
+Map<String, dynamic> _$$TransactionImplToJson(_$TransactionImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
