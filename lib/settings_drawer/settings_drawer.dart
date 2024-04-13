@@ -162,29 +162,25 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
     }
   }
 
-  Future<bool> _onBackButtonPressed() async {
+  void _onBackButtonPressed(bool didPop) {
     if (_contactsOpen) {
       setState(() => _contactsOpen = false);
       _contactsController.reverse();
-      return false;
     } else if (_securityOpen) {
       setState(() => _securityOpen = false);
       _securityController.reverse();
-      return false;
     } else if (_networkOpen) {
       setState(() => _networkOpen = false);
       _networkController.reverse();
-      return false;
     } else if (_advancedOpen) {
       setState(() => _advancedOpen = false);
       _advancedController.reverse();
-      return false;
     } else if (_donateOpen) {
       setState(() => _donateOpen = false);
       _donateController.reverse();
-      return false;
+    } else if (!didPop) {
+      Navigator.of(context).pop();
     }
-    return true;
   }
 
   @override
@@ -192,8 +188,9 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
     // Drawer in flutter doesn't have a built-in way to push/pop elements
     // on top of it like our Android counterpart. So we can override back button
     // presses and replace the main settings widget with contacts based on a bool
-    return WillPopScope(
-      onWillPop: _onBackButtonPressed,
+    return PopScope(
+      canPop: false,
+      onPopInvoked: _onBackButtonPressed,
       child: ClipRect(
         child: Stack(children: [
           Consumer(builder: (context, ref, _) {

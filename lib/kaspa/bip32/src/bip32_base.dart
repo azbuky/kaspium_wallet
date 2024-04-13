@@ -211,7 +211,7 @@ class BIP32 {
       throw ArgumentError("Seed should be at most 512 bits");
     }
     NetworkType network = nw ?? networks.bitcoin;
-    final i = hmacSHA512(utf8.encode("Bitcoin seed") as Uint8List, seed);
+    final i = hmacSHA512(utf8.encode("Bitcoin seed"), seed);
     final il = i.sublist(0, 32);
     final ir = i.sublist(32);
     return BIP32.fromPrivateKey(il, ir, network);
