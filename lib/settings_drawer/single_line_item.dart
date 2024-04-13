@@ -26,11 +26,7 @@ class SingleLineItem extends ConsumerWidget {
 
     return TextButton(
       style: styles.defaultTextButtonStyle,
-      onPressed: () {
-        if (onPressed != null) {
-          onPressed!();
-        }
-      },
+      onPressed: () => onPressed?.call(),
       child: Container(
         height: 60,
         margin: const EdgeInsetsDirectional.only(start: 30),
