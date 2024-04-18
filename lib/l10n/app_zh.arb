@@ -359,7 +359,7 @@
   "txReportFeeForCompound": "合并交易的费用",
   "txReportFeeForSelfSend": "发送给自有地址的费用",
   "txReportError": "生成报告时出错",
-  "txReportNoTxs": "找到 {数量} 条交易记录。",
+  "txReportNoTxs": "找到 {numberOf} 条交易记录。",
   "txReportNoLoadedTxs": "({loadedTxs} / {totalTxs})",
   "txFilterDialogTitle": "筛选交易",
   "txFilterDialogOptionAllTxs": "展示所有交易",
