@@ -359,7 +359,7 @@
   "txReportFeeForCompound": "Frais pour combiner la transaction",
   "txReportFeeForSelfSend": "Frais pour envoyer à sa propre adresse",
   "txReportError": "Échec lors de la génération du rapport",
-  "txReportNoTxs": "{addressType} transactions trouvées.",
+  "txReportNoTxs": "{numberOf} transactions trouvées.",
   "txReportNoLoadedTxs": "({loadedTxs} sur {totalTxs})",
   "txFilterDialogTitle": "Filtre de transaction",
   "txFilterDialogOptionAllTxs": "Afficher toutes les transactions",
