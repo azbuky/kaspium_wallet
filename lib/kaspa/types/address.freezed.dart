@@ -12,7 +12,7 @@ part of 'address.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Address {
@@ -101,22 +101,22 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
 }
 
 /// @nodoc
-abstract class _$$_AddressPublicKeyCopyWith<$Res>
+abstract class _$$AddressPublicKeyImplCopyWith<$Res>
     implements $AddressCopyWith<$Res> {
-  factory _$$_AddressPublicKeyCopyWith(
-          _$_AddressPublicKey value, $Res Function(_$_AddressPublicKey) then) =
-      __$$_AddressPublicKeyCopyWithImpl<$Res>;
+  factory _$$AddressPublicKeyImplCopyWith(_$AddressPublicKeyImpl value,
+          $Res Function(_$AddressPublicKeyImpl) then) =
+      __$$AddressPublicKeyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({AddressPrefix prefix, Uint8List publicKey});
 }
 
 /// @nodoc
-class __$$_AddressPublicKeyCopyWithImpl<$Res>
-    extends _$AddressCopyWithImpl<$Res, _$_AddressPublicKey>
-    implements _$$_AddressPublicKeyCopyWith<$Res> {
-  __$$_AddressPublicKeyCopyWithImpl(
-      _$_AddressPublicKey _value, $Res Function(_$_AddressPublicKey) _then)
+class __$$AddressPublicKeyImplCopyWithImpl<$Res>
+    extends _$AddressCopyWithImpl<$Res, _$AddressPublicKeyImpl>
+    implements _$$AddressPublicKeyImplCopyWith<$Res> {
+  __$$AddressPublicKeyImplCopyWithImpl(_$AddressPublicKeyImpl _value,
+      $Res Function(_$AddressPublicKeyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -125,7 +125,7 @@ class __$$_AddressPublicKeyCopyWithImpl<$Res>
     Object? prefix = null,
     Object? publicKey = null,
   }) {
-    return _then(_$_AddressPublicKey(
+    return _then(_$AddressPublicKeyImpl(
       prefix: null == prefix
           ? _value.prefix
           : prefix // ignore: cast_nullable_to_non_nullable
@@ -140,8 +140,8 @@ class __$$_AddressPublicKeyCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AddressPublicKey extends _AddressPublicKey {
-  _$_AddressPublicKey({required this.prefix, required this.publicKey})
+class _$AddressPublicKeyImpl extends _AddressPublicKey {
+  _$AddressPublicKeyImpl({required this.prefix, required this.publicKey})
       : assert(publicKey.length == kPublicKeyLength),
         super._();
 
@@ -151,10 +151,10 @@ class _$_AddressPublicKey extends _AddressPublicKey {
   final Uint8List publicKey;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddressPublicKey &&
+            other is _$AddressPublicKeyImpl &&
             (identical(other.prefix, prefix) || other.prefix == prefix) &&
             const DeepCollectionEquality().equals(other.publicKey, publicKey));
   }
@@ -166,8 +166,9 @@ class _$_AddressPublicKey extends _AddressPublicKey {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddressPublicKeyCopyWith<_$_AddressPublicKey> get copyWith =>
-      __$$_AddressPublicKeyCopyWithImpl<_$_AddressPublicKey>(this, _$identity);
+  _$$AddressPublicKeyImplCopyWith<_$AddressPublicKeyImpl> get copyWith =>
+      __$$AddressPublicKeyImplCopyWithImpl<_$AddressPublicKeyImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -243,7 +244,7 @@ class _$_AddressPublicKey extends _AddressPublicKey {
 abstract class _AddressPublicKey extends Address {
   factory _AddressPublicKey(
       {required final AddressPrefix prefix,
-      required final Uint8List publicKey}) = _$_AddressPublicKey;
+      required final Uint8List publicKey}) = _$AddressPublicKeyImpl;
   _AddressPublicKey._() : super._();
 
   @override
@@ -251,27 +252,27 @@ abstract class _AddressPublicKey extends Address {
   Uint8List get publicKey;
   @override
   @JsonKey(ignore: true)
-  _$$_AddressPublicKeyCopyWith<_$_AddressPublicKey> get copyWith =>
+  _$$AddressPublicKeyImplCopyWith<_$AddressPublicKeyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_AddressPubKeyECDSACopyWith<$Res>
+abstract class _$$AddressPubKeyECDSAImplCopyWith<$Res>
     implements $AddressCopyWith<$Res> {
-  factory _$$_AddressPubKeyECDSACopyWith(_$_AddressPubKeyECDSA value,
-          $Res Function(_$_AddressPubKeyECDSA) then) =
-      __$$_AddressPubKeyECDSACopyWithImpl<$Res>;
+  factory _$$AddressPubKeyECDSAImplCopyWith(_$AddressPubKeyECDSAImpl value,
+          $Res Function(_$AddressPubKeyECDSAImpl) then) =
+      __$$AddressPubKeyECDSAImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({AddressPrefix prefix, Uint8List publicKey});
 }
 
 /// @nodoc
-class __$$_AddressPubKeyECDSACopyWithImpl<$Res>
-    extends _$AddressCopyWithImpl<$Res, _$_AddressPubKeyECDSA>
-    implements _$$_AddressPubKeyECDSACopyWith<$Res> {
-  __$$_AddressPubKeyECDSACopyWithImpl(
-      _$_AddressPubKeyECDSA _value, $Res Function(_$_AddressPubKeyECDSA) _then)
+class __$$AddressPubKeyECDSAImplCopyWithImpl<$Res>
+    extends _$AddressCopyWithImpl<$Res, _$AddressPubKeyECDSAImpl>
+    implements _$$AddressPubKeyECDSAImplCopyWith<$Res> {
+  __$$AddressPubKeyECDSAImplCopyWithImpl(_$AddressPubKeyECDSAImpl _value,
+      $Res Function(_$AddressPubKeyECDSAImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -280,7 +281,7 @@ class __$$_AddressPubKeyECDSACopyWithImpl<$Res>
     Object? prefix = null,
     Object? publicKey = null,
   }) {
-    return _then(_$_AddressPubKeyECDSA(
+    return _then(_$AddressPubKeyECDSAImpl(
       prefix: null == prefix
           ? _value.prefix
           : prefix // ignore: cast_nullable_to_non_nullable
@@ -295,8 +296,8 @@ class __$$_AddressPubKeyECDSACopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AddressPubKeyECDSA extends _AddressPubKeyECDSA {
-  _$_AddressPubKeyECDSA({required this.prefix, required this.publicKey})
+class _$AddressPubKeyECDSAImpl extends _AddressPubKeyECDSA {
+  _$AddressPubKeyECDSAImpl({required this.prefix, required this.publicKey})
       : assert(publicKey.length == kPublicKeySizeECDSA),
         super._();
 
@@ -306,10 +307,10 @@ class _$_AddressPubKeyECDSA extends _AddressPubKeyECDSA {
   final Uint8List publicKey;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddressPubKeyECDSA &&
+            other is _$AddressPubKeyECDSAImpl &&
             (identical(other.prefix, prefix) || other.prefix == prefix) &&
             const DeepCollectionEquality().equals(other.publicKey, publicKey));
   }
@@ -321,8 +322,8 @@ class _$_AddressPubKeyECDSA extends _AddressPubKeyECDSA {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddressPubKeyECDSACopyWith<_$_AddressPubKeyECDSA> get copyWith =>
-      __$$_AddressPubKeyECDSACopyWithImpl<_$_AddressPubKeyECDSA>(
+  _$$AddressPubKeyECDSAImplCopyWith<_$AddressPubKeyECDSAImpl> get copyWith =>
+      __$$AddressPubKeyECDSAImplCopyWithImpl<_$AddressPubKeyECDSAImpl>(
           this, _$identity);
 
   @override
@@ -399,7 +400,7 @@ class _$_AddressPubKeyECDSA extends _AddressPubKeyECDSA {
 abstract class _AddressPubKeyECDSA extends Address {
   factory _AddressPubKeyECDSA(
       {required final AddressPrefix prefix,
-      required final Uint8List publicKey}) = _$_AddressPubKeyECDSA;
+      required final Uint8List publicKey}) = _$AddressPubKeyECDSAImpl;
   _AddressPubKeyECDSA._() : super._();
 
   @override
@@ -407,27 +408,27 @@ abstract class _AddressPubKeyECDSA extends Address {
   Uint8List get publicKey;
   @override
   @JsonKey(ignore: true)
-  _$$_AddressPubKeyECDSACopyWith<_$_AddressPubKeyECDSA> get copyWith =>
+  _$$AddressPubKeyECDSAImplCopyWith<_$AddressPubKeyECDSAImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_AddressScriptHashCopyWith<$Res>
+abstract class _$$AddressScriptHashImplCopyWith<$Res>
     implements $AddressCopyWith<$Res> {
-  factory _$$_AddressScriptHashCopyWith(_$_AddressScriptHash value,
-          $Res Function(_$_AddressScriptHash) then) =
-      __$$_AddressScriptHashCopyWithImpl<$Res>;
+  factory _$$AddressScriptHashImplCopyWith(_$AddressScriptHashImpl value,
+          $Res Function(_$AddressScriptHashImpl) then) =
+      __$$AddressScriptHashImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({AddressPrefix prefix, Uint8List hash});
 }
 
 /// @nodoc
-class __$$_AddressScriptHashCopyWithImpl<$Res>
-    extends _$AddressCopyWithImpl<$Res, _$_AddressScriptHash>
-    implements _$$_AddressScriptHashCopyWith<$Res> {
-  __$$_AddressScriptHashCopyWithImpl(
-      _$_AddressScriptHash _value, $Res Function(_$_AddressScriptHash) _then)
+class __$$AddressScriptHashImplCopyWithImpl<$Res>
+    extends _$AddressCopyWithImpl<$Res, _$AddressScriptHashImpl>
+    implements _$$AddressScriptHashImplCopyWith<$Res> {
+  __$$AddressScriptHashImplCopyWithImpl(_$AddressScriptHashImpl _value,
+      $Res Function(_$AddressScriptHashImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -436,7 +437,7 @@ class __$$_AddressScriptHashCopyWithImpl<$Res>
     Object? prefix = null,
     Object? hash = null,
   }) {
-    return _then(_$_AddressScriptHash(
+    return _then(_$AddressScriptHashImpl(
       prefix: null == prefix
           ? _value.prefix
           : prefix // ignore: cast_nullable_to_non_nullable
@@ -451,8 +452,9 @@ class __$$_AddressScriptHashCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AddressScriptHash extends _AddressScriptHash {
-  _$_AddressScriptHash({required this.prefix, required this.hash}) : super._();
+class _$AddressScriptHashImpl extends _AddressScriptHash {
+  _$AddressScriptHashImpl({required this.prefix, required this.hash})
+      : super._();
 
   @override
   final AddressPrefix prefix;
@@ -460,10 +462,10 @@ class _$_AddressScriptHash extends _AddressScriptHash {
   final Uint8List hash;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddressScriptHash &&
+            other is _$AddressScriptHashImpl &&
             (identical(other.prefix, prefix) || other.prefix == prefix) &&
             const DeepCollectionEquality().equals(other.hash, hash));
   }
@@ -475,8 +477,8 @@ class _$_AddressScriptHash extends _AddressScriptHash {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddressScriptHashCopyWith<_$_AddressScriptHash> get copyWith =>
-      __$$_AddressScriptHashCopyWithImpl<_$_AddressScriptHash>(
+  _$$AddressScriptHashImplCopyWith<_$AddressScriptHashImpl> get copyWith =>
+      __$$AddressScriptHashImplCopyWithImpl<_$AddressScriptHashImpl>(
           this, _$identity);
 
   @override
@@ -553,7 +555,7 @@ class _$_AddressScriptHash extends _AddressScriptHash {
 abstract class _AddressScriptHash extends Address {
   factory _AddressScriptHash(
       {required final AddressPrefix prefix,
-      required final Uint8List hash}) = _$_AddressScriptHash;
+      required final Uint8List hash}) = _$AddressScriptHashImpl;
   _AddressScriptHash._() : super._();
 
   @override
@@ -561,6 +563,6 @@ abstract class _AddressScriptHash extends Address {
   Uint8List get hash;
   @override
   @JsonKey(ignore: true)
-  _$$_AddressScriptHashCopyWith<_$_AddressScriptHash> get copyWith =>
+  _$$AddressScriptHashImplCopyWith<_$AddressScriptHashImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

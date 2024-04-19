@@ -12,7 +12,7 @@ part of 'send_tx.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SendTx {
@@ -114,9 +114,10 @@ class _$SendTxCopyWithImpl<$Res, $Val extends SendTx>
 }
 
 /// @nodoc
-abstract class _$$_SendTxCopyWith<$Res> implements $SendTxCopyWith<$Res> {
-  factory _$$_SendTxCopyWith(_$_SendTx value, $Res Function(_$_SendTx) then) =
-      __$$_SendTxCopyWithImpl<$Res>;
+abstract class _$$SendTxImplCopyWith<$Res> implements $SendTxCopyWith<$Res> {
+  factory _$$SendTxImplCopyWith(
+          _$SendTxImpl value, $Res Function(_$SendTxImpl) then) =
+      __$$SendTxImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -134,10 +135,11 @@ abstract class _$$_SendTxCopyWith<$Res> implements $SendTxCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SendTxCopyWithImpl<$Res>
-    extends _$SendTxCopyWithImpl<$Res, _$_SendTx>
-    implements _$$_SendTxCopyWith<$Res> {
-  __$$_SendTxCopyWithImpl(_$_SendTx _value, $Res Function(_$_SendTx) _then)
+class __$$SendTxImplCopyWithImpl<$Res>
+    extends _$SendTxCopyWithImpl<$Res, _$SendTxImpl>
+    implements _$$SendTxImplCopyWith<$Res> {
+  __$$SendTxImplCopyWithImpl(
+      _$SendTxImpl _value, $Res Function(_$SendTxImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -150,7 +152,7 @@ class __$$_SendTxCopyWithImpl<$Res>
     Object? fee = freezed,
     Object? note = freezed,
   }) {
-    return _then(_$_SendTx(
+    return _then(_$SendTxImpl(
       uri: null == uri
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
@@ -181,8 +183,8 @@ class __$$_SendTxCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SendTx extends _SendTx {
-  _$_SendTx(
+class _$SendTxImpl extends _SendTx {
+  _$SendTxImpl(
       {required this.uri,
       this.changeAddress,
       required this.amountRaw,
@@ -218,10 +220,10 @@ class _$_SendTx extends _SendTx {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SendTx &&
+            other is _$SendTxImpl &&
             (identical(other.uri, uri) || other.uri == uri) &&
             (identical(other.changeAddress, changeAddress) ||
                 other.changeAddress == changeAddress) &&
@@ -239,8 +241,8 @@ class _$_SendTx extends _SendTx {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SendTxCopyWith<_$_SendTx> get copyWith =>
-      __$$_SendTxCopyWithImpl<_$_SendTx>(this, _$identity);
+  _$$SendTxImplCopyWith<_$SendTxImpl> get copyWith =>
+      __$$SendTxImplCopyWithImpl<_$SendTxImpl>(this, _$identity);
 }
 
 abstract class _SendTx extends SendTx {
@@ -250,7 +252,7 @@ abstract class _SendTx extends SendTx {
       required final BigInt amountRaw,
       final List<Utxo> utxos,
       final BigInt? fee,
-      final String? note}) = _$_SendTx;
+      final String? note}) = _$SendTxImpl;
   _SendTx._() : super._();
 
   @override
@@ -267,6 +269,6 @@ abstract class _SendTx extends SendTx {
   String? get note;
   @override
   @JsonKey(ignore: true)
-  _$$_SendTxCopyWith<_$_SendTx> get copyWith =>
+  _$$SendTxImplCopyWith<_$SendTxImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'wallet_types.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 BoxKeys _$BoxKeysFromJson(Map<String, dynamic> json) {
   return _BoxKeys.fromJson(json);
@@ -66,20 +66,21 @@ class _$BoxKeysCopyWithImpl<$Res, $Val extends BoxKeys>
 }
 
 /// @nodoc
-abstract class _$$_BoxKeysCopyWith<$Res> implements $BoxKeysCopyWith<$Res> {
-  factory _$$_BoxKeysCopyWith(
-          _$_BoxKeys value, $Res Function(_$_BoxKeys) then) =
-      __$$_BoxKeysCopyWithImpl<$Res>;
+abstract class _$$BoxKeysImplCopyWith<$Res> implements $BoxKeysCopyWith<$Res> {
+  factory _$$BoxKeysImplCopyWith(
+          _$BoxKeysImpl value, $Res Function(_$BoxKeysImpl) then) =
+      __$$BoxKeysImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String boxKey, String encryptionKey});
 }
 
 /// @nodoc
-class __$$_BoxKeysCopyWithImpl<$Res>
-    extends _$BoxKeysCopyWithImpl<$Res, _$_BoxKeys>
-    implements _$$_BoxKeysCopyWith<$Res> {
-  __$$_BoxKeysCopyWithImpl(_$_BoxKeys _value, $Res Function(_$_BoxKeys) _then)
+class __$$BoxKeysImplCopyWithImpl<$Res>
+    extends _$BoxKeysCopyWithImpl<$Res, _$BoxKeysImpl>
+    implements _$$BoxKeysImplCopyWith<$Res> {
+  __$$BoxKeysImplCopyWithImpl(
+      _$BoxKeysImpl _value, $Res Function(_$BoxKeysImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -88,7 +89,7 @@ class __$$_BoxKeysCopyWithImpl<$Res>
     Object? boxKey = null,
     Object? encryptionKey = null,
   }) {
-    return _then(_$_BoxKeys(
+    return _then(_$BoxKeysImpl(
       boxKey: null == boxKey
           ? _value.boxKey
           : boxKey // ignore: cast_nullable_to_non_nullable
@@ -103,11 +104,11 @@ class __$$_BoxKeysCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BoxKeys implements _BoxKeys {
-  const _$_BoxKeys({required this.boxKey, required this.encryptionKey});
+class _$BoxKeysImpl implements _BoxKeys {
+  const _$BoxKeysImpl({required this.boxKey, required this.encryptionKey});
 
-  factory _$_BoxKeys.fromJson(Map<String, dynamic> json) =>
-      _$$_BoxKeysFromJson(json);
+  factory _$BoxKeysImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BoxKeysImplFromJson(json);
 
   @override
   final String boxKey;
@@ -120,10 +121,10 @@ class _$_BoxKeys implements _BoxKeys {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BoxKeys &&
+            other is _$BoxKeysImpl &&
             (identical(other.boxKey, boxKey) || other.boxKey == boxKey) &&
             (identical(other.encryptionKey, encryptionKey) ||
                 other.encryptionKey == encryptionKey));
@@ -136,12 +137,12 @@ class _$_BoxKeys implements _BoxKeys {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BoxKeysCopyWith<_$_BoxKeys> get copyWith =>
-      __$$_BoxKeysCopyWithImpl<_$_BoxKeys>(this, _$identity);
+  _$$BoxKeysImplCopyWith<_$BoxKeysImpl> get copyWith =>
+      __$$BoxKeysImplCopyWithImpl<_$BoxKeysImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BoxKeysToJson(
+    return _$$BoxKeysImplToJson(
       this,
     );
   }
@@ -150,9 +151,9 @@ class _$_BoxKeys implements _BoxKeys {
 abstract class _BoxKeys implements BoxKeys {
   const factory _BoxKeys(
       {required final String boxKey,
-      required final String encryptionKey}) = _$_BoxKeys;
+      required final String encryptionKey}) = _$BoxKeysImpl;
 
-  factory _BoxKeys.fromJson(Map<String, dynamic> json) = _$_BoxKeys.fromJson;
+  factory _BoxKeys.fromJson(Map<String, dynamic> json) = _$BoxKeysImpl.fromJson;
 
   @override
   String get boxKey;
@@ -160,7 +161,7 @@ abstract class _BoxKeys implements BoxKeys {
   String get encryptionKey;
   @override
   @JsonKey(ignore: true)
-  _$$_BoxKeysCopyWith<_$_BoxKeys> get copyWith =>
+  _$$BoxKeysImplCopyWith<_$BoxKeysImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -285,10 +286,10 @@ class _$BoxInfoCopyWithImpl<$Res, $Val extends BoxInfo>
 }
 
 /// @nodoc
-abstract class _$$_BoxInfoCopyWith<$Res> implements $BoxInfoCopyWith<$Res> {
-  factory _$$_BoxInfoCopyWith(
-          _$_BoxInfo value, $Res Function(_$_BoxInfo) then) =
-      __$$_BoxInfoCopyWithImpl<$Res>;
+abstract class _$$BoxInfoImplCopyWith<$Res> implements $BoxInfoCopyWith<$Res> {
+  factory _$$BoxInfoImplCopyWith(
+          _$BoxInfoImpl value, $Res Function(_$BoxInfoImpl) then) =
+      __$$BoxInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -311,10 +312,11 @@ abstract class _$$_BoxInfoCopyWith<$Res> implements $BoxInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_BoxInfoCopyWithImpl<$Res>
-    extends _$BoxInfoCopyWithImpl<$Res, _$_BoxInfo>
-    implements _$$_BoxInfoCopyWith<$Res> {
-  __$$_BoxInfoCopyWithImpl(_$_BoxInfo _value, $Res Function(_$_BoxInfo) _then)
+class __$$BoxInfoImplCopyWithImpl<$Res>
+    extends _$BoxInfoCopyWithImpl<$Res, _$BoxInfoImpl>
+    implements _$$BoxInfoImplCopyWith<$Res> {
+  __$$BoxInfoImplCopyWithImpl(
+      _$BoxInfoImpl _value, $Res Function(_$BoxInfoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -326,7 +328,7 @@ class __$$_BoxInfoCopyWithImpl<$Res>
     Object? txIndex = null,
     Object? tx = null,
   }) {
-    return _then(_$_BoxInfo(
+    return _then(_$BoxInfoImpl(
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -353,16 +355,16 @@ class __$$_BoxInfoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BoxInfo implements _BoxInfo {
-  const _$_BoxInfo(
+class _$BoxInfoImpl implements _BoxInfo {
+  const _$BoxInfoImpl(
       {required this.address,
       required this.balance,
       required this.utxo,
       required this.txIndex,
       required this.tx});
 
-  factory _$_BoxInfo.fromJson(Map<String, dynamic> json) =>
-      _$$_BoxInfoFromJson(json);
+  factory _$BoxInfoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BoxInfoImplFromJson(json);
 
   @override
   final BoxKeys address;
@@ -381,10 +383,10 @@ class _$_BoxInfo implements _BoxInfo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BoxInfo &&
+            other is _$BoxInfoImpl &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.balance, balance) || other.balance == balance) &&
             (identical(other.utxo, utxo) || other.utxo == utxo) &&
@@ -400,12 +402,12 @@ class _$_BoxInfo implements _BoxInfo {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BoxInfoCopyWith<_$_BoxInfo> get copyWith =>
-      __$$_BoxInfoCopyWithImpl<_$_BoxInfo>(this, _$identity);
+  _$$BoxInfoImplCopyWith<_$BoxInfoImpl> get copyWith =>
+      __$$BoxInfoImplCopyWithImpl<_$BoxInfoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BoxInfoToJson(
+    return _$$BoxInfoImplToJson(
       this,
     );
   }
@@ -417,9 +419,9 @@ abstract class _BoxInfo implements BoxInfo {
       required final BoxKeys balance,
       required final BoxKeys utxo,
       required final BoxKeys txIndex,
-      required final BoxKeys tx}) = _$_BoxInfo;
+      required final BoxKeys tx}) = _$BoxInfoImpl;
 
-  factory _BoxInfo.fromJson(Map<String, dynamic> json) = _$_BoxInfo.fromJson;
+  factory _BoxInfo.fromJson(Map<String, dynamic> json) = _$BoxInfoImpl.fromJson;
 
   @override
   BoxKeys get address;
@@ -433,7 +435,7 @@ abstract class _BoxInfo implements BoxInfo {
   BoxKeys get tx;
   @override
   @JsonKey(ignore: true)
-  _$$_BoxInfoCopyWith<_$_BoxInfo> get copyWith =>
+  _$$BoxInfoImplCopyWith<_$BoxInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -540,11 +542,11 @@ class _$BoxInfoByNetworkCopyWithImpl<$Res, $Val extends BoxInfoByNetwork>
 }
 
 /// @nodoc
-abstract class _$$_BoxInfoByNetworkCopyWith<$Res>
+abstract class _$$BoxInfoByNetworkImplCopyWith<$Res>
     implements $BoxInfoByNetworkCopyWith<$Res> {
-  factory _$$_BoxInfoByNetworkCopyWith(
-          _$_BoxInfoByNetwork value, $Res Function(_$_BoxInfoByNetwork) then) =
-      __$$_BoxInfoByNetworkCopyWithImpl<$Res>;
+  factory _$$BoxInfoByNetworkImplCopyWith(_$BoxInfoByNetworkImpl value,
+          $Res Function(_$BoxInfoByNetworkImpl) then) =
+      __$$BoxInfoByNetworkImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({BoxInfo mainnet, BoxInfo testnet, BoxInfo devnet, BoxInfo simnet});
@@ -560,11 +562,11 @@ abstract class _$$_BoxInfoByNetworkCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_BoxInfoByNetworkCopyWithImpl<$Res>
-    extends _$BoxInfoByNetworkCopyWithImpl<$Res, _$_BoxInfoByNetwork>
-    implements _$$_BoxInfoByNetworkCopyWith<$Res> {
-  __$$_BoxInfoByNetworkCopyWithImpl(
-      _$_BoxInfoByNetwork _value, $Res Function(_$_BoxInfoByNetwork) _then)
+class __$$BoxInfoByNetworkImplCopyWithImpl<$Res>
+    extends _$BoxInfoByNetworkCopyWithImpl<$Res, _$BoxInfoByNetworkImpl>
+    implements _$$BoxInfoByNetworkImplCopyWith<$Res> {
+  __$$BoxInfoByNetworkImplCopyWithImpl(_$BoxInfoByNetworkImpl _value,
+      $Res Function(_$BoxInfoByNetworkImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -575,7 +577,7 @@ class __$$_BoxInfoByNetworkCopyWithImpl<$Res>
     Object? devnet = null,
     Object? simnet = null,
   }) {
-    return _then(_$_BoxInfoByNetwork(
+    return _then(_$BoxInfoByNetworkImpl(
       mainnet: null == mainnet
           ? _value.mainnet
           : mainnet // ignore: cast_nullable_to_non_nullable
@@ -598,16 +600,16 @@ class __$$_BoxInfoByNetworkCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BoxInfoByNetwork extends _BoxInfoByNetwork {
-  const _$_BoxInfoByNetwork(
+class _$BoxInfoByNetworkImpl extends _BoxInfoByNetwork {
+  const _$BoxInfoByNetworkImpl(
       {required this.mainnet,
       required this.testnet,
       required this.devnet,
       required this.simnet})
       : super._();
 
-  factory _$_BoxInfoByNetwork.fromJson(Map<String, dynamic> json) =>
-      _$$_BoxInfoByNetworkFromJson(json);
+  factory _$BoxInfoByNetworkImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BoxInfoByNetworkImplFromJson(json);
 
   @override
   final BoxInfo mainnet;
@@ -624,10 +626,10 @@ class _$_BoxInfoByNetwork extends _BoxInfoByNetwork {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BoxInfoByNetwork &&
+            other is _$BoxInfoByNetworkImpl &&
             (identical(other.mainnet, mainnet) || other.mainnet == mainnet) &&
             (identical(other.testnet, testnet) || other.testnet == testnet) &&
             (identical(other.devnet, devnet) || other.devnet == devnet) &&
@@ -642,12 +644,13 @@ class _$_BoxInfoByNetwork extends _BoxInfoByNetwork {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BoxInfoByNetworkCopyWith<_$_BoxInfoByNetwork> get copyWith =>
-      __$$_BoxInfoByNetworkCopyWithImpl<_$_BoxInfoByNetwork>(this, _$identity);
+  _$$BoxInfoByNetworkImplCopyWith<_$BoxInfoByNetworkImpl> get copyWith =>
+      __$$BoxInfoByNetworkImplCopyWithImpl<_$BoxInfoByNetworkImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BoxInfoByNetworkToJson(
+    return _$$BoxInfoByNetworkImplToJson(
       this,
     );
   }
@@ -658,11 +661,11 @@ abstract class _BoxInfoByNetwork extends BoxInfoByNetwork {
       {required final BoxInfo mainnet,
       required final BoxInfo testnet,
       required final BoxInfo devnet,
-      required final BoxInfo simnet}) = _$_BoxInfoByNetwork;
+      required final BoxInfo simnet}) = _$BoxInfoByNetworkImpl;
   const _BoxInfoByNetwork._() : super._();
 
   factory _BoxInfoByNetwork.fromJson(Map<String, dynamic> json) =
-      _$_BoxInfoByNetwork.fromJson;
+      _$BoxInfoByNetworkImpl.fromJson;
 
   @override
   BoxInfo get mainnet;
@@ -674,7 +677,7 @@ abstract class _BoxInfoByNetwork extends BoxInfoByNetwork {
   BoxInfo get simnet;
   @override
   @JsonKey(ignore: true)
-  _$$_BoxInfoByNetworkCopyWith<_$_BoxInfoByNetwork> get copyWith =>
+  _$$BoxInfoByNetworkImplCopyWith<_$BoxInfoByNetworkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -761,21 +764,22 @@ class _$WalletKindCopyWithImpl<$Res, $Val extends WalletKind>
 }
 
 /// @nodoc
-abstract class _$$_WalletKindLocalHdSchnorrCopyWith<$Res> {
-  factory _$$_WalletKindLocalHdSchnorrCopyWith(
-          _$_WalletKindLocalHdSchnorr value,
-          $Res Function(_$_WalletKindLocalHdSchnorr) then) =
-      __$$_WalletKindLocalHdSchnorrCopyWithImpl<$Res>;
+abstract class _$$WalletKindLocalHdSchnorrImplCopyWith<$Res> {
+  factory _$$WalletKindLocalHdSchnorrImplCopyWith(
+          _$WalletKindLocalHdSchnorrImpl value,
+          $Res Function(_$WalletKindLocalHdSchnorrImpl) then) =
+      __$$WalletKindLocalHdSchnorrImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool viewOnly});
 }
 
 /// @nodoc
-class __$$_WalletKindLocalHdSchnorrCopyWithImpl<$Res>
-    extends _$WalletKindCopyWithImpl<$Res, _$_WalletKindLocalHdSchnorr>
-    implements _$$_WalletKindLocalHdSchnorrCopyWith<$Res> {
-  __$$_WalletKindLocalHdSchnorrCopyWithImpl(_$_WalletKindLocalHdSchnorr _value,
-      $Res Function(_$_WalletKindLocalHdSchnorr) _then)
+class __$$WalletKindLocalHdSchnorrImplCopyWithImpl<$Res>
+    extends _$WalletKindCopyWithImpl<$Res, _$WalletKindLocalHdSchnorrImpl>
+    implements _$$WalletKindLocalHdSchnorrImplCopyWith<$Res> {
+  __$$WalletKindLocalHdSchnorrImplCopyWithImpl(
+      _$WalletKindLocalHdSchnorrImpl _value,
+      $Res Function(_$WalletKindLocalHdSchnorrImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -783,7 +787,7 @@ class __$$_WalletKindLocalHdSchnorrCopyWithImpl<$Res>
   $Res call({
     Object? viewOnly = null,
   }) {
-    return _then(_$_WalletKindLocalHdSchnorr(
+    return _then(_$WalletKindLocalHdSchnorrImpl(
       viewOnly: null == viewOnly
           ? _value.viewOnly
           : viewOnly // ignore: cast_nullable_to_non_nullable
@@ -794,14 +798,14 @@ class __$$_WalletKindLocalHdSchnorrCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WalletKindLocalHdSchnorr extends _WalletKindLocalHdSchnorr {
-  const _$_WalletKindLocalHdSchnorr(
+class _$WalletKindLocalHdSchnorrImpl extends _WalletKindLocalHdSchnorr {
+  const _$WalletKindLocalHdSchnorrImpl(
       {this.viewOnly = false, final String? $type})
       : $type = $type ?? 'localHdSchnorr',
         super._();
 
-  factory _$_WalletKindLocalHdSchnorr.fromJson(Map<String, dynamic> json) =>
-      _$$_WalletKindLocalHdSchnorrFromJson(json);
+  factory _$WalletKindLocalHdSchnorrImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WalletKindLocalHdSchnorrImplFromJson(json);
 
   @override
   @JsonKey()
@@ -816,10 +820,10 @@ class _$_WalletKindLocalHdSchnorr extends _WalletKindLocalHdSchnorr {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WalletKindLocalHdSchnorr &&
+            other is _$WalletKindLocalHdSchnorrImpl &&
             (identical(other.viewOnly, viewOnly) ||
                 other.viewOnly == viewOnly));
   }
@@ -831,9 +835,9 @@ class _$_WalletKindLocalHdSchnorr extends _WalletKindLocalHdSchnorr {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WalletKindLocalHdSchnorrCopyWith<_$_WalletKindLocalHdSchnorr>
-      get copyWith => __$$_WalletKindLocalHdSchnorrCopyWithImpl<
-          _$_WalletKindLocalHdSchnorr>(this, _$identity);
+  _$$WalletKindLocalHdSchnorrImplCopyWith<_$WalletKindLocalHdSchnorrImpl>
+      get copyWith => __$$WalletKindLocalHdSchnorrImplCopyWithImpl<
+          _$WalletKindLocalHdSchnorrImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -905,7 +909,7 @@ class _$_WalletKindLocalHdSchnorr extends _WalletKindLocalHdSchnorr {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WalletKindLocalHdSchnorrToJson(
+    return _$$WalletKindLocalHdSchnorrImplToJson(
       this,
     );
   }
@@ -913,33 +917,35 @@ class _$_WalletKindLocalHdSchnorr extends _WalletKindLocalHdSchnorr {
 
 abstract class _WalletKindLocalHdSchnorr extends WalletKind {
   const factory _WalletKindLocalHdSchnorr({final bool viewOnly}) =
-      _$_WalletKindLocalHdSchnorr;
+      _$WalletKindLocalHdSchnorrImpl;
   const _WalletKindLocalHdSchnorr._() : super._();
 
   factory _WalletKindLocalHdSchnorr.fromJson(Map<String, dynamic> json) =
-      _$_WalletKindLocalHdSchnorr.fromJson;
+      _$WalletKindLocalHdSchnorrImpl.fromJson;
 
   bool get viewOnly;
   @JsonKey(ignore: true)
-  _$$_WalletKindLocalHdSchnorrCopyWith<_$_WalletKindLocalHdSchnorr>
+  _$$WalletKindLocalHdSchnorrImplCopyWith<_$WalletKindLocalHdSchnorrImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_WalletKindLocalHdEcdsaCopyWith<$Res> {
-  factory _$$_WalletKindLocalHdEcdsaCopyWith(_$_WalletKindLocalHdEcdsa value,
-          $Res Function(_$_WalletKindLocalHdEcdsa) then) =
-      __$$_WalletKindLocalHdEcdsaCopyWithImpl<$Res>;
+abstract class _$$WalletKindLocalHdEcdsaImplCopyWith<$Res> {
+  factory _$$WalletKindLocalHdEcdsaImplCopyWith(
+          _$WalletKindLocalHdEcdsaImpl value,
+          $Res Function(_$WalletKindLocalHdEcdsaImpl) then) =
+      __$$WalletKindLocalHdEcdsaImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool viewOnly});
 }
 
 /// @nodoc
-class __$$_WalletKindLocalHdEcdsaCopyWithImpl<$Res>
-    extends _$WalletKindCopyWithImpl<$Res, _$_WalletKindLocalHdEcdsa>
-    implements _$$_WalletKindLocalHdEcdsaCopyWith<$Res> {
-  __$$_WalletKindLocalHdEcdsaCopyWithImpl(_$_WalletKindLocalHdEcdsa _value,
-      $Res Function(_$_WalletKindLocalHdEcdsa) _then)
+class __$$WalletKindLocalHdEcdsaImplCopyWithImpl<$Res>
+    extends _$WalletKindCopyWithImpl<$Res, _$WalletKindLocalHdEcdsaImpl>
+    implements _$$WalletKindLocalHdEcdsaImplCopyWith<$Res> {
+  __$$WalletKindLocalHdEcdsaImplCopyWithImpl(
+      _$WalletKindLocalHdEcdsaImpl _value,
+      $Res Function(_$WalletKindLocalHdEcdsaImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -947,7 +953,7 @@ class __$$_WalletKindLocalHdEcdsaCopyWithImpl<$Res>
   $Res call({
     Object? viewOnly = null,
   }) {
-    return _then(_$_WalletKindLocalHdEcdsa(
+    return _then(_$WalletKindLocalHdEcdsaImpl(
       viewOnly: null == viewOnly
           ? _value.viewOnly
           : viewOnly // ignore: cast_nullable_to_non_nullable
@@ -958,13 +964,14 @@ class __$$_WalletKindLocalHdEcdsaCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WalletKindLocalHdEcdsa extends _WalletKindLocalHdEcdsa {
-  const _$_WalletKindLocalHdEcdsa({this.viewOnly = false, final String? $type})
+class _$WalletKindLocalHdEcdsaImpl extends _WalletKindLocalHdEcdsa {
+  const _$WalletKindLocalHdEcdsaImpl(
+      {this.viewOnly = false, final String? $type})
       : $type = $type ?? 'localHdEcdsa',
         super._();
 
-  factory _$_WalletKindLocalHdEcdsa.fromJson(Map<String, dynamic> json) =>
-      _$$_WalletKindLocalHdEcdsaFromJson(json);
+  factory _$WalletKindLocalHdEcdsaImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WalletKindLocalHdEcdsaImplFromJson(json);
 
   @override
   @JsonKey()
@@ -979,10 +986,10 @@ class _$_WalletKindLocalHdEcdsa extends _WalletKindLocalHdEcdsa {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WalletKindLocalHdEcdsa &&
+            other is _$WalletKindLocalHdEcdsaImpl &&
             (identical(other.viewOnly, viewOnly) ||
                 other.viewOnly == viewOnly));
   }
@@ -994,9 +1001,9 @@ class _$_WalletKindLocalHdEcdsa extends _WalletKindLocalHdEcdsa {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WalletKindLocalHdEcdsaCopyWith<_$_WalletKindLocalHdEcdsa> get copyWith =>
-      __$$_WalletKindLocalHdEcdsaCopyWithImpl<_$_WalletKindLocalHdEcdsa>(
-          this, _$identity);
+  _$$WalletKindLocalHdEcdsaImplCopyWith<_$WalletKindLocalHdEcdsaImpl>
+      get copyWith => __$$WalletKindLocalHdEcdsaImplCopyWithImpl<
+          _$WalletKindLocalHdEcdsaImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1068,7 +1075,7 @@ class _$_WalletKindLocalHdEcdsa extends _WalletKindLocalHdEcdsa {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WalletKindLocalHdEcdsaToJson(
+    return _$$WalletKindLocalHdEcdsaImplToJson(
       this,
     );
   }
@@ -1076,33 +1083,35 @@ class _$_WalletKindLocalHdEcdsa extends _WalletKindLocalHdEcdsa {
 
 abstract class _WalletKindLocalHdEcdsa extends WalletKind {
   const factory _WalletKindLocalHdEcdsa({final bool viewOnly}) =
-      _$_WalletKindLocalHdEcdsa;
+      _$WalletKindLocalHdEcdsaImpl;
   const _WalletKindLocalHdEcdsa._() : super._();
 
   factory _WalletKindLocalHdEcdsa.fromJson(Map<String, dynamic> json) =
-      _$_WalletKindLocalHdEcdsa.fromJson;
+      _$WalletKindLocalHdEcdsaImpl.fromJson;
 
   bool get viewOnly;
   @JsonKey(ignore: true)
-  _$$_WalletKindLocalHdEcdsaCopyWith<_$_WalletKindLocalHdEcdsa> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$WalletKindLocalHdEcdsaImplCopyWith<_$WalletKindLocalHdEcdsaImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_WalletKindLocalHdLegacyCopyWith<$Res> {
-  factory _$$_WalletKindLocalHdLegacyCopyWith(_$_WalletKindLocalHdLegacy value,
-          $Res Function(_$_WalletKindLocalHdLegacy) then) =
-      __$$_WalletKindLocalHdLegacyCopyWithImpl<$Res>;
+abstract class _$$WalletKindLocalHdLegacyImplCopyWith<$Res> {
+  factory _$$WalletKindLocalHdLegacyImplCopyWith(
+          _$WalletKindLocalHdLegacyImpl value,
+          $Res Function(_$WalletKindLocalHdLegacyImpl) then) =
+      __$$WalletKindLocalHdLegacyImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String mainPubKey});
 }
 
 /// @nodoc
-class __$$_WalletKindLocalHdLegacyCopyWithImpl<$Res>
-    extends _$WalletKindCopyWithImpl<$Res, _$_WalletKindLocalHdLegacy>
-    implements _$$_WalletKindLocalHdLegacyCopyWith<$Res> {
-  __$$_WalletKindLocalHdLegacyCopyWithImpl(_$_WalletKindLocalHdLegacy _value,
-      $Res Function(_$_WalletKindLocalHdLegacy) _then)
+class __$$WalletKindLocalHdLegacyImplCopyWithImpl<$Res>
+    extends _$WalletKindCopyWithImpl<$Res, _$WalletKindLocalHdLegacyImpl>
+    implements _$$WalletKindLocalHdLegacyImplCopyWith<$Res> {
+  __$$WalletKindLocalHdLegacyImplCopyWithImpl(
+      _$WalletKindLocalHdLegacyImpl _value,
+      $Res Function(_$WalletKindLocalHdLegacyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1110,7 +1119,7 @@ class __$$_WalletKindLocalHdLegacyCopyWithImpl<$Res>
   $Res call({
     Object? mainPubKey = null,
   }) {
-    return _then(_$_WalletKindLocalHdLegacy(
+    return _then(_$WalletKindLocalHdLegacyImpl(
       mainPubKey: null == mainPubKey
           ? _value.mainPubKey
           : mainPubKey // ignore: cast_nullable_to_non_nullable
@@ -1121,14 +1130,14 @@ class __$$_WalletKindLocalHdLegacyCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WalletKindLocalHdLegacy extends _WalletKindLocalHdLegacy {
-  const _$_WalletKindLocalHdLegacy(
+class _$WalletKindLocalHdLegacyImpl extends _WalletKindLocalHdLegacy {
+  const _$WalletKindLocalHdLegacyImpl(
       {required this.mainPubKey, final String? $type})
       : $type = $type ?? 'localHdLegacy',
         super._();
 
-  factory _$_WalletKindLocalHdLegacy.fromJson(Map<String, dynamic> json) =>
-      _$$_WalletKindLocalHdLegacyFromJson(json);
+  factory _$WalletKindLocalHdLegacyImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WalletKindLocalHdLegacyImplFromJson(json);
 
   @override
   final String mainPubKey;
@@ -1142,10 +1151,10 @@ class _$_WalletKindLocalHdLegacy extends _WalletKindLocalHdLegacy {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WalletKindLocalHdLegacy &&
+            other is _$WalletKindLocalHdLegacyImpl &&
             (identical(other.mainPubKey, mainPubKey) ||
                 other.mainPubKey == mainPubKey));
   }
@@ -1157,10 +1166,9 @@ class _$_WalletKindLocalHdLegacy extends _WalletKindLocalHdLegacy {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WalletKindLocalHdLegacyCopyWith<_$_WalletKindLocalHdLegacy>
-      get copyWith =>
-          __$$_WalletKindLocalHdLegacyCopyWithImpl<_$_WalletKindLocalHdLegacy>(
-              this, _$identity);
+  _$$WalletKindLocalHdLegacyImplCopyWith<_$WalletKindLocalHdLegacyImpl>
+      get copyWith => __$$WalletKindLocalHdLegacyImplCopyWithImpl<
+          _$WalletKindLocalHdLegacyImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1232,7 +1240,7 @@ class _$_WalletKindLocalHdLegacy extends _WalletKindLocalHdLegacy {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WalletKindLocalHdLegacyToJson(
+    return _$$WalletKindLocalHdLegacyImplToJson(
       this,
     );
   }
@@ -1240,15 +1248,15 @@ class _$_WalletKindLocalHdLegacy extends _WalletKindLocalHdLegacy {
 
 abstract class _WalletKindLocalHdLegacy extends WalletKind {
   const factory _WalletKindLocalHdLegacy({required final String mainPubKey}) =
-      _$_WalletKindLocalHdLegacy;
+      _$WalletKindLocalHdLegacyImpl;
   const _WalletKindLocalHdLegacy._() : super._();
 
   factory _WalletKindLocalHdLegacy.fromJson(Map<String, dynamic> json) =
-      _$_WalletKindLocalHdLegacy.fromJson;
+      _$WalletKindLocalHdLegacyImpl.fromJson;
 
   String get mainPubKey;
   @JsonKey(ignore: true)
-  _$$_WalletKindLocalHdLegacyCopyWith<_$_WalletKindLocalHdLegacy>
+  _$$WalletKindLocalHdLegacyImplCopyWith<_$WalletKindLocalHdLegacyImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1348,11 +1356,11 @@ class _$WalletInfoCopyWithImpl<$Res, $Val extends WalletInfo>
 }
 
 /// @nodoc
-abstract class _$$_WalletInfoCopyWith<$Res>
+abstract class _$$WalletInfoImplCopyWith<$Res>
     implements $WalletInfoCopyWith<$Res> {
-  factory _$$_WalletInfoCopyWith(
-          _$_WalletInfo value, $Res Function(_$_WalletInfo) then) =
-      __$$_WalletInfoCopyWithImpl<$Res>;
+  factory _$$WalletInfoImplCopyWith(
+          _$WalletInfoImpl value, $Res Function(_$WalletInfoImpl) then) =
+      __$$WalletInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1369,11 +1377,11 @@ abstract class _$$_WalletInfoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_WalletInfoCopyWithImpl<$Res>
-    extends _$WalletInfoCopyWithImpl<$Res, _$_WalletInfo>
-    implements _$$_WalletInfoCopyWith<$Res> {
-  __$$_WalletInfoCopyWithImpl(
-      _$_WalletInfo _value, $Res Function(_$_WalletInfo) _then)
+class __$$WalletInfoImplCopyWithImpl<$Res>
+    extends _$WalletInfoCopyWithImpl<$Res, _$WalletInfoImpl>
+    implements _$$WalletInfoImplCopyWith<$Res> {
+  __$$WalletInfoImplCopyWithImpl(
+      _$WalletInfoImpl _value, $Res Function(_$WalletInfoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1385,7 +1393,7 @@ class __$$_WalletInfoCopyWithImpl<$Res>
     Object? boxInfo = null,
     Object? mainnetPublicKey = null,
   }) {
-    return _then(_$_WalletInfo(
+    return _then(_$WalletInfoImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1412,8 +1420,8 @@ class __$$_WalletInfoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WalletInfo extends _WalletInfo {
-  const _$_WalletInfo(
+class _$WalletInfoImpl extends _WalletInfo {
+  const _$WalletInfoImpl(
       {required this.name,
       this.kind = const WalletKind.localHdSchnorr(),
       required this.wid,
@@ -1421,8 +1429,8 @@ class _$_WalletInfo extends _WalletInfo {
       required this.mainnetPublicKey})
       : super._();
 
-  factory _$_WalletInfo.fromJson(Map<String, dynamic> json) =>
-      _$$_WalletInfoFromJson(json);
+  factory _$WalletInfoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WalletInfoImplFromJson(json);
 
   @override
   final String name;
@@ -1442,10 +1450,10 @@ class _$_WalletInfo extends _WalletInfo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WalletInfo &&
+            other is _$WalletInfoImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.kind, kind) || other.kind == kind) &&
             (identical(other.wid, wid) || other.wid == wid) &&
@@ -1462,12 +1470,12 @@ class _$_WalletInfo extends _WalletInfo {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WalletInfoCopyWith<_$_WalletInfo> get copyWith =>
-      __$$_WalletInfoCopyWithImpl<_$_WalletInfo>(this, _$identity);
+  _$$WalletInfoImplCopyWith<_$WalletInfoImpl> get copyWith =>
+      __$$WalletInfoImplCopyWithImpl<_$WalletInfoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WalletInfoToJson(
+    return _$$WalletInfoImplToJson(
       this,
     );
   }
@@ -1479,11 +1487,11 @@ abstract class _WalletInfo extends WalletInfo {
       final WalletKind kind,
       required final String wid,
       required final BoxInfoByNetwork boxInfo,
-      required final String mainnetPublicKey}) = _$_WalletInfo;
+      required final String mainnetPublicKey}) = _$WalletInfoImpl;
   const _WalletInfo._() : super._();
 
   factory _WalletInfo.fromJson(Map<String, dynamic> json) =
-      _$_WalletInfo.fromJson;
+      _$WalletInfoImpl.fromJson;
 
   @override
   String get name;
@@ -1497,7 +1505,7 @@ abstract class _WalletInfo extends WalletInfo {
   String get mainnetPublicKey;
   @override
   @JsonKey(ignore: true)
-  _$$_WalletInfoCopyWith<_$_WalletInfo> get copyWith =>
+  _$$WalletInfoImplCopyWith<_$WalletInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1569,11 +1577,11 @@ class _$WalletBundleCopyWithImpl<$Res, $Val extends WalletBundle>
 }
 
 /// @nodoc
-abstract class _$$_WalletBundleCopyWith<$Res>
+abstract class _$$WalletBundleImplCopyWith<$Res>
     implements $WalletBundleCopyWith<$Res> {
-  factory _$$_WalletBundleCopyWith(
-          _$_WalletBundle value, $Res Function(_$_WalletBundle) then) =
-      __$$_WalletBundleCopyWithImpl<$Res>;
+  factory _$$WalletBundleImplCopyWith(
+          _$WalletBundleImpl value, $Res Function(_$WalletBundleImpl) then) =
+      __$$WalletBundleImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({IList<WalletInfo>? wallets, WalletInfo? selected});
@@ -1583,11 +1591,11 @@ abstract class _$$_WalletBundleCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_WalletBundleCopyWithImpl<$Res>
-    extends _$WalletBundleCopyWithImpl<$Res, _$_WalletBundle>
-    implements _$$_WalletBundleCopyWith<$Res> {
-  __$$_WalletBundleCopyWithImpl(
-      _$_WalletBundle _value, $Res Function(_$_WalletBundle) _then)
+class __$$WalletBundleImplCopyWithImpl<$Res>
+    extends _$WalletBundleCopyWithImpl<$Res, _$WalletBundleImpl>
+    implements _$$WalletBundleImplCopyWith<$Res> {
+  __$$WalletBundleImplCopyWithImpl(
+      _$WalletBundleImpl _value, $Res Function(_$WalletBundleImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1596,7 +1604,7 @@ class __$$_WalletBundleCopyWithImpl<$Res>
     Object? wallets = freezed,
     Object? selected = freezed,
   }) {
-    return _then(_$_WalletBundle(
+    return _then(_$WalletBundleImpl(
       wallets: freezed == wallets
           ? _value.wallets
           : wallets // ignore: cast_nullable_to_non_nullable
@@ -1611,11 +1619,11 @@ class __$$_WalletBundleCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WalletBundle implements _WalletBundle {
-  const _$_WalletBundle({this.wallets, this.selected});
+class _$WalletBundleImpl implements _WalletBundle {
+  const _$WalletBundleImpl({this.wallets, this.selected});
 
-  factory _$_WalletBundle.fromJson(Map<String, dynamic> json) =>
-      _$$_WalletBundleFromJson(json);
+  factory _$WalletBundleImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WalletBundleImplFromJson(json);
 
   @override
   final IList<WalletInfo>? wallets;
@@ -1628,10 +1636,10 @@ class _$_WalletBundle implements _WalletBundle {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WalletBundle &&
+            other is _$WalletBundleImpl &&
             const DeepCollectionEquality().equals(other.wallets, wallets) &&
             (identical(other.selected, selected) ||
                 other.selected == selected));
@@ -1645,12 +1653,12 @@ class _$_WalletBundle implements _WalletBundle {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WalletBundleCopyWith<_$_WalletBundle> get copyWith =>
-      __$$_WalletBundleCopyWithImpl<_$_WalletBundle>(this, _$identity);
+  _$$WalletBundleImplCopyWith<_$WalletBundleImpl> get copyWith =>
+      __$$WalletBundleImplCopyWithImpl<_$WalletBundleImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WalletBundleToJson(
+    return _$$WalletBundleImplToJson(
       this,
     );
   }
@@ -1659,10 +1667,10 @@ class _$_WalletBundle implements _WalletBundle {
 abstract class _WalletBundle implements WalletBundle {
   const factory _WalletBundle(
       {final IList<WalletInfo>? wallets,
-      final WalletInfo? selected}) = _$_WalletBundle;
+      final WalletInfo? selected}) = _$WalletBundleImpl;
 
   factory _WalletBundle.fromJson(Map<String, dynamic> json) =
-      _$_WalletBundle.fromJson;
+      _$WalletBundleImpl.fromJson;
 
   @override
   IList<WalletInfo>? get wallets;
@@ -1670,7 +1678,7 @@ abstract class _WalletBundle implements WalletBundle {
   WalletInfo? get selected;
   @override
   @JsonKey(ignore: true)
-  _$$_WalletBundleCopyWith<_$_WalletBundle> get copyWith =>
+  _$$WalletBundleImplCopyWith<_$WalletBundleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1777,11 +1785,11 @@ class _$WalletDataCopyWithImpl<$Res, $Val extends WalletData>
 }
 
 /// @nodoc
-abstract class _$$_WalletDataMnemonicCopyWith<$Res>
+abstract class _$$WalletDataMnemonicImplCopyWith<$Res>
     implements $WalletDataCopyWith<$Res> {
-  factory _$$_WalletDataMnemonicCopyWith(_$_WalletDataMnemonic value,
-          $Res Function(_$_WalletDataMnemonic) then) =
-      __$$_WalletDataMnemonicCopyWithImpl<$Res>;
+  factory _$$WalletDataMnemonicImplCopyWith(_$WalletDataMnemonicImpl value,
+          $Res Function(_$WalletDataMnemonicImpl) then) =
+      __$$WalletDataMnemonicImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1796,11 +1804,11 @@ abstract class _$$_WalletDataMnemonicCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_WalletDataMnemonicCopyWithImpl<$Res>
-    extends _$WalletDataCopyWithImpl<$Res, _$_WalletDataMnemonic>
-    implements _$$_WalletDataMnemonicCopyWith<$Res> {
-  __$$_WalletDataMnemonicCopyWithImpl(
-      _$_WalletDataMnemonic _value, $Res Function(_$_WalletDataMnemonic) _then)
+class __$$WalletDataMnemonicImplCopyWithImpl<$Res>
+    extends _$WalletDataCopyWithImpl<$Res, _$WalletDataMnemonicImpl>
+    implements _$$WalletDataMnemonicImplCopyWith<$Res> {
+  __$$WalletDataMnemonicImplCopyWithImpl(_$WalletDataMnemonicImpl _value,
+      $Res Function(_$WalletDataMnemonicImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1812,7 +1820,7 @@ class __$$_WalletDataMnemonicCopyWithImpl<$Res>
     Object? mnemonic = freezed,
     Object? password = freezed,
   }) {
-    return _then(_$_WalletDataMnemonic(
+    return _then(_$WalletDataMnemonicImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1839,8 +1847,8 @@ class __$$_WalletDataMnemonicCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WalletDataMnemonic implements _WalletDataMnemonic {
-  const _$_WalletDataMnemonic(
+class _$WalletDataMnemonicImpl implements _WalletDataMnemonic {
+  const _$WalletDataMnemonicImpl(
       {required this.name,
       required this.kind,
       required this.seed,
@@ -1864,10 +1872,10 @@ class _$_WalletDataMnemonic implements _WalletDataMnemonic {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WalletDataMnemonic &&
+            other is _$WalletDataMnemonicImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.kind, kind) || other.kind == kind) &&
             (identical(other.seed, seed) || other.seed == seed) &&
@@ -1884,8 +1892,8 @@ class _$_WalletDataMnemonic implements _WalletDataMnemonic {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WalletDataMnemonicCopyWith<_$_WalletDataMnemonic> get copyWith =>
-      __$$_WalletDataMnemonicCopyWithImpl<_$_WalletDataMnemonic>(
+  _$$WalletDataMnemonicImplCopyWith<_$WalletDataMnemonicImpl> get copyWith =>
+      __$$WalletDataMnemonicImplCopyWithImpl<_$WalletDataMnemonicImpl>(
           this, _$identity);
 
   @override
@@ -1963,7 +1971,7 @@ abstract class _WalletDataMnemonic implements WalletData {
       required final WalletKind kind,
       required final String seed,
       final String? mnemonic,
-      final String? password}) = _$_WalletDataMnemonic;
+      final String? password}) = _$WalletDataMnemonicImpl;
 
   @override
   String get name;
@@ -1974,16 +1982,16 @@ abstract class _WalletDataMnemonic implements WalletData {
   String? get password;
   @override
   @JsonKey(ignore: true)
-  _$$_WalletDataMnemonicCopyWith<_$_WalletDataMnemonic> get copyWith =>
+  _$$WalletDataMnemonicImplCopyWith<_$WalletDataMnemonicImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_WalletDataKpubCopyWith<$Res>
+abstract class _$$WalletDataKpubImplCopyWith<$Res>
     implements $WalletDataCopyWith<$Res> {
-  factory _$$_WalletDataKpubCopyWith(
-          _$_WalletDataKpub value, $Res Function(_$_WalletDataKpub) then) =
-      __$$_WalletDataKpubCopyWithImpl<$Res>;
+  factory _$$WalletDataKpubImplCopyWith(_$WalletDataKpubImpl value,
+          $Res Function(_$WalletDataKpubImpl) then) =
+      __$$WalletDataKpubImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String name, WalletKind kind, String kpub});
@@ -1993,11 +2001,11 @@ abstract class _$$_WalletDataKpubCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_WalletDataKpubCopyWithImpl<$Res>
-    extends _$WalletDataCopyWithImpl<$Res, _$_WalletDataKpub>
-    implements _$$_WalletDataKpubCopyWith<$Res> {
-  __$$_WalletDataKpubCopyWithImpl(
-      _$_WalletDataKpub _value, $Res Function(_$_WalletDataKpub) _then)
+class __$$WalletDataKpubImplCopyWithImpl<$Res>
+    extends _$WalletDataCopyWithImpl<$Res, _$WalletDataKpubImpl>
+    implements _$$WalletDataKpubImplCopyWith<$Res> {
+  __$$WalletDataKpubImplCopyWithImpl(
+      _$WalletDataKpubImpl _value, $Res Function(_$WalletDataKpubImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2007,7 +2015,7 @@ class __$$_WalletDataKpubCopyWithImpl<$Res>
     Object? kind = null,
     Object? kpub = null,
   }) {
-    return _then(_$_WalletDataKpub(
+    return _then(_$WalletDataKpubImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -2026,8 +2034,8 @@ class __$$_WalletDataKpubCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WalletDataKpub implements _WalletDataKpub {
-  const _$_WalletDataKpub(
+class _$WalletDataKpubImpl implements _WalletDataKpub {
+  const _$WalletDataKpubImpl(
       {required this.name, required this.kind, required this.kpub});
 
   @override
@@ -2043,10 +2051,10 @@ class _$_WalletDataKpub implements _WalletDataKpub {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WalletDataKpub &&
+            other is _$WalletDataKpubImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.kind, kind) || other.kind == kind) &&
             (identical(other.kpub, kpub) || other.kpub == kpub));
@@ -2058,8 +2066,9 @@ class _$_WalletDataKpub implements _WalletDataKpub {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WalletDataKpubCopyWith<_$_WalletDataKpub> get copyWith =>
-      __$$_WalletDataKpubCopyWithImpl<_$_WalletDataKpub>(this, _$identity);
+  _$$WalletDataKpubImplCopyWith<_$WalletDataKpubImpl> get copyWith =>
+      __$$WalletDataKpubImplCopyWithImpl<_$WalletDataKpubImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2134,7 +2143,7 @@ abstract class _WalletDataKpub implements WalletData {
   const factory _WalletDataKpub(
       {required final String name,
       required final WalletKind kind,
-      required final String kpub}) = _$_WalletDataKpub;
+      required final String kpub}) = _$WalletDataKpubImpl;
 
   @override
   String get name;
@@ -2143,6 +2152,6 @@ abstract class _WalletDataKpub implements WalletData {
   String get kpub;
   @override
   @JsonKey(ignore: true)
-  _$$_WalletDataKpubCopyWith<_$_WalletDataKpub> get copyWith =>
+  _$$WalletDataKpubImplCopyWith<_$WalletDataKpubImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

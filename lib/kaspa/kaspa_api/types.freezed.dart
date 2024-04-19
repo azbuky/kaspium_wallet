@@ -12,7 +12,7 @@ part of 'types.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ApiAddressBalance _$ApiAddressBalanceFromJson(Map<String, dynamic> json) {
   return _ApiAddressBalance.fromJson(json);
@@ -68,22 +68,22 @@ class _$ApiAddressBalanceCopyWithImpl<$Res, $Val extends ApiAddressBalance>
 }
 
 /// @nodoc
-abstract class _$$_ApiAddressBalanceCopyWith<$Res>
+abstract class _$$ApiAddressBalanceImplCopyWith<$Res>
     implements $ApiAddressBalanceCopyWith<$Res> {
-  factory _$$_ApiAddressBalanceCopyWith(_$_ApiAddressBalance value,
-          $Res Function(_$_ApiAddressBalance) then) =
-      __$$_ApiAddressBalanceCopyWithImpl<$Res>;
+  factory _$$ApiAddressBalanceImplCopyWith(_$ApiAddressBalanceImpl value,
+          $Res Function(_$ApiAddressBalanceImpl) then) =
+      __$$ApiAddressBalanceImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String address, int balance});
 }
 
 /// @nodoc
-class __$$_ApiAddressBalanceCopyWithImpl<$Res>
-    extends _$ApiAddressBalanceCopyWithImpl<$Res, _$_ApiAddressBalance>
-    implements _$$_ApiAddressBalanceCopyWith<$Res> {
-  __$$_ApiAddressBalanceCopyWithImpl(
-      _$_ApiAddressBalance _value, $Res Function(_$_ApiAddressBalance) _then)
+class __$$ApiAddressBalanceImplCopyWithImpl<$Res>
+    extends _$ApiAddressBalanceCopyWithImpl<$Res, _$ApiAddressBalanceImpl>
+    implements _$$ApiAddressBalanceImplCopyWith<$Res> {
+  __$$ApiAddressBalanceImplCopyWithImpl(_$ApiAddressBalanceImpl _value,
+      $Res Function(_$ApiAddressBalanceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_ApiAddressBalanceCopyWithImpl<$Res>
     Object? address = null,
     Object? balance = null,
   }) {
-    return _then(_$_ApiAddressBalance(
+    return _then(_$ApiAddressBalanceImpl(
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -107,11 +107,11 @@ class __$$_ApiAddressBalanceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ApiAddressBalance implements _ApiAddressBalance {
-  const _$_ApiAddressBalance({required this.address, required this.balance});
+class _$ApiAddressBalanceImpl implements _ApiAddressBalance {
+  const _$ApiAddressBalanceImpl({required this.address, required this.balance});
 
-  factory _$_ApiAddressBalance.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiAddressBalanceFromJson(json);
+  factory _$ApiAddressBalanceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiAddressBalanceImplFromJson(json);
 
   @override
   final String address;
@@ -124,10 +124,10 @@ class _$_ApiAddressBalance implements _ApiAddressBalance {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiAddressBalance &&
+            other is _$ApiAddressBalanceImpl &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.balance, balance) || other.balance == balance));
   }
@@ -139,13 +139,13 @@ class _$_ApiAddressBalance implements _ApiAddressBalance {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiAddressBalanceCopyWith<_$_ApiAddressBalance> get copyWith =>
-      __$$_ApiAddressBalanceCopyWithImpl<_$_ApiAddressBalance>(
+  _$$ApiAddressBalanceImplCopyWith<_$ApiAddressBalanceImpl> get copyWith =>
+      __$$ApiAddressBalanceImplCopyWithImpl<_$ApiAddressBalanceImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiAddressBalanceToJson(
+    return _$$ApiAddressBalanceImplToJson(
       this,
     );
   }
@@ -154,10 +154,10 @@ class _$_ApiAddressBalance implements _ApiAddressBalance {
 abstract class _ApiAddressBalance implements ApiAddressBalance {
   const factory _ApiAddressBalance(
       {required final String address,
-      required final int balance}) = _$_ApiAddressBalance;
+      required final int balance}) = _$ApiAddressBalanceImpl;
 
   factory _ApiAddressBalance.fromJson(Map<String, dynamic> json) =
-      _$_ApiAddressBalance.fromJson;
+      _$ApiAddressBalanceImpl.fromJson;
 
   @override
   String get address;
@@ -165,7 +165,7 @@ abstract class _ApiAddressBalance implements ApiAddressBalance {
   int get balance;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiAddressBalanceCopyWith<_$_ApiAddressBalance> get copyWith =>
+  _$$ApiAddressBalanceImplCopyWith<_$ApiAddressBalanceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -246,10 +246,10 @@ class _$ApiUtxoCopyWithImpl<$Res, $Val extends ApiUtxo>
 }
 
 /// @nodoc
-abstract class _$$_ApiUtxoCopyWith<$Res> implements $ApiUtxoCopyWith<$Res> {
-  factory _$$_ApiUtxoCopyWith(
-          _$_ApiUtxo value, $Res Function(_$_ApiUtxo) then) =
-      __$$_ApiUtxoCopyWithImpl<$Res>;
+abstract class _$$ApiUtxoImplCopyWith<$Res> implements $ApiUtxoCopyWith<$Res> {
+  factory _$$ApiUtxoImplCopyWith(
+          _$ApiUtxoImpl value, $Res Function(_$ApiUtxoImpl) then) =
+      __$$ApiUtxoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String address, ApiOutpoint outpoint, ApiUtxoEntry utxoEntry});
@@ -261,10 +261,11 @@ abstract class _$$_ApiUtxoCopyWith<$Res> implements $ApiUtxoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ApiUtxoCopyWithImpl<$Res>
-    extends _$ApiUtxoCopyWithImpl<$Res, _$_ApiUtxo>
-    implements _$$_ApiUtxoCopyWith<$Res> {
-  __$$_ApiUtxoCopyWithImpl(_$_ApiUtxo _value, $Res Function(_$_ApiUtxo) _then)
+class __$$ApiUtxoImplCopyWithImpl<$Res>
+    extends _$ApiUtxoCopyWithImpl<$Res, _$ApiUtxoImpl>
+    implements _$$ApiUtxoImplCopyWith<$Res> {
+  __$$ApiUtxoImplCopyWithImpl(
+      _$ApiUtxoImpl _value, $Res Function(_$ApiUtxoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -274,7 +275,7 @@ class __$$_ApiUtxoCopyWithImpl<$Res>
     Object? outpoint = null,
     Object? utxoEntry = null,
   }) {
-    return _then(_$_ApiUtxo(
+    return _then(_$ApiUtxoImpl(
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -293,12 +294,12 @@ class __$$_ApiUtxoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ApiUtxo implements _ApiUtxo {
-  const _$_ApiUtxo(
+class _$ApiUtxoImpl implements _ApiUtxo {
+  const _$ApiUtxoImpl(
       {required this.address, required this.outpoint, required this.utxoEntry});
 
-  factory _$_ApiUtxo.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiUtxoFromJson(json);
+  factory _$ApiUtxoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiUtxoImplFromJson(json);
 
   @override
   final String address;
@@ -313,10 +314,10 @@ class _$_ApiUtxo implements _ApiUtxo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiUtxo &&
+            other is _$ApiUtxoImpl &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.outpoint, outpoint) ||
                 other.outpoint == outpoint) &&
@@ -331,12 +332,12 @@ class _$_ApiUtxo implements _ApiUtxo {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiUtxoCopyWith<_$_ApiUtxo> get copyWith =>
-      __$$_ApiUtxoCopyWithImpl<_$_ApiUtxo>(this, _$identity);
+  _$$ApiUtxoImplCopyWith<_$ApiUtxoImpl> get copyWith =>
+      __$$ApiUtxoImplCopyWithImpl<_$ApiUtxoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiUtxoToJson(
+    return _$$ApiUtxoImplToJson(
       this,
     );
   }
@@ -346,9 +347,9 @@ abstract class _ApiUtxo implements ApiUtxo {
   const factory _ApiUtxo(
       {required final String address,
       required final ApiOutpoint outpoint,
-      required final ApiUtxoEntry utxoEntry}) = _$_ApiUtxo;
+      required final ApiUtxoEntry utxoEntry}) = _$ApiUtxoImpl;
 
-  factory _ApiUtxo.fromJson(Map<String, dynamic> json) = _$_ApiUtxo.fromJson;
+  factory _ApiUtxo.fromJson(Map<String, dynamic> json) = _$ApiUtxoImpl.fromJson;
 
   @override
   String get address;
@@ -358,7 +359,7 @@ abstract class _ApiUtxo implements ApiUtxo {
   ApiUtxoEntry get utxoEntry;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiUtxoCopyWith<_$_ApiUtxo> get copyWith =>
+  _$$ApiUtxoImplCopyWith<_$ApiUtxoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -416,22 +417,22 @@ class _$ApiOutpointCopyWithImpl<$Res, $Val extends ApiOutpoint>
 }
 
 /// @nodoc
-abstract class _$$_OutpointCopyWith<$Res>
+abstract class _$$OutpointImplCopyWith<$Res>
     implements $ApiOutpointCopyWith<$Res> {
-  factory _$$_OutpointCopyWith(
-          _$_Outpoint value, $Res Function(_$_Outpoint) then) =
-      __$$_OutpointCopyWithImpl<$Res>;
+  factory _$$OutpointImplCopyWith(
+          _$OutpointImpl value, $Res Function(_$OutpointImpl) then) =
+      __$$OutpointImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String transactionId, int index});
 }
 
 /// @nodoc
-class __$$_OutpointCopyWithImpl<$Res>
-    extends _$ApiOutpointCopyWithImpl<$Res, _$_Outpoint>
-    implements _$$_OutpointCopyWith<$Res> {
-  __$$_OutpointCopyWithImpl(
-      _$_Outpoint _value, $Res Function(_$_Outpoint) _then)
+class __$$OutpointImplCopyWithImpl<$Res>
+    extends _$ApiOutpointCopyWithImpl<$Res, _$OutpointImpl>
+    implements _$$OutpointImplCopyWith<$Res> {
+  __$$OutpointImplCopyWithImpl(
+      _$OutpointImpl _value, $Res Function(_$OutpointImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -440,7 +441,7 @@ class __$$_OutpointCopyWithImpl<$Res>
     Object? transactionId = null,
     Object? index = null,
   }) {
-    return _then(_$_Outpoint(
+    return _then(_$OutpointImpl(
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
@@ -455,11 +456,11 @@ class __$$_OutpointCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Outpoint implements _Outpoint {
-  const _$_Outpoint({required this.transactionId, required this.index});
+class _$OutpointImpl implements _Outpoint {
+  const _$OutpointImpl({required this.transactionId, required this.index});
 
-  factory _$_Outpoint.fromJson(Map<String, dynamic> json) =>
-      _$$_OutpointFromJson(json);
+  factory _$OutpointImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OutpointImplFromJson(json);
 
   @override
   final String transactionId;
@@ -472,10 +473,10 @@ class _$_Outpoint implements _Outpoint {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Outpoint &&
+            other is _$OutpointImpl &&
             (identical(other.transactionId, transactionId) ||
                 other.transactionId == transactionId) &&
             (identical(other.index, index) || other.index == index));
@@ -488,12 +489,12 @@ class _$_Outpoint implements _Outpoint {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OutpointCopyWith<_$_Outpoint> get copyWith =>
-      __$$_OutpointCopyWithImpl<_$_Outpoint>(this, _$identity);
+  _$$OutpointImplCopyWith<_$OutpointImpl> get copyWith =>
+      __$$OutpointImplCopyWithImpl<_$OutpointImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutpointToJson(
+    return _$$OutpointImplToJson(
       this,
     );
   }
@@ -502,9 +503,10 @@ class _$_Outpoint implements _Outpoint {
 abstract class _Outpoint implements ApiOutpoint {
   const factory _Outpoint(
       {required final String transactionId,
-      required final int index}) = _$_Outpoint;
+      required final int index}) = _$OutpointImpl;
 
-  factory _Outpoint.fromJson(Map<String, dynamic> json) = _$_Outpoint.fromJson;
+  factory _Outpoint.fromJson(Map<String, dynamic> json) =
+      _$OutpointImpl.fromJson;
 
   @override
   String get transactionId;
@@ -512,7 +514,7 @@ abstract class _Outpoint implements ApiOutpoint {
   int get index;
   @override
   @JsonKey(ignore: true)
-  _$$_OutpointCopyWith<_$_Outpoint> get copyWith =>
+  _$$OutpointImplCopyWith<_$OutpointImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -596,11 +598,11 @@ class _$ApiUtxoEntryCopyWithImpl<$Res, $Val extends ApiUtxoEntry>
 }
 
 /// @nodoc
-abstract class _$$_ApiUtxoEntryCopyWith<$Res>
+abstract class _$$ApiUtxoEntryImplCopyWith<$Res>
     implements $ApiUtxoEntryCopyWith<$Res> {
-  factory _$$_ApiUtxoEntryCopyWith(
-          _$_ApiUtxoEntry value, $Res Function(_$_ApiUtxoEntry) then) =
-      __$$_ApiUtxoEntryCopyWithImpl<$Res>;
+  factory _$$ApiUtxoEntryImplCopyWith(
+          _$ApiUtxoEntryImpl value, $Res Function(_$ApiUtxoEntryImpl) then) =
+      __$$ApiUtxoEntryImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -614,11 +616,11 @@ abstract class _$$_ApiUtxoEntryCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ApiUtxoEntryCopyWithImpl<$Res>
-    extends _$ApiUtxoEntryCopyWithImpl<$Res, _$_ApiUtxoEntry>
-    implements _$$_ApiUtxoEntryCopyWith<$Res> {
-  __$$_ApiUtxoEntryCopyWithImpl(
-      _$_ApiUtxoEntry _value, $Res Function(_$_ApiUtxoEntry) _then)
+class __$$ApiUtxoEntryImplCopyWithImpl<$Res>
+    extends _$ApiUtxoEntryCopyWithImpl<$Res, _$ApiUtxoEntryImpl>
+    implements _$$ApiUtxoEntryImplCopyWith<$Res> {
+  __$$ApiUtxoEntryImplCopyWithImpl(
+      _$ApiUtxoEntryImpl _value, $Res Function(_$ApiUtxoEntryImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -629,7 +631,7 @@ class __$$_ApiUtxoEntryCopyWithImpl<$Res>
     Object? blockDaaScore = null,
     Object? isCoinbase = null,
   }) {
-    return _then(_$_ApiUtxoEntry(
+    return _then(_$ApiUtxoEntryImpl(
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -652,15 +654,15 @@ class __$$_ApiUtxoEntryCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ApiUtxoEntry implements _ApiUtxoEntry {
-  const _$_ApiUtxoEntry(
+class _$ApiUtxoEntryImpl implements _ApiUtxoEntry {
+  const _$ApiUtxoEntryImpl(
       {required this.amount,
       required this.scriptPublicKey,
       required this.blockDaaScore,
       this.isCoinbase = false});
 
-  factory _$_ApiUtxoEntry.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiUtxoEntryFromJson(json);
+  factory _$ApiUtxoEntryImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiUtxoEntryImplFromJson(json);
 
   @override
   final BigInt amount;
@@ -678,10 +680,10 @@ class _$_ApiUtxoEntry implements _ApiUtxoEntry {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiUtxoEntry &&
+            other is _$ApiUtxoEntryImpl &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.scriptPublicKey, scriptPublicKey) ||
                 other.scriptPublicKey == scriptPublicKey) &&
@@ -699,12 +701,12 @@ class _$_ApiUtxoEntry implements _ApiUtxoEntry {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiUtxoEntryCopyWith<_$_ApiUtxoEntry> get copyWith =>
-      __$$_ApiUtxoEntryCopyWithImpl<_$_ApiUtxoEntry>(this, _$identity);
+  _$$ApiUtxoEntryImplCopyWith<_$ApiUtxoEntryImpl> get copyWith =>
+      __$$ApiUtxoEntryImplCopyWithImpl<_$ApiUtxoEntryImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiUtxoEntryToJson(
+    return _$$ApiUtxoEntryImplToJson(
       this,
     );
   }
@@ -715,10 +717,10 @@ abstract class _ApiUtxoEntry implements ApiUtxoEntry {
       {required final BigInt amount,
       required final ApiScriptPublicKey scriptPublicKey,
       required final BigInt blockDaaScore,
-      final bool isCoinbase}) = _$_ApiUtxoEntry;
+      final bool isCoinbase}) = _$ApiUtxoEntryImpl;
 
   factory _ApiUtxoEntry.fromJson(Map<String, dynamic> json) =
-      _$_ApiUtxoEntry.fromJson;
+      _$ApiUtxoEntryImpl.fromJson;
 
   @override
   BigInt get amount;
@@ -730,7 +732,7 @@ abstract class _ApiUtxoEntry implements ApiUtxoEntry {
   bool get isCoinbase;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiUtxoEntryCopyWith<_$_ApiUtxoEntry> get copyWith =>
+  _$$ApiUtxoEntryImplCopyWith<_$ApiUtxoEntryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -788,22 +790,22 @@ class _$ApiScriptPublicKeyCopyWithImpl<$Res, $Val extends ApiScriptPublicKey>
 }
 
 /// @nodoc
-abstract class _$$_ApiScriptPublicKeyCopyWith<$Res>
+abstract class _$$ApiScriptPublicKeyImplCopyWith<$Res>
     implements $ApiScriptPublicKeyCopyWith<$Res> {
-  factory _$$_ApiScriptPublicKeyCopyWith(_$_ApiScriptPublicKey value,
-          $Res Function(_$_ApiScriptPublicKey) then) =
-      __$$_ApiScriptPublicKeyCopyWithImpl<$Res>;
+  factory _$$ApiScriptPublicKeyImplCopyWith(_$ApiScriptPublicKeyImpl value,
+          $Res Function(_$ApiScriptPublicKeyImpl) then) =
+      __$$ApiScriptPublicKeyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String scriptPublicKey, int version});
 }
 
 /// @nodoc
-class __$$_ApiScriptPublicKeyCopyWithImpl<$Res>
-    extends _$ApiScriptPublicKeyCopyWithImpl<$Res, _$_ApiScriptPublicKey>
-    implements _$$_ApiScriptPublicKeyCopyWith<$Res> {
-  __$$_ApiScriptPublicKeyCopyWithImpl(
-      _$_ApiScriptPublicKey _value, $Res Function(_$_ApiScriptPublicKey) _then)
+class __$$ApiScriptPublicKeyImplCopyWithImpl<$Res>
+    extends _$ApiScriptPublicKeyCopyWithImpl<$Res, _$ApiScriptPublicKeyImpl>
+    implements _$$ApiScriptPublicKeyImplCopyWith<$Res> {
+  __$$ApiScriptPublicKeyImplCopyWithImpl(_$ApiScriptPublicKeyImpl _value,
+      $Res Function(_$ApiScriptPublicKeyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -812,7 +814,7 @@ class __$$_ApiScriptPublicKeyCopyWithImpl<$Res>
     Object? scriptPublicKey = null,
     Object? version = null,
   }) {
-    return _then(_$_ApiScriptPublicKey(
+    return _then(_$ApiScriptPublicKeyImpl(
       scriptPublicKey: null == scriptPublicKey
           ? _value.scriptPublicKey
           : scriptPublicKey // ignore: cast_nullable_to_non_nullable
@@ -827,12 +829,12 @@ class __$$_ApiScriptPublicKeyCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ApiScriptPublicKey implements _ApiScriptPublicKey {
-  const _$_ApiScriptPublicKey(
+class _$ApiScriptPublicKeyImpl implements _ApiScriptPublicKey {
+  const _$ApiScriptPublicKeyImpl(
       {required this.scriptPublicKey, this.version = 0});
 
-  factory _$_ApiScriptPublicKey.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiScriptPublicKeyFromJson(json);
+  factory _$ApiScriptPublicKeyImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiScriptPublicKeyImplFromJson(json);
 
   @override
   final String scriptPublicKey;
@@ -846,10 +848,10 @@ class _$_ApiScriptPublicKey implements _ApiScriptPublicKey {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiScriptPublicKey &&
+            other is _$ApiScriptPublicKeyImpl &&
             (identical(other.scriptPublicKey, scriptPublicKey) ||
                 other.scriptPublicKey == scriptPublicKey) &&
             (identical(other.version, version) || other.version == version));
@@ -862,13 +864,13 @@ class _$_ApiScriptPublicKey implements _ApiScriptPublicKey {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiScriptPublicKeyCopyWith<_$_ApiScriptPublicKey> get copyWith =>
-      __$$_ApiScriptPublicKeyCopyWithImpl<_$_ApiScriptPublicKey>(
+  _$$ApiScriptPublicKeyImplCopyWith<_$ApiScriptPublicKeyImpl> get copyWith =>
+      __$$ApiScriptPublicKeyImplCopyWithImpl<_$ApiScriptPublicKeyImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiScriptPublicKeyToJson(
+    return _$$ApiScriptPublicKeyImplToJson(
       this,
     );
   }
@@ -877,10 +879,10 @@ class _$_ApiScriptPublicKey implements _ApiScriptPublicKey {
 abstract class _ApiScriptPublicKey implements ApiScriptPublicKey {
   const factory _ApiScriptPublicKey(
       {required final String scriptPublicKey,
-      final int version}) = _$_ApiScriptPublicKey;
+      final int version}) = _$ApiScriptPublicKeyImpl;
 
   factory _ApiScriptPublicKey.fromJson(Map<String, dynamic> json) =
-      _$_ApiScriptPublicKey.fromJson;
+      _$ApiScriptPublicKeyImpl.fromJson;
 
   @override
   String get scriptPublicKey;
@@ -888,7 +890,7 @@ abstract class _ApiScriptPublicKey implements ApiScriptPublicKey {
   int get version;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiScriptPublicKeyCopyWith<_$_ApiScriptPublicKey> get copyWith =>
+  _$$ApiScriptPublicKeyImplCopyWith<_$ApiScriptPublicKeyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -945,21 +947,22 @@ class _$ApiTxLinkCopyWithImpl<$Res, $Val extends ApiTxLink>
 }
 
 /// @nodoc
-abstract class _$$_ApiTxLinkCopyWith<$Res> implements $ApiTxLinkCopyWith<$Res> {
-  factory _$$_ApiTxLinkCopyWith(
-          _$_ApiTxLink value, $Res Function(_$_ApiTxLink) then) =
-      __$$_ApiTxLinkCopyWithImpl<$Res>;
+abstract class _$$ApiTxLinkImplCopyWith<$Res>
+    implements $ApiTxLinkCopyWith<$Res> {
+  factory _$$ApiTxLinkImplCopyWith(
+          _$ApiTxLinkImpl value, $Res Function(_$ApiTxLinkImpl) then) =
+      __$$ApiTxLinkImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? txReceived, String? txSpent});
 }
 
 /// @nodoc
-class __$$_ApiTxLinkCopyWithImpl<$Res>
-    extends _$ApiTxLinkCopyWithImpl<$Res, _$_ApiTxLink>
-    implements _$$_ApiTxLinkCopyWith<$Res> {
-  __$$_ApiTxLinkCopyWithImpl(
-      _$_ApiTxLink _value, $Res Function(_$_ApiTxLink) _then)
+class __$$ApiTxLinkImplCopyWithImpl<$Res>
+    extends _$ApiTxLinkCopyWithImpl<$Res, _$ApiTxLinkImpl>
+    implements _$$ApiTxLinkImplCopyWith<$Res> {
+  __$$ApiTxLinkImplCopyWithImpl(
+      _$ApiTxLinkImpl _value, $Res Function(_$ApiTxLinkImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -968,7 +971,7 @@ class __$$_ApiTxLinkCopyWithImpl<$Res>
     Object? txReceived = freezed,
     Object? txSpent = freezed,
   }) {
-    return _then(_$_ApiTxLink(
+    return _then(_$ApiTxLinkImpl(
       txReceived: freezed == txReceived
           ? _value.txReceived
           : txReceived // ignore: cast_nullable_to_non_nullable
@@ -984,11 +987,11 @@ class __$$_ApiTxLinkCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$_ApiTxLink implements _ApiTxLink {
-  const _$_ApiTxLink({this.txReceived, this.txSpent});
+class _$ApiTxLinkImpl implements _ApiTxLink {
+  const _$ApiTxLinkImpl({this.txReceived, this.txSpent});
 
-  factory _$_ApiTxLink.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiTxLinkFromJson(json);
+  factory _$ApiTxLinkImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiTxLinkImplFromJson(json);
 
   @override
   final String? txReceived;
@@ -1001,10 +1004,10 @@ class _$_ApiTxLink implements _ApiTxLink {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiTxLink &&
+            other is _$ApiTxLinkImpl &&
             (identical(other.txReceived, txReceived) ||
                 other.txReceived == txReceived) &&
             (identical(other.txSpent, txSpent) || other.txSpent == txSpent));
@@ -1017,12 +1020,12 @@ class _$_ApiTxLink implements _ApiTxLink {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiTxLinkCopyWith<_$_ApiTxLink> get copyWith =>
-      __$$_ApiTxLinkCopyWithImpl<_$_ApiTxLink>(this, _$identity);
+  _$$ApiTxLinkImplCopyWith<_$ApiTxLinkImpl> get copyWith =>
+      __$$ApiTxLinkImplCopyWithImpl<_$ApiTxLinkImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiTxLinkToJson(
+    return _$$ApiTxLinkImplToJson(
       this,
     );
   }
@@ -1030,10 +1033,10 @@ class _$_ApiTxLink implements _ApiTxLink {
 
 abstract class _ApiTxLink implements ApiTxLink {
   const factory _ApiTxLink({final String? txReceived, final String? txSpent}) =
-      _$_ApiTxLink;
+      _$ApiTxLinkImpl;
 
   factory _ApiTxLink.fromJson(Map<String, dynamic> json) =
-      _$_ApiTxLink.fromJson;
+      _$ApiTxLinkImpl.fromJson;
 
   @override
   String? get txReceived;
@@ -1041,7 +1044,7 @@ abstract class _ApiTxLink implements ApiTxLink {
   String? get txSpent;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiTxLinkCopyWith<_$_ApiTxLink> get copyWith =>
+  _$$ApiTxLinkImplCopyWith<_$ApiTxLinkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1097,20 +1100,21 @@ class _$ApiTxIdCopyWithImpl<$Res, $Val extends ApiTxId>
 }
 
 /// @nodoc
-abstract class _$$_ApiTxIdCopyWith<$Res> implements $ApiTxIdCopyWith<$Res> {
-  factory _$$_ApiTxIdCopyWith(
-          _$_ApiTxId value, $Res Function(_$_ApiTxId) then) =
-      __$$_ApiTxIdCopyWithImpl<$Res>;
+abstract class _$$ApiTxIdImplCopyWith<$Res> implements $ApiTxIdCopyWith<$Res> {
+  factory _$$ApiTxIdImplCopyWith(
+          _$ApiTxIdImpl value, $Res Function(_$ApiTxIdImpl) then) =
+      __$$ApiTxIdImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String transactionId, int? blockTime});
 }
 
 /// @nodoc
-class __$$_ApiTxIdCopyWithImpl<$Res>
-    extends _$ApiTxIdCopyWithImpl<$Res, _$_ApiTxId>
-    implements _$$_ApiTxIdCopyWith<$Res> {
-  __$$_ApiTxIdCopyWithImpl(_$_ApiTxId _value, $Res Function(_$_ApiTxId) _then)
+class __$$ApiTxIdImplCopyWithImpl<$Res>
+    extends _$ApiTxIdCopyWithImpl<$Res, _$ApiTxIdImpl>
+    implements _$$ApiTxIdImplCopyWith<$Res> {
+  __$$ApiTxIdImplCopyWithImpl(
+      _$ApiTxIdImpl _value, $Res Function(_$ApiTxIdImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1119,7 +1123,7 @@ class __$$_ApiTxIdCopyWithImpl<$Res>
     Object? transactionId = null,
     Object? blockTime = freezed,
   }) {
-    return _then(_$_ApiTxId(
+    return _then(_$ApiTxIdImpl(
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
@@ -1135,11 +1139,11 @@ class __$$_ApiTxIdCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$_ApiTxId implements _ApiTxId {
-  const _$_ApiTxId({required this.transactionId, this.blockTime});
+class _$ApiTxIdImpl implements _ApiTxId {
+  const _$ApiTxIdImpl({required this.transactionId, this.blockTime});
 
-  factory _$_ApiTxId.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiTxIdFromJson(json);
+  factory _$ApiTxIdImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiTxIdImplFromJson(json);
 
   @override
   final String transactionId;
@@ -1152,10 +1156,10 @@ class _$_ApiTxId implements _ApiTxId {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiTxId &&
+            other is _$ApiTxIdImpl &&
             (identical(other.transactionId, transactionId) ||
                 other.transactionId == transactionId) &&
             (identical(other.blockTime, blockTime) ||
@@ -1169,12 +1173,12 @@ class _$_ApiTxId implements _ApiTxId {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiTxIdCopyWith<_$_ApiTxId> get copyWith =>
-      __$$_ApiTxIdCopyWithImpl<_$_ApiTxId>(this, _$identity);
+  _$$ApiTxIdImplCopyWith<_$ApiTxIdImpl> get copyWith =>
+      __$$ApiTxIdImplCopyWithImpl<_$ApiTxIdImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiTxIdToJson(
+    return _$$ApiTxIdImplToJson(
       this,
     );
   }
@@ -1182,9 +1186,10 @@ class _$_ApiTxId implements _ApiTxId {
 
 abstract class _ApiTxId implements ApiTxId {
   const factory _ApiTxId(
-      {required final String transactionId, final int? blockTime}) = _$_ApiTxId;
+      {required final String transactionId,
+      final int? blockTime}) = _$ApiTxIdImpl;
 
-  factory _ApiTxId.fromJson(Map<String, dynamic> json) = _$_ApiTxId.fromJson;
+  factory _ApiTxId.fromJson(Map<String, dynamic> json) = _$ApiTxIdImpl.fromJson;
 
   @override
   String get transactionId;
@@ -1192,7 +1197,7 @@ abstract class _ApiTxId implements ApiTxId {
   int? get blockTime;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiTxIdCopyWith<_$_ApiTxId> get copyWith =>
+  _$$ApiTxIdImplCopyWith<_$ApiTxIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1294,11 +1299,11 @@ class _$ApiTxInputCopyWithImpl<$Res, $Val extends ApiTxInput>
 }
 
 /// @nodoc
-abstract class _$$_ApiTxInputCopyWith<$Res>
+abstract class _$$ApiTxInputImplCopyWith<$Res>
     implements $ApiTxInputCopyWith<$Res> {
-  factory _$$_ApiTxInputCopyWith(
-          _$_ApiTxInput value, $Res Function(_$_ApiTxInput) then) =
-      __$$_ApiTxInputCopyWithImpl<$Res>;
+  factory _$$ApiTxInputImplCopyWith(
+          _$ApiTxInputImpl value, $Res Function(_$ApiTxInputImpl) then) =
+      __$$ApiTxInputImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1313,11 +1318,11 @@ abstract class _$$_ApiTxInputCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ApiTxInputCopyWithImpl<$Res>
-    extends _$ApiTxInputCopyWithImpl<$Res, _$_ApiTxInput>
-    implements _$$_ApiTxInputCopyWith<$Res> {
-  __$$_ApiTxInputCopyWithImpl(
-      _$_ApiTxInput _value, $Res Function(_$_ApiTxInput) _then)
+class __$$ApiTxInputImplCopyWithImpl<$Res>
+    extends _$ApiTxInputCopyWithImpl<$Res, _$ApiTxInputImpl>
+    implements _$$ApiTxInputImplCopyWith<$Res> {
+  __$$ApiTxInputImplCopyWithImpl(
+      _$ApiTxInputImpl _value, $Res Function(_$ApiTxInputImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1332,7 +1337,7 @@ class __$$_ApiTxInputCopyWithImpl<$Res>
     Object? previousOutpointAddress = freezed,
     Object? previousOutpointAmount = freezed,
   }) {
-    return _then(_$_ApiTxInput(
+    return _then(_$ApiTxInputImpl(
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
@@ -1372,8 +1377,8 @@ class __$$_ApiTxInputCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$_ApiTxInput implements _ApiTxInput {
-  const _$_ApiTxInput(
+class _$ApiTxInputImpl implements _ApiTxInput {
+  const _$ApiTxInputImpl(
       {required this.transactionId,
       required this.index,
       required this.previousOutpointHash,
@@ -1383,8 +1388,8 @@ class _$_ApiTxInput implements _ApiTxInput {
       this.previousOutpointAddress,
       this.previousOutpointAmount});
 
-  factory _$_ApiTxInput.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiTxInputFromJson(json);
+  factory _$ApiTxInputImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiTxInputImplFromJson(json);
 
   @override
   final String transactionId;
@@ -1410,10 +1415,10 @@ class _$_ApiTxInput implements _ApiTxInput {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiTxInput &&
+            other is _$ApiTxInputImpl &&
             (identical(other.transactionId, transactionId) ||
                 other.transactionId == transactionId) &&
             (identical(other.index, index) || other.index == index) &&
@@ -1448,12 +1453,12 @@ class _$_ApiTxInput implements _ApiTxInput {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiTxInputCopyWith<_$_ApiTxInput> get copyWith =>
-      __$$_ApiTxInputCopyWithImpl<_$_ApiTxInput>(this, _$identity);
+  _$$ApiTxInputImplCopyWith<_$ApiTxInputImpl> get copyWith =>
+      __$$ApiTxInputImplCopyWithImpl<_$ApiTxInputImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiTxInputToJson(
+    return _$$ApiTxInputImplToJson(
       this,
     );
   }
@@ -1468,10 +1473,10 @@ abstract class _ApiTxInput implements ApiTxInput {
       required final String signatureScript,
       required final BigInt sigOpCount,
       final String? previousOutpointAddress,
-      final int? previousOutpointAmount}) = _$_ApiTxInput;
+      final int? previousOutpointAmount}) = _$ApiTxInputImpl;
 
   factory _ApiTxInput.fromJson(Map<String, dynamic> json) =
-      _$_ApiTxInput.fromJson;
+      _$ApiTxInputImpl.fromJson;
 
   @override
   String get transactionId;
@@ -1491,7 +1496,7 @@ abstract class _ApiTxInput implements ApiTxInput {
   int? get previousOutpointAmount;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiTxInputCopyWith<_$_ApiTxInput> get copyWith =>
+  _$$ApiTxInputImplCopyWith<_$ApiTxInputImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1579,11 +1584,11 @@ class _$ApiTxOutputCopyWithImpl<$Res, $Val extends ApiTxOutput>
 }
 
 /// @nodoc
-abstract class _$$_ApiTxOutputCopyWith<$Res>
+abstract class _$$ApiTxOutputImplCopyWith<$Res>
     implements $ApiTxOutputCopyWith<$Res> {
-  factory _$$_ApiTxOutputCopyWith(
-          _$_ApiTxOutput value, $Res Function(_$_ApiTxOutput) then) =
-      __$$_ApiTxOutputCopyWithImpl<$Res>;
+  factory _$$ApiTxOutputImplCopyWith(
+          _$ApiTxOutputImpl value, $Res Function(_$ApiTxOutputImpl) then) =
+      __$$ApiTxOutputImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1596,11 +1601,11 @@ abstract class _$$_ApiTxOutputCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ApiTxOutputCopyWithImpl<$Res>
-    extends _$ApiTxOutputCopyWithImpl<$Res, _$_ApiTxOutput>
-    implements _$$_ApiTxOutputCopyWith<$Res> {
-  __$$_ApiTxOutputCopyWithImpl(
-      _$_ApiTxOutput _value, $Res Function(_$_ApiTxOutput) _then)
+class __$$ApiTxOutputImplCopyWithImpl<$Res>
+    extends _$ApiTxOutputCopyWithImpl<$Res, _$ApiTxOutputImpl>
+    implements _$$ApiTxOutputImplCopyWith<$Res> {
+  __$$ApiTxOutputImplCopyWithImpl(
+      _$ApiTxOutputImpl _value, $Res Function(_$ApiTxOutputImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1613,7 +1618,7 @@ class __$$_ApiTxOutputCopyWithImpl<$Res>
     Object? scriptPublicKeyAddress = null,
     Object? scriptPublicKeyType = null,
   }) {
-    return _then(_$_ApiTxOutput(
+    return _then(_$ApiTxOutputImpl(
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
@@ -1645,8 +1650,8 @@ class __$$_ApiTxOutputCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$_ApiTxOutput implements _ApiTxOutput {
-  const _$_ApiTxOutput(
+class _$ApiTxOutputImpl implements _ApiTxOutput {
+  const _$ApiTxOutputImpl(
       {required this.transactionId,
       required this.index,
       required this.amount,
@@ -1654,8 +1659,8 @@ class _$_ApiTxOutput implements _ApiTxOutput {
       required this.scriptPublicKeyAddress,
       required this.scriptPublicKeyType});
 
-  factory _$_ApiTxOutput.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiTxOutputFromJson(json);
+  factory _$ApiTxOutputImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiTxOutputImplFromJson(json);
 
   @override
   final String transactionId;
@@ -1676,10 +1681,10 @@ class _$_ApiTxOutput implements _ApiTxOutput {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiTxOutput &&
+            other is _$ApiTxOutputImpl &&
             (identical(other.transactionId, transactionId) ||
                 other.transactionId == transactionId) &&
             (identical(other.index, index) || other.index == index) &&
@@ -1700,12 +1705,12 @@ class _$_ApiTxOutput implements _ApiTxOutput {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiTxOutputCopyWith<_$_ApiTxOutput> get copyWith =>
-      __$$_ApiTxOutputCopyWithImpl<_$_ApiTxOutput>(this, _$identity);
+  _$$ApiTxOutputImplCopyWith<_$ApiTxOutputImpl> get copyWith =>
+      __$$ApiTxOutputImplCopyWithImpl<_$ApiTxOutputImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiTxOutputToJson(
+    return _$$ApiTxOutputImplToJson(
       this,
     );
   }
@@ -1718,10 +1723,10 @@ abstract class _ApiTxOutput implements ApiTxOutput {
       required final int amount,
       required final String scriptPublicKey,
       required final String scriptPublicKeyAddress,
-      required final String scriptPublicKeyType}) = _$_ApiTxOutput;
+      required final String scriptPublicKeyType}) = _$ApiTxOutputImpl;
 
   factory _ApiTxOutput.fromJson(Map<String, dynamic> json) =
-      _$_ApiTxOutput.fromJson;
+      _$ApiTxOutputImpl.fromJson;
 
   @override
   String get transactionId;
@@ -1737,7 +1742,7 @@ abstract class _ApiTxOutput implements ApiTxOutput {
   String get scriptPublicKeyType;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiTxOutputCopyWith<_$_ApiTxOutput> get copyWith =>
+  _$$ApiTxOutputImplCopyWith<_$ApiTxOutputImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1846,11 +1851,11 @@ class _$ApiTransactionCopyWithImpl<$Res, $Val extends ApiTransaction>
 }
 
 /// @nodoc
-abstract class _$$_TransactionCopyWith<$Res>
+abstract class _$$TransactionImplCopyWith<$Res>
     implements $ApiTransactionCopyWith<$Res> {
-  factory _$$_TransactionCopyWith(
-          _$_Transaction value, $Res Function(_$_Transaction) then) =
-      __$$_TransactionCopyWithImpl<$Res>;
+  factory _$$TransactionImplCopyWith(
+          _$TransactionImpl value, $Res Function(_$TransactionImpl) then) =
+      __$$TransactionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1866,11 +1871,11 @@ abstract class _$$_TransactionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TransactionCopyWithImpl<$Res>
-    extends _$ApiTransactionCopyWithImpl<$Res, _$_Transaction>
-    implements _$$_TransactionCopyWith<$Res> {
-  __$$_TransactionCopyWithImpl(
-      _$_Transaction _value, $Res Function(_$_Transaction) _then)
+class __$$TransactionImplCopyWithImpl<$Res>
+    extends _$ApiTransactionCopyWithImpl<$Res, _$TransactionImpl>
+    implements _$$TransactionImplCopyWith<$Res> {
+  __$$TransactionImplCopyWithImpl(
+      _$TransactionImpl _value, $Res Function(_$TransactionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1886,7 +1891,7 @@ class __$$_TransactionCopyWithImpl<$Res>
     Object? inputs = null,
     Object? outputs = null,
   }) {
-    return _then(_$_Transaction(
+    return _then(_$TransactionImpl(
       subnetworkId: freezed == subnetworkId
           ? _value.subnetworkId
           : subnetworkId // ignore: cast_nullable_to_non_nullable
@@ -1930,8 +1935,8 @@ class __$$_TransactionCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$_Transaction extends _Transaction {
-  _$_Transaction(
+class _$TransactionImpl extends _Transaction {
+  _$TransactionImpl(
       {this.subnetworkId,
       required this.transactionId,
       final List<String> blockHash = const [],
@@ -1946,8 +1951,8 @@ class _$_Transaction extends _Transaction {
         _outputs = outputs,
         super._();
 
-  factory _$_Transaction.fromJson(Map<String, dynamic> json) =>
-      _$$_TransactionFromJson(json);
+  factory _$TransactionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TransactionImplFromJson(json);
 
   @override
   final String? subnetworkId;
@@ -1994,10 +1999,10 @@ class _$_Transaction extends _Transaction {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Transaction &&
+            other is _$TransactionImpl &&
             (identical(other.subnetworkId, subnetworkId) ||
                 other.subnetworkId == subnetworkId) &&
             (identical(other.transactionId, transactionId) ||
@@ -2034,12 +2039,12 @@ class _$_Transaction extends _Transaction {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TransactionCopyWith<_$_Transaction> get copyWith =>
-      __$$_TransactionCopyWithImpl<_$_Transaction>(this, _$identity);
+  _$$TransactionImplCopyWith<_$TransactionImpl> get copyWith =>
+      __$$TransactionImplCopyWithImpl<_$TransactionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionToJson(
+    return _$$TransactionImplToJson(
       this,
     );
   }
@@ -2055,11 +2060,11 @@ abstract class _Transaction extends ApiTransaction {
       final String? acceptingBlockHash,
       final int? acceptingBlockBlueScore,
       final List<ApiTxInput> inputs,
-      final List<ApiTxOutput> outputs}) = _$_Transaction;
+      final List<ApiTxOutput> outputs}) = _$TransactionImpl;
   _Transaction._() : super._();
 
   factory _Transaction.fromJson(Map<String, dynamic> json) =
-      _$_Transaction.fromJson;
+      _$TransactionImpl.fromJson;
 
   @override
   String? get subnetworkId;
@@ -2081,6 +2086,6 @@ abstract class _Transaction extends ApiTransaction {
   List<ApiTxOutput> get outputs;
   @override
   @JsonKey(ignore: true)
-  _$$_TransactionCopyWith<_$_Transaction> get copyWith =>
+  _$$TransactionImplCopyWith<_$TransactionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

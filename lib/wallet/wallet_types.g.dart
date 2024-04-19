@@ -6,18 +6,18 @@ part of 'wallet_types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BoxKeys _$$_BoxKeysFromJson(Map json) => _$_BoxKeys(
+_$BoxKeysImpl _$$BoxKeysImplFromJson(Map json) => _$BoxKeysImpl(
       boxKey: json['boxKey'] as String,
       encryptionKey: json['encryptionKey'] as String,
     );
 
-Map<String, dynamic> _$$_BoxKeysToJson(_$_BoxKeys instance) =>
+Map<String, dynamic> _$$BoxKeysImplToJson(_$BoxKeysImpl instance) =>
     <String, dynamic>{
       'boxKey': instance.boxKey,
       'encryptionKey': instance.encryptionKey,
     };
 
-_$_BoxInfo _$$_BoxInfoFromJson(Map json) => _$_BoxInfo(
+_$BoxInfoImpl _$$BoxInfoImplFromJson(Map json) => _$BoxInfoImpl(
       address:
           BoxKeys.fromJson(Map<String, dynamic>.from(json['address'] as Map)),
       balance:
@@ -28,7 +28,7 @@ _$_BoxInfo _$$_BoxInfoFromJson(Map json) => _$_BoxInfo(
       tx: BoxKeys.fromJson(Map<String, dynamic>.from(json['tx'] as Map)),
     );
 
-Map<String, dynamic> _$$_BoxInfoToJson(_$_BoxInfo instance) =>
+Map<String, dynamic> _$$BoxInfoImplToJson(_$BoxInfoImpl instance) =>
     <String, dynamic>{
       'address': instance.address.toJson(),
       'balance': instance.balance.toJson(),
@@ -37,8 +37,8 @@ Map<String, dynamic> _$$_BoxInfoToJson(_$_BoxInfo instance) =>
       'tx': instance.tx.toJson(),
     };
 
-_$_BoxInfoByNetwork _$$_BoxInfoByNetworkFromJson(Map json) =>
-    _$_BoxInfoByNetwork(
+_$BoxInfoByNetworkImpl _$$BoxInfoByNetworkImplFromJson(Map json) =>
+    _$BoxInfoByNetworkImpl(
       mainnet:
           BoxInfo.fromJson(Map<String, dynamic>.from(json['mainnet'] as Map)),
       testnet:
@@ -49,7 +49,8 @@ _$_BoxInfoByNetwork _$$_BoxInfoByNetworkFromJson(Map json) =>
           BoxInfo.fromJson(Map<String, dynamic>.from(json['simnet'] as Map)),
     );
 
-Map<String, dynamic> _$$_BoxInfoByNetworkToJson(_$_BoxInfoByNetwork instance) =>
+Map<String, dynamic> _$$BoxInfoByNetworkImplToJson(
+        _$BoxInfoByNetworkImpl instance) =>
     <String, dynamic>{
       'mainnet': instance.mainnet.toJson(),
       'testnet': instance.testnet.toJson(),
@@ -57,46 +58,48 @@ Map<String, dynamic> _$$_BoxInfoByNetworkToJson(_$_BoxInfoByNetwork instance) =>
       'simnet': instance.simnet.toJson(),
     };
 
-_$_WalletKindLocalHdSchnorr _$$_WalletKindLocalHdSchnorrFromJson(Map json) =>
-    _$_WalletKindLocalHdSchnorr(
+_$WalletKindLocalHdSchnorrImpl _$$WalletKindLocalHdSchnorrImplFromJson(
+        Map json) =>
+    _$WalletKindLocalHdSchnorrImpl(
       viewOnly: json['viewOnly'] as bool? ?? false,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_WalletKindLocalHdSchnorrToJson(
-        _$_WalletKindLocalHdSchnorr instance) =>
+Map<String, dynamic> _$$WalletKindLocalHdSchnorrImplToJson(
+        _$WalletKindLocalHdSchnorrImpl instance) =>
     <String, dynamic>{
       'viewOnly': instance.viewOnly,
       'runtimeType': instance.$type,
     };
 
-_$_WalletKindLocalHdEcdsa _$$_WalletKindLocalHdEcdsaFromJson(Map json) =>
-    _$_WalletKindLocalHdEcdsa(
+_$WalletKindLocalHdEcdsaImpl _$$WalletKindLocalHdEcdsaImplFromJson(Map json) =>
+    _$WalletKindLocalHdEcdsaImpl(
       viewOnly: json['viewOnly'] as bool? ?? false,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_WalletKindLocalHdEcdsaToJson(
-        _$_WalletKindLocalHdEcdsa instance) =>
+Map<String, dynamic> _$$WalletKindLocalHdEcdsaImplToJson(
+        _$WalletKindLocalHdEcdsaImpl instance) =>
     <String, dynamic>{
       'viewOnly': instance.viewOnly,
       'runtimeType': instance.$type,
     };
 
-_$_WalletKindLocalHdLegacy _$$_WalletKindLocalHdLegacyFromJson(Map json) =>
-    _$_WalletKindLocalHdLegacy(
+_$WalletKindLocalHdLegacyImpl _$$WalletKindLocalHdLegacyImplFromJson(
+        Map json) =>
+    _$WalletKindLocalHdLegacyImpl(
       mainPubKey: json['mainPubKey'] as String,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_WalletKindLocalHdLegacyToJson(
-        _$_WalletKindLocalHdLegacy instance) =>
+Map<String, dynamic> _$$WalletKindLocalHdLegacyImplToJson(
+        _$WalletKindLocalHdLegacyImpl instance) =>
     <String, dynamic>{
       'mainPubKey': instance.mainPubKey,
       'runtimeType': instance.$type,
     };
 
-_$_WalletInfo _$$_WalletInfoFromJson(Map json) => _$_WalletInfo(
+_$WalletInfoImpl _$$WalletInfoImplFromJson(Map json) => _$WalletInfoImpl(
       name: json['name'] as String,
       kind: json['kind'] == null
           ? const WalletKind.localHdSchnorr()
@@ -107,7 +110,7 @@ _$_WalletInfo _$$_WalletInfoFromJson(Map json) => _$_WalletInfo(
       mainnetPublicKey: json['mainnetPublicKey'] as String,
     );
 
-Map<String, dynamic> _$$_WalletInfoToJson(_$_WalletInfo instance) =>
+Map<String, dynamic> _$$WalletInfoImplToJson(_$WalletInfoImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'kind': instance.kind.toJson(),
@@ -116,7 +119,7 @@ Map<String, dynamic> _$$_WalletInfoToJson(_$_WalletInfo instance) =>
       'mainnetPublicKey': instance.mainnetPublicKey,
     };
 
-_$_WalletBundle _$$_WalletBundleFromJson(Map json) => _$_WalletBundle(
+_$WalletBundleImpl _$$WalletBundleImplFromJson(Map json) => _$WalletBundleImpl(
       wallets: json['wallets'] == null
           ? null
           : IList<WalletInfo>.fromJson(
@@ -129,7 +132,7 @@ _$_WalletBundle _$$_WalletBundleFromJson(Map json) => _$_WalletBundle(
               Map<String, dynamic>.from(json['selected'] as Map)),
     );
 
-Map<String, dynamic> _$$_WalletBundleToJson(_$_WalletBundle instance) {
+Map<String, dynamic> _$$WalletBundleImplToJson(_$WalletBundleImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {

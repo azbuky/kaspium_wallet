@@ -58,7 +58,7 @@ class SetPasswordSheet extends HookConsumerWidget {
         Navigator.pop(context);
       } catch (e, st) {
         final log = ref.read(loggerProvider);
-        log.e('Failed to set password', e, st);
+        log.e('Failed to set password', error: e, stackTrace: st);
 
         Navigator.pop(context);
         UIUtil.showSnackbar(l10n.encryptionFailedError, context);

@@ -6,13 +6,15 @@ part of 'coingecko_types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CoinGeckoPrice _$$_CoinGeckoPriceFromJson(Map json) => _$_CoinGeckoPrice(
+_$CoinGeckoPriceImpl _$$CoinGeckoPriceImplFromJson(Map json) =>
+    _$CoinGeckoPriceImpl(
       currency: $enumDecode(_$AvailableCurrenciesEnumMap, json['currency']),
       price: Decimal.fromJson(json['price'] as String),
       timestamp: json['timestamp'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$$_CoinGeckoPriceToJson(_$_CoinGeckoPrice instance) =>
+Map<String, dynamic> _$$CoinGeckoPriceImplToJson(
+        _$CoinGeckoPriceImpl instance) =>
     <String, dynamic>{
       'currency': _$AvailableCurrenciesEnumMap[instance.currency]!,
       'price': instance.price.toJson(),

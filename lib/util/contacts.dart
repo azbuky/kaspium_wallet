@@ -92,7 +92,7 @@ Future<void> importContacts(WidgetRef ref, BuildContext context) async {
       }
     } catch (e) {
       final log = ref.read(loggerProvider);
-      log.e('Failed to import contacts', e);
+      log.e('Failed to import contacts', error: e);
       UIUtil.showSnackbar(l10n.contactsImportErr, context);
     }
   }

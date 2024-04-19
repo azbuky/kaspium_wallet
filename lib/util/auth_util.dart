@@ -35,7 +35,8 @@ class AuthUtil {
         return false;
       } catch (e, st) {
         final logger = ref.read(loggerProvider);
-        logger.e('Failed to authenticate with biometrics', e, st);
+        logger.e('Failed to authenticate with biometrics',
+            error: e, stackTrace: st);
         return authenticateWithPin(context, pinMessage);
       }
     }

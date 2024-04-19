@@ -213,7 +213,7 @@ class _TransferOverviewSheetState extends ConsumerState<TransferOverviewSheet> {
       //     .fire(TransferConfirmEvent(balMap: privKeyBalanceMap));
       Navigator.of(context).pop();
     } catch (e) {
-      ref.read(loggerProvider).e("error", e);
+      ref.read(loggerProvider).e("error", error: e);
       if (_animationOpen) {
         Navigator.of(context).pop();
       }

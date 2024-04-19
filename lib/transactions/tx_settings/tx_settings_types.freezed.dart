@@ -12,7 +12,7 @@ part of 'tx_settings_types.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TxSettings _$TxSettingsFromJson(Map<String, dynamic> json) {
   return _TxSettings.fromJson(json);
@@ -62,22 +62,22 @@ class _$TxSettingsCopyWithImpl<$Res, $Val extends TxSettings>
 }
 
 /// @nodoc
-abstract class _$$_TxSettingsCopyWith<$Res>
+abstract class _$$TxSettingsImplCopyWith<$Res>
     implements $TxSettingsCopyWith<$Res> {
-  factory _$$_TxSettingsCopyWith(
-          _$_TxSettings value, $Res Function(_$_TxSettings) then) =
-      __$$_TxSettingsCopyWithImpl<$Res>;
+  factory _$$TxSettingsImplCopyWith(
+          _$TxSettingsImpl value, $Res Function(_$TxSettingsImpl) then) =
+      __$$TxSettingsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({TxFilter txFilter});
 }
 
 /// @nodoc
-class __$$_TxSettingsCopyWithImpl<$Res>
-    extends _$TxSettingsCopyWithImpl<$Res, _$_TxSettings>
-    implements _$$_TxSettingsCopyWith<$Res> {
-  __$$_TxSettingsCopyWithImpl(
-      _$_TxSettings _value, $Res Function(_$_TxSettings) _then)
+class __$$TxSettingsImplCopyWithImpl<$Res>
+    extends _$TxSettingsCopyWithImpl<$Res, _$TxSettingsImpl>
+    implements _$$TxSettingsImplCopyWith<$Res> {
+  __$$TxSettingsImplCopyWithImpl(
+      _$TxSettingsImpl _value, $Res Function(_$TxSettingsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -85,7 +85,7 @@ class __$$_TxSettingsCopyWithImpl<$Res>
   $Res call({
     Object? txFilter = null,
   }) {
-    return _then(_$_TxSettings(
+    return _then(_$TxSettingsImpl(
       txFilter: null == txFilter
           ? _value.txFilter
           : txFilter // ignore: cast_nullable_to_non_nullable
@@ -96,11 +96,11 @@ class __$$_TxSettingsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TxSettings implements _TxSettings {
-  const _$_TxSettings({this.txFilter = TxFilter.all});
+class _$TxSettingsImpl implements _TxSettings {
+  const _$TxSettingsImpl({this.txFilter = TxFilter.all});
 
-  factory _$_TxSettings.fromJson(Map<String, dynamic> json) =>
-      _$$_TxSettingsFromJson(json);
+  factory _$TxSettingsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TxSettingsImplFromJson(json);
 
   @override
   @JsonKey()
@@ -112,10 +112,10 @@ class _$_TxSettings implements _TxSettings {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TxSettings &&
+            other is _$TxSettingsImpl &&
             (identical(other.txFilter, txFilter) ||
                 other.txFilter == txFilter));
   }
@@ -127,27 +127,27 @@ class _$_TxSettings implements _TxSettings {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TxSettingsCopyWith<_$_TxSettings> get copyWith =>
-      __$$_TxSettingsCopyWithImpl<_$_TxSettings>(this, _$identity);
+  _$$TxSettingsImplCopyWith<_$TxSettingsImpl> get copyWith =>
+      __$$TxSettingsImplCopyWithImpl<_$TxSettingsImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TxSettingsToJson(
+    return _$$TxSettingsImplToJson(
       this,
     );
   }
 }
 
 abstract class _TxSettings implements TxSettings {
-  const factory _TxSettings({final TxFilter txFilter}) = _$_TxSettings;
+  const factory _TxSettings({final TxFilter txFilter}) = _$TxSettingsImpl;
 
   factory _TxSettings.fromJson(Map<String, dynamic> json) =
-      _$_TxSettings.fromJson;
+      _$TxSettingsImpl.fromJson;
 
   @override
   TxFilter get txFilter;
   @override
   @JsonKey(ignore: true)
-  _$$_TxSettingsCopyWith<_$_TxSettings> get copyWith =>
+  _$$TxSettingsImplCopyWith<_$TxSettingsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

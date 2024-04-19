@@ -104,7 +104,7 @@ class ReceiveSheet extends HookConsumerWidget {
         showShareCard.value = false;
       } catch (e, st) {
         final log = ref.read(loggerProvider);
-        log.e('Failed to share address', e, st);
+        log.e('Failed to share address', error: e, stackTrace: st);
       }
 
       lockDisabled.state = false;

@@ -34,11 +34,9 @@ class DownloadTxsDialog extends HookConsumerWidget {
     final loading = useState(true);
     final csv = useRef<String>('');
 
-    final isMounted = useIsMounted();
-
     useEffect(() {
       Future.microtask(() async {
-        if (!isMounted()) {
+        if (!context.mounted) {
           return;
         }
         final txNotifier = ref.read(txNotifierProvider);
@@ -62,7 +60,7 @@ class DownloadTxsDialog extends HookConsumerWidget {
               pendingAddresses: pendingAddresses,
             );
 
-            if (!isMounted()) {
+            if (!context.mounted) {
               return;
             }
           }
@@ -74,7 +72,7 @@ class DownloadTxsDialog extends HookConsumerWidget {
             subMessage.value = l10n.txReportNoLoadedTxs(loadedCount, txCount);
             await txNotifier.loadMore(50);
 
-            if (!isMounted()) {
+            if (!context.mounted) {
               return;
             }
           }

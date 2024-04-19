@@ -143,7 +143,7 @@ class SetupWalletScreen extends HookConsumerWidget {
         Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
       } catch (e, st) {
         final log = ref.read(loggerProvider);
-        log.e('Failed to create wallet', e, st);
+        log.e('Failed to create wallet', error: e, stackTrace: st);
 
         setupFailed.value = true;
         setupError.value = e;

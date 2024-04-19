@@ -12,7 +12,7 @@ part of 'coingecko_types.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 CoinGeckoPrice _$CoinGeckoPriceFromJson(Map<String, dynamic> json) {
   return _CoinGeckoPrice.fromJson(json);
@@ -74,22 +74,22 @@ class _$CoinGeckoPriceCopyWithImpl<$Res, $Val extends CoinGeckoPrice>
 }
 
 /// @nodoc
-abstract class _$$_CoinGeckoPriceCopyWith<$Res>
+abstract class _$$CoinGeckoPriceImplCopyWith<$Res>
     implements $CoinGeckoPriceCopyWith<$Res> {
-  factory _$$_CoinGeckoPriceCopyWith(
-          _$_CoinGeckoPrice value, $Res Function(_$_CoinGeckoPrice) then) =
-      __$$_CoinGeckoPriceCopyWithImpl<$Res>;
+  factory _$$CoinGeckoPriceImplCopyWith(_$CoinGeckoPriceImpl value,
+          $Res Function(_$CoinGeckoPriceImpl) then) =
+      __$$CoinGeckoPriceImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({AvailableCurrencies currency, Decimal price, int timestamp});
 }
 
 /// @nodoc
-class __$$_CoinGeckoPriceCopyWithImpl<$Res>
-    extends _$CoinGeckoPriceCopyWithImpl<$Res, _$_CoinGeckoPrice>
-    implements _$$_CoinGeckoPriceCopyWith<$Res> {
-  __$$_CoinGeckoPriceCopyWithImpl(
-      _$_CoinGeckoPrice _value, $Res Function(_$_CoinGeckoPrice) _then)
+class __$$CoinGeckoPriceImplCopyWithImpl<$Res>
+    extends _$CoinGeckoPriceCopyWithImpl<$Res, _$CoinGeckoPriceImpl>
+    implements _$$CoinGeckoPriceImplCopyWith<$Res> {
+  __$$CoinGeckoPriceImplCopyWithImpl(
+      _$CoinGeckoPriceImpl _value, $Res Function(_$CoinGeckoPriceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_CoinGeckoPriceCopyWithImpl<$Res>
     Object? price = null,
     Object? timestamp = null,
   }) {
-    return _then(_$_CoinGeckoPrice(
+    return _then(_$CoinGeckoPriceImpl(
       currency: null == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
@@ -118,13 +118,13 @@ class __$$_CoinGeckoPriceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CoinGeckoPrice extends _CoinGeckoPrice {
-  const _$_CoinGeckoPrice(
+class _$CoinGeckoPriceImpl extends _CoinGeckoPrice {
+  const _$CoinGeckoPriceImpl(
       {required this.currency, required this.price, this.timestamp = 0})
       : super._();
 
-  factory _$_CoinGeckoPrice.fromJson(Map<String, dynamic> json) =>
-      _$$_CoinGeckoPriceFromJson(json);
+  factory _$CoinGeckoPriceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CoinGeckoPriceImplFromJson(json);
 
   @override
   final AvailableCurrencies currency;
@@ -140,10 +140,10 @@ class _$_CoinGeckoPrice extends _CoinGeckoPrice {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CoinGeckoPrice &&
+            other is _$CoinGeckoPriceImpl &&
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
             (identical(other.price, price) || other.price == price) &&
@@ -158,12 +158,13 @@ class _$_CoinGeckoPrice extends _CoinGeckoPrice {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CoinGeckoPriceCopyWith<_$_CoinGeckoPrice> get copyWith =>
-      __$$_CoinGeckoPriceCopyWithImpl<_$_CoinGeckoPrice>(this, _$identity);
+  _$$CoinGeckoPriceImplCopyWith<_$CoinGeckoPriceImpl> get copyWith =>
+      __$$CoinGeckoPriceImplCopyWithImpl<_$CoinGeckoPriceImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CoinGeckoPriceToJson(
+    return _$$CoinGeckoPriceImplToJson(
       this,
     );
   }
@@ -173,11 +174,11 @@ abstract class _CoinGeckoPrice extends CoinGeckoPrice {
   const factory _CoinGeckoPrice(
       {required final AvailableCurrencies currency,
       required final Decimal price,
-      final int timestamp}) = _$_CoinGeckoPrice;
+      final int timestamp}) = _$CoinGeckoPriceImpl;
   const _CoinGeckoPrice._() : super._();
 
   factory _CoinGeckoPrice.fromJson(Map<String, dynamic> json) =
-      _$_CoinGeckoPrice.fromJson;
+      _$CoinGeckoPriceImpl.fromJson;
 
   @override
   AvailableCurrencies get currency;
@@ -187,6 +188,6 @@ abstract class _CoinGeckoPrice extends CoinGeckoPrice {
   int get timestamp;
   @override
   @JsonKey(ignore: true)
-  _$$_CoinGeckoPriceCopyWith<_$_CoinGeckoPrice> get copyWith =>
+  _$$CoinGeckoPriceImplCopyWith<_$CoinGeckoPriceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -229,7 +229,7 @@ class IntroImportSeed extends HookConsumerWidget {
                   ),
                   Column(children: [
                     Focus(
-                      onKey: (node, event) => KeyEventResult.handled,
+                      onKeyEvent: (node, event) => KeyEventResult.handled,
                       child: AppTextField(
                         leftMargin: 40,
                         rightMargin: 40,

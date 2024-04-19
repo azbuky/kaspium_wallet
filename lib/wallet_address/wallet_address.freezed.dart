@@ -12,7 +12,7 @@ part of 'wallet_address.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 WalletAddress _$WalletAddressFromJson(Map<String, dynamic> json) {
   return _WalletAddress.fromJson(json);
@@ -97,11 +97,11 @@ class _$WalletAddressCopyWithImpl<$Res, $Val extends WalletAddress>
 }
 
 /// @nodoc
-abstract class _$$_WalletAddressCopyWith<$Res>
+abstract class _$$WalletAddressImplCopyWith<$Res>
     implements $WalletAddressCopyWith<$Res> {
-  factory _$$_WalletAddressCopyWith(
-          _$_WalletAddress value, $Res Function(_$_WalletAddress) then) =
-      __$$_WalletAddressCopyWithImpl<$Res>;
+  factory _$$WalletAddressImplCopyWith(
+          _$WalletAddressImpl value, $Res Function(_$WalletAddressImpl) then) =
+      __$$WalletAddressImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -112,11 +112,11 @@ abstract class _$$_WalletAddressCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_WalletAddressCopyWithImpl<$Res>
-    extends _$WalletAddressCopyWithImpl<$Res, _$_WalletAddress>
-    implements _$$_WalletAddressCopyWith<$Res> {
-  __$$_WalletAddressCopyWithImpl(
-      _$_WalletAddress _value, $Res Function(_$_WalletAddress) _then)
+class __$$WalletAddressImplCopyWithImpl<$Res>
+    extends _$WalletAddressCopyWithImpl<$Res, _$WalletAddressImpl>
+    implements _$$WalletAddressImplCopyWith<$Res> {
+  __$$WalletAddressImplCopyWithImpl(
+      _$WalletAddressImpl _value, $Res Function(_$WalletAddressImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -128,7 +128,7 @@ class __$$_WalletAddressCopyWithImpl<$Res>
     Object? address = null,
     Object? used = null,
   }) {
-    return _then(_$_WalletAddress(
+    return _then(_$WalletAddressImpl(
       index: null == index
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -155,8 +155,8 @@ class __$$_WalletAddressCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WalletAddress extends _WalletAddress {
-  const _$_WalletAddress(
+class _$WalletAddressImpl extends _WalletAddress {
+  const _$WalletAddressImpl(
       {required this.index,
       required this.type,
       required this.name,
@@ -164,8 +164,8 @@ class _$_WalletAddress extends _WalletAddress {
       this.used = true})
       : super._();
 
-  factory _$_WalletAddress.fromJson(Map<String, dynamic> json) =>
-      _$$_WalletAddressFromJson(json);
+  factory _$WalletAddressImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WalletAddressImplFromJson(json);
 
   @override
   final int index;
@@ -185,10 +185,10 @@ class _$_WalletAddress extends _WalletAddress {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WalletAddress &&
+            other is _$WalletAddressImpl &&
             (identical(other.index, index) || other.index == index) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.name, name) || other.name == name) &&
@@ -204,12 +204,12 @@ class _$_WalletAddress extends _WalletAddress {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WalletAddressCopyWith<_$_WalletAddress> get copyWith =>
-      __$$_WalletAddressCopyWithImpl<_$_WalletAddress>(this, _$identity);
+  _$$WalletAddressImplCopyWith<_$WalletAddressImpl> get copyWith =>
+      __$$WalletAddressImplCopyWithImpl<_$WalletAddressImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WalletAddressToJson(
+    return _$$WalletAddressImplToJson(
       this,
     );
   }
@@ -221,11 +221,11 @@ abstract class _WalletAddress extends WalletAddress {
       required final AddressType type,
       required final String name,
       required final Address address,
-      final bool used}) = _$_WalletAddress;
+      final bool used}) = _$WalletAddressImpl;
   const _WalletAddress._() : super._();
 
   factory _WalletAddress.fromJson(Map<String, dynamic> json) =
-      _$_WalletAddress.fromJson;
+      _$WalletAddressImpl.fromJson;
 
   @override
   int get index;
@@ -239,6 +239,6 @@ abstract class _WalletAddress extends WalletAddress {
   bool get used;
   @override
   @JsonKey(ignore: true)
-  _$$_WalletAddressCopyWith<_$_WalletAddress> get copyWith =>
+  _$$WalletAddressImplCopyWith<_$WalletAddressImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

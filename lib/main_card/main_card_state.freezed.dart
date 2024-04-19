@@ -12,7 +12,7 @@ part of 'main_card_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MainCardState {
@@ -81,25 +81,25 @@ class _$MainCardStateCopyWithImpl<$Res, $Val extends MainCardState>
 }
 
 /// @nodoc
-abstract class _$$_ShowBalanceCopyWith<$Res> {
-  factory _$$_ShowBalanceCopyWith(
-          _$_ShowBalance value, $Res Function(_$_ShowBalance) then) =
-      __$$_ShowBalanceCopyWithImpl<$Res>;
+abstract class _$$ShowBalanceImplCopyWith<$Res> {
+  factory _$$ShowBalanceImplCopyWith(
+          _$ShowBalanceImpl value, $Res Function(_$ShowBalanceImpl) then) =
+      __$$ShowBalanceImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ShowBalanceCopyWithImpl<$Res>
-    extends _$MainCardStateCopyWithImpl<$Res, _$_ShowBalance>
-    implements _$$_ShowBalanceCopyWith<$Res> {
-  __$$_ShowBalanceCopyWithImpl(
-      _$_ShowBalance _value, $Res Function(_$_ShowBalance) _then)
+class __$$ShowBalanceImplCopyWithImpl<$Res>
+    extends _$MainCardStateCopyWithImpl<$Res, _$ShowBalanceImpl>
+    implements _$$ShowBalanceImplCopyWith<$Res> {
+  __$$ShowBalanceImplCopyWithImpl(
+      _$ShowBalanceImpl _value, $Res Function(_$ShowBalanceImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ShowBalance extends _ShowBalance {
-  const _$_ShowBalance() : super._();
+class _$ShowBalanceImpl extends _ShowBalance {
+  const _$ShowBalanceImpl() : super._();
 
   @override
   String toString() {
@@ -107,9 +107,9 @@ class _$_ShowBalance extends _ShowBalance {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ShowBalance);
+        (other.runtimeType == runtimeType && other is _$ShowBalanceImpl);
   }
 
   @override
@@ -185,30 +185,30 @@ class _$_ShowBalance extends _ShowBalance {
 }
 
 abstract class _ShowBalance extends MainCardState {
-  const factory _ShowBalance() = _$_ShowBalance;
+  const factory _ShowBalance() = _$ShowBalanceImpl;
   const _ShowBalance._() : super._();
 }
 
 /// @nodoc
-abstract class _$$_HideBalanceCopyWith<$Res> {
-  factory _$$_HideBalanceCopyWith(
-          _$_HideBalance value, $Res Function(_$_HideBalance) then) =
-      __$$_HideBalanceCopyWithImpl<$Res>;
+abstract class _$$HideBalanceImplCopyWith<$Res> {
+  factory _$$HideBalanceImplCopyWith(
+          _$HideBalanceImpl value, $Res Function(_$HideBalanceImpl) then) =
+      __$$HideBalanceImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_HideBalanceCopyWithImpl<$Res>
-    extends _$MainCardStateCopyWithImpl<$Res, _$_HideBalance>
-    implements _$$_HideBalanceCopyWith<$Res> {
-  __$$_HideBalanceCopyWithImpl(
-      _$_HideBalance _value, $Res Function(_$_HideBalance) _then)
+class __$$HideBalanceImplCopyWithImpl<$Res>
+    extends _$MainCardStateCopyWithImpl<$Res, _$HideBalanceImpl>
+    implements _$$HideBalanceImplCopyWith<$Res> {
+  __$$HideBalanceImplCopyWithImpl(
+      _$HideBalanceImpl _value, $Res Function(_$HideBalanceImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_HideBalance extends _HideBalance {
-  const _$_HideBalance() : super._();
+class _$HideBalanceImpl extends _HideBalance {
+  const _$HideBalanceImpl() : super._();
 
   @override
   String toString() {
@@ -216,9 +216,9 @@ class _$_HideBalance extends _HideBalance {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_HideBalance);
+        (other.runtimeType == runtimeType && other is _$HideBalanceImpl);
   }
 
   @override
@@ -294,29 +294,30 @@ class _$_HideBalance extends _HideBalance {
 }
 
 abstract class _HideBalance extends MainCardState {
-  const factory _HideBalance() = _$_HideBalance;
+  const factory _HideBalance() = _$HideBalanceImpl;
   const _HideBalance._() : super._();
 }
 
 /// @nodoc
-abstract class _$$_HideAllCopyWith<$Res> {
-  factory _$$_HideAllCopyWith(
-          _$_HideAll value, $Res Function(_$_HideAll) then) =
-      __$$_HideAllCopyWithImpl<$Res>;
+abstract class _$$HideAllImplCopyWith<$Res> {
+  factory _$$HideAllImplCopyWith(
+          _$HideAllImpl value, $Res Function(_$HideAllImpl) then) =
+      __$$HideAllImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_HideAllCopyWithImpl<$Res>
-    extends _$MainCardStateCopyWithImpl<$Res, _$_HideAll>
-    implements _$$_HideAllCopyWith<$Res> {
-  __$$_HideAllCopyWithImpl(_$_HideAll _value, $Res Function(_$_HideAll) _then)
+class __$$HideAllImplCopyWithImpl<$Res>
+    extends _$MainCardStateCopyWithImpl<$Res, _$HideAllImpl>
+    implements _$$HideAllImplCopyWith<$Res> {
+  __$$HideAllImplCopyWithImpl(
+      _$HideAllImpl _value, $Res Function(_$HideAllImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_HideAll extends _HideAll {
-  const _$_HideAll() : super._();
+class _$HideAllImpl extends _HideAll {
+  const _$HideAllImpl() : super._();
 
   @override
   String toString() {
@@ -324,9 +325,9 @@ class _$_HideAll extends _HideAll {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_HideAll);
+        (other.runtimeType == runtimeType && other is _$HideAllImpl);
   }
 
   @override
@@ -402,6 +403,6 @@ class _$_HideAll extends _HideAll {
 }
 
 abstract class _HideAll extends MainCardState {
-  const factory _HideAll() = _$_HideAll;
+  const factory _HideAll() = _$HideAllImpl;
   const _HideAll._() : super._();
 }

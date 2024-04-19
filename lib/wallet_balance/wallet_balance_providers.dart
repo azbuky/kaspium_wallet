@@ -53,9 +53,9 @@ final balanceNotifierProvider = ChangeNotifierProvider.autoDispose((ref) {
       await notifier.refresh(addresses);
     },
     fireImmediately: true,
-    onError: (error, stackTrace) {
+    onError: (error, _) {
       final log = ref.read(loggerProvider);
-      log.e('Failed to refresh balances', error);
+      log.e('Failed to refresh balances', error: error);
     },
   );
 

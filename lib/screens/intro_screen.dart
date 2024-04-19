@@ -45,7 +45,7 @@ class IntroScreen extends HookConsumerWidget {
           return true;
         } catch (e, st) {
           final log = ref.read(loggerProvider);
-          log.e('Failed to save pin to vault', e, st);
+          log.e('Failed to save pin to vault', error: e, stackTrace: st);
           return false;
         }
       }
