@@ -24,6 +24,7 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
   bool _shouldScan = true;
   bool _flashOn = false;
   bool _flashToggled = false;
+  bool _checkedPermission = false;
 
   @override
   void reassemble() {
@@ -164,7 +165,12 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
   }
 
   void _onPermissionSet(QRViewController ctrl, bool p) {
-    if (!p) {
+    if (!p && !_checkedPermission && context.mounted) {
+      _checkedPermission = true;
+      if (kPlatformIsAndroid) {
+        Navigator.of(context).pop();
+      }
+
       final l10n = l10nOf(context);
       UIUtil.showSnackbar(l10n.checkCameraPermission, context);
     }
