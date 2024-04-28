@@ -1,6 +1,5 @@
 {
-  "@@last_modified": "2024-04-19T09:58:36.581Z",
-  "@@author": "arb-converter-cli",
+  "@@locale": "en",
   "account": "Account",
   "accounts": "Accounts",
   "ackBackedUp": "Are you sure that you've backed up your secret phrase?",
@@ -10,6 +9,13 @@
   "addNode": "Add Node",
   "addNodeFailed": "Failed to add Kaspa node",
   "addNodeFailedMessage": "Failed: {error}",
+  "@addNodeFailedMessage": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "addNodeSuccess": "Node Added Successfully",
   "addingNodeMessage": "Please wait while contacting node",
   "addingNodeTitle": "Adding Node",
@@ -24,6 +30,16 @@
   "advancedHeader": "Advanced",
   "amount": "Amount",
   "amountConfirm": "Amount {amount} {coin}",
+  "@amountConfirm": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "coin": {
+        "type": "String"
+      }
+    }
+  },
   "amountMissing": "Please Enter an Amount",
   "amountZero": "Amount can't be zero",
   "areYouSure": "Are you sure?",
@@ -42,25 +58,69 @@
   "changeAddressCopied": "Change address copied",
   "changeIndex": "Change Index",
   "changeIndexParam": "Change {addressIndex}",
+  "@changeIndexParam": {
+    "placeholders": {
+      "addressIndex": {
+        "type": "String",
+        "example": "1"
+      }
+    }
+  },
   "checkCameraPermission": "Please check camera permissions",
   "clipboardEmpty": "Clipboard is empty",
   "close": "Close",
   "confirm": "Confirm",
   "confirmPasswordHint": "Confirm the password",
   "confirmations": "{confirmations} confirmations",
+  "@confirmations": {
+    "placeholders": {
+      "confirmations": {
+        "type": "String",
+        "example": "2"
+      }
+    }
+  },
   "confirmed": "confirmed",
   "confirming": "confirming",
   "contactAdded": "{contactName} added to contacts",
+  "@contactAdded": {
+    "placeholders": {
+      "contactName": {
+        "type": "String"
+      }
+    }
+  },
   "contactAddressCopied": "{address} address copied",
+  "@contactAddressCopied": {
+    "placeholders": {
+      "address": {
+        "type": "String"
+      }
+    }
+  },
   "contactExists": "Contact Already Exists",
   "contactHeader": "Contact",
   "contactInvalid": "Invalid Contact Name",
   "contactNameHint": "Enter a Name @",
   "contactNameMissing": "Choose a Name for this Contact",
   "contactRemoved": "{contactName} has been removed from contacts!",
+  "@contactRemoved": {
+    "placeholders": {
+      "contactName": {
+        "type": "String"
+      }
+    }
+  },
   "contactsHeader": "Contacts",
   "contactsImportErr": "Failed to import contacts",
   "contactsImportSuccess": "Sucessfully imported {noContacts} contacts",
+  "@contactsImportSuccess": {
+    "placeholders": {
+      "noContacts": {
+        "type": "String"
+      }
+    }
+  },
   "copied": "Copied",
   "copy": "Copy",
   "copyAddress": "Copy Address",
@@ -74,6 +134,13 @@
   "currencyPoweredBy": "Powered by CoinGecko",
   "defaultAccountName": "Address 1",
   "defaultNewAccountName": "Receive {addressIndex}",
+  "@defaultNewAccountName": {
+    "placeholders": {
+      "addressIndex": {
+        "type": "int"
+      }
+    }
+  },
   "defaultWalletName": "My Wallet",
   "disablePasswordSheetHeader": "Disable",
   "disablePasswordSuccess": "Password has been disabled",
@@ -96,6 +163,16 @@
   "export": "Export",
   "fee": "Fee",
   "feeConfirm": "Fee {amount} {coin}",
+  "@feeConfirm": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "coin": {
+        "type": "String"
+      }
+    }
+  },
   "feeTitle": "FEE",
   "fetchingTransactions": "Fetching Transactions",
   "fingerprintSeedBackup": "Authenticate to Backup Secret Phrase.",
@@ -147,6 +224,13 @@
   "nodeUrlHint": "Enter Node URL",
   "nodeUrlInvalid": "Invalid node URL",
   "nodesSheetTitle": "Kaspa Nodes",
+  "@notificationTitle": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "off": "Off",
   "on": "On",
   "paperWallet": "Paper Wallet",
@@ -173,9 +257,24 @@
   "receiveAddressCopied": "Receive address copied",
   "receiveIndex": "Receive Index",
   "receiveIndexParam": "Receive {addressIndex}",
+  "@receiveIndexParam": {
+    "placeholders": {
+      "addressIndex": {
+        "type": "String",
+        "example": "1"
+      }
+    }
+  },
   "received": "Received",
   "removeContact": "Remove Contact",
   "removeContactConfirmation": "Are you sure you want to delete {contactName}?",
+  "@removeContactConfirmation": {
+    "placeholders": {
+      "contactName": {
+        "type": "String"
+      }
+    }
+  },
   "removeWalletAction": "Remove Wallet",
   "removeWalletBiometricsMessage": "Authenticate to Remove Wallet",
   "removeWalletDetail": "Removing this wallet will remove the Secret Phrase and all wallet-related data from this device. If the Secret Phrase is not backed up, you will never be able to access your funds again.",
@@ -228,12 +327,33 @@
   "transfer": "Transfer",
   "transferClose": "Tap anywhere to close the window.",
   "transferComplete": "{amount} KAS successfully transferred to your Kaspium Wallet.\n",
+  "@transferComplete": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "transferConfirmInfo": "A wallet with a balance of {amount} KAS has been detected.",
+  "@transferConfirmInfo": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "transferConfirmInfoSecond": "Tap confirm to transfer the funds.\n",
   "transferConfirmInfoThird": "Transfer may take several seconds to complete.",
   "transferError": "An error has occurred during the transfer. Please try again later.",
   "transferHeader": "Transfer Funds",
   "transferIntro": "This process will transfer the funds from a paper wallet to your Kaspium wallet.\n\nTap the \"{button}\" button to start.",
+  "@transferIntro": {
+    "placeholders": {
+      "button": {
+        "type": "String"
+      }
+    }
+  },
   "transferLoading": "Transferring",
   "transferManualHint": "Please enter the seed below.",
   "transferNoFunds": "This seed does not have any KAS on it",
@@ -259,8 +379,23 @@
   "walletsTitle": "Wallets",
   "warning": "Warning",
   "welcomeMessage": "Welcome!\n\nThis is version {version} of Kaspium - the mobile wallet for Kaspa",
+  "@welcomeMessage": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
   "welcomeText": "Welcome to Kaspium. To begin, you may create a new wallet or import an existing one.",
   "xMinutes": "After {minutes, plural, =1{1 minute} other{{minutes} minutes}}",
+  "@xMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
   "yes": "Yes",
   "yesButton": "Yes",
   "yesUppercase": "YES",
@@ -314,6 +449,13 @@
   "invalidSecretPhraseConfirmation": "I know what I'm doing",
   "contactSupport": "Contact Support",
   "emailAction": "Email {email}",
+  "@emailAction": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
   "noteLabel": "Note:",
   "optionalLabel": "(Optional)",
   "buyKaspaSubtitle": "Via Topper by Uphold",
@@ -332,7 +474,21 @@
   "kpubCopied": "Extended Public Key Copied",
   "kpubCopyFailed": "Failed to copy Extended Public Key",
   "walletAddressesCopied": "Wallet {addressType} Addresses Copied to Clipboard",
+  "@walletAddressesCopied": {
+    "placeholders": {
+      "addressType": {
+        "type": "String"
+      }
+    }
+  },
   "walletAddressesCopyFailed": "Failed to Copy Wallet {addressType} Addresses",
+  "@walletAddressesCopyFailed": {
+    "placeholders": {
+      "addressType": {
+        "type": "String"
+      }
+    }
+  },
   "txReport": "Transaction Report",
   "txReportSubtitle": "Get CSV file with transaction history",
   "txReportDetails": "Generate a transaction report, in CSV format, that contains all the wallet's transaction history.",
@@ -360,7 +516,24 @@
   "txReportFeeForSelfSend": "Fee to send to own addresses",
   "txReportError": "Error generating report",
   "txReportNoTxs": "Found {numberOf} transactions.",
+  "@txReportNoTxs": {
+    "placeholders": {
+      "numberOf": {
+        "type": "int"
+      }
+    }
+  },
   "txReportNoLoadedTxs": "({loadedTxs} of {totalTxs})",
+  "@txReportNoLoadedTxs": {
+    "placeholders": {
+      "loadedTxs": {
+        "type": "int"
+      },
+      "totalTxs": {
+        "type": "int"
+      }
+    }
+  },
   "txFilterDialogTitle": "Transaction Filter",
   "txFilterDialogOptionAllTxs": "Show All Transactions",
   "txFilterDialogOptionHideNotAcceptedCoinbase": "Hide Not Accepted Coinbase Transactions"
