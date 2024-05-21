@@ -1,8 +1,8 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:pointycastle/export.dart';
 
-import '../../utils.dart';
 import '../model/keyiv.dart';
 import 'kdf.dart';
 
@@ -12,7 +12,7 @@ class PBKDF2 extends KDF {
   /// Expects password to be a utf-8 string
   /// If salt is not provided, a random 8-byte one will be generated
   KeyIV deriveKey(String password, {Uint8List? salt}) {
-    Uint8List pwBytes = stringToBytesUtf8(password);
+    Uint8List pwBytes = utf8.encode(password);
     Uint8List saltBytes = salt == null ? Uint8List(1) : salt;
 
     // Use pbkdf2 from pointycastle
