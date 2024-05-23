@@ -7,7 +7,6 @@ import '../kaspa/kaspa.dart';
 import '../transactions/transaction_types.dart';
 import '../txnotes/txnotes_types.dart';
 import '../util/vault.dart';
-import '../utils.dart';
 import '../wallet_address/wallet_address.dart';
 import 'boxes.dart';
 import 'json_type_adapter.dart';

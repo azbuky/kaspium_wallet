@@ -4,9 +4,9 @@ import 'dart:typed_data';
 import 'package:fixnum/fixnum.dart';
 import 'package:pointycastle/digests/blake2b.dart';
 
-import '../../utils.dart';
 import '../bip340/bip340.dart' as schnorr;
-import '../kaspa.dart';
+import '../utils.dart';
+import 'types.dart';
 
 const kTransactionHashDomain = 'TransactionHash';
 const kTransactionIdDomain = 'TransactionID';

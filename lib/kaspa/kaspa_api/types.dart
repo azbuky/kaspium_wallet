@@ -6,6 +6,12 @@ import '../grpc/rpc.pb.dart';
 part 'types.freezed.dart';
 part 'types.g.dart';
 
+enum ResolvePreviousOutpoints {
+  no,
+  light,
+  full,
+}
+
 @freezed
 class ApiAddressBalance with _$ApiAddressBalance {
   const factory ApiAddressBalance({

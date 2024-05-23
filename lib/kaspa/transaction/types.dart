@@ -3,9 +3,9 @@ import 'dart:typed_data';
 import 'package:fixnum/fixnum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../utils.dart';
 import '../grpc/rpc.pb.dart';
-import '../kaspa.dart';
+import '../types/address.dart';
+import '../utils.dart';
 
 part 'types.freezed.dart';
 part 'types.g.dart';

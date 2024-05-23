@@ -7,9 +7,8 @@ import 'package:validators/validators.dart';
 
 import '../kaspa/kaspa.dart';
 import '../widgets/qr_scanner_widget.dart';
-import 'kaspa_util.dart';
 
-enum DataType { RAW, URL, ADDRESS, SEED }
+enum DataType { RAW, URL, ADDRESS }
 
 String sanitizeUri(String uri, String scheme) {
   if (isIP(uri)) {
@@ -39,11 +38,6 @@ class UserDataUtil {
       );
       if (address != null) {
         return address.encoded;
-      }
-    } else if (type == DataType.SEED) {
-      // Check if valid seed
-      if (KaspaUtil.isValidSeed(data)) {
-        return data;
       }
     }
     return null;

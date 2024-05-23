@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kaspium_wallet/kaspa/bech32/bech32.dart';
 import 'package:kaspium_wallet/kaspa/kaspa.dart';
-import 'package:kaspium_wallet/utils.dart';
 
 const checkEncodingStringTests = [
   ["a", "0", "", "a:qqeq69uvrh"],

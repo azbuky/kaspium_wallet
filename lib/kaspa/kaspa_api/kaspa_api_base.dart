@@ -1,13 +1,5 @@
 import 'types.dart';
 
-export 'kaspa_api_mainnet.dart';
-
-enum ResolvePreviousOutpoints {
-  no,
-  light,
-  full,
-}
-
 abstract class KaspaApi {
   Future<ApiAddressBalance> getBalance({
     required String address,

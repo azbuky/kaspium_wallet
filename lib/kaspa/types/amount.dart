@@ -4,7 +4,7 @@ import 'package:decimal/decimal.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../kaspa.dart';
+import 'token_info.dart';
 
 part 'amount.freezed.dart';
 part 'amount.g.dart';

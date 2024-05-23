@@ -5,11 +5,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../kaspa/utils.dart';
 import '../l10n/l10n.dart';
 import '../util/formatters.dart';
 import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
-import '../utils.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/keyboard_widget.dart';
 import 'intro_back_button.dart';

@@ -1,18 +1,9 @@
 import 'package:flutter/foundation.dart';
 
 import '../encrypt/crypter.dart';
-import '../kaspa/transaction/transaction_util.dart';
-import '../utils.dart';
+import '../kaspa/utils.dart';
 
-class KaspaUtil {
-  const KaspaUtil();
-
-  static const seedLength = 128;
-
-  static bool isValidSeed(String seed) {
-    return isHex(seed) && seed.length == seedLength;
-  }
-
+abstract class EncryptionUtil {
   static bool isEncryptedHex(String hex) {
     try {
       final bytes = hexToBytes(hex.substring(0, 16));
@@ -21,14 +12,6 @@ class KaspaUtil {
     } catch (e) {
       return false;
     }
-  }
-
-  static List<String> mnemonicWordsFromEntropyHex(String entropyHex) {
-    return entropyHexToMnemonic(entropyHex).split(' ');
-  }
-
-  static String seedFromMnemonic(String mnemonic) {
-    return mnemonicToSeed(mnemonic).hex;
   }
 
   static Uint8List decrypt(Uint8List data, String password) {
@@ -69,15 +52,4 @@ class KaspaUtil {
     if (value == null) return null;
     return encryptText(value, password);
   }
-
-  static Future<Uint8List> computeSignDataSchnorr(
-    Uint8List data,
-    Uint8List privateKey,
-  ) {
-    return compute(_computeSignDataSchnorr, [data, privateKey]);
-  }
-}
-
-Uint8List _computeSignDataSchnorr(List<Uint8List> params) {
-  return signSchnorr(hash: params.first, privateKey: params.last);
 }

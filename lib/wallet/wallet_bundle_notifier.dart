@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../database/database.dart';
 import '../kaspa/kaspa.dart';
 import '../util/random_util.dart';
-import '../utils.dart';
 import 'wallet_repository.dart';
 import 'wallet_types.dart';
 import 'wallet_vault.dart';

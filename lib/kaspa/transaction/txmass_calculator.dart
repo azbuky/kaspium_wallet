@@ -1,5 +1,5 @@
 import '../utils.dart';
-import 'kaspa.dart';
+import 'types.dart';
 
 bool isCoinBase({required Transaction tx}) =>
     tx.subnetworkId.hex == kSubnetworkIdCoinbaseHex;

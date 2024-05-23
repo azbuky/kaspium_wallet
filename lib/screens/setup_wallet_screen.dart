@@ -6,7 +6,6 @@ import '../app_providers.dart';
 import '../intro/intro_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
-import '../utils.dart';
 import '../wallet/wallet_types.dart';
 import '../wallet_address/address_discovery.dart';
 import '../wallet_address/wallet_address.dart';
