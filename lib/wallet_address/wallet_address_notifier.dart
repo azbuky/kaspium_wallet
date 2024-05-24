@@ -244,17 +244,8 @@ class WalletAddressNotifier extends SafeChangeNotifier
     }
   }
 
-  WalletAddress? getAddress(String address) {
-    final receive = _receive.getAddress(address);
-    if (receive != null) {
-      return receive;
-    }
-    final change = _change.getAddress(address);
-    if (change != null) {
-      return change;
-    }
-    return null;
-  }
+  WalletAddress? getAddress(String address) =>
+      _receive.getAddress(address) ?? _change.getAddress(address);
 
   Future<void> markUsed(Iterable<String> addresses) async {
     if (addresses.isEmpty) {
