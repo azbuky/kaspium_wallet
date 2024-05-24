@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
-import 'kaspa.dart';
+import '../types.dart';
+import 'wallet.dart';
 
 typedef LegacyPubKeyCallback = Future<Uint8List> Function({
   required int typeIndex,

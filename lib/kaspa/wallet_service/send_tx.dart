@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../kaspa/kaspa.dart';
+import '../transaction.dart';
+import '../types.dart';
 
 part 'send_tx.freezed.dart';
 
@@ -10,9 +11,9 @@ class SendTx with _$SendTx {
 
   factory SendTx({
     required KaspaUri uri,
-    Address? changeAddress,
     required BigInt amountRaw,
-    @Default([]) List<Utxo> utxos,
+    required Transaction tx,
+    Address? changeAddress,
     BigInt? fee,
     String? note,
   }) = _SendTx;

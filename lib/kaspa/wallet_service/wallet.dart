@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 
+import '../bip32/bip32.dart';
+import '../network.dart';
+import '../types/address_prefix.dart';
 import '../utils.dart';
-import 'bip32/bip32.dart';
-import 'network.dart';
-import 'types/address_prefix.dart';
 
 const kSeedSize = 64;
 

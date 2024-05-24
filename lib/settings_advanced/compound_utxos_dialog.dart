@@ -49,11 +49,8 @@ class CompoundUtxosDialog extends ConsumerWidget {
           spendableUtxos: spendableUtxos,
           feePerInput: kFeePerInput,
         );
-        await walletService.sendTransaction(
-          compoundTx,
-          changeAddress: changeAddress.address,
-        );
-        await addressNotifier.addAddress(changeAddress);
+        await walletService.sendTransaction(compoundTx);
+        await addressNotifier.addAddress(changeAddress.copyWith(used: true));
 
         if (lightMode) {
           // give some time for compound tx to broadcast and get accepted

@@ -10,6 +10,7 @@ import '../utils.dart';
 part 'types.freezed.dart';
 part 'types.g.dart';
 
+final kMinChangeTarget = BigInt.from(20000000);
 final kFeePerInput = BigInt.from(10000);
 const kMaxInputsPerTransaction = 84;
 final kMaximumStandardTransactionMass = BigInt.from(100000);
@@ -222,6 +223,7 @@ class TxOutput with _$TxOutput {
 
 @freezed
 class Transaction with _$Transaction {
+  const Transaction._();
   const factory Transaction({
     /*uint16*/ required int version,
     required List<TxInput> inputs,
@@ -234,6 +236,16 @@ class Transaction with _$Transaction {
     /*uint64*/ Int64? mass,
     Uint8List? id,
   }) = _Transaction;
+
+  RpcTransaction toRpc() => RpcTransaction(
+        version: version,
+        inputs: inputs.map((input) => input.toRpc()),
+        outputs: outputs.map((output) => output.toRpc()),
+        lockTime: lockTime,
+        subnetworkId: subnetworkId.hex,
+        gas: gas,
+        payload: payload?.hex,
+      );
 }
 
 @unfreezed

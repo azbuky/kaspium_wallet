@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import '../transactions/send_tx.dart';
-import '../utils.dart';
-import 'grpc/rpc.pb.dart';
-import 'kaspa.dart';
-import 'transaction/transaction_builder.dart';
-import 'transaction/transaction_util.dart';
+import '../kaspa_client.dart';
+import '../transaction.dart';
+import '../types.dart';
+import 'send_tx.dart';
+import 'signer_base.dart';
 
 class SendResult {
   final String txId;
@@ -33,14 +32,18 @@ class WalletService {
     required BigInt amountRaw,
     required List<Utxo> spendableUtxos,
     required BigInt feePerInput,
+    required Address changeAddress,
     String? note,
   }) {
-    final txBuilder = TransactionBuilder(utxos: spendableUtxos);
-    final selectedUtxos = txBuilder.selectUtxos(
-      spendAmount: amountRaw,
+    final txBuilder = TransactionBuilder(
+      utxos: spendableUtxos,
       feePerInput: feePerInput,
     );
-    final fee = BigInt.from(selectedUtxos.length) * feePerInput;
+    final tx = txBuilder.createUnsignedTransaction(
+      toAddress: toAddress,
+      amount: Amount.raw(amountRaw),
+      changeAddress: changeAddress,
+    );
 
     return SendTx(
       uri: KaspaUri(
@@ -48,8 +51,9 @@ class WalletService {
         amount: Amount.raw(amountRaw),
       ),
       amountRaw: amountRaw,
-      utxos: selectedUtxos,
-      fee: fee,
+      tx: tx,
+      changeAddress: txBuilder.changeAddress,
+      fee: txBuilder.fee,
       note: note,
     );
   }
@@ -68,61 +72,23 @@ class WalletService {
     );
     final amountRaw = selectedTotal - fee;
 
-    return SendTx(
-      uri: KaspaUri(
-        address: compoundAddress,
-        amount: Amount.raw(amountRaw),
-      ),
+    return createSendTx(
+      toAddress: compoundAddress,
       amountRaw: amountRaw,
-      utxos: selectedUtxos,
-      fee: fee,
+      spendableUtxos: selectedUtxos,
+      feePerInput: feePerInput,
+      changeAddress: compoundAddress,
     );
   }
 
-  Future<SendResult> sendTransaction(
-    SendTx rawTx, {
-    required Address changeAddress,
-  }) async {
-    final builder = TransactionBuilder(utxos: rawTx.utxos);
-    final tx = builder.createUnsignedTransaction(
-      toAddress: rawTx.toAddress,
-      amount: rawTx.amount,
-      changeAddress: changeAddress,
-    );
+  Future<String> sendTransaction(SendTx rawTx) async {
+    final tx = rawTx.tx;
 
     await _signTransaction(tx);
 
-    final rpcTx = RpcTransaction(
-      version: tx.version,
-      inputs: tx.inputs.map(
-        (input) => RpcTransactionInput(
-          previousOutpoint: input.previousOutpoint.toRpc(),
-          signatureScript: bytesToHex(input.signatureScript),
-          sequence: input.sequence,
-          sigOpCount: input.sigOpCount,
-        ),
-      ),
-      outputs: tx.outputs.map(
-        (output) => RpcTransactionOutput(
-          amount: output.value,
-          scriptPublicKey: output.scriptPublicKey.toRpc(),
-        ),
-      ),
-      lockTime: tx.lockTime,
-      subnetworkId: tx.subnetworkId.hex,
-      gas: tx.gas,
-      payload: tx.payload?.hex,
-    );
+    final txId = await client.submitTransaction(tx.toRpc());
 
-    final txId = await client.submitTransaction(rpcTx);
-
-    final changeAddressUsed = rpcTx.outputs.length > 1;
-
-    return SendResult(
-      txId: txId,
-      tx: tx,
-      changeAddressUsed: changeAddressUsed,
-    );
+    return txId;
   }
 
   Future<void> _signTransaction(Transaction tx) async {

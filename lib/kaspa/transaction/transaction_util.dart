@@ -252,7 +252,7 @@ Uint8List _genAux([int bytes = 32]) {
   final random = Random.secure();
   final aux = Uint8List(bytes);
   for (int i = 0; i < bytes; ++i) {
-    aux[i] = random.nextInt(0xFF);
+    aux[i] = random.nextInt(0x100);
   }
   return aux;
 }

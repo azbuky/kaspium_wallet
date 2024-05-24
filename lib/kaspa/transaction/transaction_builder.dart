@@ -9,43 +9,44 @@ import 'types.dart';
 
 class TransactionBuilder {
   final List<Utxo> utxos;
+  final BigInt feePerInput;
+
+  Address? _changeAddress;
+  Address? get changeAddress => _changeAddress;
+  BigInt? _fee;
+  BigInt? get fee => _fee;
 
   TransactionBuilder({
     required this.utxos,
-  });
-
-  List<Utxo> selectUtxos({
-    required BigInt spendAmount,
-    required BigInt feePerInput,
-  }) {
-    final selectedUtxos = _selectUtxos(
-      spendAmount: spendAmount,
-      feePerInput: feePerInput,
-    );
-
-    return selectedUtxos;
-  }
+    BigInt? feePerInput,
+  }) : feePerInput = feePerInput ?? kFeePerInput;
 
   Transaction createUnsignedTransaction({
     required Address toAddress,
     required Amount amount,
     required Address changeAddress,
   }) {
-    final selectedUtxos = _selectUtxos(
-      spendAmount: amount.raw,
-      feePerInput: kFeePerInput,
-    );
+    final selectedUtxos = _selectUtxos(spendAmount: amount.raw);
 
-    final changeAmount = _getChangeRaw(
+    final changeAmount = _getChangeAmountRaw(
       selectedUtxos: selectedUtxos,
       spendAmount: amount.raw,
-      feePerInput: kFeePerInput,
     );
+
+    final hasChange = changeAmount >= kMinChangeTarget;
 
     final payments = <Address, Int64>{
       toAddress: amount.raw.toInt64(),
-      if (changeAmount > kFeePerInput) changeAddress: changeAmount.toInt64(),
+      if (hasChange) changeAddress: changeAmount.toInt64(),
     };
+
+    if (hasChange) {
+      _changeAddress = changeAddress;
+      _fee = feePerInput * BigInt.from(selectedUtxos.length);
+    } else {
+      _changeAddress = null;
+      _fee = feePerInput * BigInt.from(selectedUtxos.length) + changeAmount;
+    }
 
     final unsignedTransaction = _createUnsignedTransaction(
       utxos: selectedUtxos,
@@ -95,7 +96,6 @@ class TransactionBuilder {
 
   List<Utxo> _selectUtxos({
     required BigInt spendAmount,
-    required BigInt feePerInput,
   }) {
     final selectedUtxos = <Utxo>[];
     var totalValue = BigInt.zero;
@@ -106,7 +106,9 @@ class TransactionBuilder {
       final fee = feePerInput * BigInt.from(selectedUtxos.length);
       final totalSpend = spendAmount + fee;
 
-      if (totalValue >= totalSpend) {
+      if (totalValue == totalSpend ||
+          (totalValue >= totalSpend + kMinChangeTarget &&
+              selectedUtxos.length > 1)) {
         break;
       }
     }
@@ -121,10 +123,9 @@ class TransactionBuilder {
     return selectedUtxos;
   }
 
-  BigInt _getChangeRaw({
+  BigInt _getChangeAmountRaw({
     required List<Utxo> selectedUtxos,
     required BigInt spendAmount,
-    required BigInt feePerInput,
   }) {
     var totalValue = BigInt.zero;
 

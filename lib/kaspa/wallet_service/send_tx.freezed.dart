@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SendTx {
   KaspaUri get uri => throw _privateConstructorUsedError;
-  Address? get changeAddress => throw _privateConstructorUsedError;
   BigInt get amountRaw => throw _privateConstructorUsedError;
-  List<Utxo> get utxos => throw _privateConstructorUsedError;
+  Transaction get tx => throw _privateConstructorUsedError;
+  Address? get changeAddress => throw _privateConstructorUsedError;
   BigInt? get fee => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
 
@@ -34,13 +34,14 @@ abstract class $SendTxCopyWith<$Res> {
   @useResult
   $Res call(
       {KaspaUri uri,
-      Address? changeAddress,
       BigInt amountRaw,
-      List<Utxo> utxos,
+      Transaction tx,
+      Address? changeAddress,
       BigInt? fee,
       String? note});
 
   $KaspaUriCopyWith<$Res> get uri;
+  $TransactionCopyWith<$Res> get tx;
   $AddressCopyWith<$Res>? get changeAddress;
 }
 
@@ -58,9 +59,9 @@ class _$SendTxCopyWithImpl<$Res, $Val extends SendTx>
   @override
   $Res call({
     Object? uri = null,
-    Object? changeAddress = freezed,
     Object? amountRaw = null,
-    Object? utxos = null,
+    Object? tx = null,
+    Object? changeAddress = freezed,
     Object? fee = freezed,
     Object? note = freezed,
   }) {
@@ -69,18 +70,18 @@ class _$SendTxCopyWithImpl<$Res, $Val extends SendTx>
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
               as KaspaUri,
-      changeAddress: freezed == changeAddress
-          ? _value.changeAddress
-          : changeAddress // ignore: cast_nullable_to_non_nullable
-              as Address?,
       amountRaw: null == amountRaw
           ? _value.amountRaw
           : amountRaw // ignore: cast_nullable_to_non_nullable
               as BigInt,
-      utxos: null == utxos
-          ? _value.utxos
-          : utxos // ignore: cast_nullable_to_non_nullable
-              as List<Utxo>,
+      tx: null == tx
+          ? _value.tx
+          : tx // ignore: cast_nullable_to_non_nullable
+              as Transaction,
+      changeAddress: freezed == changeAddress
+          ? _value.changeAddress
+          : changeAddress // ignore: cast_nullable_to_non_nullable
+              as Address?,
       fee: freezed == fee
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
@@ -97,6 +98,14 @@ class _$SendTxCopyWithImpl<$Res, $Val extends SendTx>
   $KaspaUriCopyWith<$Res> get uri {
     return $KaspaUriCopyWith<$Res>(_value.uri, (value) {
       return _then(_value.copyWith(uri: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TransactionCopyWith<$Res> get tx {
+    return $TransactionCopyWith<$Res>(_value.tx, (value) {
+      return _then(_value.copyWith(tx: value) as $Val);
     });
   }
 
@@ -122,14 +131,16 @@ abstract class _$$SendTxImplCopyWith<$Res> implements $SendTxCopyWith<$Res> {
   @useResult
   $Res call(
       {KaspaUri uri,
-      Address? changeAddress,
       BigInt amountRaw,
-      List<Utxo> utxos,
+      Transaction tx,
+      Address? changeAddress,
       BigInt? fee,
       String? note});
 
   @override
   $KaspaUriCopyWith<$Res> get uri;
+  @override
+  $TransactionCopyWith<$Res> get tx;
   @override
   $AddressCopyWith<$Res>? get changeAddress;
 }
@@ -146,9 +157,9 @@ class __$$SendTxImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? uri = null,
-    Object? changeAddress = freezed,
     Object? amountRaw = null,
-    Object? utxos = null,
+    Object? tx = null,
+    Object? changeAddress = freezed,
     Object? fee = freezed,
     Object? note = freezed,
   }) {
@@ -157,18 +168,18 @@ class __$$SendTxImplCopyWithImpl<$Res>
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
               as KaspaUri,
-      changeAddress: freezed == changeAddress
-          ? _value.changeAddress
-          : changeAddress // ignore: cast_nullable_to_non_nullable
-              as Address?,
       amountRaw: null == amountRaw
           ? _value.amountRaw
           : amountRaw // ignore: cast_nullable_to_non_nullable
               as BigInt,
-      utxos: null == utxos
-          ? _value._utxos
-          : utxos // ignore: cast_nullable_to_non_nullable
-              as List<Utxo>,
+      tx: null == tx
+          ? _value.tx
+          : tx // ignore: cast_nullable_to_non_nullable
+              as Transaction,
+      changeAddress: freezed == changeAddress
+          ? _value.changeAddress
+          : changeAddress // ignore: cast_nullable_to_non_nullable
+              as Address?,
       fee: freezed == fee
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
@@ -186,29 +197,21 @@ class __$$SendTxImplCopyWithImpl<$Res>
 class _$SendTxImpl extends _SendTx {
   _$SendTxImpl(
       {required this.uri,
-      this.changeAddress,
       required this.amountRaw,
-      final List<Utxo> utxos = const [],
+      required this.tx,
+      this.changeAddress,
       this.fee,
       this.note})
-      : _utxos = utxos,
-        super._();
+      : super._();
 
   @override
   final KaspaUri uri;
   @override
-  final Address? changeAddress;
-  @override
   final BigInt amountRaw;
-  final List<Utxo> _utxos;
   @override
-  @JsonKey()
-  List<Utxo> get utxos {
-    if (_utxos is EqualUnmodifiableListView) return _utxos;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_utxos);
-  }
-
+  final Transaction tx;
+  @override
+  final Address? changeAddress;
   @override
   final BigInt? fee;
   @override
@@ -216,7 +219,7 @@ class _$SendTxImpl extends _SendTx {
 
   @override
   String toString() {
-    return 'SendTx(uri: $uri, changeAddress: $changeAddress, amountRaw: $amountRaw, utxos: $utxos, fee: $fee, note: $note)';
+    return 'SendTx(uri: $uri, amountRaw: $amountRaw, tx: $tx, changeAddress: $changeAddress, fee: $fee, note: $note)';
   }
 
   @override
@@ -225,18 +228,18 @@ class _$SendTxImpl extends _SendTx {
         (other.runtimeType == runtimeType &&
             other is _$SendTxImpl &&
             (identical(other.uri, uri) || other.uri == uri) &&
-            (identical(other.changeAddress, changeAddress) ||
-                other.changeAddress == changeAddress) &&
             (identical(other.amountRaw, amountRaw) ||
                 other.amountRaw == amountRaw) &&
-            const DeepCollectionEquality().equals(other._utxos, _utxos) &&
+            (identical(other.tx, tx) || other.tx == tx) &&
+            (identical(other.changeAddress, changeAddress) ||
+                other.changeAddress == changeAddress) &&
             (identical(other.fee, fee) || other.fee == fee) &&
             (identical(other.note, note) || other.note == note));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, uri, changeAddress, amountRaw,
-      const DeepCollectionEquality().hash(_utxos), fee, note);
+  int get hashCode =>
+      Object.hash(runtimeType, uri, amountRaw, tx, changeAddress, fee, note);
 
   @JsonKey(ignore: true)
   @override
@@ -248,9 +251,9 @@ class _$SendTxImpl extends _SendTx {
 abstract class _SendTx extends SendTx {
   factory _SendTx(
       {required final KaspaUri uri,
-      final Address? changeAddress,
       required final BigInt amountRaw,
-      final List<Utxo> utxos,
+      required final Transaction tx,
+      final Address? changeAddress,
       final BigInt? fee,
       final String? note}) = _$SendTxImpl;
   _SendTx._() : super._();
@@ -258,11 +261,11 @@ abstract class _SendTx extends SendTx {
   @override
   KaspaUri get uri;
   @override
-  Address? get changeAddress;
-  @override
   BigInt get amountRaw;
   @override
-  List<Utxo> get utxos;
+  Transaction get tx;
+  @override
+  Address? get changeAddress;
   @override
   BigInt? get fee;
   @override

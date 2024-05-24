@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
-import '../transactions/send_tx.dart';
 import '../util/numberutil.dart';
 import '../util/ui_util.dart';
 import '../widgets/address_card.dart';
@@ -52,21 +51,16 @@ class SendConfirmSheet extends HookConsumerWidget {
           l10n.sendTxProgressDescription,
         );
 
-        final addressNotifier = ref.read(addressNotifierProvider);
-        final changeAddress = await addressNotifier.nextChangeAddress;
+        final txId = await walletService.sendTransaction(tx);
 
-        final result = await walletService.sendTransaction(
-          tx,
-          changeAddress: changeAddress.address,
-        );
-
-        if (result.changeAddressUsed) {
-          await addressNotifier.addAddress(changeAddress);
+        if (tx.changeAddress case final changeAddress?) {
+          final addressNotifier = ref.read(addressNotifierProvider);
+          await addressNotifier.markUsed([changeAddress.encoded]);
         }
 
         if (tx.note case final txNote?) {
           final notes = ref.read(txNotesProvider);
-          notes.addNoteForTxId(result.txId, txNote);
+          notes.addNoteForTxId(txId, txNote);
         }
 
         Navigator.of(context).pop();
@@ -74,7 +68,7 @@ class SendConfirmSheet extends HookConsumerWidget {
         final sheet = SendCompleteSheet(
           amount: tx.amount,
           toAddress: tx.toAddress,
-          txId: result.txId,
+          txId: txId,
           note: tx.note,
         );
 

@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'types.dart';
+import '../types/address.dart';
 
 abstract class SignerBase {
   Future<bool> canSignForAddress(Address address);
