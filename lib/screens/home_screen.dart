@@ -30,6 +30,11 @@ class HomeScreen extends HookConsumerWidget {
     final lockStreamListener = useRef<StreamSubscription?>(null);
     final inactive = useState(false);
 
+    useEffect(() {
+      precacheImage(AssetImage('assets/kaspa.png'), context);
+      return null;
+    }, []);
+
     Future<void> setAppLockEvent() async {
       // whether we should avoid locking the app
       final lockDisabled = ref.read(lockDisabledProvider);
