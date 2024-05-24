@@ -6,18 +6,6 @@ import '../types.dart';
 import 'send_tx.dart';
 import 'signer_base.dart';
 
-class SendResult {
-  final String txId;
-  final Transaction tx;
-  final bool changeAddressUsed;
-
-  const SendResult({
-    required this.txId,
-    required this.tx,
-    required this.changeAddressUsed,
-  });
-}
-
 class WalletService {
   final SignerBase signer;
   final KaspaClient client;
