@@ -16,6 +16,7 @@ import '../settings/available_themes.dart';
 import '../settings/setting_item.dart';
 import '../settings_advanced/advanced_menu.dart';
 import '../util/platform.dart';
+import '../util/ui_util.dart';
 import '../util/util.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/dialog.dart';
@@ -254,6 +255,46 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
           network == KaspaNetwork.mainnet &&
           !wallet.isViewOnly;
 
+      Future<void> backupSecretPhrase() async {
+        final authUtil = ref.read(authUtilProvider);
+        final notifier = ref.read(walletAuthProvider.notifier);
+        var auth = false;
+        List<String>? mnemonic = null;
+        if (notifier.walletEncrypted) {
+          auth = await authUtil.authenticateWithPassword(
+            context,
+            (password) async {
+              try {
+                mnemonic = await notifier.getMnemonic(password: password);
+                return true;
+              } catch (e) {
+                return false;
+              }
+            },
+          );
+        } else {
+          auth = await authUtil.authenticate(
+            context,
+            l10n.pinSeedBackup,
+            l10n.fingerprintSeedBackup,
+          );
+        }
+        if (auth) {
+          try {
+            if (mnemonic == null) {
+              mnemonic = await notifier.getMnemonic();
+            }
+            Sheets.showAppHeightNineSheet(
+              context: context,
+              theme: theme,
+              widget: SeedBackupSheet(mnemonic: mnemonic!),
+            );
+          } catch (_) {
+            UIUtil.showSnackbar(l10n.missingSecretPhrase, context);
+          }
+        }
+      }
+
       return Container(
         decoration: BoxDecoration(color: theme.backgroundDark),
         child: SafeArea(
@@ -362,44 +403,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                         SingleLineItem(
                           heading: l10n.backupSecretPhrase,
                           settingIcon: AppIcons.backupseed,
-                          onPressed: () async {
-                            final authUtil = ref.read(authUtilProvider);
-                            final walletAuth = ref.read(walletAuthProvider);
-                            final notifier =
-                                ref.read(walletAuthProvider.notifier);
-                            var auth = false;
-                            List<String>? mnemonic = null;
-                            if (walletAuth.isEncrypted) {
-                              final notifier =
-                                  ref.read(walletAuthProvider.notifier);
-                              auth = await authUtil.authenticateWithPassword(
-                                  context, (password) async {
-                                try {
-                                  mnemonic = await notifier.getMnemonic(
-                                      password: password);
-                                  return true;
-                                } catch (e) {
-                                  return false;
-                                }
-                              });
-                            } else {
-                              auth = await authUtil.authenticate(
-                                context,
-                                l10n.pinSeedBackup,
-                                l10n.fingerprintSeedBackup,
-                              );
-                            }
-                            if (auth) {
-                              if (mnemonic == null) {
-                                mnemonic = await notifier.getMnemonic();
-                              }
-                              Sheets.showAppHeightNineSheet(
-                                context: context,
-                                theme: theme,
-                                widget: SeedBackupSheet(mnemonic: mnemonic!),
-                              );
-                            }
-                          },
+                          onPressed: backupSecretPhrase,
                         ),
                       ],
                       if (network == KaspaNetwork.mainnet) ...[
