@@ -20,12 +20,13 @@ final walletAuthNotifierProvider = Provider((ref) {
 });
 
 final walletAuthProvider =
-    StateNotifierProvider.autoDispose<WalletAuthNotifier, WalletAuth>((ref) {
+    StateNotifierProvider<WalletAuthNotifier, WalletAuth>((ref) {
   final authNotifier = ref.watch(walletAuthNotifierProvider);
   if (authNotifier == null) {
     throw Exception('No active wallet');
   }
-  return WalletAuthNotifier(authNotifier.walletVault, authNotifier.walletAuth);
+
+  return authNotifier;
 });
 
 final walletHasMnemonic = FutureProvider.autoDispose<bool>((ref) {
