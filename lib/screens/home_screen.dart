@@ -118,26 +118,22 @@ class HomeScreen extends HookConsumerWidget {
 
     final scaffoldKey = ref.watch(homePageScaffoldKeyProvider);
 
-    return PortalTarget(
-      visible: inactive.value,
-      portalFollower: const PrivacyOverlay(),
-      child: Scaffold(
-        key: scaffoldKey,
-        drawerEdgeDragWidth: 60,
-        resizeToAvoidBottomInset: false,
-        backgroundColor: theme.background,
-        drawerScrimColor: theme.barrierWeaker,
-        drawer: SizedBox(
-          width: UIUtil.drawerWidth(context),
-          child: const Drawer(child: SettingsSheet()),
-        ),
-        body: SafeArea(
-          child: ClipRect(
-            child: NetworkBanner(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: const WalletHome(),
-              ),
+    return Scaffold(
+      key: scaffoldKey,
+      drawerEdgeDragWidth: 60,
+      resizeToAvoidBottomInset: false,
+      backgroundColor: theme.background,
+      drawerScrimColor: theme.barrierWeaker,
+      drawer: SizedBox(
+        width: UIUtil.drawerWidth(context),
+        child: const Drawer(child: SettingsSheet()),
+      ),
+      body: SafeArea(
+        child: ClipRect(
+          child: NetworkBanner(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: const WalletHome(),
             ),
           ),
         ),

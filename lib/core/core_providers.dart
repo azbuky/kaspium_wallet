@@ -178,6 +178,7 @@ final virtualSelectedParentBlueScoreStreamProvider = StreamProvider((ref) {
 final remoteRefreshProvider = StateProvider((ref) => 0);
 
 final lockDisabledProvider = StateProvider((ref) => false);
+final privacyOverlayDisabledProvider = StateProvider((ref) => false);
 
 final maxSendProvider = Provider.autoDispose((ref) {
   final utxos = ref.watch(spendableUtxosProvider);
