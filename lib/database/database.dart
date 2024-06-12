@@ -57,7 +57,6 @@ final txNoteAdapter = JsonTypeAdapter(
   typeId: _getTypeId<TxNote>(),
   fromJson: TxNote.fromJson,
 );
-
 final txIndexAdapter = JsonTypeAdapter(
   typeId: _getTypeId<TxIndex>(),
   fromJson: TxIndex.fromJson,
@@ -202,11 +201,5 @@ class Database {
     assert(Hive.isBoxOpen(boxKey));
     final box = Hive.box(boxKey);
     return GenericBox(box);
-  }
-
-  LazyGenericBox getLazyGenericBox(BoxKey boxKey) {
-    assert(Hive.isBoxOpen(boxKey));
-    final box = Hive.lazyBox(boxKey);
-    return LazyGenericBox(box);
   }
 }
