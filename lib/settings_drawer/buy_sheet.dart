@@ -11,7 +11,6 @@ import '../l10n/l10n.dart';
 import '../receive/receive_amount_field.dart';
 import '../settings/setting_item.dart';
 import '../util/util.dart';
-import '../wallet_address/address_selection_sheet.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/buttons.dart';
 import '../widgets/receive_address_card.dart';

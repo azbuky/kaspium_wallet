@@ -14,10 +14,6 @@ import 'address_list_widget.dart';
 import 'address_settings.dart';
 import 'wallet_address.dart';
 
-final selectedAddressProvider = StateProvider.autoDispose((ref) {
-  return ref.read(receiveAddressProvider);
-});
-
 class AddressSelectionSheet extends HookConsumerWidget {
   final AddressType addressType;
 

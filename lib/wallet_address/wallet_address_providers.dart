@@ -136,3 +136,7 @@ final receiveAddressProvider = Provider.autoDispose((ref) {
     addressNotifierProvider.select((value) => value.receiveAddress),
   );
 });
+
+final selectedAddressProvider = StateProvider.autoDispose((ref) {
+  return ref.read(receiveAddressProvider);
+});
