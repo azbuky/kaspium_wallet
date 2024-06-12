@@ -63,9 +63,7 @@ final sharedPrefsProvider =
 
 final hapticUtilProvider = Provider((ref) => const HapticUtil());
 final authUtilProvider = Provider((ref) => AuthUtil(ref));
-final biometricUtilProvider = Provider(
-  (ref) => BiometricUtil(ref.watch(loggerProvider)),
-);
+final biometricUtilProvider = Provider((ref) => BiometricUtil());
 final vaultProvider = Provider((ref) => Vault());
 final sharedPrefsUtilProvider = Provider((ref) {
   final sharedPrefs = ref.watch(sharedPrefsProvider);
