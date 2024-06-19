@@ -20,6 +20,7 @@ import '../widgets/address_widgets.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
+import '../widgets/fiat_mode_icon.dart';
 import '../widgets/fiat_value_container.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_handle.dart';
@@ -734,9 +735,11 @@ class _SendSheetState extends ConsumerState<SendSheet> {
           autocorrect: false,
           hintText: _amountHint ?? hintText,
           prefixButton: TextFieldButton(
-            icon: AppIcons.swapcurrency,
-            onPressed: () =>
-                ref.read(fiatModeProvider.notifier).update((state) => !state),
+            widget: FiatModeIcon(fiatMode: fiatMode),
+            onPressed: () {
+              final notifier = ref.read(fiatModeProvider.notifier);
+              notifier.update((state) => !state);
+            },
           ),
           suffixButton: TextFieldButton(
             icon: AppIcons.max,
