@@ -84,7 +84,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
 
   late BigInt? amountRaw = widget.uri?.amount?.raw;
   late BigInt? feeRaw = widget.feeRaw;
-  late String? _note = widget.uri?.message;
+  String? get _note => widget.uri?.message;
 
   bool get hasNote => _note != null;
   bool get hasUri => widget.uri != null;
@@ -237,7 +237,6 @@ class _SendSheetState extends ConsumerState<SendSheet> {
       final note = uri?.message;
       if (note != null) {
         _noteController.text = note;
-        _note = note;
       }
 
       // See if this address belongs to a contact
@@ -304,10 +303,8 @@ class _SendSheetState extends ConsumerState<SendSheet> {
         return;
       }
 
-      final note = _noteController.text;
-      if (_note == null && note.isNotEmpty) {
-        _note = note;
-      }
+      final text = _noteController.text;
+      final note = text.isNotEmpty ? text : _note;
 
       final uri = KaspaUri(
         address: toAddress,
@@ -997,14 +994,13 @@ class _SendSheetState extends ConsumerState<SendSheet> {
 
                 Clipboard.getData("text/plain").then((ClipboardData? data) {
                   final text = data?.text;
-                  if (text == null) {
+                  if (text == null || text.isEmpty) {
                     return;
                   }
                   FocusManager.instance.primaryFocus?.unfocus();
                   _noteController.text = text;
                   _notePasteButtonVisible = false;
                   _noteQrButtonVisible = false;
-                  _note = text;
 
                   setState(() => _noteValidAndUnfocused = true);
                 });
