@@ -965,24 +965,24 @@ class _SendSheetState extends ConsumerState<SendSheet> {
             maxLines: null,
             autocorrect: false,
             hintText: _noteHint ?? l10n.enterNote,
-            prefixButton: TextFieldButton(
-              icon: AppIcons.scan,
-              onPressed: () async {
-                FocusManager.instance.primaryFocus?.unfocus();
+            // prefixButton: TextFieldButton(
+            //   icon: AppIcons.scan,
+            //   onPressed: () async {
+            //     FocusManager.instance.primaryFocus?.unfocus();
 
-                final qr = await UserDataUtil.scanQrCode(context);
-                final data = qr?.code;
-                if (data == null) {
-                  return;
-                }
+            //     final qr = await UserDataUtil.scanQrCode(context);
+            //     final data = qr?.code;
+            //     if (data == null) {
+            //       return;
+            //     }
 
-                _noteController.text = data;
-                _notePasteButtonVisible = false;
-                _noteQrButtonVisible = false;
+            //     _noteController.text = data;
+            //     _notePasteButtonVisible = false;
+            //     _noteQrButtonVisible = false;
 
-                setState(() => _noteValidAndUnfocused = true);
-              },
-            ),
+            //     setState(() => _noteValidAndUnfocused = true);
+            //   },
+            // ),
             fadePrefixOnCondition: true,
             prefixShowFirstCondition: _noteQrButtonVisible,
             suffixButton: TextFieldButton(
