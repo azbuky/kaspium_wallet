@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../receive/receive_amount_field.dart';
 import '../settings/setting_item.dart';
@@ -87,6 +88,7 @@ class BuySheet extends ConsumerWidget {
         'amount': amount?.value.toStringAsFixed(8) ?? '0',
         'address': address.encoded,
       });
+      appRouter.pop(context);
       openUri(uri);
     }
 
@@ -137,7 +139,7 @@ class BuySheet extends ConsumerWidget {
           const SizedBox(height: 16),
           PrimaryOutlineButton(
             title: l10n.close,
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => appRouter.pop(context),
           ),
         ]),
       ),

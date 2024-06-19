@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../settings/authentication_method.dart';
 import '../settings/device_lock_timeout.dart';
@@ -220,9 +221,10 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
             ),
             children: [
               AppSimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context, AuthMethod.BIOMETRICS);
-                },
+                onPressed: () => appRouter.pop(
+                  context,
+                  withResult: AuthMethod.BIOMETRICS,
+                ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Text(
@@ -232,9 +234,10 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
                 ),
               ),
               AppSimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context, AuthMethod.PIN);
-                },
+                onPressed: () => appRouter.pop(
+                  context,
+                  withResult: AuthMethod.PIN,
+                ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Text(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/caseconverter.dart';
 import 'app_simpledialog.dart';
@@ -47,7 +48,7 @@ class AppDialogs {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        appRouter.pop(context);
                         onCancel.call();
                       },
                     ),
@@ -98,7 +99,7 @@ class AppDialogs {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  appRouter.pop(context);
                   onClose?.call();
                 },
               ),
@@ -155,7 +156,7 @@ class AppDialogs {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  appRouter.pop(context);
                   cancelAction?.call();
                 },
               ),
@@ -169,7 +170,7 @@ class AppDialogs {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  appRouter.pop(context);
                   onPressed();
                 },
               ),

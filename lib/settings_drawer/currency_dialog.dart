@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../settings/available_currency.dart';
 import '../widgets/app_simpledialog.dart';
@@ -26,7 +27,7 @@ class CurrencyDialog extends ConsumerWidget {
       children: [
         for (final value in AvailableCurrencies.values)
           SimpleDialogOption(
-            onPressed: () => Navigator.pop(context, value),
+            onPressed: () => appRouter.pop(context, withResult: value),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Text(

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/pin_lockout.dart';
 import 'pin_screen_button.dart';
@@ -24,15 +25,11 @@ class PinScreen extends ConsumerStatefulWidget {
   final PinOverlayType type;
   final String? expectedPin;
   final String description;
-  final Color? pinScreenBackgroundColor;
-  final AppLocalizations l10n;
 
   const PinScreen(
     this.type, {
     this.description = '',
     this.expectedPin = '',
-    this.pinScreenBackgroundColor,
-    required this.l10n,
   });
 
   @override
@@ -43,7 +40,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
     with SingleTickerProviderStateMixin {
   static const int MAX_ATTEMPTS = 5;
 
-  AppLocalizations get l10n => widget.l10n;
+  AppLocalizations get l10n => l10nOf(context);
 
   int _pinLength = 6;
   final double buttonSize = 100;
@@ -98,11 +95,10 @@ class _PinScreenState extends ConsumerState<PinScreen>
                 setState(() {
                   _controller.value = 0;
                 });
-                pinLockout.updateLockDate().then((_) {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/lock_screen_transition',
-                      (Route<dynamic> route) => false);
-                });
+                // TODO - check logic here
+                pinLockout
+                    .updateLockDate()
+                    .then((_) => appRouter.lockoutkWithTransition(context));
               } else {
                 setState(() {
                   _pin = '';
@@ -210,7 +206,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
               _controller.forward();
             } else {
               await pinLockout.resetUnlockAttempts();
-              Navigator.of(context, rootNavigator: true).pop(true);
+              appRouter.pop(context, withResult: true);
             }
           } else {
             if (!_awaitingConfirmation) {
@@ -223,7 +219,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
             } else {
               // First and second pins match
               if (_pin == _pinConfirmed) {
-                Navigator.of(context).pop(_pin);
+                appRouter.pop(context, withResult: _pin);
               } else {
                 hapticUtil.error();
                 _controller.forward();
@@ -241,7 +237,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
         return Container(
           constraints: BoxConstraints.expand(),
           child: Material(
-            color: widget.pinScreenBackgroundColor ?? theme.backgroundDark,
+            color: theme.backgroundDark,
             child: Column(
               children: [
                 Container(

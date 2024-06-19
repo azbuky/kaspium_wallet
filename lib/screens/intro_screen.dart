@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../intro/intro.dart';
 import '../intro/intro_providers.dart';
 import '../intro/intro_types.dart';
@@ -31,12 +32,10 @@ class IntroScreen extends HookConsumerWidget {
         return auth;
       }
 
-      final pin = await Navigator.of(context).push(
+      final pin = await appRouter.push(
+        context,
         MaterialPageRoute<String>(
-          builder: (context) {
-            final l10n = l10nOf(context);
-            return PinScreen(PinOverlayType.NEW_PIN, l10n: l10n);
-          },
+          builder: (_) => PinScreen(PinOverlayType.NEW_PIN),
         ),
       );
       if (pin != null && pin.length > 5) {
@@ -63,8 +62,7 @@ class IntroScreen extends HookConsumerWidget {
         return;
       }
 
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil('/wallet_setup', (route) => false);
+      appRouter.setupWallet(context);
     });
 
     Widget widgetForPage(IntroPage page) {
@@ -86,11 +84,12 @@ class IntroScreen extends HookConsumerWidget {
       state.whenOrNull(
         push: (page) {
           final widget = widgetForPage(page);
-          Navigator.of(context).push(
+          appRouter.push(
+            context,
             MaterialPageRoute(builder: (_) => widget),
           );
         },
-        pop: () => Navigator.of(context).pop(),
+        pop: () => appRouter.pop(context),
       );
     });
 

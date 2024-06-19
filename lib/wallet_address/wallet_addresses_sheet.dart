@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../settings_advanced/kpub_sheet.dart';
 import '../util/ui_util.dart';
@@ -200,7 +201,7 @@ class WalletAddressesSheet extends HookConsumerWidget {
               const SizedBox(height: 16),
               PrimaryOutlineButton(
                 title: l10n.close,
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => appRouter.pop(context),
               ),
             ]),
           ),

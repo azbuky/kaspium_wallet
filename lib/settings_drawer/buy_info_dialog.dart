@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/util.dart';
 import '../widgets/app_simpledialog.dart';
@@ -39,7 +40,7 @@ class BuyInfoDialog extends ConsumerWidget {
       actions: [
         TextButton(
           style: styles.dialogButtonStyle,
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => appRouter.pop(context),
           child: Text(
             l10n.closeUppercased,
             style: styles.textStyleDialogOptions,

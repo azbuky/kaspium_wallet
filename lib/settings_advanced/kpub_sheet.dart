@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../widgets/buttons.dart';
@@ -97,7 +98,7 @@ class KpubSheet extends ConsumerWidget {
             const SizedBox(height: 16),
             PrimaryOutlineButton(
               title: l10n.close,
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => appRouter.pop(context),
             ),
           ],
         ),

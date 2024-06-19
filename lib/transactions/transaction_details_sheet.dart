@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../contacts/contact_add_sheet.dart';
 import '../l10n/l10n.dart';
 import '../util/util.dart';
@@ -35,7 +36,7 @@ class TransactionDetailsSheet extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
 
     void addContact() {
-      Navigator.of(context).pop();
+      appRouter.pop(context);
       Sheets.showAppHeightNineSheet(
         context: context,
         widget: ContactAddSheet(address: address),
@@ -112,7 +113,7 @@ class TransactionDetailsSheet extends ConsumerWidget {
                   else
                     PrimaryOutlineButton(
                       title: l10n.close,
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () => appRouter.pop(context),
                     ),
                 ],
               ),

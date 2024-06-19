@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../settings/authentication_method.dart';
 import '../util/caseconverter.dart';
@@ -10,10 +11,10 @@ import '../util/pin_lockout.dart';
 import '../util/routes.dart';
 import '../widgets/buttons.dart';
 import '../widgets/logout_button.dart';
-import '../widgets/pin_screen.dart';
 
 class LockScreen extends ConsumerStatefulWidget {
-  const LockScreen({Key? key}) : super(key: key);
+  final bool autoTransition;
+  const LockScreen({super.key, this.autoTransition = true});
 
   @override
   _LockScreenState createState() => _LockScreenState();
@@ -26,12 +27,12 @@ class _LockScreenState extends ConsumerState<LockScreen> {
   String _countDownTxt = "";
 
   Future<void> _goHome() async {
-    final walletAuth = ref.read(walletAuthNotifierProvider);
-    if (walletAuth != null) {
-      await walletAuth.unlock();
-    }
+    final walletAuth = ref.read(walletAuthProvider.notifier);
+    final unlocked = await walletAuth.unlock();
 
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
+    if (unlocked && widget.autoTransition) {
+      appRouter.reload(context);
+    }
   }
 
   String _formatCountDisplay(int count) {

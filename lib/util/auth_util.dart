@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../app_router.dart';
 import '../core/core_providers.dart';
 import '../l10n/l10n.dart';
 import '../screens/password_lock_screen.dart';
@@ -46,17 +47,17 @@ class AuthUtil {
   Future<bool> authenticateWithPin(BuildContext context, String message) async {
     String? expectedPin = await ref.read(vaultProvider).getPin();
 
-    bool? auth = await Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) {
-        final l10n = l10nOf(context);
-        return PinScreen(
-          PinOverlayType.ENTER_PIN,
-          expectedPin: expectedPin,
-          description: message,
-          l10n: l10n,
-        );
-      }),
+    final pinScreen = PinScreen(
+      PinOverlayType.ENTER_PIN,
+      expectedPin: expectedPin,
+      description: description,
     );
+
+    final route = useTransition
+        ? MaterialPageRoute<bool>(builder: (_) => pinScreen)
+        : NoTransitionRoute<bool>(builder: (_) => pinScreen);
+
+    final auth = await appRouter.push(context, route);
     await Future.delayed(const Duration(milliseconds: 200));
 
     return auth == true;
@@ -66,10 +67,14 @@ class AuthUtil {
     BuildContext context,
     Future<bool> Function(String password) validator,
   ) async {
-    final auth = await Navigator.of(context).push(
-      MaterialPageRoute<bool>(builder: (context) {
-        return PasswordLockScreen(validator: validator);
-      }),
+    final auth = await appRouter.push(
+      context,
+      MaterialPageRoute<bool>(
+        builder: (context) => PasswordLockPage(
+          canCancel: true,
+          validator: validator,
+        ),
+      ),
     );
 
     await Future.delayed(const Duration(milliseconds: 200));

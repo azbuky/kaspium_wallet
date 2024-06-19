@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../node_settings/node_providers.dart';
 import '../node_settings/node_setting.dart';
@@ -153,7 +154,7 @@ class NetworkMenu extends ConsumerWidget {
     return options.map((value) {
       final styles = ref.read(stylesProvider);
       return SimpleDialogOption(
-        onPressed: () => Navigator.pop(context, value),
+        onPressed: () => appRouter.pop(context, withResult: value),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Column(

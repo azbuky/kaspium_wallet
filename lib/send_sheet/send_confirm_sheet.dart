@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../util/numberutil.dart';
@@ -63,7 +64,7 @@ class SendConfirmSheet extends HookConsumerWidget {
           notes.addNoteForTxId(txId, txNote);
         }
 
-        Navigator.of(context).pop();
+        appRouter.pop(context);
 
         final sheet = SendCompleteSheet(
           amount: tx.amount,
@@ -84,7 +85,7 @@ class SendConfirmSheet extends HookConsumerWidget {
         log.e('Failed to send transaction', error: e, stackTrace: st);
 
         UIUtil.showSnackbar(l10n.sendError, context);
-        Navigator.of(context).pop();
+        appRouter.pop(context);
       }
     }
 
@@ -184,7 +185,7 @@ class SendConfirmSheet extends HookConsumerWidget {
             const SizedBox(height: 16),
             PrimaryOutlineButton(
               title: l10n.cancel,
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => appRouter.pop(context),
             ),
           ],
         ),

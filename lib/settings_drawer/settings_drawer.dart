@@ -7,6 +7,7 @@ import 'package:share_plus/share_plus.dart';
 import '../app_constants.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../contacts/contacts_widget.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
@@ -180,7 +181,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       setState(() => _donateOpen = false);
       _donateController.reverse();
     } else if (!didPop) {
-      Navigator.of(context).pop();
+      appRouter.pop(context);
     }
   }
 
@@ -293,6 +294,26 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
             UIUtil.showSnackbar(l10n.missingSecretPhrase, context);
           }
         }
+      }
+
+      void contactSupport() =>
+          openUrl('mailto:$kSupportEmail?subject=Kaspium support');
+
+      void share() {
+        Share.share(
+          l10n.shareKaspiumText,
+          subject: l10n.shareKaspiumSubject,
+        );
+      }
+
+      void logout() {
+        AppDialogs.showConfirmDialog(
+          context,
+          l10n.areYouSure,
+          l10n.logoutDialogContent,
+          l10n.yesUppercase,
+          () => appRouter.logout(context),
+        );
       }
 
       return Container(
@@ -439,38 +460,19 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           email: kSupportEmail,
                         ),
                         icon: Icons.email,
-                        onPressed: () => openUrl(
-                            'mailto:$kSupportEmail?subject=Kaspium support'),
+                        onPressed: contactSupport,
                       ),
                       Divider(height: 2, color: theme.text15),
                       SingleLineItem(
                         heading: l10n.shareKaspium,
                         settingIcon: AppIcons.share,
-                        onPressed: () {
-                          Share.share(
-                            l10n.shareKaspiumText,
-                            subject: l10n.shareKaspiumSubject,
-                          );
-                        },
+                        onPressed: share,
                       ),
                       Divider(height: 2, color: theme.text15),
                       SingleLineItem(
                         heading: l10n.logoutOrSwitchWallet,
                         settingIcon: AppIcons.logout,
-                        onPressed: () {
-                          AppDialogs.showConfirmDialog(
-                            context,
-                            l10n.areYouSure,
-                            l10n.logoutDialogContent,
-                            l10n.yesUppercase,
-                            () {
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                '/logout',
-                                (_) => false,
-                              );
-                            },
-                          );
-                        },
+                        onPressed: logout,
                       ),
                       Divider(height: 2, color: theme.text15),
                       const VersionWidget(),

@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../send_sheet/send_sheet.dart';
 import '../util/ui_util.dart';
@@ -43,7 +44,7 @@ class ContactDetails extends HookConsumerWidget {
       ref.read(contactsProvider).removeContact(contact);
       final message = l10n.contactRemoved(contact.name);
       UIUtil.showSnackbar(message, context);
-      Navigator.of(context).pop();
+      appRouter.pop(context);
     }
 
     void confirmDeleteContact() {
@@ -68,7 +69,7 @@ class ContactDetails extends HookConsumerWidget {
     }
 
     void showSendSheet() {
-      Navigator.of(context).pop();
+      appRouter.pop(context);
       Sheets.showAppHeightNineSheet(
         context: context,
         theme: theme,
@@ -213,7 +214,7 @@ class ContactDetails extends HookConsumerWidget {
             const SizedBox(height: 16),
             PrimaryOutlineButton(
               title: l10n.close,
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => appRouter.pop(context),
             ),
           ]),
         ),

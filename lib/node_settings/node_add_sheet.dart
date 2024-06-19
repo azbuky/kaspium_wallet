@@ -6,6 +6,7 @@ import 'package:validators/validators.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../util/random_util.dart';
@@ -136,11 +137,11 @@ class NodeAddSheet extends HookConsumerWidget {
         );
 
         if (!cancelled) {
-          Navigator.of(context).pop();
+          appRouter.pop(context);
           final success = await notifier.addOption(config);
           if (success) {
             // pop sheet
-            Navigator.of(context).pop();
+            appRouter.pop(context);
             UIUtil.showSnackbar(l10n.addNodeSuccess, context);
           } else {
             UIUtil.showSnackbar(l10n.addNodeFailed, context);
@@ -149,7 +150,7 @@ class NodeAddSheet extends HookConsumerWidget {
       } catch (e, st) {
         if (!cancelled) {
           // pop dialog
-          Navigator.of(context).pop();
+          appRouter.pop(context);
         }
         final log = ref.read(loggerProvider);
         log.e('Failed to add node', error: e, stackTrace: st);
@@ -223,7 +224,7 @@ class NodeAddSheet extends HookConsumerWidget {
           const SizedBox(height: 16),
           PrimaryOutlineButton(
             title: l10n.cancel,
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => appRouter.pop(context),
           ),
         ]),
       ),

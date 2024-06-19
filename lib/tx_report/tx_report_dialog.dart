@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../widgets/app_simpledialog.dart';
@@ -156,7 +157,7 @@ class DownloadTxsDialog extends HookConsumerWidget {
           ),
         TextButton(
           style: styles.dialogButtonStyle,
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => appRouter.pop(context),
           child: Text(
             l10n.cancel.toUpperCase(),
             style: styles.textStyleDialogOptions,

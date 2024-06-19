@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../intro/intro_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
@@ -139,7 +140,8 @@ class SetupWalletScreen extends HookConsumerWidget {
 
         message.value = l10n.fetchingTransactions;
         details.value = '';
-        Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
+
+        appRouter.reload(context);
       } catch (e, st) {
         final log = ref.read(loggerProvider);
         log.e('Failed to create wallet', error: e, stackTrace: st);
@@ -147,10 +149,6 @@ class SetupWalletScreen extends HookConsumerWidget {
         setupFailed.value = true;
         setupError.value = e;
       }
-    }
-
-    void restartSetup() {
-      Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
     }
 
     useEffect(() {
@@ -161,7 +159,7 @@ class SetupWalletScreen extends HookConsumerWidget {
     if (setupFailed.value) {
       return SetupFailedPage(
         error: setupError.value,
-        onRestart: restartSetup,
+        onRestart: () => appRouter.reload(context),
       );
     }
 

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../util/formatters.dart';
@@ -263,7 +264,7 @@ class _ContactAddSheetState extends ConsumerState<ContactAddSheet> {
               const SizedBox(height: 16),
               PrimaryOutlineButton(
                 title: l10n.close,
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => appRouter.pop(context),
               ),
             ],
           ),
@@ -286,7 +287,7 @@ class _ContactAddSheetState extends ConsumerState<ContactAddSheet> {
     await contacts.addContact(newContact);
     final l10n = l10nOf(context);
     UIUtil.showSnackbar(l10n.contactAdded(newContact.name), context);
-    Navigator.of(context).pop();
+    appRouter.pop(context);
   }
 
   Future<bool> _validateForm() async {

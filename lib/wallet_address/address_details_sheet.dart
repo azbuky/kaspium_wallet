@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../util/util.dart';
@@ -126,7 +127,7 @@ class AddressDetailsSheet extends HookConsumerWidget {
             const SizedBox(height: 16),
             PrimaryOutlineButton(
               title: l10n.close,
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => appRouter.pop(context),
             ),
           ]),
         ),

@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../database/database.dart';
 import '../intro/intro_providers.dart';
 import '../l10n/l10n.dart';
@@ -54,7 +55,8 @@ class SplashScreen extends HookConsumerWidget {
         }
 
         ref.read(introDataProvider.notifier).clear();
-        Navigator.of(context).pushReplacementNamed('/intro');
+
+        appRouter.startIntro(context);
         return;
       }
 
@@ -62,7 +64,7 @@ class SplashScreen extends HookConsumerWidget {
       if (walletAuthNotifier == null) {
         final l10n = l10nOf(context);
         UIUtil.showSnackbar(l10n.somethingWentWrong, context);
-        Navigator.of(context).pushReplacementNamed('/intro');
+        appRouter.startIntro(context);
         return;
       }
 
@@ -70,14 +72,14 @@ class SplashScreen extends HookConsumerWidget {
 
       if (walletAuthNotifier.walletLocked) {
         if (walletAuthNotifier.walletEncrypted) {
-          Navigator.of(context).pushReplacementNamed('/password_lock_screen');
+          appRouter.requirePassword(context);
           return;
         }
         final vault = ref.read(vaultProvider);
         final lockSettings = LockSettings(vault);
         final authOnLaunch = await lockSettings.getLock();
         if (authOnLaunch) {
-          Navigator.of(context).pushReplacementNamed('/lock_screen');
+          appRouter.requireUnlock(context);
           return;
         } else {
           await walletAuthNotifier.unlock();
@@ -88,7 +90,7 @@ class SplashScreen extends HookConsumerWidget {
       final network = ref.read(networkProvider);
       await walletRepository.openWalletBoxes(wallet, network: network);
 
-      Navigator.of(context).pushReplacementNamed('/home');
+      appRouter.openWallet(context);
     }
 
     useEffect(() {

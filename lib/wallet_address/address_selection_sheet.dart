@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/buttons.dart';
@@ -75,7 +76,7 @@ class AddressSelectionSheet extends HookConsumerWidget {
                   onSelection: (address) {
                     final notifier = ref.read(selectedAddressProvider.notifier);
                     notifier.state = address;
-                    Navigator.pop(context);
+                    appRouter.pop(context);
                   },
                 ),
                 const ListTopGradient(),
@@ -98,7 +99,7 @@ class AddressSelectionSheet extends HookConsumerWidget {
           ],
           PrimaryOutlineButton(
             title: l10n.close,
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => appRouter.pop(context),
           ),
         ]),
       ),

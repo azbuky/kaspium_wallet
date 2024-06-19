@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../settings/available_language.dart';
 import '../widgets/app_simpledialog.dart';
@@ -30,8 +31,9 @@ class LanguageDialog extends ConsumerWidget {
           Builder(builder: (context) {
             final isAvailable = LanguageSetting.isAvailable(value);
             return SimpleDialogOption(
-              onPressed:
-                  isAvailable ? () => Navigator.pop(context, value) : null,
+              onPressed: isAvailable
+                  ? () => appRouter.pop(context, withResult: value)
+                  : null,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Text(

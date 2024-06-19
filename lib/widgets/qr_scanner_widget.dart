@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/platform.dart';
 import '../util/ui_util.dart';
@@ -72,7 +73,7 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
         );
         if (code == null) throw Exception(l10n.emptyResult);
         result = Barcode(code, BarcodeFormat.qrcode, null);
-        Navigator.of(context).pop(result);
+        appRouter.pop(context, withResult: result);
       } catch (e) {
         UIUtil.showSnackbar(l10n.noQrCodeFound, context);
       }
@@ -123,7 +124,7 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
                     AppIconButton(
                       icon: Icons.arrow_back,
                       color: Colors.white,
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () => appRouter.pop(context),
                     ),
                     Text(
                       l10n.scanQrCode,
@@ -168,7 +169,7 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
     if (!p && !_checkedPermission && context.mounted) {
       _checkedPermission = true;
       if (kPlatformIsAndroid) {
-        Navigator.of(context).pop();
+        appRouter.pop(context);
       }
 
       final l10n = l10nOf(context);
@@ -184,7 +185,7 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
     _controller.scannedDataStream.listen((event) {
       if (result == null && _shouldScan) {
         result = event;
-        Navigator.of(context).pop(result);
+        appRouter.pop(context, withResult: result);
       }
     });
   }

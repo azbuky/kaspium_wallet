@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../widgets/app_text_field.dart';
@@ -55,12 +56,12 @@ class SetPasswordSheet extends HookConsumerWidget {
         await auth.setPassword(password);
 
         UIUtil.showSnackbar(l10n.setPasswordSuccess, context);
-        Navigator.pop(context);
+        appRouter.pop(context);
       } catch (e, st) {
         final log = ref.read(loggerProvider);
         log.e('Failed to set password', error: e, stackTrace: st);
 
-        Navigator.pop(context);
+        appRouter.pop(context);
         UIUtil.showSnackbar(l10n.encryptionFailedError, context);
       }
     }
@@ -139,7 +140,7 @@ class SetPasswordSheet extends HookConsumerWidget {
             const SizedBox(height: 16),
             PrimaryOutlineButton(
               title: l10n.close,
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => appRouter.pop(context),
             ),
           ]),
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../widgets/app_simpledialog.dart';
 import 'address_settings.dart';
@@ -26,7 +27,10 @@ class AddressFilterDialog extends ConsumerWidget {
       ),
       children: [
         SimpleDialogOption(
-          onPressed: () => Navigator.pop(context, AddressFilter.all),
+          onPressed: () => appRouter.pop(
+            context,
+            withResult: AddressFilter.all,
+          ),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Text(
@@ -36,7 +40,10 @@ class AddressFilterDialog extends ConsumerWidget {
           ),
         ),
         SimpleDialogOption(
-          onPressed: () => Navigator.pop(context, AddressFilter.nonZero),
+          onPressed: () => appRouter.pop(
+            context,
+            withResult: AddressFilter.nonZero,
+          ),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Text(

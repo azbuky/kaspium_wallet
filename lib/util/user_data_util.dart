@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:validators/validators.dart';
 
+import '../app_router.dart';
 import '../kaspa/kaspa.dart';
 import '../widgets/qr_scanner_widget.dart';
 
@@ -53,10 +54,9 @@ class UserDataUtil {
   }
 
   static Future<Barcode?> scanQrCode(BuildContext context) async {
-    final result = await Navigator.of(context).push<Barcode>(
-      MaterialPageRoute(builder: (BuildContext context) {
-        return const QrScannerWidget();
-      }),
+    final result = await appRouter.push(
+      context,
+      MaterialPageRoute<Barcode>(builder: (context) => const QrScannerWidget()),
     );
     return result;
   }
