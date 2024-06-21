@@ -9,27 +9,18 @@ part of 'block_explorer_settings.dart';
 _$BlockExplorerSettingsImpl _$$BlockExplorerSettingsImplFromJson(Map json) =>
     _$BlockExplorerSettingsImpl(
       selection: (json['selection'] as Map?)?.map(
-            (k, e) => MapEntry($enumDecode(_$KaspaNetworkEnumMap, k),
+            (k, e) => MapEntry(k as String,
                 BlockExplorer.fromJson(Map<String, dynamic>.from(e as Map))),
           ) ??
           const {
-            KaspaNetwork.mainnet: kKaspaExplorerMainnet,
-            KaspaNetwork.testnet: kKatnipTestnet,
-            KaspaNetwork.devnet: kKaspaExplorerMainnet,
-            KaspaNetwork.simnet: kKaspaExplorerMainnet
+            'mainnet': kKaspaExplorerMainnet,
+            'testnet-10': kKaspaExplorerTestnet10,
+            'testnet-11': kKaspaExplorerTestnet11
           },
     );
 
 Map<String, dynamic> _$$BlockExplorerSettingsImplToJson(
         _$BlockExplorerSettingsImpl instance) =>
     <String, dynamic>{
-      'selection': instance.selection
-          .map((k, e) => MapEntry(_$KaspaNetworkEnumMap[k]!, e.toJson())),
+      'selection': instance.selection.map((k, e) => MapEntry(k, e.toJson())),
     };
-
-const _$KaspaNetworkEnumMap = {
-  KaspaNetwork.mainnet: 'mainnet',
-  KaspaNetwork.testnet: 'testnet',
-  KaspaNetwork.devnet: 'devnet',
-  KaspaNetwork.simnet: 'simnet',
-};

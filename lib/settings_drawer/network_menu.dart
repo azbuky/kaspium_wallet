@@ -141,15 +141,15 @@ class NetworkMenu extends ConsumerWidget {
         });
     if (selection != null) {
       final notifier = ref.read(blockExplorerSettingsProvider.notifier);
-      final network = ref.read(networkProvider);
+      final networkId = ref.read(networkIdProvider);
 
-      notifier.updateBlockExplorer(selection, network: network);
+      notifier.updateBlockExplorer(selection, networkId: networkId);
     }
   }
 
   List<Widget> _buildExplorerOptions(BuildContext context, WidgetRef ref) {
-    final network = ref.read(networkProvider);
-    final options = kBlockExplorerOptions[network] ?? [kBlockExplorerOptions];
+    final networkId = ref.read(networkIdProvider);
+    final options = kBlockExplorersOptions[networkId] ?? [];
     return options.map((value) {
       final styles = ref.read(stylesProvider);
       return SimpleDialogOption(

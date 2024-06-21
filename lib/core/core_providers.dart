@@ -54,8 +54,8 @@ final stylesProvider = Provider((ref) {
 
 final blockExplorerProvider = Provider((ref) {
   final settings = ref.watch(blockExplorerSettingsProvider);
-  final network = ref.watch(networkProvider);
-  return settings.explorerForNetwork(network);
+  final networkId = ref.watch(networkIdProvider);
+  return settings.explorerForNetwork(networkId);
 });
 
 final sharedPrefsProvider =
