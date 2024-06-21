@@ -17,7 +17,6 @@ import '../widgets/buttons.dart';
 import '../widgets/dialog.dart';
 import '../widgets/sheet_widget.dart';
 import '../widgets/validation_text.dart';
-import 'node_providers.dart';
 import 'node_types.dart';
 
 class NodeAddSheet extends HookConsumerWidget {
@@ -105,19 +104,31 @@ class NodeAddSheet extends HookConsumerWidget {
         final port = int.tryParse(url.split(':').last) ?? kMainnetRpcPort;
         bool isSecure;
         var nodeInfo;
+        String networkName;
         try {
           // Try secure connection first
           client = KaspaClient.url(url, isSecure: true);
           nodeInfo = await client.getInfo();
+          networkName = (await client.getBlockDagInfo()).networkName;
           isSecure = true;
         } catch (_) {
           // Fallback to insecure connection
           client = KaspaClient.url(url, isSecure: false);
           nodeInfo = await client.getInfo();
+          networkName = (await client.getBlockDagInfo()).networkName;
           isSecure = false;
         }
 
-        final network = networkForPort(port);
+        KaspaNetwork network;
+        String suffix;
+        final parts = networkName.split('-');
+        if (parts.length > 1) {
+          network = KaspaNetwork.tryParse(parts[1]) ?? networkForPort(port);
+          suffix = parts.length == 3 ? parts[2] : '';
+        } else {
+          network = networkForPort(port);
+          suffix = '';
+        }
 
         if (!nodeInfo.isSynced) {
           throw Exception(l10n.nodeNotSyncedException);
@@ -133,6 +144,7 @@ class NodeAddSheet extends HookConsumerWidget {
           name: name,
           urls: [url],
           network: network,
+          networkSuffix: suffix,
           isSecure: isSecure,
         );
 

@@ -5,7 +5,6 @@ import '../app_icons.dart';
 import '../app_providers.dart';
 import '../app_router.dart';
 import '../l10n/l10n.dart';
-import '../node_settings/node_providers.dart';
 import '../node_settings/node_setting.dart';
 import '../node_settings/nodes_sheet.dart';
 import '../settings/block_explorer_setting.dart';

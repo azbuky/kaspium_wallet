@@ -279,7 +279,7 @@ class KaspaClient {
 
   // Network info
 
-  Future<String> getNetworkName() async {
+  Future<String> getCurrentNetwork() async {
     final message = KaspadMessage(
       getCurrentNetworkRequest: GetCurrentNetworkRequestMessage(),
     );
@@ -291,6 +291,20 @@ class KaspaClient {
     }
 
     return result.getCurrentNetworkResponse.currentNetwork;
+  }
+
+  Future<GetBlockDagInfoResponseMessage> getBlockDagInfo() async {
+    final message = KaspadMessage(
+      getBlockDagInfoRequest: GetBlockDagInfoRequestMessage(),
+    );
+
+    final result = await _singleRequest(message);
+    final error = result.getBlockDagInfoResponse.error;
+    if (error.message.isNotEmpty) {
+      throw RpcException(error);
+    }
+
+    return result.getBlockDagInfoResponse;
   }
 
   // Get Info

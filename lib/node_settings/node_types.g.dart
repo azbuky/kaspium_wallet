@@ -36,6 +36,7 @@ _$NodeConfigImpl _$$NodeConfigImplFromJson(Map json) => _$NodeConfigImpl(
       isSecure: json['isSecure'] as bool? ?? false,
       urls: (json['urls'] as List<dynamic>).map((e) => e as String).toList(),
       network: $enumDecode(_$KaspaNetworkEnumMap, json['network']),
+      networkSuffix: json['networkSuffix'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$NodeConfigImplToJson(_$NodeConfigImpl instance) =>
@@ -46,6 +47,7 @@ Map<String, dynamic> _$$NodeConfigImplToJson(_$NodeConfigImpl instance) =>
       'isSecure': instance.isSecure,
       'urls': instance.urls,
       'network': _$KaspaNetworkEnumMap[instance.network]!,
+      'networkSuffix': instance.networkSuffix,
     };
 
 const _$KaspaNetworkEnumMap = {

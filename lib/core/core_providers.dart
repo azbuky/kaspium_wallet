@@ -81,6 +81,11 @@ final networkProvider = Provider((ref) {
   return config.network;
 });
 
+final networkIdProvider = Provider((ref) {
+  final config = ref.watch(kaspaNodeConfigProvider);
+  return config.networkId;
+});
+
 final addressPrefixProvider = Provider((ref) {
   final network = ref.watch(networkProvider);
   final prefix = addressPrefixForNetwork(network);

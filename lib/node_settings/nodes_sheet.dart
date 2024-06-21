@@ -10,7 +10,6 @@ import '../widgets/sheet_util.dart';
 import '../widgets/sheet_widget.dart';
 import 'node_add_sheet.dart';
 import 'node_item.dart';
-import 'node_providers.dart';
 import 'node_types.dart';
 
 class ListViewEndItem extends ConsumerWidget {

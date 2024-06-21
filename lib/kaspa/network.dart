@@ -9,20 +9,31 @@ enum KaspaNetwork {
   mainnet,
   testnet,
   devnet,
-  simnet,
-}
+  simnet;
 
-int portForNetwork(KaspaNetwork network) {
-  switch (network) {
-    case KaspaNetwork.mainnet:
-      return kMainnetRpcPort;
-    case KaspaNetwork.testnet:
-      return kTestnetPpcPort;
-    case KaspaNetwork.simnet:
-      return kSimnetRpcPort;
-    case KaspaNetwork.devnet:
-      return kDevnetRpcPort;
+  static KaspaNetwork? tryParse(String network) {
+    return switch (network) {
+      'mainnet' => KaspaNetwork.mainnet,
+      'testnet' => KaspaNetwork.testnet,
+      'simnet' => KaspaNetwork.simnet,
+      'devnet' => KaspaNetwork.devnet,
+      _ => null,
+    };
   }
+
+  String idWithSuffix([String suffix = '']) {
+    if (suffix.isNotEmpty) {
+      return name + '-$suffix';
+    }
+    return name;
+  }
+
+  int get defaultRpcPort => switch (this) {
+        KaspaNetwork.mainnet => kMainnetRpcPort,
+        KaspaNetwork.testnet => kTestnetPpcPort,
+        KaspaNetwork.simnet => kSimnetRpcPort,
+        KaspaNetwork.devnet => kDevnetRpcPort
+      };
 }
 
 KaspaNetwork networkForPort(int port) {

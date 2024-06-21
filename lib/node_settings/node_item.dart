@@ -6,7 +6,6 @@ import '../app_providers.dart';
 import '../app_styles.dart';
 import '../l10n/l10n.dart';
 import '../widgets/dialog.dart';
-import 'node_providers.dart';
 import 'node_types.dart';
 
 final kaspaNodeConfigItemProvider =
@@ -88,9 +87,7 @@ class NodeItem extends ConsumerWidget {
                     value: item,
                     groupValue: activeConfig,
                     activeColor: theme.primary,
-                    onChanged: (_) {
-                      change();
-                    },
+                    onChanged: (_) => change(),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -115,7 +112,7 @@ class NodeItem extends ConsumerWidget {
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
-                                item.network.name.toUpperCase(),
+                                item.networkId.toUpperCase(),
                                 style: styles.tagText.copyWith(fontSize: 10),
                               ),
                             ),

@@ -37,7 +37,10 @@ class NodeConfig with _$NodeConfig {
     @Default(false) bool isSecure,
     required List<String> urls,
     required KaspaNetwork network,
+    @Default('') String networkSuffix,
   }) = _NodeConfig;
+
+  String get networkId => network.idWithSuffix(networkSuffix);
 
   factory NodeConfig.fromJson(Map<String, dynamic> json) =>
       _$NodeConfigFromJson(json);
@@ -52,8 +55,10 @@ class ActiveNodeConfig with _$ActiveNodeConfig {
 
   String get name => config.name;
   KaspaNetwork get network => config.network;
+
   bool get isSecure => config.isSecure;
   late final String url = config.urls[Random().nextInt(config.urls.length)];
+  late final String networkId = config.networkId;
 }
 
 @freezed
