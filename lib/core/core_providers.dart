@@ -94,11 +94,14 @@ final addressPrefixProvider = Provider((ref) {
 });
 
 final _kaspaApiProvider = Provider<KaspaApi>((ref) {
-  final network = ref.watch(networkProvider);
-  if (network == KaspaNetwork.mainnet) {
-    return KaspaApiMainnet('https://api.kaspa.org');
-  }
-  return KaspaApiEmpty();
+  final networkId = ref.watch(networkIdProvider);
+
+  return switch (networkId) {
+    'mainnet' => KaspaApiMainnet('https://api.kaspa.org'),
+    'textnet-10' => KaspaApiMainnet('https://api-testnet.kaspa.ws'),
+    'testnet-11' => KaspaApiMainnet('https://api-tn11.kaspa.org'),
+    _ => KaspaApiEmpty(),
+  };
 });
 
 final kaspaApiServiceProvider = Provider<KaspaApiService>((ref) {
