@@ -53,6 +53,7 @@ enum AvailableLanguage {
   ROMANIAN("ro", "Română (ro)"),
   RUSSIAN("ru", "Русский (ru)"),
   // S
+  SLOVAKIA("sk", "Slovakia (sk)"),
   SLOVENIAN("sl", "Slovenščina (sl)"),
   SWEDISH("sv", "Svenska (sv)"),
   FINNISH("fi", "Suomi (fi)"),
