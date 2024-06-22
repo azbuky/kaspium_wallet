@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_router.dart';
@@ -16,42 +15,10 @@ class SeedBackupSheet extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = l10nOf(context);
 
-    final showMnemonic = useState(true);
-
-    final title = showMnemonic.value ? l10n.secretPhrase : l10n.seed;
-
     return SheetWidget(
-      title: title,
-      //rightWidget: FlatButton(
-      //     highlightColor: theme.text15,
-      //     splashColor: theme.text15,
-      //     onPressed: () {
-      //       setState(() => _showMnemonic = !_showMnemonic);
-      //     },
-      //     child: Icon(
-      //       _showMnemonic ? AppIcons.seed : Icons.vpn_key,
-      //       size: 24,
-      //       color: theme.text,
-      //     ),
-      //     padding: const EdgeInsets.all(13.0),
-      //     shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.circular(100.0),
-      //     ),
-      //     materialTapTargetSize: MaterialTapTargetSize.padded,
-      //   ),
+      title: l10n.secretPhrase,
       mainWidget: Container(
-        child: Column(children: [
-          //if (mnemonic.value != null)
-          MnemonicDisplay(
-            wordList: mnemonic,
-            obscured: true,
-          )
-          // else
-          //   PlainSeedDisplay(
-          //     seed: _seed,
-          //     obscureSeed: true,
-          //   ),
-        ]),
+        child: MnemonicDisplay(wordList: mnemonic, obscured: true),
       ),
       bottomWidget: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 28),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../app_providers.dart';
 import '../app_router.dart';
-import '../core/core_providers.dart';
 import '../l10n/l10n.dart';
-import '../screens/password_lock_screen.dart';
+import '../screens/password_lock_page.dart';
 import '../settings/authentication_method.dart';
 import '../widgets/pin_screen.dart';
 
@@ -64,9 +64,9 @@ class AuthUtil {
   }
 
   Future<bool> authenticateWithPassword(
-    BuildContext context,
-    Future<bool> Function(String password) validator,
-  ) async {
+    BuildContext context, {
+    required Future<bool> Function(String password) validator,
+  }) async {
     final auth = await appRouter.push(
       context,
       MaterialPageRoute<bool>(
@@ -79,5 +79,41 @@ class AuthUtil {
 
     await Future.delayed(const Duration(milliseconds: 200));
     return auth == true;
+  }
+
+  Future<List<String>?> getMnemonic(BuildContext context) async {
+    final l10n = l10nOf(context);
+
+    final walletAuth = ref.read(walletAuthProvider.notifier);
+
+    if (walletAuth.walletIsEncrypted) {
+      List<String>? mnemonic = null;
+      await authenticateWithPassword(context, validator: (password) async {
+        try {
+          mnemonic = await walletAuth.getMnemonic(password: password);
+          return true;
+        } catch (e) {
+          return false;
+        }
+      });
+
+      return mnemonic;
+    } else {
+      final auth = await authenticate(
+        context,
+        l10n.pinSeedBackup,
+        l10n.fingerprintSeedBackup,
+      );
+
+      if (auth) {
+        try {
+          final mnemonic = await walletAuth.getMnemonic();
+          return mnemonic;
+        } catch (_) {
+          return [];
+        }
+      }
+      return null;
+    }
   }
 }

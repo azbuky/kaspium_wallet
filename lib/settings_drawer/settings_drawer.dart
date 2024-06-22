@@ -258,42 +258,21 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
 
       Future<void> backupSecretPhrase() async {
         final authUtil = ref.read(authUtilProvider);
-        final notifier = ref.read(walletAuthProvider.notifier);
-        var auth = false;
-        List<String>? mnemonic = null;
-        if (notifier.walletEncrypted) {
-          auth = await authUtil.authenticateWithPassword(
-            context,
-            (password) async {
-              try {
-                mnemonic = await notifier.getMnemonic(password: password);
-                return true;
-              } catch (e) {
-                return false;
-              }
-            },
-          );
-        } else {
-          auth = await authUtil.authenticate(
-            context,
-            l10n.pinSeedBackup,
-            l10n.fingerprintSeedBackup,
-          );
+
+        final mnemonic = await authUtil.getMnemonic(context);
+        if (mnemonic == null) {
+          return;
         }
-        if (auth) {
-          try {
-            if (mnemonic == null) {
-              mnemonic = await notifier.getMnemonic();
-            }
-            Sheets.showAppHeightNineSheet(
-              context: context,
-              theme: theme,
-              widget: SeedBackupSheet(mnemonic: mnemonic!),
-            );
-          } catch (_) {
-            UIUtil.showSnackbar(l10n.missingSecretPhrase, context);
-          }
+        if (mnemonic.isEmpty) {
+          UIUtil.showSnackbar(l10n.missingSecretPhrase, context);
+          return;
         }
+
+        Sheets.showAppHeightNineSheet(
+          context: context,
+          theme: theme,
+          widget: SeedBackupSheet(mnemonic: mnemonic),
+        );
       }
 
       void contactSupport() =>
