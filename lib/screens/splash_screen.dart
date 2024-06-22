@@ -44,14 +44,16 @@ class SplashScreen extends HookConsumerWidget {
       final walletBundle = ref.read(walletBundleProvider);
       final wallet = walletBundle.selected;
       if (wallet == null) {
-        final vault = ref.read(vaultProvider);
-        final pinIsSet = await vault.pinIsSet;
-        // on iOS the Vault is not cleared on app uninstall
-        // check if pin is set but wallets is null then reset vault and database
-        if (pinIsSet && walletBundle.wallets == null) {
-          await vault.deleteAll();
-          final db = await Database.reset();
-          ref.read(dbProvider.notifier).state = db;
+        if (walletBundle.wallets == null) {
+          final vault = ref.read(vaultProvider);
+          final pinIsSet = await vault.pinIsSet;
+          // on iOS the Vault is not cleared on app uninstall
+          // check if pin is set but wallets is null then reset vault and database
+          if (pinIsSet) {
+            await vault.deleteAll();
+            final db = await Database.reset();
+            ref.read(dbProvider.notifier).state = db;
+          }
         }
 
         ref.read(introDataProvider.notifier).clear();
