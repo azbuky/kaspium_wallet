@@ -24,7 +24,7 @@ extension WalletSettings on SettingsRepository {
   Future<void> setWalletEntries(List<WalletInfo> entries) => box.setList(
         _kWalletEntriesKey,
         entries,
-        convert: <WalletInfo>(e) => (e as dynamic).toJson(),
+        convert: (e) => e.toJson(),
       );
 
   WalletInfo? getSelectedWallet() =>
