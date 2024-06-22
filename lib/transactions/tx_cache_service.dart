@@ -18,7 +18,7 @@ class TxCacheService {
   // A cache of transactions that are currently loaded in memory
   final memCache = <String, ApiTransaction>{};
 
-  late final KaspaApiService api;
+  late KaspaApiService api;
   final Logger log;
 
   int get txCount => _txIndex.length;
