@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../settings/settings.dart';
+import '../../app_providers.dart';
 import 'address_settings_notifier.dart';
 import 'address_settings_types.dart';
 

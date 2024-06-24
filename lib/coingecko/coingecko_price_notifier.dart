@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app_providers.dart';
+import '../settings/settings_repository.dart';
 import 'coingecko_types.dart';
 
 const _kCoinGeckoPriceKey = '_coingeckoPriceKey';

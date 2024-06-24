@@ -2,7 +2,7 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 import '../database/database.dart';
 import '../kaspa/kaspa.dart';
-import '../settings/settings_providers.dart';
+import '../settings/settings_repository.dart';
 import '../transactions/transaction_types.dart';
 import '../util/vault.dart';
 import '../wallet_address/wallet_address.dart';

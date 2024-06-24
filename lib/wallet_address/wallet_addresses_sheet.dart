@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../app_providers.dart';
 import '../app_router.dart';
 import '../l10n/l10n.dart';
+import '../settings/address_settings.dart';
 import '../settings_advanced/kpub_sheet.dart';
 import '../util/ui_util.dart';
 import '../widgets/app_simpledialog.dart';
@@ -16,7 +17,6 @@ import '../widgets/sheet_util.dart';
 import '../widgets/sheet_widget.dart';
 import 'address_filter_dialog.dart';
 import 'address_list_widget.dart';
-import 'address_settings.dart';
 import 'wallet_address.dart';
 
 class WalletAddressesSheet extends HookConsumerWidget {

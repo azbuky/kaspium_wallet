@@ -8,12 +8,11 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
+import '../settings/tx_settings.dart';
 import '../wallet/wallet_types.dart';
 import 'transaction_card.dart';
 import 'transaction_empty_list.dart';
 import 'transaction_types.dart';
-import 'tx_settings/tx_settings_providers.dart';
-import 'tx_settings/tx_settings_types.dart';
 
 final _txListItemsProvider =
     Provider.autoDispose.family<List<TxListItem>, WalletInfo>((ref, wallet) {

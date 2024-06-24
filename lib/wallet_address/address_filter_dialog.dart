@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../app_providers.dart';
 import '../app_router.dart';
 import '../l10n/l10n.dart';
+import '../settings/address_settings.dart';
 import '../widgets/app_simpledialog.dart';
-import 'address_settings.dart';
 
 class AddressFilterDialog extends ConsumerWidget {
   const AddressFilterDialog({Key? key}) : super(key: key);

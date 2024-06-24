@@ -1,4 +1,4 @@
-import '../settings/settings_providers.dart';
+import '../settings/settings_repository.dart';
 import 'chain_state_types.dart';
 
 export 'chain_state_types.dart';

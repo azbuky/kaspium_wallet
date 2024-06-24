@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../settings/settings_providers.dart';
+import '../settings_repository.dart';
 import 'tx_settings_types.dart';
 
 const kTxSettingsKey = '_kTxSettingsKey';

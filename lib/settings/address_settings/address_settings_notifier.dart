@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../settings/settings.dart';
+import '../settings_repository.dart';
 import 'address_settings_types.dart';
 
 const kAddressSettingsKey = '_kAddressSettingsKey';

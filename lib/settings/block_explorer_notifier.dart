@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../settings/block_explorer_settings.dart';
-import '../settings/block_explorers.dart';
-import '../settings/settings.dart';
+import 'block_explorer_settings.dart';
+import 'block_explorers.dart';
+import 'settings_repository.dart';
 
 const _kBlockExplorerConfigKey = '_kBlockExplorerConfigKeyV2';
 

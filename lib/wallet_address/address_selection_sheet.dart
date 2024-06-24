@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../app_providers.dart';
 import '../app_router.dart';
 import '../l10n/l10n.dart';
+import '../settings/address_settings.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/buttons.dart';
 import '../widgets/gradient_widgets.dart';
@@ -12,7 +13,6 @@ import '../widgets/sheet_header_button.dart';
 import '../widgets/sheet_widget.dart';
 import 'address_filter_dialog.dart';
 import 'address_list_widget.dart';
-import 'address_settings.dart';
 import 'wallet_address.dart';
 
 class AddressSelectionSheet extends HookConsumerWidget {
