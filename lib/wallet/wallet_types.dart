@@ -98,8 +98,8 @@ class WalletKind with _$WalletKind {
 
 @freezed
 class WalletInfo with _$WalletInfo {
-  const WalletInfo._();
-  const factory WalletInfo({
+  WalletInfo._();
+  factory WalletInfo({
     required String name,
     @Default(WalletKind.localHdSchnorr()) WalletKind kind,
     required String wid,
@@ -117,6 +117,8 @@ class WalletInfo with _$WalletInfo {
   bool get hasValidKpub => !kind.isLegacy;
 
   BoxInfo getBoxInfo(KaspaNetwork network) => boxInfo.getBoxInfo(network);
+
+  late final String settingsKey = hash('walletSettingsKey#${wid}');
 
   String hdPublicKey(KaspaNetwork network) {
     if (network == KaspaNetwork.mainnet) {

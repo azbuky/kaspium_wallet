@@ -1421,7 +1421,7 @@ class __$$WalletInfoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$WalletInfoImpl extends _WalletInfo {
-  const _$WalletInfoImpl(
+  _$WalletInfoImpl(
       {required this.name,
       this.kind = const WalletKind.localHdSchnorr(),
       required this.wid,
@@ -1482,13 +1482,13 @@ class _$WalletInfoImpl extends _WalletInfo {
 }
 
 abstract class _WalletInfo extends WalletInfo {
-  const factory _WalletInfo(
+  factory _WalletInfo(
       {required final String name,
       final WalletKind kind,
       required final String wid,
       required final BoxInfoByNetwork boxInfo,
       required final String mainnetPublicKey}) = _$WalletInfoImpl;
-  const _WalletInfo._() : super._();
+  _WalletInfo._() : super._();
 
   factory _WalletInfo.fromJson(Map<String, dynamic> json) =
       _$WalletInfoImpl.fromJson;

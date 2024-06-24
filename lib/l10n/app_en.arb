@@ -50,6 +50,7 @@
   "available": "Available",
   "backupConfirmButton": "I've Backed It Up",
   "backupSecretPhrase": "Backup Secret Phrase",
+  "missingSecretPhrase": "Missing Secret Phrase",
   "biometricsMethod": "Biometrics",
   "blockExplorer": "Block Explorer",
   "cancel": "Cancel",
@@ -536,5 +537,9 @@
   },
   "txFilterDialogTitle": "Transaction Filter",
   "txFilterDialogOptionAllTxs": "Show All Transactions",
-  "txFilterDialogOptionHideNotAcceptedCoinbase": "Hide Not Accepted Coinbase Transactions"
+  "txFilterDialogOptionHideNotAcceptedCoinbase": "Hide Not Accepted Coinbase Transactions",
+  "requestPasswordHeader": "Request Password",
+  "requestPasswordAtLaunch": "At Launch",
+  "requestPasswordWhenLocked": "When Locked",
+  "requestPasswordWhenSigning": "When Signing"
 }
