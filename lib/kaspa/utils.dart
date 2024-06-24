@@ -94,6 +94,8 @@ Uint8List digest({required Uint8List data, int digestSize = 32}) {
   return output;
 }
 
+String hash(String data) => digest(data: stringToBytesUtf8(data)).hex;
+
 // mnemonic helpers
 
 String generateMnemonic({int strength = 256}) =>

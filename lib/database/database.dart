@@ -114,22 +114,13 @@ class Database {
   Future<void> _init() async {
     await Hive.initFlutter('kaspium_wallet');
 
-    const kContactsBoxId = '_contactsBox';
-    const kSettingsBoxId = '_settingsBox';
-    const kPushInfoBoxId = '_pushInfoBox';
-    const kTxNotesBoxId = '_txNotesBox';
-
     final vault = Vault();
-    var secureKey = await vault.getDbKey();
+    final dbKey = await vault.getDbKey();
 
-    contactsBox =
-        digest(data: stringToBytesUtf8('$kContactsBoxId#$secureKey')).hex;
-    settingsBox =
-        digest(data: stringToBytesUtf8('$kSettingsBoxId#$secureKey')).hex;
-    pushInfoBox =
-        digest(data: stringToBytesUtf8('$kPushInfoBoxId#$secureKey')).hex;
-    txNotesBox =
-        digest(data: stringToBytesUtf8('$kTxNotesBoxId#$secureKey')).hex;
+    contactsBox = hash('_contactsBox#$dbKey');
+    settingsBox = hash('_settingsBox#$dbKey');
+    pushInfoBox = hash('_pushInfoBox#$dbKey');
+    txNotesBox = hash('_txNotesBox#$dbKey');
 
     Future<Box> _openBox<T>(String box, {bool encrypted = false}) async {
       return Hive.openBox<T>(

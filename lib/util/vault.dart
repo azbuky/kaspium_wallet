@@ -28,11 +28,10 @@ class Vault {
   Future<bool> get pinIsSet async => (await get(_pinKey)) != null;
 
   Future<String> getDbKey() async {
-    final key = await get(_dbKey);
+    var key = await get(_dbKey);
     if (key == null) {
-      final newKey = RandomUtil.generateKey();
-      await set(_dbKey, newKey);
-      return newKey;
+      key = RandomUtil.generateKey();
+      await set(_dbKey, key);
     }
     return key;
   }

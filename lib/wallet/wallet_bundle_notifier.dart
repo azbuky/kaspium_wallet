@@ -60,16 +60,11 @@ class WalletBundleNotifier extends StateNotifier<WalletBundle> {
       required String wid,
       required KaspaNetwork network,
     }) {
-      final addressBoxKey =
-          digest(data: stringToBytesUtf8('addressBoxKey#$network#$wid')).hex;
-      final balanceBoxKey =
-          digest(data: stringToBytesUtf8('balanceBoxKey#$network#$wid')).hex;
-      final utxoBoxKey =
-          digest(data: stringToBytesUtf8('utxoBoxKey#$network#$wid')).hex;
-      final txIndexBoxKey =
-          digest(data: stringToBytesUtf8('txIndexBoxKey#$network#$wid')).hex;
-      final txBoxKey =
-          digest(data: stringToBytesUtf8('txBoxKey#$network#$wid')).hex;
+      final addressBoxKey = hash('addressBoxKey#$network#$wid');
+      final balanceBoxKey = hash('balanceBoxKey#$network#$wid');
+      final utxoBoxKey = hash('utxoBoxKey#$network#$wid');
+      final txIndexBoxKey = hash('txIndexBoxKey#$network#$wid');
+      final txBoxKey = hash('txBoxKey#$network#$wid');
 
       return BoxInfo(
         address: BoxKeys(
