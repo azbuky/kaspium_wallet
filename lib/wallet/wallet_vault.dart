@@ -58,8 +58,7 @@ class WalletVault {
 
   Future<bool> hasMnemonic() async {
     final mnemonic = await vault.get(_mnemonicKey);
-    final mnemonicOrSeed = mnemonic ?? await vault.get(_seedKey);
-    return mnemonicOrSeed != null;
+    return mnemonic != null;
   }
 
   Future<bool> seedIsEncrypted() async {
