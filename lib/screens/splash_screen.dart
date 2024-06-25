@@ -8,6 +8,7 @@ import '../app_router.dart';
 import '../database/database.dart';
 import '../intro/intro_providers.dart';
 import '../l10n/l10n.dart';
+import '../settings/wallet_settings.dart';
 import '../util/lock_settings.dart';
 import '../util/ui_util.dart';
 import '../widgets/notice_dialog.dart';
@@ -72,14 +73,24 @@ class SplashScreen extends HookConsumerWidget {
 
       await walletAuthNotifier.checkEncryptedState();
 
-      if (walletAuthNotifier.walletLocked) {
-        if (walletAuthNotifier.walletEncrypted) {
-          appRouter.requirePassword(context);
-          return;
-        }
+      if (walletAuthNotifier.walletIsLocked) {
         final vault = ref.read(vaultProvider);
         final lockSettings = LockSettings(vault);
         final authOnLaunch = await lockSettings.getLock();
+
+        final walletSettings = ref.read(walletSettingsProvider);
+        final requirePassword = switch (walletSettings.requestPassword) {
+          RequestPassword.atLaunch => walletAuthNotifier.walletIsEncrypted,
+          RequestPassword.whenLocked =>
+            walletAuthNotifier.walletIsEncrypted && authOnLaunch,
+          RequestPassword.whenSigning => false,
+        };
+
+        if (requirePassword) {
+          appRouter.requirePassword(context);
+          return;
+        }
+
         if (authOnLaunch) {
           appRouter.requireUnlock(context);
           return;

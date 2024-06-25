@@ -25,11 +25,15 @@ class PinScreen extends ConsumerStatefulWidget {
   final PinOverlayType type;
   final String? expectedPin;
   final String description;
+  final Color? pinScreenBackgroundColor;
+  final AppLocalizations l10n;
 
   const PinScreen(
     this.type, {
     this.description = '',
     this.expectedPin = '',
+    this.pinScreenBackgroundColor,
+    required this.l10n,
   });
 
   @override
@@ -40,7 +44,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
     with SingleTickerProviderStateMixin {
   static const int MAX_ATTEMPTS = 5;
 
-  AppLocalizations get l10n => l10nOf(context);
+  AppLocalizations get l10n => widget.l10n;
 
   int _pinLength = 6;
   final double buttonSize = 100;
@@ -237,7 +241,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
         return Container(
           constraints: BoxConstraints.expand(),
           child: Material(
-            color: theme.backgroundDark,
+            color: widget.pinScreenBackgroundColor ?? theme.backgroundDark,
             child: Column(
               children: [
                 Container(

@@ -18,11 +18,12 @@ class IntroScreen extends HookConsumerWidget {
     final walletBundle = ref.watch(walletBundleProvider);
 
     Future<bool> checkPin() async {
+      final l10n = l10nOf(context);
+
       final vault = ref.read(vaultProvider);
       final pinIsSet = await vault.pinIsSet;
 
       if (pinIsSet) {
-        final l10n = l10nOf(context);
         final authUtil = ref.read(authUtilProvider);
         final auth = authUtil.authenticate(
           context,
@@ -35,7 +36,10 @@ class IntroScreen extends HookConsumerWidget {
       final pin = await appRouter.push(
         context,
         MaterialPageRoute<String>(
-          builder: (_) => PinScreen(PinOverlayType.NEW_PIN),
+          builder: (_) => PinScreen(
+            PinOverlayType.NEW_PIN,
+            l10n: l10n,
+          ),
         ),
       );
       if (pin != null && pin.length > 5) {

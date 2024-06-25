@@ -158,13 +158,14 @@ class __$$WalletAuthImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$WalletAuthImpl implements _WalletAuth {
+class _$WalletAuthImpl extends _WalletAuth {
   const _$WalletAuthImpl(
       {required this.wallet,
       this.encryptedSecret,
       this.isLocked = true,
       this.isEncrypted = false,
-      this.hasMnemonic = false});
+      this.hasMnemonic = false})
+      : super._();
 
   @override
   final WalletInfo wallet;
@@ -212,13 +213,14 @@ class _$WalletAuthImpl implements _WalletAuth {
       __$$WalletAuthImplCopyWithImpl<_$WalletAuthImpl>(this, _$identity);
 }
 
-abstract class _WalletAuth implements WalletAuth {
+abstract class _WalletAuth extends WalletAuth {
   const factory _WalletAuth(
       {required final WalletInfo wallet,
       final String? encryptedSecret,
       final bool isLocked,
       final bool isEncrypted,
       final bool hasMnemonic}) = _$WalletAuthImpl;
+  const _WalletAuth._() : super._();
 
   @override
   WalletInfo get wallet;

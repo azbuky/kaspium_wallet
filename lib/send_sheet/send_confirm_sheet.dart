@@ -120,9 +120,18 @@ class SendConfirmSheet extends HookConsumerWidget {
       }
 
       // Authenticate
+      final walletAuth = ref.read(walletAuthProvider.notifier);
       final authUtil = ref.read(authUtilProvider);
-      final message = authMessage();
-      final auth = await authUtil.authenticate(context, message, message);
+      bool auth = false;
+      if (walletAuth.needsPasswordAuth) {
+        auth = await authUtil.authenticateWithPassword(
+          context,
+          validator: (password) => walletAuth.unlock(password: password),
+        );
+      } else {
+        final message = authMessage();
+        auth = await authUtil.authenticate(context, message, message);
+      }
       if (auth) {
         await sendTransaction();
       }

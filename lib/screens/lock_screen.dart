@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
@@ -25,6 +26,27 @@ class _LockScreenState extends ConsumerState<LockScreen> {
   bool _showLock = false;
   bool _lockedOut = true;
   String _countDownTxt = "";
+
+  late final AppLifecycleListener _appStateListener;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _appStateListener = AppLifecycleListener(onResume: () {
+      if (appRouter.isTopRoute<BarrierRoute>(context)) {
+        _authenticate(useTransition: true);
+      }
+    });
+
+    _authenticate(useTransition: true);
+  }
+
+  @override
+  void dispose() {
+    _appStateListener.dispose();
+    super.dispose();
+  }
 
   Future<void> _goHome() async {
     final walletAuth = ref.read(walletAuthProvider.notifier);
@@ -110,48 +132,57 @@ class _LockScreenState extends ConsumerState<LockScreen> {
     }
   }
 
-  Future<void> authenticateWithBiometrics() async {
+  Future<void> _authenticateWithBiometrics() async {
     final l10n = l10nOf(context);
+
+    final privacyOverlayDisabled =
+        ref.read(privacyOverlayDisabledProvider.notifier);
+    privacyOverlayDisabled.state = true;
+
     final biometricUtil = ref.read(biometricUtilProvider);
-    final authenticated = await biometricUtil.authenticateWithBiometrics(
-      l10n.unlockBiometrics,
-    );
-    if (authenticated) {
-      _goHome();
-    } else {
-      setState(() {
-        _showUnlockButton = true;
+    bool authenticated = false;
+
+    try {
+      authenticated = await biometricUtil.authenticateWithBiometrics(
+        l10n.unlockBiometrics,
+      );
+
+      if (authenticated) {
+        _goHome();
+      } else {
+        setState(() {
+          _showUnlockButton = true;
+        });
+      }
+    } catch (_) {
+      rethrow;
+    } finally {
+      Future.delayed(Duration(milliseconds: 200), () {
+        print('Enabling privacy overlay');
+        ref.read(privacyOverlayDisabledProvider.notifier).state = false;
       });
     }
   }
 
-  Future<void> authenticateWithPin({bool useTransition = false}) async {
-    final theme = ref.read(themeProvider);
+  Future<void> _authenticateWithPin({bool useTransition = false}) async {
     final l10n = l10nOf(context);
+    final authUtil = ref.read(authUtilProvider);
 
-    String? expectedPin = await ref.read(vaultProvider).getPin();
-
-    final pinScreen = PinScreen(
-      PinOverlayType.ENTER_PIN,
-      expectedPin: expectedPin,
+    final auth = authUtil.authenticateWithPin(
+      context,
       description: l10n.unlockPin,
-      pinScreenBackgroundColor: theme.backgroundDark,
-      l10n: l10n,
+      useTransition: useTransition,
     );
 
-    final transition = useTransition
-        ? MaterialPageRoute<bool>(builder: (context) => pinScreen)
-        : NoTransitionRoute<bool>(builder: (context) => pinScreen);
-    final auth = await Navigator.of(context).push(transition);
     await Future.delayed(Duration(milliseconds: 200));
-
     if (mounted) {
       setState(() {
         _showUnlockButton = true;
         _showLock = true;
       });
     }
-    if (auth == true) {
+
+    if ((await auth) == true) {
       _goHome();
     }
   }
@@ -185,23 +216,20 @@ class _LockScreenState extends ConsumerState<LockScreen> {
           _showLock = true;
           _showUnlockButton = true;
         });
-        try {
-          await authenticateWithBiometrics();
-        } catch (e) {
-          await authenticateWithPin(useTransition: true);
+        if (SchedulerBinding.instance.lifecycleState ==
+            AppLifecycleState.resumed) {
+          try {
+            await _authenticateWithBiometrics();
+          } catch (e) {
+            await _authenticateWithPin(useTransition: true);
+          }
         }
       } else {
-        await authenticateWithPin(useTransition: true);
+        await _authenticateWithPin(useTransition: true);
       }
     } else {
-      await authenticateWithPin(useTransition: useTransition);
+      await _authenticateWithPin(useTransition: useTransition);
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _authenticate();
   }
 
   @override

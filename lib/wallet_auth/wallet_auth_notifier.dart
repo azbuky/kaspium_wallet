@@ -27,9 +27,13 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
     state = state.copyWith(isEncrypted: isEncrypted);
   }
 
-  WalletAuth get walletAuth => state;
-  bool get walletLocked => state.isLocked;
-  bool get walletEncrypted => state.isEncrypted;
+  bool get walletIsLocked => state.isLocked;
+  bool get walletIsEncrypted => state.isEncrypted;
+
+  bool get walletIsLegacy => state.wallet.isLegacy;
+
+  bool get needsPasswordAuth =>
+      state.isEncrypted && state.encryptedSecret == null;
 
   Future<String> _getSeed() async {
     if (state.isLocked) {
@@ -83,12 +87,9 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
   }
 
   Future<bool> unlock({String? password}) async {
-    if (state.isEncrypted) {
-      if (password == null) {
-        return false;
-      }
+    if (state.isEncrypted && password != null) {
       try {
-        await unlockWithPassword(password);
+        await _unlockWithPassword(password);
         return true;
       } catch (_) {
         return false;
@@ -98,7 +99,7 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
     return true;
   }
 
-  Future<void> unlockWithPassword(String password) async {
+  Future<void> _unlockWithPassword(String password) async {
     final seed = await walletVault.getSeed(password: password);
 
     final sessionKey = await walletVault.updateSessionKey();
@@ -114,6 +115,9 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
   Future<void> setPassword(String password) async {
     try {
       final seed = await walletVault.getSeed();
+      if (EncryptionUtil.isEncryptedHex(seed)) {
+        throw Exception('Wallet is password protected');
+      }
       final mnemonic = await walletVault.getMnemonic();
       final sessionKey = await walletVault.updateSessionKey();
       final encryptedSecret = EncryptionUtil.encryptHex(seed, sessionKey);

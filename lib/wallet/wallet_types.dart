@@ -116,6 +116,8 @@ class WalletInfo with _$WalletInfo {
 
   bool get hasValidKpub => !kind.isLegacy;
 
+  bool get canSetPassword => !kind.isViewOnly;
+
   BoxInfo getBoxInfo(KaspaNetwork network) => boxInfo.getBoxInfo(network);
 
   late final String settingsKey = hash('walletSettingsKey#${wid}');

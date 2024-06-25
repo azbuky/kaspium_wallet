@@ -7,6 +7,7 @@ import '../l10n/l10n.dart';
 import '../screens/password_lock_page.dart';
 import '../settings/authentication_method.dart';
 import '../widgets/pin_screen.dart';
+import 'routes.dart';
 
 class AuthUtil {
   final Ref ref;
@@ -21,11 +22,12 @@ class AuthUtil {
     final sharedPrefsUtil = ref.read(sharedPrefsUtilProvider);
     final biometricUtil = ref.read(biometricUtilProvider);
 
-    final authMethod = await sharedPrefsUtil.getAuthMethod();
+    final authMethod = sharedPrefsUtil.getAuthMethod();
     final hasBiometrics = await biometricUtil.hasBiometrics();
 
     if (authMethod.method == AuthMethod.BIOMETRICS && hasBiometrics) {
       try {
+        ref.read(privacyOverlayDisabledProvider.notifier).state = true;
         final authenticated =
             await biometricUtil.authenticateWithBiometrics(biometricsMessage);
         if (authenticated) {
@@ -38,19 +40,29 @@ class AuthUtil {
         final logger = ref.read(loggerProvider);
         logger.e('Failed to authenticate with biometrics',
             error: e, stackTrace: st);
-        return authenticateWithPin(context, pinMessage);
+        return authenticateWithPin(context, description: pinMessage);
+      } finally {
+        Future.delayed(Duration(milliseconds: 200), () {
+          ref.read(privacyOverlayDisabledProvider.notifier).state = false;
+        });
       }
     }
-    return authenticateWithPin(context, pinMessage);
+    return authenticateWithPin(context, description: pinMessage);
   }
 
-  Future<bool> authenticateWithPin(BuildContext context, String message) async {
+  Future<bool> authenticateWithPin(
+    BuildContext context, {
+    required String description,
+    bool useTransition = false,
+  }) async {
+    final l10n = l10nOf(context);
     String? expectedPin = await ref.read(vaultProvider).getPin();
 
     final pinScreen = PinScreen(
       PinOverlayType.ENTER_PIN,
       expectedPin: expectedPin,
       description: description,
+      l10n: l10n,
     );
 
     final route = useTransition
