@@ -13,7 +13,7 @@ import 'numberutil.dart';
 
 abstract class UIUtil {
   static double drawerWidth(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.sizeOf(context).width;
     return (width < 375) ? width * 0.94 : width * 0.85;
   }
 
