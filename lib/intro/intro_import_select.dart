@@ -129,13 +129,13 @@ class IntroImportSelect extends ConsumerWidget {
               ),
             ),
             ImportWalletTypeCard(
-              title: l10n.importOption24WordsTitle,
-              description: l10n.importOption24WordsDescription,
+              title: l10n.importOptionStandardWalletTitle,
+              description: l10n.importOptionStandardWalletDescription,
               onPressed: importWallet,
             ),
             ImportWalletTypeCard(
-              title: l10n.importOption12WordsTitle,
-              description: l10n.importOption12WordsDescription,
+              title: l10n.importOptionLegacyWalletTitle,
+              description: l10n.importOptionLegacyWalletDescription,
               onPressed: importLegacyWallet,
             ),
             ImportWalletTypeCard(

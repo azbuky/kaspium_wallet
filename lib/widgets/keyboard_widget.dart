@@ -15,13 +15,13 @@ const kBackspaceKey = '⌫';
 final wordListProvider =
     Provider<IList<String>>((ref) => kMnemonicWordList.toIList());
 
-final wordPrefixProvider = StateProvider((ref) {
+final wordPrefixProvider = StateProvider.autoDispose((ref) {
   return '';
 });
 
 final keyboardEnabledProvider = StateProvider.autoDispose((ref) => true);
 
-final wordSuggestionsProvider = Provider<IList<String>>((ref) {
+final wordSuggestionsProvider = Provider.autoDispose<IList<String>>((ref) {
   final prefix = ref.watch(wordPrefixProvider);
   final wordList = ref.watch(wordListProvider);
   if (prefix.isEmpty) {

@@ -48,7 +48,7 @@ class SetupWalletScreen extends HookConsumerWidget {
             throw Exception('Missing seed');
           }
           WalletKind walletKind;
-          if (introData.mnemonic?.split(' ').length == 12) {
+          if (introData.isLegacyWallet) {
             final wallet = HdWallet.forSeedHex(seed, type: HdWalletType.legacy);
             final pubKey = wallet.derivePublicKey(typeIndex: 0, index: 0);
             walletKind = WalletKind.localHdLegacy(mainPubKey: pubKey.hex);
