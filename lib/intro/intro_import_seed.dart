@@ -12,9 +12,11 @@ import '../util/ui_util.dart';
 import '../util/user_data_util.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/keyboard_widget.dart';
+import 'import_seed_options.dart';
 import 'intro_back_button.dart';
 import 'intro_providers.dart';
 import 'invalid_checksum_dialog.dart';
+import 'widgets/bip39_passphrase_button.dart';
 
 final _mnemonicProvider = StateProvider.autoDispose((ref) => '');
 
@@ -197,11 +199,17 @@ class IntroImportSeed extends HookConsumerWidget {
               child: ListView(
                 shrinkWrap: true,
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 20),
-                      child: const IntroBackButton(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const IntroBackButton(),
+                        if (isLegacy)
+                          const SizedBox()
+                        else
+                          const ImportSeedOptionsButton()
+                      ],
                     ),
                   ),
                   Container(
@@ -285,6 +293,7 @@ class IntroImportSeed extends HookConsumerWidget {
                         ),
                       );
                     }),
+                    if (!isLegacy) const Bip39PassphraseButton(),
                   ]),
                 ],
               ),

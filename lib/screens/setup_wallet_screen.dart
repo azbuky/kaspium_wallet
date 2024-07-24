@@ -60,6 +60,7 @@ class SetupWalletScreen extends HookConsumerWidget {
             name: introData.name ?? l10n.defaultWalletName,
             kind: walletKind,
             seed: seed,
+            usesBip39Passphrase: introData.bip39Passphrase.isNotEmpty,
             mnemonic: introData.mnemonic,
             password: introData.password,
           );

@@ -113,12 +113,18 @@ class WalletBundleNotifier extends StateNotifier<WalletBundle> {
       },
     );
 
+    final usesBip39Passphrase = walletData.map(
+      seed: (data) => data.usesBip39Passphrase,
+      kpub: (data) => false,
+    );
+
     return WalletInfo(
       name: walletData.name,
       kind: walletData.kind,
       wid: wid,
       boxInfo: boxInfo,
       mainnetPublicKey: mainnetPublicKey,
+      usesBip39Passphrase: usesBip39Passphrase,
     );
   }
 

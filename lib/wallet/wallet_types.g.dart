@@ -108,6 +108,7 @@ _$WalletInfoImpl _$$WalletInfoImplFromJson(Map json) => _$WalletInfoImpl(
       boxInfo: BoxInfoByNetwork.fromJson(
           Map<String, dynamic>.from(json['boxInfo'] as Map)),
       mainnetPublicKey: json['mainnetPublicKey'] as String,
+      usesBip39Passphrase: json['usesBip39Passphrase'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$WalletInfoImplToJson(_$WalletInfoImpl instance) =>
@@ -117,6 +118,7 @@ Map<String, dynamic> _$$WalletInfoImplToJson(_$WalletInfoImpl instance) =>
       'wid': instance.wid,
       'boxInfo': instance.boxInfo.toJson(),
       'mainnetPublicKey': instance.mainnetPublicKey,
+      'usesBip39Passphrase': instance.usesBip39Passphrase,
     };
 
 _$WalletBundleImpl _$$WalletBundleImplFromJson(Map json) => _$WalletBundleImpl(

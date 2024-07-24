@@ -541,5 +541,12 @@
   "requestPasswordHeader": "Request Password",
   "requestPasswordAtLaunch": "At Launch",
   "requestPasswordWhenLocked": "When Locked",
-  "requestPasswordWhenSigning": "When Signing"
+  "requestPasswordWhenSigning": "When Signing",
+  "importWalletAdvancedOptions": "Advanced Options",
+  "bip39Passphrase": "BIP39 Passphrase",
+  "bip39PassphraseWarning": "NOTE: This is not a wallet password, different BIP39 passphrases will open different wallets.",
+  "bip39PassphraseEnter": "Enter Passphrase",
+  "bip39PassphraseConfirm": "Confirm Passphrase",
+  "bip39PassphraseMismatch": "Passphrases do not match!",
+  "bip39PassphraseNote": "Wallet with BIP39 passphrase."
 }

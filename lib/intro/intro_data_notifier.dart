@@ -4,8 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../kaspa/utils.dart';
 import 'intro_types.dart';
 
-String _computeSeed(String mnemonic) {
-  return mnemonicToSeedHex(mnemonic);
+String _computeSeed(({String mnemonic, String passphrase}) data) {
+  final mnemonic = data.mnemonic;
+  final passphrase = data.passphrase;
+
+  return mnemonicToSeedHex(mnemonic, passphrase: passphrase);
 }
 
 class IntroDataNotifier extends StateNotifier<IntroData> {
@@ -28,7 +31,24 @@ class IntroDataNotifier extends StateNotifier<IntroData> {
   }
 
   void setMnemonic(String mnemonic, {bool generated = false}) {
-    final seed = compute(_computeSeed, mnemonic, debugLabel: 'ComputeSeed');
+    if (mnemonic.isEmpty) {
+      throw Exception('Mnemonic can\'t be empty');
+    }
+
+    if (!isValidMnemonic(mnemonic, verifyChecksum: false)) {
+      throw Exception('Invalid mnemonic');
+    }
+
+    final passphrase = state.bip39Passphrase;
+    if (generated && passphrase.isNotEmpty) {
+      throw Exception('Can\'t use passphrase with generated mnemonic');
+    }
+
+    final seed = compute(
+      _computeSeed,
+      (mnemonic: mnemonic, passphrase: passphrase),
+      debugLabel: 'ComputeSeed',
+    );
     state = state.copyWith(
       mnemonic: mnemonic,
       generated: generated,
@@ -59,11 +79,21 @@ class IntroDataNotifier extends StateNotifier<IntroData> {
     state = state.copyWith(pin: pin);
   }
 
-  void clear() {
-    state = const IntroData();
+  void setAccountMode(bool accountMode) {
+    state = state.copyWith(accountMode: accountMode);
   }
 
-  void restore(IntroData introData) {
-    state = introData;
+  void setLegacyWallet() {
+    state = state.copyWith(isLegacyWallet: true);
+  }
+
+  void setBip39Passphrase(String bip39Passphrase) {
+    state = state.copyWith(
+      bip39Passphrase: bip39Passphrase,
+    );
+  }
+
+  void clear() {
+    state = const IntroData();
   }
 }

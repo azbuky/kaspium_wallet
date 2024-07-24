@@ -1270,7 +1270,9 @@ mixin _$WalletInfo {
   WalletKind get kind => throw _privateConstructorUsedError;
   String get wid => throw _privateConstructorUsedError;
   BoxInfoByNetwork get boxInfo => throw _privateConstructorUsedError;
-  String get mainnetPublicKey => throw _privateConstructorUsedError;
+  String get mainnetPublicKey =>
+      throw _privateConstructorUsedError; // HDPublic key base58 encoded
+  bool get usesBip39Passphrase => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1289,7 +1291,8 @@ abstract class $WalletInfoCopyWith<$Res> {
       WalletKind kind,
       String wid,
       BoxInfoByNetwork boxInfo,
-      String mainnetPublicKey});
+      String mainnetPublicKey,
+      bool usesBip39Passphrase});
 
   $WalletKindCopyWith<$Res> get kind;
   $BoxInfoByNetworkCopyWith<$Res> get boxInfo;
@@ -1313,6 +1316,7 @@ class _$WalletInfoCopyWithImpl<$Res, $Val extends WalletInfo>
     Object? wid = null,
     Object? boxInfo = null,
     Object? mainnetPublicKey = null,
+    Object? usesBip39Passphrase = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -1335,6 +1339,10 @@ class _$WalletInfoCopyWithImpl<$Res, $Val extends WalletInfo>
           ? _value.mainnetPublicKey
           : mainnetPublicKey // ignore: cast_nullable_to_non_nullable
               as String,
+      usesBip39Passphrase: null == usesBip39Passphrase
+          ? _value.usesBip39Passphrase
+          : usesBip39Passphrase // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -1368,7 +1376,8 @@ abstract class _$$WalletInfoImplCopyWith<$Res>
       WalletKind kind,
       String wid,
       BoxInfoByNetwork boxInfo,
-      String mainnetPublicKey});
+      String mainnetPublicKey,
+      bool usesBip39Passphrase});
 
   @override
   $WalletKindCopyWith<$Res> get kind;
@@ -1392,6 +1401,7 @@ class __$$WalletInfoImplCopyWithImpl<$Res>
     Object? wid = null,
     Object? boxInfo = null,
     Object? mainnetPublicKey = null,
+    Object? usesBip39Passphrase = null,
   }) {
     return _then(_$WalletInfoImpl(
       name: null == name
@@ -1414,6 +1424,10 @@ class __$$WalletInfoImplCopyWithImpl<$Res>
           ? _value.mainnetPublicKey
           : mainnetPublicKey // ignore: cast_nullable_to_non_nullable
               as String,
+      usesBip39Passphrase: null == usesBip39Passphrase
+          ? _value.usesBip39Passphrase
+          : usesBip39Passphrase // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1426,7 +1440,8 @@ class _$WalletInfoImpl extends _WalletInfo {
       this.kind = const WalletKind.localHdSchnorr(),
       required this.wid,
       required this.boxInfo,
-      required this.mainnetPublicKey})
+      required this.mainnetPublicKey,
+      this.usesBip39Passphrase = false})
       : super._();
 
   factory _$WalletInfoImpl.fromJson(Map<String, dynamic> json) =>
@@ -1443,10 +1458,14 @@ class _$WalletInfoImpl extends _WalletInfo {
   final BoxInfoByNetwork boxInfo;
   @override
   final String mainnetPublicKey;
+// HDPublic key base58 encoded
+  @override
+  @JsonKey()
+  final bool usesBip39Passphrase;
 
   @override
   String toString() {
-    return 'WalletInfo(name: $name, kind: $kind, wid: $wid, boxInfo: $boxInfo, mainnetPublicKey: $mainnetPublicKey)';
+    return 'WalletInfo(name: $name, kind: $kind, wid: $wid, boxInfo: $boxInfo, mainnetPublicKey: $mainnetPublicKey, usesBip39Passphrase: $usesBip39Passphrase)';
   }
 
   @override
@@ -1459,13 +1478,15 @@ class _$WalletInfoImpl extends _WalletInfo {
             (identical(other.wid, wid) || other.wid == wid) &&
             (identical(other.boxInfo, boxInfo) || other.boxInfo == boxInfo) &&
             (identical(other.mainnetPublicKey, mainnetPublicKey) ||
-                other.mainnetPublicKey == mainnetPublicKey));
+                other.mainnetPublicKey == mainnetPublicKey) &&
+            (identical(other.usesBip39Passphrase, usesBip39Passphrase) ||
+                other.usesBip39Passphrase == usesBip39Passphrase));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, kind, wid, boxInfo, mainnetPublicKey);
+  int get hashCode => Object.hash(runtimeType, name, kind, wid, boxInfo,
+      mainnetPublicKey, usesBip39Passphrase);
 
   @JsonKey(ignore: true)
   @override
@@ -1487,7 +1508,8 @@ abstract class _WalletInfo extends WalletInfo {
       final WalletKind kind,
       required final String wid,
       required final BoxInfoByNetwork boxInfo,
-      required final String mainnetPublicKey}) = _$WalletInfoImpl;
+      required final String mainnetPublicKey,
+      final bool usesBip39Passphrase}) = _$WalletInfoImpl;
   _WalletInfo._() : super._();
 
   factory _WalletInfo.fromJson(Map<String, dynamic> json) =
@@ -1503,6 +1525,8 @@ abstract class _WalletInfo extends WalletInfo {
   BoxInfoByNetwork get boxInfo;
   @override
   String get mainnetPublicKey;
+  @override // HDPublic key base58 encoded
+  bool get usesBip39Passphrase;
   @override
   @JsonKey(ignore: true)
   _$$WalletInfoImplCopyWith<_$WalletInfoImpl> get copyWith =>
@@ -1689,7 +1713,7 @@ mixin _$WalletData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name, WalletKind kind, String seed,
-            String? mnemonic, String? password)
+            bool usesBip39Passphrase, String? mnemonic, String? password)
         seed,
     required TResult Function(String name, WalletKind kind, String kpub) kpub,
   }) =>
@@ -1697,7 +1721,7 @@ mixin _$WalletData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String name, WalletKind kind, String seed,
-            String? mnemonic, String? password)?
+            bool usesBip39Passphrase, String? mnemonic, String? password)?
         seed,
     TResult? Function(String name, WalletKind kind, String kpub)? kpub,
   }) =>
@@ -1705,7 +1729,7 @@ mixin _$WalletData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name, WalletKind kind, String seed,
-            String? mnemonic, String? password)?
+            bool usesBip39Passphrase, String? mnemonic, String? password)?
         seed,
     TResult Function(String name, WalletKind kind, String kpub)? kpub,
     required TResult orElse(),
@@ -1713,19 +1737,19 @@ mixin _$WalletData {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WalletDataMnemonic value) seed,
+    required TResult Function(_WalletDataSeed value) seed,
     required TResult Function(_WalletDataKpub value) kpub,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_WalletDataMnemonic value)? seed,
+    TResult? Function(_WalletDataSeed value)? seed,
     TResult? Function(_WalletDataKpub value)? kpub,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WalletDataMnemonic value)? seed,
+    TResult Function(_WalletDataSeed value)? seed,
     TResult Function(_WalletDataKpub value)? kpub,
     required TResult orElse(),
   }) =>
@@ -1785,17 +1809,18 @@ class _$WalletDataCopyWithImpl<$Res, $Val extends WalletData>
 }
 
 /// @nodoc
-abstract class _$$WalletDataMnemonicImplCopyWith<$Res>
+abstract class _$$WalletDataSeedImplCopyWith<$Res>
     implements $WalletDataCopyWith<$Res> {
-  factory _$$WalletDataMnemonicImplCopyWith(_$WalletDataMnemonicImpl value,
-          $Res Function(_$WalletDataMnemonicImpl) then) =
-      __$$WalletDataMnemonicImplCopyWithImpl<$Res>;
+  factory _$$WalletDataSeedImplCopyWith(_$WalletDataSeedImpl value,
+          $Res Function(_$WalletDataSeedImpl) then) =
+      __$$WalletDataSeedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String name,
       WalletKind kind,
       String seed,
+      bool usesBip39Passphrase,
       String? mnemonic,
       String? password});
 
@@ -1804,11 +1829,11 @@ abstract class _$$WalletDataMnemonicImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$WalletDataMnemonicImplCopyWithImpl<$Res>
-    extends _$WalletDataCopyWithImpl<$Res, _$WalletDataMnemonicImpl>
-    implements _$$WalletDataMnemonicImplCopyWith<$Res> {
-  __$$WalletDataMnemonicImplCopyWithImpl(_$WalletDataMnemonicImpl _value,
-      $Res Function(_$WalletDataMnemonicImpl) _then)
+class __$$WalletDataSeedImplCopyWithImpl<$Res>
+    extends _$WalletDataCopyWithImpl<$Res, _$WalletDataSeedImpl>
+    implements _$$WalletDataSeedImplCopyWith<$Res> {
+  __$$WalletDataSeedImplCopyWithImpl(
+      _$WalletDataSeedImpl _value, $Res Function(_$WalletDataSeedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1817,10 +1842,11 @@ class __$$WalletDataMnemonicImplCopyWithImpl<$Res>
     Object? name = null,
     Object? kind = null,
     Object? seed = null,
+    Object? usesBip39Passphrase = null,
     Object? mnemonic = freezed,
     Object? password = freezed,
   }) {
-    return _then(_$WalletDataMnemonicImpl(
+    return _then(_$WalletDataSeedImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1833,6 +1859,10 @@ class __$$WalletDataMnemonicImplCopyWithImpl<$Res>
           ? _value.seed
           : seed // ignore: cast_nullable_to_non_nullable
               as String,
+      usesBip39Passphrase: null == usesBip39Passphrase
+          ? _value.usesBip39Passphrase
+          : usesBip39Passphrase // ignore: cast_nullable_to_non_nullable
+              as bool,
       mnemonic: freezed == mnemonic
           ? _value.mnemonic
           : mnemonic // ignore: cast_nullable_to_non_nullable
@@ -1847,11 +1877,12 @@ class __$$WalletDataMnemonicImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$WalletDataMnemonicImpl implements _WalletDataMnemonic {
-  const _$WalletDataMnemonicImpl(
+class _$WalletDataSeedImpl implements _WalletDataSeed {
+  const _$WalletDataSeedImpl(
       {required this.name,
       required this.kind,
       required this.seed,
+      required this.usesBip39Passphrase,
       this.mnemonic,
       this.password});
 
@@ -1862,23 +1893,27 @@ class _$WalletDataMnemonicImpl implements _WalletDataMnemonic {
   @override
   final String seed;
   @override
+  final bool usesBip39Passphrase;
+  @override
   final String? mnemonic;
   @override
   final String? password;
 
   @override
   String toString() {
-    return 'WalletData.seed(name: $name, kind: $kind, seed: $seed, mnemonic: $mnemonic, password: $password)';
+    return 'WalletData.seed(name: $name, kind: $kind, seed: $seed, usesBip39Passphrase: $usesBip39Passphrase, mnemonic: $mnemonic, password: $password)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WalletDataMnemonicImpl &&
+            other is _$WalletDataSeedImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.kind, kind) || other.kind == kind) &&
             (identical(other.seed, seed) || other.seed == seed) &&
+            (identical(other.usesBip39Passphrase, usesBip39Passphrase) ||
+                other.usesBip39Passphrase == usesBip39Passphrase) &&
             (identical(other.mnemonic, mnemonic) ||
                 other.mnemonic == mnemonic) &&
             (identical(other.password, password) ||
@@ -1886,49 +1921,51 @@ class _$WalletDataMnemonicImpl implements _WalletDataMnemonic {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, kind, seed, mnemonic, password);
+  int get hashCode => Object.hash(
+      runtimeType, name, kind, seed, usesBip39Passphrase, mnemonic, password);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$WalletDataMnemonicImplCopyWith<_$WalletDataMnemonicImpl> get copyWith =>
-      __$$WalletDataMnemonicImplCopyWithImpl<_$WalletDataMnemonicImpl>(
+  _$$WalletDataSeedImplCopyWith<_$WalletDataSeedImpl> get copyWith =>
+      __$$WalletDataSeedImplCopyWithImpl<_$WalletDataSeedImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name, WalletKind kind, String seed,
-            String? mnemonic, String? password)
+            bool usesBip39Passphrase, String? mnemonic, String? password)
         seed,
     required TResult Function(String name, WalletKind kind, String kpub) kpub,
   }) {
-    return seed(name, kind, this.seed, mnemonic, password);
+    return seed(name, kind, this.seed, usesBip39Passphrase, mnemonic, password);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String name, WalletKind kind, String seed,
-            String? mnemonic, String? password)?
+            bool usesBip39Passphrase, String? mnemonic, String? password)?
         seed,
     TResult? Function(String name, WalletKind kind, String kpub)? kpub,
   }) {
-    return seed?.call(name, kind, this.seed, mnemonic, password);
+    return seed?.call(
+        name, kind, this.seed, usesBip39Passphrase, mnemonic, password);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name, WalletKind kind, String seed,
-            String? mnemonic, String? password)?
+            bool usesBip39Passphrase, String? mnemonic, String? password)?
         seed,
     TResult Function(String name, WalletKind kind, String kpub)? kpub,
     required TResult orElse(),
   }) {
     if (seed != null) {
-      return seed(name, kind, this.seed, mnemonic, password);
+      return seed(
+          name, kind, this.seed, usesBip39Passphrase, mnemonic, password);
     }
     return orElse();
   }
@@ -1936,7 +1973,7 @@ class _$WalletDataMnemonicImpl implements _WalletDataMnemonic {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WalletDataMnemonic value) seed,
+    required TResult Function(_WalletDataSeed value) seed,
     required TResult Function(_WalletDataKpub value) kpub,
   }) {
     return seed(this);
@@ -1945,7 +1982,7 @@ class _$WalletDataMnemonicImpl implements _WalletDataMnemonic {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_WalletDataMnemonic value)? seed,
+    TResult? Function(_WalletDataSeed value)? seed,
     TResult? Function(_WalletDataKpub value)? kpub,
   }) {
     return seed?.call(this);
@@ -1954,7 +1991,7 @@ class _$WalletDataMnemonicImpl implements _WalletDataMnemonic {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WalletDataMnemonic value)? seed,
+    TResult Function(_WalletDataSeed value)? seed,
     TResult Function(_WalletDataKpub value)? kpub,
     required TResult orElse(),
   }) {
@@ -1965,24 +2002,26 @@ class _$WalletDataMnemonicImpl implements _WalletDataMnemonic {
   }
 }
 
-abstract class _WalletDataMnemonic implements WalletData {
-  const factory _WalletDataMnemonic(
+abstract class _WalletDataSeed implements WalletData {
+  const factory _WalletDataSeed(
       {required final String name,
       required final WalletKind kind,
       required final String seed,
+      required final bool usesBip39Passphrase,
       final String? mnemonic,
-      final String? password}) = _$WalletDataMnemonicImpl;
+      final String? password}) = _$WalletDataSeedImpl;
 
   @override
   String get name;
   @override
   WalletKind get kind;
   String get seed;
+  bool get usesBip39Passphrase;
   String? get mnemonic;
   String? get password;
   @override
   @JsonKey(ignore: true)
-  _$$WalletDataMnemonicImplCopyWith<_$WalletDataMnemonicImpl> get copyWith =>
+  _$$WalletDataSeedImplCopyWith<_$WalletDataSeedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2074,7 +2113,7 @@ class _$WalletDataKpubImpl implements _WalletDataKpub {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name, WalletKind kind, String seed,
-            String? mnemonic, String? password)
+            bool usesBip39Passphrase, String? mnemonic, String? password)
         seed,
     required TResult Function(String name, WalletKind kind, String kpub) kpub,
   }) {
@@ -2085,7 +2124,7 @@ class _$WalletDataKpubImpl implements _WalletDataKpub {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String name, WalletKind kind, String seed,
-            String? mnemonic, String? password)?
+            bool usesBip39Passphrase, String? mnemonic, String? password)?
         seed,
     TResult? Function(String name, WalletKind kind, String kpub)? kpub,
   }) {
@@ -2096,7 +2135,7 @@ class _$WalletDataKpubImpl implements _WalletDataKpub {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name, WalletKind kind, String seed,
-            String? mnemonic, String? password)?
+            bool usesBip39Passphrase, String? mnemonic, String? password)?
         seed,
     TResult Function(String name, WalletKind kind, String kpub)? kpub,
     required TResult orElse(),
@@ -2110,7 +2149,7 @@ class _$WalletDataKpubImpl implements _WalletDataKpub {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WalletDataMnemonic value) seed,
+    required TResult Function(_WalletDataSeed value) seed,
     required TResult Function(_WalletDataKpub value) kpub,
   }) {
     return kpub(this);
@@ -2119,7 +2158,7 @@ class _$WalletDataKpubImpl implements _WalletDataKpub {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_WalletDataMnemonic value)? seed,
+    TResult? Function(_WalletDataSeed value)? seed,
     TResult? Function(_WalletDataKpub value)? kpub,
   }) {
     return kpub?.call(this);
@@ -2128,7 +2167,7 @@ class _$WalletDataKpubImpl implements _WalletDataKpub {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WalletDataMnemonic value)? seed,
+    TResult Function(_WalletDataSeed value)? seed,
     TResult Function(_WalletDataKpub value)? kpub,
     required TResult orElse(),
   }) {
