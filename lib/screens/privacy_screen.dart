@@ -4,6 +4,7 @@ import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../util/platform.dart';
 import 'privacy_overlay.dart';
 
 class PrivacyScreen extends HookConsumerWidget {
@@ -33,6 +34,9 @@ class PrivacyScreen extends HookConsumerWidget {
           inactive.value = false;
           break;
         case AppLifecycleState.inactive:
+          if (kInDebugMode && kPlatformIsMacOS) {
+            break;
+          }
           inactive.value = true;
           break;
         case AppLifecycleState.hidden:
