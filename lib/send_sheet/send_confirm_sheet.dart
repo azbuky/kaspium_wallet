@@ -30,8 +30,8 @@ class SendConfirmSheet extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    final l10n = l10nOf(context);
     final styles = ref.watch(stylesProvider);
+    final l10n = l10nOf(context);
 
     final toAddress = tx.toAddress;
     final amount = tx.amount;
@@ -95,16 +95,12 @@ class SendConfirmSheet extends HookConsumerWidget {
     }
 
     String? checkMissingBalance() {
-      final balance = ref.read(totalBalanceProvider).raw;
-      if (balance < amount.raw) {
-        return 'KAS';
+      final balanceRaw = ref.read(totalBalanceProvider).raw;
+
+      if (balanceRaw < amount.raw + fee) {
+        return amount.symbolLabel;
       }
 
-      if (fee != null) {
-        if (balance < amount.raw + fee) {
-          return amount.symbolLabel;
-        }
-      }
       return null;
     }
 
@@ -156,18 +152,14 @@ class SendConfirmSheet extends HookConsumerWidget {
                   ),
                 ),
                 AddressCard(address: toAddress),
-                if (fee != null) ...[
-                  Container(
-                    margin: const EdgeInsets.only(top: 30, bottom: 10),
-                    child: Text(
-                      l10n.fee.toUpperCase(),
-                      style: styles.textStyleSubHeader,
-                    ),
+                Container(
+                  margin: const EdgeInsets.only(top: 30, bottom: 10),
+                  child: Text(
+                    l10n.fee.toUpperCase(),
+                    style: styles.textStyleSubHeader,
                   ),
-                  AmountCard(
-                    amount: Amount.raw(fee),
-                  ),
-                ],
+                ),
+                AmountCard(amount: Amount.raw(fee)),
                 if (note != null)
                   Padding(
                     padding: const EdgeInsets.only(

@@ -18,9 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SendTx {
   KaspaUri get uri => throw _privateConstructorUsedError;
   BigInt get amountRaw => throw _privateConstructorUsedError;
+  BigInt get fee => throw _privateConstructorUsedError;
   Transaction get tx => throw _privateConstructorUsedError;
   Address? get changeAddress => throw _privateConstructorUsedError;
-  BigInt? get fee => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,9 +35,9 @@ abstract class $SendTxCopyWith<$Res> {
   $Res call(
       {KaspaUri uri,
       BigInt amountRaw,
+      BigInt fee,
       Transaction tx,
       Address? changeAddress,
-      BigInt? fee,
       String? note});
 
   $KaspaUriCopyWith<$Res> get uri;
@@ -60,9 +60,9 @@ class _$SendTxCopyWithImpl<$Res, $Val extends SendTx>
   $Res call({
     Object? uri = null,
     Object? amountRaw = null,
+    Object? fee = null,
     Object? tx = null,
     Object? changeAddress = freezed,
-    Object? fee = freezed,
     Object? note = freezed,
   }) {
     return _then(_value.copyWith(
@@ -74,6 +74,10 @@ class _$SendTxCopyWithImpl<$Res, $Val extends SendTx>
           ? _value.amountRaw
           : amountRaw // ignore: cast_nullable_to_non_nullable
               as BigInt,
+      fee: null == fee
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as BigInt,
       tx: null == tx
           ? _value.tx
           : tx // ignore: cast_nullable_to_non_nullable
@@ -82,10 +86,6 @@ class _$SendTxCopyWithImpl<$Res, $Val extends SendTx>
           ? _value.changeAddress
           : changeAddress // ignore: cast_nullable_to_non_nullable
               as Address?,
-      fee: freezed == fee
-          ? _value.fee
-          : fee // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -132,9 +132,9 @@ abstract class _$$SendTxImplCopyWith<$Res> implements $SendTxCopyWith<$Res> {
   $Res call(
       {KaspaUri uri,
       BigInt amountRaw,
+      BigInt fee,
       Transaction tx,
       Address? changeAddress,
-      BigInt? fee,
       String? note});
 
   @override
@@ -158,9 +158,9 @@ class __$$SendTxImplCopyWithImpl<$Res>
   $Res call({
     Object? uri = null,
     Object? amountRaw = null,
+    Object? fee = null,
     Object? tx = null,
     Object? changeAddress = freezed,
-    Object? fee = freezed,
     Object? note = freezed,
   }) {
     return _then(_$SendTxImpl(
@@ -172,6 +172,10 @@ class __$$SendTxImplCopyWithImpl<$Res>
           ? _value.amountRaw
           : amountRaw // ignore: cast_nullable_to_non_nullable
               as BigInt,
+      fee: null == fee
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as BigInt,
       tx: null == tx
           ? _value.tx
           : tx // ignore: cast_nullable_to_non_nullable
@@ -180,10 +184,6 @@ class __$$SendTxImplCopyWithImpl<$Res>
           ? _value.changeAddress
           : changeAddress // ignore: cast_nullable_to_non_nullable
               as Address?,
-      fee: freezed == fee
-          ? _value.fee
-          : fee // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -198,9 +198,9 @@ class _$SendTxImpl extends _SendTx {
   _$SendTxImpl(
       {required this.uri,
       required this.amountRaw,
+      required this.fee,
       required this.tx,
       this.changeAddress,
-      this.fee,
       this.note})
       : super._();
 
@@ -209,17 +209,17 @@ class _$SendTxImpl extends _SendTx {
   @override
   final BigInt amountRaw;
   @override
+  final BigInt fee;
+  @override
   final Transaction tx;
   @override
   final Address? changeAddress;
-  @override
-  final BigInt? fee;
   @override
   final String? note;
 
   @override
   String toString() {
-    return 'SendTx(uri: $uri, amountRaw: $amountRaw, tx: $tx, changeAddress: $changeAddress, fee: $fee, note: $note)';
+    return 'SendTx(uri: $uri, amountRaw: $amountRaw, fee: $fee, tx: $tx, changeAddress: $changeAddress, note: $note)';
   }
 
   @override
@@ -230,16 +230,16 @@ class _$SendTxImpl extends _SendTx {
             (identical(other.uri, uri) || other.uri == uri) &&
             (identical(other.amountRaw, amountRaw) ||
                 other.amountRaw == amountRaw) &&
+            (identical(other.fee, fee) || other.fee == fee) &&
             (identical(other.tx, tx) || other.tx == tx) &&
             (identical(other.changeAddress, changeAddress) ||
                 other.changeAddress == changeAddress) &&
-            (identical(other.fee, fee) || other.fee == fee) &&
             (identical(other.note, note) || other.note == note));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, uri, amountRaw, tx, changeAddress, fee, note);
+      Object.hash(runtimeType, uri, amountRaw, fee, tx, changeAddress, note);
 
   @JsonKey(ignore: true)
   @override
@@ -252,9 +252,9 @@ abstract class _SendTx extends SendTx {
   factory _SendTx(
       {required final KaspaUri uri,
       required final BigInt amountRaw,
+      required final BigInt fee,
       required final Transaction tx,
       final Address? changeAddress,
-      final BigInt? fee,
       final String? note}) = _$SendTxImpl;
   _SendTx._() : super._();
 
@@ -263,11 +263,11 @@ abstract class _SendTx extends SendTx {
   @override
   BigInt get amountRaw;
   @override
+  BigInt get fee;
+  @override
   Transaction get tx;
   @override
   Address? get changeAddress;
-  @override
-  BigInt? get fee;
   @override
   String? get note;
   @override

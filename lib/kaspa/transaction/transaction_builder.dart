@@ -13,8 +13,8 @@ class TransactionBuilder {
 
   Address? _changeAddress;
   Address? get changeAddress => _changeAddress;
-  BigInt? _fee;
-  BigInt? get fee => _fee;
+  BigInt _fee = BigInt.zero;
+  BigInt get fee => _fee;
 
   TransactionBuilder({
     required this.utxos,
