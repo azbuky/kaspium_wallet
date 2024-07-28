@@ -1,5 +1,16 @@
 import 'bip32/bip32.dart';
 
+const String kKaspaNetworkMainnet = 'mainnet';
+const String kKaspaNetworkTestnet = 'testnet';
+const String kKaspaNetworkSimnet = 'simnet';
+const String kKaspaNetworkDevnet = 'devnet';
+
+const String kKaspaNetworkIdMainnet = '$kKaspaNetworkMainnet';
+const String kKaspaNetworkIdTestnet10 = '$kKaspaNetworkTestnet-10';
+const String kKaspaNetworkIdTestnet11 = '$kKaspaNetworkTestnet-11';
+const String kKaspaNetworkIdSimnet = '$kKaspaNetworkSimnet';
+const String kKaspaNetworkIdDevnet = '$kKaspaNetworkDevnet';
+
 const int kMainnetRpcPort = 16110;
 const int kTestnetPpcPort = 16210;
 const int kSimnetRpcPort = 16510;
@@ -13,10 +24,10 @@ enum KaspaNetwork {
 
   static KaspaNetwork? tryParse(String network) {
     return switch (network) {
-      'mainnet' => KaspaNetwork.mainnet,
-      'testnet' => KaspaNetwork.testnet,
-      'simnet' => KaspaNetwork.simnet,
-      'devnet' => KaspaNetwork.devnet,
+      kKaspaNetworkMainnet => KaspaNetwork.mainnet,
+      kKaspaNetworkTestnet => KaspaNetwork.testnet,
+      kKaspaNetworkSimnet => KaspaNetwork.simnet,
+      kKaspaNetworkDevnet => KaspaNetwork.devnet,
       _ => null,
     };
   }

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../kaspa/kaspa.dart';
 import 'block_explorers.dart';
 
 part 'block_explorer_settings.freezed.dart';
@@ -11,9 +12,9 @@ class BlockExplorerSettings with _$BlockExplorerSettings {
 
   const factory BlockExplorerSettings({
     @Default(const {
-      'mainnet': kKaspaExplorerMainnet,
-      'testnet-10': kKaspaExplorerTestnet10,
-      'testnet-11': kKaspaExplorerTestnet11,
+      kKaspaNetworkIdMainnet: kKaspaExplorerMainnet,
+      kKaspaNetworkIdTestnet10: kKaspaExplorerTestnet10,
+      kKaspaNetworkIdTestnet11: kKaspaExplorerTestnet11,
     })
     Map<String, BlockExplorer> selection,
   }) = _BlockExplorerSettings;

@@ -84,16 +84,16 @@ const kKatnipTestnet = BlockExplorer(
 );
 
 const kBlockExplorersOptions = <String, List<BlockExplorer>>{
-  'mainnet': [
+  kKaspaNetworkIdMainnet: [
     kKaspaExplorerMainnet,
     kKasFyiMainnet,
   ],
-  'testnet-10': [
+  kKaspaNetworkIdTestnet10: [
     kKaspaExplorerTestnet10,
   ],
-  'testnet-11': [
+  kKaspaNetworkIdTestnet11: [
     kKaspaExplorerTestnet11,
   ],
-  'devnet': [],
-  'simnet': [],
+  kKaspaNetworkIdDevnet: [],
+  kKaspaNetworkIdSimnet: [],
 };
