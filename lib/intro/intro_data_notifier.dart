@@ -79,10 +79,6 @@ class IntroDataNotifier extends StateNotifier<IntroData> {
     state = state.copyWith(pin: pin);
   }
 
-  void setAccountMode(bool accountMode) {
-    state = state.copyWith(accountMode: accountMode);
-  }
-
   void setLegacyWallet() {
     state = state.copyWith(isLegacyWallet: true);
   }
