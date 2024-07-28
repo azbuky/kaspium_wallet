@@ -114,10 +114,22 @@ class AddressDiscoveryDialog extends HookConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(l10n.indexHeader),
-                Text(l10n.currentIndex),
-                Text(l10n.scannedIndex),
-                Text(l10n.newIndex),
+                Text(
+                  l10n.indexHeader,
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  l10n.currentIndex,
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  l10n.scannedIndex,
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  l10n.newIndex,
+                  style: styles.textStyleParagraph,
+                ),
               ],
             ),
           ),
@@ -126,10 +138,22 @@ class AddressDiscoveryDialog extends HookConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(l10n.receive),
-                Text('${receiveIndexes.start ?? '-'}'),
-                Text('${receiveIndexes.scanned ?? '-'}'),
-                Text('${receiveIndexes.last ?? '-'}'),
+                Text(
+                  l10n.receive,
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${receiveIndexes.start ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${receiveIndexes.scanned ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${receiveIndexes.last ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
               ],
             ),
           ),
@@ -138,10 +162,22 @@ class AddressDiscoveryDialog extends HookConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(l10n.change),
-                Text('${changeIndexes.start ?? '-'}'),
-                Text('${changeIndexes.scanned ?? '-'}'),
-                Text('${changeIndexes.last ?? '-'}'),
+                Text(
+                  l10n.change,
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${changeIndexes.start ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${changeIndexes.scanned ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${changeIndexes.last ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
               ],
             ),
           ),

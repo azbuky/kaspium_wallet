@@ -24,6 +24,8 @@ class NodeAddSheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeProvider);
+    final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
     final stateNotifier = useState(const AddNodeSheetState());
@@ -200,6 +202,8 @@ class NodeAddSheet extends HookConsumerWidget {
           AppTextField(
             controller: nameController,
             focusNode: nameFocusNode,
+            cursorColor: theme.primary,
+            style: styles.textStyleParagraphNormal,
             hintText: state.showNameHint ? l10n.nodeNameHint : '',
             textInputAction: TextInputAction.next,
             textCapitalization: TextCapitalization.words,
@@ -211,6 +215,8 @@ class NodeAddSheet extends HookConsumerWidget {
           AppTextField(
             controller: urlController,
             focusNode: urlFocusNode,
+            cursorColor: theme.primary,
+            style: styles.textStyleParagraphNormal,
             hintText: state.showUrlHint ? l10n.nodeUrlHint : '',
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.url,
