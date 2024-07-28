@@ -32,6 +32,17 @@ class BoxInfo with _$BoxInfo {
 }
 
 @freezed
+class BoxInfoBundle with _$BoxInfoBundle {
+  const factory BoxInfoBundle({
+    @Default({}) Map<String, BoxInfo> byNetworkId,
+    @Default(false) bool wasMigrated,
+  }) = _BoxInfoBundle;
+
+  factory BoxInfoBundle.fromJson(Map<String, dynamic> json) =>
+      _$BoxInfoBundleFromJson(json);
+}
+
+@freezed
 class BoxInfoByNetwork with _$BoxInfoByNetwork {
   const BoxInfoByNetwork._();
   const factory BoxInfoByNetwork({
@@ -103,7 +114,7 @@ class WalletInfo with _$WalletInfo {
     required String name,
     @Default(WalletKind.localHdSchnorr()) WalletKind kind,
     required String wid,
-    required BoxInfoByNetwork boxInfo,
+    @deprecated BoxInfoByNetwork? boxInfo,
     required String mainnetPublicKey, // HDPublic key base58 encoded
     @Default(false) bool usesBip39Passphrase,
   }) = _WalletInfo;
@@ -118,8 +129,6 @@ class WalletInfo with _$WalletInfo {
   bool get hasValidKpub => !kind.isLegacy;
 
   bool get canSetPassword => !kind.isViewOnly;
-
-  BoxInfo getBoxInfo(KaspaNetwork network) => boxInfo.getBoxInfo(network);
 
   late final String settingsKey = hash('walletSettingsKey#${wid}');
 

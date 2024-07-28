@@ -26,8 +26,8 @@ class WalletCard extends ConsumerWidget {
 
     Future<void> selectWallet() async {
       final notifier = ref.read(walletBundleProvider.notifier);
-      final network = ref.read(networkProvider);
-      await notifier.selectWallet(wallet, network);
+      final networkId = ref.read(networkIdProvider);
+      await notifier.selectWallet(wallet, networkId);
 
       appRouter.reload(context);
     }

@@ -100,8 +100,8 @@ class SplashScreen extends HookConsumerWidget {
       }
       // open database boxes for selected wallet
       final walletRepository = ref.read(walletRepositoryProvider);
-      final network = ref.read(networkProvider);
-      await walletRepository.openWalletBoxes(wallet, network: network);
+      final networkId = ref.read(networkIdProvider);
+      await walletRepository.openWalletBoxes(wallet, networkId: networkId);
 
       appRouter.openWallet(context);
     }

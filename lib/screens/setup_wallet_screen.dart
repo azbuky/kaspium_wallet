@@ -68,9 +68,10 @@ class SetupWalletScreen extends HookConsumerWidget {
 
         // setup wallet
         final network = ref.read(networkProvider);
+        final networkId = ref.read(networkIdProvider);
         final notifier = ref.read(walletBundleProvider.notifier);
         final wallet = await notifier.setupWallet(walletData);
-        await notifier.selectWallet(wallet, network);
+        await notifier.selectWallet(wallet, networkId);
 
         final auth = ref.read(walletAuthNotifierProvider);
         if (auth == null) throw Exception('No active wallet');
@@ -124,7 +125,7 @@ class SetupWalletScreen extends HookConsumerWidget {
         }
 
         final walletRepository = ref.read(walletRepositoryProvider);
-        await walletRepository.openWalletBoxes(wallet, network: network);
+        await walletRepository.openWalletBoxes(wallet, networkId: networkId);
 
         final addressBox = ref.read(addressBoxProvider(wallet));
 
@@ -137,7 +138,7 @@ class SetupWalletScreen extends HookConsumerWidget {
         final txCache = ref.read(txCacheServiceProvider(wallet));
         await txCache.addWalletTxIds(discovery.txIds);
 
-        await walletRepository.closeWalletBoxes(wallet, network: network);
+        await walletRepository.closeWalletBoxes(wallet, networkId: networkId);
 
         message.value = l10n.fetchingTransactions;
         details.value = '';

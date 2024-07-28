@@ -6,6 +6,7 @@ import '../settings/settings_repository.dart';
 import '../transactions/transaction_types.dart';
 import '../util/vault.dart';
 import '../wallet_address/wallet_address.dart';
+import 'box_info_repository.dart';
 import 'wallet_types.dart';
 import 'wallet_vault.dart';
 
@@ -36,9 +37,14 @@ extension WalletSettings on SettingsRepository {
 
 class WalletRepository {
   final SettingsRepository settings;
+  final BoxInfoRepository boxInfos;
   final Vault vault;
 
-  const WalletRepository(this.settings, this.vault);
+  const WalletRepository({
+    required this.settings,
+    required this.boxInfos,
+    required this.vault,
+  });
 
   WalletVault vaultForWallet(WalletInfo wallet) =>
       WalletVault(wallet.wid, vault);
@@ -56,9 +62,11 @@ class WalletRepository {
 
   Future<void> openWalletBoxes(
     WalletInfo wallet, {
-    required KaspaNetwork network,
+    required String networkId,
   }) async {
-    final boxInfo = wallet.getBoxInfo(network);
+    await boxInfos.migrateIfNeeded(wallet);
+
+    final boxInfo = boxInfos.getBoxInfo(wallet.wid, networkId);
     // open wallet boxes
     await Database.openBox<WalletAddress>(
       boxInfo.address.boxKey,
@@ -89,14 +97,28 @@ class WalletRepository {
 
   Future<void> closeWalletBoxes(
     WalletInfo wallet, {
-    required KaspaNetwork network,
+    required String networkId,
   }) async {
-    final boxInfo = wallet.getBoxInfo(network);
+    final boxInfo = boxInfos.getBoxInfo(wallet.wid, networkId);
     // close wallet boxes
     await Database.closeBox<WalletAddress>(boxInfo.address.boxKey);
     await Database.closeBox<AddressBalance>(boxInfo.balance.boxKey);
     await Database.closeBox<Utxo>(boxInfo.utxo.boxKey);
     await Database.closeBox<TxIndex>(boxInfo.txIndex.boxKey);
     await Database.closeBox<Tx>(boxInfo.tx.boxKey, lazy: true);
+  }
+
+  Future<void> removeWalletBoxes(WalletInfo wallet) async {
+    final boxInfoBundle = boxInfos.getBoxInfoBundle(wallet.wid);
+    // remove wallet boxes
+    for (final boxInfo in boxInfoBundle.byNetworkId.values) {
+      await Database.removeBox(boxInfo.address.boxKey);
+      await Database.removeBox(boxInfo.balance.boxKey);
+      await Database.removeBox(boxInfo.utxo.boxKey);
+      await Database.removeBox(boxInfo.txIndex.boxKey);
+      await Database.removeBox(boxInfo.tx.boxKey);
+    }
+
+    await boxInfos.removeBoxInfoBundle(wallet.wid);
   }
 }

@@ -24,19 +24,19 @@ class NodeItem extends ConsumerWidget {
     final activeConfig = ref.watch(kaspaNodeConfigProvider);
 
     Future<void> change() async {
-      final oldNetwork = ref.read(networkProvider);
-      final newNetwork = item.network;
+      final oldNetworkId = ref.read(networkIdProvider);
+      final newNetworkId = item.networkId;
       final repository = ref.read(walletRepositoryProvider);
       final wallet = ref.read(walletProvider);
-      if (oldNetwork != newNetwork) {
-        await repository.openWalletBoxes(wallet, network: newNetwork);
+      if (oldNetworkId != newNetworkId) {
+        await repository.openWalletBoxes(wallet, networkId: newNetworkId);
       }
 
       final notifier = ref.read(kaspaNodeSettingsProvider.notifier);
       await notifier.updateSelected(item.config);
 
-      if (oldNetwork != newNetwork) {
-        await repository.closeWalletBoxes(wallet, network: oldNetwork);
+      if (oldNetworkId != newNetworkId) {
+        await repository.closeWalletBoxes(wallet, networkId: oldNetworkId);
       }
     }
 

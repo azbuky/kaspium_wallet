@@ -18,8 +18,8 @@ class LogoutScreen extends HookConsumerWidget {
     Future<void> logout() async {
       try {
         final notifier = ref.read(walletBundleProvider.notifier);
-        final network = ref.read(networkProvider);
-        await notifier.logout(network);
+        final networkId = ref.read(networkIdProvider);
+        await notifier.logout(networkId);
       } catch (e, st) {
         final log = ref.read(loggerProvider);
         log.e('Failed to logout', error: e, stackTrace: st);

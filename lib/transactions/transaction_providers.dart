@@ -2,14 +2,10 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../core/core_providers.dart';
+import '../app_providers.dart';
 import '../database/boxes.dart';
 import '../kaspa/kaspa.dart';
-import '../utxos/utxos_providers.dart';
 import '../wallet/wallet_types.dart';
-import '../wallet_address/wallet_address_providers.dart';
-import '../wallet_auth/wallet_auth_providers.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
 import 'transaction_notifier.dart';
 import 'transaction_types.dart';
 import 'tx_cache_service.dart';
@@ -77,18 +73,20 @@ final _acceptedTransactionIdsProvider = StreamProvider.autoDispose((ref) {
 final _txBoxProvider =
     Provider.autoDispose.family<LazyTypedBox<Tx>, WalletInfo>((ref, wallet) {
   final db = ref.watch(dbProvider);
-  final network = ref.watch(networkProvider);
-
-  final txBoxKey = wallet.boxInfo.getBoxInfo(network).tx.boxKey;
+  final networkId = ref.watch(networkIdProvider);
+  final repository = ref.watch(boxInfoRepositoryProvider);
+  final boxInfo = repository.getBoxInfo(wallet.wid, networkId);
+  final txBoxKey = boxInfo.tx.boxKey;
   return db.getLazyTypedBox<Tx>(txBoxKey);
 });
 
 final _txIndexBoxProvider = Provider.autoDispose
     .family<IndexedTypedBox<TxIndex>, WalletInfo>((ref, wallet) {
   final db = ref.watch(dbProvider);
-  final network = ref.watch(networkProvider);
-
-  final txIndexBoxKey = wallet.getBoxInfo(network).txIndex.boxKey;
+  final networkId = ref.watch(networkIdProvider);
+  final repository = ref.watch(boxInfoRepositoryProvider);
+  final boxInfo = repository.getBoxInfo(wallet.wid, networkId);
+  final txIndexBoxKey = boxInfo.txIndex.boxKey;
   return db.getIndexedTypedBox<TxIndex>(txIndexBoxKey);
 });
 

@@ -37,6 +37,23 @@ Map<String, dynamic> _$$BoxInfoImplToJson(_$BoxInfoImpl instance) =>
       'tx': instance.tx.toJson(),
     };
 
+_$BoxInfoBundleImpl _$$BoxInfoBundleImplFromJson(Map json) =>
+    _$BoxInfoBundleImpl(
+      byNetworkId: (json['byNetworkId'] as Map?)?.map(
+            (k, e) => MapEntry(k as String,
+                BoxInfo.fromJson(Map<String, dynamic>.from(e as Map))),
+          ) ??
+          const {},
+      wasMigrated: json['wasMigrated'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$$BoxInfoBundleImplToJson(_$BoxInfoBundleImpl instance) =>
+    <String, dynamic>{
+      'byNetworkId':
+          instance.byNetworkId.map((k, e) => MapEntry(k, e.toJson())),
+      'wasMigrated': instance.wasMigrated,
+    };
+
 _$BoxInfoByNetworkImpl _$$BoxInfoByNetworkImplFromJson(Map json) =>
     _$BoxInfoByNetworkImpl(
       mainnet:
@@ -105,21 +122,32 @@ _$WalletInfoImpl _$$WalletInfoImplFromJson(Map json) => _$WalletInfoImpl(
           ? const WalletKind.localHdSchnorr()
           : WalletKind.fromJson(Map<String, dynamic>.from(json['kind'] as Map)),
       wid: json['wid'] as String,
-      boxInfo: BoxInfoByNetwork.fromJson(
-          Map<String, dynamic>.from(json['boxInfo'] as Map)),
+      boxInfo: json['boxInfo'] == null
+          ? null
+          : BoxInfoByNetwork.fromJson(
+              Map<String, dynamic>.from(json['boxInfo'] as Map)),
       mainnetPublicKey: json['mainnetPublicKey'] as String,
       usesBip39Passphrase: json['usesBip39Passphrase'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$WalletInfoImplToJson(_$WalletInfoImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'kind': instance.kind.toJson(),
-      'wid': instance.wid,
-      'boxInfo': instance.boxInfo.toJson(),
-      'mainnetPublicKey': instance.mainnetPublicKey,
-      'usesBip39Passphrase': instance.usesBip39Passphrase,
-    };
+Map<String, dynamic> _$$WalletInfoImplToJson(_$WalletInfoImpl instance) {
+  final val = <String, dynamic>{
+    'name': instance.name,
+    'kind': instance.kind.toJson(),
+    'wid': instance.wid,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('boxInfo', instance.boxInfo?.toJson());
+  val['mainnetPublicKey'] = instance.mainnetPublicKey;
+  val['usesBip39Passphrase'] = instance.usesBip39Passphrase;
+  return val;
+}
 
 _$WalletBundleImpl _$$WalletBundleImplFromJson(Map json) => _$WalletBundleImpl(
       wallets: json['wallets'] == null

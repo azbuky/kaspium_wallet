@@ -41,8 +41,9 @@ final walletProvider = Provider.autoDispose<WalletInfo>((ref) {
 
 final walletBoxInfoProvider = Provider.autoDispose<BoxInfo>((ref) {
   final wallet = ref.watch(walletProvider);
-  final network = ref.watch(networkProvider);
-  final boxInfo = wallet.getBoxInfo(network);
+  final networkId = ref.watch(networkIdProvider);
+  final repository = ref.watch(boxInfoRepositoryProvider);
+  final boxInfo = repository.getBoxInfo(wallet.wid, networkId);
 
   return boxInfo;
 });

@@ -439,6 +439,174 @@ abstract class _BoxInfo implements BoxInfo {
       throw _privateConstructorUsedError;
 }
 
+BoxInfoBundle _$BoxInfoBundleFromJson(Map<String, dynamic> json) {
+  return _BoxInfoBundle.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BoxInfoBundle {
+  Map<String, BoxInfo> get byNetworkId => throw _privateConstructorUsedError;
+  bool get wasMigrated => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BoxInfoBundleCopyWith<BoxInfoBundle> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BoxInfoBundleCopyWith<$Res> {
+  factory $BoxInfoBundleCopyWith(
+          BoxInfoBundle value, $Res Function(BoxInfoBundle) then) =
+      _$BoxInfoBundleCopyWithImpl<$Res, BoxInfoBundle>;
+  @useResult
+  $Res call({Map<String, BoxInfo> byNetworkId, bool wasMigrated});
+}
+
+/// @nodoc
+class _$BoxInfoBundleCopyWithImpl<$Res, $Val extends BoxInfoBundle>
+    implements $BoxInfoBundleCopyWith<$Res> {
+  _$BoxInfoBundleCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? byNetworkId = null,
+    Object? wasMigrated = null,
+  }) {
+    return _then(_value.copyWith(
+      byNetworkId: null == byNetworkId
+          ? _value.byNetworkId
+          : byNetworkId // ignore: cast_nullable_to_non_nullable
+              as Map<String, BoxInfo>,
+      wasMigrated: null == wasMigrated
+          ? _value.wasMigrated
+          : wasMigrated // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BoxInfoBundleImplCopyWith<$Res>
+    implements $BoxInfoBundleCopyWith<$Res> {
+  factory _$$BoxInfoBundleImplCopyWith(
+          _$BoxInfoBundleImpl value, $Res Function(_$BoxInfoBundleImpl) then) =
+      __$$BoxInfoBundleImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Map<String, BoxInfo> byNetworkId, bool wasMigrated});
+}
+
+/// @nodoc
+class __$$BoxInfoBundleImplCopyWithImpl<$Res>
+    extends _$BoxInfoBundleCopyWithImpl<$Res, _$BoxInfoBundleImpl>
+    implements _$$BoxInfoBundleImplCopyWith<$Res> {
+  __$$BoxInfoBundleImplCopyWithImpl(
+      _$BoxInfoBundleImpl _value, $Res Function(_$BoxInfoBundleImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? byNetworkId = null,
+    Object? wasMigrated = null,
+  }) {
+    return _then(_$BoxInfoBundleImpl(
+      byNetworkId: null == byNetworkId
+          ? _value._byNetworkId
+          : byNetworkId // ignore: cast_nullable_to_non_nullable
+              as Map<String, BoxInfo>,
+      wasMigrated: null == wasMigrated
+          ? _value.wasMigrated
+          : wasMigrated // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BoxInfoBundleImpl implements _BoxInfoBundle {
+  const _$BoxInfoBundleImpl(
+      {final Map<String, BoxInfo> byNetworkId = const {},
+      this.wasMigrated = false})
+      : _byNetworkId = byNetworkId;
+
+  factory _$BoxInfoBundleImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BoxInfoBundleImplFromJson(json);
+
+  final Map<String, BoxInfo> _byNetworkId;
+  @override
+  @JsonKey()
+  Map<String, BoxInfo> get byNetworkId {
+    if (_byNetworkId is EqualUnmodifiableMapView) return _byNetworkId;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_byNetworkId);
+  }
+
+  @override
+  @JsonKey()
+  final bool wasMigrated;
+
+  @override
+  String toString() {
+    return 'BoxInfoBundle(byNetworkId: $byNetworkId, wasMigrated: $wasMigrated)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BoxInfoBundleImpl &&
+            const DeepCollectionEquality()
+                .equals(other._byNetworkId, _byNetworkId) &&
+            (identical(other.wasMigrated, wasMigrated) ||
+                other.wasMigrated == wasMigrated));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_byNetworkId), wasMigrated);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BoxInfoBundleImplCopyWith<_$BoxInfoBundleImpl> get copyWith =>
+      __$$BoxInfoBundleImplCopyWithImpl<_$BoxInfoBundleImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BoxInfoBundleImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BoxInfoBundle implements BoxInfoBundle {
+  const factory _BoxInfoBundle(
+      {final Map<String, BoxInfo> byNetworkId,
+      final bool wasMigrated}) = _$BoxInfoBundleImpl;
+
+  factory _BoxInfoBundle.fromJson(Map<String, dynamic> json) =
+      _$BoxInfoBundleImpl.fromJson;
+
+  @override
+  Map<String, BoxInfo> get byNetworkId;
+  @override
+  bool get wasMigrated;
+  @override
+  @JsonKey(ignore: true)
+  _$$BoxInfoBundleImplCopyWith<_$BoxInfoBundleImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 BoxInfoByNetwork _$BoxInfoByNetworkFromJson(Map<String, dynamic> json) {
   return _BoxInfoByNetwork.fromJson(json);
 }
@@ -1269,7 +1437,8 @@ mixin _$WalletInfo {
   String get name => throw _privateConstructorUsedError;
   WalletKind get kind => throw _privateConstructorUsedError;
   String get wid => throw _privateConstructorUsedError;
-  BoxInfoByNetwork get boxInfo => throw _privateConstructorUsedError;
+  @deprecated
+  BoxInfoByNetwork? get boxInfo => throw _privateConstructorUsedError;
   String get mainnetPublicKey =>
       throw _privateConstructorUsedError; // HDPublic key base58 encoded
   bool get usesBip39Passphrase => throw _privateConstructorUsedError;
@@ -1290,12 +1459,12 @@ abstract class $WalletInfoCopyWith<$Res> {
       {String name,
       WalletKind kind,
       String wid,
-      BoxInfoByNetwork boxInfo,
+      @deprecated BoxInfoByNetwork? boxInfo,
       String mainnetPublicKey,
       bool usesBip39Passphrase});
 
   $WalletKindCopyWith<$Res> get kind;
-  $BoxInfoByNetworkCopyWith<$Res> get boxInfo;
+  $BoxInfoByNetworkCopyWith<$Res>? get boxInfo;
 }
 
 /// @nodoc
@@ -1314,7 +1483,7 @@ class _$WalletInfoCopyWithImpl<$Res, $Val extends WalletInfo>
     Object? name = null,
     Object? kind = null,
     Object? wid = null,
-    Object? boxInfo = null,
+    Object? boxInfo = freezed,
     Object? mainnetPublicKey = null,
     Object? usesBip39Passphrase = null,
   }) {
@@ -1331,10 +1500,10 @@ class _$WalletInfoCopyWithImpl<$Res, $Val extends WalletInfo>
           ? _value.wid
           : wid // ignore: cast_nullable_to_non_nullable
               as String,
-      boxInfo: null == boxInfo
+      boxInfo: freezed == boxInfo
           ? _value.boxInfo
           : boxInfo // ignore: cast_nullable_to_non_nullable
-              as BoxInfoByNetwork,
+              as BoxInfoByNetwork?,
       mainnetPublicKey: null == mainnetPublicKey
           ? _value.mainnetPublicKey
           : mainnetPublicKey // ignore: cast_nullable_to_non_nullable
@@ -1356,8 +1525,12 @@ class _$WalletInfoCopyWithImpl<$Res, $Val extends WalletInfo>
 
   @override
   @pragma('vm:prefer-inline')
-  $BoxInfoByNetworkCopyWith<$Res> get boxInfo {
-    return $BoxInfoByNetworkCopyWith<$Res>(_value.boxInfo, (value) {
+  $BoxInfoByNetworkCopyWith<$Res>? get boxInfo {
+    if (_value.boxInfo == null) {
+      return null;
+    }
+
+    return $BoxInfoByNetworkCopyWith<$Res>(_value.boxInfo!, (value) {
       return _then(_value.copyWith(boxInfo: value) as $Val);
     });
   }
@@ -1375,14 +1548,14 @@ abstract class _$$WalletInfoImplCopyWith<$Res>
       {String name,
       WalletKind kind,
       String wid,
-      BoxInfoByNetwork boxInfo,
+      @deprecated BoxInfoByNetwork? boxInfo,
       String mainnetPublicKey,
       bool usesBip39Passphrase});
 
   @override
   $WalletKindCopyWith<$Res> get kind;
   @override
-  $BoxInfoByNetworkCopyWith<$Res> get boxInfo;
+  $BoxInfoByNetworkCopyWith<$Res>? get boxInfo;
 }
 
 /// @nodoc
@@ -1399,7 +1572,7 @@ class __$$WalletInfoImplCopyWithImpl<$Res>
     Object? name = null,
     Object? kind = null,
     Object? wid = null,
-    Object? boxInfo = null,
+    Object? boxInfo = freezed,
     Object? mainnetPublicKey = null,
     Object? usesBip39Passphrase = null,
   }) {
@@ -1416,10 +1589,10 @@ class __$$WalletInfoImplCopyWithImpl<$Res>
           ? _value.wid
           : wid // ignore: cast_nullable_to_non_nullable
               as String,
-      boxInfo: null == boxInfo
+      boxInfo: freezed == boxInfo
           ? _value.boxInfo
           : boxInfo // ignore: cast_nullable_to_non_nullable
-              as BoxInfoByNetwork,
+              as BoxInfoByNetwork?,
       mainnetPublicKey: null == mainnetPublicKey
           ? _value.mainnetPublicKey
           : mainnetPublicKey // ignore: cast_nullable_to_non_nullable
@@ -1439,7 +1612,7 @@ class _$WalletInfoImpl extends _WalletInfo {
       {required this.name,
       this.kind = const WalletKind.localHdSchnorr(),
       required this.wid,
-      required this.boxInfo,
+      @deprecated this.boxInfo,
       required this.mainnetPublicKey,
       this.usesBip39Passphrase = false})
       : super._();
@@ -1455,7 +1628,8 @@ class _$WalletInfoImpl extends _WalletInfo {
   @override
   final String wid;
   @override
-  final BoxInfoByNetwork boxInfo;
+  @deprecated
+  final BoxInfoByNetwork? boxInfo;
   @override
   final String mainnetPublicKey;
 // HDPublic key base58 encoded
@@ -1507,7 +1681,7 @@ abstract class _WalletInfo extends WalletInfo {
       {required final String name,
       final WalletKind kind,
       required final String wid,
-      required final BoxInfoByNetwork boxInfo,
+      @deprecated final BoxInfoByNetwork? boxInfo,
       required final String mainnetPublicKey,
       final bool usesBip39Passphrase}) = _$WalletInfoImpl;
   _WalletInfo._() : super._();
@@ -1522,7 +1696,8 @@ abstract class _WalletInfo extends WalletInfo {
   @override
   String get wid;
   @override
-  BoxInfoByNetwork get boxInfo;
+  @deprecated
+  BoxInfoByNetwork? get boxInfo;
   @override
   String get mainnetPublicKey;
   @override // HDPublic key base58 encoded
