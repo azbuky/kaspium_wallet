@@ -8,7 +8,7 @@ part of 'transaction_types.dart';
 
 _$TxIndexImpl _$$TxIndexImplFromJson(Map json) => _$TxIndexImpl(
       txId: json['txId'] as String,
-      blockTime: json['blockTime'] as int? ?? 0,
+      blockTime: (json['blockTime'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$TxIndexImplToJson(_$TxIndexImpl instance) =>
@@ -19,7 +19,7 @@ Map<String, dynamic> _$$TxIndexImplToJson(_$TxIndexImpl instance) =>
 
 _$TxInputDataImpl _$$TxInputDataImplFromJson(Map json) => _$TxInputDataImpl(
       address: json['address'] as String,
-      amount: json['amount'] as int,
+      amount: (json['amount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$TxInputDataImplToJson(_$TxInputDataImpl instance) =>
@@ -36,7 +36,7 @@ _$TxImpl _$$TxImplFromJson(Map json) => _$TxImpl(
               ? null
               : TxInputData.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
-      lastUpdate: json['lastUpdate'] as int? ?? 0,
+      lastUpdate: (json['lastUpdate'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$TxImplToJson(_$TxImpl instance) => <String, dynamic>{

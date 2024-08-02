@@ -51,7 +51,7 @@ class App extends HookConsumerWidget {
 
     useEffect(() {
       final appLinks = AppLinks();
-      final sub = appLinks.allStringLinkStream.listen((appLink) {
+      final sub = appLinks.stringLinkStream.listen((appLink) {
         ref.read(appLinkProvider.notifier).state = appLink;
       });
       return sub.cancel;
