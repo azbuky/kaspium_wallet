@@ -14,6 +14,7 @@ import '../widgets/app_simpledialog.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_util.dart';
 import 'double_line_item.dart';
+import '../settings_drawer/selection_item.dart';
 
 class NetworkMenu extends ConsumerWidget {
   final VoidCallback onBackAction;
@@ -101,6 +102,63 @@ class NetworkMenu extends ConsumerWidget {
                           onPressed: () {
                             _explorerDialog(context, ref);
                           },
+                        );
+                      }),
+                      Container(
+                        margin: const EdgeInsetsDirectional.only(
+                          start: 30,
+                          bottom: 10,
+                          top: 20,
+                        ),
+                        child: Text(
+                          "Network Stats",
+                          style: styles.textStyleAppTextFieldHint,
+                        ),
+                      ),
+                      Divider(height: 2, color: theme.text15),
+                      Consumer(builder: (context, ref, _) {
+                        final networkStats = ref.watch(networkStatsProvider);
+                        return networkStats.when(
+                          data: (stats) => Column(
+                            children: [
+                              DoubleLineItem(
+                                heading: "Network Hashrate",
+                                defaultMethod: SelectionItem("${stats.hashrate.toStringAsFixed(3)} PH/s"),
+                                icon: Icons.speed,
+                                onPressed: () {},
+                              ),
+                              Divider(height: 2, color: theme.text15),
+                              DoubleLineItem(
+                                heading: "Circulating Supply",
+                                defaultMethod: SelectionItem("${stats.circulatingSupply.toStringAsFixed(4)} billion"),
+                                icon: Icons.monetization_on,
+                                onPressed: () {},
+                              ),
+                              Divider(height: 2, color: theme.text15),
+                              DoubleLineItem(
+                                heading: "Block Reward",
+                                defaultMethod: SelectionItem("${stats.blockReward.toStringAsFixed(3)}"),
+                                icon: Icons.cake,
+                                onPressed: () {},
+                              ),
+                              Divider(height: 2, color: theme.text15),
+                              DoubleLineItem(
+                                heading: "Next Halving Date",
+                                defaultMethod: SelectionItem("${stats.nextHalvingDate}"),
+                                icon: Icons.timer,
+                                onPressed: () {},
+                              ),
+                              Divider(height: 2, color: theme.text15),
+                              DoubleLineItem(
+                                heading: "Next Halving Amount",
+                                defaultMethod: SelectionItem("${stats.nextHalvingAmount.toStringAsFixed(3)}"),
+                                icon: Icons.timelapse,
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                          loading: () => Center(child: CircularProgressIndicator()),
+                          error: (err, stack) => Center(child: Text('Error: $err')),
                         );
                       }),
                     ],

@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-
 import 'kaspa_api.dart';
 import 'types.dart';
 
@@ -277,6 +275,117 @@ class KaspaApiMainnet implements KaspaApi {
         address,
         limit: limit,
         offset: offset,
+        retryCount: retryCount - 1,
+        retryDelay: retryDelay,
+      );
+    }
+  }
+
+  // network statistics with retry parameters
+  Future<double> getHashrate({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
+    final url = '$baseUrl/info/hashrate?stringOnly=false';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode != 200) {
+        throw Exception('Failed to get hashrate');
+      }
+
+      final data = json.decode(response.body);
+      return data['hashrate'] / 1e3; // in PH/s
+    } catch (_) {
+      if (retryCount == 0) {
+        rethrow;
+      }
+
+      await Future.delayed(retryDelay);
+      return getHashrate(
+        retryCount: retryCount - 1,
+        retryDelay: retryDelay,
+      );
+    }
+  }
+
+  Future<double> getCirculatingSupply({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
+    final url = '$baseUrl/info/coinsupply/circulating?in_billion=false';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode != 200) {
+        throw Exception('Failed to get circulating supply');
+      }
+
+      return double.parse(response.body) / 1e9; // Convert to billion
+    } catch (_) {
+      if (retryCount == 0) {
+        rethrow;
+      }
+
+      await Future.delayed(retryDelay);
+      return getCirculatingSupply(
+        retryCount: retryCount - 1,
+        retryDelay: retryDelay,
+      );
+    }
+  }
+
+  Future<double> getBlockReward({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
+    final url = '$baseUrl/info/blockreward?stringOnly=false';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode != 200) {
+        throw Exception('Failed to get block reward');
+      }
+
+      final data = json.decode(response.body);
+      return data['blockreward'];
+    } catch (_) {
+      if (retryCount == 0) {
+        rethrow;
+      }
+
+      await Future.delayed(retryDelay);
+      return getBlockReward(
+        retryCount: retryCount - 1,
+        retryDelay: retryDelay,
+      );
+    }
+  }
+
+  Future<Map<String, dynamic>> getHalvingInfo({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
+    final url = '$baseUrl/info/halving';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode != 200) {
+        throw Exception('Failed to get halving info');
+      }
+
+      final data = json.decode(response.body);
+      return {
+        'nextHalvingDate': data['nextHalvingDate'],
+        'nextHalvingAmount': data['nextHalvingAmount']
+      };
+    } catch (_) {
+      if (retryCount == 0) {
+        rethrow;
+      }
+
+      await Future.delayed(retryDelay);
+      return getHalvingInfo(
         retryCount: retryCount - 1,
         retryDelay: retryDelay,
       );

@@ -201,3 +201,37 @@ final appLinkProvider = StateProvider<String?>((ref) {
 });
 
 final fiatModeProvider = StateProvider<bool>((ref) => false);
+
+// provider for network statistics
+final networkStatsProvider = FutureProvider<NetworkStats>((ref) async {
+  final api = ref.read(_kaspaApiProvider) as KaspaApiMainnet;
+
+  final hashrate = await api.getHashrate();
+  final circulatingSupply = await api.getCirculatingSupply();
+  final blockReward = await api.getBlockReward();
+  final halvingInfo = await api.getHalvingInfo();
+
+  return NetworkStats(
+    hashrate: hashrate,
+    circulatingSupply: circulatingSupply,
+    blockReward: blockReward,
+    nextHalvingDate: halvingInfo['nextHalvingDate'],
+    nextHalvingAmount: halvingInfo['nextHalvingAmount'],
+  );
+});
+
+class NetworkStats {
+  final double hashrate;
+  final double circulatingSupply;
+  final double blockReward;
+  final String nextHalvingDate;
+  final double nextHalvingAmount;
+
+  NetworkStats({
+    required this.hashrate,
+    required this.circulatingSupply,
+    required this.blockReward,
+    required this.nextHalvingDate,
+    required this.nextHalvingAmount,
+  });
+}
