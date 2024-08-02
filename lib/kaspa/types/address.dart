@@ -103,9 +103,9 @@ class Address with _$Address {
 
   Uint8List scriptAddress() {
     return when(
-      publicKey: (_, publicKey) => UnmodifiableUint8ListView(publicKey),
-      pubKeyECDSA: (_, publicKey) => UnmodifiableUint8ListView(publicKey),
-      scriptHash: (_, hash) => UnmodifiableUint8ListView(hash),
+      publicKey: (_, publicKey) => publicKey.asUnmodifiableView(),
+      pubKeyECDSA: (_, publicKey) => publicKey.asUnmodifiableView(),
+      scriptHash: (_, hash) => hash.asUnmodifiableView(),
     );
   }
 

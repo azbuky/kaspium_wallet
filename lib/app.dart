@@ -99,7 +99,7 @@ class App extends HookConsumerWidget {
                         brightness: Brightness.dark,
                         secondary: theme.primary10,
                       )
-                      .copyWith(background: theme.backgroundDark),
+                      .copyWith(surface: theme.backgroundDark),
                 ),
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
