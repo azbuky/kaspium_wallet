@@ -37,8 +37,8 @@ class CurrencyFormatter extends TextInputFormatter {
   String _formatNumber(String numberStr) {
     final number = Decimal.tryParse(numberStr);
     if (number != null) {
-      final formatter = DecimalFormatter(numberFormat);  // Use DecimalFormatter
-      return formatter.format(number);  // Format the Decimal number
+      final formatter = DecimalFormatter(numberFormat); // Use DecimalFormatter
+      return formatter.format(number); // Format the Decimal number
     }
     return numberStr;
   }

@@ -202,7 +202,9 @@ final fiatForAmountProvider =
     name: currency.name,
   );
   final decimalFormatter = DecimalFormatter(formatter);
-  return decimalFormatter.format(fiatValue).replaceAll(formatter.currencySymbol, '');
+  return decimalFormatter
+      .format(fiatValue)
+      .replaceAll(formatter.currencySymbol, '');
 });
 
 final kaspaFormatterProvider = Provider((ref) {

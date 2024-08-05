@@ -872,8 +872,8 @@ class AppStyles {
         borderRadius: BorderRadius.circular(10),
       ),
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -890,8 +890,8 @@ class AppStyles {
         borderRadius: BorderRadius.circular(10),
       ),
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -908,8 +908,8 @@ class AppStyles {
         borderRadius: BorderRadius.circular(25),
       ),
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -922,8 +922,8 @@ class AppStyles {
     return TextButton.styleFrom(
       padding: EdgeInsets.zero,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -939,8 +939,8 @@ class AppStyles {
       ),
       padding: EdgeInsets.zero,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -956,8 +956,8 @@ class AppStyles {
       ),
       padding: const EdgeInsets.all(12),
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -973,8 +973,8 @@ class AppStyles {
       ),
       padding: const EdgeInsets.all(12),
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -990,8 +990,8 @@ class AppStyles {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 12),
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -1004,8 +1004,8 @@ class AppStyles {
     return TextButton.styleFrom(
       padding: EdgeInsets.zero,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused))
           return theme.backgroundDark.withOpacity(0.45);
         if (states.contains(WidgetState.hovered))
@@ -1023,8 +1023,8 @@ class AppStyles {
       padding: EdgeInsets.zero,
       tapTargetSize: MaterialTapTargetSize.padded,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -1041,8 +1041,8 @@ class AppStyles {
       padding: EdgeInsets.zero,
       tapTargetSize: MaterialTapTargetSize.padded,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -1059,8 +1059,8 @@ class AppStyles {
       padding: const EdgeInsets.all(13),
       tapTargetSize: MaterialTapTargetSize.padded,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -1076,8 +1076,8 @@ class AppStyles {
       ),
       backgroundColor: theme.primary,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.background40;
         if (states.contains(WidgetState.hovered)) return theme.background40;
         if (states.contains(WidgetState.pressed)) return theme.background40;
@@ -1093,8 +1093,8 @@ class AppStyles {
       ),
       backgroundColor: theme.primary60,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return Colors.transparent;
         if (states.contains(WidgetState.hovered)) return Colors.transparent;
         if (states.contains(WidgetState.pressed)) return Colors.transparent;
@@ -1110,8 +1110,8 @@ class AppStyles {
       ),
       backgroundColor: theme.success,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.success30;
         if (states.contains(WidgetState.hovered)) return theme.success30;
         if (states.contains(WidgetState.pressed)) return Colors.transparent;
@@ -1129,8 +1129,8 @@ class AppStyles {
       backgroundColor: theme.backgroundDark,
       foregroundColor: theme.success,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.success15;
         if (states.contains(WidgetState.hovered)) return theme.success15;
         if (states.contains(WidgetState.pressed)) return theme.success30;
@@ -1157,8 +1157,8 @@ class AppStyles {
         borderRadius: BorderRadius.circular(100),
       ),
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.primary15;
         if (states.contains(WidgetState.hovered)) return theme.primary15;
         if (states.contains(WidgetState.pressed)) return theme.primary30;
@@ -1236,8 +1236,8 @@ class AppStyles {
         borderRadius: BorderRadius.circular(100),
       ),
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.primary15;
         if (states.contains(WidgetState.hovered)) return theme.primary15;
         if (states.contains(WidgetState.pressed)) return theme.primary30;
@@ -1255,8 +1255,8 @@ class AppStyles {
         borderRadius: BorderRadius.circular(100),
       ),
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.primary15;
         if (states.contains(WidgetState.hovered)) return theme.primary15;
         if (states.contains(WidgetState.pressed)) return theme.primary30;
@@ -1272,8 +1272,8 @@ class AppStyles {
       ),
       padding: const EdgeInsets.all(10),
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return Colors.transparent;
         if (states.contains(WidgetState.hovered)) return Colors.transparent;
         if (states.contains(WidgetState.pressed)) return Colors.transparent;
@@ -1290,8 +1290,8 @@ class AppStyles {
       padding: const EdgeInsets.all(14),
       tapTargetSize: MaterialTapTargetSize.padded,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;
@@ -1310,8 +1310,8 @@ class AppStyles {
       enabledMouseCursor: SystemMouseCursors.click,
       disabledMouseCursor: SystemMouseCursors.basic,
     ).copyWith(
-      overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (Set<WidgetState> states) {
+      overlayColor:
+          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) return theme.text15;
         if (states.contains(WidgetState.hovered)) return theme.text05;
         if (states.contains(WidgetState.pressed)) return theme.text15;

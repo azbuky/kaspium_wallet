@@ -123,42 +123,49 @@ class NetworkMenu extends ConsumerWidget {
                             children: [
                               DoubleLineItem(
                                 heading: "Network Hashrate",
-                                defaultMethod: SelectionItem("${stats.hashrate.toStringAsFixed(3)} PH/s"),
+                                defaultMethod: SelectionItem(
+                                    "${stats.hashrate.toStringAsFixed(3)} PH/s"),
                                 icon: Icons.speed,
                                 onPressed: () {},
                               ),
                               Divider(height: 2, color: theme.text15),
                               DoubleLineItem(
                                 heading: "Circulating Supply",
-                                defaultMethod: SelectionItem("${stats.circulatingSupply.toStringAsFixed(4)} billion"),
+                                defaultMethod: SelectionItem(
+                                    "${stats.circulatingSupply.toStringAsFixed(4)} billion"),
                                 icon: Icons.monetization_on,
                                 onPressed: () {},
                               ),
                               Divider(height: 2, color: theme.text15),
                               DoubleLineItem(
                                 heading: "Block Reward",
-                                defaultMethod: SelectionItem("${stats.blockReward.toStringAsFixed(3)}"),
+                                defaultMethod: SelectionItem(
+                                    "${stats.blockReward.toStringAsFixed(3)}"),
                                 icon: Icons.cake,
                                 onPressed: () {},
                               ),
                               Divider(height: 2, color: theme.text15),
                               DoubleLineItem(
                                 heading: "Next Halving Date",
-                                defaultMethod: SelectionItem("${stats.nextHalvingDate}"),
+                                defaultMethod:
+                                    SelectionItem("${stats.nextHalvingDate}"),
                                 icon: Icons.timer,
                                 onPressed: () {},
                               ),
                               Divider(height: 2, color: theme.text15),
                               DoubleLineItem(
                                 heading: "Next Halving Amount",
-                                defaultMethod: SelectionItem("${stats.nextHalvingAmount.toStringAsFixed(3)}"),
+                                defaultMethod: SelectionItem(
+                                    "${stats.nextHalvingAmount.toStringAsFixed(3)}"),
                                 icon: Icons.timelapse,
                                 onPressed: () {},
                               ),
                             ],
                           ),
-                          loading: () => Center(child: CircularProgressIndicator()),
-                          error: (err, stack) => Center(child: Text('Error: $err')),
+                          loading: () =>
+                              Center(child: CircularProgressIndicator()),
+                          error: (err, stack) =>
+                              Center(child: Text('Error: $err')),
                         );
                       }),
                     ],
