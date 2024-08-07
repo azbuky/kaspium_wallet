@@ -36,16 +36,16 @@ jobs:
           mkdir bin
 
           # Rename output APKs with Release Tag
-          mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-arm64-v8a-release.apk
-          mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-armeabi-v7a-release.apk
-          mv build/app/outputs/flutter-apk/app-x86_64-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-x86_64-release.apk
+          mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk bin/kaspium-${{ github.event.release.tag_name }}-app-arm64-v8a-release.apk
+          mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk bin/kaspium-${{ github.event.release.tag_name }}-app-armeabi-v7a-release.apk
+          mv build/app/outputs/flutter-apk/app-x86_64-release.apk bin/kaspium-${{ github.event.release.tag_name }}-app-x86_64-release.apk
 
       - name: Build Universal Android APK
         run: |
           flutter build apk
 
           # Rename Universal APK with Release Tag
-          mv build/app/outputs/flutter-apk/app-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-universal.apk
+          mv build/app/outputs/flutter-apk/app-release.apk bin/kaspium-${{ github.event.release.tag_name }}-app-universal.apk
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
