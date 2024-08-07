@@ -461,7 +461,7 @@
   "buyKaspaSubtitle": "Via Topper by Uphold",
   "buyKaspaTitle": "Buy Kaspa",
   "buyKaspaMessage": "Buy $KAS quickly & easily.",
-  "buyKaspaMessageSecondary" :"Service provided by Topper, Uphold's fiat-to-crypto onramp.",
+  "buyKaspaMessageSecondary": "Service provided by Topper, Uphold's fiat-to-crypto onramp.",
   "getStarted": "Get Started",
   "aboutTopperTitle": "About Topper",
   "aboutTopperDescription": "Topper by Uphold is an easy to use fiat-to-crypto onramp that allows users to buy cryptocurencies using a credit/debit card or with a bank account.",
@@ -481,7 +481,7 @@
       }
     }
   },
-  "walletAddressesCopyFailed" :"Failed to Copy Wallet {addressType} Addresses",
+  "walletAddressesCopyFailed": "Failed to Copy Wallet {addressType} Addresses",
   "@walletAddressesCopyFailed": {
     "placeholders": {
       "addressType": {
@@ -492,8 +492,8 @@
   "txReport": "Transaction Report",
   "txReportSubtitle": "Get CSV file with transaction history",
   "txReportDetails": "Generate a transaction report, in CSV format, that contains all the wallet's transaction history.",
-  "txReportOptionIgnoreCompound" : "Ignore compound transactions",
-  "txReportOptionIgnoreSelfTxs" : "Ignore transactions sent to self",
+  "txReportOptionIgnoreCompound": "Ignore compound transactions",
+  "txReportOptionIgnoreSelfTxs": "Ignore transactions sent to self",
   "txReportOptionRefreshTxs": "Refresh transactions",
   "txReportGenerate": "Generate",
   "txReportStatusRefreshing": "Refreshing transactions",
