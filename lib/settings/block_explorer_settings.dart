@@ -17,7 +17,7 @@ class BlockExplorerSettings with _$BlockExplorerSettings {
       KaspaNetwork.devnet: kKaspaExplorerMainnet,
       KaspaNetwork.simnet: kKaspaExplorerMainnet,
     })
-        Map<KaspaNetwork, BlockExplorer> selection,
+    Map<KaspaNetwork, BlockExplorer> selection,
   }) = _BlockExplorerSettings;
 
   BlockExplorer explorerForNetwork(KaspaNetwork network) {

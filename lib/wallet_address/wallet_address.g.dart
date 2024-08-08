@@ -8,7 +8,7 @@ part of 'wallet_address.dart';
 
 _$WalletAddressImpl _$$WalletAddressImplFromJson(Map json) =>
     _$WalletAddressImpl(
-      index: json['index'] as int,
+      index: (json['index'] as num).toInt(),
       type: $enumDecode(_$AddressTypeEnumMap, json['type']),
       name: json['name'] as String,
       address: Address.fromJson(json['address'] as String),

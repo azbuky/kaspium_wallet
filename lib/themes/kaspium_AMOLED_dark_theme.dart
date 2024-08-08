@@ -3,19 +3,16 @@ import 'package:flutter/services.dart';
 
 import 'base_theme.dart';
 
-class SapphiriumTheme extends BaseTheme {
-  static const brightBlue = Color(0xffc5e8fe);
+class KaspiumAMOLEDDarkTheme extends BaseTheme {
+  static const brightBlue = Color(0xff49eacb);
 
   //static const green = Color(0xfffc865a);
-  static const green = Color(0xff00ffff);
+  static const green = Color(0xffbcbec0);
 
-  static const greenDark = Color(0xff053762);
+  //static const greenDark = Color(0xfffc865a);
+  static const greenDark = Color(0xff49eacb);
 
-  static const blueishGreyDark = Color(0xff032448);
-
-  static const blueishGreyLight = Color(0xff053762);
-
-  static const blueishGreyDarkest = Color(0xff032448);
+  static const amoledDark = Color.fromARGB(255, 0, 0, 0);
 
   static const white = Color(0xffffffff);
 
@@ -39,14 +36,14 @@ class SapphiriumTheme extends BaseTheme {
   Color successDark = greenDark;
   Color successDark30 = greenDark.withOpacity(0.3);
 
-  Color background = blueishGreyDark;
-  Color background40 = blueishGreyDark.withOpacity(0.4);
-  Color background00 = blueishGreyDark.withOpacity(0.0);
+  Color background = amoledDark;
+  Color background40 = amoledDark.withOpacity(0.4);
+  Color background00 = amoledDark.withOpacity(0.0);
 
-  Color backgroundDark = blueishGreyLight;
-  Color backgroundDark00 = blueishGreyLight.withOpacity(0.0);
+  Color backgroundDark = amoledDark;
+  Color backgroundDark00 = amoledDark.withOpacity(0.0);
 
-  Color backgroundDarkest = blueishGreyDarkest;
+  Color backgroundDarkest = amoledDark;
 
   Color text = white.withOpacity(0.9);
   Color text60 = white.withOpacity(0.6);

@@ -8,7 +8,7 @@ part of 'token_info.dart';
 
 _$TokenInfoImpl _$$TokenInfoImplFromJson(Map json) => _$TokenInfoImpl(
       tokenId: json['tokenId'] as String,
-      decimals: json['decimals'] as int,
+      decimals: (json['decimals'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$TokenInfoImplToJson(_$TokenInfoImpl instance) =>

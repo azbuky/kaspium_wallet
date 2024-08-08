@@ -26,5 +26,3 @@ class WalletAuth with _$WalletAuth {
     @Default(false) bool hasMnemonic,
   }) = _WalletAuth;
 }
-
-

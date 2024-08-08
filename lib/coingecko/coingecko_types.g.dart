@@ -10,7 +10,7 @@ _$CoinGeckoPriceImpl _$$CoinGeckoPriceImplFromJson(Map json) =>
     _$CoinGeckoPriceImpl(
       currency: $enumDecode(_$AvailableCurrenciesEnumMap, json['currency']),
       price: Decimal.fromJson(json['price'] as String),
-      timestamp: json['timestamp'] as int? ?? 0,
+      timestamp: (json['timestamp'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$CoinGeckoPriceImplToJson(
