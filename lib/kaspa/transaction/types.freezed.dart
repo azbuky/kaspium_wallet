@@ -585,7 +585,7 @@ abstract class $ScriptPublicKeyCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: hexToBytes, toJson: bytesToHex)
-          Uint8List scriptPublicKey,
+      Uint8List scriptPublicKey,
       int version});
 }
 
@@ -628,7 +628,7 @@ abstract class _$$ScriptPublicKeyImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: hexToBytes, toJson: bytesToHex)
-          Uint8List scriptPublicKey,
+      Uint8List scriptPublicKey,
       int version});
 }
 
@@ -664,7 +664,7 @@ class __$$ScriptPublicKeyImplCopyWithImpl<$Res>
 class _$ScriptPublicKeyImpl extends _ScriptPublicKey {
   const _$ScriptPublicKeyImpl(
       {@JsonKey(fromJson: hexToBytes, toJson: bytesToHex)
-          required this.scriptPublicKey,
+      required this.scriptPublicKey,
       required this.version})
       : super._();
 
@@ -716,7 +716,7 @@ class _$ScriptPublicKeyImpl extends _ScriptPublicKey {
 abstract class _ScriptPublicKey extends ScriptPublicKey {
   const factory _ScriptPublicKey(
       {@JsonKey(fromJson: hexToBytes, toJson: bytesToHex)
-          required final Uint8List scriptPublicKey,
+      required final Uint8List scriptPublicKey,
       required final int version}) = _$ScriptPublicKeyImpl;
   const _ScriptPublicKey._() : super._();
 

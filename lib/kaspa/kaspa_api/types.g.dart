@@ -9,7 +9,7 @@ part of 'types.dart';
 _$ApiAddressBalanceImpl _$$ApiAddressBalanceImplFromJson(Map json) =>
     _$ApiAddressBalanceImpl(
       address: json['address'] as String,
-      balance: json['balance'] as int,
+      balance: (json['balance'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$ApiAddressBalanceImplToJson(
@@ -36,7 +36,7 @@ Map<String, dynamic> _$$ApiUtxoImplToJson(_$ApiUtxoImpl instance) =>
 
 _$OutpointImpl _$$OutpointImplFromJson(Map json) => _$OutpointImpl(
       transactionId: json['transactionId'] as String,
-      index: json['index'] as int,
+      index: (json['index'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$OutpointImplToJson(_$OutpointImpl instance) =>
@@ -64,7 +64,7 @@ Map<String, dynamic> _$$ApiUtxoEntryImplToJson(_$ApiUtxoEntryImpl instance) =>
 _$ApiScriptPublicKeyImpl _$$ApiScriptPublicKeyImplFromJson(Map json) =>
     _$ApiScriptPublicKeyImpl(
       scriptPublicKey: json['scriptPublicKey'] as String,
-      version: json['version'] as int? ?? 0,
+      version: (json['version'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$ApiScriptPublicKeyImplToJson(
@@ -95,7 +95,7 @@ Map<String, dynamic> _$$ApiTxLinkImplToJson(_$ApiTxLinkImpl instance) {
 
 _$ApiTxIdImpl _$$ApiTxIdImplFromJson(Map json) => _$ApiTxIdImpl(
       transactionId: json['transaction_id'] as String,
-      blockTime: json['block_time'] as int?,
+      blockTime: (json['block_time'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ApiTxIdImplToJson(_$ApiTxIdImpl instance) {
@@ -115,14 +115,15 @@ Map<String, dynamic> _$$ApiTxIdImplToJson(_$ApiTxIdImpl instance) {
 
 _$ApiTxInputImpl _$$ApiTxInputImplFromJson(Map json) => _$ApiTxInputImpl(
       transactionId: json['transaction_id'] as String,
-      index: json['index'] as int,
+      index: (json['index'] as num).toInt(),
       previousOutpointHash: json['previous_outpoint_hash'] as String,
       previousOutpointIndex:
           BigInt.parse(json['previous_outpoint_index'] as String),
       signatureScript: json['signature_script'] as String,
       sigOpCount: BigInt.parse(json['sig_op_count'] as String),
       previousOutpointAddress: json['previous_outpoint_address'] as String?,
-      previousOutpointAmount: json['previous_outpoint_amount'] as int?,
+      previousOutpointAmount:
+          (json['previous_outpoint_amount'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ApiTxInputImplToJson(_$ApiTxInputImpl instance) {
@@ -148,8 +149,8 @@ Map<String, dynamic> _$$ApiTxInputImplToJson(_$ApiTxInputImpl instance) {
 
 _$ApiTxOutputImpl _$$ApiTxOutputImplFromJson(Map json) => _$ApiTxOutputImpl(
       transactionId: json['transaction_id'] as String,
-      index: json['index'] as int,
-      amount: json['amount'] as int,
+      index: (json['index'] as num).toInt(),
+      amount: (json['amount'] as num).toInt(),
       scriptPublicKey: json['script_public_key'] as String,
       scriptPublicKeyAddress: json['script_public_key_address'] as String,
       scriptPublicKeyType: json['script_public_key_type'] as String,
@@ -172,10 +173,11 @@ _$TransactionImpl _$$TransactionImplFromJson(Map json) => _$TransactionImpl(
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      blockTime: json['block_time'] as int,
+      blockTime: (json['block_time'] as num).toInt(),
       isAccepted: json['is_accepted'] as bool,
       acceptingBlockHash: json['accepting_block_hash'] as String?,
-      acceptingBlockBlueScore: json['accepting_block_blue_score'] as int?,
+      acceptingBlockBlueScore:
+          (json['accepting_block_blue_score'] as num?)?.toInt(),
       inputs: (json['inputs'] as List<dynamic>?)
               ?.map((e) =>
                   ApiTxInput.fromJson(Map<String, dynamic>.from(e as Map)))

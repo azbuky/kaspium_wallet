@@ -40,7 +40,7 @@ Map<String, dynamic> _$$UtxoEntryImplToJson(_$UtxoEntryImpl instance) =>
 _$ScriptPublicKeyImpl _$$ScriptPublicKeyImplFromJson(Map json) =>
     _$ScriptPublicKeyImpl(
       scriptPublicKey: hexToBytes(json['scriptPublicKey'] as String),
-      version: json['version'] as int,
+      version: (json['version'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$ScriptPublicKeyImplToJson(
@@ -52,7 +52,7 @@ Map<String, dynamic> _$$ScriptPublicKeyImplToJson(
 
 _$OutpointImpl _$$OutpointImplFromJson(Map json) => _$OutpointImpl(
       transactionId: json['transactionId'] as String,
-      index: json['index'] as int,
+      index: (json['index'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$OutpointImplToJson(_$OutpointImpl instance) =>
