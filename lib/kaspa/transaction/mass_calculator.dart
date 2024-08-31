@@ -1,30 +1,96 @@
 import '../utils.dart';
 import 'types.dart';
 
-bool isCoinBase({required Transaction tx}) =>
-    tx.subnetworkId.hex == kSubnetworkIdCoinbaseHex;
+BigInt _max(BigInt a, BigInt b) => a > b ? a : b;
 
-class TxMassCalculator {
+enum Kip9Version {
+  alpha,
+  beta,
+}
+
+class MassCalculator {
   final int massPerTxByte;
   final int massPerScriptPubKeyByte;
   final int massPerSigOp;
+  final BigInt storageMassParameter;
 
-  static TxMassCalculator get defaultCalculator {
-    return TxMassCalculator(
+  static MassCalculator get defaultCalculator {
+    return MassCalculator(
       massPerTxByte: 1,
       massPerScriptPubKeyByte: 10,
       massPerSigOp: 1000,
+      storageMassParameter: kStorageMassParameter,
     );
   }
 
-  TxMassCalculator({
+  MassCalculator({
     required this.massPerTxByte,
     required this.massPerScriptPubKeyByte,
     required this.massPerSigOp,
+    required this.storageMassParameter,
   });
 
-  int calculateMass({required Transaction tx}) {
-    if (isCoinBase(tx: tx)) {
+  BigInt calcTxOverallMass({
+    required Transaction tx,
+    Kip9Version version = Kip9Version.beta,
+  }) {
+    final computeMass = BigInt.from(calcTxComputeMass(tx: tx));
+    final storageMass = calcTxStorageMass(tx: tx);
+    return switch (version) {
+      Kip9Version.alpha => computeMass + storageMass,
+      Kip9Version.beta => _max(computeMass, storageMass),
+    };
+  }
+
+  BigInt calcTxStorageMass({
+    required Transaction tx,
+    Kip9Version version = Kip9Version.beta,
+  }) {
+    if (tx.isCoinbase) {
+      return BigInt.zero;
+    }
+
+    final harmonicOuts = tx.outputs
+        .map(
+          (output) => storageMassParameter ~/ output.value.toUnsignedBigInt(),
+        )
+        .fold(
+          BigInt.zero,
+          (total, element) => total + element,
+        );
+
+    final outsLen = tx.outputs.length;
+    final insLen = tx.inputs.length;
+
+    final isRelaxed =
+        outsLen == 1 || insLen == 1 || (outsLen == 2 && insLen == 2);
+    if (version == Kip9Version.beta && isRelaxed) {
+      final harmonicIns = tx.inputs
+          .map(
+            (input) => storageMassParameter ~/ input.utxoEntry.amount,
+          )
+          .fold(
+            BigInt.zero,
+            (total, element) => total + element,
+          );
+
+      return _max(BigInt.zero, harmonicOuts - harmonicIns);
+    }
+
+    final sumIns = tx.inputs
+        .map((input) => input.utxoEntry.amount)
+        .fold(BigInt.zero, (previousValue, element) => previousValue + element);
+
+    final meanIns = sumIns ~/ BigInt.from(insLen);
+
+    final arithmeticIns =
+        BigInt.from(insLen) * (storageMassParameter ~/ meanIns);
+
+    return _max(BigInt.zero, harmonicOuts - arithmeticIns);
+  }
+
+  int calcTxComputeMass({required Transaction tx}) {
+    if (tx.isCoinbase) {
       return 0;
     }
 
@@ -52,10 +118,6 @@ class TxMassCalculator {
   }
 
   int txEstimatedSerializedSize({required Transaction tx}) {
-    if (isCoinBase(tx: tx)) {
-      return 0;
-    }
-
     int size = 0;
     size += 2; // version
     size += 8; // number of inputs

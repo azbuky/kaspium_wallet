@@ -10,6 +10,9 @@ import '../utils.dart';
 part 'types.freezed.dart';
 part 'types.g.dart';
 
+final kSompiPerKaspa = BigInt.from(100000000);
+final kStorageMassParameter = kSompiPerKaspa * BigInt.from(10000);
+
 final kMinChangeTarget = BigInt.from(20000000);
 final kFeePerInput = BigInt.from(10000);
 const kMaxInputsPerTransaction = 84;
@@ -246,6 +249,8 @@ class Transaction with _$Transaction {
         gas: gas,
         payload: payload?.hex,
       );
+
+  bool get isCoinbase => subnetworkId.hex == kSubnetworkIdCoinbaseHex;
 }
 
 @unfreezed
