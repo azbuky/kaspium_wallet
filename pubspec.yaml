@@ -50,7 +50,7 @@ dependencies:
   flutter_displaymode: 0.6.0
   #push: 1.0.0
   protobuf: 3.1.0
-  grpc: 3.2.4
+  grpc: 4.0.1
   hex: 0.2.0
   collection: 1.18.0
   fixnum: 1.1.0

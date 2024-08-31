@@ -125,7 +125,7 @@ final kaspaClientProvider = Provider((ref) {
 });
 
 final balancesForAddressesProvider = FutureProvider.family
-    .autoDispose<Iterable<BalancesByAddressEntry>, List<String>>(
+    .autoDispose<Iterable<RpcBalancesByAddressesEntry>, List<String>>(
         (ref, addresses) async {
   final client = ref.watch(kaspaClientProvider);
   final balance = await client.getBalancesByAddresses(addresses);

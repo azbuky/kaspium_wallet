@@ -85,13 +85,13 @@ class Utxo with _$Utxo {
 
   factory Utxo.fromJson(Map<String, dynamic> json) => _$UtxoFromJson(json);
 
-  factory Utxo.fromRpc(UtxosByAddressesEntry rpc) => Utxo(
+  factory Utxo.fromRpc(RpcUtxosByAddressesEntry rpc) => Utxo(
         address: rpc.address,
         outpoint: Outpoint.fromRpc(rpc.outpoint),
         utxoEntry: UtxoEntry.fromRpc(rpc.utxoEntry),
       );
 
-  UtxosByAddressesEntry toRpc() => UtxosByAddressesEntry(
+  RpcUtxosByAddressesEntry toRpc() => RpcUtxosByAddressesEntry(
         address: address,
         outpoint: outpoint.toRpc(),
         utxoEntry: utxoEntry.toRpc(),
