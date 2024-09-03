@@ -98,7 +98,7 @@ final _kaspaApiProvider = Provider<KaspaApi>((ref) {
 
   return switch (networkId) {
     kKaspaNetworkIdMainnet => KaspaApiMainnet('https://api.kaspa.org'),
-    kKaspaNetworkIdTestnet10 => KaspaApiMainnet('https://api-testnet.kaspa.ws'),
+    kKaspaNetworkIdTestnet10 => KaspaApiMainnet('https://api-tn10.kaspa.org'),
     kKaspaNetworkIdTestnet11 => KaspaApiMainnet('https://api-tn11.kaspa.org'),
     _ => KaspaApiEmpty(),
   };
