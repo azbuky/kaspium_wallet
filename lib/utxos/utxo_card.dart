@@ -24,6 +24,7 @@ class UtxoCard extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
 
     final amount = Amount.raw(item.utxoEntry.amount);
+    final kasSymbol = ref.watch(kasSymbolProvider);
     final formatedValue = NumberUtil.formatedAmount(amount);
 
     final fiatValue = ref.watch(formatedFiatForAmountProvider(amount));
@@ -100,7 +101,7 @@ class UtxoCard extends ConsumerWidget {
                                         style: styles.textStyleCurrencyAlt,
                                       ),
                                       TextSpan(
-                                        text: ' ${TokenInfo.kaspa.symbolLabel}',
+                                        text: ' $kasSymbol',
                                         style: styles.textStyleCurrencyAlt,
                                       ),
                                     ],

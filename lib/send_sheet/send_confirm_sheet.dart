@@ -90,27 +90,25 @@ class SendConfirmSheet extends HookConsumerWidget {
     }
 
     String authMessage() {
+      final symbol = ref.read(symbolProvider(amount));
       final formatedAmount = NumberUtil.formatedAmount(amount);
-      return '${l10n.sendConfirm} ${formatedAmount} ${amount.symbolLabel}';
+      return '${l10n.sendConfirm} $formatedAmount $symbol';
     }
 
-    String? checkMissingBalance() {
-      final balanceRaw = ref.read(totalBalanceProvider).raw;
+    bool checkInsufficientBalance() {
+      final balance = ref.read(totalBalanceProvider);
 
-      if (balanceRaw < amount.raw + fee) {
-        return amount.symbolLabel;
-      }
-
-      return null;
+      return balance.raw < amount.raw + fee.raw;
     }
 
     Future<void> onConfirm() async {
-      final symbolLabel = checkMissingBalance();
-      if (symbolLabel != null) {
+      final symbol = ref.read(kasSymbolProvider);
+      final insufficientBalance = checkInsufficientBalance();
+      if (insufficientBalance) {
         AppDialogs.showInfoDialog(
           context,
           l10n.insufficientBalance,
-          l10n.insufficientBalanceDetails,
+          l10n.insufficientBalanceDetails.replaceAll('KAS', symbol),
         );
         return;
       }

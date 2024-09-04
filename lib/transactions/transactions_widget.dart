@@ -90,11 +90,8 @@ final _txListItemsProvider =
 });
 
 class TransactionsWidget extends ConsumerWidget {
-  final String tokenSymbol;
-
   const TransactionsWidget({
     Key? key,
-    this.tokenSymbol = 'KAS',
   }) : super(key: key);
 
   @override
@@ -157,7 +154,7 @@ class TransactionsWidget extends ConsumerWidget {
         backgroundColor: theme.backgroundDark,
         onRefresh: refresh,
         child: !txNotifier.loading && items.length == 1
-            ? TransactionEmptyList(tokenSymbol: tokenSymbol)
+            ? const TransactionEmptyList()
             : AutomaticAnimatedList<TxListItem>(
                 key: PageStorageKey(wallet),
                 physics: AlwaysScrollableScrollPhysics(),

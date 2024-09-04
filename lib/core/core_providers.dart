@@ -208,3 +208,21 @@ final appLinkProvider = StateProvider<String?>((ref) {
 });
 
 final fiatModeProvider = StateProvider<bool>((ref) => false);
+
+final kasSymbolProvider = Provider((ref) {
+  final network = ref.watch(networkProvider);
+
+  return switch (network) {
+    KaspaNetwork.mainnet => 'KAS',
+    _ => 'TKAS',
+  };
+});
+
+final symbolProvider = Provider.family<String, Amount>((ref, amount) {
+  final kasSymbol = ref.watch(kasSymbolProvider);
+  if (amount.tokenInfo.tokenId != TokenInfo.kaspa.tokenId) {
+    return amount.symbolLabel;
+  }
+
+  return kasSymbol;
+});

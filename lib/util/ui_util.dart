@@ -77,18 +77,19 @@ abstract class UIUtil {
     required BuildContext context,
     required String action,
     required Amount amount,
+    required String symbol,
     BigInt? fee,
   }) {
     final l10n = l10nOf(context);
     if (amount.raw != BigInt.zero) {
       final amountStr = NumberUtil.formatedAmount(amount);
-      final amountConfirm = l10n.amountConfirm(amountStr, amount.symbolLabel);
+      final amountConfirm = l10n.amountConfirm(amountStr, symbol);
       action += '\n$amountConfirm';
     }
     if (fee != null && fee != BigInt.zero) {
       final kaspa = TokenInfo.kaspa;
       final feeStr = NumberUtil.approxAmountRaw(fee, kaspa.decimals);
-      final feeConfirm = l10n.feeConfirm(feeStr, kaspa.symbolLabel);
+      final feeConfirm = l10n.feeConfirm(feeStr, symbol);
       action += '\n$feeConfirm';
     }
     return action;

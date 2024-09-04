@@ -26,6 +26,7 @@ class CompoundUtxosDialog extends ConsumerWidget {
     final utxos = ref.watch(utxoListProvider);
     final balance = ref.watch(formatedTotalBalanceProvider);
     final maxSend = NumberUtil.formatedAmount(ref.watch(maxSendProvider));
+    final kasSymbol = ref.watch(kasSymbolProvider);
 
     Future<void> sendCompoundTx() async {
       try {
@@ -127,13 +128,13 @@ class CompoundUtxosDialog extends ConsumerWidget {
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 8),
                         child: Text(
-                          '$balance KAS',
+                          '$balance $kasSymbol',
                           style: styles.textStyleSettingItemHeader,
                         ),
                       ),
                       Container(
                         child: Text(
-                          '${maxSend} KAS',
+                          '$maxSend $kasSymbol',
                           style: styles.textStyleSettingItemHeader,
                         ),
                       ),

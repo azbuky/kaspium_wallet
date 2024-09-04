@@ -132,6 +132,7 @@ final formatedTotalFiatProvider = Provider.autoDispose((ref) {
 final formatedKaspaPriceProvider = Provider.autoDispose((ref) {
   final price = ref.watch(kaspaPriceProvider).price;
   final currency = ref.watch(currencyProvider);
+  final symbol = ref.watch(kasSymbolProvider);
   final decimals = price >= Decimal.parse('1')
       ? 2
       : price >= Decimal.parse('0.01')
@@ -145,7 +146,7 @@ final formatedKaspaPriceProvider = Provider.autoDispose((ref) {
     decimalDigits: decimals,
   ).format(DecimalIntl(price));
 
-  return '$priceStr / KAS';
+  return '$priceStr / $symbol';
 });
 
 final fiatValueForAddressProvider =
@@ -198,7 +199,8 @@ final fiatForAmountProvider =
 });
 
 final kaspaFormatterProvider = Provider((ref) {
-  final format = NumberFormat.currency(name: '', symbol: 'KAS');
+  final symbol = ref.watch(kasSymbolProvider);
+  final format = NumberFormat.currency(name: '', symbol: symbol);
   final formatter = CurrencyFormatter(
     groupSeparator: format.symbols.GROUP_SEP,
     decimalSeparator: format.symbols.DECIMAL_SEP,

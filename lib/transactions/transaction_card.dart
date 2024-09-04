@@ -30,6 +30,7 @@ class TransactionCard extends ConsumerWidget {
 
     final addressNotifier = ref.watch(addressNotifierProvider.notifier);
     final note = ref.watch(txNoteProvider(tx.id));
+    final kasSymbol = ref.watch(kasSymbolProvider);
 
     final output = tx.apiTx.outputs[item.outputIndex];
 
@@ -112,7 +113,7 @@ class TransactionCard extends ConsumerWidget {
                                     .copyWith(fontSize: AppFontSizes.small),
                               ),
                               TextSpan(
-                                text: ' KAS',
+                                text: ' ${kasSymbol}',
                                 style: styles.textStyleTransactionUnit
                                     .copyWith(fontSize: AppFontSizes.small),
                               ),
