@@ -39,7 +39,9 @@ class _LockScreenState extends ConsumerState<LockScreen> {
       }
     });
 
-    _authenticate(useTransition: true);
+    if (SchedulerBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+      _authenticate(useTransition: true);
+    }
   }
 
   @override
@@ -48,7 +50,7 @@ class _LockScreenState extends ConsumerState<LockScreen> {
     super.dispose();
   }
 
-  Future<void> _goHome() async {
+  Future<void> _unlock() async {
     final walletAuth = ref.read(walletAuthProvider.notifier);
     final unlocked = await walletAuth.unlock();
 
@@ -148,17 +150,17 @@ class _LockScreenState extends ConsumerState<LockScreen> {
       );
 
       if (authenticated) {
-        _goHome();
+        _unlock();
       } else {
         setState(() {
           _showUnlockButton = true;
         });
+        throw Exception('Authentication failed');
       }
     } catch (_) {
       rethrow;
     } finally {
       Future.delayed(Duration(milliseconds: 200), () {
-        print('Enabling privacy overlay');
         ref.read(privacyOverlayDisabledProvider.notifier).state = false;
       });
     }
@@ -183,7 +185,7 @@ class _LockScreenState extends ConsumerState<LockScreen> {
     }
 
     if ((await auth) == true) {
-      _goHome();
+      _unlock();
     }
   }
 

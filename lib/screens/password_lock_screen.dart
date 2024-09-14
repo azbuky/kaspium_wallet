@@ -15,8 +15,8 @@ class PasswordLockScreen extends ConsumerWidget {
       validator: (password) async {
         final walletAuth = ref.read(walletAuthNotifierProvider);
         if (walletAuth != null) {
-          final auth = await walletAuth.unlock(password: password);
-          if (!auth) {
+          final unlocked = await walletAuth.unlock(password: password);
+          if (!unlocked) {
             return false;
           }
         }

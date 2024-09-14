@@ -338,14 +338,18 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
 
     switch (unlockOption) {
       case UnlockOption.YES:
-        lockSettings.setLock(true).then((_) {
-          setState(() => _unlockSetting = UnlockSetting(UnlockOption.YES));
-        });
+        await lockSettings.setLock(true);
+        setState(() => _unlockSetting = UnlockSetting(UnlockOption.YES));
+
         break;
       case UnlockOption.NO:
-        lockSettings.setLock(false).then((_) {
-          setState(() => _unlockSetting = UnlockSetting(UnlockOption.NO));
+        await lockSettings.setLock(false);
+        await lockSettings.setAutoLock(false);
+        setState(() {
+          _unlockSetting = UnlockSetting(UnlockOption.NO);
+          _autoLockSetting = UnlockSetting(UnlockOption.NO);
         });
+
         break;
       case null:
         break;
@@ -361,14 +365,12 @@ class _SecurityMenuState extends ConsumerState<SecurityMenu> {
 
     switch (unlockOption) {
       case UnlockOption.YES:
-        lockSettings.setAutoLock(true).then((_) {
-          setState(() => _autoLockSetting = UnlockSetting(UnlockOption.YES));
-        });
+        await lockSettings.setAutoLock(true);
+        setState(() => _autoLockSetting = UnlockSetting(UnlockOption.YES));
         break;
       case UnlockOption.NO:
-        lockSettings.setAutoLock(false).then((_) {
-          setState(() => _autoLockSetting = UnlockSetting(UnlockOption.NO));
-        });
+        await lockSettings.setAutoLock(false);
+        setState(() => _autoLockSetting = UnlockSetting(UnlockOption.NO));
         break;
       case null:
         break;
