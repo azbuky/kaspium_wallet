@@ -85,7 +85,7 @@ extension BoxInfoExtension on SettingsRepository {
         byNetworkId: mainnet != null
             ? {
                 ...bundle.byNetworkId,
-                kKaspaNetworkMainnet: mainnet,
+                kKaspaNetworkIdMainnet: mainnet,
               }
             : bundle.byNetworkId,
         wasMigrated: true,
