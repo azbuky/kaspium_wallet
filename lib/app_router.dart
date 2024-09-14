@@ -87,12 +87,12 @@ class AppRouter {
           settings: settings,
         );
       case _AppScreens.locked:
-        return NoTransitionRoute(
+        return BarrierRoute(
           builder: (_) => const LockScreen(),
           settings: settings,
         );
       case _AppScreens.lockedWithTransition:
-        return MaterialPageRoute(
+        return BarrierRoute(
           builder: (_) => const LockScreen(),
           settings: settings,
         );
