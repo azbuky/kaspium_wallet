@@ -1,6 +1,9 @@
 import '../utils.dart';
 import 'types.dart';
 
+//1 byte for OP_DATA_65 + 64 (length of signature) + 1 byte for sig hash type
+const kSignatureSize = 1 + 64 + 1;
+
 BigInt _max(BigInt a, BigInt b) => a > b ? a : b;
 
 enum Kip9Version {
@@ -142,7 +145,7 @@ class MassCalculator {
     int size = 0;
     size += outpointEstimatedSerializedSize(); // previous outpoint
     size += 8; // signature script length
-    size += input.signatureScript.length; // signature script
+    size += kSignatureSize; // input.signatureScript.length; // signature script
     size += 8; // sequence (uint64)
     return size;
   }
