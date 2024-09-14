@@ -52,9 +52,8 @@ android {
         applicationId "io.kaspium.kaspiumwallet"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        //minSdkVersion flutter.minSdkVersion
-        minSdkVersion 28
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 28 // flutter.minSdkVersion
+        targetSdkVersion 34 // flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -77,9 +76,6 @@ android {
                 minifyEnabled true
             } else {
                 signingConfig signingConfigs.debug
-            }
-            ndk {
-                abiFilters 'armeabi-v7a','arm64-v8a','x86_64'
             }
         }
     }
