@@ -52,7 +52,6 @@ final selectionSummaryProvider =
 
     return newSendTx;
   } catch (e) {
-    print(e);
     rethrow;
   }
 });
