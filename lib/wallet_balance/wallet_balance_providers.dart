@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../coingecko/coingecko_providers.dart';
 import '../core/core_providers.dart';
 import '../kaspa/kaspa.dart';
+import '../settings/available_currency.dart';
 import '../settings/settings_providers.dart';
 import '../util/formatters.dart';
 import '../util/numberutil.dart';
@@ -220,10 +221,16 @@ final fiatFormatterProvider = Provider.autoDispose((ref) {
     name: currency.name,
     symbol: currency.symbol,
   );
+
+  var maxDecimalDigits = format.decimalDigits ?? 2;
+  if (currency.currency == AvailableCurrencies.BTC) {
+    maxDecimalDigits = 8;
+  }
+
   final formatter = CurrencyFormatter(
     groupSeparator: format.symbols.GROUP_SEP,
     decimalSeparator: format.symbols.DECIMAL_SEP,
-    maxDecimalDigits: format.decimalDigits ?? 2,
+    maxDecimalDigits: maxDecimalDigits,
     maxAmount: maxAmount,
   );
 
