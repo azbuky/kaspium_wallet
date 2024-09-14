@@ -35,11 +35,14 @@ class TransactionDetails extends ConsumerWidget {
     final title = switch (txItem.type) {
       TxItemType.send => l10n.sent.toUpperCase(),
       TxItemType.receive => l10n.received.toUpperCase(),
+      TxItemType.thisWallet =>
+        l10n.thisWallet.replaceAll('#', '').toUpperCase(),
       TxItemType.compound => l10n.compoundUppercased,
     };
     final addressTitle = switch (txItem.type) {
       TxItemType.send => l10n.toAddress.toUpperCase(),
       TxItemType.receive ||
+      TxItemType.thisWallet ||
       TxItemType.compound =>
         l10n.walletAddress.toUpperCase(),
     };
@@ -61,6 +64,14 @@ class TransactionDetails extends ConsumerWidget {
                   maxLines: 1,
                 ),
               ),
+              if (txItem.pending)
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text(
+                    l10n.txPendingMessage,
+                    style: styles.textStyleAddressPrimary,
+                  ),
+                ),
               const SizedBox(height: 10),
               AmountLabel(amount: amount),
               Container(

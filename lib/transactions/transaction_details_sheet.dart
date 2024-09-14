@@ -6,6 +6,7 @@ import '../app_providers.dart';
 import '../app_router.dart';
 import '../contacts/contact_add_sheet.dart';
 import '../l10n/l10n.dart';
+import '../util/ui_util.dart';
 import '../util/util.dart';
 import '../widgets/buttons.dart';
 import '../widgets/sheet_handle.dart';
@@ -21,13 +22,13 @@ class TransactionDetailsSheet extends ConsumerWidget {
   final TxItem? txItem;
 
   const TransactionDetailsSheet({
-    Key? key,
+    super.key,
     required this.transactionId,
     required this.address,
     this.displayContactButton = false,
     this.displayAddressButton = true,
     this.txItem,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,6 +55,19 @@ class TransactionDetailsSheet extends ConsumerWidget {
       openUrl(explorer.urlForTx(transactionId));
     }
 
+    Future<void> updateFee() async {
+      final txItem = this.txItem;
+      if (txItem == null) {
+        return;
+      }
+      UIUtil.showUpdateFeeFlow(
+        context,
+        ref: ref,
+        tx: txItem.tx,
+        address: address,
+      );
+    }
+
     return SafeArea(
       minimum: EdgeInsets.only(
         bottom: MediaQuery.of(context).size.height * 0.035,
@@ -72,7 +86,13 @@ class TransactionDetailsSheet extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(height: 20),
-                  if (displayAddressButton) ...[
+                  if (txItem?.pending ?? false) ...[
+                    PrimaryButton(
+                      title: l10n.feeUpdate,
+                      onPressed: updateFee,
+                    ),
+                    const SizedBox(height: 16),
+                  ] else if (displayAddressButton) ...[
                     Stack(children: [
                       PrimaryButton(
                         title: l10n.viewAddress,

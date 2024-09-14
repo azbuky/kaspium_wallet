@@ -56,9 +56,11 @@ class TransactionCard extends ConsumerWidget {
     final date = formater.format(txDate);
 
     final txTypeIcon = switch (item.type) {
-      TxItemType.send => Icon(AppIcons.sent, color: theme.primary, size: 18),
+      TxItemType.send => Icon(AppIcons.sent, color: theme.text60, size: 18),
       TxItemType.receive =>
         Icon(AppIcons.received, color: theme.primary, size: 18),
+      TxItemType.thisWallet =>
+        Icon(Icons.swap_vert, color: theme.primary, size: 18),
       TxItemType.compound =>
         Icon(Icons.refresh, color: theme.primary, size: 18),
     };
@@ -121,12 +123,13 @@ class TransactionCard extends ConsumerWidget {
                           ),
                         ),
                         Text(
-                          date,
+                          item.pending ? l10n.txPending : date,
                           textAlign: TextAlign.start,
                           style: styles.textStyleTransactionType.copyWith(
-                              fontWeight: FontWeight.w400,
-                              fontSize: AppFontSizes.smallest,
-                              color: theme.text60),
+                            fontWeight: FontWeight.w400,
+                            fontSize: AppFontSizes.smallest,
+                            color: theme.text60,
+                          ),
                         ),
                       ],
                     ),
@@ -143,7 +146,7 @@ class TransactionCard extends ConsumerWidget {
                             ),
                             Consumer(builder: (context, ref, _) {
                               final txState = ref.watch(
-                                txConfirmationStatusProvider(tx),
+                                txConfirmationStatusProvider(item),
                               );
                               return Container(
                                 margin: const EdgeInsetsDirectional.only(

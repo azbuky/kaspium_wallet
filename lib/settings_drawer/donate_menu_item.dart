@@ -6,6 +6,7 @@ import '../contacts/contact.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../send_sheet/send_sheet.dart';
+import '../util/ui_util.dart';
 import '../widgets/address_widgets.dart';
 import '../widgets/sheet_util.dart';
 
@@ -22,19 +23,24 @@ class DonateMenuItem extends ConsumerWidget {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
 
-    void donate() {
+    Future<void> donate() async {
       final l10n = l10nOf(context);
       final uri = KaspaUri(
         address: Address.decodeAddress(contact.address),
       );
-      Sheets.showAppHeightNineSheet(
-        context: context,
-        theme: theme,
-        widget: SendSheet(
-          title: l10n.donate.toUpperCase(),
-          uri: uri,
-        ),
-      );
+
+      final (:cont, :rbf) = await UIUtil.checkForPendingTx(context, ref: ref);
+      if (cont) {
+        Sheets.showAppHeightNineSheet(
+          context: context,
+          theme: theme,
+          widget: SendSheet(
+            title: l10n.donate.toUpperCase(),
+            uri: uri,
+            rbf: rbf,
+          ),
+        );
+      }
     }
 
     return TextButton(

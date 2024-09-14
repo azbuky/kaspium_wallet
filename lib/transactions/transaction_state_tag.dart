@@ -30,6 +30,10 @@ class TransactionStateTag extends ConsumerWidget {
           l10n.unknown,
           style: styles.tagText,
         ),
+        pending: () => Text(
+          l10n.txInMempool,
+          style: styles.tagText,
+        ),
         unconfirmed: () => Text(
           l10n.notAccepted,
           style: styles.tagText,

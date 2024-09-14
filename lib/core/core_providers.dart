@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:decimal/decimal.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../app_providers.dart';
 import '../app_styles.dart';
 import '../chain_state/chain_state.dart';
 import '../database/database.dart';
@@ -12,14 +14,11 @@ import '../kaspa/grpc/rpc.pb.dart';
 import '../kaspa/kaspa.dart';
 import '../main_card/main_card_notifier.dart';
 import '../main_card/main_card_state.dart';
-import '../node_settings/node_providers.dart';
-import '../settings/settings_providers.dart';
 import '../util/auth_util.dart';
 import '../util/biometrics.dart';
 import '../util/hapticutil.dart';
 import '../util/sharedprefsutil.dart';
 import '../util/vault.dart';
-import '../utxos/utxos_providers.dart';
 
 final timeProvider = StreamProvider.autoDispose<DateTime>((ref) {
   return Stream.periodic(
@@ -208,6 +207,83 @@ final appLinkProvider = StateProvider<String?>((ref) {
 });
 
 final fiatModeProvider = StateProvider<bool>((ref) => false);
+
+final pendingTxsProvider = FutureProvider.autoDispose((ref) async {
+  final client = ref.watch(kaspaClientProvider);
+  final addresses = ref.watch(activeAddressesProvider);
+  // refresh when utxos change
+  ref.watch(utxosChangedProvider);
+
+  final pendingTxs = await client.getMempoolEntriesByAddresses(
+    addresses,
+    filterTransactionPool: false,
+    includeOrphanPool: false,
+  );
+
+  return pendingTxs
+      .expand(
+        (entries) => entries.sending.map(
+          (e) => ApiTransaction.fromRpc(e.transaction),
+        ),
+      )
+      .toSet()
+      .toList();
+});
+
+final rpcFeeEstimateProvider = FutureProvider.autoDispose((ref) async {
+  // refresh once every 10 seconds
+  ref.watch(timeProvider);
+  final client = ref.watch(kaspaClientProvider);
+
+  try {
+    final feeEstimate = await client.getFeeEstimate();
+    return feeEstimate;
+  } catch (e) {
+    return null;
+  }
+});
+
+extension BigIntExt on BigInt {
+  BigInt min(BigInt min) => this < min ? min : this;
+}
+
+final feeEstimateProvider = Provider.family
+    .autoDispose<List<(Amount, int?)>, (BigInt, Amount)>((ref, massAndFee) {
+  final mass = massAndFee.$1;
+  final baseFee = massAndFee.$2;
+
+  final feeEstimate = ref.watch(rpcFeeEstimateProvider).valueOrNull;
+  if (feeEstimate == null) {
+    return [
+      (Amount.value(Decimal.parse('0.001')), null),
+      (Amount.value(Decimal.parse('0.01')), null),
+      (Amount.value(Decimal.parse('0.1')), null),
+    ];
+  }
+
+  Amount feeFor(double feeRate, BigInt mass, Amount baseFee) {
+    final estimate = feeRate * mass.toDouble();
+    return Amount.raw((BigInt.from(estimate) - baseFee.raw).min(BigInt.zero));
+  }
+
+  final fees = [
+    if (feeEstimate.lowBuckets.isNotEmpty)
+      (
+        feeFor(feeEstimate.lowBuckets.first.feerate, mass, baseFee),
+        feeEstimate.lowBuckets.first.estimatedSeconds.toInt(),
+      ),
+    if (feeEstimate.normalBuckets.isNotEmpty)
+      (
+        feeFor(feeEstimate.normalBuckets.first.feerate, mass, baseFee),
+        feeEstimate.normalBuckets.first.estimatedSeconds.toInt(),
+      ),
+    (
+      feeFor(feeEstimate.priorityBucket.feerate, mass, baseFee),
+      feeEstimate.priorityBucket.estimatedSeconds.toInt(),
+    ),
+  ].where((fee) => fee.$1.raw > BigInt.zero).toList();
+  return fees;
+});
 
 final kasSymbolProvider = Provider((ref) {
   final network = ref.watch(networkProvider);

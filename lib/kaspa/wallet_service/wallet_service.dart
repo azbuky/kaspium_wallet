@@ -2,6 +2,7 @@ import 'dart:async';
 
 import '../kaspa_client.dart';
 import '../transaction.dart';
+import '../transaction/mass_calculator.dart';
 import '../types.dart';
 import 'send_tx.dart';
 import 'signer_base.dart';
@@ -17,32 +18,49 @@ class WalletService {
 
   SendTx createSendTx({
     required Address toAddress,
-    required BigInt amountRaw,
+    required Amount amount,
     required List<Utxo> spendableUtxos,
+    List<Utxo>? selectedUtxos,
     required BigInt feePerInput,
+    Amount? priorityFee,
     required Address changeAddress,
     String? note,
   }) {
     final txBuilder = TransactionBuilder(
       utxos: spendableUtxos,
       feePerInput: feePerInput,
+      priorityFee: priorityFee,
     );
     final tx = txBuilder.createUnsignedTransaction(
       toAddress: toAddress,
-      amount: Amount.raw(amountRaw),
+      amountRaw: amount.raw,
       changeAddress: changeAddress,
+      preselectedUtxos: selectedUtxos,
     );
+
+    final massCalculator = MassCalculator(
+      massPerTxByte: 1,
+      massPerScriptPubKeyByte: 10,
+      massPerSigOp: 1000,
+      storageMassParameter: kStorageMassParameter,
+    );
+
+    final mass = massCalculator.calcTxOverallMass(tx: tx);
 
     return SendTx(
       uri: KaspaUri(
         address: toAddress,
-        amount: Amount.raw(amountRaw),
+        amount: amount,
       ),
-      amountRaw: amountRaw,
       tx: tx,
+      utxos: txBuilder.selectedUtxos,
+      amount: amount,
+      change: txBuilder.change,
       changeAddress: txBuilder.changeAddress,
-      fee: txBuilder.fee,
+      baseFee: txBuilder.baseFee,
+      priorityFee: txBuilder.priorityFee,
       note: note,
+      mass: mass,
     );
   }
 
@@ -50,10 +68,12 @@ class WalletService {
     required Address compoundAddress,
     required List<Utxo> spendableUtxos,
     required BigInt feePerInput,
+    Amount? priorityFee,
   }) {
     final selectedUtxos =
         spendableUtxos.take(kMaxInputsPerTransaction).toList();
-    final fee = BigInt.from(selectedUtxos.length) * feePerInput;
+    final fee = BigInt.from(selectedUtxos.length) * feePerInput +
+        (priorityFee?.raw ?? BigInt.zero);
     final selectedTotal = selectedUtxos.fold<BigInt>(
       BigInt.zero,
       (sum, utxo) => sum + utxo.utxoEntry.amount,
@@ -62,20 +82,26 @@ class WalletService {
 
     return createSendTx(
       toAddress: compoundAddress,
-      amountRaw: amountRaw,
-      spendableUtxos: selectedUtxos,
+      amount: Amount.raw(amountRaw),
+      spendableUtxos: spendableUtxos,
+      selectedUtxos: selectedUtxos,
       feePerInput: feePerInput,
+      priorityFee: priorityFee,
       changeAddress: compoundAddress,
     );
   }
 
-  Future<String> sendTransaction(SendTx rawTx) async {
-    final tx = rawTx.tx;
-
+  Future<String> sendTransaction(Transaction tx, {bool rbf = false}) async {
     await _signTransaction(tx);
 
-    final txId = await client.submitTransaction(tx.toRpc());
+    final rpcTx = tx.toRpc();
 
+    if (rbf) {
+      final result = await client.submitTransactionReplacement(rpcTx);
+      return result.transactionId;
+    }
+
+    final txId = await client.submitTransaction(rpcTx);
     return txId;
   }
 

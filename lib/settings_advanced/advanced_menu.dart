@@ -7,6 +7,7 @@ import '../l10n/l10n.dart';
 import '../settings_drawer/double_line_item_two.dart';
 import '../transactions/tx_filter_settings.dart';
 import '../tx_report/tx_report_sheet.dart';
+import '../util/ui_util.dart';
 import '../widgets/app_icon_button.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/gradient_widgets.dart';
@@ -31,10 +32,13 @@ class AdvancedMenu extends ConsumerWidget {
     final wallet = ref.watch(walletProvider);
 
     Future<void> compoundUtxos() async {
-      await showAppDialog(
-        context: context,
-        builder: (_) => const CompoundUtxosDialog(),
-      );
+      final (:cont, :rbf) = await UIUtil.checkForPendingTx(context, ref: ref);
+      if (cont) {
+        showAppDialog(
+          context: context,
+          builder: (_) => CompoundUtxosDialog(rbf: rbf),
+        );
+      }
     }
 
     Future<void> scanMoreAddresses() async {

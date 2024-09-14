@@ -12,10 +12,12 @@ import '../widgets/dialog.dart';
 
 class CompoundUtxosDialog extends ConsumerWidget {
   final bool lightMode;
+  final bool rbf;
 
   const CompoundUtxosDialog({
     super.key,
     this.lightMode = false,
+    required this.rbf,
   });
 
   @override
@@ -46,13 +48,21 @@ class CompoundUtxosDialog extends ConsumerWidget {
           appRouter.pop(context);
           return;
         }
+
+        Amount? priorityFee;
+        if (rbf) {
+          final pendingTx = ref.read(txNotifierProvider).pendingTxs.first;
+          priorityFee = Amount.raw(pendingTx.fees.priorityFee.raw + BigInt.one);
+        }
+
         final compoundTx = walletService.createCompoundTx(
           compoundAddress: changeAddress.address,
           spendableUtxos: spendableUtxos,
           feePerInput: kFeePerInput,
+          priorityFee: priorityFee,
         );
-        await walletService.sendTransaction(compoundTx);
-        await addressNotifier.addAddress(changeAddress.copyWith(used: true));
+        await walletService.sendTransaction(compoundTx.tx, rbf: rbf);
+        ref.invalidate(pendingTxsProvider);
 
         if (lightMode) {
           // give some time for compound tx to broadcast and get accepted

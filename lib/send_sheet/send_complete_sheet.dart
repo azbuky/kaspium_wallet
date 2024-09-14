@@ -20,6 +20,7 @@ class SendCompleteSheet extends HookConsumerWidget {
   final Address toAddress;
   final String txId;
   final String? note;
+  final bool rbf;
 
   const SendCompleteSheet({
     Key? key,
@@ -27,6 +28,7 @@ class SendCompleteSheet extends HookConsumerWidget {
     required this.toAddress,
     required this.txId,
     this.note,
+    this.rbf = false,
   }) : super(key: key);
 
   @override

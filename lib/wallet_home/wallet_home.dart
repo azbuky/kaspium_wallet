@@ -22,6 +22,7 @@ final _walletWatcherProvider = Provider.autoDispose((ref) {
   ref.watch(txNotifierProvider);
   ref.watch(utxoNotifierProvider);
   ref.watch(utxoListProvider);
+  ref.watch(pendingTxsProvider);
 
   ref.watch(addressMonitorProvider);
 });

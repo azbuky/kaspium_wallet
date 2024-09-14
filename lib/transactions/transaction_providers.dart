@@ -155,6 +155,13 @@ final txNotifierForWalletProvider = ChangeNotifierProvider.autoDispose
     }
   });
 
+  // Update pending transactions
+  ref.listen(pendingTxsProvider, (_, next) {
+    if (next.asData?.value case final pendingTxs?) {
+      notifier.updatePendingTxs(pendingTxs);
+    }
+  });
+
   ref.onDispose(() {
     notifier.disposed = true;
   });
@@ -169,9 +176,13 @@ final txNotifierProvider = Provider.autoDispose((ref) {
 });
 
 final txConfirmationStatusProvider =
-    Provider.autoDispose.family<TxState, Tx>((ref, tx) {
+    Provider.autoDispose.family<TxState, TxItem>((ref, txItem) {
   final blueScore = ref.watch(virtualSelectedParentBlueScoreProvider);
 
+  final tx = txItem.tx;
+  if (txItem.pending) {
+    return TxState.pending();
+  }
   final kNoConfirmations = BigInt.from(100);
   final txBlueScore = tx.apiTx.acceptingBlockBlueScore;
 

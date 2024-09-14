@@ -17,6 +17,8 @@ class TransactionNotifier extends SafeChangeNotifier {
   var loadedTxs = IList<Tx>();
   bool get hasMore => loadedTxs.length < cache.txCount;
 
+  var pendingTxs = IList<Tx>();
+
   bool _loading = false;
   bool get loading => _loading;
   String? _lastLoadedTxId;
@@ -25,6 +27,17 @@ class TransactionNotifier extends SafeChangeNotifier {
   bool get firstLoad => _firstLoad;
 
   TransactionNotifier({required this.cache});
+
+  Future<void> updatePendingTxs(Iterable<ApiTransaction> pendingTxs) async {
+    if (pendingTxs.isEmpty) {
+      this.pendingTxs = this.pendingTxs.clear();
+    } else {
+      final txs = await cache.txsForApiTxs(pendingTxs);
+      this.pendingTxs = txs.toIList();
+    }
+
+    notifyListeners();
+  }
 
   void addToMemcache(ApiTransaction tx) {
     // Don't cache coinbase transactions

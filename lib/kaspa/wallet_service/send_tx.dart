@@ -11,14 +11,21 @@ class SendTx with _$SendTx {
 
   factory SendTx({
     required KaspaUri uri,
-    required BigInt amountRaw,
-    required BigInt fee,
     required Transaction tx,
+    required List<Utxo> utxos,
+    @Default(false) bool userSelected,
+    required Amount amount,
+    required Amount baseFee,
+    required Amount priorityFee,
+    required Amount change,
     Address? changeAddress,
     String? note,
+    required BigInt mass,
   }) = _SendTx;
 
-  Amount get amount => Amount.raw(amountRaw);
+  Amount get fee => Amount.raw(baseFee.raw + priorityFee.raw);
 
   Address get toAddress => uri.address;
+
+  List<Utxo>? get userSelectedUtxos => userSelected ? utxos : null;
 }

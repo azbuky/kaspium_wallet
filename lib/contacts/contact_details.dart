@@ -68,13 +68,16 @@ class ContactDetails extends HookConsumerWidget {
       );
     }
 
-    void showSendSheet() {
+    Future<void> showSendSheet() async {
       appRouter.pop(context);
-      Sheets.showAppHeightNineSheet(
-        context: context,
-        theme: theme,
-        widget: SendSheet(contact: contact),
-      );
+      final (:cont, :rbf) = await UIUtil.checkForPendingTx(context, ref: ref);
+      if (cont) {
+        Sheets.showAppHeightNineSheet(
+          context: context,
+          theme: theme,
+          widget: SendSheet(contact: contact, rbf: rbf),
+        );
+      }
     }
 
     return SafeArea(

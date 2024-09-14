@@ -99,7 +99,7 @@ class TxCacheService {
     return tx;
   }
 
-  Future<Iterable<Tx>> _txsForApiTxs(Iterable<ApiTransaction> apiTxs) async {
+  Future<Iterable<Tx>> txsForApiTxs(Iterable<ApiTransaction> apiTxs) async {
     await _cacheInputsFor(apiTxs);
 
     final txs = apiTxs.map(_txForApiTx);
@@ -110,7 +110,7 @@ class TxCacheService {
   Future<List<Tx>> cacheWalletTxs(Iterable<ApiTransaction> apiTxs) async {
     memCache.addEntries(apiTxs.map((e) => MapEntry(e.transactionId, e)));
 
-    final txs = (await _txsForApiTxs(apiTxs)).toList();
+    final txs = (await txsForApiTxs(apiTxs)).toList();
 
     final txIndexes = txs.map(
       (tx) => TxIndex(

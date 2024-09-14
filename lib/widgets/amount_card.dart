@@ -5,13 +5,20 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../core/core_providers.dart';
 import '../kaspa/types.dart';
 import '../util/numberutil.dart';
+import 'app_text_field.dart';
 import 'fiat_value_container.dart';
 import 'kas_icon_widget.dart';
 
 class AmountCard extends HookConsumerWidget {
   final Amount amount;
 
-  const AmountCard({Key? key, required this.amount}) : super(key: key);
+  final TextFieldButton? rightButton;
+
+  const AmountCard({
+    super.key,
+    required this.amount,
+    this.rightButton,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -86,7 +93,7 @@ class AmountCard extends HookConsumerWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 48),
+            rightButton ?? const SizedBox(width: 48),
           ],
         ),
       ),

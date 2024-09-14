@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../core/core_providers.dart';
+import '../app_providers.dart';
 import '../l10n/l10n.dart';
 import '../receive/receive_sheet.dart';
 import '../send_sheet/send_sheet.dart';
+import '../util/ui_util.dart';
 import 'sheet_util.dart';
 
 class ActionButton extends ConsumerWidget {
@@ -85,16 +86,25 @@ class SendActionButton extends ConsumerWidget {
     final theme = ref.watch(themeProvider);
     final l10n = l10nOf(context);
 
-    return ActionButton(
-      title: l10n.send,
-      onPressed: () {
+    Future<void> sendAction() async {
+      if (onPressed != null) {
         onPressed?.call();
+        return;
+      }
+
+      final (:cont, :rbf) = await UIUtil.checkForPendingTx(context, ref: ref);
+      if (cont) {
         Sheets.showAppHeightNineSheet(
           context: context,
-          widget: const SendSheet(),
+          widget: SendSheet(rbf: rbf),
           theme: theme,
         );
-      },
+      }
+    }
+
+    return ActionButton(
+      title: l10n.send,
+      onPressed: sendAction,
     );
   }
 }
