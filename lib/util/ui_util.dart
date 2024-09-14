@@ -137,6 +137,26 @@ abstract class UIUtil {
 
       final note = notes.getNoteForTxId(tx.id);
 
+      // Authenticate
+      final walletAuth = ref.read(walletAuthProvider.notifier);
+      final authUtil = ref.read(authUtilProvider);
+      bool auth = false;
+      if (walletAuth.needsPasswordAuth) {
+        auth = await authUtil.authenticateWithPassword(
+          context,
+          validator: (password) => walletAuth.unlock(password: password),
+        );
+      } else {
+        final symbol = ref.read(symbolProvider(amount));
+        final formatedAmount = NumberUtil.formatedAmount(amount);
+        final message = '${l10n.sendConfirm} $formatedAmount $symbol';
+        auth = await authUtil.authenticate(context, message, message);
+      }
+
+      if (!auth) {
+        return;
+      }
+
       try {
         AppDialogs.showInProgressDialog(
           context,
