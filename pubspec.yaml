@@ -2,11 +2,11 @@ name: kaspium_wallet
 description: The Ultimate Self-Custodial Wallet for the Kaspa Network.
 publish_to: "none"
 
-version: 1.0.1+12
+version: 1.1.0+15
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
-  flutter: '>=3.19.0'
+  flutter: '>=3.19.0 <3.20.0'
 
 dependencies:
   flutter:
