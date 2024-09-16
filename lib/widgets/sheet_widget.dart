@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
 import 'sheet_handle.dart';
+import 'tap_outside_unfocus.dart';
 
 class SheetWidget extends ConsumerWidget {
   final Widget? leftWidget;
@@ -25,51 +26,54 @@ class SheetWidget extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
     final leftRight = (leftWidget ?? rightWidget) != null;
 
-    return SafeArea(
-      minimum: EdgeInsets.only(
-        bottom: MediaQuery.of(context).size.height * 0.035,
-      ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (leftRight)
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(top: 10, start: 10),
-                  child: leftWidget ?? const SizedBox(height: 50, width: 50),
-                ),
-              Expanded(
-                child: Column(children: [
-                  const SheetHandle(),
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 4,
-                      vertical: 8,
-                    ),
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        title.toUpperCase(),
-                        style: styles.textStyleHeader(context),
-                        textAlign: TextAlign.center,
+    return TapOutsideUnfocus(
+      child: SafeArea(
+        minimum: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height * 0.035,
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (leftRight)
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.only(top: 10, start: 10),
+                    child: leftWidget ?? const SizedBox(height: 50, width: 50),
+                  ),
+                Expanded(
+                  child: Column(children: [
+                    const SheetHandle(),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 4,
+                        vertical: 8,
+                      ),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          title.toUpperCase(),
+                          style: styles.textStyleHeader(context),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
-                  ),
-                ]),
-              ),
-              if (leftRight)
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(top: 10, end: 10),
-                  child: rightWidget ?? const SizedBox(height: 50, width: 50),
+                  ]),
                 ),
-            ],
-          ),
-          Expanded(child: mainWidget),
-          const SizedBox(height: 16),
-          bottomWidget,
-        ],
+                if (leftRight)
+                  Padding(
+                    padding: const EdgeInsetsDirectional.only(top: 10, end: 10),
+                    child: rightWidget ?? const SizedBox(height: 50, width: 50),
+                  ),
+              ],
+            ),
+            Expanded(child: mainWidget),
+            const SizedBox(height: 16),
+            bottomWidget,
+          ],
+        ),
       ),
     );
   }

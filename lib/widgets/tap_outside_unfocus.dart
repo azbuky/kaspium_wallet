@@ -4,9 +4,9 @@ class TapOutsideUnfocus extends StatelessWidget {
   final Widget child;
 
   const TapOutsideUnfocus({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
