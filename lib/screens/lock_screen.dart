@@ -160,8 +160,10 @@ class _LockScreenState extends ConsumerState<LockScreen> {
     } catch (_) {
       rethrow;
     } finally {
-      Future.delayed(Duration(milliseconds: 200), () {
-        ref.read(privacyOverlayDisabledProvider.notifier).state = false;
+      final privacyOverlayDisabled =
+          ref.read(privacyOverlayDisabledProvider.notifier);
+      Future.delayed(Duration(milliseconds: 500), () {
+        privacyOverlayDisabled.state = false;
       });
     }
   }
