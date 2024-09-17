@@ -14,7 +14,7 @@ class WalletAddressManager {
   }) {
     addresses.forEach(_updateAddress);
 
-    if (addresses.isEmpty) {
+    if (_addresses.length < bufferSize) {
       _addresses.length = bufferSize;
     }
   }
