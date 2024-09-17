@@ -163,9 +163,8 @@ class TxCacheService {
   int get _refreshTimestamp => DateTime.now().toUtc().millisecondsSinceEpoch;
 
   bool _needsRefresh(Tx tx) {
-    final isCoinbase = tx.apiTx.inputs.isEmpty;
-    final delta = Duration(seconds: isCoinbase ? 100 : 10).inMilliseconds;
-    final notFresh = _refreshTimestamp > tx.lastUpdate + 2000;
+    final delta = Duration(seconds: 100).inMilliseconds;
+    final notFresh = _refreshTimestamp > tx.lastUpdate + 3000;
     final needsRefresh = tx.lastUpdate < tx.apiTx.blockTime + delta;
     return notFresh && needsRefresh;
   }
