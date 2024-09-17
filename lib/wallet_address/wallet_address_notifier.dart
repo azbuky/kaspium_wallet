@@ -99,7 +99,7 @@ class WalletAddressNotifier extends SafeChangeNotifier
     required this.addressNameCallback,
   }) : _walletAddressBox = addressBox {
     final addresses = _walletAddressBox.getAll();
-    final bufferSize = 100;
+    final bufferSize = 30;
 
     _receive = WalletAddressManager(
       type: AddressType.receive,
