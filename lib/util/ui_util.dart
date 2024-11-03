@@ -209,11 +209,7 @@ abstract class UIUtil {
     if (pendingTxs.isNotEmpty) {
       rbf = await showAppDialog<bool>(
             context: context,
-            builder: (_) => PendingTxDialog(
-              pendingTx: pendingTxs.first,
-              safeContext: context,
-              safeRef: ref,
-            ),
+            builder: (_) => PendingTxDialog(),
           ) ??
           false;
       if (rbf == false) {
@@ -223,29 +219,6 @@ abstract class UIUtil {
 
     return (cont: true, rbf: rbf);
   }
-
-  // static Future<void> checkForPendingTx(
-  //   BuildContext context, {
-  //   required WidgetRef ref,
-  //   required void Function(bool rbf) onContinue,
-  // }) async {
-  //   final txNotifier = ref.read(txNotifierProvider);
-  //   final pendingTxs = txNotifier.pendingTxs;
-
-  //   bool rbf = false;
-  //   if (pendingTxs.isNotEmpty) {
-  //     rbf = await showAppDialog<bool>(
-  //           context: context,
-  //           builder: (_) => PendingTxDialog(pendingTx: pendingTxs.first),
-  //         ) ??
-  //         false;
-  //     if (rbf == false) {
-  //       return;
-  //     }
-  //   }
-
-  //   onContinue(rbf);
-  // }
 
   static Future<void> showSendFlow(
     BuildContext context, {
