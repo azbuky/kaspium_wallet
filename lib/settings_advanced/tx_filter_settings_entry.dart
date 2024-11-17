@@ -4,10 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../l10n/l10n.dart';
 import '../settings/tx_settings.dart';
 import '../settings_drawer/double_line_item_two.dart';
-import 'tx_filter_dialog.dart';
+import '../transactions/tx_filter_dialog.dart';
 
-class TxFilterSettings extends ConsumerWidget {
-  const TxFilterSettings({super.key});
+class TxFilterSettingsEntry extends ConsumerWidget {
+  const TxFilterSettingsEntry({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
