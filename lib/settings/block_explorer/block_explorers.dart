@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../kaspa/kaspa.dart';
+import '../../kaspa/kaspa.dart';
 
 part 'block_explorers.freezed.dart';
 part 'block_explorers.g.dart';

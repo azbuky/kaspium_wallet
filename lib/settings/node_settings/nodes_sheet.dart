@@ -1,40 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app_providers.dart';
-import '../app_router.dart';
-import '../l10n/l10n.dart';
-import '../widgets/buttons.dart';
-import '../widgets/gradient_widgets.dart';
-import '../widgets/sheet_util.dart';
-import '../widgets/sheet_widget.dart';
+import '../../app_providers.dart';
+import '../../app_router.dart';
+import '../../l10n/l10n.dart';
+import '../../widgets/buttons.dart';
+import '../../widgets/gradient_widgets.dart';
+import '../../widgets/sheet_util.dart';
+import '../../widgets/sheet_widget.dart';
 import 'node_add_sheet.dart';
 import 'node_item.dart';
 import 'node_types.dart';
 
-class ListViewEndItem extends ConsumerWidget {
-  final Widget child;
-
-  const ListViewEndItem({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(themeProvider);
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        child,
-        Divider(height: 2, color: theme.text15),
-      ],
-    );
-  }
-}
-
-class ViteNodesSheet extends ConsumerWidget {
-  const ViteNodesSheet({Key? key}) : super(key: key);
+class NodesSheet extends ConsumerWidget {
+  const NodesSheet({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

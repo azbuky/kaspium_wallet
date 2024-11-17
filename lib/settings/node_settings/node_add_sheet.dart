@@ -4,19 +4,19 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:validators/validators.dart';
 
-import '../app_icons.dart';
-import '../app_providers.dart';
-import '../app_router.dart';
-import '../kaspa/kaspa.dart';
-import '../l10n/l10n.dart';
-import '../util/random_util.dart';
-import '../util/ui_util.dart';
-import '../util/user_data_util.dart';
-import '../widgets/app_text_field.dart';
-import '../widgets/buttons.dart';
-import '../widgets/dialog.dart';
-import '../widgets/sheet_widget.dart';
-import '../widgets/validation_text.dart';
+import '../../app_icons.dart';
+import '../../app_providers.dart';
+import '../../app_router.dart';
+import '../../kaspa/kaspa.dart';
+import '../../l10n/l10n.dart';
+import '../../util/random_util.dart';
+import '../../util/ui_util.dart';
+import '../../util/user_data_util.dart';
+import '../../widgets/app_text_field.dart';
+import '../../widgets/buttons.dart';
+import '../../widgets/dialog.dart';
+import '../../widgets/sheet_widget.dart';
+import '../../widgets/validation_text.dart';
 import 'node_types.dart';
 
 class NodeAddSheet extends HookConsumerWidget {

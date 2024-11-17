@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../setting_item.dart';
 import 'block_explorers.dart';
-import 'setting_item.dart';
 
 class AvailableBlockExplorer extends SettingSelectionItem {
   final BlockExplorer explorer;

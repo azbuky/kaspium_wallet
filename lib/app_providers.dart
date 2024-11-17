@@ -1,7 +1,7 @@
 export 'coingecko/coingecko_providers.dart';
 export 'contacts/contacts_providers.dart';
 export 'core/core_providers.dart';
-export 'node_settings/node_providers.dart';
+export 'settings/node_settings/node_settings_providers.dart';
 export 'settings/settings_providers.dart';
 export 'transactions/transaction_providers.dart';
 export 'txnotes/txnotes_providers.dart';

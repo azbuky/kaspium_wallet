@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import '../app_providers.dart';
-import '../app_styles.dart';
-import '../l10n/l10n.dart';
-import '../widgets/dialog.dart';
+import '../../app_providers.dart';
+import '../../app_styles.dart';
+import '../../l10n/l10n.dart';
+import '../../widgets/dialog.dart';
 import 'node_types.dart';
 
 final kaspaNodeConfigItemProvider =

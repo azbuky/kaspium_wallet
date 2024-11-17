@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app_providers.dart';
+import '../settings_providers.dart';
 import 'node_settings_notifier.dart';
 import 'node_types.dart';
 

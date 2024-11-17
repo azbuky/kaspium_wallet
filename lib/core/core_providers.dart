@@ -51,12 +51,6 @@ final stylesProvider = Provider((ref) {
   return AppStyles(theme);
 });
 
-final blockExplorerProvider = Provider((ref) {
-  final settings = ref.watch(blockExplorerSettingsProvider);
-  final networkId = ref.watch(networkIdProvider);
-  return settings.explorerForNetwork(networkId);
-});
-
 final sharedPrefsProvider =
     Provider<SharedPreferences>((ref) => throw UnimplementedError());
 
