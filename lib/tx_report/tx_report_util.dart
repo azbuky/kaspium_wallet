@@ -56,7 +56,7 @@ TxReportItem convertTx(
   required AppLocalizations l10n,
 }) {
   BigInt sumRaw(BigInt sum, int amount) => sum + BigInt.from(amount);
-  final txInputs = tx.inputData.whereNotNull().toIList();
+  final txInputs = tx.inputData.nonNulls.toIList();
   final txOutputs = tx.apiTx.outputs;
 
   final sendRaw = txInputs

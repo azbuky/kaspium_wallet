@@ -580,7 +580,7 @@ class AppStyles {
   );
 
   late final textStyleSubHeaderUnselected = textStyleSubHeader.copyWith(
-    color: theme.text.withOpacity(0.3),
+    color: theme.text.withValues(alpha: 0.3),
   );
 
   late final textStyleSubHeaderSuccess = textStyleSubHeader.copyWith(
@@ -1007,11 +1007,11 @@ class AppStyles {
       overlayColor:
           WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused))
-          return theme.backgroundDark.withOpacity(0.45);
+          return theme.backgroundDark.withValues(alpha: 0.45);
         if (states.contains(WidgetState.hovered))
-          return theme.backgroundDark.withOpacity(0.45);
+          return theme.backgroundDark.withValues(alpha: 0.45);
         if (states.contains(WidgetState.pressed))
-          return theme.backgroundDark.withOpacity(0.75);
+          return theme.backgroundDark.withValues(alpha: 0.75);
         return null;
       }),
     );

@@ -32,12 +32,13 @@ class NumberUtil {
     final scale = min(min(valueScale, strScale), amount.decimals);
     value = value.truncate(scale: scale);
 
-    final formatter = NumberFormat.currency(
+    final format = NumberFormat.currency(
       name: '',
       symbol: '',
       decimalDigits: scale,
     );
-    final formated = formatter.format(DecimalIntl(value)).trim();
+    final formatter = DecimalFormatter(format);
+    final formated = formatter.format(value).trim();
 
     return formated;
   }

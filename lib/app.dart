@@ -44,7 +44,7 @@ class App extends HookConsumerWidget {
 
     useEffect(() {
       final appLinks = AppLinks();
-      final sub = appLinks.allStringLinkStream.listen((appLink) {
+      final sub = appLinks.stringLinkStream.listen((appLink) {
         ref.read(appLinkProvider.notifier).state = appLink;
       });
       return sub.cancel;
@@ -69,7 +69,6 @@ class App extends HookConsumerWidget {
                 title: kWalletTitle,
                 theme: ThemeData(
                   useMaterial3: false,
-                  dialogBackgroundColor: theme.backgroundDark,
                   primaryColor: theme.primary,
                   fontFamily: kDefaultFontFamily,
                   brightness: Brightness.dark,
@@ -85,6 +84,9 @@ class App extends HookConsumerWidget {
                       borderRadius: BorderRadius.circular(25),
                     ),
                     textStyle: styles.textStyleAddressText60,
+                  ),
+                  dialogTheme: DialogThemeData(
+                    backgroundColor: theme.backgroundDark,
                   ),
                   colorScheme: ThemeData()
                       .colorScheme

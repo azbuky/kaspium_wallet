@@ -1,5 +1,4 @@
 import 'package:automatic_animated_list/automatic_animated_list.dart';
-import 'package:collection/collection.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -29,9 +28,9 @@ List<TxListItem> _txListItemsFromTxs(
       return [];
     }
 
-    final hasWalletInputs = tx.inputData.whereNotNull().any(
-              (input) => addressNotifier.containsAddress(input.address),
-            ) ||
+    final hasWalletInputs = tx.inputData.nonNulls.any(
+          (input) => addressNotifier.containsAddress(input.address),
+        ) ||
         tx.apiTx.inputs.any(
           (input) => utxoNotifier.isWalletOutpoint(
             Outpoint(

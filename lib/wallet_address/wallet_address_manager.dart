@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 import 'wallet_address.dart';
@@ -25,10 +24,10 @@ class WalletAddressManager {
   int _lastUsedIndex = -1;
 
   Iterable<String> get allAddresses =>
-      _addresses.whereNotNull().map((e) => e.encoded);
+      _addresses.nonNulls.map((e) => e.encoded);
 
   IList<WalletAddress> get activeAddresses =>
-      IList(_addresses.take(lastUsedIndex + 1).whereNotNull());
+      IList(_addresses.take(lastUsedIndex + 1).nonNulls);
 
   int get lastUsedIndex => _lastUsedIndex;
   int get nextUnusedIndex => _lastUsedIndex + 1;
