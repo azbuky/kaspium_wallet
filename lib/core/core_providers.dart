@@ -86,18 +86,16 @@ final addressPrefixProvider = Provider((ref) {
   return prefix;
 });
 
-final _kaspaApiProvider = Provider<KaspaApi>((ref) {
-  final networkId = ref.watch(networkIdProvider);
+final _kaspaApiProvider = Provider.autoDispose<KaspaApi>((ref) {
+  final apiUrl = ref.watch(kaspaApiUrlProvider);
 
-  return switch (networkId) {
-    kKaspaNetworkIdMainnet => KaspaApiMainnet('https://api.kaspa.org'),
-    kKaspaNetworkIdTestnet10 => KaspaApiMainnet('https://api-tn10.kaspa.org'),
-    kKaspaNetworkIdTestnet11 => KaspaApiMainnet('https://api-tn11.kaspa.org'),
-    _ => KaspaApiEmpty(),
-  };
+  if (apiUrl.isEmpty) {
+    return KaspaApiEmpty();
+  }
+  return KaspaApiMainnet(apiUrl);
 });
 
-final kaspaApiServiceProvider = Provider<KaspaApiService>((ref) {
+final kaspaApiServiceProvider = Provider.autoDispose<KaspaApiService>((ref) {
   final api = ref.watch(_kaspaApiProvider);
   return KaspaApiService(api);
 });

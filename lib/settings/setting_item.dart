@@ -9,6 +9,15 @@ abstract class SettingSelectionItem {
   String getDisplayName(BuildContext context);
 }
 
+class StringSelectionItem extends SettingSelectionItem {
+  final String item;
+
+  const StringSelectionItem(this.item);
+
+  @override
+  String getDisplayName(BuildContext context) => item;
+}
+
 class DonateSettingItem extends SettingSelectionItem {
   const DonateSettingItem();
 

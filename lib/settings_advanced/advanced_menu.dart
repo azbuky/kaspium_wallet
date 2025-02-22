@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
-import '../settings/krc20_settings.dart';
+import '../settings/kasplex_settings.dart';
 import '../widgets/app_icon_button.dart';
 import '../widgets/gradient_widgets.dart';
 import 'address_discovery_settings_entry.dart';
