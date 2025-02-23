@@ -1,6 +1,7 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_vibrate/flutter_vibrate.dart';
+
+//import 'package:flutter_vibrate/flutter_vibrate.dart';
 
 import 'platform.dart';
 
@@ -36,11 +37,11 @@ class HapticUtil {
   Future<void> error() async {
     if (kPlatformIsIOS) {
       // If this is simulator or this device doesnt have tapic then we can't use this
-      if (await hasTapicEngine() && await Vibrate.canVibrate) {
-        Vibrate.feedback(FeedbackType.error);
-      } else {
-        HapticFeedback.vibrate();
-      }
+      // if (await hasTapicEngine() && await Vibrate.canVibrate) {
+      //   Vibrate.feedback(FeedbackType.error);
+      // } else {
+      HapticFeedback.vibrate();
+      //}
     } else {
       HapticFeedback.vibrate();
     }
@@ -50,11 +51,11 @@ class HapticUtil {
   Future<void> success() async {
     if (kPlatformIsIOS) {
       // If this is simulator or this device doesnt have tapic then we can't use this
-      if (await hasTapicEngine() && await Vibrate.canVibrate) {
-        Vibrate.feedback(FeedbackType.medium);
-      } else {
-        HapticFeedback.mediumImpact();
-      }
+      // if (await hasTapicEngine() && await Vibrate.canVibrate) {
+      //   Vibrate.feedback(FeedbackType.medium);
+      // } else {
+      HapticFeedback.mediumImpact();
+      //}
     } else {
       HapticFeedback.mediumImpact();
     }

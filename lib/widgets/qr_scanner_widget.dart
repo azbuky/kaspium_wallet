@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 
 import '../app_providers.dart';
 import '../app_router.dart';
@@ -43,7 +43,8 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
-    final scanArea = (MediaQuery.of(context).size.width < 400 ||
+    final scanArea =
+        (MediaQuery.of(context).size.width < 400 ||
             MediaQuery.of(context).size.height < 400)
         ? 250.0
         : 300.0;
@@ -99,70 +100,73 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
     }
 
     return Scaffold(
-      body: Stack(children: [
-        QRView(
-          key: qrKey,
-          onQRViewCreated: _onQRViewCreated,
-          onPermissionSet: _onPermissionSet,
-          formatsAllowed: [BarcodeFormat.qrcode],
-          overlay: QrScannerOverlayShape(
-            borderColor: Colors.white,
-            borderRadius: 10,
-            borderLength: 30,
-            borderWidth: 10,
-            cutOutSize: scanArea,
-          ),
-        ),
-        SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AppIconButton(
-                      icon: Icons.arrow_back,
-                      color: Colors.white,
-                      onPressed: () => appRouter.pop(context),
-                    ),
-                    Text(
-                      l10n.scanQrCode,
-                      style: styles.textStyleButtonTextOutline
-                          .copyWith(color: Colors.white),
-                    ),
-                    kPlatformIsAndroid || kPlatformIsIOS
-                        ? AppIconButton(
-                            icon: Icons.image_outlined,
-                            color: Colors.white,
-                            onPressed: scanFromImage,
-                          )
-                        : const SizedBox(width: 48),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 50),
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.white38,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: IconButton(
-                    iconSize: 32,
-                    icon: Icon(
-                      _flashOn
-                          ? Icons.flashlight_off_rounded
-                          : Icons.flashlight_on_rounded,
-                    ),
-                    onPressed: toggleFlash,
-                  ),
-                ),
-              ],
+      body: Stack(
+        children: [
+          QRView(
+            key: qrKey,
+            onQRViewCreated: _onQRViewCreated,
+            onPermissionSet: _onPermissionSet,
+            formatsAllowed: [BarcodeFormat.qrcode],
+            overlay: QrScannerOverlayShape(
+              borderColor: Colors.white,
+              borderRadius: 10,
+              borderLength: 30,
+              borderWidth: 10,
+              cutOutSize: scanArea,
             ),
           ),
-        ),
-      ]),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      AppIconButton(
+                        icon: Icons.arrow_back,
+                        color: Colors.white,
+                        onPressed: () => appRouter.pop(context),
+                      ),
+                      Text(
+                        l10n.scanQrCode,
+                        style: styles.textStyleButtonTextOutline.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                      kPlatformIsAndroid || kPlatformIsIOS
+                          ? AppIconButton(
+                              icon: Icons.image_outlined,
+                              color: Colors.white,
+                              onPressed: scanFromImage,
+                            )
+                          : const SizedBox(width: 48),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 50),
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white38,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: IconButton(
+                      iconSize: 32,
+                      icon: Icon(
+                        _flashOn
+                            ? Icons.flashlight_off_rounded
+                            : Icons.flashlight_on_rounded,
+                      ),
+                      onPressed: toggleFlash,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -189,11 +193,5 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
         appRouter.pop(context, withResult: result);
       }
     });
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
   }
 }
