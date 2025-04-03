@@ -1212,7 +1212,8 @@ mixin _$ApiTxInput {
   String get previousOutpointHash => throw _privateConstructorUsedError;
   BigInt get previousOutpointIndex => throw _privateConstructorUsedError;
   String get signatureScript => throw _privateConstructorUsedError;
-  BigInt get sigOpCount => throw _privateConstructorUsedError; // new fields
+  @JsonKey(fromJson: _sigOpCountFromJson)
+  int get sigOpCount => throw _privateConstructorUsedError; // new fields
   String? get previousOutpointAddress => throw _privateConstructorUsedError;
   int? get previousOutpointAmount => throw _privateConstructorUsedError;
 
@@ -1234,7 +1235,7 @@ abstract class $ApiTxInputCopyWith<$Res> {
       String previousOutpointHash,
       BigInt previousOutpointIndex,
       String signatureScript,
-      BigInt sigOpCount,
+      @JsonKey(fromJson: _sigOpCountFromJson) int sigOpCount,
       String? previousOutpointAddress,
       int? previousOutpointAmount});
 }
@@ -1285,7 +1286,7 @@ class _$ApiTxInputCopyWithImpl<$Res, $Val extends ApiTxInput>
       sigOpCount: null == sigOpCount
           ? _value.sigOpCount
           : sigOpCount // ignore: cast_nullable_to_non_nullable
-              as BigInt,
+              as int,
       previousOutpointAddress: freezed == previousOutpointAddress
           ? _value.previousOutpointAddress
           : previousOutpointAddress // ignore: cast_nullable_to_non_nullable
@@ -1312,7 +1313,7 @@ abstract class _$$ApiTxInputImplCopyWith<$Res>
       String previousOutpointHash,
       BigInt previousOutpointIndex,
       String signatureScript,
-      BigInt sigOpCount,
+      @JsonKey(fromJson: _sigOpCountFromJson) int sigOpCount,
       String? previousOutpointAddress,
       int? previousOutpointAmount});
 }
@@ -1361,7 +1362,7 @@ class __$$ApiTxInputImplCopyWithImpl<$Res>
       sigOpCount: null == sigOpCount
           ? _value.sigOpCount
           : sigOpCount // ignore: cast_nullable_to_non_nullable
-              as BigInt,
+              as int,
       previousOutpointAddress: freezed == previousOutpointAddress
           ? _value.previousOutpointAddress
           : previousOutpointAddress // ignore: cast_nullable_to_non_nullable
@@ -1384,7 +1385,7 @@ class _$ApiTxInputImpl implements _ApiTxInput {
       required this.previousOutpointHash,
       required this.previousOutpointIndex,
       required this.signatureScript,
-      required this.sigOpCount,
+      @JsonKey(fromJson: _sigOpCountFromJson) required this.sigOpCount,
       this.previousOutpointAddress,
       this.previousOutpointAmount});
 
@@ -1402,7 +1403,8 @@ class _$ApiTxInputImpl implements _ApiTxInput {
   @override
   final String signatureScript;
   @override
-  final BigInt sigOpCount;
+  @JsonKey(fromJson: _sigOpCountFromJson)
+  final int sigOpCount;
 // new fields
   @override
   final String? previousOutpointAddress;
@@ -1471,7 +1473,7 @@ abstract class _ApiTxInput implements ApiTxInput {
       required final String previousOutpointHash,
       required final BigInt previousOutpointIndex,
       required final String signatureScript,
-      required final BigInt sigOpCount,
+      @JsonKey(fromJson: _sigOpCountFromJson) required final int sigOpCount,
       final String? previousOutpointAddress,
       final int? previousOutpointAmount}) = _$ApiTxInputImpl;
 
@@ -1489,7 +1491,8 @@ abstract class _ApiTxInput implements ApiTxInput {
   @override
   String get signatureScript;
   @override
-  BigInt get sigOpCount;
+  @JsonKey(fromJson: _sigOpCountFromJson)
+  int get sigOpCount;
   @override // new fields
   String? get previousOutpointAddress;
   @override

@@ -120,7 +120,7 @@ _$ApiTxInputImpl _$$ApiTxInputImplFromJson(Map json) => _$ApiTxInputImpl(
       previousOutpointIndex:
           BigInt.parse(json['previous_outpoint_index'] as String),
       signatureScript: json['signature_script'] as String,
-      sigOpCount: BigInt.parse(json['sig_op_count'] as String),
+      sigOpCount: _sigOpCountFromJson(json['sig_op_count']),
       previousOutpointAddress: json['previous_outpoint_address'] as String?,
       previousOutpointAmount: json['previous_outpoint_amount'] as int?,
     );
@@ -132,7 +132,7 @@ Map<String, dynamic> _$$ApiTxInputImplToJson(_$ApiTxInputImpl instance) {
     'previous_outpoint_hash': instance.previousOutpointHash,
     'previous_outpoint_index': instance.previousOutpointIndex.toString(),
     'signature_script': instance.signatureScript,
-    'sig_op_count': instance.sigOpCount.toString(),
+    'sig_op_count': instance.sigOpCount,
   };
 
   void writeNotNull(String key, dynamic value) {

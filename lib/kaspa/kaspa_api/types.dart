@@ -94,6 +94,16 @@ class ApiTxId with _$ApiTxId {
       _$ApiTxIdFromJson(json);
 }
 
+int _sigOpCountFromJson(sigOpCount) {
+  if (sigOpCount is int) {
+    return sigOpCount;
+  }
+  if (sigOpCount is String) {
+    return int.tryParse(sigOpCount) ?? 0;
+  }
+  return 0;
+}
+
 @freezed
 class ApiTxInput with _$ApiTxInput {
   @JsonSerializable(fieldRename: FieldRename.snake)
@@ -103,7 +113,7 @@ class ApiTxInput with _$ApiTxInput {
     required String previousOutpointHash,
     required BigInt previousOutpointIndex,
     required String signatureScript,
-    required BigInt sigOpCount,
+    @JsonKey(fromJson: _sigOpCountFromJson) required int sigOpCount,
     // new fields
     String? previousOutpointAddress,
     int? previousOutpointAmount,
@@ -160,7 +170,7 @@ class ApiTransaction with _$ApiTransaction {
           previousOutpointHash: e.previousOutpoint.transactionId,
           previousOutpointIndex: BigInt.from(e.previousOutpoint.index),
           signatureScript: e.signatureScript,
-          sigOpCount: BigInt.from(e.sigOpCount),
+          sigOpCount: e.sigOpCount,
         );
       }).toList(),
       outputs: tx.outputs.mapIndexed((index, e) {
@@ -175,4 +185,6 @@ class ApiTransaction with _$ApiTransaction {
       }).toList(),
     );
   }
+
+  bool get isCoinbase => inputs.isEmpty;
 }
