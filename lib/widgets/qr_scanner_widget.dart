@@ -1,4 +1,4 @@
-import 'package:barcode_finder/barcode_finder.dart' as bf;
+//import 'package:barcode_finder/barcode_finder.dart' as bf;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -67,13 +67,14 @@ class _QrScannerWidgetState extends ConsumerState<QrScannerWidget> {
         return;
       }
       try {
-        final code = await bf.BarcodeFinder.scanFile(
-          path: file.path,
-          formats: const [bf.BarcodeFormat.QR_CODE],
-        );
-        if (code == null) throw Exception(l10n.emptyResult);
-        result = Barcode(code, BarcodeFormat.qrcode, null);
-        appRouter.pop(context, withResult: result);
+        // final code = await bf.BarcodeFinder.scanFile(
+        //   path: file.path,
+        //   formats: const [bf.BarcodeFormat.QR_CODE],
+        // );
+        // if (code == null) throw Exception(l10n.emptyResult);
+        // result = Barcode(code, BarcodeFormat.qrcode, null);
+        // appRouter.pop(context, withResult: result);
+        throw Exception('Barcode Finder temporarily unavailable.');
       } catch (e) {
         UIUtil.showSnackbar(l10n.noQrCodeFound, context);
       }

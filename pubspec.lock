@@ -57,14 +57,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
-  barcode_finder:
-    dependency: "direct main"
-    description:
-      name: barcode_finder
-      sha256: f1ec99ba743d616ede6f200b21f49d74a260cad5a33fdefa1a8feb15f39b2bd4
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.5"
   boolean_selector:
     dependency: transitive
     description:
