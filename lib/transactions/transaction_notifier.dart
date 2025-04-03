@@ -200,4 +200,29 @@ class TransactionNotifier extends SafeChangeNotifier {
 
     return refreshAddresses.toIList();
   }
+
+  Future<void> checkForMissingTxs(Iterable<String> tdIds) async {
+    if (tdIds.isEmpty) {
+      return;
+    }
+
+    final missingTxs = <String>{};
+    for (final txId in tdIds) {
+      if (!cache.isWalletTxId(txId)) {
+        missingTxs.add(txId);
+      }
+    }
+
+    if (missingTxs.isEmpty) {
+      return;
+    }
+
+    final txs = await api.getTxsWithIds(missingTxs);
+    if (txs.isEmpty) {
+      return;
+    }
+    await cache.cacheWalletTxs(txs);
+
+    await reload();
+  }
 }

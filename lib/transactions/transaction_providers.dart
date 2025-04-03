@@ -127,6 +127,12 @@ final txNotifierForWalletProvider = ChangeNotifierProvider.autoDispose
     notifier.fetchNewTxsForAddresses(next.keys);
   }, fireImmediately: true);
 
+  // Check for missing transactions in UTXOs
+  ref.listen(utxoListProvider, (_, utxos) {
+    notifier.checkForMissingTxs(
+        utxos.take(100).map((u) => u.outpoint.transactionId));
+  }, fireImmediately: true);
+
   // Cache new transactions
   ref.listen(_newTransactionProvider, (_, next) {
     if (next.asData?.value case final tx?) {
