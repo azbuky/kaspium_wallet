@@ -6,6 +6,7 @@ To make Kaspium usable to a broad audience, the Kaspa translators team provided 
 
 | Language        | Translators                          |
 |:----------------|:-------------------------------------|
+| Afrikaans (af)  | .jjfo                                |
 | Albanian (sq)   | xxdilaxxKaspa, nardiidoda            |
 | Arabic (ar)     |                                      |
 | Basque (eu)     | jorgereyazabal                       |
