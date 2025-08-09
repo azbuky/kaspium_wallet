@@ -48,6 +48,10 @@ class MainCard extends ConsumerWidget {
       UIUtil.showSendFlow(context, ref: ref, uri: uri);
     }
 
+    Future<void> scanNfc() async {
+      await UserDataUtil.nfcScanner(context);
+    }
+
     return GestureDetector(
       onTap: () {
         final notifier = ref.read(mainCardProvider.notifier);
@@ -121,10 +125,16 @@ class MainCard extends ConsumerWidget {
                   if (wallet.isViewOnly)
                     const SizedBox(width: 40, height: 40)
                   else
-                    AppIconButton(
-                      icon: Icons.qr_code_scanner,
-                      onPressed: scanQrCode,
-                    ),
+                    Row(children: [
+                      AppIconButton(
+                        icon: Icons.qr_code_scanner,
+                        onPressed: scanQrCode,
+                      ),
+                      AppIconButton(
+                        icon: Icons.scanner,
+                        onPressed: scanNfc,
+                      )
+                    ]),
                 ],
               ),
             ),
