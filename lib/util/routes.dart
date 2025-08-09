@@ -71,6 +71,17 @@ class NoPopTransitionRoute<T> extends MaterialPageRoute<T> {
   }
 }
 
+// Used for lock screen
+class BarrierRoute<T> extends NoTransitionRoute<T> {
+  BarrierRoute({required super.builder, super.settings});
+
+  @override
+  RoutePopDisposition get popDisposition => RoutePopDisposition.bubble;
+
+  @override
+  bool get barrierDismissible => false;
+}
+
 class RouteUtils {
   static RoutePredicate withNameLike(String name) {
     return (Route<dynamic> route) {

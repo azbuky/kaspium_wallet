@@ -9,7 +9,8 @@ class IntroStateNotifier extends StateNotifier<IntroState> {
   IntroStateNotifier(this.introData) : super(IntroState.init());
 
   void newWallet() {
-    introData.generateNewMnemonic();
+    introData.clear();
+    introData.generateNewMnemonic(strength: 128);
 
     _goToPage(IntroPage.walletName);
   }
@@ -19,14 +20,18 @@ class IntroStateNotifier extends StateNotifier<IntroState> {
   }
 
   void importWallet() {
+    introData.clear();
     _goToPage(IntroPage.importSeed);
   }
 
   void importLegacyWallet() {
+    introData.clear();
+    introData.setLegacyWallet();
     _goToPage(IntroPage.importLegacySeed);
   }
 
   void importViewOnlyWallet() {
+    introData.clear();
     _goToPage(IntroPage.importKpub);
   }
 
@@ -62,10 +67,7 @@ class IntroStateNotifier extends StateNotifier<IntroState> {
     }
   }
 
-  void setMnemonic(String mnemonic, {String? walletName}) {
-    if (walletName != null) {
-      introData.setName(walletName);
-    }
+  void setMnemonic(String mnemonic) {
     introData.setMnemonic(mnemonic);
     _goToPage(IntroPage.walletName);
   }

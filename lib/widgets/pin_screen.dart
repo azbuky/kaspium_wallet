@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/pin_lockout.dart';
 import 'pin_screen_button.dart';
@@ -98,11 +99,10 @@ class _PinScreenState extends ConsumerState<PinScreen>
                 setState(() {
                   _controller.value = 0;
                 });
-                pinLockout.updateLockDate().then((_) {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/lock_screen_transition',
-                      (Route<dynamic> route) => false);
-                });
+                // TODO - check logic here
+                pinLockout
+                    .updateLockDate()
+                    .then((_) => appRouter.lockoutkWithTransition(context));
               } else {
                 setState(() {
                   _pin = '';
@@ -210,7 +210,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
               _controller.forward();
             } else {
               await pinLockout.resetUnlockAttempts();
-              Navigator.of(context, rootNavigator: true).pop(true);
+              appRouter.pop(context, withResult: true);
             }
           } else {
             if (!_awaitingConfirmation) {
@@ -223,7 +223,7 @@ class _PinScreenState extends ConsumerState<PinScreen>
             } else {
               // First and second pins match
               if (_pin == _pinConfirmed) {
-                Navigator.of(context).pop(_pin);
+                appRouter.pop(context, withResult: _pin);
               } else {
                 hapticUtil.error();
                 _controller.forward();

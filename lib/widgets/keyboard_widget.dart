@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
-import '../kaspa/bip39/bip39.dart' as bip39;
+import '../kaspa/kaspa.dart';
 
 class Event<T> {
   final T data;
@@ -13,15 +13,15 @@ class Event<T> {
 const kBackspaceKey = '⌫';
 
 final wordListProvider =
-    Provider<IList<String>>((ref) => bip39.WORDLIST.toIList());
+    Provider<IList<String>>((ref) => kMnemonicWordList.toIList());
 
-final wordPrefixProvider = StateProvider((ref) {
+final wordPrefixProvider = StateProvider.autoDispose((ref) {
   return '';
 });
 
 final keyboardEnabledProvider = StateProvider.autoDispose((ref) => true);
 
-final wordSuggestionsProvider = Provider<IList<String>>((ref) {
+final wordSuggestionsProvider = Provider.autoDispose<IList<String>>((ref) {
   final prefix = ref.watch(wordPrefixProvider);
   final wordList = ref.watch(wordListProvider);
   if (prefix.isEmpty) {

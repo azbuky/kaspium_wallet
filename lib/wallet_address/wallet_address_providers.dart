@@ -1,23 +1,22 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../core/core_providers.dart';
+import '../app_providers.dart';
 import '../database/boxes.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
-import '../transactions/transaction_providers.dart';
+import '../settings/address_settings.dart';
 import '../wallet/wallet_types.dart';
-import '../wallet_auth/wallet_auth_providers.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
-import 'address_settings.dart';
 import 'wallet_address.dart';
 import 'wallet_address_notifier.dart';
 
 final addressBoxProvider = Provider.autoDispose
     .family<TypedBox<WalletAddress>, WalletInfo>((ref, wallet) {
   final db = ref.watch(dbProvider);
-  final network = ref.watch(networkProvider);
-  final addressBoxKey = wallet.getBoxInfo(network).address.boxKey;
+  final networkId = ref.watch(networkIdProvider);
+  final repository = ref.watch(boxInfoRepositoryProvider);
+  final boxInfo = repository.getBoxInfo(wallet.wid, networkId);
+  final addressBoxKey = boxInfo.address.boxKey;
   return db.getTypedBox<WalletAddress>(addressBoxKey);
 });
 
@@ -135,4 +134,8 @@ final receiveAddressProvider = Provider.autoDispose((ref) {
   return ref.watch(
     addressNotifierProvider.select((value) => value.receiveAddress),
   );
+});
+
+final selectedAddressProvider = StateProvider.autoDispose((ref) {
+  return ref.read(receiveAddressProvider);
 });

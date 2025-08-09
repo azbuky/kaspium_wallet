@@ -1,3 +1,4 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/core_providers.dart';
@@ -86,3 +87,5 @@ final spendableUtxosProvider = Provider.autoDispose((ref) {
 
   return spendableUtxos;
 });
+
+final selectedUtxosProvider = StateProvider<ISet<Utxo>>((ref) => ISet());

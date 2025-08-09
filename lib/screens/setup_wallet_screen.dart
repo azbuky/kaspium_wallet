@@ -3,10 +3,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../intro/intro_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
-import '../utils.dart';
 import '../wallet/wallet_types.dart';
 import '../wallet_address/address_discovery.dart';
 import '../wallet_address/wallet_address.dart';
@@ -48,7 +48,7 @@ class SetupWalletScreen extends HookConsumerWidget {
             throw Exception('Missing seed');
           }
           WalletKind walletKind;
-          if (introData.mnemonic?.split(' ').length == 12) {
+          if (introData.isLegacyWallet) {
             final wallet = HdWallet.forSeedHex(seed, type: HdWalletType.legacy);
             final pubKey = wallet.derivePublicKey(typeIndex: 0, index: 0);
             walletKind = WalletKind.localHdLegacy(mainPubKey: pubKey.hex);
@@ -60,6 +60,7 @@ class SetupWalletScreen extends HookConsumerWidget {
             name: introData.name ?? l10n.defaultWalletName,
             kind: walletKind,
             seed: seed,
+            usesBip39Passphrase: introData.bip39Passphrase.isNotEmpty,
             mnemonic: introData.mnemonic,
             password: introData.password,
           );
@@ -67,9 +68,10 @@ class SetupWalletScreen extends HookConsumerWidget {
 
         // setup wallet
         final network = ref.read(networkProvider);
+        final networkId = ref.read(networkIdProvider);
         final notifier = ref.read(walletBundleProvider.notifier);
         final wallet = await notifier.setupWallet(walletData);
-        await notifier.selectWallet(wallet, network);
+        await notifier.selectWallet(wallet, networkId);
 
         final auth = ref.read(walletAuthNotifierProvider);
         if (auth == null) throw Exception('No active wallet');
@@ -123,7 +125,7 @@ class SetupWalletScreen extends HookConsumerWidget {
         }
 
         final walletRepository = ref.read(walletRepositoryProvider);
-        await walletRepository.openWalletBoxes(wallet, network: network);
+        await walletRepository.openWalletBoxes(wallet, networkId: networkId);
 
         final addressBox = ref.read(addressBoxProvider(wallet));
 
@@ -136,11 +138,12 @@ class SetupWalletScreen extends HookConsumerWidget {
         final txCache = ref.read(txCacheServiceProvider(wallet));
         await txCache.addWalletTxIds(discovery.txIds);
 
-        await walletRepository.closeWalletBoxes(wallet, network: network);
+        await walletRepository.closeWalletBoxes(wallet, networkId: networkId);
 
         message.value = l10n.fetchingTransactions;
         details.value = '';
-        Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
+
+        appRouter.reload(context);
       } catch (e, st) {
         final log = ref.read(loggerProvider);
         log.e('Failed to create wallet', error: e, stackTrace: st);
@@ -148,10 +151,6 @@ class SetupWalletScreen extends HookConsumerWidget {
         setupFailed.value = true;
         setupError.value = e;
       }
-    }
-
-    void restartSetup() {
-      Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
     }
 
     useEffect(() {
@@ -162,7 +161,7 @@ class SetupWalletScreen extends HookConsumerWidget {
     if (setupFailed.value) {
       return SetupFailedPage(
         error: setupError.value,
-        onRestart: restartSetup,
+        onRestart: () => appRouter.reload(context),
       );
     }
 

@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 
 class LogoutScreen extends HookConsumerWidget {
@@ -17,13 +18,13 @@ class LogoutScreen extends HookConsumerWidget {
     Future<void> logout() async {
       try {
         final notifier = ref.read(walletBundleProvider.notifier);
-        final network = ref.read(networkProvider);
-        await notifier.logout(network);
+        final networkId = ref.read(networkIdProvider);
+        await notifier.logout(networkId);
       } catch (e, st) {
         final log = ref.read(loggerProvider);
         log.e('Failed to logout', error: e, stackTrace: st);
       } finally {
-        Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
+        appRouter.reload(context);
       }
     }
 

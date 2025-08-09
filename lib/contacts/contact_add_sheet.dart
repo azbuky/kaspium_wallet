@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../util/formatters.dart';
@@ -13,7 +14,6 @@ import '../widgets/address_widgets.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
 import '../widgets/sheet_widget.dart';
-import '../widgets/tap_outside_unfocus.dart';
 import 'contact.dart';
 
 class ContactAddSheet extends ConsumerStatefulWidget {
@@ -88,129 +88,106 @@ class _ContactAddSheetState extends ConsumerState<ContactAddSheet> {
 
     final addressPrefix = ref.watch(addressPrefixProvider);
 
-    return TapOutsideUnfocus(
-      child: SheetWidget(
-        title: l10n.addContact,
-        mainWidget: Column(
-          children: [
-            // Enter Name Container
-            AppTextField(
-              topMargin: MediaQuery.of(context).size.height * 0.14,
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              focusNode: _nameFocusNode,
-              controller: _nameController,
-              textInputAction: widget.address != null
-                  ? TextInputAction.done
-                  : TextInputAction.next,
-              hintText: _showNameHint ? l10n.contactNameHint : "",
-              keyboardType: TextInputType.text,
-              style: styles.textStyleAppTextFieldSimple,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(20),
-                ContactFormatter()
-              ],
-              onSubmitted: (text) {
-                final scope = FocusScope.of(context);
-                if (widget.address == null) {
-                  final address = _addressController.text;
-                  final prefix = ref.read(addressPrefixProvider);
-                  if (!Address.isValid(address, prefix)) {
-                    scope.requestFocus(_addressFocusNode);
-                  } else {
-                    scope.unfocus();
-                  }
+    return SheetWidget(
+      title: l10n.addContact,
+      mainWidget: Column(
+        children: [
+          // Enter Name Container
+          AppTextField(
+            topMargin: MediaQuery.of(context).size.height * 0.14,
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            focusNode: _nameFocusNode,
+            controller: _nameController,
+            textInputAction: widget.address != null
+                ? TextInputAction.done
+                : TextInputAction.next,
+            hintText: _showNameHint ? l10n.contactNameHint : "",
+            keyboardType: TextInputType.text,
+            style: styles.textStyleAppTextFieldSimple,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(20),
+              ContactFormatter()
+            ],
+            onSubmitted: (text) {
+              final scope = FocusScope.of(context);
+              if (widget.address == null) {
+                final address = _addressController.text;
+                final prefix = ref.read(addressPrefixProvider);
+                if (!Address.isValid(address, prefix)) {
+                  scope.requestFocus(_addressFocusNode);
                 } else {
                   scope.unfocus();
                 }
-              },
+              } else {
+                scope.unfocus();
+              }
+            },
+          ),
+          // Enter Name Error Container
+          Container(
+            margin: const EdgeInsets.only(top: 5, bottom: 5),
+            child: Text(
+              _nameValidationText,
+              style: styles.textStyleParagraphThinPrimary,
             ),
-            // Enter Name Error Container
-            Container(
-              margin: const EdgeInsets.only(top: 5, bottom: 5),
-              child: Text(
-                _nameValidationText,
-                style: styles.textStyleParagraphThinPrimary,
-              ),
-            ),
-            // Enter Address container
-            AppTextField(
-              padding: !_shouldShowTextField()
-                  ? EdgeInsets.symmetric(horizontal: 25, vertical: 15)
-                  : EdgeInsets.zero,
-              focusNode: _addressFocusNode,
-              controller: _addressController,
-              style: _addressValid
-                  ? styles.textStyleAddressText90
-                  : styles.textStyleAddressText60,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(74),
-              ],
-              textInputAction: TextInputAction.done,
-              maxLines: null,
-              autocorrect: false,
-              hintText: _showAddressHint ? l10n.addressHint : '',
-              prefixButton: TextFieldButton(
-                icon: AppIcons.scan,
-                onPressed: () async {
-                  final scanResult = await UserDataUtil.scanQrCode(context);
-                  final data = scanResult?.code;
-                  if (data == null) {
-                    UIUtil.showSnackbar(l10n.qrInvalidAddress, context);
-                  } else {
-                    final address = Address.tryParse(
-                      data,
-                      expectedPrefix: addressPrefix,
-                    );
-                    if (mounted && address != null) {
-                      setState(() {
-                        _addressController.text = address.toString();
-                        _addressValidationText = "";
-                        _addressValid = true;
-                        _addressValidAndUnfocused = true;
-                      });
-                      _addressFocusNode.unfocus();
-                    }
-                  }
-                },
-              ),
-              fadePrefixOnCondition: true,
-              prefixShowFirstCondition: _showPasteButton,
-              suffixButton: TextFieldButton(
-                icon: AppIcons.paste,
-                onPressed: () async {
-                  if (!_showPasteButton) {
-                    return;
-                  }
-                  String? data =
-                      await UserDataUtil.getClipboardText(DataType.ADDRESS);
-                  if (data != null) {
+          ),
+          // Enter Address container
+          AppTextField(
+            padding: !_shouldShowTextField()
+                ? EdgeInsets.symmetric(horizontal: 25, vertical: 15)
+                : EdgeInsets.zero,
+            focusNode: _addressFocusNode,
+            controller: _addressController,
+            style: _addressValid
+                ? styles.textStyleAddressText90
+                : styles.textStyleAddressText60,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(74),
+            ],
+            textInputAction: TextInputAction.done,
+            maxLines: null,
+            autocorrect: false,
+            hintText: _showAddressHint ? l10n.addressHint : '',
+            prefixButton: TextFieldButton(
+              icon: AppIcons.scan,
+              onPressed: () async {
+                final scanResult = await UserDataUtil.scanQrCode(context);
+                final data = scanResult?.code;
+                if (data == null) {
+                  UIUtil.showSnackbar(l10n.qrInvalidAddress, context);
+                } else {
+                  final address = Address.tryParse(
+                    data,
+                    expectedPrefix: addressPrefix,
+                  );
+                  if (mounted && address != null) {
                     setState(() {
+                      _addressController.text = address.toString();
+                      _addressValidationText = "";
                       _addressValid = true;
-                      _showPasteButton = false;
-                      _addressController.text = data;
                       _addressValidAndUnfocused = true;
                     });
                     _addressFocusNode.unfocus();
-                  } else {
-                    setState(() {
-                      _showPasteButton = true;
-                      _addressValid = false;
-                    });
                   }
-                },
-              ),
-              fadeSuffixOnCondition: true,
-              suffixShowFirstCondition: _showPasteButton,
-              onChanged: (text) {
-                final address = Address.tryParse(
-                  text,
-                  expectedPrefix: addressPrefix,
-                );
-                if (address != null) {
+                }
+              },
+            ),
+            fadePrefixOnCondition: true,
+            prefixShowFirstCondition: _showPasteButton,
+            suffixButton: TextFieldButton(
+              icon: AppIcons.paste,
+              onPressed: () async {
+                if (!_showPasteButton) {
+                  return;
+                }
+                String? data =
+                    await UserDataUtil.getClipboardText(DataType.ADDRESS);
+                if (data != null) {
                   setState(() {
                     _addressValid = true;
                     _showPasteButton = false;
-                    _addressController.text = address.toString();
+                    _addressController.text = data;
+                    _addressValidAndUnfocused = true;
                   });
                   _addressFocusNode.unfocus();
                 } else {
@@ -220,53 +197,73 @@ class _ContactAddSheetState extends ConsumerState<ContactAddSheet> {
                   });
                 }
               },
-              overrideTextFieldWidget: !_shouldShowTextField()
-                  ? GestureDetector(
-                      onTap: () {
-                        if (widget.address != null) {
-                          return;
-                        }
-                        setState(() {
-                          _addressValidAndUnfocused = false;
-                        });
-                        Future.delayed(Duration(milliseconds: 50), () {
-                          FocusScope.of(context)
-                              .requestFocus(_addressFocusNode);
-                        });
-                      },
-                      child: AddressThreeLineText(
-                        address: widget.address != null
-                            ? widget.address!
-                            : _addressController.text,
-                      ),
-                    )
-                  : null,
             ),
-            // Enter Address Error Container
-            Container(
-              margin: const EdgeInsets.only(top: 5, bottom: 5),
-              child: Text(
-                _addressValidationText,
-                style: styles.textStyleParagraphThinPrimary,
-              ),
+            fadeSuffixOnCondition: true,
+            suffixShowFirstCondition: _showPasteButton,
+            onChanged: (text) {
+              final address = Address.tryParse(
+                text,
+                expectedPrefix: addressPrefix,
+              );
+              if (address != null) {
+                setState(() {
+                  _addressValid = true;
+                  _showPasteButton = false;
+                  _addressController.text = address.toString();
+                });
+                _addressFocusNode.unfocus();
+              } else {
+                setState(() {
+                  _showPasteButton = true;
+                  _addressValid = false;
+                });
+              }
+            },
+            overrideTextFieldWidget: !_shouldShowTextField()
+                ? GestureDetector(
+                    onTap: () {
+                      if (widget.address != null) {
+                        return;
+                      }
+                      setState(() {
+                        _addressValidAndUnfocused = false;
+                      });
+                      Future.delayed(Duration(milliseconds: 50), () {
+                        FocusScope.of(context).requestFocus(_addressFocusNode);
+                      });
+                    },
+                    child: AddressThreeLineText(
+                      address: widget.address != null
+                          ? widget.address!
+                          : _addressController.text,
+                    ),
+                  )
+                : null,
+          ),
+          // Enter Address Error Container
+          Container(
+            margin: const EdgeInsets.only(top: 5, bottom: 5),
+            child: Text(
+              _addressValidationText,
+              style: styles.textStyleParagraphThinPrimary,
+            ),
+          ),
+        ],
+      ),
+      bottomWidget: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 28),
+        child: Column(
+          children: [
+            PrimaryButton(
+              title: l10n.addContact,
+              onPressed: _addContact,
+            ),
+            const SizedBox(height: 16),
+            PrimaryOutlineButton(
+              title: l10n.close,
+              onPressed: () => appRouter.pop(context),
             ),
           ],
-        ),
-        bottomWidget: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28),
-          child: Column(
-            children: [
-              PrimaryButton(
-                title: l10n.addContact,
-                onPressed: _addContact,
-              ),
-              const SizedBox(height: 16),
-              PrimaryOutlineButton(
-                title: l10n.close,
-                onPressed: () => Navigator.pop(context),
-              ),
-            ],
-          ),
         ),
       ),
     );
@@ -286,7 +283,7 @@ class _ContactAddSheetState extends ConsumerState<ContactAddSheet> {
     await contacts.addContact(newContact);
     final l10n = l10nOf(context);
     UIUtil.showSnackbar(l10n.contactAdded(newContact.name), context);
-    Navigator.of(context).pop();
+    appRouter.pop(context);
   }
 
   Future<bool> _validateForm() async {

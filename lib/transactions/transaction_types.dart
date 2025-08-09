@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../kaspa/types.dart';
+import '../kaspa/kaspa.dart';
 
 part 'transaction_types.freezed.dart';
 part 'transaction_types.g.dart';
@@ -38,10 +38,35 @@ class Tx with _$Tx {
 
   String get id => apiTx.transactionId;
 
+  Amount get amount => Amount.raw(BigInt.from(apiTx.outputs.first.amount));
+
+  ({Amount baseFee, Amount priorityFee}) get fees {
+    final baseFee = kFeePerInput * BigInt.from(apiTx.inputs.length);
+    final totalInput = inputData.fold(
+      BigInt.zero,
+      (total, input) => total + BigInt.from(input?.amount ?? 0),
+    );
+    final totalOutput = apiTx.outputs.fold(
+      BigInt.zero,
+      (total, output) => total + BigInt.from(output.amount),
+    );
+    final totalFee = totalInput - totalOutput;
+
+    var priorityFee = totalFee - baseFee;
+    if (priorityFee < BigInt.zero) {
+      priorityFee = BigInt.zero;
+    }
+
+    return (
+      baseFee: Amount.raw(baseFee),
+      priorityFee: Amount.raw(priorityFee),
+    );
+  }
+
   factory Tx.fromJson(Map<String, dynamic> json) => _$TxFromJson(json);
 }
 
-enum TxItemType { send, receive, compound }
+enum TxItemType { send, receive, compound, thisWallet }
 
 @Freezed(equal: false)
 class TxItem with _$TxItem {
@@ -50,6 +75,7 @@ class TxItem with _$TxItem {
     required Tx tx,
     required int outputIndex,
     required TxItemType type,
+    @Default(false) bool pending,
   }) = _TxItem;
 
   @override
@@ -70,10 +96,12 @@ class TxItem with _$TxItem {
 @freezed
 class TxListItem with _$TxListItem {
   TxListItem._();
+  factory TxListItem.pendingTxItem(TxItem tx) = _TxListItemPendingTxItem;
   factory TxListItem.txItem(TxItem tx) = _TxListItemTxItem;
   factory TxListItem.loader(bool hasMore) = _TxListItemLoader;
 
   late final id = when(
+    pendingTxItem: (item) => '${item.tx.id}:${item.outputIndex}:${item.type}',
     txItem: (item) => '${item.tx.id}:${item.outputIndex}:${item.type}',
     loader: (_) => 'loader',
   );
@@ -82,6 +110,7 @@ class TxListItem with _$TxListItem {
 @freezed
 class TxState with _$TxState {
   const factory TxState.unknown() = _TxStateUnknown;
+  const factory TxState.pending() = _TxStatePending;
   const factory TxState.unconfirmed() = _TxStateUnconfirmed;
   const factory TxState.confirming(BigInt confirmations) = _TxStateConfirming;
   const factory TxState.confirmed() = _TxStateConfirmed;

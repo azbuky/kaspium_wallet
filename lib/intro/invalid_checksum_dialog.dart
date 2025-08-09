@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../widgets/app_simpledialog.dart';
 
@@ -63,9 +64,7 @@ class InvalidChecksumDialog extends HookConsumerWidget {
             isChecked.value ? l10n.doContinue : l10n.goBackButton,
             style: styles.textStyleDialogOptions,
           ),
-          onPressed: () {
-            Navigator.of(context).pop(isChecked.value);
-          },
+          onPressed: () => appRouter.pop(context, withResult: isChecked.value),
         )
       ],
     );

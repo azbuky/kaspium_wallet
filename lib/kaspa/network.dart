@@ -1,5 +1,16 @@
 import 'bip32/bip32.dart';
 
+const String kKaspaNetworkMainnet = 'mainnet';
+const String kKaspaNetworkTestnet = 'testnet';
+const String kKaspaNetworkSimnet = 'simnet';
+const String kKaspaNetworkDevnet = 'devnet';
+
+const String kKaspaNetworkIdMainnet = '$kKaspaNetworkMainnet';
+const String kKaspaNetworkIdTestnet10 = '$kKaspaNetworkTestnet-10';
+const String kKaspaNetworkIdTestnet11 = '$kKaspaNetworkTestnet-11';
+const String kKaspaNetworkIdSimnet = '$kKaspaNetworkSimnet';
+const String kKaspaNetworkIdDevnet = '$kKaspaNetworkDevnet';
+
 const int kMainnetRpcPort = 16110;
 const int kTestnetPpcPort = 16210;
 const int kSimnetRpcPort = 16510;
@@ -9,20 +20,31 @@ enum KaspaNetwork {
   mainnet,
   testnet,
   devnet,
-  simnet,
-}
+  simnet;
 
-int portForNetwork(KaspaNetwork network) {
-  switch (network) {
-    case KaspaNetwork.mainnet:
-      return kMainnetRpcPort;
-    case KaspaNetwork.testnet:
-      return kTestnetPpcPort;
-    case KaspaNetwork.simnet:
-      return kSimnetRpcPort;
-    case KaspaNetwork.devnet:
-      return kDevnetRpcPort;
+  static KaspaNetwork? tryParse(String network) {
+    return switch (network) {
+      kKaspaNetworkMainnet => KaspaNetwork.mainnet,
+      kKaspaNetworkTestnet => KaspaNetwork.testnet,
+      kKaspaNetworkSimnet => KaspaNetwork.simnet,
+      kKaspaNetworkDevnet => KaspaNetwork.devnet,
+      _ => null,
+    };
   }
+
+  String idWithSuffix([String suffix = '']) {
+    if (suffix.isNotEmpty) {
+      return name + '-$suffix';
+    }
+    return name;
+  }
+
+  int get defaultRpcPort => switch (this) {
+        KaspaNetwork.mainnet => kMainnetRpcPort,
+        KaspaNetwork.testnet => kTestnetPpcPort,
+        KaspaNetwork.simnet => kSimnetRpcPort,
+        KaspaNetwork.devnet => kDevnetRpcPort
+      };
 }
 
 KaspaNetwork networkForPort(int port) {

@@ -4,11 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'tx_welcome_card.dart';
 
 class TransactionEmptyList extends ConsumerWidget {
-  final String tokenSymbol;
-  const TransactionEmptyList({
-    Key? key,
-    required this.tokenSymbol,
-  }) : super(key: key);
+  const TransactionEmptyList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

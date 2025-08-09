@@ -18,6 +18,8 @@ class FeeWidget extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
+    final symbol = ref.watch(symbolProvider(amount));
+
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(
@@ -40,7 +42,7 @@ class FeeWidget extends ConsumerWidget {
             style: styles.textStyleDataTypeHeaderHighlight,
           ),
           Text(
-            '${amount.value} ${amount.symbolLabel}',
+            '${amount.value} $symbol',
             textAlign: TextAlign.center,
             style: styles.textStyleAddressText90,
           ),

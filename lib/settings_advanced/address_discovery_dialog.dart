@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../wallet_address/address_discovery.dart';
@@ -96,7 +97,7 @@ class AddressDiscoveryDialog extends HookConsumerWidget {
       } catch (e) {
         UIUtil.showSnackbar(l10n.scanFailedMessage, context);
       } finally {
-        Navigator.of(context).pop();
+        appRouter.pop(context);
       }
     }
 
@@ -113,10 +114,22 @@ class AddressDiscoveryDialog extends HookConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(l10n.indexHeader),
-                Text(l10n.currentIndex),
-                Text(l10n.scannedIndex),
-                Text(l10n.newIndex),
+                Text(
+                  l10n.indexHeader,
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  l10n.currentIndex,
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  l10n.scannedIndex,
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  l10n.newIndex,
+                  style: styles.textStyleParagraph,
+                ),
               ],
             ),
           ),
@@ -125,10 +138,22 @@ class AddressDiscoveryDialog extends HookConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(l10n.receive),
-                Text('${receiveIndexes.start ?? '-'}'),
-                Text('${receiveIndexes.scanned ?? '-'}'),
-                Text('${receiveIndexes.last ?? '-'}'),
+                Text(
+                  l10n.receive,
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${receiveIndexes.start ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${receiveIndexes.scanned ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${receiveIndexes.last ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
               ],
             ),
           ),
@@ -137,10 +162,22 @@ class AddressDiscoveryDialog extends HookConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(l10n.change),
-                Text('${changeIndexes.start ?? '-'}'),
-                Text('${changeIndexes.scanned ?? '-'}'),
-                Text('${changeIndexes.last ?? '-'}'),
+                Text(
+                  l10n.change,
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${changeIndexes.start ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${changeIndexes.scanned ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
+                Text(
+                  '${changeIndexes.last ?? '-'}',
+                  style: styles.textStyleParagraph,
+                ),
               ],
             ),
           ),
@@ -149,7 +186,7 @@ class AddressDiscoveryDialog extends HookConsumerWidget {
       actions: [
         TextButton(
           style: styles.dialogButtonStyle,
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => appRouter.pop(context),
           child: Text(
             l10n.closeUppercased,
             style: styles.textStyleDialogOptions,

@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
-import '../node_settings/node_providers.dart';
 import '../node_settings/node_setting.dart';
 import '../node_settings/nodes_sheet.dart';
 import '../settings/block_explorer_setting.dart';
@@ -141,19 +141,19 @@ class NetworkMenu extends ConsumerWidget {
         });
     if (selection != null) {
       final notifier = ref.read(blockExplorerSettingsProvider.notifier);
-      final network = ref.read(networkProvider);
+      final networkId = ref.read(networkIdProvider);
 
-      notifier.updateBlockExplorer(selection, network: network);
+      notifier.updateBlockExplorer(selection, networkId: networkId);
     }
   }
 
   List<Widget> _buildExplorerOptions(BuildContext context, WidgetRef ref) {
-    final network = ref.read(networkProvider);
-    final options = kBlockExplorerOptions[network] ?? [kBlockExplorerOptions];
+    final networkId = ref.read(networkIdProvider);
+    final options = kBlockExplorersOptions[networkId] ?? [];
     return options.map((value) {
       final styles = ref.read(stylesProvider);
       return SimpleDialogOption(
-        onPressed: () => Navigator.pop(context, value),
+        onPressed: () => appRouter.pop(context, withResult: value),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Column(

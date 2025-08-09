@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../app_router.dart';
 import '../core/core_providers.dart';
 import '../l10n/l10n.dart';
 import '../settings/available_themes.dart';
@@ -25,7 +26,7 @@ class ThemeDialog extends ConsumerWidget {
       children: [
         for (final value in ThemeOptions.values)
           SimpleDialogOption(
-            onPressed: () => Navigator.pop(context, value),
+            onPressed: () => appRouter.pop(context, withResult: value),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Text(

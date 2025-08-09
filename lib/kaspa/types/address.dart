@@ -3,7 +3,8 @@ import 'dart:typed_data';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../bech32/bech32.dart' as bech32;
-import '../kaspa.dart';
+import '../utils.dart';
+import 'address_prefix.dart';
 
 part 'address.freezed.dart';
 

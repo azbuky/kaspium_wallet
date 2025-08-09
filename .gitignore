@@ -93,3 +93,6 @@ ios/fastlane/metadata/review_information
 ios/fastlane/metadata/trade_representative_contact_information
 
 ios/Flutter/Flutter.podspec
+
+# FVM Version Cache
+.fvm/

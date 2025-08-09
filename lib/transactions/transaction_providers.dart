@@ -2,14 +2,10 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../core/core_providers.dart';
+import '../app_providers.dart';
 import '../database/boxes.dart';
 import '../kaspa/kaspa.dart';
-import '../utxos/utxos_providers.dart';
 import '../wallet/wallet_types.dart';
-import '../wallet_address/wallet_address_providers.dart';
-import '../wallet_auth/wallet_auth_providers.dart';
-import '../wallet_balance/wallet_balance_providers.dart';
 import 'transaction_notifier.dart';
 import 'transaction_types.dart';
 import 'tx_cache_service.dart';
@@ -77,18 +73,20 @@ final _acceptedTransactionIdsProvider = StreamProvider.autoDispose((ref) {
 final _txBoxProvider =
     Provider.autoDispose.family<LazyTypedBox<Tx>, WalletInfo>((ref, wallet) {
   final db = ref.watch(dbProvider);
-  final network = ref.watch(networkProvider);
-
-  final txBoxKey = wallet.boxInfo.getBoxInfo(network).tx.boxKey;
+  final networkId = ref.watch(networkIdProvider);
+  final repository = ref.watch(boxInfoRepositoryProvider);
+  final boxInfo = repository.getBoxInfo(wallet.wid, networkId);
+  final txBoxKey = boxInfo.tx.boxKey;
   return db.getLazyTypedBox<Tx>(txBoxKey);
 });
 
 final _txIndexBoxProvider = Provider.autoDispose
     .family<IndexedTypedBox<TxIndex>, WalletInfo>((ref, wallet) {
   final db = ref.watch(dbProvider);
-  final network = ref.watch(networkProvider);
-
-  final txIndexBoxKey = wallet.getBoxInfo(network).txIndex.boxKey;
+  final networkId = ref.watch(networkIdProvider);
+  final repository = ref.watch(boxInfoRepositoryProvider);
+  final boxInfo = repository.getBoxInfo(wallet.wid, networkId);
+  final txIndexBoxKey = boxInfo.txIndex.boxKey;
   return db.getIndexedTypedBox<TxIndex>(txIndexBoxKey);
 });
 
@@ -129,6 +127,12 @@ final txNotifierForWalletProvider = ChangeNotifierProvider.autoDispose
     notifier.fetchNewTxsForAddresses(next.keys);
   }, fireImmediately: true);
 
+  // Check for missing transactions in UTXOs
+  ref.listen(utxoListProvider, (_, utxos) {
+    notifier.checkForMissingTxs(
+        utxos.take(100).map((u) => u.outpoint.transactionId));
+  }, fireImmediately: true);
+
   // Cache new transactions
   ref.listen(_newTransactionProvider, (_, next) {
     if (next.asData?.value case final tx?) {
@@ -157,6 +161,13 @@ final txNotifierForWalletProvider = ChangeNotifierProvider.autoDispose
     }
   });
 
+  // Update pending transactions
+  ref.listen(pendingTxsProvider, (_, next) {
+    if (next.asData?.value case final pendingTxs?) {
+      notifier.updatePendingTxs(pendingTxs);
+    }
+  });
+
   ref.onDispose(() {
     notifier.disposed = true;
   });
@@ -171,9 +182,13 @@ final txNotifierProvider = Provider.autoDispose((ref) {
 });
 
 final txConfirmationStatusProvider =
-    Provider.autoDispose.family<TxState, Tx>((ref, tx) {
+    Provider.autoDispose.family<TxState, TxItem>((ref, txItem) {
   final blueScore = ref.watch(virtualSelectedParentBlueScoreProvider);
 
+  final tx = txItem.tx;
+  if (txItem.pending) {
+    return TxState.pending();
+  }
   final kNoConfirmations = BigInt.from(100);
   final txBlueScore = tx.apiTx.acceptingBlockBlueScore;
 

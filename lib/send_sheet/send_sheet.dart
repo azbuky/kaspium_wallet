@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../contacts/contact.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
@@ -19,6 +20,7 @@ import '../widgets/address_widgets.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
+import '../widgets/fiat_mode_icon.dart';
 import '../widgets/fiat_value_container.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_handle.dart';
@@ -34,14 +36,16 @@ class SendSheet extends ConsumerStatefulWidget {
   final Contact? contact;
   final KaspaUri? uri;
   final BigInt? feeRaw;
+  final bool rbf;
 
   const SendSheet({
-    Key? key,
+    super.key,
     this.title,
     this.contact,
     this.uri,
     this.feeRaw,
-  }) : super(key: key);
+    this.rbf = false,
+  });
 
   _SendSheetState createState() => _SendSheetState();
 }
@@ -82,7 +86,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
 
   late BigInt? amountRaw = widget.uri?.amount?.raw;
   late BigInt? feeRaw = widget.feeRaw;
-  late String? _note = widget.uri?.message;
+  String? get _note => widget.uri?.message;
 
   bool get hasNote => _note != null;
   bool get hasUri => widget.uri != null;
@@ -235,7 +239,6 @@ class _SendSheetState extends ConsumerState<SendSheet> {
       final note = uri?.message;
       if (note != null) {
         _noteController.text = note;
-        _note = note;
       }
 
       // See if this address belongs to a contact
@@ -302,10 +305,8 @@ class _SendSheetState extends ConsumerState<SendSheet> {
         return;
       }
 
-      final note = _noteController.text;
-      if (_note == null && note.isNotEmpty) {
-        _note = note;
-      }
+      final text = _noteController.text;
+      final note = text.isNotEmpty ? text : _note;
 
       final uri = KaspaUri(
         address: toAddress,
@@ -313,7 +314,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
         message: note,
       );
 
-      UIUtil.showSendFlow(context, ref: ref, uri: uri);
+      UIUtil.showSendFlow(context, ref: ref, uri: uri, useRbf: widget.rbf);
     }
 
     return SafeArea(
@@ -520,7 +521,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
                   else
                     PrimaryOutlineButton(
                       title: l10n.cancel,
-                      onPressed: Navigator.of(context).pop,
+                      onPressed: () => appRouter.pop(context),
                     ),
                 ],
               ),
@@ -611,7 +612,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
     if (amountRaw! > maxSend.raw) {
       showAppDialog(
         context: context,
-        builder: (_) => const CompoundUtxosDialog(lightMode: true),
+        builder: (_) => CompoundUtxosDialog(lightMode: true, rbf: widget.rbf),
       );
       return false;
     }
@@ -733,9 +734,11 @@ class _SendSheetState extends ConsumerState<SendSheet> {
           autocorrect: false,
           hintText: _amountHint ?? hintText,
           prefixButton: TextFieldButton(
-            icon: AppIcons.swapcurrency,
-            onPressed: () =>
-                ref.read(fiatModeProvider.notifier).update((state) => !state),
+            widget: FiatModeIcon(fiatMode: fiatMode),
+            onPressed: () {
+              final notifier = ref.read(fiatModeProvider.notifier);
+              notifier.update((state) => !state);
+            },
           ),
           suffixButton: TextFieldButton(
             icon: AppIcons.max,
@@ -964,24 +967,24 @@ class _SendSheetState extends ConsumerState<SendSheet> {
             maxLines: null,
             autocorrect: false,
             hintText: _noteHint ?? l10n.enterNote,
-            prefixButton: TextFieldButton(
-              icon: AppIcons.scan,
-              onPressed: () async {
-                FocusManager.instance.primaryFocus?.unfocus();
+            // prefixButton: TextFieldButton(
+            //   icon: AppIcons.scan,
+            //   onPressed: () async {
+            //     FocusManager.instance.primaryFocus?.unfocus();
 
-                final qr = await UserDataUtil.scanQrCode(context);
-                final data = qr?.code;
-                if (data == null) {
-                  return;
-                }
+            //     final qr = await UserDataUtil.scanQrCode(context);
+            //     final data = qr?.code;
+            //     if (data == null) {
+            //       return;
+            //     }
 
-                _noteController.text = data;
-                _notePasteButtonVisible = false;
-                _noteQrButtonVisible = false;
+            //     _noteController.text = data;
+            //     _notePasteButtonVisible = false;
+            //     _noteQrButtonVisible = false;
 
-                setState(() => _noteValidAndUnfocused = true);
-              },
-            ),
+            //     setState(() => _noteValidAndUnfocused = true);
+            //   },
+            // ),
             fadePrefixOnCondition: true,
             prefixShowFirstCondition: _noteQrButtonVisible,
             suffixButton: TextFieldButton(
@@ -993,14 +996,13 @@ class _SendSheetState extends ConsumerState<SendSheet> {
 
                 Clipboard.getData("text/plain").then((ClipboardData? data) {
                   final text = data?.text;
-                  if (text == null) {
+                  if (text == null || text.isEmpty) {
                     return;
                   }
                   FocusManager.instance.primaryFocus?.unfocus();
                   _noteController.text = text;
                   _notePasteButtonVisible = false;
                   _noteQrButtonVisible = false;
-                  _note = text;
 
                   setState(() => _noteValidAndUnfocused = true);
                 });

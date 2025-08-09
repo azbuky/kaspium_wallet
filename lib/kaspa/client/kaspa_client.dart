@@ -31,13 +31,13 @@ class VoidKaspaClient extends KaspaClient {
         );
 
   @override
-  Future<KaspadMessage> _singleRequest(KaspadMessage message) async {
-    return KaspadMessage();
+  Future<KaspadResponse> _singleRequest(KaspadRequest message) async {
+    return KaspadResponse();
   }
 
   @override
-  Stream<KaspadMessage> _streamRequest(KaspadMessage message) {
-    return StreamController<KaspadMessage>().stream;
+  Stream<KaspadResponse> _streamRequest(KaspadRequest message) {
+    return StreamController<KaspadResponse>().stream;
   }
 
   @override
@@ -75,8 +75,8 @@ class KaspaClient {
 
   Future<void> terminate() => channel.terminate();
 
-  Future<KaspadMessage> _singleRequest(KaspadMessage message) async {
-    final request = StreamController<KaspadMessage>();
+  Future<KaspadResponse> _singleRequest(KaspadRequest message) async {
+    final request = StreamController<KaspadRequest>();
     final response = rpcClient.messageStream(request.stream);
 
     request.sink.add(message);
@@ -88,8 +88,8 @@ class KaspaClient {
     return result;
   }
 
-  Stream<KaspadMessage> _streamRequest(KaspadMessage message) {
-    final request = StreamController<KaspadMessage>();
+  Stream<KaspadResponse> _streamRequest(KaspadRequest message) {
+    final request = StreamController<KaspadRequest>();
     final response = rpcClient.messageStream(request.stream);
 
     request.sink.add(message);
@@ -97,10 +97,10 @@ class KaspaClient {
     return response;
   }
 
-  Future<List<BalancesByAddressEntry>> getBalancesByAddresses(
+  Future<List<RpcBalancesByAddressesEntry>> getBalancesByAddresses(
     Iterable<String> addresses,
   ) async {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       getBalancesByAddressesRequest: GetBalancesByAddressesRequestMessage(
         addresses: addresses,
       ),
@@ -114,10 +114,10 @@ class KaspaClient {
     return response.getBalancesByAddressesResponse.entries;
   }
 
-  Future<List<UtxosByAddressesEntry>> getUtxosByAddresses(
+  Future<List<RpcUtxosByAddressesEntry>> getUtxosByAddresses(
     Iterable<String> addresses,
   ) async {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       getUtxosByAddressesRequest: GetUtxosByAddressesRequestMessage(
         addresses: addresses,
       ),
@@ -135,7 +135,7 @@ class KaspaClient {
   Stream<UtxosChangedNotificationMessage> notifyUtxosChanged(
     Iterable<String> addresses,
   ) {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       notifyUtxosChangedRequest: NotifyUtxosChangedRequestMessage(
         addresses: addresses,
       ),
@@ -155,7 +155,7 @@ class KaspaClient {
   }
 
   Future<void> stopNotifyingUtxosChanged(List<String> addresses) async {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       stopNotifyingUtxosChangedRequest: StopNotifyingUtxosChangedRequestMessage(
         addresses: addresses,
       ),
@@ -171,7 +171,7 @@ class KaspaClient {
   // Block Notifications
 
   Stream<BlockAddedNotificationMessage> notifyBlockAdded() {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       notifyBlockAddedRequest: NotifyBlockAddedRequestMessage(),
     );
 
@@ -194,7 +194,7 @@ class KaspaClient {
     RpcTransaction transaction, {
     bool allowOrphan = false,
   }) async {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       submitTransactionRequest: SubmitTransactionRequestMessage(
         transaction: transaction,
         allowOrphan: allowOrphan,
@@ -210,14 +210,53 @@ class KaspaClient {
     return result.submitTransactionResponse.transactionId;
   }
 
+  Future<({String transactionId, RpcTransaction replacedTransaction})>
+      submitTransactionReplacement(RpcTransaction transaction) async {
+    final message = KaspadRequest(
+      submitTransactionReplacementRequest:
+          SubmitTransactionReplacementRequestMessage(
+        transaction: transaction,
+      ),
+    );
+
+    final result = await _singleRequest(message);
+    final response = result.submitTransactionReplacementResponse;
+
+    final error = response.error;
+    if (error.message.isNotEmpty) {
+      throw RpcException(error);
+    }
+
+    return (
+      transactionId: response.transactionId,
+      replacedTransaction: response.replacedTransaction,
+    );
+  }
+
+  // Fee Estimate
+
+  Future<RpcFeeEstimate> getFeeEstimate() async {
+    final message = KaspadRequest(
+      getFeeEstimateRequest: GetFeeEstimateRequestMessage(),
+    );
+
+    final result = await _singleRequest(message);
+    final error = result.getFeeEstimateResponse.error;
+    if (error.message.isNotEmpty) {
+      throw RpcException(error);
+    }
+
+    return result.getFeeEstimateResponse.estimate;
+  }
+
   // Mempool
 
-  Future<MempoolEntry> getMempoolEntry({
+  Future<RpcMempoolEntry> getMempoolEntry({
     required String txId,
     bool includeOrphanPool = true,
     bool filterTransactionPool = true,
   }) async {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       getMempoolEntryRequest: GetMempoolEntryRequestMessage(
         txId: txId,
         includeOrphanPool: includeOrphanPool,
@@ -234,11 +273,11 @@ class KaspaClient {
     return result.getMempoolEntryResponse.entry;
   }
 
-  Future<List<MempoolEntry>> getMempoolEntries({
+  Future<List<RpcMempoolEntry>> getMempoolEntries({
     bool includeOrphanPool = true,
     bool filterTransactionPool = true,
   }) async {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       getMempoolEntriesRequest: GetMempoolEntriesRequestMessage(
         includeOrphanPool: includeOrphanPool,
         filterTransactionPool: filterTransactionPool,
@@ -254,12 +293,12 @@ class KaspaClient {
     return result.getMempoolEntriesResponse.entries;
   }
 
-  Future<List<MempoolEntryByAddress>> getMempoolEntriesByAddresses(
+  Future<List<RpcMempoolEntryByAddress>> getMempoolEntriesByAddresses(
     Iterable<String> addresses, {
     bool filterTransactionPool = true,
     bool includeOrphanPool = true,
   }) async {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       getMempoolEntriesByAddressesRequest:
           GetMempoolEntriesByAddressesRequestMessage(
         addresses: addresses,
@@ -279,8 +318,8 @@ class KaspaClient {
 
   // Network info
 
-  Future<String> getNetworkName() async {
-    final message = KaspadMessage(
+  Future<String> getCurrentNetwork() async {
+    final message = KaspadRequest(
       getCurrentNetworkRequest: GetCurrentNetworkRequestMessage(),
     );
 
@@ -293,10 +332,24 @@ class KaspaClient {
     return result.getCurrentNetworkResponse.currentNetwork;
   }
 
+  Future<GetBlockDagInfoResponseMessage> getBlockDagInfo() async {
+    final message = KaspadRequest(
+      getBlockDagInfoRequest: GetBlockDagInfoRequestMessage(),
+    );
+
+    final result = await _singleRequest(message);
+    final error = result.getBlockDagInfoResponse.error;
+    if (error.message.isNotEmpty) {
+      throw RpcException(error);
+    }
+
+    return result.getBlockDagInfoResponse;
+  }
+
   // Get Info
 
   Future<GetInfoResponseMessage> getInfo() async {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       getInfoRequest: GetInfoRequestMessage(),
     );
 
@@ -311,13 +364,12 @@ class KaspaClient {
 
   // Virtual Selected Parent Chain Changed
 
-  Stream<VirtualSelectedParentChainChangedNotificationMessage>
+  Stream<VirtualChainChangedNotificationMessage>
       notifyVirtualSelectedParentChainChanged({
     required includeAcceptedTransactionIds,
   }) {
-    final message = KaspadMessage(
-      notifyVirtualSelectedParentChainChangedRequest:
-          NotifyVirtualSelectedParentChainChangedRequestMessage(
+    final message = KaspadRequest(
+      notifyVirtualChainChangedRequest: NotifyVirtualChainChangedRequestMessage(
         includeAcceptedTransactionIds: includeAcceptedTransactionIds,
       ),
     );
@@ -325,11 +377,11 @@ class KaspaClient {
     final response = _streamRequest(message);
 
     final result = response.map((event) {
-      final error = event.notifyVirtualSelectedParentChainChangedResponse.error;
+      final error = event.notifyVirtualChainChangedResponse.error;
       if (error.message.isNotEmpty) {
         throw RpcException(error);
       }
-      return event.virtualSelectedParentChainChangedNotification;
+      return event.virtualChainChangedNotification;
     }).skip(1);
 
     return result;
@@ -338,36 +390,33 @@ class KaspaClient {
   // Virtual Selected Parent Blue Score
 
   Future<Int64> getVirtualSelectedParentBlueScore() async {
-    final message = KaspadMessage(
-      getVirtualSelectedParentBlueScoreRequest:
-          GetVirtualSelectedParentBlueScoreRequestMessage(),
+    final message = KaspadRequest(
+      getSinkBlueScoreRequest: GetSinkBlueScoreRequestMessage(),
     );
 
     final result = await _singleRequest(message);
-    final error = result.getVirtualSelectedParentBlueScoreResponse.error;
+    final error = result.getSinkBlueScoreResponse.error;
     if (error.message.isNotEmpty) {
       throw RpcException(error);
     }
 
-    return result.getVirtualSelectedParentBlueScoreResponse.blueScore;
+    return result.getSinkBlueScoreResponse.blueScore;
   }
 
   Stream<Int64> notifyVirtualSelectedParentBlueScoreChanged() {
-    final message = KaspadMessage(
-      notifyVirtualSelectedParentBlueScoreChangedRequest:
-          NotifyVirtualSelectedParentBlueScoreChangedRequestMessage(),
+    final message = KaspadRequest(
+      notifySinkBlueScoreChangedRequest:
+          NotifySinkBlueScoreChangedRequestMessage(),
     );
 
     final response = _streamRequest(message);
 
     final result = response.map((event) {
-      final error =
-          event.notifyVirtualSelectedParentBlueScoreChangedResponse.error;
+      final error = event.notifySinkBlueScoreChangedResponse.error;
       if (error.message.isNotEmpty) {
         throw RpcException(error);
       }
-      return event.virtualSelectedParentBlueScoreChangedNotification
-          .virtualSelectedParentBlueScore;
+      return event.sinkBlueScoreChangedNotification.sinkBlueScore;
     }).skip(1);
 
     return result;
@@ -376,7 +425,7 @@ class KaspaClient {
   // Virtual DAA Score
 
   Stream<Int64> notifyVirtualDaaScoreChanged() {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       notifyVirtualDaaScoreChangedRequest:
           NotifyVirtualDaaScoreChangedRequestMessage(),
     );
@@ -398,7 +447,7 @@ class KaspaClient {
     String hash, {
     bool includeTransactions = true,
   }) async {
-    final message = KaspadMessage(
+    final message = KaspadRequest(
       getBlockRequest: GetBlockRequestMessage(
         hash: hash,
         includeTransactions: includeTransactions,

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import 'dialog.dart';
 
@@ -15,17 +16,13 @@ class LogoutButton extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
-    void logout() {
-      Navigator.of(context).pushNamedAndRemoveUntil('/logout', (_) => false);
-    }
-
     void confirmLogout() {
       AppDialogs.showConfirmDialog(
         context,
         l10n.areYouSure,
         l10n.logoutDialogContent,
         l10n.yesUppercase,
-        logout,
+        () => appRouter.logout(context),
       );
     }
 

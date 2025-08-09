@@ -22,12 +22,13 @@ final _walletWatcherProvider = Provider.autoDispose((ref) {
   ref.watch(txNotifierProvider);
   ref.watch(utxoNotifierProvider);
   ref.watch(utxoListProvider);
+  ref.watch(pendingTxsProvider);
 
   ref.watch(addressMonitorProvider);
 });
 
 class WalletHome extends HookConsumerWidget {
-  const WalletHome({Key? key}) : super(key: key);
+  const WalletHome({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -43,8 +44,8 @@ class WalletHome extends HookConsumerWidget {
         if (appLink == null) {
           return;
         }
-        final auth = ref.read(walletAuthNotifierProvider);
-        if (auth == null || auth.walletLocked == true) {
+        final walletAuth = ref.read(walletAuthNotifierProvider);
+        if (walletAuth == null || walletAuth.walletIsLocked) {
           return;
         }
         final prefix = ref.read(addressPrefixProvider);

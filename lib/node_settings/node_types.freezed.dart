@@ -200,6 +200,7 @@ mixin _$NodeConfig {
   bool get isSecure => throw _privateConstructorUsedError;
   List<String> get urls => throw _privateConstructorUsedError;
   KaspaNetwork get network => throw _privateConstructorUsedError;
+  String get networkSuffix => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -219,7 +220,8 @@ abstract class $NodeConfigCopyWith<$Res> {
       bool isDns,
       bool isSecure,
       List<String> urls,
-      KaspaNetwork network});
+      KaspaNetwork network,
+      String networkSuffix});
 }
 
 /// @nodoc
@@ -241,6 +243,7 @@ class _$NodeConfigCopyWithImpl<$Res, $Val extends NodeConfig>
     Object? isSecure = null,
     Object? urls = null,
     Object? network = null,
+    Object? networkSuffix = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -267,6 +270,10 @@ class _$NodeConfigCopyWithImpl<$Res, $Val extends NodeConfig>
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
               as KaspaNetwork,
+      networkSuffix: null == networkSuffix
+          ? _value.networkSuffix
+          : networkSuffix // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -285,7 +292,8 @@ abstract class _$$NodeConfigImplCopyWith<$Res>
       bool isDns,
       bool isSecure,
       List<String> urls,
-      KaspaNetwork network});
+      KaspaNetwork network,
+      String networkSuffix});
 }
 
 /// @nodoc
@@ -305,6 +313,7 @@ class __$$NodeConfigImplCopyWithImpl<$Res>
     Object? isSecure = null,
     Object? urls = null,
     Object? network = null,
+    Object? networkSuffix = null,
   }) {
     return _then(_$NodeConfigImpl(
       id: null == id
@@ -331,6 +340,10 @@ class __$$NodeConfigImplCopyWithImpl<$Res>
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
               as KaspaNetwork,
+      networkSuffix: null == networkSuffix
+          ? _value.networkSuffix
+          : networkSuffix // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -344,7 +357,8 @@ class _$NodeConfigImpl extends _NodeConfig {
       this.isDns = false,
       this.isSecure = false,
       required final List<String> urls,
-      required this.network})
+      required this.network,
+      this.networkSuffix = ''})
       : _urls = urls,
         super._();
 
@@ -371,10 +385,13 @@ class _$NodeConfigImpl extends _NodeConfig {
 
   @override
   final KaspaNetwork network;
+  @override
+  @JsonKey()
+  final String networkSuffix;
 
   @override
   String toString() {
-    return 'NodeConfig(id: $id, name: $name, isDns: $isDns, isSecure: $isSecure, urls: $urls, network: $network)';
+    return 'NodeConfig(id: $id, name: $name, isDns: $isDns, isSecure: $isSecure, urls: $urls, network: $network, networkSuffix: $networkSuffix)';
   }
 
   @override
@@ -388,13 +405,15 @@ class _$NodeConfigImpl extends _NodeConfig {
             (identical(other.isSecure, isSecure) ||
                 other.isSecure == isSecure) &&
             const DeepCollectionEquality().equals(other._urls, _urls) &&
-            (identical(other.network, network) || other.network == network));
+            (identical(other.network, network) || other.network == network) &&
+            (identical(other.networkSuffix, networkSuffix) ||
+                other.networkSuffix == networkSuffix));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, isDns, isSecure,
-      const DeepCollectionEquality().hash(_urls), network);
+      const DeepCollectionEquality().hash(_urls), network, networkSuffix);
 
   @JsonKey(ignore: true)
   @override
@@ -417,7 +436,8 @@ abstract class _NodeConfig extends NodeConfig {
       final bool isDns,
       final bool isSecure,
       required final List<String> urls,
-      required final KaspaNetwork network}) = _$NodeConfigImpl;
+      required final KaspaNetwork network,
+      final String networkSuffix}) = _$NodeConfigImpl;
   const _NodeConfig._() : super._();
 
   factory _NodeConfig.fromJson(Map<String, dynamic> json) =
@@ -435,6 +455,8 @@ abstract class _NodeConfig extends NodeConfig {
   List<String> get urls;
   @override
   KaspaNetwork get network;
+  @override
+  String get networkSuffix;
   @override
   @JsonKey(ignore: true)
   _$$NodeConfigImplCopyWith<_$NodeConfigImpl> get copyWith =>

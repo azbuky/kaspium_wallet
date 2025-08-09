@@ -8,21 +8,21 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
+import '../settings/tx_settings.dart';
+import '../utxos/utxos_notifier.dart';
 import '../wallet/wallet_types.dart';
+import '../wallet_address/wallet_address_notifier.dart';
 import 'transaction_card.dart';
 import 'transaction_empty_list.dart';
 import 'transaction_types.dart';
-import 'tx_settings/tx_settings_providers.dart';
-import 'tx_settings/tx_settings_types.dart';
 
-final _txListItemsProvider =
-    Provider.autoDispose.family<List<TxListItem>, WalletInfo>((ref, wallet) {
-  final addressNotifier = ref.watch(addressNotifierProvider.notifier);
-  final utxoNotifier = ref.watch(utxoNotifierProvider.notifier);
-  final txNotifier = ref.watch(txNotifierForWalletProvider(wallet));
-  final txFilter = ref.watch(txFilterProvider);
-
-  final txItems = txNotifier.loadedTxs.expand((tx) {
+List<TxListItem> _txListItemsFromTxs(
+  Iterable<Tx> txs, {
+  required TxFilter txFilter,
+  required WalletAddressNotifier addressNotifier,
+  required UtxosNotifier utxoNotifier,
+}) {
+  return txs.expand<TxListItem>((tx) {
     if (txFilter == TxFilter.hideNotAcceptedCoinbase &&
         tx.apiTx.inputs.isEmpty &&
         !tx.apiTx.isAccepted) {
@@ -66,6 +66,15 @@ final _txListItemsProvider =
           outputs.last == output) {
         continue;
       }
+      if (addressNotifier.containsAddress(address) && hasWalletInputs) {
+        final listItem = TxListItem.txItem(TxItem(
+          tx: tx,
+          outputIndex: output.index,
+          type: TxItemType.thisWallet,
+        ));
+        listItems.add(listItem);
+        continue;
+      }
       if (addressNotifier.containsAddress(address)) {
         final listItem = TxListItem.txItem(TxItem(
           tx: tx,
@@ -85,17 +94,41 @@ final _txListItemsProvider =
     }
 
     return listItems;
-  });
+  }).toList(growable: false);
+}
 
-  return [...txItems, TxListItem.loader(txNotifier.hasMore)];
+final _txListItemsProvider =
+    Provider.autoDispose.family<List<TxListItem>, WalletInfo>((ref, wallet) {
+  final addressNotifier = ref.watch(addressNotifierProvider.notifier);
+  final utxoNotifier = ref.watch(utxoNotifierProvider.notifier);
+  final txNotifier = ref.watch(txNotifierForWalletProvider(wallet));
+  final txFilter = ref.watch(txFilterProvider);
+
+  final pendingItems = _txListItemsFromTxs(
+    txNotifier.pendingTxs,
+    txFilter: txFilter,
+    addressNotifier: addressNotifier,
+    utxoNotifier: utxoNotifier,
+  )
+      .map((item) => item.maybeWhen(
+            txItem: (txItem) => TxListItem.pendingTxItem(
+              txItem.copyWith(pending: true),
+            ),
+            orElse: () => item,
+          ))
+      .toList(growable: false);
+
+  final txItems = _txListItemsFromTxs(txNotifier.loadedTxs,
+      txFilter: txFilter,
+      addressNotifier: addressNotifier,
+      utxoNotifier: utxoNotifier);
+
+  return [...pendingItems, ...txItems, TxListItem.loader(txNotifier.hasMore)];
 });
 
 class TransactionsWidget extends ConsumerWidget {
-  final String tokenSymbol;
-
   const TransactionsWidget({
     Key? key,
-    this.tokenSymbol = 'KAS',
   }) : super(key: key);
 
   @override
@@ -158,7 +191,7 @@ class TransactionsWidget extends ConsumerWidget {
         backgroundColor: theme.backgroundDark,
         onRefresh: refresh,
         child: !txNotifier.loading && items.length == 1
-            ? TransactionEmptyList(tokenSymbol: tokenSymbol)
+            ? const TransactionEmptyList()
             : AutomaticAnimatedList<TxListItem>(
                 key: PageStorageKey(wallet),
                 physics: AlwaysScrollableScrollPhysics(),
@@ -169,6 +202,7 @@ class TransactionsWidget extends ConsumerWidget {
                 items: items,
                 itemBuilder: (context, item, animation) {
                   final card = item.when(
+                    pendingTxItem: (item) => TransactionCard(item: item),
                     txItem: (item) => TransactionCard(item: item),
                     loader: (hasMore) {
                       if (!hasMore) return const SizedBox();

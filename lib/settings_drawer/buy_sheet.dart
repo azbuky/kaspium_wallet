@@ -7,17 +7,16 @@ import 'package:http/http.dart' as http;
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../receive/receive_amount_field.dart';
 import '../settings/setting_item.dart';
 import '../util/util.dart';
-import '../wallet_address/address_selection_sheet.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/buttons.dart';
 import '../widgets/receive_address_card.dart';
 import '../widgets/sheet_header_button.dart';
 import '../widgets/sheet_widget.dart';
-import '../widgets/tap_outside_unfocus.dart';
 import 'buy_info_dialog.dart';
 
 const kUSDCurrency = 'USD';
@@ -88,41 +87,40 @@ class BuySheet extends ConsumerWidget {
         'amount': amount?.value.toStringAsFixed(8) ?? '0',
         'address': address.encoded,
       });
+      appRouter.pop(context);
       openUri(uri);
     }
 
     return SheetWidget(
       title: l10n.buyKaspaTitle,
-      mainWidget: TapOutsideUnfocus(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              margin: EdgeInsets.only(
-                left: MediaQuery.of(context).size.width * 0.115,
-                right: MediaQuery.of(context).size.width * 0.115,
-              ),
-              child: Text(
-                l10n.buyKaspaMessage + '\n' + l10n.buyKaspaMessageSecondary,
-                style: styles.textStyleAccount,
-                textAlign: TextAlign.center,
-              ),
+      mainWidget: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: EdgeInsets.only(
+              left: MediaQuery.of(context).size.width * 0.115,
+              right: MediaQuery.of(context).size.width * 0.115,
             ),
-            const SizedBox(height: 30),
-            const ReceiveAmountField(
-              allowFiat: false,
+            child: Text(
+              l10n.buyKaspaMessage + '\n' + l10n.buyKaspaMessageSecondary,
+              style: styles.textStyleAccount,
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 20),
-            Container(
-              margin: const EdgeInsets.only(top: 30, bottom: 10),
-              child: Text(
-                l10n.receiveAddress.toUpperCase(),
-                style: styles.textStyleSubHeader,
-              ),
+          ),
+          const SizedBox(height: 30),
+          const ReceiveAmountField(
+            allowFiat: false,
+          ),
+          const SizedBox(height: 20),
+          Container(
+            margin: const EdgeInsets.only(top: 30, bottom: 10),
+            child: Text(
+              l10n.receiveAddress.toUpperCase(),
+              style: styles.textStyleSubHeader,
             ),
-            ReceiveAddressCard(address: receiveAddress.address),
-          ],
-        ),
+          ),
+          ReceiveAddressCard(address: receiveAddress.address),
+        ],
       ),
       rightWidget: SheetHeaderButton(
         onPressed: showInfo,
@@ -138,7 +136,7 @@ class BuySheet extends ConsumerWidget {
           const SizedBox(height: 16),
           PrimaryOutlineButton(
             title: l10n.close,
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => appRouter.pop(context),
           ),
         ]),
       ),

@@ -21,7 +21,7 @@ BlockExplorerSettings _$BlockExplorerSettingsFromJson(
 
 /// @nodoc
 mixin _$BlockExplorerSettings {
-  Map<KaspaNetwork, BlockExplorer> get selection =>
+  Map<String, BlockExplorer> get selection =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $BlockExplorerSettingsCopyWith<$Res> {
           $Res Function(BlockExplorerSettings) then) =
       _$BlockExplorerSettingsCopyWithImpl<$Res, BlockExplorerSettings>;
   @useResult
-  $Res call({Map<KaspaNetwork, BlockExplorer> selection});
+  $Res call({Map<String, BlockExplorer> selection});
 }
 
 /// @nodoc
@@ -59,7 +59,7 @@ class _$BlockExplorerSettingsCopyWithImpl<$Res,
       selection: null == selection
           ? _value.selection
           : selection // ignore: cast_nullable_to_non_nullable
-              as Map<KaspaNetwork, BlockExplorer>,
+              as Map<String, BlockExplorer>,
     ) as $Val);
   }
 }
@@ -73,7 +73,7 @@ abstract class _$$BlockExplorerSettingsImplCopyWith<$Res>
       __$$BlockExplorerSettingsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Map<KaspaNetwork, BlockExplorer> selection});
+  $Res call({Map<String, BlockExplorer> selection});
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ class __$$BlockExplorerSettingsImplCopyWithImpl<$Res>
       selection: null == selection
           ? _value._selection
           : selection // ignore: cast_nullable_to_non_nullable
-              as Map<KaspaNetwork, BlockExplorer>,
+              as Map<String, BlockExplorer>,
     ));
   }
 }
@@ -103,11 +103,10 @@ class __$$BlockExplorerSettingsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BlockExplorerSettingsImpl extends _BlockExplorerSettings {
   const _$BlockExplorerSettingsImpl(
-      {final Map<KaspaNetwork, BlockExplorer> selection = const {
-        KaspaNetwork.mainnet: kKaspaExplorerMainnet,
-        KaspaNetwork.testnet: kKatnipTestnet,
-        KaspaNetwork.devnet: kKaspaExplorerMainnet,
-        KaspaNetwork.simnet: kKaspaExplorerMainnet
+      {final Map<String, BlockExplorer> selection = const {
+        kKaspaNetworkIdMainnet: kKaspaExplorerMainnet,
+        kKaspaNetworkIdTestnet10: kKaspaExplorerTestnet10,
+        kKaspaNetworkIdTestnet11: kKaspaExplorerTestnet11
       }})
       : _selection = selection,
         super._();
@@ -115,10 +114,10 @@ class _$BlockExplorerSettingsImpl extends _BlockExplorerSettings {
   factory _$BlockExplorerSettingsImpl.fromJson(Map<String, dynamic> json) =>
       _$$BlockExplorerSettingsImplFromJson(json);
 
-  final Map<KaspaNetwork, BlockExplorer> _selection;
+  final Map<String, BlockExplorer> _selection;
   @override
   @JsonKey()
-  Map<KaspaNetwork, BlockExplorer> get selection {
+  Map<String, BlockExplorer> get selection {
     if (_selection is EqualUnmodifiableMapView) return _selection;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_selection);
@@ -160,7 +159,7 @@ class _$BlockExplorerSettingsImpl extends _BlockExplorerSettings {
 
 abstract class _BlockExplorerSettings extends BlockExplorerSettings {
   const factory _BlockExplorerSettings(
-          {final Map<KaspaNetwork, BlockExplorer> selection}) =
+          {final Map<String, BlockExplorer> selection}) =
       _$BlockExplorerSettingsImpl;
   const _BlockExplorerSettings._() : super._();
 
@@ -168,7 +167,7 @@ abstract class _BlockExplorerSettings extends BlockExplorerSettings {
       _$BlockExplorerSettingsImpl.fromJson;
 
   @override
-  Map<KaspaNetwork, BlockExplorer> get selection;
+  Map<String, BlockExplorer> get selection;
   @override
   @JsonKey(ignore: true)
   _$$BlockExplorerSettingsImplCopyWith<_$BlockExplorerSettingsImpl>

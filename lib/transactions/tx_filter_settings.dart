@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../l10n/l10n.dart';
+import '../settings/tx_settings.dart';
 import '../settings_drawer/double_line_item_two.dart';
 import 'tx_filter_dialog.dart';
-import 'tx_settings/tx_settings_providers.dart';
-import 'tx_settings/tx_settings_types.dart';
 
 class TxFilterSettings extends ConsumerWidget {
   const TxFilterSettings({super.key});

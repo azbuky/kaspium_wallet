@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../widgets/buttons.dart';
 import '../widgets/gradient_widgets.dart';
@@ -9,7 +10,6 @@ import '../widgets/sheet_util.dart';
 import '../widgets/sheet_widget.dart';
 import 'node_add_sheet.dart';
 import 'node_item.dart';
-import 'node_providers.dart';
 import 'node_types.dart';
 
 class ListViewEndItem extends ConsumerWidget {
@@ -86,7 +86,7 @@ class ViteNodesSheet extends ConsumerWidget {
           const SizedBox(height: 16),
           PrimaryOutlineButton(
             title: l10n.close,
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => appRouter.pop(context),
           ),
         ]),
       ),

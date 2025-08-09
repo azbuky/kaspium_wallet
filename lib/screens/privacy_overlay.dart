@@ -11,6 +11,7 @@ class PrivacyOverlay extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
+
     return Scaffold(
       backgroundColor: theme.backgroundDark,
       body: SafeArea(

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
+import '../settings/tx_settings.dart';
 import '../widgets/app_simpledialog.dart';
-import 'tx_settings/tx_settings_providers.dart';
-import 'tx_settings/tx_settings_types.dart';
 
 Future<void> showTxFilterDialog(BuildContext context, WidgetRef ref) async {
   final selection = await showAppDialog<TxFilter>(
@@ -38,7 +38,10 @@ class TxFilterDialog extends ConsumerWidget {
       ),
       children: [
         SimpleDialogOption(
-          onPressed: () => Navigator.pop(context, TxFilter.all),
+          onPressed: () => appRouter.pop(
+            context,
+            withResult: TxFilter.all,
+          ),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Text(
@@ -48,8 +51,10 @@ class TxFilterDialog extends ConsumerWidget {
           ),
         ),
         SimpleDialogOption(
-          onPressed: () =>
-              Navigator.pop(context, TxFilter.hideNotAcceptedCoinbase),
+          onPressed: () => appRouter.pop(
+            context,
+            withResult: TxFilter.hideNotAcceptedCoinbase,
+          ),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Text(

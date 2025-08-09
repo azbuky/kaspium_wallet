@@ -49,4 +49,6 @@ If you need any help, feel free to [file a feature request or an issue](https://
 
 ## License
 
-Kaspium is released under the MIT License
+Kaspium started as a fork of Natrium - https://github.com/appditto/natrium_wallet_flutter
+
+Kaspium is released under the MIT License. For more details see the [LICENSE](LICENSE)

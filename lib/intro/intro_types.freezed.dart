@@ -446,6 +446,8 @@ mixin _$IntroData {
   String? get pin => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   bool get generated => throw _privateConstructorUsedError;
+  bool get isLegacyWallet => throw _privateConstructorUsedError;
+  String get bip39Passphrase => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -466,6 +468,8 @@ abstract class $IntroDataCopyWith<$Res> {
       String? pin,
       String? password,
       bool generated,
+      bool isLegacyWallet,
+      String bip39Passphrase,
       bool completed});
 }
 
@@ -489,6 +493,8 @@ class _$IntroDataCopyWithImpl<$Res, $Val extends IntroData>
     Object? pin = freezed,
     Object? password = freezed,
     Object? generated = null,
+    Object? isLegacyWallet = null,
+    Object? bip39Passphrase = null,
     Object? completed = null,
   }) {
     return _then(_value.copyWith(
@@ -520,6 +526,14 @@ class _$IntroDataCopyWithImpl<$Res, $Val extends IntroData>
           ? _value.generated
           : generated // ignore: cast_nullable_to_non_nullable
               as bool,
+      isLegacyWallet: null == isLegacyWallet
+          ? _value.isLegacyWallet
+          : isLegacyWallet // ignore: cast_nullable_to_non_nullable
+              as bool,
+      bip39Passphrase: null == bip39Passphrase
+          ? _value.bip39Passphrase
+          : bip39Passphrase // ignore: cast_nullable_to_non_nullable
+              as String,
       completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
@@ -544,6 +558,8 @@ abstract class _$$IntroDataImplCopyWith<$Res>
       String? pin,
       String? password,
       bool generated,
+      bool isLegacyWallet,
+      String bip39Passphrase,
       bool completed});
 }
 
@@ -565,6 +581,8 @@ class __$$IntroDataImplCopyWithImpl<$Res>
     Object? pin = freezed,
     Object? password = freezed,
     Object? generated = null,
+    Object? isLegacyWallet = null,
+    Object? bip39Passphrase = null,
     Object? completed = null,
   }) {
     return _then(_$IntroDataImpl(
@@ -596,6 +614,14 @@ class __$$IntroDataImplCopyWithImpl<$Res>
           ? _value.generated
           : generated // ignore: cast_nullable_to_non_nullable
               as bool,
+      isLegacyWallet: null == isLegacyWallet
+          ? _value.isLegacyWallet
+          : isLegacyWallet // ignore: cast_nullable_to_non_nullable
+              as bool,
+      bip39Passphrase: null == bip39Passphrase
+          ? _value.bip39Passphrase
+          : bip39Passphrase // ignore: cast_nullable_to_non_nullable
+              as String,
       completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
@@ -615,6 +641,8 @@ class _$IntroDataImpl implements _IntroData {
       this.pin,
       this.password,
       this.generated = false,
+      this.isLegacyWallet = false,
+      this.bip39Passphrase = '',
       this.completed = false});
 
   @override
@@ -634,11 +662,17 @@ class _$IntroDataImpl implements _IntroData {
   final bool generated;
   @override
   @JsonKey()
+  final bool isLegacyWallet;
+  @override
+  @JsonKey()
+  final String bip39Passphrase;
+  @override
+  @JsonKey()
   final bool completed;
 
   @override
   String toString() {
-    return 'IntroData(mnemonic: $mnemonic, kpub: $kpub, seed: $seed, name: $name, pin: $pin, password: $password, generated: $generated, completed: $completed)';
+    return 'IntroData(mnemonic: $mnemonic, kpub: $kpub, seed: $seed, name: $name, pin: $pin, password: $password, generated: $generated, isLegacyWallet: $isLegacyWallet, bip39Passphrase: $bip39Passphrase, completed: $completed)';
   }
 
   @override
@@ -656,13 +690,17 @@ class _$IntroDataImpl implements _IntroData {
                 other.password == password) &&
             (identical(other.generated, generated) ||
                 other.generated == generated) &&
+            (identical(other.isLegacyWallet, isLegacyWallet) ||
+                other.isLegacyWallet == isLegacyWallet) &&
+            (identical(other.bip39Passphrase, bip39Passphrase) ||
+                other.bip39Passphrase == bip39Passphrase) &&
             (identical(other.completed, completed) ||
                 other.completed == completed));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, mnemonic, kpub, seed, name, pin,
-      password, generated, completed);
+      password, generated, isLegacyWallet, bip39Passphrase, completed);
 
   @JsonKey(ignore: true)
   @override
@@ -680,6 +718,8 @@ abstract class _IntroData implements IntroData {
       final String? pin,
       final String? password,
       final bool generated,
+      final bool isLegacyWallet,
+      final String bip39Passphrase,
       final bool completed}) = _$IntroDataImpl;
 
   @override
@@ -696,6 +736,10 @@ abstract class _IntroData implements IntroData {
   String? get password;
   @override
   bool get generated;
+  @override
+  bool get isLegacyWallet;
+  @override
+  String get bip39Passphrase;
   @override
   bool get completed;
   @override

@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/core_providers.dart';
 import '../settings/settings_providers.dart';
+import 'box_info_repository.dart';
 import 'wallet_bundle_notifier.dart';
 import 'wallet_repository.dart';
 import 'wallet_types.dart';
@@ -14,10 +15,21 @@ final walletVaultProvider =
   return walletVault;
 });
 
+final boxInfoRepositoryProvider = Provider((ref) {
+  final settings = ref.watch(settingsRepositoryProvider);
+  return BoxInfoRepository(settings);
+});
+
 final walletRepositoryProvider = Provider((ref) {
   final settings = ref.watch(settingsRepositoryProvider);
+  final boxInfos = ref.watch(boxInfoRepositoryProvider);
   final vault = ref.watch(vaultProvider);
-  final repository = WalletRepository(settings, vault);
+
+  final repository = WalletRepository(
+    settings: settings,
+    boxInfos: boxInfos,
+    vault: vault,
+  );
   return repository;
 });
 

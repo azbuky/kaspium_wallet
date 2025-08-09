@@ -7,7 +7,6 @@ import '../kaspa/kaspa.dart';
 import '../transactions/transaction_types.dart';
 import '../txnotes/txnotes_types.dart';
 import '../util/vault.dart';
-import '../utils.dart';
 import '../wallet_address/wallet_address.dart';
 import 'boxes.dart';
 import 'json_type_adapter.dart';
@@ -58,7 +57,6 @@ final txNoteAdapter = JsonTypeAdapter(
   typeId: _getTypeId<TxNote>(),
   fromJson: TxNote.fromJson,
 );
-
 final txIndexAdapter = JsonTypeAdapter(
   typeId: _getTypeId<TxIndex>(),
   fromJson: TxIndex.fromJson,
@@ -116,22 +114,13 @@ class Database {
   Future<void> _init() async {
     await Hive.initFlutter('kaspium_wallet');
 
-    const kContactsBoxId = '_contactsBox';
-    const kSettingsBoxId = '_settingsBox';
-    const kPushInfoBoxId = '_pushInfoBox';
-    const kTxNotesBoxId = '_txNotesBox';
-
     final vault = Vault();
-    var secureKey = await vault.getDbKey();
+    final dbKey = await vault.getDbKey();
 
-    contactsBox =
-        digest(data: stringToBytesUtf8('$kContactsBoxId#$secureKey')).hex;
-    settingsBox =
-        digest(data: stringToBytesUtf8('$kSettingsBoxId#$secureKey')).hex;
-    pushInfoBox =
-        digest(data: stringToBytesUtf8('$kPushInfoBoxId#$secureKey')).hex;
-    txNotesBox =
-        digest(data: stringToBytesUtf8('$kTxNotesBoxId#$secureKey')).hex;
+    contactsBox = hash('_contactsBox#$dbKey');
+    settingsBox = hash('_settingsBox#$dbKey');
+    pushInfoBox = hash('_pushInfoBox#$dbKey');
+    txNotesBox = hash('_txNotesBox#$dbKey');
 
     Future<Box> _openBox<T>(String box, {bool encrypted = false}) async {
       return Hive.openBox<T>(
@@ -203,11 +192,5 @@ class Database {
     assert(Hive.isBoxOpen(boxKey));
     final box = Hive.box(boxKey);
     return GenericBox(box);
-  }
-
-  LazyGenericBox getLazyGenericBox(BoxKey boxKey) {
-    assert(Hive.isBoxOpen(boxKey));
-    final box = Hive.lazyBox(boxKey);
-    return LazyGenericBox(box);
   }
 }

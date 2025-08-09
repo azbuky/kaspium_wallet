@@ -1,11 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../kaspa/kaspa.dart';
-import '../settings/block_explorer_settings.dart';
-import '../settings/block_explorers.dart';
-import '../settings/settings.dart';
+import 'block_explorer_settings.dart';
+import 'block_explorers.dart';
+import 'settings_repository.dart';
 
-const _kBlockExplorerConfigKey = '_kBlockExplorerConfigKey';
+const _kBlockExplorerConfigKey = '_kBlockExplorerConfigKeyV2';
 
 extension BlockExplorerSettingsExtension on SettingsRepository {
   BlockExplorerSettings getBlockExplorerSettings() {
@@ -29,10 +28,10 @@ class BlockExplorerNotifier extends StateNotifier<BlockExplorerSettings> {
 
   Future<void> updateBlockExplorer(
     BlockExplorer explorer, {
-    required KaspaNetwork network,
+    required String networkId,
   }) {
     final selection = Map.of(state.selection);
-    selection[network] = explorer;
+    selection[networkId] = explorer;
     state = state.copyWith(
       selection: selection,
     );

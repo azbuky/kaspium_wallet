@@ -6,7 +6,6 @@ import '../app_providers.dart';
 import '../app_styles.dart';
 import '../l10n/l10n.dart';
 import '../widgets/dialog.dart';
-import 'node_providers.dart';
 import 'node_types.dart';
 
 final kaspaNodeConfigItemProvider =
@@ -25,19 +24,19 @@ class NodeItem extends ConsumerWidget {
     final activeConfig = ref.watch(kaspaNodeConfigProvider);
 
     Future<void> change() async {
-      final oldNetwork = ref.read(networkProvider);
-      final newNetwork = item.network;
+      final oldNetworkId = ref.read(networkIdProvider);
+      final newNetworkId = item.networkId;
       final repository = ref.read(walletRepositoryProvider);
       final wallet = ref.read(walletProvider);
-      if (oldNetwork != newNetwork) {
-        await repository.openWalletBoxes(wallet, network: newNetwork);
+      if (oldNetworkId != newNetworkId) {
+        await repository.openWalletBoxes(wallet, networkId: newNetworkId);
       }
 
       final notifier = ref.read(kaspaNodeSettingsProvider.notifier);
       await notifier.updateSelected(item.config);
 
-      if (oldNetwork != newNetwork) {
-        await repository.closeWalletBoxes(wallet, network: oldNetwork);
+      if (oldNetworkId != newNetworkId) {
+        await repository.closeWalletBoxes(wallet, networkId: oldNetworkId);
       }
     }
 
@@ -88,9 +87,7 @@ class NodeItem extends ConsumerWidget {
                     value: item,
                     groupValue: activeConfig,
                     activeColor: theme.primary,
-                    onChanged: (_) {
-                      change();
-                    },
+                    onChanged: (_) => change(),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -115,7 +112,7 @@ class NodeItem extends ConsumerWidget {
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
-                                item.network.name.toUpperCase(),
+                                item.networkId.toUpperCase(),
                                 style: styles.tagText.copyWith(fontSize: 10),
                               ),
                             ),

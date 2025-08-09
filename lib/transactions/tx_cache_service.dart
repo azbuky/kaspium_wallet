@@ -18,7 +18,7 @@ class TxCacheService {
   // A cache of transactions that are currently loaded in memory
   final memCache = <String, ApiTransaction>{};
 
-  late final KaspaApiService api;
+  late KaspaApiService api;
   final Logger log;
 
   int get txCount => _txIndex.length;
@@ -65,7 +65,7 @@ class TxCacheService {
   }
 
   // Builds a Tx object from an ApiTransaction object using cached input txs
-  Tx _txForApiTx(ApiTransaction apiTx, {int? lastUpdate}) {
+  Tx _txForApiTx(ApiTransaction apiTx) {
     final inputs = apiTx.inputs.map((input) {
       // use new available input amount and address from apiTx
       if (input.previousOutpointAmount != null &&
@@ -93,13 +93,13 @@ class TxCacheService {
     final tx = Tx(
       apiTx: apiTx,
       inputData: inputs,
-      lastUpdate: lastUpdate ?? _refreshTimestamp,
+      lastUpdate: _refreshTimestamp,
     );
 
     return tx;
   }
 
-  Future<Iterable<Tx>> _txsForApiTxs(Iterable<ApiTransaction> apiTxs) async {
+  Future<Iterable<Tx>> txsForApiTxs(Iterable<ApiTransaction> apiTxs) async {
     await _cacheInputsFor(apiTxs);
 
     final txs = apiTxs.map(_txForApiTx);
@@ -110,7 +110,7 @@ class TxCacheService {
   Future<List<Tx>> cacheWalletTxs(Iterable<ApiTransaction> apiTxs) async {
     memCache.addEntries(apiTxs.map((e) => MapEntry(e.transactionId, e)));
 
-    final txs = (await _txsForApiTxs(apiTxs)).toList();
+    final txs = (await txsForApiTxs(apiTxs)).toList();
 
     final txIndexes = txs.map(
       (tx) => TxIndex(
@@ -148,14 +148,16 @@ class TxCacheService {
   Future<Tx> addWalletTx(ApiTransaction apiTx) async {
     addToMemcache(apiTx);
 
+    final txIndex = TxIndex(
+      txId: apiTx.transactionId,
+      blockTime: apiTx.blockTime,
+    );
+    await _txIndex.add(txIndex);
+
     await _cacheInputsFor([apiTx]);
 
     final tx = _txForApiTx(apiTx);
-
     await txBox.set(tx.id, tx);
-
-    final txIndex = TxIndex(txId: tx.id, blockTime: tx.apiTx.blockTime);
-    await _txIndex.add(txIndex);
 
     return tx;
   }
@@ -163,11 +165,12 @@ class TxCacheService {
   int get _refreshTimestamp => DateTime.now().toUtc().millisecondsSinceEpoch;
 
   bool _needsRefresh(Tx tx) {
-    final isCoinbase = tx.apiTx.inputs.isEmpty;
-    final delta = Duration(seconds: isCoinbase ? 100 : 10).inMilliseconds;
-    final notFresh = _refreshTimestamp > tx.lastUpdate + 2000;
+    final delta = Duration(seconds: 100).inMilliseconds;
+    final notFresh = _refreshTimestamp > tx.lastUpdate + 3000;
     final needsRefresh = tx.lastUpdate < tx.apiTx.blockTime + delta;
-    return notFresh && needsRefresh;
+    return notFresh &&
+        needsRefresh &&
+        (!tx.apiTx.isAccepted || tx.apiTx.isCoinbase);
   }
 
   Future<Iterable<Tx>> getWalletTxsAfter({String? txId, int count = 10}) async {

@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/ui_util.dart';
 import '../util/util.dart';
@@ -15,7 +16,6 @@ import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
 import '../widgets/contact_info_button.dart';
 import '../widgets/sheet_widget.dart';
-import '../widgets/tap_outside_unfocus.dart';
 import 'wallet_address.dart';
 
 class AddressDetailsSheet extends HookConsumerWidget {
@@ -64,72 +64,70 @@ class AddressDetailsSheet extends HookConsumerWidget {
       };
     }, const []);
 
-    return TapOutsideUnfocus(
-      child: SheetWidget(
-        title: title,
-        rightWidget: ContactInfoButton(onPressed: showExplorer),
-        mainWidget: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            AppTextField(
-              topMargin: 10,
-              controller: nameController,
-              focusNode: nameFocusNode,
-              textInputAction: TextInputAction.done,
-              autocorrect: false,
-              keyboardType: TextInputType.text,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(25),
-              ],
-              style: styles.textStyleAppTextField,
-            ),
-            const SizedBox(height: 22),
-            AddressThreeLineText(
-              address: address.encoded,
-              type: AddressTextType.PRIMARY60,
-            ),
-            const SizedBox(height: 12),
-            if (address.type == AddressType.receive)
-              Expanded(
-                child: Center(
-                  child: Container(
-                    constraints: BoxConstraints(maxWidth: 280),
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      shape: BoxShape.rectangle,
-                      border: Border.all(color: theme.primary, width: 2),
+    return SheetWidget(
+      title: title,
+      rightWidget: ContactInfoButton(onPressed: showExplorer),
+      mainWidget: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          AppTextField(
+            topMargin: 10,
+            controller: nameController,
+            focusNode: nameFocusNode,
+            textInputAction: TextInputAction.done,
+            autocorrect: false,
+            keyboardType: TextInputType.text,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(25),
+            ],
+            style: styles.textStyleAppTextField,
+          ),
+          const SizedBox(height: 22),
+          AddressThreeLineText(
+            address: address.encoded,
+            type: AddressTextType.PRIMARY60,
+          ),
+          const SizedBox(height: 12),
+          if (address.type == AddressType.receive)
+            Expanded(
+              child: Center(
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 280),
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    shape: BoxShape.rectangle,
+                    border: Border.all(color: theme.primary, width: 2),
+                  ),
+                  child: QrImageView(
+                    data: '${address.encoded}',
+                    gapless: false,
+                    embeddedImage: AssetImage('assets/qr_code_icon.png'),
+                    embeddedImageStyle: QrEmbeddedImageStyle(
+                      size: const Size(40, 40),
                     ),
-                    child: QrImageView(
-                      data: '${address.encoded}',
-                      gapless: false,
-                      embeddedImage: AssetImage('assets/qr_code_icon.png'),
-                      embeddedImageStyle: QrEmbeddedImageStyle(
-                        size: const Size(40, 40),
-                      ),
-                      backgroundColor: Colors.white,
-                      errorCorrectionLevel: QrErrorCorrectLevel.Q,
-                      semanticsLabel: 'QR code for address $address',
-                    ),
+                    backgroundColor: Colors.white,
+                    errorCorrectionLevel: QrErrorCorrectLevel.Q,
+                    semanticsLabel: 'QR code for address $address',
                   ),
                 ),
               ),
-          ],
-        ),
-        bottomWidget: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28),
-          child: Column(children: [
-            PrimaryButton(
-              title: l10n.copyAddress,
-              onPressed: copyAddress,
             ),
-            const SizedBox(height: 16),
-            PrimaryOutlineButton(
-              title: l10n.close,
-              onPressed: () => Navigator.pop(context),
-            ),
-          ]),
-        ),
+        ],
+      ),
+      bottomWidget: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 28),
+        child: Column(children: [
+          PrimaryButton(
+            title: l10n.copyAddress,
+            onPressed: copyAddress,
+          ),
+          const SizedBox(height: 16),
+          PrimaryOutlineButton(
+            title: l10n.close,
+            onPressed: () => appRouter.pop(context),
+          ),
+        ]),
       ),
     );
   }

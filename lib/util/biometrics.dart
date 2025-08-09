@@ -1,18 +1,15 @@
 import 'package:local_auth/local_auth.dart';
-import 'package:logger/logger.dart';
 
 import 'config.dart';
 
 class BiometricUtil {
-  final Logger logger;
-
-  const BiometricUtil(this.logger);
+  final localAuth = LocalAuthentication();
+  BiometricUtil();
 
   Future<bool> hasBiometrics() async {
     if (!kCheckBiometrics) {
       return false;
     }
-    final localAuth = LocalAuthentication();
     final canCheck = await localAuth.canCheckBiometrics;
     if (canCheck) {
       final availableBiometrics = await localAuth.getAvailableBiometrics();
@@ -30,7 +27,6 @@ class BiometricUtil {
       throw Exception('Missing biometrics');
     }
 
-    final localAuth = LocalAuthentication();
     return localAuth.authenticate(
       localizedReason: message,
       options: AuthenticationOptions(

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../util/caseconverter.dart';
 import '../widgets/dialog.dart';
@@ -25,10 +26,10 @@ class WalletCard extends ConsumerWidget {
 
     Future<void> selectWallet() async {
       final notifier = ref.read(walletBundleProvider.notifier);
-      final network = ref.read(networkProvider);
-      await notifier.selectWallet(wallet, network);
+      final networkId = ref.read(networkIdProvider);
+      await notifier.selectWallet(wallet, networkId);
 
-      Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
+      appRouter.reload(context);
     }
 
     Future<void> removeWallet() async {

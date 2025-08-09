@@ -1,4 +1,5 @@
-import '../util/kaspa_util.dart';
+import '../kaspa/utils.dart';
+import '../util/encryption_util.dart';
 import '../util/vault.dart';
 
 const _kMnemonicKey = 'kaspium_mnemonic_key';
@@ -20,7 +21,7 @@ class WalletVault {
       throw Exception('Mnemonic is missing from vault');
     }
 
-    if (!KaspaUtil.isEncryptedHex(mnemonic)) {
+    if (!EncryptionUtil.isEncryptedHex(mnemonic)) {
       return mnemonic;
     }
 
@@ -28,7 +29,7 @@ class WalletVault {
       throw Exception('Mnemonic is password protected');
     }
 
-    final decrypted = KaspaUtil.decryptToText(mnemonic, password);
+    final decrypted = EncryptionUtil.decryptToText(mnemonic, password);
     return decrypted;
   }
 
@@ -39,7 +40,7 @@ class WalletVault {
       throw Exception('Seed is missing from vault');
     }
 
-    if (!KaspaUtil.isEncryptedHex(seed)) {
+    if (!EncryptionUtil.isEncryptedHex(seed)) {
       return seed;
     }
 
@@ -47,9 +48,9 @@ class WalletVault {
       throw Exception('Seed is password protected');
     }
 
-    final decrypted = KaspaUtil.decryptHex(seed, password);
+    final decrypted = EncryptionUtil.decryptHex(seed, password);
 
-    if (!KaspaUtil.isValidSeed(decrypted)) {
+    if (!isValidSeed(decrypted)) {
       throw Exception('Incorrect password');
     }
     return decrypted;
@@ -57,8 +58,7 @@ class WalletVault {
 
   Future<bool> hasMnemonic() async {
     final mnemonic = await vault.get(_mnemonicKey);
-    final mnemonicOrSeed = mnemonic ?? await vault.get(_seedKey);
-    return mnemonicOrSeed != null;
+    return mnemonic != null;
   }
 
   Future<bool> seedIsEncrypted() async {
@@ -67,7 +67,7 @@ class WalletVault {
       return false;
     }
 
-    return KaspaUtil.isEncryptedHex(seed);
+    return EncryptionUtil.isEncryptedHex(seed);
   }
 
   Future<void> setSeed(
@@ -77,9 +77,9 @@ class WalletVault {
   }) async {
     if (password != null) {
       // encrypt mnemonic with password for vault
-      mnemonic = KaspaUtil.maybeEncryptText(mnemonic, password);
+      mnemonic = EncryptionUtil.maybeEncryptText(mnemonic, password);
       // encrypt seed with password for vault
-      seed = KaspaUtil.encryptHex(seed, password);
+      seed = EncryptionUtil.encryptHex(seed, password);
     }
     await vault.set(_seedKey, seed);
     await vault.set(_mnemonicKey, mnemonic);

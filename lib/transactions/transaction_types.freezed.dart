@@ -518,6 +518,7 @@ mixin _$TxItem {
   Tx get tx => throw _privateConstructorUsedError;
   int get outputIndex => throw _privateConstructorUsedError;
   TxItemType get type => throw _privateConstructorUsedError;
+  bool get pending => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TxItemCopyWith<TxItem> get copyWith => throw _privateConstructorUsedError;
@@ -528,7 +529,7 @@ abstract class $TxItemCopyWith<$Res> {
   factory $TxItemCopyWith(TxItem value, $Res Function(TxItem) then) =
       _$TxItemCopyWithImpl<$Res, TxItem>;
   @useResult
-  $Res call({Tx tx, int outputIndex, TxItemType type});
+  $Res call({Tx tx, int outputIndex, TxItemType type, bool pending});
 
   $TxCopyWith<$Res> get tx;
 }
@@ -549,6 +550,7 @@ class _$TxItemCopyWithImpl<$Res, $Val extends TxItem>
     Object? tx = null,
     Object? outputIndex = null,
     Object? type = null,
+    Object? pending = null,
   }) {
     return _then(_value.copyWith(
       tx: null == tx
@@ -563,6 +565,10 @@ class _$TxItemCopyWithImpl<$Res, $Val extends TxItem>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TxItemType,
+      pending: null == pending
+          ? _value.pending
+          : pending // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -582,7 +588,7 @@ abstract class _$$TxItemImplCopyWith<$Res> implements $TxItemCopyWith<$Res> {
       __$$TxItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Tx tx, int outputIndex, TxItemType type});
+  $Res call({Tx tx, int outputIndex, TxItemType type, bool pending});
 
   @override
   $TxCopyWith<$Res> get tx;
@@ -602,6 +608,7 @@ class __$$TxItemImplCopyWithImpl<$Res>
     Object? tx = null,
     Object? outputIndex = null,
     Object? type = null,
+    Object? pending = null,
   }) {
     return _then(_$TxItemImpl(
       tx: null == tx
@@ -616,6 +623,10 @@ class __$$TxItemImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TxItemType,
+      pending: null == pending
+          ? _value.pending
+          : pending // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -624,7 +635,10 @@ class __$$TxItemImplCopyWithImpl<$Res>
 
 class _$TxItemImpl extends _TxItem {
   const _$TxItemImpl(
-      {required this.tx, required this.outputIndex, required this.type})
+      {required this.tx,
+      required this.outputIndex,
+      required this.type,
+      this.pending = false})
       : super._();
 
   @override
@@ -633,10 +647,13 @@ class _$TxItemImpl extends _TxItem {
   final int outputIndex;
   @override
   final TxItemType type;
+  @override
+  @JsonKey()
+  final bool pending;
 
   @override
   String toString() {
-    return 'TxItem(tx: $tx, outputIndex: $outputIndex, type: $type)';
+    return 'TxItem(tx: $tx, outputIndex: $outputIndex, type: $type, pending: $pending)';
   }
 
   @JsonKey(ignore: true)
@@ -650,7 +667,8 @@ abstract class _TxItem extends TxItem {
   const factory _TxItem(
       {required final Tx tx,
       required final int outputIndex,
-      required final TxItemType type}) = _$TxItemImpl;
+      required final TxItemType type,
+      final bool pending}) = _$TxItemImpl;
   const _TxItem._() : super._();
 
   @override
@@ -659,6 +677,8 @@ abstract class _TxItem extends TxItem {
   int get outputIndex;
   @override
   TxItemType get type;
+  @override
+  bool get pending;
   @override
   @JsonKey(ignore: true)
   _$$TxItemImplCopyWith<_$TxItemImpl> get copyWith =>
@@ -669,18 +689,21 @@ abstract class _TxItem extends TxItem {
 mixin _$TxListItem {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(TxItem tx) pendingTxItem,
     required TResult Function(TxItem tx) txItem,
     required TResult Function(bool hasMore) loader,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TxItem tx)? pendingTxItem,
     TResult? Function(TxItem tx)? txItem,
     TResult? Function(bool hasMore)? loader,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TxItem tx)? pendingTxItem,
     TResult Function(TxItem tx)? txItem,
     TResult Function(bool hasMore)? loader,
     required TResult orElse(),
@@ -688,18 +711,21 @@ mixin _$TxListItem {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_TxListItemPendingTxItem value) pendingTxItem,
     required TResult Function(_TxListItemTxItem value) txItem,
     required TResult Function(_TxListItemLoader value) loader,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TxListItemPendingTxItem value)? pendingTxItem,
     TResult? Function(_TxListItemTxItem value)? txItem,
     TResult? Function(_TxListItemLoader value)? loader,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TxListItemPendingTxItem value)? pendingTxItem,
     TResult Function(_TxListItemTxItem value)? txItem,
     TResult Function(_TxListItemLoader value)? loader,
     required TResult orElse(),
@@ -723,6 +749,160 @@ class _$TxListItemCopyWithImpl<$Res, $Val extends TxListItem>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$TxListItemPendingTxItemImplCopyWith<$Res> {
+  factory _$$TxListItemPendingTxItemImplCopyWith(
+          _$TxListItemPendingTxItemImpl value,
+          $Res Function(_$TxListItemPendingTxItemImpl) then) =
+      __$$TxListItemPendingTxItemImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TxItem tx});
+
+  $TxItemCopyWith<$Res> get tx;
+}
+
+/// @nodoc
+class __$$TxListItemPendingTxItemImplCopyWithImpl<$Res>
+    extends _$TxListItemCopyWithImpl<$Res, _$TxListItemPendingTxItemImpl>
+    implements _$$TxListItemPendingTxItemImplCopyWith<$Res> {
+  __$$TxListItemPendingTxItemImplCopyWithImpl(
+      _$TxListItemPendingTxItemImpl _value,
+      $Res Function(_$TxListItemPendingTxItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tx = null,
+  }) {
+    return _then(_$TxListItemPendingTxItemImpl(
+      null == tx
+          ? _value.tx
+          : tx // ignore: cast_nullable_to_non_nullable
+              as TxItem,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TxItemCopyWith<$Res> get tx {
+    return $TxItemCopyWith<$Res>(_value.tx, (value) {
+      return _then(_value.copyWith(tx: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$TxListItemPendingTxItemImpl extends _TxListItemPendingTxItem {
+  _$TxListItemPendingTxItemImpl(this.tx) : super._();
+
+  @override
+  final TxItem tx;
+
+  @override
+  String toString() {
+    return 'TxListItem.pendingTxItem(tx: $tx)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TxListItemPendingTxItemImpl &&
+            (identical(other.tx, tx) || other.tx == tx));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, tx);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TxListItemPendingTxItemImplCopyWith<_$TxListItemPendingTxItemImpl>
+      get copyWith => __$$TxListItemPendingTxItemImplCopyWithImpl<
+          _$TxListItemPendingTxItemImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TxItem tx) pendingTxItem,
+    required TResult Function(TxItem tx) txItem,
+    required TResult Function(bool hasMore) loader,
+  }) {
+    return pendingTxItem(tx);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TxItem tx)? pendingTxItem,
+    TResult? Function(TxItem tx)? txItem,
+    TResult? Function(bool hasMore)? loader,
+  }) {
+    return pendingTxItem?.call(tx);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TxItem tx)? pendingTxItem,
+    TResult Function(TxItem tx)? txItem,
+    TResult Function(bool hasMore)? loader,
+    required TResult orElse(),
+  }) {
+    if (pendingTxItem != null) {
+      return pendingTxItem(tx);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TxListItemPendingTxItem value) pendingTxItem,
+    required TResult Function(_TxListItemTxItem value) txItem,
+    required TResult Function(_TxListItemLoader value) loader,
+  }) {
+    return pendingTxItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TxListItemPendingTxItem value)? pendingTxItem,
+    TResult? Function(_TxListItemTxItem value)? txItem,
+    TResult? Function(_TxListItemLoader value)? loader,
+  }) {
+    return pendingTxItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TxListItemPendingTxItem value)? pendingTxItem,
+    TResult Function(_TxListItemTxItem value)? txItem,
+    TResult Function(_TxListItemLoader value)? loader,
+    required TResult orElse(),
+  }) {
+    if (pendingTxItem != null) {
+      return pendingTxItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TxListItemPendingTxItem extends TxListItem {
+  factory _TxListItemPendingTxItem(final TxItem tx) =
+      _$TxListItemPendingTxItemImpl;
+  _TxListItemPendingTxItem._() : super._();
+
+  TxItem get tx;
+  @JsonKey(ignore: true)
+  _$$TxListItemPendingTxItemImplCopyWith<_$TxListItemPendingTxItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -800,6 +980,7 @@ class _$TxListItemTxItemImpl extends _TxListItemTxItem {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(TxItem tx) pendingTxItem,
     required TResult Function(TxItem tx) txItem,
     required TResult Function(bool hasMore) loader,
   }) {
@@ -809,6 +990,7 @@ class _$TxListItemTxItemImpl extends _TxListItemTxItem {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TxItem tx)? pendingTxItem,
     TResult? Function(TxItem tx)? txItem,
     TResult? Function(bool hasMore)? loader,
   }) {
@@ -818,6 +1000,7 @@ class _$TxListItemTxItemImpl extends _TxListItemTxItem {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TxItem tx)? pendingTxItem,
     TResult Function(TxItem tx)? txItem,
     TResult Function(bool hasMore)? loader,
     required TResult orElse(),
@@ -831,6 +1014,7 @@ class _$TxListItemTxItemImpl extends _TxListItemTxItem {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_TxListItemPendingTxItem value) pendingTxItem,
     required TResult Function(_TxListItemTxItem value) txItem,
     required TResult Function(_TxListItemLoader value) loader,
   }) {
@@ -840,6 +1024,7 @@ class _$TxListItemTxItemImpl extends _TxListItemTxItem {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TxListItemPendingTxItem value)? pendingTxItem,
     TResult? Function(_TxListItemTxItem value)? txItem,
     TResult? Function(_TxListItemLoader value)? loader,
   }) {
@@ -849,6 +1034,7 @@ class _$TxListItemTxItemImpl extends _TxListItemTxItem {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TxListItemPendingTxItem value)? pendingTxItem,
     TResult Function(_TxListItemTxItem value)? txItem,
     TResult Function(_TxListItemLoader value)? loader,
     required TResult orElse(),
@@ -935,6 +1121,7 @@ class _$TxListItemLoaderImpl extends _TxListItemLoader {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(TxItem tx) pendingTxItem,
     required TResult Function(TxItem tx) txItem,
     required TResult Function(bool hasMore) loader,
   }) {
@@ -944,6 +1131,7 @@ class _$TxListItemLoaderImpl extends _TxListItemLoader {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TxItem tx)? pendingTxItem,
     TResult? Function(TxItem tx)? txItem,
     TResult? Function(bool hasMore)? loader,
   }) {
@@ -953,6 +1141,7 @@ class _$TxListItemLoaderImpl extends _TxListItemLoader {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TxItem tx)? pendingTxItem,
     TResult Function(TxItem tx)? txItem,
     TResult Function(bool hasMore)? loader,
     required TResult orElse(),
@@ -966,6 +1155,7 @@ class _$TxListItemLoaderImpl extends _TxListItemLoader {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_TxListItemPendingTxItem value) pendingTxItem,
     required TResult Function(_TxListItemTxItem value) txItem,
     required TResult Function(_TxListItemLoader value) loader,
   }) {
@@ -975,6 +1165,7 @@ class _$TxListItemLoaderImpl extends _TxListItemLoader {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TxListItemPendingTxItem value)? pendingTxItem,
     TResult? Function(_TxListItemTxItem value)? txItem,
     TResult? Function(_TxListItemLoader value)? loader,
   }) {
@@ -984,6 +1175,7 @@ class _$TxListItemLoaderImpl extends _TxListItemLoader {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TxListItemPendingTxItem value)? pendingTxItem,
     TResult Function(_TxListItemTxItem value)? txItem,
     TResult Function(_TxListItemLoader value)? loader,
     required TResult orElse(),
@@ -1010,6 +1202,7 @@ mixin _$TxState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() pending,
     required TResult Function() unconfirmed,
     required TResult Function(BigInt confirmations) confirming,
     required TResult Function() confirmed,
@@ -1018,6 +1211,7 @@ mixin _$TxState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? pending,
     TResult? Function()? unconfirmed,
     TResult? Function(BigInt confirmations)? confirming,
     TResult? Function()? confirmed,
@@ -1026,6 +1220,7 @@ mixin _$TxState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? pending,
     TResult Function()? unconfirmed,
     TResult Function(BigInt confirmations)? confirming,
     TResult Function()? confirmed,
@@ -1035,6 +1230,7 @@ mixin _$TxState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TxStateUnknown value) unknown,
+    required TResult Function(_TxStatePending value) pending,
     required TResult Function(_TxStateUnconfirmed value) unconfirmed,
     required TResult Function(_TxStateConfirming value) confirming,
     required TResult Function(_TxStateConfirmed value) confirmed,
@@ -1043,6 +1239,7 @@ mixin _$TxState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TxStateUnknown value)? unknown,
+    TResult? Function(_TxStatePending value)? pending,
     TResult? Function(_TxStateUnconfirmed value)? unconfirmed,
     TResult? Function(_TxStateConfirming value)? confirming,
     TResult? Function(_TxStateConfirmed value)? confirmed,
@@ -1051,6 +1248,7 @@ mixin _$TxState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TxStateUnknown value)? unknown,
+    TResult Function(_TxStatePending value)? pending,
     TResult Function(_TxStateUnconfirmed value)? unconfirmed,
     TResult Function(_TxStateConfirming value)? confirming,
     TResult Function(_TxStateConfirmed value)? confirmed,
@@ -1115,6 +1313,7 @@ class _$TxStateUnknownImpl implements _TxStateUnknown {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() pending,
     required TResult Function() unconfirmed,
     required TResult Function(BigInt confirmations) confirming,
     required TResult Function() confirmed,
@@ -1126,6 +1325,7 @@ class _$TxStateUnknownImpl implements _TxStateUnknown {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? pending,
     TResult? Function()? unconfirmed,
     TResult? Function(BigInt confirmations)? confirming,
     TResult? Function()? confirmed,
@@ -1137,6 +1337,7 @@ class _$TxStateUnknownImpl implements _TxStateUnknown {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? pending,
     TResult Function()? unconfirmed,
     TResult Function(BigInt confirmations)? confirming,
     TResult Function()? confirmed,
@@ -1152,6 +1353,7 @@ class _$TxStateUnknownImpl implements _TxStateUnknown {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TxStateUnknown value) unknown,
+    required TResult Function(_TxStatePending value) pending,
     required TResult Function(_TxStateUnconfirmed value) unconfirmed,
     required TResult Function(_TxStateConfirming value) confirming,
     required TResult Function(_TxStateConfirmed value) confirmed,
@@ -1163,6 +1365,7 @@ class _$TxStateUnknownImpl implements _TxStateUnknown {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TxStateUnknown value)? unknown,
+    TResult? Function(_TxStatePending value)? pending,
     TResult? Function(_TxStateUnconfirmed value)? unconfirmed,
     TResult? Function(_TxStateConfirming value)? confirming,
     TResult? Function(_TxStateConfirmed value)? confirmed,
@@ -1174,6 +1377,7 @@ class _$TxStateUnknownImpl implements _TxStateUnknown {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TxStateUnknown value)? unknown,
+    TResult Function(_TxStatePending value)? pending,
     TResult Function(_TxStateUnconfirmed value)? unconfirmed,
     TResult Function(_TxStateConfirming value)? confirming,
     TResult Function(_TxStateConfirmed value)? confirmed,
@@ -1188,6 +1392,126 @@ class _$TxStateUnknownImpl implements _TxStateUnknown {
 
 abstract class _TxStateUnknown implements TxState {
   const factory _TxStateUnknown() = _$TxStateUnknownImpl;
+}
+
+/// @nodoc
+abstract class _$$TxStatePendingImplCopyWith<$Res> {
+  factory _$$TxStatePendingImplCopyWith(_$TxStatePendingImpl value,
+          $Res Function(_$TxStatePendingImpl) then) =
+      __$$TxStatePendingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$TxStatePendingImplCopyWithImpl<$Res>
+    extends _$TxStateCopyWithImpl<$Res, _$TxStatePendingImpl>
+    implements _$$TxStatePendingImplCopyWith<$Res> {
+  __$$TxStatePendingImplCopyWithImpl(
+      _$TxStatePendingImpl _value, $Res Function(_$TxStatePendingImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$TxStatePendingImpl implements _TxStatePending {
+  const _$TxStatePendingImpl();
+
+  @override
+  String toString() {
+    return 'TxState.pending()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$TxStatePendingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() pending,
+    required TResult Function() unconfirmed,
+    required TResult Function(BigInt confirmations) confirming,
+    required TResult Function() confirmed,
+  }) {
+    return pending();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? pending,
+    TResult? Function()? unconfirmed,
+    TResult? Function(BigInt confirmations)? confirming,
+    TResult? Function()? confirmed,
+  }) {
+    return pending?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? pending,
+    TResult Function()? unconfirmed,
+    TResult Function(BigInt confirmations)? confirming,
+    TResult Function()? confirmed,
+    required TResult orElse(),
+  }) {
+    if (pending != null) {
+      return pending();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TxStateUnknown value) unknown,
+    required TResult Function(_TxStatePending value) pending,
+    required TResult Function(_TxStateUnconfirmed value) unconfirmed,
+    required TResult Function(_TxStateConfirming value) confirming,
+    required TResult Function(_TxStateConfirmed value) confirmed,
+  }) {
+    return pending(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TxStateUnknown value)? unknown,
+    TResult? Function(_TxStatePending value)? pending,
+    TResult? Function(_TxStateUnconfirmed value)? unconfirmed,
+    TResult? Function(_TxStateConfirming value)? confirming,
+    TResult? Function(_TxStateConfirmed value)? confirmed,
+  }) {
+    return pending?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TxStateUnknown value)? unknown,
+    TResult Function(_TxStatePending value)? pending,
+    TResult Function(_TxStateUnconfirmed value)? unconfirmed,
+    TResult Function(_TxStateConfirming value)? confirming,
+    TResult Function(_TxStateConfirmed value)? confirmed,
+    required TResult orElse(),
+  }) {
+    if (pending != null) {
+      return pending(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TxStatePending implements TxState {
+  const factory _TxStatePending() = _$TxStatePendingImpl;
 }
 
 /// @nodoc
@@ -1229,6 +1553,7 @@ class _$TxStateUnconfirmedImpl implements _TxStateUnconfirmed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() pending,
     required TResult Function() unconfirmed,
     required TResult Function(BigInt confirmations) confirming,
     required TResult Function() confirmed,
@@ -1240,6 +1565,7 @@ class _$TxStateUnconfirmedImpl implements _TxStateUnconfirmed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? pending,
     TResult? Function()? unconfirmed,
     TResult? Function(BigInt confirmations)? confirming,
     TResult? Function()? confirmed,
@@ -1251,6 +1577,7 @@ class _$TxStateUnconfirmedImpl implements _TxStateUnconfirmed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? pending,
     TResult Function()? unconfirmed,
     TResult Function(BigInt confirmations)? confirming,
     TResult Function()? confirmed,
@@ -1266,6 +1593,7 @@ class _$TxStateUnconfirmedImpl implements _TxStateUnconfirmed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TxStateUnknown value) unknown,
+    required TResult Function(_TxStatePending value) pending,
     required TResult Function(_TxStateUnconfirmed value) unconfirmed,
     required TResult Function(_TxStateConfirming value) confirming,
     required TResult Function(_TxStateConfirmed value) confirmed,
@@ -1277,6 +1605,7 @@ class _$TxStateUnconfirmedImpl implements _TxStateUnconfirmed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TxStateUnknown value)? unknown,
+    TResult? Function(_TxStatePending value)? pending,
     TResult? Function(_TxStateUnconfirmed value)? unconfirmed,
     TResult? Function(_TxStateConfirming value)? confirming,
     TResult? Function(_TxStateConfirmed value)? confirmed,
@@ -1288,6 +1617,7 @@ class _$TxStateUnconfirmedImpl implements _TxStateUnconfirmed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TxStateUnknown value)? unknown,
+    TResult Function(_TxStatePending value)? pending,
     TResult Function(_TxStateUnconfirmed value)? unconfirmed,
     TResult Function(_TxStateConfirming value)? confirming,
     TResult Function(_TxStateConfirmed value)? confirmed,
@@ -1371,6 +1701,7 @@ class _$TxStateConfirmingImpl implements _TxStateConfirming {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() pending,
     required TResult Function() unconfirmed,
     required TResult Function(BigInt confirmations) confirming,
     required TResult Function() confirmed,
@@ -1382,6 +1713,7 @@ class _$TxStateConfirmingImpl implements _TxStateConfirming {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? pending,
     TResult? Function()? unconfirmed,
     TResult? Function(BigInt confirmations)? confirming,
     TResult? Function()? confirmed,
@@ -1393,6 +1725,7 @@ class _$TxStateConfirmingImpl implements _TxStateConfirming {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? pending,
     TResult Function()? unconfirmed,
     TResult Function(BigInt confirmations)? confirming,
     TResult Function()? confirmed,
@@ -1408,6 +1741,7 @@ class _$TxStateConfirmingImpl implements _TxStateConfirming {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TxStateUnknown value) unknown,
+    required TResult Function(_TxStatePending value) pending,
     required TResult Function(_TxStateUnconfirmed value) unconfirmed,
     required TResult Function(_TxStateConfirming value) confirming,
     required TResult Function(_TxStateConfirmed value) confirmed,
@@ -1419,6 +1753,7 @@ class _$TxStateConfirmingImpl implements _TxStateConfirming {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TxStateUnknown value)? unknown,
+    TResult? Function(_TxStatePending value)? pending,
     TResult? Function(_TxStateUnconfirmed value)? unconfirmed,
     TResult? Function(_TxStateConfirming value)? confirming,
     TResult? Function(_TxStateConfirmed value)? confirmed,
@@ -1430,6 +1765,7 @@ class _$TxStateConfirmingImpl implements _TxStateConfirming {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TxStateUnknown value)? unknown,
+    TResult Function(_TxStatePending value)? pending,
     TResult Function(_TxStateUnconfirmed value)? unconfirmed,
     TResult Function(_TxStateConfirming value)? confirming,
     TResult Function(_TxStateConfirmed value)? confirmed,
@@ -1491,6 +1827,7 @@ class _$TxStateConfirmedImpl implements _TxStateConfirmed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() pending,
     required TResult Function() unconfirmed,
     required TResult Function(BigInt confirmations) confirming,
     required TResult Function() confirmed,
@@ -1502,6 +1839,7 @@ class _$TxStateConfirmedImpl implements _TxStateConfirmed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? pending,
     TResult? Function()? unconfirmed,
     TResult? Function(BigInt confirmations)? confirming,
     TResult? Function()? confirmed,
@@ -1513,6 +1851,7 @@ class _$TxStateConfirmedImpl implements _TxStateConfirmed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? pending,
     TResult Function()? unconfirmed,
     TResult Function(BigInt confirmations)? confirming,
     TResult Function()? confirmed,
@@ -1528,6 +1867,7 @@ class _$TxStateConfirmedImpl implements _TxStateConfirmed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TxStateUnknown value) unknown,
+    required TResult Function(_TxStatePending value) pending,
     required TResult Function(_TxStateUnconfirmed value) unconfirmed,
     required TResult Function(_TxStateConfirming value) confirming,
     required TResult Function(_TxStateConfirmed value) confirmed,
@@ -1539,6 +1879,7 @@ class _$TxStateConfirmedImpl implements _TxStateConfirmed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TxStateUnknown value)? unknown,
+    TResult? Function(_TxStatePending value)? pending,
     TResult? Function(_TxStateUnconfirmed value)? unconfirmed,
     TResult? Function(_TxStateConfirming value)? confirming,
     TResult? Function(_TxStateConfirmed value)? confirmed,
@@ -1550,6 +1891,7 @@ class _$TxStateConfirmedImpl implements _TxStateConfirmed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TxStateUnknown value)? unknown,
+    TResult Function(_TxStatePending value)? pending,
     TResult Function(_TxStateUnconfirmed value)? unconfirmed,
     TResult Function(_TxStateConfirming value)? confirming,
     TResult Function(_TxStateConfirmed value)? confirmed,

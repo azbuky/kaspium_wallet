@@ -32,6 +32,8 @@ class IntroData with _$IntroData {
     String? pin,
     String? password,
     @Default(false) bool generated,
+    @Default(false) bool isLegacyWallet,
+    @Default('') String bip39Passphrase,
     @Default(false) bool completed,
   }) = _IntroData;
 }

@@ -3,13 +3,17 @@ import 'dart:typed_data';
 import 'package:fixnum/fixnum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../utils.dart';
 import '../grpc/rpc.pb.dart';
-import '../kaspa.dart';
+import '../types/address.dart';
+import '../utils.dart';
 
 part 'types.freezed.dart';
 part 'types.g.dart';
 
+final kSompiPerKaspa = BigInt.from(100000000);
+final kStorageMassParameter = kSompiPerKaspa * BigInt.from(10000);
+
+final kMinChangeTarget = BigInt.from(20000000);
 final kFeePerInput = BigInt.from(10000);
 const kMaxInputsPerTransaction = 84;
 final kMaximumStandardTransactionMass = BigInt.from(100000);
@@ -81,13 +85,13 @@ class Utxo with _$Utxo {
 
   factory Utxo.fromJson(Map<String, dynamic> json) => _$UtxoFromJson(json);
 
-  factory Utxo.fromRpc(UtxosByAddressesEntry rpc) => Utxo(
+  factory Utxo.fromRpc(RpcUtxosByAddressesEntry rpc) => Utxo(
         address: rpc.address,
         outpoint: Outpoint.fromRpc(rpc.outpoint),
         utxoEntry: UtxoEntry.fromRpc(rpc.utxoEntry),
       );
 
-  UtxosByAddressesEntry toRpc() => UtxosByAddressesEntry(
+  RpcUtxosByAddressesEntry toRpc() => RpcUtxosByAddressesEntry(
         address: address,
         outpoint: outpoint.toRpc(),
         utxoEntry: utxoEntry.toRpc(),
@@ -222,6 +226,7 @@ class TxOutput with _$TxOutput {
 
 @freezed
 class Transaction with _$Transaction {
+  const Transaction._();
   const factory Transaction({
     /*uint16*/ required int version,
     required List<TxInput> inputs,
@@ -234,6 +239,18 @@ class Transaction with _$Transaction {
     /*uint64*/ Int64? mass,
     Uint8List? id,
   }) = _Transaction;
+
+  RpcTransaction toRpc() => RpcTransaction(
+        version: version,
+        inputs: inputs.map((input) => input.toRpc()),
+        outputs: outputs.map((output) => output.toRpc()),
+        lockTime: lockTime,
+        subnetworkId: subnetworkId.hex,
+        gas: gas,
+        payload: payload?.hex,
+      );
+
+  bool get isCoinbase => subnetworkId.hex == kSubnetworkIdCoinbaseHex;
 }
 
 @unfreezed

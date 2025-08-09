@@ -11,10 +11,12 @@ import '../widgets/sheet_util.dart';
 
 class UtxoCard extends ConsumerWidget {
   final Utxo item;
+  final bool selectable;
 
   const UtxoCard({
     Key? key,
     required this.item,
+    this.selectable = false,
   }) : super(key: key);
 
   @override
@@ -24,9 +26,11 @@ class UtxoCard extends ConsumerWidget {
     final styles = ref.watch(stylesProvider);
 
     final amount = Amount.raw(item.utxoEntry.amount);
+    final kasSymbol = ref.watch(kasSymbolProvider);
     final formatedValue = NumberUtil.formatedAmount(amount);
 
     final fiatValue = ref.watch(formatedFiatForAmountProvider(amount));
+    final addressNotifier = ref.watch(addressNotifierProvider);
 
     void showTxDetails() {
       Sheets.showAppHeightEightSheet(
@@ -39,6 +43,29 @@ class UtxoCard extends ConsumerWidget {
       );
     }
 
+    void updateSelected(bool? value) {
+      if (value == null) {
+        return;
+      }
+
+      final notifier = ref.read(selectedUtxosProvider.notifier);
+      if (value) {
+        notifier.update((state) => state.add(item));
+      } else {
+        notifier.update((state) => state.remove(item));
+      }
+    }
+
+    void onPressed() {
+      if (selectable) {
+        final selectedUtxos = ref.read(selectedUtxosProvider);
+        final isSelected = selectedUtxos.contains(item);
+        updateSelected(!isSelected);
+      } else {
+        showTxDetails();
+      }
+    }
+
     return Container(
       margin: EdgeInsetsDirectional.fromSTEB(14, 4, 14, 4),
       decoration: BoxDecoration(
@@ -48,12 +75,21 @@ class UtxoCard extends ConsumerWidget {
       ),
       child: TextButton(
         style: styles.cardButtonStyle,
-        onPressed: showTxDetails,
+        onPressed: onPressed,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              if (selectable)
+                Consumer(builder: (context, ref, child) {
+                  final selected = ref.watch(
+                    selectedUtxosProvider.select(
+                      (value) => value.contains(item),
+                    ),
+                  );
+                  return Checkbox(value: selected, onChanged: updateSelected);
+                }),
               Flexible(
                 flex: 1,
                 child: Row(
@@ -66,7 +102,8 @@ class UtxoCard extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              l10n.address,
+                              addressNotifier.nameForAddress(item.address) ??
+                                  l10n.address,
                               style: styles.textStyleTransactionAmountSmall,
                             ),
                             Text(
@@ -100,7 +137,7 @@ class UtxoCard extends ConsumerWidget {
                                         style: styles.textStyleCurrencyAlt,
                                       ),
                                       TextSpan(
-                                        text: ' ${TokenInfo.kaspa.symbolLabel}',
+                                        text: ' $kasSymbol',
                                         style: styles.textStyleCurrencyAlt,
                                       ),
                                     ],

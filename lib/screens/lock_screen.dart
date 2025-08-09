@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../l10n/l10n.dart';
 import '../settings/authentication_method.dart';
 import '../util/caseconverter.dart';
@@ -10,10 +12,10 @@ import '../util/pin_lockout.dart';
 import '../util/routes.dart';
 import '../widgets/buttons.dart';
 import '../widgets/logout_button.dart';
-import '../widgets/pin_screen.dart';
 
 class LockScreen extends ConsumerStatefulWidget {
-  const LockScreen({Key? key}) : super(key: key);
+  final bool autoTransition;
+  const LockScreen({super.key, this.autoTransition = true});
 
   @override
   _LockScreenState createState() => _LockScreenState();
@@ -25,13 +27,36 @@ class _LockScreenState extends ConsumerState<LockScreen> {
   bool _lockedOut = true;
   String _countDownTxt = "";
 
-  Future<void> _goHome() async {
-    final walletAuth = ref.read(walletAuthNotifierProvider);
-    if (walletAuth != null) {
-      await walletAuth.unlock();
-    }
+  late final AppLifecycleListener _appStateListener;
 
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
+  @override
+  void initState() {
+    super.initState();
+
+    _appStateListener = AppLifecycleListener(onResume: () {
+      if (appRouter.isTopRoute<BarrierRoute>(context)) {
+        _authenticate(useTransition: true);
+      }
+    });
+
+    if (SchedulerBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+      _authenticate(useTransition: true);
+    }
+  }
+
+  @override
+  void dispose() {
+    _appStateListener.dispose();
+    super.dispose();
+  }
+
+  Future<void> _unlock() async {
+    final walletAuth = ref.read(walletAuthProvider.notifier);
+    final unlocked = await walletAuth.unlock();
+
+    if (unlocked && widget.autoTransition) {
+      appRouter.reload(context);
+    }
   }
 
   String _formatCountDisplay(int count) {
@@ -109,49 +134,60 @@ class _LockScreenState extends ConsumerState<LockScreen> {
     }
   }
 
-  Future<void> authenticateWithBiometrics() async {
+  Future<void> _authenticateWithBiometrics() async {
     final l10n = l10nOf(context);
+
+    final privacyOverlayDisabled =
+        ref.read(privacyOverlayDisabledProvider.notifier);
+    privacyOverlayDisabled.state = true;
+
     final biometricUtil = ref.read(biometricUtilProvider);
-    final authenticated = await biometricUtil.authenticateWithBiometrics(
-      l10n.unlockBiometrics,
-    );
-    if (authenticated) {
-      _goHome();
-    } else {
-      setState(() {
-        _showUnlockButton = true;
+    bool authenticated = false;
+
+    try {
+      authenticated = await biometricUtil.authenticateWithBiometrics(
+        l10n.unlockBiometrics,
+      );
+
+      if (authenticated) {
+        _unlock();
+      } else {
+        setState(() {
+          _showUnlockButton = true;
+        });
+        throw Exception('Authentication failed');
+      }
+    } catch (_) {
+      rethrow;
+    } finally {
+      final privacyOverlayDisabled =
+          ref.read(privacyOverlayDisabledProvider.notifier);
+      Future.delayed(Duration(milliseconds: 500), () {
+        privacyOverlayDisabled.state = false;
       });
     }
   }
 
-  Future<void> authenticateWithPin({bool useTransition = false}) async {
-    final theme = ref.read(themeProvider);
+  Future<void> _authenticateWithPin({bool useTransition = false}) async {
     final l10n = l10nOf(context);
+    final authUtil = ref.read(authUtilProvider);
 
-    String? expectedPin = await ref.read(vaultProvider).getPin();
-
-    final pinScreen = PinScreen(
-      PinOverlayType.ENTER_PIN,
-      expectedPin: expectedPin,
+    final auth = authUtil.authenticateWithPin(
+      context,
       description: l10n.unlockPin,
-      pinScreenBackgroundColor: theme.backgroundDark,
-      l10n: l10n,
+      useTransition: useTransition,
     );
 
-    final transition = useTransition
-        ? MaterialPageRoute<bool>(builder: (context) => pinScreen)
-        : NoTransitionRoute<bool>(builder: (context) => pinScreen);
-    final auth = await Navigator.of(context).push(transition);
     await Future.delayed(Duration(milliseconds: 200));
-
     if (mounted) {
       setState(() {
         _showUnlockButton = true;
         _showLock = true;
       });
     }
-    if (auth == true) {
-      _goHome();
+
+    if ((await auth) == true) {
+      _unlock();
     }
   }
 
@@ -184,23 +220,20 @@ class _LockScreenState extends ConsumerState<LockScreen> {
           _showLock = true;
           _showUnlockButton = true;
         });
-        try {
-          await authenticateWithBiometrics();
-        } catch (e) {
-          await authenticateWithPin(useTransition: true);
+        if (SchedulerBinding.instance.lifecycleState ==
+            AppLifecycleState.resumed) {
+          try {
+            await _authenticateWithBiometrics();
+          } catch (e) {
+            await _authenticateWithPin(useTransition: true);
+          }
         }
       } else {
-        await authenticateWithPin(useTransition: true);
+        await _authenticateWithPin(useTransition: true);
       }
     } else {
-      await authenticateWithPin(useTransition: useTransition);
+      await _authenticateWithPin(useTransition: useTransition);
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _authenticate();
   }
 
   @override

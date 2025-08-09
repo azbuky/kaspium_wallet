@@ -17,12 +17,13 @@ class AddressBalance with _$AddressBalance {
   factory AddressBalance.fromJson(Map<String, dynamic> json) =>
       _$AddressBalanceFromJson(json);
 
-  factory AddressBalance.fromRpc(BalancesByAddressEntry rpc) => AddressBalance(
+  factory AddressBalance.fromRpc(RpcBalancesByAddressesEntry rpc) =>
+      AddressBalance(
         address: rpc.address,
         balance: rpc.balance.toUnsignedBigInt(),
       );
 
-  BalancesByAddressEntry toRpc() => BalancesByAddressEntry(
+  RpcBalancesByAddressesEntry toRpc() => RpcBalancesByAddressesEntry(
         address: address,
         balance: balance.toInt64(),
       );

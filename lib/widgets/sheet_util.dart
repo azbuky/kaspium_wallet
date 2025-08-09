@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../app_router.dart';
 import '../themes/themes.dart';
 import '../util/platform.dart';
-import '../util/routes.dart';
 
 class Sheets {
   //App Ninty Height Sheet
@@ -33,10 +33,9 @@ class Sheets {
       onDisposed: onDisposed,
     );
     if (removeUntilHome) {
-      return Navigator.pushAndRemoveUntil<T>(
-          context, route, RouteUtils.withNameLike('/home'));
+      return appRouter.pushAndRemoveUntilHome(context, route);
     }
-    return Navigator.push<T>(context, route);
+    return appRouter.push(context, route);
   }
 
   //App Height Eigth Sheet
@@ -53,9 +52,9 @@ class Sheets {
     final color = backgroundColor ?? theme.backgroundDark;
     final barrier = theme.barrier;
 
-    return Navigator.push<T>(
+    return appRouter.push(
       context,
-      _AppHeightEightModalRoute<T>(
+      _AppHeightEightModalRoute(
         builder: (BuildContext context) => widget,
         color: color,
         radius: radius,
@@ -182,7 +181,7 @@ class _AppHeightNineModalRoute<T> extends PopupRoute<T> {
         onTap: () {
           if (closeOnTap) {
             // Close when tapped anywhere
-            Navigator.of(context).pop();
+            appRouter.pop(context);
           }
         },
         child: Theme(
@@ -193,7 +192,7 @@ class _AppHeightNineModalRoute<T> extends PopupRoute<T> {
               delegate: _AppHeightNineSheetLayout(appSheetAnimation.value),
               child: BottomSheet(
                 animationController: _animationController,
-                onClosing: () => Navigator.pop(context),
+                onClosing: () => appRouter.pop(context),
                 builder: (context) => Container(
                   decoration: BoxDecoration(
                     color: color,
@@ -324,7 +323,7 @@ class _AppHeightEightModalRoute<T> extends PopupRoute<T> {
             delegate: _AppHeightEightSheetLayout(appSheetAnimation.value),
             child: BottomSheet(
               animationController: _animationController,
-              onClosing: () => Navigator.pop(context),
+              onClosing: () => appRouter.pop(context),
               builder: (context) => Container(
                 decoration: BoxDecoration(
                   color: color,

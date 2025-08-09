@@ -585,7 +585,7 @@ abstract class $ScriptPublicKeyCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: hexToBytes, toJson: bytesToHex)
-          Uint8List scriptPublicKey,
+      Uint8List scriptPublicKey,
       int version});
 }
 
@@ -628,7 +628,7 @@ abstract class _$$ScriptPublicKeyImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: hexToBytes, toJson: bytesToHex)
-          Uint8List scriptPublicKey,
+      Uint8List scriptPublicKey,
       int version});
 }
 
@@ -664,7 +664,7 @@ class __$$ScriptPublicKeyImplCopyWithImpl<$Res>
 class _$ScriptPublicKeyImpl extends _ScriptPublicKey {
   const _$ScriptPublicKeyImpl(
       {@JsonKey(fromJson: hexToBytes, toJson: bytesToHex)
-          required this.scriptPublicKey,
+      required this.scriptPublicKey,
       required this.version})
       : super._();
 
@@ -716,7 +716,7 @@ class _$ScriptPublicKeyImpl extends _ScriptPublicKey {
 abstract class _ScriptPublicKey extends ScriptPublicKey {
   const factory _ScriptPublicKey(
       {@JsonKey(fromJson: hexToBytes, toJson: bytesToHex)
-          required final Uint8List scriptPublicKey,
+      required final Uint8List scriptPublicKey,
       required final int version}) = _$ScriptPublicKeyImpl;
   const _ScriptPublicKey._() : super._();
 
@@ -1509,7 +1509,7 @@ class __$$TransactionImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TransactionImpl implements _Transaction {
+class _$TransactionImpl extends _Transaction {
   const _$TransactionImpl(
       {required this.version,
       required final List<TxInput> inputs,
@@ -1522,7 +1522,8 @@ class _$TransactionImpl implements _Transaction {
       this.mass,
       this.id})
       : _inputs = inputs,
-        _outputs = outputs;
+        _outputs = outputs,
+        super._();
 
 /*uint16*/
   @override
@@ -1608,7 +1609,7 @@ class _$TransactionImpl implements _Transaction {
       __$$TransactionImplCopyWithImpl<_$TransactionImpl>(this, _$identity);
 }
 
-abstract class _Transaction implements Transaction {
+abstract class _Transaction extends Transaction {
   const factory _Transaction(
       {required final int version,
       required final List<TxInput> inputs,
@@ -1620,6 +1621,7 @@ abstract class _Transaction implements Transaction {
       final Int64? fee,
       final Int64? mass,
       final Uint8List? id}) = _$TransactionImpl;
+  const _Transaction._() : super._();
 
   @override /*uint16*/
   int get version;

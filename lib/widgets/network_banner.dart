@@ -5,9 +5,10 @@ import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
 
 final _networkBannerProvider = Provider<String?>((ref) {
-  final network = ref.watch(networkProvider);
-  if (network != KaspaNetwork.mainnet) {
-    return network.name.toUpperCase();
+  final nodeConfig = ref.watch(kaspaNodeConfigProvider);
+
+  if (nodeConfig.network != KaspaNetwork.mainnet) {
+    return nodeConfig.networkId.toUpperCase();
   }
   return null;
 });

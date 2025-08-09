@@ -6,6 +6,7 @@ import 'package:validators/validators.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../util/random_util.dart';
@@ -16,7 +17,6 @@ import '../widgets/buttons.dart';
 import '../widgets/dialog.dart';
 import '../widgets/sheet_widget.dart';
 import '../widgets/validation_text.dart';
-import 'node_providers.dart';
 import 'node_types.dart';
 
 class NodeAddSheet extends HookConsumerWidget {
@@ -24,6 +24,8 @@ class NodeAddSheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeProvider);
+    final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
     final stateNotifier = useState(const AddNodeSheetState());
@@ -104,19 +106,31 @@ class NodeAddSheet extends HookConsumerWidget {
         final port = int.tryParse(url.split(':').last) ?? kMainnetRpcPort;
         bool isSecure;
         var nodeInfo;
+        String networkName;
         try {
           // Try secure connection first
           client = KaspaClient.url(url, isSecure: true);
           nodeInfo = await client.getInfo();
+          networkName = (await client.getBlockDagInfo()).networkName;
           isSecure = true;
         } catch (_) {
           // Fallback to insecure connection
           client = KaspaClient.url(url, isSecure: false);
           nodeInfo = await client.getInfo();
+          networkName = (await client.getBlockDagInfo()).networkName;
           isSecure = false;
         }
 
-        final network = networkForPort(port);
+        KaspaNetwork network;
+        String suffix;
+        final parts = networkName.split('-');
+        if (parts.length > 1) {
+          network = KaspaNetwork.tryParse(parts[1]) ?? networkForPort(port);
+          suffix = parts.length == 3 ? parts[2] : '';
+        } else {
+          network = networkForPort(port);
+          suffix = '';
+        }
 
         if (!nodeInfo.isSynced) {
           throw Exception(l10n.nodeNotSyncedException);
@@ -132,15 +146,16 @@ class NodeAddSheet extends HookConsumerWidget {
           name: name,
           urls: [url],
           network: network,
+          networkSuffix: suffix,
           isSecure: isSecure,
         );
 
         if (!cancelled) {
-          Navigator.of(context).pop();
+          appRouter.pop(context);
           final success = await notifier.addOption(config);
           if (success) {
             // pop sheet
-            Navigator.of(context).pop();
+            appRouter.pop(context);
             UIUtil.showSnackbar(l10n.addNodeSuccess, context);
           } else {
             UIUtil.showSnackbar(l10n.addNodeFailed, context);
@@ -149,7 +164,7 @@ class NodeAddSheet extends HookConsumerWidget {
       } catch (e, st) {
         if (!cancelled) {
           // pop dialog
-          Navigator.of(context).pop();
+          appRouter.pop(context);
         }
         final log = ref.read(loggerProvider);
         log.e('Failed to add node', error: e, stackTrace: st);
@@ -187,6 +202,8 @@ class NodeAddSheet extends HookConsumerWidget {
           AppTextField(
             controller: nameController,
             focusNode: nameFocusNode,
+            cursorColor: theme.primary,
+            style: styles.textStyleParagraphNormal,
             hintText: state.showNameHint ? l10n.nodeNameHint : '',
             textInputAction: TextInputAction.next,
             textCapitalization: TextCapitalization.words,
@@ -198,6 +215,8 @@ class NodeAddSheet extends HookConsumerWidget {
           AppTextField(
             controller: urlController,
             focusNode: urlFocusNode,
+            cursorColor: theme.primary,
+            style: styles.textStyleParagraphNormal,
             hintText: state.showUrlHint ? l10n.nodeUrlHint : '',
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.url,
@@ -223,7 +242,7 @@ class NodeAddSheet extends HookConsumerWidget {
           const SizedBox(height: 16),
           PrimaryOutlineButton(
             title: l10n.cancel,
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => appRouter.pop(context),
           ),
         ]),
       ),

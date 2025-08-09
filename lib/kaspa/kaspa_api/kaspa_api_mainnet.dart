@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import 'kaspa_api.dart';
+import 'kaspa_api_base.dart';
 import 'types.dart';
 
 class KaspaApiMainnet implements KaspaApi {

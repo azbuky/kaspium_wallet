@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../app_router.dart';
 import '../l10n/l10n.dart';
+import '../util/ui_util.dart';
 import '../widgets/buttons.dart';
 import 'intro_providers.dart';
 
@@ -13,7 +15,12 @@ class IntroActionsWidget extends ConsumerWidget {
 
     void newWallet() {
       final notifier = ref.read(introStateProvider.notifier);
-      notifier.newWallet();
+      try {
+        notifier.newWallet();
+      } catch (e) {
+        UIUtil.showSnackbar(l10n.somethingWentWrong, context);
+        appRouter.reload(context);
+      }
     }
 
     void importWallet() {

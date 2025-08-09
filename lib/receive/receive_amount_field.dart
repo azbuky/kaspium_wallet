@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../app_icons.dart';
 import '../app_providers.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../util/numberutil.dart';
 import '../widgets/app_text_field.dart';
+import '../widgets/fiat_mode_icon.dart';
 import '../widgets/fiat_value_container.dart';
-import '../widgets/kas_icon_widget.dart';
 
 final amountProvider = StateProvider.autoDispose<Amount?>((ref) => null);
 
@@ -32,22 +31,24 @@ class ReceiveAmountField extends HookConsumerWidget {
 
     final kaspaFormatter = ref.watch(kaspaFormatterProvider);
     final fiatFormatter = ref.watch(fiatFormatterProvider);
+
     final amount = ref.watch(amountProvider);
 
     final amountController = useTextEditingController();
     final amountFocusNode = useFocusNode();
 
-    final fiatMode = ref.watch(fiatModeProvider);
+    final fiatMode = allowFiat ? ref.watch(fiatModeProvider) : false;
     final amountHint = useState<String?>(null);
 
     final hintText = fiatMode ? l10n.enterFiatValue : l10n.enterAmount;
 
     useEffect(() {
-      amountFocusNode.addListener(() {
+      final listener = () {
         amountHint.value = amountFocusNode.hasFocus ? '' : null;
-      });
-      return null;
-    });
+      };
+      amountFocusNode.addListener(listener);
+      return () => amountFocusNode.removeListener(listener);
+    }, [amountFocusNode]);
 
     useEffect(() {
       if (amount != null) {
@@ -103,16 +104,15 @@ class ReceiveAmountField extends HookConsumerWidget {
         maxLines: null,
         autocorrect: false,
         hintText: amountHint.value ?? hintText,
-        prefixButton: allowFiat
-            ? TextFieldButton(
-                icon: AppIcons.swapcurrency,
-                onPressed: () => ref
-                    .read(fiatModeProvider.notifier)
-                    .update((state) => !state),
-              )
-            : TextFieldButton(
-                widget: Image.asset(kKasIconPath, width: 40, height: 40),
-              ),
+        prefixButton: TextFieldButton(
+          widget: FiatModeIcon(fiatMode: fiatMode),
+          onPressed: () {
+            if (allowFiat) {
+              final notifier = ref.read(fiatModeProvider.notifier);
+              notifier.update((state) => !state);
+            }
+          },
+        ),
         suffixButton: TextFieldButton(
           icon: Icons.clear,
           onPressed: clearAmount,

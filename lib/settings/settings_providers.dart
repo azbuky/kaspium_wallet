@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/core_providers.dart';
-import '../database/boxes.dart';
 import 'available_currency.dart';
 import 'available_language.dart';
 import 'available_themes.dart';
@@ -9,16 +8,8 @@ import 'block_explorer_notifier.dart';
 import 'block_explorer_settings.dart';
 import 'currency_notifier.dart';
 import 'language_notifier.dart';
+import 'settings_repository.dart';
 import 'theme_setting_notifier.dart';
-
-typedef TypeFactory<T> = T Function<T>(dynamic);
-
-class SettingsRepository {
-  final GenericBox box;
-  const SettingsRepository(this.box);
-
-  Future<void> remove(String key) => box.remove(key);
-}
 
 final _settingsBoxProvider = Provider((ref) {
   final db = ref.watch(dbProvider);

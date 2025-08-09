@@ -17,6 +17,8 @@ class AmountLabel extends HookConsumerWidget {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
 
+    final symbol = ref.watch(symbolProvider(amount));
+
     final formatedAmount = useMemoized(() {
       return NumberUtil.formatedAmount(amount);
     }, [amount]);
@@ -26,7 +28,7 @@ class AmountLabel extends HookConsumerWidget {
             amount: amount,
             precision: amount.decimals,
           ) +
-          ' ${amount.symbolLabel}';
+          ' $symbol';
     }, [amount]);
 
     return FiatValueContainer(
@@ -60,7 +62,7 @@ class AmountLabel extends HookConsumerWidget {
                       style: styles.textStyleApproxAmountSuccess,
                     ),
                     TextSpan(
-                      text: ' ${amount.symbolLabel}',
+                      text: ' $symbol',
                       style: styles.textStyleTokenSymbolSuccess,
                     ),
                   ],

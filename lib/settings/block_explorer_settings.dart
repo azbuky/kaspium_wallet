@@ -12,16 +12,15 @@ class BlockExplorerSettings with _$BlockExplorerSettings {
 
   const factory BlockExplorerSettings({
     @Default(const {
-      KaspaNetwork.mainnet: kKaspaExplorerMainnet,
-      KaspaNetwork.testnet: kKatnipTestnet,
-      KaspaNetwork.devnet: kKaspaExplorerMainnet,
-      KaspaNetwork.simnet: kKaspaExplorerMainnet,
+      kKaspaNetworkIdMainnet: kKaspaExplorerMainnet,
+      kKaspaNetworkIdTestnet10: kKaspaExplorerTestnet10,
+      kKaspaNetworkIdTestnet11: kKaspaExplorerTestnet11,
     })
-        Map<KaspaNetwork, BlockExplorer> selection,
+    Map<String, BlockExplorer> selection,
   }) = _BlockExplorerSettings;
 
-  BlockExplorer explorerForNetwork(KaspaNetwork network) {
-    return selection[network] ?? kKaspaExplorerMainnet;
+  BlockExplorer explorerForNetwork(String networkId) {
+    return selection[networkId] ?? kKaspaExplorerMainnet;
   }
 
   factory BlockExplorerSettings.fromJson(Map<String, dynamic> json) =>

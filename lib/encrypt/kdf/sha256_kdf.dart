@@ -1,6 +1,6 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
-import '../../utils.dart';
 import '../model/keyiv.dart';
 import '../sha.dart';
 import 'kdf.dart';
@@ -12,7 +12,7 @@ import 'kdf.dart';
 class Sha256KDF extends KDF {
   /// Gets the key and iv
   KeyIV deriveKey(String password, {Uint8List? salt}) {
-    Uint8List pwBytes = stringToBytesUtf8(password);
+    Uint8List pwBytes = utf8.encode(password);
     Uint8List saltBytes = salt == null ? Uint8List(1) : salt;
 
     // Key = sha256 (password + salt);

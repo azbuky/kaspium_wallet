@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../util/numberutil.dart';
@@ -11,10 +12,12 @@ import '../widgets/dialog.dart';
 
 class CompoundUtxosDialog extends ConsumerWidget {
   final bool lightMode;
+  final bool rbf;
 
   const CompoundUtxosDialog({
     super.key,
     this.lightMode = false,
+    required this.rbf,
   });
 
   @override
@@ -25,6 +28,7 @@ class CompoundUtxosDialog extends ConsumerWidget {
     final utxos = ref.watch(utxoListProvider);
     final balance = ref.watch(formatedTotalBalanceProvider);
     final maxSend = NumberUtil.formatedAmount(ref.watch(maxSendProvider));
+    final kasSymbol = ref.watch(kasSymbolProvider);
 
     Future<void> sendCompoundTx() async {
       try {
@@ -41,32 +45,37 @@ class CompoundUtxosDialog extends ConsumerWidget {
         final spendableUtxos = ref.read(spendableUtxosProvider);
         if (spendableUtxos.length <= 1) {
           UIUtil.showSnackbar(l10n.compoundTooFewUtxos, context);
-          Navigator.of(context).pop();
+          appRouter.pop(context);
           return;
         }
+
+        Amount? priorityFee;
+        if (rbf) {
+          final pendingTx = ref.read(txNotifierProvider).pendingTxs.first;
+          priorityFee = Amount.raw(pendingTx.fees.priorityFee.raw + BigInt.one);
+        }
+
         final compoundTx = walletService.createCompoundTx(
           compoundAddress: changeAddress.address,
           spendableUtxos: spendableUtxos,
           feePerInput: kFeePerInput,
+          priorityFee: priorityFee,
         );
-        await walletService.sendTransaction(
-          compoundTx,
-          changeAddress: changeAddress.address,
-        );
-        await addressNotifier.addAddress(changeAddress);
+        await walletService.sendTransaction(compoundTx.tx, rbf: rbf);
+        ref.invalidate(pendingTxsProvider);
 
         if (lightMode) {
           // give some time for compound tx to broadcast and get accepted
           await Future.delayed(const Duration(seconds: 5));
           // close both dialogs
-          Navigator.of(context).pop();
+          appRouter.pop(context);
         }
 
         UIUtil.showSnackbar(l10n.compoundSuccess, context);
       } catch (e) {
         UIUtil.showSnackbar(l10n.compoundFailure, context);
       } finally {
-        Navigator.of(context).pop();
+        appRouter.pop(context);
       }
     }
 
@@ -129,13 +138,13 @@ class CompoundUtxosDialog extends ConsumerWidget {
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 8),
                         child: Text(
-                          '$balance KAS',
+                          '$balance $kasSymbol',
                           style: styles.textStyleSettingItemHeader,
                         ),
                       ),
                       Container(
                         child: Text(
-                          '${maxSend} KAS',
+                          '$maxSend $kasSymbol',
                           style: styles.textStyleSettingItemHeader,
                         ),
                       ),
@@ -147,7 +156,7 @@ class CompoundUtxosDialog extends ConsumerWidget {
       actions: [
         TextButton(
           style: styles.dialogButtonStyle,
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => appRouter.pop(context),
           child: Text(
             l10n.closeUppercased,
             style: styles.textStyleDialogOptions,

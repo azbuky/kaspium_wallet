@@ -1,26 +1,39 @@
-import 'dart:typed_data';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../kaspa/kaspa.dart';
-import '../util/kaspa_util.dart';
-import '../utils.dart';
+import '../util/encryption_util.dart';
 import '../wallet/wallet_vault.dart';
 import 'wallet_auth_types.dart';
+
+Uint8List _computeSignDataSchnorr(List<Uint8List> params) {
+  return signSchnorr(hash: params.first, privateKey: params.last);
+}
 
 class WalletAuthNotifier extends StateNotifier<WalletAuth> {
   final WalletVault walletVault;
 
   WalletAuthNotifier(this.walletVault, WalletAuth auth) : super(auth);
 
+  static Future<Uint8List> computeSignDataSchnorr(
+    Uint8List data,
+    Uint8List privateKey,
+  ) {
+    return compute(_computeSignDataSchnorr, [data, privateKey]);
+  }
+
   Future<void> checkEncryptedState() async {
     final isEncrypted = await walletVault.seedIsEncrypted();
     state = state.copyWith(isEncrypted: isEncrypted);
   }
 
-  WalletAuth get walletAuth => state;
-  bool get walletLocked => state.isLocked;
-  bool get walletEncrypted => state.isEncrypted;
+  bool get walletIsLocked => state.isLocked;
+  bool get walletIsEncrypted => state.isEncrypted;
+
+  bool get walletIsLegacy => state.wallet.isLegacy;
+
+  bool get needsPasswordAuth =>
+      state.isEncrypted && state.encryptedSecret == null;
 
   Future<String> _getSeed() async {
     if (state.isLocked) {
@@ -30,7 +43,7 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
     if (!state.isEncrypted) {
       final seed = await walletVault.getSeed();
 
-      if (KaspaUtil.isEncryptedHex(seed)) {
+      if (EncryptionUtil.isEncryptedHex(seed)) {
         throw Exception('Seed is password protected');
       }
       return seed;
@@ -42,7 +55,7 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
     }
 
     final sessionKey = await walletVault.getSessionKey();
-    return KaspaUtil.decryptHex(secret, sessionKey);
+    return EncryptionUtil.decryptHex(secret, sessionKey);
   }
 
   Future<Uint8List> sign(
@@ -55,8 +68,7 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
     final seed = await _getSeed();
     final wallet = HdWallet.forSeedHex(seed, type: walletKind.type);
     final keyPair = wallet.deriveKeyPair(typeIndex: typeIndex, index: index);
-    final signature =
-        await KaspaUtil.computeSignDataSchnorr(data, keyPair.privateKey);
+    final signature = await computeSignDataSchnorr(data, keyPair.privateKey);
     return signature;
   }
 
@@ -75,12 +87,9 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
   }
 
   Future<bool> unlock({String? password}) async {
-    if (state.isEncrypted) {
-      if (password == null) {
-        return false;
-      }
+    if (state.isEncrypted && password != null) {
       try {
-        await unlockWithPassword(password);
+        await _unlockWithPassword(password);
         return true;
       } catch (_) {
         return false;
@@ -90,11 +99,11 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
     return true;
   }
 
-  Future<void> unlockWithPassword(String password) async {
+  Future<void> _unlockWithPassword(String password) async {
     final seed = await walletVault.getSeed(password: password);
 
-    final sessionKey = await walletVault.getSessionKey();
-    final encryptedSecret = KaspaUtil.encryptHex(seed, sessionKey);
+    final sessionKey = await walletVault.updateSessionKey();
+    final encryptedSecret = EncryptionUtil.encryptHex(seed, sessionKey);
 
     state = state.copyWith(
       encryptedSecret: encryptedSecret,
@@ -106,9 +115,12 @@ class WalletAuthNotifier extends StateNotifier<WalletAuth> {
   Future<void> setPassword(String password) async {
     try {
       final seed = await walletVault.getSeed();
+      if (EncryptionUtil.isEncryptedHex(seed)) {
+        throw Exception('Wallet is password protected');
+      }
       final mnemonic = await walletVault.getMnemonic();
-      final sessionKey = await walletVault.getSessionKey();
-      final encryptedSecret = KaspaUtil.encryptHex(seed, sessionKey);
+      final sessionKey = await walletVault.updateSessionKey();
+      final encryptedSecret = EncryptionUtil.encryptHex(seed, sessionKey);
 
       await walletVault.setSeed(
         seed,
