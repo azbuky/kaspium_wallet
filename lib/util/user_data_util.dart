@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kaspium_wallet/nfc/nfc.dart';
+import 'package:kaspium_wallet/util/nfc_protocol.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:validators/validators.dart';
 
@@ -62,11 +63,12 @@ class UserDataUtil {
     return result;
   }
 
-  static Future<void> nfcScanner(BuildContext context) async {
-    await Navigator.of(context).push<void>(
-      MaterialPageRoute(builder: (BuildContext context) {
-        return NfcPoc();
-      })
+  static Future<NFCTransactionMessage?> nfcScanner(BuildContext context) async {
+    final result = await appRouter.push(
+      context,
+      MaterialPageRoute<NFCTransactionMessage>(
+          builder: (context) => const NfcPoc()),
     );
+    return result;
   }
 }

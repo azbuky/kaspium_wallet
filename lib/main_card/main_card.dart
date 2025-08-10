@@ -49,7 +49,33 @@ class MainCard extends ConsumerWidget {
     }
 
     Future<void> scanNfc() async {
-      await UserDataUtil.nfcScanner(context);
+      var nfcMessage = await UserDataUtil.nfcScanner(context);
+
+      if (nfcMessage != null) {
+        print("nfcMessage: $nfcMessage");
+        print("address: ${nfcMessage.publicKey} amount: ${nfcMessage.amount}");
+        final prefix = ref.read(addressPrefixProvider);
+
+        try {
+          // todo: change to tryParse, but i had weird behaviors for unknown reasons
+          final address = Address.decodeAddress(nfcMessage.publicKey, prefix);
+
+          if (address == null) {
+            UIUtil.showSnackbar(l10n.scanQrCodeError, context);
+            return;
+          }
+
+          UIUtil.showSendFlow(context,
+              ref: ref,
+              uri: KaspaUri(
+                  address: address,
+                  // probably nfcMessage.amount should be passed as int before hand
+                  amount: Amount.rawInt(nfcMessage.amount.toInt())));
+        } catch (e) {
+          print("error: $e");
+          return;
+        }
+      }
     }
 
     return GestureDetector(
