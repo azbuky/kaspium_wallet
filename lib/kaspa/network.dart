@@ -12,7 +12,7 @@ const String kKaspaNetworkIdSimnet = '$kKaspaNetworkSimnet';
 const String kKaspaNetworkIdDevnet = '$kKaspaNetworkDevnet';
 
 const int kMainnetRpcPort = 16110;
-const int kTestnetPpcPort = 16210;
+const int kTestnetRpcPort = 16210;
 const int kSimnetRpcPort = 16510;
 const int kDevnetRpcPort = 16610;
 
@@ -41,7 +41,7 @@ enum KaspaNetwork {
 
   int get defaultRpcPort => switch (this) {
         KaspaNetwork.mainnet => kMainnetRpcPort,
-        KaspaNetwork.testnet => kTestnetPpcPort,
+        KaspaNetwork.testnet => kTestnetRpcPort,
         KaspaNetwork.simnet => kSimnetRpcPort,
         KaspaNetwork.devnet => kDevnetRpcPort
       };
@@ -51,7 +51,7 @@ KaspaNetwork networkForPort(int port) {
   switch (port) {
     case kMainnetRpcPort:
       return KaspaNetwork.mainnet;
-    case kTestnetPpcPort:
+    case kTestnetRpcPort:
       return KaspaNetwork.testnet;
     case kSimnetRpcPort:
       return KaspaNetwork.simnet;
