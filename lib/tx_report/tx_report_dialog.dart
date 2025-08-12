@@ -110,18 +110,26 @@ class DownloadTxsDialog extends HookConsumerWidget {
       return null;
     }, const []);
 
-    Future<void> downloadCsv() async {
-      final exportTime = DateTime.now();
-      final format = DateFormat('yyyyMMdd_HHmmss');
-      final fileName = "kaspium_transactions_${format.format(exportTime)}.csv";
-      final baseDiractory = await getTemporaryDirectory();
-      final txFile = File('${baseDiractory.path}/$fileName');
-      await txFile.writeAsString(csv.value);
+    Future<void> downloadCsv(BuildContext context) async {
+      try {
+        final exportTime = DateTime.now();
+        final format = DateFormat('yyyyMMdd_HHmmss');
+        final fileName =
+            "kaspium_transactions_${format.format(exportTime)}.csv";
+        final baseDiractory = await getTemporaryDirectory();
+        final txFile = File('${baseDiractory.path}/$fileName');
+        await txFile.writeAsString(csv.value);
 
-      final lockDisabled = ref.read(lockDisabledProvider.notifier);
-      lockDisabled.state = true;
-      await Share.shareXFiles([XFile(txFile.path)]);
-      lockDisabled.state = false;
+        final lockDisabled = ref.read(lockDisabledProvider.notifier);
+        final box = context.findRenderObject() as RenderBox?;
+        lockDisabled.state = true;
+        await Share.shareXFiles([
+          XFile(txFile.path),
+        ], sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+        lockDisabled.state = false;
+      } catch (e) {
+        UIUtil.showSnackbar(l10n.txReportError, context);
+      }
     }
 
     return AppAlertDialog(
@@ -147,19 +155,23 @@ class DownloadTxsDialog extends HookConsumerWidget {
       ),
       actions: [
         if (loading.value == false)
-          TextButton(
-            style: styles.dialogButtonStyle,
-            onPressed: downloadCsv,
-            child: Text(
-              l10n.txReportGetReport.toUpperCase(),
-              style: styles.textStyleDialogOptions,
-            ),
+          Builder(
+            builder: (context) {
+              return TextButton(
+                style: styles.dialogButtonStyle,
+                onPressed: () => downloadCsv(context),
+                child: Text(
+                  l10n.txReportGetReport.toUpperCase(),
+                  style: styles.textStyleDialogOptions,
+                ),
+              );
+            },
           ),
         TextButton(
           style: styles.dialogButtonStyle,
           onPressed: () => appRouter.pop(context),
           child: Text(
-            l10n.cancel.toUpperCase(),
+            loading.value ? l10n.cancel.toUpperCase() : l10n.closeUppercased,
             style: styles.textStyleDialogOptions,
           ),
         ),
