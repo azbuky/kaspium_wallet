@@ -6,15 +6,13 @@ part of 'address_settings_types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AddressSettingsImpl _$$AddressSettingsImplFromJson(Map json) =>
-    _$AddressSettingsImpl(
-      addressFilter:
-          $enumDecodeNullable(_$AddressFilterEnumMap, json['addressFilter']) ??
-              AddressFilter.all,
-    );
+_AddressSettings _$AddressSettingsFromJson(Map json) => _AddressSettings(
+  addressFilter:
+      $enumDecodeNullable(_$AddressFilterEnumMap, json['addressFilter']) ??
+      AddressFilter.all,
+);
 
-Map<String, dynamic> _$$AddressSettingsImplToJson(
-        _$AddressSettingsImpl instance) =>
+Map<String, dynamic> _$AddressSettingsToJson(_AddressSettings instance) =>
     <String, dynamic>{
       'addressFilter': _$AddressFilterEnumMap[instance.addressFilter]!,
     };

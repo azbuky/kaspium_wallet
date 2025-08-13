@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kaspium_wallet/wallet/wallet_types.dart';
 
 import '../kaspa/kaspa.dart';
 import '../util/encryption_util.dart';

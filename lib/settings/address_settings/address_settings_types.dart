@@ -9,7 +9,7 @@ enum AddressFilter {
 }
 
 @freezed
-class AddressSettings with _$AddressSettings {
+sealed class AddressSettings with _$AddressSettings {
   const factory AddressSettings({
     @Default(AddressFilter.all) AddressFilter addressFilter,
   }) = _AddressSettings;

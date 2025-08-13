@@ -17,7 +17,7 @@ const mainnetNodeConfig = NodeConfig(
 );
 
 @freezed
-class NodeConfigSettings with _$NodeConfigSettings {
+sealed class NodeConfigSettings with _$NodeConfigSettings {
   const factory NodeConfigSettings({
     @Default(const IListConst([mainnetNodeConfig])) IList<NodeConfig> options,
     @Default(mainnetNodeConfig) NodeConfig selected,
@@ -28,7 +28,7 @@ class NodeConfigSettings with _$NodeConfigSettings {
 }
 
 @freezed
-class NodeConfig with _$NodeConfig {
+sealed class NodeConfig with _$NodeConfig {
   const NodeConfig._();
   const factory NodeConfig({
     required String id,
@@ -47,7 +47,7 @@ class NodeConfig with _$NodeConfig {
 }
 
 @freezed
-class ActiveNodeConfig with _$ActiveNodeConfig {
+sealed class ActiveNodeConfig with _$ActiveNodeConfig {
   ActiveNodeConfig._();
   factory ActiveNodeConfig({
     required NodeConfig config,
@@ -62,7 +62,7 @@ class ActiveNodeConfig with _$ActiveNodeConfig {
 }
 
 @freezed
-class AddNodeSheetState with _$AddNodeSheetState {
+sealed class AddNodeSheetState with _$AddNodeSheetState {
   const factory AddNodeSheetState({
     @Default(true) bool showNameHint,
     @Default(true) bool showUrlHint,

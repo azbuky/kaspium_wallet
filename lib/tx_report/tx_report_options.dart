@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'tx_report_options.freezed.dart';
 
 @freezed
-class TxReportOptions with _$TxReportOptions {
+sealed class TxReportOptions with _$TxReportOptions {
   const factory TxReportOptions({
     @Default(false) bool ignoreCompoundTxs,
     @Default(false) bool ignoreInternalTxs,
@@ -12,7 +12,7 @@ class TxReportOptions with _$TxReportOptions {
 }
 
 @freezed
-class TxReportItem with _$TxReportItem {
+sealed class TxReportItem with _$TxReportItem {
   const factory TxReportItem({
     required int timestamp,
     required bool isCompound,

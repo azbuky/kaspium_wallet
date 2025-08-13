@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,741 +9,580 @@ part of 'intro_types.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$IntroState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(IntroPage page) push,
-    required TResult Function() pop,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(IntroPage page)? push,
-    TResult? Function()? pop,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(IntroPage page)? push,
-    TResult Function()? pop,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_IntroStateInit value) init,
-    required TResult Function(_IntroStatePush value) push,
-    required TResult Function(_IntroStatePop value) pop,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_IntroStateInit value)? init,
-    TResult? Function(_IntroStatePush value)? push,
-    TResult? Function(_IntroStatePop value)? pop,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_IntroStateInit value)? init,
-    TResult Function(_IntroStatePush value)? push,
-    TResult Function(_IntroStatePop value)? pop,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is IntroState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'IntroState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $IntroStateCopyWith<$Res> {
-  factory $IntroStateCopyWith(
-          IntroState value, $Res Function(IntroState) then) =
-      _$IntroStateCopyWithImpl<$Res, IntroState>;
+class $IntroStateCopyWith<$Res>  {
+$IntroStateCopyWith(IntroState _, $Res Function(IntroState) __);
 }
 
-/// @nodoc
-class _$IntroStateCopyWithImpl<$Res, $Val extends IntroState>
-    implements $IntroStateCopyWith<$Res> {
-  _$IntroStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [IntroState].
+extension IntroStatePatterns on IntroState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _IntroStateInit value)?  init,TResult Function( _IntroStatePush value)?  push,TResult Function( _IntroStatePop value)?  pop,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _IntroStateInit() when init != null:
+return init(_that);case _IntroStatePush() when push != null:
+return push(_that);case _IntroStatePop() when pop != null:
+return pop(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _IntroStateInit value)  init,required TResult Function( _IntroStatePush value)  push,required TResult Function( _IntroStatePop value)  pop,}){
+final _that = this;
+switch (_that) {
+case _IntroStateInit():
+return init(_that);case _IntroStatePush():
+return push(_that);case _IntroStatePop():
+return pop(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _IntroStateInit value)?  init,TResult? Function( _IntroStatePush value)?  push,TResult? Function( _IntroStatePop value)?  pop,}){
+final _that = this;
+switch (_that) {
+case _IntroStateInit() when init != null:
+return init(_that);case _IntroStatePush() when push != null:
+return push(_that);case _IntroStatePop() when pop != null:
+return pop(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  init,TResult Function( IntroPage page)?  push,TResult Function()?  pop,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _IntroStateInit() when init != null:
+return init();case _IntroStatePush() when push != null:
+return push(_that.page);case _IntroStatePop() when pop != null:
+return pop();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  init,required TResult Function( IntroPage page)  push,required TResult Function()  pop,}) {final _that = this;
+switch (_that) {
+case _IntroStateInit():
+return init();case _IntroStatePush():
+return push(_that.page);case _IntroStatePop():
+return pop();}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  init,TResult? Function( IntroPage page)?  push,TResult? Function()?  pop,}) {final _that = this;
+switch (_that) {
+case _IntroStateInit() when init != null:
+return init();case _IntroStatePush() when push != null:
+return push(_that.page);case _IntroStatePop() when pop != null:
+return pop();case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$IntroStateInitImplCopyWith<$Res> {
-  factory _$$IntroStateInitImplCopyWith(_$IntroStateInitImpl value,
-          $Res Function(_$IntroStateInitImpl) then) =
-      __$$IntroStateInitImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$IntroStateInitImplCopyWithImpl<$Res>
-    extends _$IntroStateCopyWithImpl<$Res, _$IntroStateInitImpl>
-    implements _$$IntroStateInitImplCopyWith<$Res> {
-  __$$IntroStateInitImplCopyWithImpl(
-      _$IntroStateInitImpl _value, $Res Function(_$IntroStateInitImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$IntroStateInitImpl implements _IntroStateInit {
-  const _$IntroStateInitImpl();
-
-  @override
-  String toString() {
-    return 'IntroState.init()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$IntroStateInitImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(IntroPage page) push,
-    required TResult Function() pop,
-  }) {
-    return init();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(IntroPage page)? push,
-    TResult? Function()? pop,
-  }) {
-    return init?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(IntroPage page)? push,
-    TResult Function()? pop,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_IntroStateInit value) init,
-    required TResult Function(_IntroStatePush value) push,
-    required TResult Function(_IntroStatePop value) pop,
-  }) {
-    return init(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_IntroStateInit value)? init,
-    TResult? Function(_IntroStatePush value)? push,
-    TResult? Function(_IntroStatePop value)? pop,
-  }) {
-    return init?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_IntroStateInit value)? init,
-    TResult Function(_IntroStatePush value)? push,
-    TResult Function(_IntroStatePop value)? pop,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _IntroStateInit implements IntroState {
-  const factory _IntroStateInit() = _$IntroStateInitImpl;
-}
-
-/// @nodoc
-abstract class _$$IntroStatePushImplCopyWith<$Res> {
-  factory _$$IntroStatePushImplCopyWith(_$IntroStatePushImpl value,
-          $Res Function(_$IntroStatePushImpl) then) =
-      __$$IntroStatePushImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({IntroPage page});
-}
-
-/// @nodoc
-class __$$IntroStatePushImplCopyWithImpl<$Res>
-    extends _$IntroStateCopyWithImpl<$Res, _$IntroStatePushImpl>
-    implements _$$IntroStatePushImplCopyWith<$Res> {
-  __$$IntroStatePushImplCopyWithImpl(
-      _$IntroStatePushImpl _value, $Res Function(_$IntroStatePushImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? page = null,
-  }) {
-    return _then(_$IntroStatePushImpl(
-      page: null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as IntroPage,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$IntroStatePushImpl implements _IntroStatePush {
-  const _$IntroStatePushImpl({required this.page});
 
-  @override
-  final IntroPage page;
+class _IntroStateInit implements IntroState {
+  const _IntroStateInit();
+  
 
-  @override
-  String toString() {
-    return 'IntroState.push(page: $page)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$IntroStatePushImpl &&
-            (identical(other.page, page) || other.page == page));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, page);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$IntroStatePushImplCopyWith<_$IntroStatePushImpl> get copyWith =>
-      __$$IntroStatePushImplCopyWithImpl<_$IntroStatePushImpl>(
-          this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(IntroPage page) push,
-    required TResult Function() pop,
-  }) {
-    return push(page);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(IntroPage page)? push,
-    TResult? Function()? pop,
-  }) {
-    return push?.call(page);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(IntroPage page)? push,
-    TResult Function()? pop,
-    required TResult orElse(),
-  }) {
-    if (push != null) {
-      return push(page);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_IntroStateInit value) init,
-    required TResult Function(_IntroStatePush value) push,
-    required TResult Function(_IntroStatePop value) pop,
-  }) {
-    return push(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_IntroStateInit value)? init,
-    TResult? Function(_IntroStatePush value)? push,
-    TResult? Function(_IntroStatePop value)? pop,
-  }) {
-    return push?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_IntroStateInit value)? init,
-    TResult Function(_IntroStatePush value)? push,
-    TResult Function(_IntroStatePop value)? pop,
-    required TResult orElse(),
-  }) {
-    if (push != null) {
-      return push(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _IntroStateInit);
 }
 
-abstract class _IntroStatePush implements IntroState {
-  const factory _IntroStatePush({required final IntroPage page}) =
-      _$IntroStatePushImpl;
 
-  IntroPage get page;
-  @JsonKey(ignore: true)
-  _$$IntroStatePushImplCopyWith<_$IntroStatePushImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'IntroState.init()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _IntroStatePush implements IntroState {
+  const _IntroStatePush({required this.page});
+  
+
+ final  IntroPage page;
+
+/// Create a copy of IntroState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$IntroStatePushCopyWith<_IntroStatePush> get copyWith => __$IntroStatePushCopyWithImpl<_IntroStatePush>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _IntroStatePush&&(identical(other.page, page) || other.page == page));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,page);
+
+@override
+String toString() {
+  return 'IntroState.push(page: $page)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$IntroStatePopImplCopyWith<$Res> {
-  factory _$$IntroStatePopImplCopyWith(
-          _$IntroStatePopImpl value, $Res Function(_$IntroStatePopImpl) then) =
-      __$$IntroStatePopImplCopyWithImpl<$Res>;
+abstract mixin class _$IntroStatePushCopyWith<$Res> implements $IntroStateCopyWith<$Res> {
+  factory _$IntroStatePushCopyWith(_IntroStatePush value, $Res Function(_IntroStatePush) _then) = __$IntroStatePushCopyWithImpl;
+@useResult
+$Res call({
+ IntroPage page
+});
+
+
+
+
+}
+/// @nodoc
+class __$IntroStatePushCopyWithImpl<$Res>
+    implements _$IntroStatePushCopyWith<$Res> {
+  __$IntroStatePushCopyWithImpl(this._self, this._then);
+
+  final _IntroStatePush _self;
+  final $Res Function(_IntroStatePush) _then;
+
+/// Create a copy of IntroState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? page = null,}) {
+  return _then(_IntroStatePush(
+page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as IntroPage,
+  ));
 }
 
-/// @nodoc
-class __$$IntroStatePopImplCopyWithImpl<$Res>
-    extends _$IntroStateCopyWithImpl<$Res, _$IntroStatePopImpl>
-    implements _$$IntroStatePopImplCopyWith<$Res> {
-  __$$IntroStatePopImplCopyWithImpl(
-      _$IntroStatePopImpl _value, $Res Function(_$IntroStatePopImpl) _then)
-      : super(_value, _then);
+
 }
 
 /// @nodoc
 
-class _$IntroStatePopImpl implements _IntroStatePop {
-  const _$IntroStatePopImpl();
 
-  @override
-  String toString() {
-    return 'IntroState.pop()';
-  }
+class _IntroStatePop implements IntroState {
+  const _IntroStatePop();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$IntroStatePopImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(IntroPage page) push,
-    required TResult Function() pop,
-  }) {
-    return pop();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(IntroPage page)? push,
-    TResult? Function()? pop,
-  }) {
-    return pop?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(IntroPage page)? push,
-    TResult Function()? pop,
-    required TResult orElse(),
-  }) {
-    if (pop != null) {
-      return pop();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_IntroStateInit value) init,
-    required TResult Function(_IntroStatePush value) push,
-    required TResult Function(_IntroStatePop value) pop,
-  }) {
-    return pop(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_IntroStateInit value)? init,
-    TResult? Function(_IntroStatePush value)? push,
-    TResult? Function(_IntroStatePop value)? pop,
-  }) {
-    return pop?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_IntroStateInit value)? init,
-    TResult Function(_IntroStatePush value)? push,
-    TResult Function(_IntroStatePop value)? pop,
-    required TResult orElse(),
-  }) {
-    if (pop != null) {
-      return pop(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _IntroStatePop);
 }
 
-abstract class _IntroStatePop implements IntroState {
-  const factory _IntroStatePop() = _$IntroStatePopImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'IntroState.pop()';
 }
+
+
+}
+
+
+
 
 /// @nodoc
 mixin _$IntroData {
-  String? get mnemonic => throw _privateConstructorUsedError;
-  String? get kpub => throw _privateConstructorUsedError;
-  Future<String>? get seed => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get pin => throw _privateConstructorUsedError;
-  String? get password => throw _privateConstructorUsedError;
-  bool get generated => throw _privateConstructorUsedError;
-  bool get isLegacyWallet => throw _privateConstructorUsedError;
-  String get bip39Passphrase => throw _privateConstructorUsedError;
-  bool get completed => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $IntroDataCopyWith<IntroData> get copyWith =>
-      throw _privateConstructorUsedError;
+ String? get mnemonic; String? get kpub; Future<String>? get seed; String? get name; String? get pin; String? get password; bool get generated; bool get isLegacyWallet; String get bip39Passphrase; bool get completed;
+/// Create a copy of IntroData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$IntroDataCopyWith<IntroData> get copyWith => _$IntroDataCopyWithImpl<IntroData>(this as IntroData, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is IntroData&&(identical(other.mnemonic, mnemonic) || other.mnemonic == mnemonic)&&(identical(other.kpub, kpub) || other.kpub == kpub)&&(identical(other.seed, seed) || other.seed == seed)&&(identical(other.name, name) || other.name == name)&&(identical(other.pin, pin) || other.pin == pin)&&(identical(other.password, password) || other.password == password)&&(identical(other.generated, generated) || other.generated == generated)&&(identical(other.isLegacyWallet, isLegacyWallet) || other.isLegacyWallet == isLegacyWallet)&&(identical(other.bip39Passphrase, bip39Passphrase) || other.bip39Passphrase == bip39Passphrase)&&(identical(other.completed, completed) || other.completed == completed));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,mnemonic,kpub,seed,name,pin,password,generated,isLegacyWallet,bip39Passphrase,completed);
+
+@override
+String toString() {
+  return 'IntroData(mnemonic: $mnemonic, kpub: $kpub, seed: $seed, name: $name, pin: $pin, password: $password, generated: $generated, isLegacyWallet: $isLegacyWallet, bip39Passphrase: $bip39Passphrase, completed: $completed)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $IntroDataCopyWith<$Res> {
-  factory $IntroDataCopyWith(IntroData value, $Res Function(IntroData) then) =
-      _$IntroDataCopyWithImpl<$Res, IntroData>;
-  @useResult
-  $Res call(
-      {String? mnemonic,
-      String? kpub,
-      Future<String>? seed,
-      String? name,
-      String? pin,
-      String? password,
-      bool generated,
-      bool isLegacyWallet,
-      String bip39Passphrase,
-      bool completed});
-}
+abstract mixin class $IntroDataCopyWith<$Res>  {
+  factory $IntroDataCopyWith(IntroData value, $Res Function(IntroData) _then) = _$IntroDataCopyWithImpl;
+@useResult
+$Res call({
+ String? mnemonic, String? kpub, Future<String>? seed, String? name, String? pin, String? password, bool generated, bool isLegacyWallet, String bip39Passphrase, bool completed
+});
 
+
+
+
+}
 /// @nodoc
-class _$IntroDataCopyWithImpl<$Res, $Val extends IntroData>
+class _$IntroDataCopyWithImpl<$Res>
     implements $IntroDataCopyWith<$Res> {
-  _$IntroDataCopyWithImpl(this._value, this._then);
+  _$IntroDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final IntroData _self;
+  final $Res Function(IntroData) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? mnemonic = freezed,
-    Object? kpub = freezed,
-    Object? seed = freezed,
-    Object? name = freezed,
-    Object? pin = freezed,
-    Object? password = freezed,
-    Object? generated = null,
-    Object? isLegacyWallet = null,
-    Object? bip39Passphrase = null,
-    Object? completed = null,
-  }) {
-    return _then(_value.copyWith(
-      mnemonic: freezed == mnemonic
-          ? _value.mnemonic
-          : mnemonic // ignore: cast_nullable_to_non_nullable
-              as String?,
-      kpub: freezed == kpub
-          ? _value.kpub
-          : kpub // ignore: cast_nullable_to_non_nullable
-              as String?,
-      seed: freezed == seed
-          ? _value.seed
-          : seed // ignore: cast_nullable_to_non_nullable
-              as Future<String>?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pin: freezed == pin
-          ? _value.pin
-          : pin // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-      generated: null == generated
-          ? _value.generated
-          : generated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLegacyWallet: null == isLegacyWallet
-          ? _value.isLegacyWallet
-          : isLegacyWallet // ignore: cast_nullable_to_non_nullable
-              as bool,
-      bip39Passphrase: null == bip39Passphrase
-          ? _value.bip39Passphrase
-          : bip39Passphrase // ignore: cast_nullable_to_non_nullable
-              as String,
-      completed: null == completed
-          ? _value.completed
-          : completed // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
+/// Create a copy of IntroData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? mnemonic = freezed,Object? kpub = freezed,Object? seed = freezed,Object? name = freezed,Object? pin = freezed,Object? password = freezed,Object? generated = null,Object? isLegacyWallet = null,Object? bip39Passphrase = null,Object? completed = null,}) {
+  return _then(_self.copyWith(
+mnemonic: freezed == mnemonic ? _self.mnemonic : mnemonic // ignore: cast_nullable_to_non_nullable
+as String?,kpub: freezed == kpub ? _self.kpub : kpub // ignore: cast_nullable_to_non_nullable
+as String?,seed: freezed == seed ? _self.seed : seed // ignore: cast_nullable_to_non_nullable
+as Future<String>?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,pin: freezed == pin ? _self.pin : pin // ignore: cast_nullable_to_non_nullable
+as String?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String?,generated: null == generated ? _self.generated : generated // ignore: cast_nullable_to_non_nullable
+as bool,isLegacyWallet: null == isLegacyWallet ? _self.isLegacyWallet : isLegacyWallet // ignore: cast_nullable_to_non_nullable
+as bool,bip39Passphrase: null == bip39Passphrase ? _self.bip39Passphrase : bip39Passphrase // ignore: cast_nullable_to_non_nullable
+as String,completed: null == completed ? _self.completed : completed // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-/// @nodoc
-abstract class _$$IntroDataImplCopyWith<$Res>
-    implements $IntroDataCopyWith<$Res> {
-  factory _$$IntroDataImplCopyWith(
-          _$IntroDataImpl value, $Res Function(_$IntroDataImpl) then) =
-      __$$IntroDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? mnemonic,
-      String? kpub,
-      Future<String>? seed,
-      String? name,
-      String? pin,
-      String? password,
-      bool generated,
-      bool isLegacyWallet,
-      String bip39Passphrase,
-      bool completed});
 }
 
-/// @nodoc
-class __$$IntroDataImplCopyWithImpl<$Res>
-    extends _$IntroDataCopyWithImpl<$Res, _$IntroDataImpl>
-    implements _$$IntroDataImplCopyWith<$Res> {
-  __$$IntroDataImplCopyWithImpl(
-      _$IntroDataImpl _value, $Res Function(_$IntroDataImpl) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? mnemonic = freezed,
-    Object? kpub = freezed,
-    Object? seed = freezed,
-    Object? name = freezed,
-    Object? pin = freezed,
-    Object? password = freezed,
-    Object? generated = null,
-    Object? isLegacyWallet = null,
-    Object? bip39Passphrase = null,
-    Object? completed = null,
-  }) {
-    return _then(_$IntroDataImpl(
-      mnemonic: freezed == mnemonic
-          ? _value.mnemonic
-          : mnemonic // ignore: cast_nullable_to_non_nullable
-              as String?,
-      kpub: freezed == kpub
-          ? _value.kpub
-          : kpub // ignore: cast_nullable_to_non_nullable
-              as String?,
-      seed: freezed == seed
-          ? _value.seed
-          : seed // ignore: cast_nullable_to_non_nullable
-              as Future<String>?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pin: freezed == pin
-          ? _value.pin
-          : pin // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-      generated: null == generated
-          ? _value.generated
-          : generated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLegacyWallet: null == isLegacyWallet
-          ? _value.isLegacyWallet
-          : isLegacyWallet // ignore: cast_nullable_to_non_nullable
-              as bool,
-      bip39Passphrase: null == bip39Passphrase
-          ? _value.bip39Passphrase
-          : bip39Passphrase // ignore: cast_nullable_to_non_nullable
-              as String,
-      completed: null == completed
-          ? _value.completed
-          : completed // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
+/// Adds pattern-matching-related methods to [IntroData].
+extension IntroDataPatterns on IntroData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _IntroData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _IntroData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _IntroData value)  $default,){
+final _that = this;
+switch (_that) {
+case _IntroData():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _IntroData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _IntroData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? mnemonic,  String? kpub,  Future<String>? seed,  String? name,  String? pin,  String? password,  bool generated,  bool isLegacyWallet,  String bip39Passphrase,  bool completed)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _IntroData() when $default != null:
+return $default(_that.mnemonic,_that.kpub,_that.seed,_that.name,_that.pin,_that.password,_that.generated,_that.isLegacyWallet,_that.bip39Passphrase,_that.completed);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? mnemonic,  String? kpub,  Future<String>? seed,  String? name,  String? pin,  String? password,  bool generated,  bool isLegacyWallet,  String bip39Passphrase,  bool completed)  $default,) {final _that = this;
+switch (_that) {
+case _IntroData():
+return $default(_that.mnemonic,_that.kpub,_that.seed,_that.name,_that.pin,_that.password,_that.generated,_that.isLegacyWallet,_that.bip39Passphrase,_that.completed);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? mnemonic,  String? kpub,  Future<String>? seed,  String? name,  String? pin,  String? password,  bool generated,  bool isLegacyWallet,  String bip39Passphrase,  bool completed)?  $default,) {final _that = this;
+switch (_that) {
+case _IntroData() when $default != null:
+return $default(_that.mnemonic,_that.kpub,_that.seed,_that.name,_that.pin,_that.password,_that.generated,_that.isLegacyWallet,_that.bip39Passphrase,_that.completed);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 
-class _$IntroDataImpl implements _IntroData {
-  const _$IntroDataImpl(
-      {this.mnemonic,
-      this.kpub,
-      this.seed,
-      this.name,
-      this.pin,
-      this.password,
-      this.generated = false,
-      this.isLegacyWallet = false,
-      this.bip39Passphrase = '',
-      this.completed = false});
 
-  @override
-  final String? mnemonic;
-  @override
-  final String? kpub;
-  @override
-  final Future<String>? seed;
-  @override
-  final String? name;
-  @override
-  final String? pin;
-  @override
-  final String? password;
-  @override
-  @JsonKey()
-  final bool generated;
-  @override
-  @JsonKey()
-  final bool isLegacyWallet;
-  @override
-  @JsonKey()
-  final String bip39Passphrase;
-  @override
-  @JsonKey()
-  final bool completed;
+class _IntroData implements IntroData {
+  const _IntroData({this.mnemonic, this.kpub, this.seed, this.name, this.pin, this.password, this.generated = false, this.isLegacyWallet = false, this.bip39Passphrase = '', this.completed = false});
+  
 
-  @override
-  String toString() {
-    return 'IntroData(mnemonic: $mnemonic, kpub: $kpub, seed: $seed, name: $name, pin: $pin, password: $password, generated: $generated, isLegacyWallet: $isLegacyWallet, bip39Passphrase: $bip39Passphrase, completed: $completed)';
-  }
+@override final  String? mnemonic;
+@override final  String? kpub;
+@override final  Future<String>? seed;
+@override final  String? name;
+@override final  String? pin;
+@override final  String? password;
+@override@JsonKey() final  bool generated;
+@override@JsonKey() final  bool isLegacyWallet;
+@override@JsonKey() final  String bip39Passphrase;
+@override@JsonKey() final  bool completed;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$IntroDataImpl &&
-            (identical(other.mnemonic, mnemonic) ||
-                other.mnemonic == mnemonic) &&
-            (identical(other.kpub, kpub) || other.kpub == kpub) &&
-            (identical(other.seed, seed) || other.seed == seed) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.pin, pin) || other.pin == pin) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.generated, generated) ||
-                other.generated == generated) &&
-            (identical(other.isLegacyWallet, isLegacyWallet) ||
-                other.isLegacyWallet == isLegacyWallet) &&
-            (identical(other.bip39Passphrase, bip39Passphrase) ||
-                other.bip39Passphrase == bip39Passphrase) &&
-            (identical(other.completed, completed) ||
-                other.completed == completed));
-  }
+/// Create a copy of IntroData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$IntroDataCopyWith<_IntroData> get copyWith => __$IntroDataCopyWithImpl<_IntroData>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, mnemonic, kpub, seed, name, pin,
-      password, generated, isLegacyWallet, bip39Passphrase, completed);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$IntroDataImplCopyWith<_$IntroDataImpl> get copyWith =>
-      __$$IntroDataImplCopyWithImpl<_$IntroDataImpl>(this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _IntroData&&(identical(other.mnemonic, mnemonic) || other.mnemonic == mnemonic)&&(identical(other.kpub, kpub) || other.kpub == kpub)&&(identical(other.seed, seed) || other.seed == seed)&&(identical(other.name, name) || other.name == name)&&(identical(other.pin, pin) || other.pin == pin)&&(identical(other.password, password) || other.password == password)&&(identical(other.generated, generated) || other.generated == generated)&&(identical(other.isLegacyWallet, isLegacyWallet) || other.isLegacyWallet == isLegacyWallet)&&(identical(other.bip39Passphrase, bip39Passphrase) || other.bip39Passphrase == bip39Passphrase)&&(identical(other.completed, completed) || other.completed == completed));
 }
 
-abstract class _IntroData implements IntroData {
-  const factory _IntroData(
-      {final String? mnemonic,
-      final String? kpub,
-      final Future<String>? seed,
-      final String? name,
-      final String? pin,
-      final String? password,
-      final bool generated,
-      final bool isLegacyWallet,
-      final String bip39Passphrase,
-      final bool completed}) = _$IntroDataImpl;
 
-  @override
-  String? get mnemonic;
-  @override
-  String? get kpub;
-  @override
-  Future<String>? get seed;
-  @override
-  String? get name;
-  @override
-  String? get pin;
-  @override
-  String? get password;
-  @override
-  bool get generated;
-  @override
-  bool get isLegacyWallet;
-  @override
-  String get bip39Passphrase;
-  @override
-  bool get completed;
-  @override
-  @JsonKey(ignore: true)
-  _$$IntroDataImplCopyWith<_$IntroDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+int get hashCode => Object.hash(runtimeType,mnemonic,kpub,seed,name,pin,password,generated,isLegacyWallet,bip39Passphrase,completed);
+
+@override
+String toString() {
+  return 'IntroData(mnemonic: $mnemonic, kpub: $kpub, seed: $seed, name: $name, pin: $pin, password: $password, generated: $generated, isLegacyWallet: $isLegacyWallet, bip39Passphrase: $bip39Passphrase, completed: $completed)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$IntroDataCopyWith<$Res> implements $IntroDataCopyWith<$Res> {
+  factory _$IntroDataCopyWith(_IntroData value, $Res Function(_IntroData) _then) = __$IntroDataCopyWithImpl;
+@override @useResult
+$Res call({
+ String? mnemonic, String? kpub, Future<String>? seed, String? name, String? pin, String? password, bool generated, bool isLegacyWallet, String bip39Passphrase, bool completed
+});
+
+
+
+
+}
+/// @nodoc
+class __$IntroDataCopyWithImpl<$Res>
+    implements _$IntroDataCopyWith<$Res> {
+  __$IntroDataCopyWithImpl(this._self, this._then);
+
+  final _IntroData _self;
+  final $Res Function(_IntroData) _then;
+
+/// Create a copy of IntroData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? mnemonic = freezed,Object? kpub = freezed,Object? seed = freezed,Object? name = freezed,Object? pin = freezed,Object? password = freezed,Object? generated = null,Object? isLegacyWallet = null,Object? bip39Passphrase = null,Object? completed = null,}) {
+  return _then(_IntroData(
+mnemonic: freezed == mnemonic ? _self.mnemonic : mnemonic // ignore: cast_nullable_to_non_nullable
+as String?,kpub: freezed == kpub ? _self.kpub : kpub // ignore: cast_nullable_to_non_nullable
+as String?,seed: freezed == seed ? _self.seed : seed // ignore: cast_nullable_to_non_nullable
+as Future<String>?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,pin: freezed == pin ? _self.pin : pin // ignore: cast_nullable_to_non_nullable
+as String?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String?,generated: null == generated ? _self.generated : generated // ignore: cast_nullable_to_non_nullable
+as bool,isLegacyWallet: null == isLegacyWallet ? _self.isLegacyWallet : isLegacyWallet // ignore: cast_nullable_to_non_nullable
+as bool,bip39Passphrase: null == bip39Passphrase ? _self.bip39Passphrase : bip39Passphrase // ignore: cast_nullable_to_non_nullable
+as String,completed: null == completed ? _self.completed : completed // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+// dart format on

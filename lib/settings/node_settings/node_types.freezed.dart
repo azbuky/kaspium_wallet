@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,780 +9,1094 @@ part of 'node_types.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-NodeConfigSettings _$NodeConfigSettingsFromJson(Map<String, dynamic> json) {
-  return _NodeConfigSettings.fromJson(json);
-}
 
 /// @nodoc
 mixin _$NodeConfigSettings {
-  IList<NodeConfig> get options => throw _privateConstructorUsedError;
-  NodeConfig get selected => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $NodeConfigSettingsCopyWith<NodeConfigSettings> get copyWith =>
-      throw _privateConstructorUsedError;
+ IList<NodeConfig> get options; NodeConfig get selected;
+/// Create a copy of NodeConfigSettings
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NodeConfigSettingsCopyWith<NodeConfigSettings> get copyWith => _$NodeConfigSettingsCopyWithImpl<NodeConfigSettings>(this as NodeConfigSettings, _$identity);
+
+  /// Serializes this NodeConfigSettings to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NodeConfigSettings&&const DeepCollectionEquality().equals(other.options, options)&&(identical(other.selected, selected) || other.selected == selected));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(options),selected);
+
+@override
+String toString() {
+  return 'NodeConfigSettings(options: $options, selected: $selected)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $NodeConfigSettingsCopyWith<$Res> {
-  factory $NodeConfigSettingsCopyWith(
-          NodeConfigSettings value, $Res Function(NodeConfigSettings) then) =
-      _$NodeConfigSettingsCopyWithImpl<$Res, NodeConfigSettings>;
-  @useResult
-  $Res call({IList<NodeConfig> options, NodeConfig selected});
+abstract mixin class $NodeConfigSettingsCopyWith<$Res>  {
+  factory $NodeConfigSettingsCopyWith(NodeConfigSettings value, $Res Function(NodeConfigSettings) _then) = _$NodeConfigSettingsCopyWithImpl;
+@useResult
+$Res call({
+ IList<NodeConfig> options, NodeConfig selected
+});
 
-  $NodeConfigCopyWith<$Res> get selected;
+
+$NodeConfigCopyWith<$Res> get selected;
+
 }
-
 /// @nodoc
-class _$NodeConfigSettingsCopyWithImpl<$Res, $Val extends NodeConfigSettings>
+class _$NodeConfigSettingsCopyWithImpl<$Res>
     implements $NodeConfigSettingsCopyWith<$Res> {
-  _$NodeConfigSettingsCopyWithImpl(this._value, this._then);
+  _$NodeConfigSettingsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final NodeConfigSettings _self;
+  final $Res Function(NodeConfigSettings) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? options = null,
-    Object? selected = null,
-  }) {
-    return _then(_value.copyWith(
-      options: null == options
-          ? _value.options
-          : options // ignore: cast_nullable_to_non_nullable
-              as IList<NodeConfig>,
-      selected: null == selected
-          ? _value.selected
-          : selected // ignore: cast_nullable_to_non_nullable
-              as NodeConfig,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $NodeConfigCopyWith<$Res> get selected {
-    return $NodeConfigCopyWith<$Res>(_value.selected, (value) {
-      return _then(_value.copyWith(selected: value) as $Val);
-    });
-  }
+/// Create a copy of NodeConfigSettings
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? options = null,Object? selected = null,}) {
+  return _then(_self.copyWith(
+options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as IList<NodeConfig>,selected: null == selected ? _self.selected : selected // ignore: cast_nullable_to_non_nullable
+as NodeConfig,
+  ));
+}
+/// Create a copy of NodeConfigSettings
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$NodeConfigCopyWith<$Res> get selected {
+  
+  return $NodeConfigCopyWith<$Res>(_self.selected, (value) {
+    return _then(_self.copyWith(selected: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$NodeConfigSettingsImplCopyWith<$Res>
-    implements $NodeConfigSettingsCopyWith<$Res> {
-  factory _$$NodeConfigSettingsImplCopyWith(_$NodeConfigSettingsImpl value,
-          $Res Function(_$NodeConfigSettingsImpl) then) =
-      __$$NodeConfigSettingsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({IList<NodeConfig> options, NodeConfig selected});
 
-  @override
-  $NodeConfigCopyWith<$Res> get selected;
+/// Adds pattern-matching-related methods to [NodeConfigSettings].
+extension NodeConfigSettingsPatterns on NodeConfigSettings {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _NodeConfigSettings value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _NodeConfigSettings() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _NodeConfigSettings value)  $default,){
+final _that = this;
+switch (_that) {
+case _NodeConfigSettings():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _NodeConfigSettings value)?  $default,){
+final _that = this;
+switch (_that) {
+case _NodeConfigSettings() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( IList<NodeConfig> options,  NodeConfig selected)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _NodeConfigSettings() when $default != null:
+return $default(_that.options,_that.selected);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( IList<NodeConfig> options,  NodeConfig selected)  $default,) {final _that = this;
+switch (_that) {
+case _NodeConfigSettings():
+return $default(_that.options,_that.selected);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( IList<NodeConfig> options,  NodeConfig selected)?  $default,) {final _that = this;
+switch (_that) {
+case _NodeConfigSettings() when $default != null:
+return $default(_that.options,_that.selected);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$NodeConfigSettingsImplCopyWithImpl<$Res>
-    extends _$NodeConfigSettingsCopyWithImpl<$Res, _$NodeConfigSettingsImpl>
-    implements _$$NodeConfigSettingsImplCopyWith<$Res> {
-  __$$NodeConfigSettingsImplCopyWithImpl(_$NodeConfigSettingsImpl _value,
-      $Res Function(_$NodeConfigSettingsImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? options = null,
-    Object? selected = null,
-  }) {
-    return _then(_$NodeConfigSettingsImpl(
-      options: null == options
-          ? _value.options
-          : options // ignore: cast_nullable_to_non_nullable
-              as IList<NodeConfig>,
-      selected: null == selected
-          ? _value.selected
-          : selected // ignore: cast_nullable_to_non_nullable
-              as NodeConfig,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$NodeConfigSettingsImpl implements _NodeConfigSettings {
-  const _$NodeConfigSettingsImpl(
-      {this.options = const IListConst([mainnetNodeConfig]),
-      this.selected = mainnetNodeConfig});
 
-  factory _$NodeConfigSettingsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$NodeConfigSettingsImplFromJson(json);
+class _NodeConfigSettings implements NodeConfigSettings {
+  const _NodeConfigSettings({this.options = const IListConst([mainnetNodeConfig]), this.selected = mainnetNodeConfig});
+  factory _NodeConfigSettings.fromJson(Map<String, dynamic> json) => _$NodeConfigSettingsFromJson(json);
 
-  @override
-  @JsonKey()
-  final IList<NodeConfig> options;
-  @override
-  @JsonKey()
-  final NodeConfig selected;
+@override@JsonKey() final  IList<NodeConfig> options;
+@override@JsonKey() final  NodeConfig selected;
 
-  @override
-  String toString() {
-    return 'NodeConfigSettings(options: $options, selected: $selected)';
-  }
+/// Create a copy of NodeConfigSettings
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NodeConfigSettingsCopyWith<_NodeConfigSettings> get copyWith => __$NodeConfigSettingsCopyWithImpl<_NodeConfigSettings>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$NodeConfigSettingsImpl &&
-            const DeepCollectionEquality().equals(other.options, options) &&
-            (identical(other.selected, selected) ||
-                other.selected == selected));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(options), selected);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$NodeConfigSettingsImplCopyWith<_$NodeConfigSettingsImpl> get copyWith =>
-      __$$NodeConfigSettingsImplCopyWithImpl<_$NodeConfigSettingsImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$NodeConfigSettingsImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$NodeConfigSettingsToJson(this, );
 }
 
-abstract class _NodeConfigSettings implements NodeConfigSettings {
-  const factory _NodeConfigSettings(
-      {final IList<NodeConfig> options,
-      final NodeConfig selected}) = _$NodeConfigSettingsImpl;
-
-  factory _NodeConfigSettings.fromJson(Map<String, dynamic> json) =
-      _$NodeConfigSettingsImpl.fromJson;
-
-  @override
-  IList<NodeConfig> get options;
-  @override
-  NodeConfig get selected;
-  @override
-  @JsonKey(ignore: true)
-  _$$NodeConfigSettingsImplCopyWith<_$NodeConfigSettingsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NodeConfigSettings&&const DeepCollectionEquality().equals(other.options, options)&&(identical(other.selected, selected) || other.selected == selected));
 }
 
-NodeConfig _$NodeConfigFromJson(Map<String, dynamic> json) {
-  return _NodeConfig.fromJson(json);
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(options),selected);
+
+@override
+String toString() {
+  return 'NodeConfigSettings(options: $options, selected: $selected)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NodeConfigSettingsCopyWith<$Res> implements $NodeConfigSettingsCopyWith<$Res> {
+  factory _$NodeConfigSettingsCopyWith(_NodeConfigSettings value, $Res Function(_NodeConfigSettings) _then) = __$NodeConfigSettingsCopyWithImpl;
+@override @useResult
+$Res call({
+ IList<NodeConfig> options, NodeConfig selected
+});
+
+
+@override $NodeConfigCopyWith<$Res> get selected;
+
+}
+/// @nodoc
+class __$NodeConfigSettingsCopyWithImpl<$Res>
+    implements _$NodeConfigSettingsCopyWith<$Res> {
+  __$NodeConfigSettingsCopyWithImpl(this._self, this._then);
+
+  final _NodeConfigSettings _self;
+  final $Res Function(_NodeConfigSettings) _then;
+
+/// Create a copy of NodeConfigSettings
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? options = null,Object? selected = null,}) {
+  return _then(_NodeConfigSettings(
+options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as IList<NodeConfig>,selected: null == selected ? _self.selected : selected // ignore: cast_nullable_to_non_nullable
+as NodeConfig,
+  ));
+}
+
+/// Create a copy of NodeConfigSettings
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$NodeConfigCopyWith<$Res> get selected {
+  
+  return $NodeConfigCopyWith<$Res>(_self.selected, (value) {
+    return _then(_self.copyWith(selected: value));
+  });
+}
+}
+
 
 /// @nodoc
 mixin _$NodeConfig {
-  String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  bool get isDns => throw _privateConstructorUsedError;
-  bool get isSecure => throw _privateConstructorUsedError;
-  List<String> get urls => throw _privateConstructorUsedError;
-  KaspaNetwork get network => throw _privateConstructorUsedError;
-  String get networkSuffix => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $NodeConfigCopyWith<NodeConfig> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get id; String get name; bool get isDns; bool get isSecure; List<String> get urls; KaspaNetwork get network; String get networkSuffix;
+/// Create a copy of NodeConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NodeConfigCopyWith<NodeConfig> get copyWith => _$NodeConfigCopyWithImpl<NodeConfig>(this as NodeConfig, _$identity);
+
+  /// Serializes this NodeConfig to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NodeConfig&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.isDns, isDns) || other.isDns == isDns)&&(identical(other.isSecure, isSecure) || other.isSecure == isSecure)&&const DeepCollectionEquality().equals(other.urls, urls)&&(identical(other.network, network) || other.network == network)&&(identical(other.networkSuffix, networkSuffix) || other.networkSuffix == networkSuffix));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,isDns,isSecure,const DeepCollectionEquality().hash(urls),network,networkSuffix);
+
+@override
+String toString() {
+  return 'NodeConfig(id: $id, name: $name, isDns: $isDns, isSecure: $isSecure, urls: $urls, network: $network, networkSuffix: $networkSuffix)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $NodeConfigCopyWith<$Res> {
-  factory $NodeConfigCopyWith(
-          NodeConfig value, $Res Function(NodeConfig) then) =
-      _$NodeConfigCopyWithImpl<$Res, NodeConfig>;
-  @useResult
-  $Res call(
-      {String id,
-      String name,
-      bool isDns,
-      bool isSecure,
-      List<String> urls,
-      KaspaNetwork network,
-      String networkSuffix});
-}
+abstract mixin class $NodeConfigCopyWith<$Res>  {
+  factory $NodeConfigCopyWith(NodeConfig value, $Res Function(NodeConfig) _then) = _$NodeConfigCopyWithImpl;
+@useResult
+$Res call({
+ String id, String name, bool isDns, bool isSecure, List<String> urls, KaspaNetwork network, String networkSuffix
+});
 
+
+
+
+}
 /// @nodoc
-class _$NodeConfigCopyWithImpl<$Res, $Val extends NodeConfig>
+class _$NodeConfigCopyWithImpl<$Res>
     implements $NodeConfigCopyWith<$Res> {
-  _$NodeConfigCopyWithImpl(this._value, this._then);
+  _$NodeConfigCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final NodeConfig _self;
+  final $Res Function(NodeConfig) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? isDns = null,
-    Object? isSecure = null,
-    Object? urls = null,
-    Object? network = null,
-    Object? networkSuffix = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      isDns: null == isDns
-          ? _value.isDns
-          : isDns // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSecure: null == isSecure
-          ? _value.isSecure
-          : isSecure // ignore: cast_nullable_to_non_nullable
-              as bool,
-      urls: null == urls
-          ? _value.urls
-          : urls // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      network: null == network
-          ? _value.network
-          : network // ignore: cast_nullable_to_non_nullable
-              as KaspaNetwork,
-      networkSuffix: null == networkSuffix
-          ? _value.networkSuffix
-          : networkSuffix // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of NodeConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? isDns = null,Object? isSecure = null,Object? urls = null,Object? network = null,Object? networkSuffix = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,isDns: null == isDns ? _self.isDns : isDns // ignore: cast_nullable_to_non_nullable
+as bool,isSecure: null == isSecure ? _self.isSecure : isSecure // ignore: cast_nullable_to_non_nullable
+as bool,urls: null == urls ? _self.urls : urls // ignore: cast_nullable_to_non_nullable
+as List<String>,network: null == network ? _self.network : network // ignore: cast_nullable_to_non_nullable
+as KaspaNetwork,networkSuffix: null == networkSuffix ? _self.networkSuffix : networkSuffix // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$NodeConfigImplCopyWith<$Res>
-    implements $NodeConfigCopyWith<$Res> {
-  factory _$$NodeConfigImplCopyWith(
-          _$NodeConfigImpl value, $Res Function(_$NodeConfigImpl) then) =
-      __$$NodeConfigImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      String name,
-      bool isDns,
-      bool isSecure,
-      List<String> urls,
-      KaspaNetwork network,
-      String networkSuffix});
 }
 
-/// @nodoc
-class __$$NodeConfigImplCopyWithImpl<$Res>
-    extends _$NodeConfigCopyWithImpl<$Res, _$NodeConfigImpl>
-    implements _$$NodeConfigImplCopyWith<$Res> {
-  __$$NodeConfigImplCopyWithImpl(
-      _$NodeConfigImpl _value, $Res Function(_$NodeConfigImpl) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? isDns = null,
-    Object? isSecure = null,
-    Object? urls = null,
-    Object? network = null,
-    Object? networkSuffix = null,
-  }) {
-    return _then(_$NodeConfigImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      isDns: null == isDns
-          ? _value.isDns
-          : isDns // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSecure: null == isSecure
-          ? _value.isSecure
-          : isSecure // ignore: cast_nullable_to_non_nullable
-              as bool,
-      urls: null == urls
-          ? _value._urls
-          : urls // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      network: null == network
-          ? _value.network
-          : network // ignore: cast_nullable_to_non_nullable
-              as KaspaNetwork,
-      networkSuffix: null == networkSuffix
-          ? _value.networkSuffix
-          : networkSuffix // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [NodeConfig].
+extension NodeConfigPatterns on NodeConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _NodeConfig value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _NodeConfig() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _NodeConfig value)  $default,){
+final _that = this;
+switch (_that) {
+case _NodeConfig():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _NodeConfig value)?  $default,){
+final _that = this;
+switch (_that) {
+case _NodeConfig() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  bool isDns,  bool isSecure,  List<String> urls,  KaspaNetwork network,  String networkSuffix)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _NodeConfig() when $default != null:
+return $default(_that.id,_that.name,_that.isDns,_that.isSecure,_that.urls,_that.network,_that.networkSuffix);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  bool isDns,  bool isSecure,  List<String> urls,  KaspaNetwork network,  String networkSuffix)  $default,) {final _that = this;
+switch (_that) {
+case _NodeConfig():
+return $default(_that.id,_that.name,_that.isDns,_that.isSecure,_that.urls,_that.network,_that.networkSuffix);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  bool isDns,  bool isSecure,  List<String> urls,  KaspaNetwork network,  String networkSuffix)?  $default,) {final _that = this;
+switch (_that) {
+case _NodeConfig() when $default != null:
+return $default(_that.id,_that.name,_that.isDns,_that.isSecure,_that.urls,_that.network,_that.networkSuffix);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$NodeConfigImpl extends _NodeConfig {
-  const _$NodeConfigImpl(
-      {required this.id,
-      required this.name,
-      this.isDns = false,
-      this.isSecure = false,
-      required final List<String> urls,
-      required this.network,
-      this.networkSuffix = ''})
-      : _urls = urls,
-        super._();
 
-  factory _$NodeConfigImpl.fromJson(Map<String, dynamic> json) =>
-      _$$NodeConfigImplFromJson(json);
+class _NodeConfig extends NodeConfig {
+  const _NodeConfig({required this.id, required this.name, this.isDns = false, this.isSecure = false, required final  List<String> urls, required this.network, this.networkSuffix = ''}): _urls = urls,super._();
+  factory _NodeConfig.fromJson(Map<String, dynamic> json) => _$NodeConfigFromJson(json);
 
-  @override
-  final String id;
-  @override
-  final String name;
-  @override
-  @JsonKey()
-  final bool isDns;
-  @override
-  @JsonKey()
-  final bool isSecure;
-  final List<String> _urls;
-  @override
-  List<String> get urls {
-    if (_urls is EqualUnmodifiableListView) return _urls;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_urls);
-  }
-
-  @override
-  final KaspaNetwork network;
-  @override
-  @JsonKey()
-  final String networkSuffix;
-
-  @override
-  String toString() {
-    return 'NodeConfig(id: $id, name: $name, isDns: $isDns, isSecure: $isSecure, urls: $urls, network: $network, networkSuffix: $networkSuffix)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$NodeConfigImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.isDns, isDns) || other.isDns == isDns) &&
-            (identical(other.isSecure, isSecure) ||
-                other.isSecure == isSecure) &&
-            const DeepCollectionEquality().equals(other._urls, _urls) &&
-            (identical(other.network, network) || other.network == network) &&
-            (identical(other.networkSuffix, networkSuffix) ||
-                other.networkSuffix == networkSuffix));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, name, isDns, isSecure,
-      const DeepCollectionEquality().hash(_urls), network, networkSuffix);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$NodeConfigImplCopyWith<_$NodeConfigImpl> get copyWith =>
-      __$$NodeConfigImplCopyWithImpl<_$NodeConfigImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$NodeConfigImplToJson(
-      this,
-    );
-  }
+@override final  String id;
+@override final  String name;
+@override@JsonKey() final  bool isDns;
+@override@JsonKey() final  bool isSecure;
+ final  List<String> _urls;
+@override List<String> get urls {
+  if (_urls is EqualUnmodifiableListView) return _urls;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_urls);
 }
 
-abstract class _NodeConfig extends NodeConfig {
-  const factory _NodeConfig(
-      {required final String id,
-      required final String name,
-      final bool isDns,
-      final bool isSecure,
-      required final List<String> urls,
-      required final KaspaNetwork network,
-      final String networkSuffix}) = _$NodeConfigImpl;
-  const _NodeConfig._() : super._();
+@override final  KaspaNetwork network;
+@override@JsonKey() final  String networkSuffix;
 
-  factory _NodeConfig.fromJson(Map<String, dynamic> json) =
-      _$NodeConfigImpl.fromJson;
+/// Create a copy of NodeConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NodeConfigCopyWith<_NodeConfig> get copyWith => __$NodeConfigCopyWithImpl<_NodeConfig>(this, _$identity);
 
-  @override
-  String get id;
-  @override
-  String get name;
-  @override
-  bool get isDns;
-  @override
-  bool get isSecure;
-  @override
-  List<String> get urls;
-  @override
-  KaspaNetwork get network;
-  @override
-  String get networkSuffix;
-  @override
-  @JsonKey(ignore: true)
-  _$$NodeConfigImplCopyWith<_$NodeConfigImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$NodeConfigToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NodeConfig&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.isDns, isDns) || other.isDns == isDns)&&(identical(other.isSecure, isSecure) || other.isSecure == isSecure)&&const DeepCollectionEquality().equals(other._urls, _urls)&&(identical(other.network, network) || other.network == network)&&(identical(other.networkSuffix, networkSuffix) || other.networkSuffix == networkSuffix));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,isDns,isSecure,const DeepCollectionEquality().hash(_urls),network,networkSuffix);
+
+@override
+String toString() {
+  return 'NodeConfig(id: $id, name: $name, isDns: $isDns, isSecure: $isSecure, urls: $urls, network: $network, networkSuffix: $networkSuffix)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NodeConfigCopyWith<$Res> implements $NodeConfigCopyWith<$Res> {
+  factory _$NodeConfigCopyWith(_NodeConfig value, $Res Function(_NodeConfig) _then) = __$NodeConfigCopyWithImpl;
+@override @useResult
+$Res call({
+ String id, String name, bool isDns, bool isSecure, List<String> urls, KaspaNetwork network, String networkSuffix
+});
+
+
+
+
+}
+/// @nodoc
+class __$NodeConfigCopyWithImpl<$Res>
+    implements _$NodeConfigCopyWith<$Res> {
+  __$NodeConfigCopyWithImpl(this._self, this._then);
+
+  final _NodeConfig _self;
+  final $Res Function(_NodeConfig) _then;
+
+/// Create a copy of NodeConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? isDns = null,Object? isSecure = null,Object? urls = null,Object? network = null,Object? networkSuffix = null,}) {
+  return _then(_NodeConfig(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,isDns: null == isDns ? _self.isDns : isDns // ignore: cast_nullable_to_non_nullable
+as bool,isSecure: null == isSecure ? _self.isSecure : isSecure // ignore: cast_nullable_to_non_nullable
+as bool,urls: null == urls ? _self._urls : urls // ignore: cast_nullable_to_non_nullable
+as List<String>,network: null == network ? _self.network : network // ignore: cast_nullable_to_non_nullable
+as KaspaNetwork,networkSuffix: null == networkSuffix ? _self.networkSuffix : networkSuffix // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$ActiveNodeConfig {
-  NodeConfig get config => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $ActiveNodeConfigCopyWith<ActiveNodeConfig> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get url; String get networkId; NodeConfig get config;
+/// Create a copy of ActiveNodeConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ActiveNodeConfigCopyWith<ActiveNodeConfig> get copyWith => _$ActiveNodeConfigCopyWithImpl<ActiveNodeConfig>(this as ActiveNodeConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ActiveNodeConfig&&(identical(other.url, url) || other.url == url)&&(identical(other.networkId, networkId) || other.networkId == networkId)&&(identical(other.config, config) || other.config == config));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,url,networkId,config);
+
+@override
+String toString() {
+  return 'ActiveNodeConfig(url: $url, networkId: $networkId, config: $config)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ActiveNodeConfigCopyWith<$Res> {
-  factory $ActiveNodeConfigCopyWith(
-          ActiveNodeConfig value, $Res Function(ActiveNodeConfig) then) =
-      _$ActiveNodeConfigCopyWithImpl<$Res, ActiveNodeConfig>;
-  @useResult
-  $Res call({NodeConfig config});
+abstract mixin class $ActiveNodeConfigCopyWith<$Res>  {
+  factory $ActiveNodeConfigCopyWith(ActiveNodeConfig value, $Res Function(ActiveNodeConfig) _then) = _$ActiveNodeConfigCopyWithImpl;
+@useResult
+$Res call({
+ NodeConfig config
+});
 
-  $NodeConfigCopyWith<$Res> get config;
+
+$NodeConfigCopyWith<$Res> get config;
+
 }
-
 /// @nodoc
-class _$ActiveNodeConfigCopyWithImpl<$Res, $Val extends ActiveNodeConfig>
+class _$ActiveNodeConfigCopyWithImpl<$Res>
     implements $ActiveNodeConfigCopyWith<$Res> {
-  _$ActiveNodeConfigCopyWithImpl(this._value, this._then);
+  _$ActiveNodeConfigCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ActiveNodeConfig _self;
+  final $Res Function(ActiveNodeConfig) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? config = null,
-  }) {
-    return _then(_value.copyWith(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as NodeConfig,
-    ) as $Val);
-  }
+/// Create a copy of ActiveNodeConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? config = null,}) {
+  return _then(_self.copyWith(
+config: null == config ? _self.config : config // ignore: cast_nullable_to_non_nullable
+as NodeConfig,
+  ));
+}
+/// Create a copy of ActiveNodeConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$NodeConfigCopyWith<$Res> get config {
+  
+  return $NodeConfigCopyWith<$Res>(_self.config, (value) {
+    return _then(_self.copyWith(config: value));
+  });
+}
+}
 
-  @override
-  @pragma('vm:prefer-inline')
-  $NodeConfigCopyWith<$Res> get config {
-    return $NodeConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value) as $Val);
-    });
-  }
+
+/// Adds pattern-matching-related methods to [ActiveNodeConfig].
+extension ActiveNodeConfigPatterns on ActiveNodeConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ActiveNodeConfig value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ActiveNodeConfig() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ActiveNodeConfig value)  $default,){
+final _that = this;
+switch (_that) {
+case _ActiveNodeConfig():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ActiveNodeConfig value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ActiveNodeConfig() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( NodeConfig config)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ActiveNodeConfig() when $default != null:
+return $default(_that.config);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( NodeConfig config)  $default,) {final _that = this;
+switch (_that) {
+case _ActiveNodeConfig():
+return $default(_that.config);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( NodeConfig config)?  $default,) {final _that = this;
+switch (_that) {
+case _ActiveNodeConfig() when $default != null:
+return $default(_that.config);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$ActiveNodeConfigImplCopyWith<$Res>
-    implements $ActiveNodeConfigCopyWith<$Res> {
-  factory _$$ActiveNodeConfigImplCopyWith(_$ActiveNodeConfigImpl value,
-          $Res Function(_$ActiveNodeConfigImpl) then) =
-      __$$ActiveNodeConfigImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({NodeConfig config});
 
-  @override
-  $NodeConfigCopyWith<$Res> get config;
+
+class _ActiveNodeConfig extends ActiveNodeConfig {
+   _ActiveNodeConfig({required this.config}): super._();
+  
+
+@override final  NodeConfig config;
+
+/// Create a copy of ActiveNodeConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ActiveNodeConfigCopyWith<_ActiveNodeConfig> get copyWith => __$ActiveNodeConfigCopyWithImpl<_ActiveNodeConfig>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ActiveNodeConfig&&(identical(other.config, config) || other.config == config));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,config);
+
+@override
+String toString() {
+  return 'ActiveNodeConfig(config: $config)';
+}
+
+
 }
 
 /// @nodoc
-class __$$ActiveNodeConfigImplCopyWithImpl<$Res>
-    extends _$ActiveNodeConfigCopyWithImpl<$Res, _$ActiveNodeConfigImpl>
-    implements _$$ActiveNodeConfigImplCopyWith<$Res> {
-  __$$ActiveNodeConfigImplCopyWithImpl(_$ActiveNodeConfigImpl _value,
-      $Res Function(_$ActiveNodeConfigImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$ActiveNodeConfigCopyWith<$Res> implements $ActiveNodeConfigCopyWith<$Res> {
+  factory _$ActiveNodeConfigCopyWith(_ActiveNodeConfig value, $Res Function(_ActiveNodeConfig) _then) = __$ActiveNodeConfigCopyWithImpl;
+@override @useResult
+$Res call({
+ NodeConfig config
+});
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? config = null,
-  }) {
-    return _then(_$ActiveNodeConfigImpl(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as NodeConfig,
-    ));
-  }
+
+@override $NodeConfigCopyWith<$Res> get config;
+
 }
-
 /// @nodoc
+class __$ActiveNodeConfigCopyWithImpl<$Res>
+    implements _$ActiveNodeConfigCopyWith<$Res> {
+  __$ActiveNodeConfigCopyWithImpl(this._self, this._then);
 
-class _$ActiveNodeConfigImpl extends _ActiveNodeConfig {
-  _$ActiveNodeConfigImpl({required this.config}) : super._();
+  final _ActiveNodeConfig _self;
+  final $Res Function(_ActiveNodeConfig) _then;
 
-  @override
-  final NodeConfig config;
-
-  @override
-  String toString() {
-    return 'ActiveNodeConfig(config: $config)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ActiveNodeConfigImpl &&
-            (identical(other.config, config) || other.config == config));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, config);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ActiveNodeConfigImplCopyWith<_$ActiveNodeConfigImpl> get copyWith =>
-      __$$ActiveNodeConfigImplCopyWithImpl<_$ActiveNodeConfigImpl>(
-          this, _$identity);
+/// Create a copy of ActiveNodeConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? config = null,}) {
+  return _then(_ActiveNodeConfig(
+config: null == config ? _self.config : config // ignore: cast_nullable_to_non_nullable
+as NodeConfig,
+  ));
 }
 
-abstract class _ActiveNodeConfig extends ActiveNodeConfig {
-  factory _ActiveNodeConfig({required final NodeConfig config}) =
-      _$ActiveNodeConfigImpl;
-  _ActiveNodeConfig._() : super._();
-
-  @override
-  NodeConfig get config;
-  @override
-  @JsonKey(ignore: true)
-  _$$ActiveNodeConfigImplCopyWith<_$ActiveNodeConfigImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+/// Create a copy of ActiveNodeConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$NodeConfigCopyWith<$Res> get config {
+  
+  return $NodeConfigCopyWith<$Res>(_self.config, (value) {
+    return _then(_self.copyWith(config: value));
+  });
+}
 }
 
 /// @nodoc
 mixin _$AddNodeSheetState {
-  bool get showNameHint => throw _privateConstructorUsedError;
-  bool get showUrlHint => throw _privateConstructorUsedError;
-  String get nameValidationText => throw _privateConstructorUsedError;
-  String get urlValidationText => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $AddNodeSheetStateCopyWith<AddNodeSheetState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get showNameHint; bool get showUrlHint; String get nameValidationText; String get urlValidationText;
+/// Create a copy of AddNodeSheetState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AddNodeSheetStateCopyWith<AddNodeSheetState> get copyWith => _$AddNodeSheetStateCopyWithImpl<AddNodeSheetState>(this as AddNodeSheetState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddNodeSheetState&&(identical(other.showNameHint, showNameHint) || other.showNameHint == showNameHint)&&(identical(other.showUrlHint, showUrlHint) || other.showUrlHint == showUrlHint)&&(identical(other.nameValidationText, nameValidationText) || other.nameValidationText == nameValidationText)&&(identical(other.urlValidationText, urlValidationText) || other.urlValidationText == urlValidationText));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,showNameHint,showUrlHint,nameValidationText,urlValidationText);
+
+@override
+String toString() {
+  return 'AddNodeSheetState(showNameHint: $showNameHint, showUrlHint: $showUrlHint, nameValidationText: $nameValidationText, urlValidationText: $urlValidationText)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $AddNodeSheetStateCopyWith<$Res> {
-  factory $AddNodeSheetStateCopyWith(
-          AddNodeSheetState value, $Res Function(AddNodeSheetState) then) =
-      _$AddNodeSheetStateCopyWithImpl<$Res, AddNodeSheetState>;
-  @useResult
-  $Res call(
-      {bool showNameHint,
-      bool showUrlHint,
-      String nameValidationText,
-      String urlValidationText});
-}
+abstract mixin class $AddNodeSheetStateCopyWith<$Res>  {
+  factory $AddNodeSheetStateCopyWith(AddNodeSheetState value, $Res Function(AddNodeSheetState) _then) = _$AddNodeSheetStateCopyWithImpl;
+@useResult
+$Res call({
+ bool showNameHint, bool showUrlHint, String nameValidationText, String urlValidationText
+});
 
+
+
+
+}
 /// @nodoc
-class _$AddNodeSheetStateCopyWithImpl<$Res, $Val extends AddNodeSheetState>
+class _$AddNodeSheetStateCopyWithImpl<$Res>
     implements $AddNodeSheetStateCopyWith<$Res> {
-  _$AddNodeSheetStateCopyWithImpl(this._value, this._then);
+  _$AddNodeSheetStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final AddNodeSheetState _self;
+  final $Res Function(AddNodeSheetState) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? showNameHint = null,
-    Object? showUrlHint = null,
-    Object? nameValidationText = null,
-    Object? urlValidationText = null,
-  }) {
-    return _then(_value.copyWith(
-      showNameHint: null == showNameHint
-          ? _value.showNameHint
-          : showNameHint // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showUrlHint: null == showUrlHint
-          ? _value.showUrlHint
-          : showUrlHint // ignore: cast_nullable_to_non_nullable
-              as bool,
-      nameValidationText: null == nameValidationText
-          ? _value.nameValidationText
-          : nameValidationText // ignore: cast_nullable_to_non_nullable
-              as String,
-      urlValidationText: null == urlValidationText
-          ? _value.urlValidationText
-          : urlValidationText // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of AddNodeSheetState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? showNameHint = null,Object? showUrlHint = null,Object? nameValidationText = null,Object? urlValidationText = null,}) {
+  return _then(_self.copyWith(
+showNameHint: null == showNameHint ? _self.showNameHint : showNameHint // ignore: cast_nullable_to_non_nullable
+as bool,showUrlHint: null == showUrlHint ? _self.showUrlHint : showUrlHint // ignore: cast_nullable_to_non_nullable
+as bool,nameValidationText: null == nameValidationText ? _self.nameValidationText : nameValidationText // ignore: cast_nullable_to_non_nullable
+as String,urlValidationText: null == urlValidationText ? _self.urlValidationText : urlValidationText // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [AddNodeSheetState].
+extension AddNodeSheetStatePatterns on AddNodeSheetState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AddNodeSheetState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _AddNodeSheetState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AddNodeSheetState value)  $default,){
+final _that = this;
+switch (_that) {
+case _AddNodeSheetState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AddNodeSheetState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _AddNodeSheetState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool showNameHint,  bool showUrlHint,  String nameValidationText,  String urlValidationText)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _AddNodeSheetState() when $default != null:
+return $default(_that.showNameHint,_that.showUrlHint,_that.nameValidationText,_that.urlValidationText);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool showNameHint,  bool showUrlHint,  String nameValidationText,  String urlValidationText)  $default,) {final _that = this;
+switch (_that) {
+case _AddNodeSheetState():
+return $default(_that.showNameHint,_that.showUrlHint,_that.nameValidationText,_that.urlValidationText);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool showNameHint,  bool showUrlHint,  String nameValidationText,  String urlValidationText)?  $default,) {final _that = this;
+switch (_that) {
+case _AddNodeSheetState() when $default != null:
+return $default(_that.showNameHint,_that.showUrlHint,_that.nameValidationText,_that.urlValidationText);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$AddNodeSheetStateImplCopyWith<$Res>
-    implements $AddNodeSheetStateCopyWith<$Res> {
-  factory _$$AddNodeSheetStateImplCopyWith(_$AddNodeSheetStateImpl value,
-          $Res Function(_$AddNodeSheetStateImpl) then) =
-      __$$AddNodeSheetStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {bool showNameHint,
-      bool showUrlHint,
-      String nameValidationText,
-      String urlValidationText});
+
+
+class _AddNodeSheetState implements AddNodeSheetState {
+  const _AddNodeSheetState({this.showNameHint = true, this.showUrlHint = true, this.nameValidationText = '', this.urlValidationText = ''});
+  
+
+@override@JsonKey() final  bool showNameHint;
+@override@JsonKey() final  bool showUrlHint;
+@override@JsonKey() final  String nameValidationText;
+@override@JsonKey() final  String urlValidationText;
+
+/// Create a copy of AddNodeSheetState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AddNodeSheetStateCopyWith<_AddNodeSheetState> get copyWith => __$AddNodeSheetStateCopyWithImpl<_AddNodeSheetState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddNodeSheetState&&(identical(other.showNameHint, showNameHint) || other.showNameHint == showNameHint)&&(identical(other.showUrlHint, showUrlHint) || other.showUrlHint == showUrlHint)&&(identical(other.nameValidationText, nameValidationText) || other.nameValidationText == nameValidationText)&&(identical(other.urlValidationText, urlValidationText) || other.urlValidationText == urlValidationText));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,showNameHint,showUrlHint,nameValidationText,urlValidationText);
+
+@override
+String toString() {
+  return 'AddNodeSheetState(showNameHint: $showNameHint, showUrlHint: $showUrlHint, nameValidationText: $nameValidationText, urlValidationText: $urlValidationText)';
+}
+
+
 }
 
 /// @nodoc
-class __$$AddNodeSheetStateImplCopyWithImpl<$Res>
-    extends _$AddNodeSheetStateCopyWithImpl<$Res, _$AddNodeSheetStateImpl>
-    implements _$$AddNodeSheetStateImplCopyWith<$Res> {
-  __$$AddNodeSheetStateImplCopyWithImpl(_$AddNodeSheetStateImpl _value,
-      $Res Function(_$AddNodeSheetStateImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$AddNodeSheetStateCopyWith<$Res> implements $AddNodeSheetStateCopyWith<$Res> {
+  factory _$AddNodeSheetStateCopyWith(_AddNodeSheetState value, $Res Function(_AddNodeSheetState) _then) = __$AddNodeSheetStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool showNameHint, bool showUrlHint, String nameValidationText, String urlValidationText
+});
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? showNameHint = null,
-    Object? showUrlHint = null,
-    Object? nameValidationText = null,
-    Object? urlValidationText = null,
-  }) {
-    return _then(_$AddNodeSheetStateImpl(
-      showNameHint: null == showNameHint
-          ? _value.showNameHint
-          : showNameHint // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showUrlHint: null == showUrlHint
-          ? _value.showUrlHint
-          : showUrlHint // ignore: cast_nullable_to_non_nullable
-              as bool,
-      nameValidationText: null == nameValidationText
-          ? _value.nameValidationText
-          : nameValidationText // ignore: cast_nullable_to_non_nullable
-              as String,
-      urlValidationText: null == urlValidationText
-          ? _value.urlValidationText
-          : urlValidationText // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$AddNodeSheetStateCopyWithImpl<$Res>
+    implements _$AddNodeSheetStateCopyWith<$Res> {
+  __$AddNodeSheetStateCopyWithImpl(this._self, this._then);
 
-class _$AddNodeSheetStateImpl implements _AddNodeSheetState {
-  const _$AddNodeSheetStateImpl(
-      {this.showNameHint = true,
-      this.showUrlHint = true,
-      this.nameValidationText = '',
-      this.urlValidationText = ''});
+  final _AddNodeSheetState _self;
+  final $Res Function(_AddNodeSheetState) _then;
 
-  @override
-  @JsonKey()
-  final bool showNameHint;
-  @override
-  @JsonKey()
-  final bool showUrlHint;
-  @override
-  @JsonKey()
-  final String nameValidationText;
-  @override
-  @JsonKey()
-  final String urlValidationText;
-
-  @override
-  String toString() {
-    return 'AddNodeSheetState(showNameHint: $showNameHint, showUrlHint: $showUrlHint, nameValidationText: $nameValidationText, urlValidationText: $urlValidationText)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddNodeSheetStateImpl &&
-            (identical(other.showNameHint, showNameHint) ||
-                other.showNameHint == showNameHint) &&
-            (identical(other.showUrlHint, showUrlHint) ||
-                other.showUrlHint == showUrlHint) &&
-            (identical(other.nameValidationText, nameValidationText) ||
-                other.nameValidationText == nameValidationText) &&
-            (identical(other.urlValidationText, urlValidationText) ||
-                other.urlValidationText == urlValidationText));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, showNameHint, showUrlHint,
-      nameValidationText, urlValidationText);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddNodeSheetStateImplCopyWith<_$AddNodeSheetStateImpl> get copyWith =>
-      __$$AddNodeSheetStateImplCopyWithImpl<_$AddNodeSheetStateImpl>(
-          this, _$identity);
+/// Create a copy of AddNodeSheetState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? showNameHint = null,Object? showUrlHint = null,Object? nameValidationText = null,Object? urlValidationText = null,}) {
+  return _then(_AddNodeSheetState(
+showNameHint: null == showNameHint ? _self.showNameHint : showNameHint // ignore: cast_nullable_to_non_nullable
+as bool,showUrlHint: null == showUrlHint ? _self.showUrlHint : showUrlHint // ignore: cast_nullable_to_non_nullable
+as bool,nameValidationText: null == nameValidationText ? _self.nameValidationText : nameValidationText // ignore: cast_nullable_to_non_nullable
+as String,urlValidationText: null == urlValidationText ? _self.urlValidationText : urlValidationText // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-abstract class _AddNodeSheetState implements AddNodeSheetState {
-  const factory _AddNodeSheetState(
-      {final bool showNameHint,
-      final bool showUrlHint,
-      final String nameValidationText,
-      final String urlValidationText}) = _$AddNodeSheetStateImpl;
 
-  @override
-  bool get showNameHint;
-  @override
-  bool get showUrlHint;
-  @override
-  String get nameValidationText;
-  @override
-  String get urlValidationText;
-  @override
-  @JsonKey(ignore: true)
-  _$$AddNodeSheetStateImplCopyWith<_$AddNodeSheetStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

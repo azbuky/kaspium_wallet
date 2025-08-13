@@ -6,30 +6,32 @@ part of 'types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UtxoImpl _$$UtxoImplFromJson(Map json) => _$UtxoImpl(
-      address: json['address'] as String,
-      outpoint:
-          Outpoint.fromJson(Map<String, dynamic>.from(json['outpoint'] as Map)),
-      utxoEntry: UtxoEntry.fromJson(
-          Map<String, dynamic>.from(json['utxoEntry'] as Map)),
-    );
+_Utxo _$UtxoFromJson(Map json) => _Utxo(
+  address: json['address'] as String,
+  outpoint: Outpoint.fromJson(
+    Map<String, dynamic>.from(json['outpoint'] as Map),
+  ),
+  utxoEntry: UtxoEntry.fromJson(
+    Map<String, dynamic>.from(json['utxoEntry'] as Map),
+  ),
+);
 
-Map<String, dynamic> _$$UtxoImplToJson(_$UtxoImpl instance) =>
-    <String, dynamic>{
-      'address': instance.address,
-      'outpoint': instance.outpoint.toJson(),
-      'utxoEntry': instance.utxoEntry.toJson(),
-    };
+Map<String, dynamic> _$UtxoToJson(_Utxo instance) => <String, dynamic>{
+  'address': instance.address,
+  'outpoint': instance.outpoint.toJson(),
+  'utxoEntry': instance.utxoEntry.toJson(),
+};
 
-_$UtxoEntryImpl _$$UtxoEntryImplFromJson(Map json) => _$UtxoEntryImpl(
-      amount: BigInt.parse(json['amount'] as String),
-      scriptPublicKey: ScriptPublicKey.fromJson(
-          Map<String, dynamic>.from(json['scriptPublicKey'] as Map)),
-      blockDaaScore: BigInt.parse(json['blockDaaScore'] as String),
-      isCoinbase: json['isCoinbase'] as bool,
-    );
+_UtxoEntry _$UtxoEntryFromJson(Map json) => _UtxoEntry(
+  amount: BigInt.parse(json['amount'] as String),
+  scriptPublicKey: ScriptPublicKey.fromJson(
+    Map<String, dynamic>.from(json['scriptPublicKey'] as Map),
+  ),
+  blockDaaScore: BigInt.parse(json['blockDaaScore'] as String),
+  isCoinbase: json['isCoinbase'] as bool,
+);
 
-Map<String, dynamic> _$$UtxoEntryImplToJson(_$UtxoEntryImpl instance) =>
+Map<String, dynamic> _$UtxoEntryToJson(_UtxoEntry instance) =>
     <String, dynamic>{
       'amount': instance.amount.toString(),
       'scriptPublicKey': instance.scriptPublicKey.toJson(),
@@ -37,26 +39,23 @@ Map<String, dynamic> _$$UtxoEntryImplToJson(_$UtxoEntryImpl instance) =>
       'isCoinbase': instance.isCoinbase,
     };
 
-_$ScriptPublicKeyImpl _$$ScriptPublicKeyImplFromJson(Map json) =>
-    _$ScriptPublicKeyImpl(
-      scriptPublicKey: hexToBytes(json['scriptPublicKey'] as String),
-      version: json['version'] as int,
-    );
+_ScriptPublicKey _$ScriptPublicKeyFromJson(Map json) => _ScriptPublicKey(
+  scriptPublicKey: hexToBytes(json['scriptPublicKey'] as String),
+  version: (json['version'] as num).toInt(),
+);
 
-Map<String, dynamic> _$$ScriptPublicKeyImplToJson(
-        _$ScriptPublicKeyImpl instance) =>
+Map<String, dynamic> _$ScriptPublicKeyToJson(_ScriptPublicKey instance) =>
     <String, dynamic>{
       'scriptPublicKey': bytesToHex(instance.scriptPublicKey),
       'version': instance.version,
     };
 
-_$OutpointImpl _$$OutpointImplFromJson(Map json) => _$OutpointImpl(
-      transactionId: json['transactionId'] as String,
-      index: json['index'] as int,
-    );
+_Outpoint _$OutpointFromJson(Map json) => _Outpoint(
+  transactionId: json['transactionId'] as String,
+  index: (json['index'] as num).toInt(),
+);
 
-Map<String, dynamic> _$$OutpointImplToJson(_$OutpointImpl instance) =>
-    <String, dynamic>{
-      'transactionId': instance.transactionId,
-      'index': instance.index,
-    };
+Map<String, dynamic> _$OutpointToJson(_Outpoint instance) => <String, dynamic>{
+  'transactionId': instance.transactionId,
+  'index': instance.index,
+};

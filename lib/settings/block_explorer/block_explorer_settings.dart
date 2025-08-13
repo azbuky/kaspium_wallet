@@ -7,7 +7,7 @@ part 'block_explorer_settings.freezed.dart';
 part 'block_explorer_settings.g.dart';
 
 @freezed
-class BlockExplorerSettings with _$BlockExplorerSettings {
+sealed class BlockExplorerSettings with _$BlockExplorerSettings {
   const BlockExplorerSettings._();
 
   const factory BlockExplorerSettings({

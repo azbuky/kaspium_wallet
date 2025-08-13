@@ -6,7 +6,7 @@ import '../wallet_address.dart';
 part 'address_discovery_types.freezed.dart';
 
 @freezed
-class ScanIndexes with _$ScanIndexes {
+sealed class ScanIndexes with _$ScanIndexes {
   const ScanIndexes._();
 
   const factory ScanIndexes({

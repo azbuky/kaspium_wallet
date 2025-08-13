@@ -25,7 +25,7 @@ class UnknownAddressTypeException implements Exception {
 }
 
 @freezed
-class Address with _$Address {
+sealed class Address with _$Address {
   Address._();
   @Assert('publicKey.length == kPublicKeyLength')
   factory Address.publicKey({

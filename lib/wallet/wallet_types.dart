@@ -7,7 +7,7 @@ part 'wallet_types.freezed.dart';
 part 'wallet_types.g.dart';
 
 @freezed
-class BoxKeys with _$BoxKeys {
+sealed class BoxKeys with _$BoxKeys {
   const factory BoxKeys({
     required String boxKey,
     required String encryptionKey,
@@ -18,7 +18,7 @@ class BoxKeys with _$BoxKeys {
 }
 
 @freezed
-class BoxInfo with _$BoxInfo {
+sealed class BoxInfo with _$BoxInfo {
   const factory BoxInfo({
     required BoxKeys address,
     required BoxKeys balance,
@@ -32,7 +32,7 @@ class BoxInfo with _$BoxInfo {
 }
 
 @freezed
-class BoxInfoBundle with _$BoxInfoBundle {
+sealed class BoxInfoBundle with _$BoxInfoBundle {
   const factory BoxInfoBundle({
     @Default({}) Map<String, BoxInfo> byNetworkId,
     @Default(false) bool wasMigrated,
@@ -43,7 +43,7 @@ class BoxInfoBundle with _$BoxInfoBundle {
 }
 
 @freezed
-class BoxInfoByNetwork with _$BoxInfoByNetwork {
+sealed class BoxInfoByNetwork with _$BoxInfoByNetwork {
   const BoxInfoByNetwork._();
   const factory BoxInfoByNetwork({
     required BoxInfo mainnet,
@@ -70,7 +70,7 @@ class BoxInfoByNetwork with _$BoxInfoByNetwork {
 }
 
 @freezed
-class WalletKind with _$WalletKind {
+sealed class WalletKind with _$WalletKind {
   const WalletKind._();
 
   const factory WalletKind.localHdSchnorr({
@@ -89,26 +89,26 @@ class WalletKind with _$WalletKind {
       _$WalletKindFromJson(json);
 
   HdWalletType get type => when(
-        localHdSchnorr: (_) => HdWalletType.schnorr,
-        localHdEcdsa: (_) => HdWalletType.ecdsa,
-        localHdLegacy: (_) => HdWalletType.legacy,
-      );
+    localHdSchnorr: (_) => HdWalletType.schnorr,
+    localHdEcdsa: (_) => HdWalletType.ecdsa,
+    localHdLegacy: (_) => HdWalletType.legacy,
+  );
 
   bool get isViewOnly => when(
-        localHdSchnorr: (viewOnly) => viewOnly,
-        localHdEcdsa: (viewOnly) => viewOnly,
-        localHdLegacy: (_) => false,
-      );
+    localHdSchnorr: (viewOnly) => viewOnly,
+    localHdEcdsa: (viewOnly) => viewOnly,
+    localHdLegacy: (_) => false,
+  );
 
   bool get isLegacy => when(
-        localHdSchnorr: (_) => false,
-        localHdEcdsa: (_) => false,
-        localHdLegacy: (_) => true,
-      );
+    localHdSchnorr: (_) => false,
+    localHdEcdsa: (_) => false,
+    localHdLegacy: (_) => true,
+  );
 }
 
 @freezed
-class WalletInfo with _$WalletInfo {
+sealed class WalletInfo with _$WalletInfo {
   WalletInfo._();
   factory WalletInfo({
     required String name,
@@ -159,7 +159,7 @@ class WalletInfo with _$WalletInfo {
 }
 
 @freezed
-class WalletBundle with _$WalletBundle {
+sealed class WalletBundle with _$WalletBundle {
   const factory WalletBundle({
     IList<WalletInfo>? wallets,
     WalletInfo? selected,
@@ -170,7 +170,7 @@ class WalletBundle with _$WalletBundle {
 }
 
 @freezed
-class WalletData with _$WalletData {
+sealed class WalletData with _$WalletData {
   const factory WalletData.seed({
     required String name,
     required WalletKind kind,

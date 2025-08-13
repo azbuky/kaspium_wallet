@@ -9,7 +9,7 @@ enum TxFilter {
 }
 
 @freezed
-class TxSettings with _$TxSettings {
+sealed class TxSettings with _$TxSettings {
   const factory TxSettings({
     @Default(TxFilter.all) TxFilter txFilter,
   }) = _TxSettings;

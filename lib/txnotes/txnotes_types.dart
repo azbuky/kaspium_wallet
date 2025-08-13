@@ -4,7 +4,7 @@ part 'txnotes_types.freezed.dart';
 part 'txnotes_types.g.dart';
 
 @freezed
-class TxNote with _$TxNote {
+sealed class TxNote with _$TxNote {
   const factory TxNote({
     required String txId,
     required String note,

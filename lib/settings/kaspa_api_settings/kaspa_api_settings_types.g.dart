@@ -6,16 +6,13 @@ part of 'kaspa_api_settings_types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$KaspaApiSettingsImpl _$$KaspaApiSettingsImplFromJson(Map json) =>
-    _$KaspaApiSettingsImpl(
-      apiUrlByNetworkId: (json['apiUrlByNetworkId'] as Map?)?.map(
-            (k, e) => MapEntry(k as String, e as String),
-          ) ??
-          const {},
-    );
+_KaspaApiSettings _$KaspaApiSettingsFromJson(Map json) => _KaspaApiSettings(
+  apiUrlByNetworkId:
+      (json['apiUrlByNetworkId'] as Map?)?.map(
+        (k, e) => MapEntry(k as String, e as String),
+      ) ??
+      const {},
+);
 
-Map<String, dynamic> _$$KaspaApiSettingsImplToJson(
-        _$KaspaApiSettingsImpl instance) =>
-    <String, dynamic>{
-      'apiUrlByNetworkId': instance.apiUrlByNetworkId,
-    };
+Map<String, dynamic> _$KaspaApiSettingsToJson(_KaspaApiSettings instance) =>
+    <String, dynamic>{'apiUrlByNetworkId': instance.apiUrlByNetworkId};

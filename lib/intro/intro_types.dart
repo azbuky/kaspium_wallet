@@ -16,14 +16,14 @@ enum IntroPage {
 }
 
 @freezed
-class IntroState with _$IntroState {
+sealed class IntroState with _$IntroState {
   const factory IntroState.init() = _IntroStateInit;
   const factory IntroState.push({required IntroPage page}) = _IntroStatePush;
   const factory IntroState.pop() = _IntroStatePop;
 }
 
 @freezed
-class IntroData with _$IntroData {
+sealed class IntroData with _$IntroData {
   const factory IntroData({
     String? mnemonic,
     String? kpub,

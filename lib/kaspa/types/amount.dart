@@ -10,7 +10,7 @@ part 'amount.freezed.dart';
 part 'amount.g.dart';
 
 @freezed
-class Amount with _$Amount {
+sealed class Amount with _$Amount {
   Amount._();
 
   static final Amount zero = Amount.raw(BigInt.zero);
@@ -24,11 +24,10 @@ class Amount with _$Amount {
   factory Amount.value(
     Decimal value, {
     TokenInfo tokenInfo = TokenInfo.kaspa,
-  }) =>
-      Amount(
-        raw: value.shift(tokenInfo.decimals).toBigInt(),
-        tokenInfo: tokenInfo,
-      );
+  }) => Amount(
+    raw: value.shift(tokenInfo.decimals).toBigInt(),
+    tokenInfo: tokenInfo,
+  );
 
   factory Amount.rawInt(int raw, {TokenInfo tokenInfo = TokenInfo.kaspa}) {
     final rawBigInt = BigInt.from(raw);

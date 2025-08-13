@@ -7,7 +7,7 @@ part 'coingecko_types.freezed.dart';
 part 'coingecko_types.g.dart';
 
 @freezed
-class CoinGeckoPrice with _$CoinGeckoPrice {
+sealed class CoinGeckoPrice with _$CoinGeckoPrice {
   const CoinGeckoPrice._();
   const factory CoinGeckoPrice({
     required AvailableCurrencies currency,

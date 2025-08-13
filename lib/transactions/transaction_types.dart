@@ -6,7 +6,7 @@ part 'transaction_types.freezed.dart';
 part 'transaction_types.g.dart';
 
 @freezed
-class TxIndex with _$TxIndex {
+sealed class TxIndex with _$TxIndex {
   const factory TxIndex({
     required String txId,
     @Default(0) int blockTime,
@@ -17,7 +17,7 @@ class TxIndex with _$TxIndex {
 }
 
 @freezed
-class TxInputData with _$TxInputData {
+sealed class TxInputData with _$TxInputData {
   const factory TxInputData({
     required String address,
     required int amount,
@@ -28,7 +28,7 @@ class TxInputData with _$TxInputData {
 }
 
 @freezed
-class Tx with _$Tx {
+sealed class Tx with _$Tx {
   const Tx._();
   const factory Tx({
     required ApiTransaction apiTx,
@@ -69,7 +69,7 @@ class Tx with _$Tx {
 enum TxItemType { send, receive, compound, thisWallet }
 
 @Freezed(equal: false)
-class TxItem with _$TxItem {
+sealed class TxItem with _$TxItem {
   const TxItem._();
   const factory TxItem({
     required Tx tx,
@@ -82,7 +82,7 @@ class TxItem with _$TxItem {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TxItemImpl &&
+            other is TxItem &&
             (identical(other.tx.id, tx.id) || other.tx.id == tx.id) &&
             (identical(other.outputIndex, outputIndex) ||
                 other.outputIndex == outputIndex) &&
@@ -94,7 +94,7 @@ class TxItem with _$TxItem {
 }
 
 @freezed
-class TxListItem with _$TxListItem {
+sealed class TxListItem with _$TxListItem {
   TxListItem._();
   factory TxListItem.pendingTxItem(TxItem tx) = _TxListItemPendingTxItem;
   factory TxListItem.txItem(TxItem tx) = _TxListItemTxItem;
@@ -108,7 +108,7 @@ class TxListItem with _$TxListItem {
 }
 
 @freezed
-class TxState with _$TxState {
+sealed class TxState with _$TxState {
   const factory TxState.unknown() = _TxStateUnknown;
   const factory TxState.pending() = _TxStatePending;
   const factory TxState.unconfirmed() = _TxStateUnconfirmed;

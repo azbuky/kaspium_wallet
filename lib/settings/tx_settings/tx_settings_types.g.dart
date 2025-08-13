@@ -6,15 +6,13 @@ part of 'tx_settings_types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TxSettingsImpl _$$TxSettingsImplFromJson(Map json) => _$TxSettingsImpl(
-      txFilter: $enumDecodeNullable(_$TxFilterEnumMap, json['txFilter']) ??
-          TxFilter.all,
-    );
+_TxSettings _$TxSettingsFromJson(Map json) => _TxSettings(
+  txFilter:
+      $enumDecodeNullable(_$TxFilterEnumMap, json['txFilter']) ?? TxFilter.all,
+);
 
-Map<String, dynamic> _$$TxSettingsImplToJson(_$TxSettingsImpl instance) =>
-    <String, dynamic>{
-      'txFilter': _$TxFilterEnumMap[instance.txFilter]!,
-    };
+Map<String, dynamic> _$TxSettingsToJson(_TxSettings instance) =>
+    <String, dynamic>{'txFilter': _$TxFilterEnumMap[instance.txFilter]!};
 
 const _$TxFilterEnumMap = {
   TxFilter.all: 'all',

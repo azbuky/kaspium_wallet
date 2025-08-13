@@ -6,40 +6,39 @@ part of 'node_types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$NodeConfigSettingsImpl _$$NodeConfigSettingsImplFromJson(Map json) =>
-    _$NodeConfigSettingsImpl(
+_NodeConfigSettings _$NodeConfigSettingsFromJson(Map json) =>
+    _NodeConfigSettings(
       options: json['options'] == null
           ? const IListConst([mainnetNodeConfig])
           : IList<NodeConfig>.fromJson(
               json['options'],
               (value) =>
-                  NodeConfig.fromJson(Map<String, dynamic>.from(value as Map))),
+                  NodeConfig.fromJson(Map<String, dynamic>.from(value as Map)),
+            ),
       selected: json['selected'] == null
           ? mainnetNodeConfig
           : NodeConfig.fromJson(
-              Map<String, dynamic>.from(json['selected'] as Map)),
+              Map<String, dynamic>.from(json['selected'] as Map),
+            ),
     );
 
-Map<String, dynamic> _$$NodeConfigSettingsImplToJson(
-        _$NodeConfigSettingsImpl instance) =>
+Map<String, dynamic> _$NodeConfigSettingsToJson(_NodeConfigSettings instance) =>
     <String, dynamic>{
-      'options': instance.options.toJson(
-        (value) => value.toJson(),
-      ),
+      'options': instance.options.toJson((value) => value.toJson()),
       'selected': instance.selected.toJson(),
     };
 
-_$NodeConfigImpl _$$NodeConfigImplFromJson(Map json) => _$NodeConfigImpl(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      isDns: json['isDns'] as bool? ?? false,
-      isSecure: json['isSecure'] as bool? ?? false,
-      urls: (json['urls'] as List<dynamic>).map((e) => e as String).toList(),
-      network: $enumDecode(_$KaspaNetworkEnumMap, json['network']),
-      networkSuffix: json['networkSuffix'] as String? ?? '',
-    );
+_NodeConfig _$NodeConfigFromJson(Map json) => _NodeConfig(
+  id: json['id'] as String,
+  name: json['name'] as String,
+  isDns: json['isDns'] as bool? ?? false,
+  isSecure: json['isSecure'] as bool? ?? false,
+  urls: (json['urls'] as List<dynamic>).map((e) => e as String).toList(),
+  network: $enumDecode(_$KaspaNetworkEnumMap, json['network']),
+  networkSuffix: json['networkSuffix'] as String? ?? '',
+);
 
-Map<String, dynamic> _$$NodeConfigImplToJson(_$NodeConfigImpl instance) =>
+Map<String, dynamic> _$NodeConfigToJson(_NodeConfig instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

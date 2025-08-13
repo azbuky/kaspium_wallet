@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,400 +9,268 @@ part of 'main_card_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$MainCardState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() showBalance,
-    required TResult Function() hideBalance,
-    required TResult Function() hideAll,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? showBalance,
-    TResult? Function()? hideBalance,
-    TResult? Function()? hideAll,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? showBalance,
-    TResult Function()? hideBalance,
-    TResult Function()? hideAll,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ShowBalance value) showBalance,
-    required TResult Function(_HideBalance value) hideBalance,
-    required TResult Function(_HideAll value) hideAll,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ShowBalance value)? showBalance,
-    TResult? Function(_HideBalance value)? hideBalance,
-    TResult? Function(_HideAll value)? hideAll,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ShowBalance value)? showBalance,
-    TResult Function(_HideBalance value)? hideBalance,
-    TResult Function(_HideAll value)? hideAll,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MainCardState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'MainCardState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $MainCardStateCopyWith<$Res> {
-  factory $MainCardStateCopyWith(
-          MainCardState value, $Res Function(MainCardState) then) =
-      _$MainCardStateCopyWithImpl<$Res, MainCardState>;
+class $MainCardStateCopyWith<$Res>  {
+$MainCardStateCopyWith(MainCardState _, $Res Function(MainCardState) __);
 }
 
-/// @nodoc
-class _$MainCardStateCopyWithImpl<$Res, $Val extends MainCardState>
-    implements $MainCardStateCopyWith<$Res> {
-  _$MainCardStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [MainCardState].
+extension MainCardStatePatterns on MainCardState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _ShowBalance value)?  showBalance,TResult Function( _HideBalance value)?  hideBalance,TResult Function( _HideAll value)?  hideAll,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ShowBalance() when showBalance != null:
+return showBalance(_that);case _HideBalance() when hideBalance != null:
+return hideBalance(_that);case _HideAll() when hideAll != null:
+return hideAll(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _ShowBalance value)  showBalance,required TResult Function( _HideBalance value)  hideBalance,required TResult Function( _HideAll value)  hideAll,}){
+final _that = this;
+switch (_that) {
+case _ShowBalance():
+return showBalance(_that);case _HideBalance():
+return hideBalance(_that);case _HideAll():
+return hideAll(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _ShowBalance value)?  showBalance,TResult? Function( _HideBalance value)?  hideBalance,TResult? Function( _HideAll value)?  hideAll,}){
+final _that = this;
+switch (_that) {
+case _ShowBalance() when showBalance != null:
+return showBalance(_that);case _HideBalance() when hideBalance != null:
+return hideBalance(_that);case _HideAll() when hideAll != null:
+return hideAll(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  showBalance,TResult Function()?  hideBalance,TResult Function()?  hideAll,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ShowBalance() when showBalance != null:
+return showBalance();case _HideBalance() when hideBalance != null:
+return hideBalance();case _HideAll() when hideAll != null:
+return hideAll();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  showBalance,required TResult Function()  hideBalance,required TResult Function()  hideAll,}) {final _that = this;
+switch (_that) {
+case _ShowBalance():
+return showBalance();case _HideBalance():
+return hideBalance();case _HideAll():
+return hideAll();}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  showBalance,TResult? Function()?  hideBalance,TResult? Function()?  hideAll,}) {final _that = this;
+switch (_that) {
+case _ShowBalance() when showBalance != null:
+return showBalance();case _HideBalance() when hideBalance != null:
+return hideBalance();case _HideAll() when hideAll != null:
+return hideAll();case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$ShowBalanceImplCopyWith<$Res> {
-  factory _$$ShowBalanceImplCopyWith(
-          _$ShowBalanceImpl value, $Res Function(_$ShowBalanceImpl) then) =
-      __$$ShowBalanceImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ShowBalanceImplCopyWithImpl<$Res>
-    extends _$MainCardStateCopyWithImpl<$Res, _$ShowBalanceImpl>
-    implements _$$ShowBalanceImplCopyWith<$Res> {
-  __$$ShowBalanceImplCopyWithImpl(
-      _$ShowBalanceImpl _value, $Res Function(_$ShowBalanceImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ShowBalanceImpl extends _ShowBalance {
-  const _$ShowBalanceImpl() : super._();
-
-  @override
-  String toString() {
-    return 'MainCardState.showBalance()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ShowBalanceImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() showBalance,
-    required TResult Function() hideBalance,
-    required TResult Function() hideAll,
-  }) {
-    return showBalance();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? showBalance,
-    TResult? Function()? hideBalance,
-    TResult? Function()? hideAll,
-  }) {
-    return showBalance?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? showBalance,
-    TResult Function()? hideBalance,
-    TResult Function()? hideAll,
-    required TResult orElse(),
-  }) {
-    if (showBalance != null) {
-      return showBalance();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ShowBalance value) showBalance,
-    required TResult Function(_HideBalance value) hideBalance,
-    required TResult Function(_HideAll value) hideAll,
-  }) {
-    return showBalance(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ShowBalance value)? showBalance,
-    TResult? Function(_HideBalance value)? hideBalance,
-    TResult? Function(_HideAll value)? hideAll,
-  }) {
-    return showBalance?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ShowBalance value)? showBalance,
-    TResult Function(_HideBalance value)? hideBalance,
-    TResult Function(_HideAll value)? hideAll,
-    required TResult orElse(),
-  }) {
-    if (showBalance != null) {
-      return showBalance(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ShowBalance extends MainCardState {
-  const factory _ShowBalance() = _$ShowBalanceImpl;
-  const _ShowBalance._() : super._();
-}
-
-/// @nodoc
-abstract class _$$HideBalanceImplCopyWith<$Res> {
-  factory _$$HideBalanceImplCopyWith(
-          _$HideBalanceImpl value, $Res Function(_$HideBalanceImpl) then) =
-      __$$HideBalanceImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$HideBalanceImplCopyWithImpl<$Res>
-    extends _$MainCardStateCopyWithImpl<$Res, _$HideBalanceImpl>
-    implements _$$HideBalanceImplCopyWith<$Res> {
-  __$$HideBalanceImplCopyWithImpl(
-      _$HideBalanceImpl _value, $Res Function(_$HideBalanceImpl) _then)
-      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$HideBalanceImpl extends _HideBalance {
-  const _$HideBalanceImpl() : super._();
 
-  @override
-  String toString() {
-    return 'MainCardState.hideBalance()';
-  }
+class _ShowBalance extends MainCardState {
+  const _ShowBalance(): super._();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$HideBalanceImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() showBalance,
-    required TResult Function() hideBalance,
-    required TResult Function() hideAll,
-  }) {
-    return hideBalance();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? showBalance,
-    TResult? Function()? hideBalance,
-    TResult? Function()? hideAll,
-  }) {
-    return hideBalance?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? showBalance,
-    TResult Function()? hideBalance,
-    TResult Function()? hideAll,
-    required TResult orElse(),
-  }) {
-    if (hideBalance != null) {
-      return hideBalance();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ShowBalance value) showBalance,
-    required TResult Function(_HideBalance value) hideBalance,
-    required TResult Function(_HideAll value) hideAll,
-  }) {
-    return hideBalance(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ShowBalance value)? showBalance,
-    TResult? Function(_HideBalance value)? hideBalance,
-    TResult? Function(_HideAll value)? hideAll,
-  }) {
-    return hideBalance?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ShowBalance value)? showBalance,
-    TResult Function(_HideBalance value)? hideBalance,
-    TResult Function(_HideAll value)? hideAll,
-    required TResult orElse(),
-  }) {
-    if (hideBalance != null) {
-      return hideBalance(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShowBalance);
 }
 
-abstract class _HideBalance extends MainCardState {
-  const factory _HideBalance() = _$HideBalanceImpl;
-  const _HideBalance._() : super._();
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'MainCardState.showBalance()';
 }
 
-/// @nodoc
-abstract class _$$HideAllImplCopyWith<$Res> {
-  factory _$$HideAllImplCopyWith(
-          _$HideAllImpl value, $Res Function(_$HideAllImpl) then) =
-      __$$HideAllImplCopyWithImpl<$Res>;
+
 }
 
-/// @nodoc
-class __$$HideAllImplCopyWithImpl<$Res>
-    extends _$MainCardStateCopyWithImpl<$Res, _$HideAllImpl>
-    implements _$$HideAllImplCopyWith<$Res> {
-  __$$HideAllImplCopyWithImpl(
-      _$HideAllImpl _value, $Res Function(_$HideAllImpl) _then)
-      : super(_value, _then);
-}
+
+
 
 /// @nodoc
 
-class _$HideAllImpl extends _HideAll {
-  const _$HideAllImpl() : super._();
 
-  @override
-  String toString() {
-    return 'MainCardState.hideAll()';
-  }
+class _HideBalance extends MainCardState {
+  const _HideBalance(): super._();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$HideAllImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() showBalance,
-    required TResult Function() hideBalance,
-    required TResult Function() hideAll,
-  }) {
-    return hideAll();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? showBalance,
-    TResult? Function()? hideBalance,
-    TResult? Function()? hideAll,
-  }) {
-    return hideAll?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? showBalance,
-    TResult Function()? hideBalance,
-    TResult Function()? hideAll,
-    required TResult orElse(),
-  }) {
-    if (hideAll != null) {
-      return hideAll();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ShowBalance value) showBalance,
-    required TResult Function(_HideBalance value) hideBalance,
-    required TResult Function(_HideAll value) hideAll,
-  }) {
-    return hideAll(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ShowBalance value)? showBalance,
-    TResult? Function(_HideBalance value)? hideBalance,
-    TResult? Function(_HideAll value)? hideAll,
-  }) {
-    return hideAll?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ShowBalance value)? showBalance,
-    TResult Function(_HideBalance value)? hideBalance,
-    TResult Function(_HideAll value)? hideAll,
-    required TResult orElse(),
-  }) {
-    if (hideAll != null) {
-      return hideAll(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HideBalance);
 }
 
-abstract class _HideAll extends MainCardState {
-  const factory _HideAll() = _$HideAllImpl;
-  const _HideAll._() : super._();
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'MainCardState.hideBalance()';
 }
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _HideAll extends MainCardState {
+  const _HideAll(): super._();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HideAll);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'MainCardState.hideAll()';
+}
+
+
+}
+
+
+
+
+// dart format on

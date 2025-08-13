@@ -13,7 +13,7 @@ const kLabelKey = 'label';
 const kMessageKey = 'message';
 
 @freezed
-class KaspaUriParam with _$KaspaUriParam {
+sealed class KaspaUriParam with _$KaspaUriParam {
   const KaspaUriParam._();
   const factory KaspaUriParam({
     required String key,
@@ -24,7 +24,7 @@ class KaspaUriParam with _$KaspaUriParam {
 }
 
 @freezed
-class KaspaUri with _$KaspaUri {
+sealed class KaspaUri with _$KaspaUri {
   const KaspaUri._();
   const factory KaspaUri({
     required Address address,

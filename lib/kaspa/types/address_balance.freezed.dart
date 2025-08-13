@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,164 +9,266 @@ part of 'address_balance.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-AddressBalance _$AddressBalanceFromJson(Map<String, dynamic> json) {
-  return _AddressBalance.fromJson(json);
-}
 
 /// @nodoc
 mixin _$AddressBalance {
-  String get address => throw _privateConstructorUsedError;
-  BigInt get balance => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $AddressBalanceCopyWith<AddressBalance> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get address; BigInt get balance;
+/// Create a copy of AddressBalance
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AddressBalanceCopyWith<AddressBalance> get copyWith => _$AddressBalanceCopyWithImpl<AddressBalance>(this as AddressBalance, _$identity);
+
+  /// Serializes this AddressBalance to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddressBalance&&(identical(other.address, address) || other.address == address)&&(identical(other.balance, balance) || other.balance == balance));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,address,balance);
+
+@override
+String toString() {
+  return 'AddressBalance(address: $address, balance: $balance)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $AddressBalanceCopyWith<$Res> {
-  factory $AddressBalanceCopyWith(
-          AddressBalance value, $Res Function(AddressBalance) then) =
-      _$AddressBalanceCopyWithImpl<$Res, AddressBalance>;
-  @useResult
-  $Res call({String address, BigInt balance});
-}
+abstract mixin class $AddressBalanceCopyWith<$Res>  {
+  factory $AddressBalanceCopyWith(AddressBalance value, $Res Function(AddressBalance) _then) = _$AddressBalanceCopyWithImpl;
+@useResult
+$Res call({
+ String address, BigInt balance
+});
 
+
+
+
+}
 /// @nodoc
-class _$AddressBalanceCopyWithImpl<$Res, $Val extends AddressBalance>
+class _$AddressBalanceCopyWithImpl<$Res>
     implements $AddressBalanceCopyWith<$Res> {
-  _$AddressBalanceCopyWithImpl(this._value, this._then);
+  _$AddressBalanceCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final AddressBalance _self;
+  final $Res Function(AddressBalance) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? address = null,
-    Object? balance = null,
-  }) {
-    return _then(_value.copyWith(
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      balance: null == balance
-          ? _value.balance
-          : balance // ignore: cast_nullable_to_non_nullable
-              as BigInt,
-    ) as $Val);
-  }
+/// Create a copy of AddressBalance
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? address = null,Object? balance = null,}) {
+  return _then(_self.copyWith(
+address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String,balance: null == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
+as BigInt,
+  ));
 }
 
-/// @nodoc
-abstract class _$$AddressBalanceImplCopyWith<$Res>
-    implements $AddressBalanceCopyWith<$Res> {
-  factory _$$AddressBalanceImplCopyWith(_$AddressBalanceImpl value,
-          $Res Function(_$AddressBalanceImpl) then) =
-      __$$AddressBalanceImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String address, BigInt balance});
 }
 
-/// @nodoc
-class __$$AddressBalanceImplCopyWithImpl<$Res>
-    extends _$AddressBalanceCopyWithImpl<$Res, _$AddressBalanceImpl>
-    implements _$$AddressBalanceImplCopyWith<$Res> {
-  __$$AddressBalanceImplCopyWithImpl(
-      _$AddressBalanceImpl _value, $Res Function(_$AddressBalanceImpl) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? address = null,
-    Object? balance = null,
-  }) {
-    return _then(_$AddressBalanceImpl(
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      balance: null == balance
-          ? _value.balance
-          : balance // ignore: cast_nullable_to_non_nullable
-              as BigInt,
-    ));
-  }
+/// Adds pattern-matching-related methods to [AddressBalance].
+extension AddressBalancePatterns on AddressBalance {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AddressBalance value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _AddressBalance() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AddressBalance value)  $default,){
+final _that = this;
+switch (_that) {
+case _AddressBalance():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AddressBalance value)?  $default,){
+final _that = this;
+switch (_that) {
+case _AddressBalance() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String address,  BigInt balance)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _AddressBalance() when $default != null:
+return $default(_that.address,_that.balance);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String address,  BigInt balance)  $default,) {final _that = this;
+switch (_that) {
+case _AddressBalance():
+return $default(_that.address,_that.balance);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String address,  BigInt balance)?  $default,) {final _that = this;
+switch (_that) {
+case _AddressBalance() when $default != null:
+return $default(_that.address,_that.balance);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AddressBalanceImpl extends _AddressBalance {
-  const _$AddressBalanceImpl({required this.address, required this.balance})
-      : super._();
 
-  factory _$AddressBalanceImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AddressBalanceImplFromJson(json);
+class _AddressBalance extends AddressBalance {
+  const _AddressBalance({required this.address, required this.balance}): super._();
+  factory _AddressBalance.fromJson(Map<String, dynamic> json) => _$AddressBalanceFromJson(json);
 
-  @override
-  final String address;
-  @override
-  final BigInt balance;
+@override final  String address;
+@override final  BigInt balance;
 
-  @override
-  String toString() {
-    return 'AddressBalance(address: $address, balance: $balance)';
-  }
+/// Create a copy of AddressBalance
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AddressBalanceCopyWith<_AddressBalance> get copyWith => __$AddressBalanceCopyWithImpl<_AddressBalance>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddressBalanceImpl &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.balance, balance) || other.balance == balance));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, address, balance);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddressBalanceImplCopyWith<_$AddressBalanceImpl> get copyWith =>
-      __$$AddressBalanceImplCopyWithImpl<_$AddressBalanceImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AddressBalanceImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$AddressBalanceToJson(this, );
 }
 
-abstract class _AddressBalance extends AddressBalance {
-  const factory _AddressBalance(
-      {required final String address,
-      required final BigInt balance}) = _$AddressBalanceImpl;
-  const _AddressBalance._() : super._();
-
-  factory _AddressBalance.fromJson(Map<String, dynamic> json) =
-      _$AddressBalanceImpl.fromJson;
-
-  @override
-  String get address;
-  @override
-  BigInt get balance;
-  @override
-  @JsonKey(ignore: true)
-  _$$AddressBalanceImplCopyWith<_$AddressBalanceImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddressBalance&&(identical(other.address, address) || other.address == address)&&(identical(other.balance, balance) || other.balance == balance));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,address,balance);
+
+@override
+String toString() {
+  return 'AddressBalance(address: $address, balance: $balance)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$AddressBalanceCopyWith<$Res> implements $AddressBalanceCopyWith<$Res> {
+  factory _$AddressBalanceCopyWith(_AddressBalance value, $Res Function(_AddressBalance) _then) = __$AddressBalanceCopyWithImpl;
+@override @useResult
+$Res call({
+ String address, BigInt balance
+});
+
+
+
+
+}
+/// @nodoc
+class __$AddressBalanceCopyWithImpl<$Res>
+    implements _$AddressBalanceCopyWith<$Res> {
+  __$AddressBalanceCopyWithImpl(this._self, this._then);
+
+  final _AddressBalance _self;
+  final $Res Function(_AddressBalance) _then;
+
+/// Create a copy of AddressBalance
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? address = null,Object? balance = null,}) {
+  return _then(_AddressBalance(
+address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String,balance: null == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
+as BigInt,
+  ));
+}
+
+
+}
+
+// dart format on

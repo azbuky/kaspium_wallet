@@ -6,16 +6,15 @@ part of 'wallet_address.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WalletAddressImpl _$$WalletAddressImplFromJson(Map json) =>
-    _$WalletAddressImpl(
-      index: json['index'] as int,
-      type: $enumDecode(_$AddressTypeEnumMap, json['type']),
-      name: json['name'] as String,
-      address: Address.fromJson(json['address'] as String),
-      used: json['used'] as bool? ?? true,
-    );
+_WalletAddress _$WalletAddressFromJson(Map json) => _WalletAddress(
+  index: (json['index'] as num).toInt(),
+  type: $enumDecode(_$AddressTypeEnumMap, json['type']),
+  name: json['name'] as String,
+  address: Address.fromJson(json['address'] as String),
+  used: json['used'] as bool? ?? true,
+);
 
-Map<String, dynamic> _$$WalletAddressImplToJson(_$WalletAddressImpl instance) =>
+Map<String, dynamic> _$WalletAddressToJson(_WalletAddress instance) =>
     <String, dynamic>{
       'index': instance.index,
       'type': _$AddressTypeEnumMap[instance.type]!,
@@ -24,7 +23,4 @@ Map<String, dynamic> _$$WalletAddressImplToJson(_$WalletAddressImpl instance) =>
       'used': instance.used,
     };
 
-const _$AddressTypeEnumMap = {
-  AddressType.receive: 0,
-  AddressType.change: 1,
-};
+const _$AddressTypeEnumMap = {AddressType.receive: 0, AddressType.change: 1};

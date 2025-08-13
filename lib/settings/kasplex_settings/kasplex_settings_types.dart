@@ -10,7 +10,7 @@ const kKasplexApiUrlTestnet10 = 'https://tn10api.kasplex.org/v1';
 const kKasplexApiUrlTestnet11 = 'https://tn11api.kasplex.org/v1';
 
 @freezed
-class KasplexSettings with _$KasplexSettings {
+sealed class KasplexSettings with _$KasplexSettings {
   const KasplexSettings._();
 
   const factory KasplexSettings({

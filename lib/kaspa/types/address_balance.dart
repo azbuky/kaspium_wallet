@@ -7,7 +7,7 @@ part 'address_balance.freezed.dart';
 part 'address_balance.g.dart';
 
 @freezed
-class AddressBalance with _$AddressBalance {
+sealed class AddressBalance with _$AddressBalance {
   const AddressBalance._();
   const factory AddressBalance({
     required String address,
@@ -24,7 +24,7 @@ class AddressBalance with _$AddressBalance {
       );
 
   RpcBalancesByAddressesEntry toRpc() => RpcBalancesByAddressesEntry(
-        address: address,
-        balance: balance.toInt64(),
-      );
+    address: address,
+    balance: balance.toInt64(),
+  );
 }

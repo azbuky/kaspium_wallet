@@ -11,11 +11,11 @@ enum AddressType {
   @JsonValue(0)
   receive,
   @JsonValue(1)
-  change;
+  change,
 }
 
 @freezed
-class WalletAddress with _$WalletAddress {
+sealed class WalletAddress with _$WalletAddress {
   const WalletAddress._();
 
   const factory WalletAddress({

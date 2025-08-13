@@ -8,7 +8,7 @@ part 'block_explorers.g.dart';
 const kParamPattern = '{0}';
 
 @freezed
-class BlockExplorer with _$BlockExplorer {
+sealed class BlockExplorer with _$BlockExplorer {
   const BlockExplorer._();
   const factory BlockExplorer({
     required KaspaNetwork network,

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,513 +9,544 @@ part of 'tx_report_options.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$TxReportOptions {
-  bool get ignoreCompoundTxs => throw _privateConstructorUsedError;
-  bool get ignoreInternalTxs => throw _privateConstructorUsedError;
-  bool get refreshTxs => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $TxReportOptionsCopyWith<TxReportOptions> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get ignoreCompoundTxs; bool get ignoreInternalTxs; bool get refreshTxs;
+/// Create a copy of TxReportOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TxReportOptionsCopyWith<TxReportOptions> get copyWith => _$TxReportOptionsCopyWithImpl<TxReportOptions>(this as TxReportOptions, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TxReportOptions&&(identical(other.ignoreCompoundTxs, ignoreCompoundTxs) || other.ignoreCompoundTxs == ignoreCompoundTxs)&&(identical(other.ignoreInternalTxs, ignoreInternalTxs) || other.ignoreInternalTxs == ignoreInternalTxs)&&(identical(other.refreshTxs, refreshTxs) || other.refreshTxs == refreshTxs));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,ignoreCompoundTxs,ignoreInternalTxs,refreshTxs);
+
+@override
+String toString() {
+  return 'TxReportOptions(ignoreCompoundTxs: $ignoreCompoundTxs, ignoreInternalTxs: $ignoreInternalTxs, refreshTxs: $refreshTxs)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $TxReportOptionsCopyWith<$Res> {
-  factory $TxReportOptionsCopyWith(
-          TxReportOptions value, $Res Function(TxReportOptions) then) =
-      _$TxReportOptionsCopyWithImpl<$Res, TxReportOptions>;
-  @useResult
-  $Res call({bool ignoreCompoundTxs, bool ignoreInternalTxs, bool refreshTxs});
-}
+abstract mixin class $TxReportOptionsCopyWith<$Res>  {
+  factory $TxReportOptionsCopyWith(TxReportOptions value, $Res Function(TxReportOptions) _then) = _$TxReportOptionsCopyWithImpl;
+@useResult
+$Res call({
+ bool ignoreCompoundTxs, bool ignoreInternalTxs, bool refreshTxs
+});
 
+
+
+
+}
 /// @nodoc
-class _$TxReportOptionsCopyWithImpl<$Res, $Val extends TxReportOptions>
+class _$TxReportOptionsCopyWithImpl<$Res>
     implements $TxReportOptionsCopyWith<$Res> {
-  _$TxReportOptionsCopyWithImpl(this._value, this._then);
+  _$TxReportOptionsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TxReportOptions _self;
+  final $Res Function(TxReportOptions) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? ignoreCompoundTxs = null,
-    Object? ignoreInternalTxs = null,
-    Object? refreshTxs = null,
-  }) {
-    return _then(_value.copyWith(
-      ignoreCompoundTxs: null == ignoreCompoundTxs
-          ? _value.ignoreCompoundTxs
-          : ignoreCompoundTxs // ignore: cast_nullable_to_non_nullable
-              as bool,
-      ignoreInternalTxs: null == ignoreInternalTxs
-          ? _value.ignoreInternalTxs
-          : ignoreInternalTxs // ignore: cast_nullable_to_non_nullable
-              as bool,
-      refreshTxs: null == refreshTxs
-          ? _value.refreshTxs
-          : refreshTxs // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
+/// Create a copy of TxReportOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? ignoreCompoundTxs = null,Object? ignoreInternalTxs = null,Object? refreshTxs = null,}) {
+  return _then(_self.copyWith(
+ignoreCompoundTxs: null == ignoreCompoundTxs ? _self.ignoreCompoundTxs : ignoreCompoundTxs // ignore: cast_nullable_to_non_nullable
+as bool,ignoreInternalTxs: null == ignoreInternalTxs ? _self.ignoreInternalTxs : ignoreInternalTxs // ignore: cast_nullable_to_non_nullable
+as bool,refreshTxs: null == refreshTxs ? _self.refreshTxs : refreshTxs // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [TxReportOptions].
+extension TxReportOptionsPatterns on TxReportOptions {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TxReportOptions value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TxReportOptions() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TxReportOptions value)  $default,){
+final _that = this;
+switch (_that) {
+case _TxReportOptions():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TxReportOptions value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TxReportOptions() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool ignoreCompoundTxs,  bool ignoreInternalTxs,  bool refreshTxs)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TxReportOptions() when $default != null:
+return $default(_that.ignoreCompoundTxs,_that.ignoreInternalTxs,_that.refreshTxs);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool ignoreCompoundTxs,  bool ignoreInternalTxs,  bool refreshTxs)  $default,) {final _that = this;
+switch (_that) {
+case _TxReportOptions():
+return $default(_that.ignoreCompoundTxs,_that.ignoreInternalTxs,_that.refreshTxs);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool ignoreCompoundTxs,  bool ignoreInternalTxs,  bool refreshTxs)?  $default,) {final _that = this;
+switch (_that) {
+case _TxReportOptions() when $default != null:
+return $default(_that.ignoreCompoundTxs,_that.ignoreInternalTxs,_that.refreshTxs);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$TxReportOptionsImplCopyWith<$Res>
-    implements $TxReportOptionsCopyWith<$Res> {
-  factory _$$TxReportOptionsImplCopyWith(_$TxReportOptionsImpl value,
-          $Res Function(_$TxReportOptionsImpl) then) =
-      __$$TxReportOptionsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool ignoreCompoundTxs, bool ignoreInternalTxs, bool refreshTxs});
+
+
+class _TxReportOptions implements TxReportOptions {
+  const _TxReportOptions({this.ignoreCompoundTxs = false, this.ignoreInternalTxs = false, this.refreshTxs = false});
+  
+
+@override@JsonKey() final  bool ignoreCompoundTxs;
+@override@JsonKey() final  bool ignoreInternalTxs;
+@override@JsonKey() final  bool refreshTxs;
+
+/// Create a copy of TxReportOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TxReportOptionsCopyWith<_TxReportOptions> get copyWith => __$TxReportOptionsCopyWithImpl<_TxReportOptions>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TxReportOptions&&(identical(other.ignoreCompoundTxs, ignoreCompoundTxs) || other.ignoreCompoundTxs == ignoreCompoundTxs)&&(identical(other.ignoreInternalTxs, ignoreInternalTxs) || other.ignoreInternalTxs == ignoreInternalTxs)&&(identical(other.refreshTxs, refreshTxs) || other.refreshTxs == refreshTxs));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,ignoreCompoundTxs,ignoreInternalTxs,refreshTxs);
+
+@override
+String toString() {
+  return 'TxReportOptions(ignoreCompoundTxs: $ignoreCompoundTxs, ignoreInternalTxs: $ignoreInternalTxs, refreshTxs: $refreshTxs)';
+}
+
+
 }
 
 /// @nodoc
-class __$$TxReportOptionsImplCopyWithImpl<$Res>
-    extends _$TxReportOptionsCopyWithImpl<$Res, _$TxReportOptionsImpl>
-    implements _$$TxReportOptionsImplCopyWith<$Res> {
-  __$$TxReportOptionsImplCopyWithImpl(
-      _$TxReportOptionsImpl _value, $Res Function(_$TxReportOptionsImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$TxReportOptionsCopyWith<$Res> implements $TxReportOptionsCopyWith<$Res> {
+  factory _$TxReportOptionsCopyWith(_TxReportOptions value, $Res Function(_TxReportOptions) _then) = __$TxReportOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ bool ignoreCompoundTxs, bool ignoreInternalTxs, bool refreshTxs
+});
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? ignoreCompoundTxs = null,
-    Object? ignoreInternalTxs = null,
-    Object? refreshTxs = null,
-  }) {
-    return _then(_$TxReportOptionsImpl(
-      ignoreCompoundTxs: null == ignoreCompoundTxs
-          ? _value.ignoreCompoundTxs
-          : ignoreCompoundTxs // ignore: cast_nullable_to_non_nullable
-              as bool,
-      ignoreInternalTxs: null == ignoreInternalTxs
-          ? _value.ignoreInternalTxs
-          : ignoreInternalTxs // ignore: cast_nullable_to_non_nullable
-              as bool,
-      refreshTxs: null == refreshTxs
-          ? _value.refreshTxs
-          : refreshTxs // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$TxReportOptionsCopyWithImpl<$Res>
+    implements _$TxReportOptionsCopyWith<$Res> {
+  __$TxReportOptionsCopyWithImpl(this._self, this._then);
 
-class _$TxReportOptionsImpl implements _TxReportOptions {
-  const _$TxReportOptionsImpl(
-      {this.ignoreCompoundTxs = false,
-      this.ignoreInternalTxs = false,
-      this.refreshTxs = false});
+  final _TxReportOptions _self;
+  final $Res Function(_TxReportOptions) _then;
 
-  @override
-  @JsonKey()
-  final bool ignoreCompoundTxs;
-  @override
-  @JsonKey()
-  final bool ignoreInternalTxs;
-  @override
-  @JsonKey()
-  final bool refreshTxs;
-
-  @override
-  String toString() {
-    return 'TxReportOptions(ignoreCompoundTxs: $ignoreCompoundTxs, ignoreInternalTxs: $ignoreInternalTxs, refreshTxs: $refreshTxs)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TxReportOptionsImpl &&
-            (identical(other.ignoreCompoundTxs, ignoreCompoundTxs) ||
-                other.ignoreCompoundTxs == ignoreCompoundTxs) &&
-            (identical(other.ignoreInternalTxs, ignoreInternalTxs) ||
-                other.ignoreInternalTxs == ignoreInternalTxs) &&
-            (identical(other.refreshTxs, refreshTxs) ||
-                other.refreshTxs == refreshTxs));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, ignoreCompoundTxs, ignoreInternalTxs, refreshTxs);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TxReportOptionsImplCopyWith<_$TxReportOptionsImpl> get copyWith =>
-      __$$TxReportOptionsImplCopyWithImpl<_$TxReportOptionsImpl>(
-          this, _$identity);
+/// Create a copy of TxReportOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? ignoreCompoundTxs = null,Object? ignoreInternalTxs = null,Object? refreshTxs = null,}) {
+  return _then(_TxReportOptions(
+ignoreCompoundTxs: null == ignoreCompoundTxs ? _self.ignoreCompoundTxs : ignoreCompoundTxs // ignore: cast_nullable_to_non_nullable
+as bool,ignoreInternalTxs: null == ignoreInternalTxs ? _self.ignoreInternalTxs : ignoreInternalTxs // ignore: cast_nullable_to_non_nullable
+as bool,refreshTxs: null == refreshTxs ? _self.refreshTxs : refreshTxs // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-abstract class _TxReportOptions implements TxReportOptions {
-  const factory _TxReportOptions(
-      {final bool ignoreCompoundTxs,
-      final bool ignoreInternalTxs,
-      final bool refreshTxs}) = _$TxReportOptionsImpl;
 
-  @override
-  bool get ignoreCompoundTxs;
-  @override
-  bool get ignoreInternalTxs;
-  @override
-  bool get refreshTxs;
-  @override
-  @JsonKey(ignore: true)
-  _$$TxReportOptionsImplCopyWith<_$TxReportOptionsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$TxReportItem {
-  int get timestamp => throw _privateConstructorUsedError;
-  bool get isCompound => throw _privateConstructorUsedError;
-  bool get isSendToSelf => throw _privateConstructorUsedError;
-  String get sendAmount => throw _privateConstructorUsedError;
-  String get receiveAmount => throw _privateConstructorUsedError;
-  String get fee => throw _privateConstructorUsedError;
-  String get label => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  String get txHash => throw _privateConstructorUsedError;
-  String get toAddress => throw _privateConstructorUsedError;
-  String get note => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $TxReportItemCopyWith<TxReportItem> get copyWith =>
-      throw _privateConstructorUsedError;
+ int get timestamp; bool get isCompound; bool get isSendToSelf; String get sendAmount; String get receiveAmount; String get fee; String get label; String get description; String get txHash; String get toAddress; String get note;
+/// Create a copy of TxReportItem
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TxReportItemCopyWith<TxReportItem> get copyWith => _$TxReportItemCopyWithImpl<TxReportItem>(this as TxReportItem, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TxReportItem&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.isCompound, isCompound) || other.isCompound == isCompound)&&(identical(other.isSendToSelf, isSendToSelf) || other.isSendToSelf == isSendToSelf)&&(identical(other.sendAmount, sendAmount) || other.sendAmount == sendAmount)&&(identical(other.receiveAmount, receiveAmount) || other.receiveAmount == receiveAmount)&&(identical(other.fee, fee) || other.fee == fee)&&(identical(other.label, label) || other.label == label)&&(identical(other.description, description) || other.description == description)&&(identical(other.txHash, txHash) || other.txHash == txHash)&&(identical(other.toAddress, toAddress) || other.toAddress == toAddress)&&(identical(other.note, note) || other.note == note));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,timestamp,isCompound,isSendToSelf,sendAmount,receiveAmount,fee,label,description,txHash,toAddress,note);
+
+@override
+String toString() {
+  return 'TxReportItem(timestamp: $timestamp, isCompound: $isCompound, isSendToSelf: $isSendToSelf, sendAmount: $sendAmount, receiveAmount: $receiveAmount, fee: $fee, label: $label, description: $description, txHash: $txHash, toAddress: $toAddress, note: $note)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $TxReportItemCopyWith<$Res> {
-  factory $TxReportItemCopyWith(
-          TxReportItem value, $Res Function(TxReportItem) then) =
-      _$TxReportItemCopyWithImpl<$Res, TxReportItem>;
-  @useResult
-  $Res call(
-      {int timestamp,
-      bool isCompound,
-      bool isSendToSelf,
-      String sendAmount,
-      String receiveAmount,
-      String fee,
-      String label,
-      String description,
-      String txHash,
-      String toAddress,
-      String note});
-}
+abstract mixin class $TxReportItemCopyWith<$Res>  {
+  factory $TxReportItemCopyWith(TxReportItem value, $Res Function(TxReportItem) _then) = _$TxReportItemCopyWithImpl;
+@useResult
+$Res call({
+ int timestamp, bool isCompound, bool isSendToSelf, String sendAmount, String receiveAmount, String fee, String label, String description, String txHash, String toAddress, String note
+});
 
+
+
+
+}
 /// @nodoc
-class _$TxReportItemCopyWithImpl<$Res, $Val extends TxReportItem>
+class _$TxReportItemCopyWithImpl<$Res>
     implements $TxReportItemCopyWith<$Res> {
-  _$TxReportItemCopyWithImpl(this._value, this._then);
+  _$TxReportItemCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TxReportItem _self;
+  final $Res Function(TxReportItem) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? timestamp = null,
-    Object? isCompound = null,
-    Object? isSendToSelf = null,
-    Object? sendAmount = null,
-    Object? receiveAmount = null,
-    Object? fee = null,
-    Object? label = null,
-    Object? description = null,
-    Object? txHash = null,
-    Object? toAddress = null,
-    Object? note = null,
-  }) {
-    return _then(_value.copyWith(
-      timestamp: null == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as int,
-      isCompound: null == isCompound
-          ? _value.isCompound
-          : isCompound // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSendToSelf: null == isSendToSelf
-          ? _value.isSendToSelf
-          : isSendToSelf // ignore: cast_nullable_to_non_nullable
-              as bool,
-      sendAmount: null == sendAmount
-          ? _value.sendAmount
-          : sendAmount // ignore: cast_nullable_to_non_nullable
-              as String,
-      receiveAmount: null == receiveAmount
-          ? _value.receiveAmount
-          : receiveAmount // ignore: cast_nullable_to_non_nullable
-              as String,
-      fee: null == fee
-          ? _value.fee
-          : fee // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      txHash: null == txHash
-          ? _value.txHash
-          : txHash // ignore: cast_nullable_to_non_nullable
-              as String,
-      toAddress: null == toAddress
-          ? _value.toAddress
-          : toAddress // ignore: cast_nullable_to_non_nullable
-              as String,
-      note: null == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of TxReportItem
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? timestamp = null,Object? isCompound = null,Object? isSendToSelf = null,Object? sendAmount = null,Object? receiveAmount = null,Object? fee = null,Object? label = null,Object? description = null,Object? txHash = null,Object? toAddress = null,Object? note = null,}) {
+  return _then(_self.copyWith(
+timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as int,isCompound: null == isCompound ? _self.isCompound : isCompound // ignore: cast_nullable_to_non_nullable
+as bool,isSendToSelf: null == isSendToSelf ? _self.isSendToSelf : isSendToSelf // ignore: cast_nullable_to_non_nullable
+as bool,sendAmount: null == sendAmount ? _self.sendAmount : sendAmount // ignore: cast_nullable_to_non_nullable
+as String,receiveAmount: null == receiveAmount ? _self.receiveAmount : receiveAmount // ignore: cast_nullable_to_non_nullable
+as String,fee: null == fee ? _self.fee : fee // ignore: cast_nullable_to_non_nullable
+as String,label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,txHash: null == txHash ? _self.txHash : txHash // ignore: cast_nullable_to_non_nullable
+as String,toAddress: null == toAddress ? _self.toAddress : toAddress // ignore: cast_nullable_to_non_nullable
+as String,note: null == note ? _self.note : note // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$TxReportItemImplCopyWith<$Res>
-    implements $TxReportItemCopyWith<$Res> {
-  factory _$$TxReportItemImplCopyWith(
-          _$TxReportItemImpl value, $Res Function(_$TxReportItemImpl) then) =
-      __$$TxReportItemImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int timestamp,
-      bool isCompound,
-      bool isSendToSelf,
-      String sendAmount,
-      String receiveAmount,
-      String fee,
-      String label,
-      String description,
-      String txHash,
-      String toAddress,
-      String note});
 }
 
-/// @nodoc
-class __$$TxReportItemImplCopyWithImpl<$Res>
-    extends _$TxReportItemCopyWithImpl<$Res, _$TxReportItemImpl>
-    implements _$$TxReportItemImplCopyWith<$Res> {
-  __$$TxReportItemImplCopyWithImpl(
-      _$TxReportItemImpl _value, $Res Function(_$TxReportItemImpl) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? timestamp = null,
-    Object? isCompound = null,
-    Object? isSendToSelf = null,
-    Object? sendAmount = null,
-    Object? receiveAmount = null,
-    Object? fee = null,
-    Object? label = null,
-    Object? description = null,
-    Object? txHash = null,
-    Object? toAddress = null,
-    Object? note = null,
-  }) {
-    return _then(_$TxReportItemImpl(
-      timestamp: null == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as int,
-      isCompound: null == isCompound
-          ? _value.isCompound
-          : isCompound // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSendToSelf: null == isSendToSelf
-          ? _value.isSendToSelf
-          : isSendToSelf // ignore: cast_nullable_to_non_nullable
-              as bool,
-      sendAmount: null == sendAmount
-          ? _value.sendAmount
-          : sendAmount // ignore: cast_nullable_to_non_nullable
-              as String,
-      receiveAmount: null == receiveAmount
-          ? _value.receiveAmount
-          : receiveAmount // ignore: cast_nullable_to_non_nullable
-              as String,
-      fee: null == fee
-          ? _value.fee
-          : fee // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      txHash: null == txHash
-          ? _value.txHash
-          : txHash // ignore: cast_nullable_to_non_nullable
-              as String,
-      toAddress: null == toAddress
-          ? _value.toAddress
-          : toAddress // ignore: cast_nullable_to_non_nullable
-              as String,
-      note: null == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [TxReportItem].
+extension TxReportItemPatterns on TxReportItem {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TxReportItem value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TxReportItem() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TxReportItem value)  $default,){
+final _that = this;
+switch (_that) {
+case _TxReportItem():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TxReportItem value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TxReportItem() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int timestamp,  bool isCompound,  bool isSendToSelf,  String sendAmount,  String receiveAmount,  String fee,  String label,  String description,  String txHash,  String toAddress,  String note)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TxReportItem() when $default != null:
+return $default(_that.timestamp,_that.isCompound,_that.isSendToSelf,_that.sendAmount,_that.receiveAmount,_that.fee,_that.label,_that.description,_that.txHash,_that.toAddress,_that.note);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int timestamp,  bool isCompound,  bool isSendToSelf,  String sendAmount,  String receiveAmount,  String fee,  String label,  String description,  String txHash,  String toAddress,  String note)  $default,) {final _that = this;
+switch (_that) {
+case _TxReportItem():
+return $default(_that.timestamp,_that.isCompound,_that.isSendToSelf,_that.sendAmount,_that.receiveAmount,_that.fee,_that.label,_that.description,_that.txHash,_that.toAddress,_that.note);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int timestamp,  bool isCompound,  bool isSendToSelf,  String sendAmount,  String receiveAmount,  String fee,  String label,  String description,  String txHash,  String toAddress,  String note)?  $default,) {final _that = this;
+switch (_that) {
+case _TxReportItem() when $default != null:
+return $default(_that.timestamp,_that.isCompound,_that.isSendToSelf,_that.sendAmount,_that.receiveAmount,_that.fee,_that.label,_that.description,_that.txHash,_that.toAddress,_that.note);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 
-class _$TxReportItemImpl implements _TxReportItem {
-  const _$TxReportItemImpl(
-      {required this.timestamp,
-      required this.isCompound,
-      required this.isSendToSelf,
-      required this.sendAmount,
-      required this.receiveAmount,
-      required this.fee,
-      this.label = '',
-      this.description = '',
-      required this.txHash,
-      required this.toAddress,
-      this.note = ''});
 
-  @override
-  final int timestamp;
-  @override
-  final bool isCompound;
-  @override
-  final bool isSendToSelf;
-  @override
-  final String sendAmount;
-  @override
-  final String receiveAmount;
-  @override
-  final String fee;
-  @override
-  @JsonKey()
-  final String label;
-  @override
-  @JsonKey()
-  final String description;
-  @override
-  final String txHash;
-  @override
-  final String toAddress;
-  @override
-  @JsonKey()
-  final String note;
+class _TxReportItem implements TxReportItem {
+  const _TxReportItem({required this.timestamp, required this.isCompound, required this.isSendToSelf, required this.sendAmount, required this.receiveAmount, required this.fee, this.label = '', this.description = '', required this.txHash, required this.toAddress, this.note = ''});
+  
 
-  @override
-  String toString() {
-    return 'TxReportItem(timestamp: $timestamp, isCompound: $isCompound, isSendToSelf: $isSendToSelf, sendAmount: $sendAmount, receiveAmount: $receiveAmount, fee: $fee, label: $label, description: $description, txHash: $txHash, toAddress: $toAddress, note: $note)';
-  }
+@override final  int timestamp;
+@override final  bool isCompound;
+@override final  bool isSendToSelf;
+@override final  String sendAmount;
+@override final  String receiveAmount;
+@override final  String fee;
+@override@JsonKey() final  String label;
+@override@JsonKey() final  String description;
+@override final  String txHash;
+@override final  String toAddress;
+@override@JsonKey() final  String note;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TxReportItemImpl &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp) &&
-            (identical(other.isCompound, isCompound) ||
-                other.isCompound == isCompound) &&
-            (identical(other.isSendToSelf, isSendToSelf) ||
-                other.isSendToSelf == isSendToSelf) &&
-            (identical(other.sendAmount, sendAmount) ||
-                other.sendAmount == sendAmount) &&
-            (identical(other.receiveAmount, receiveAmount) ||
-                other.receiveAmount == receiveAmount) &&
-            (identical(other.fee, fee) || other.fee == fee) &&
-            (identical(other.label, label) || other.label == label) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.txHash, txHash) || other.txHash == txHash) &&
-            (identical(other.toAddress, toAddress) ||
-                other.toAddress == toAddress) &&
-            (identical(other.note, note) || other.note == note));
-  }
+/// Create a copy of TxReportItem
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TxReportItemCopyWith<_TxReportItem> get copyWith => __$TxReportItemCopyWithImpl<_TxReportItem>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      timestamp,
-      isCompound,
-      isSendToSelf,
-      sendAmount,
-      receiveAmount,
-      fee,
-      label,
-      description,
-      txHash,
-      toAddress,
-      note);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TxReportItemImplCopyWith<_$TxReportItemImpl> get copyWith =>
-      __$$TxReportItemImplCopyWithImpl<_$TxReportItemImpl>(this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TxReportItem&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.isCompound, isCompound) || other.isCompound == isCompound)&&(identical(other.isSendToSelf, isSendToSelf) || other.isSendToSelf == isSendToSelf)&&(identical(other.sendAmount, sendAmount) || other.sendAmount == sendAmount)&&(identical(other.receiveAmount, receiveAmount) || other.receiveAmount == receiveAmount)&&(identical(other.fee, fee) || other.fee == fee)&&(identical(other.label, label) || other.label == label)&&(identical(other.description, description) || other.description == description)&&(identical(other.txHash, txHash) || other.txHash == txHash)&&(identical(other.toAddress, toAddress) || other.toAddress == toAddress)&&(identical(other.note, note) || other.note == note));
 }
 
-abstract class _TxReportItem implements TxReportItem {
-  const factory _TxReportItem(
-      {required final int timestamp,
-      required final bool isCompound,
-      required final bool isSendToSelf,
-      required final String sendAmount,
-      required final String receiveAmount,
-      required final String fee,
-      final String label,
-      final String description,
-      required final String txHash,
-      required final String toAddress,
-      final String note}) = _$TxReportItemImpl;
 
-  @override
-  int get timestamp;
-  @override
-  bool get isCompound;
-  @override
-  bool get isSendToSelf;
-  @override
-  String get sendAmount;
-  @override
-  String get receiveAmount;
-  @override
-  String get fee;
-  @override
-  String get label;
-  @override
-  String get description;
-  @override
-  String get txHash;
-  @override
-  String get toAddress;
-  @override
-  String get note;
-  @override
-  @JsonKey(ignore: true)
-  _$$TxReportItemImplCopyWith<_$TxReportItemImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+int get hashCode => Object.hash(runtimeType,timestamp,isCompound,isSendToSelf,sendAmount,receiveAmount,fee,label,description,txHash,toAddress,note);
+
+@override
+String toString() {
+  return 'TxReportItem(timestamp: $timestamp, isCompound: $isCompound, isSendToSelf: $isSendToSelf, sendAmount: $sendAmount, receiveAmount: $receiveAmount, fee: $fee, label: $label, description: $description, txHash: $txHash, toAddress: $toAddress, note: $note)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TxReportItemCopyWith<$Res> implements $TxReportItemCopyWith<$Res> {
+  factory _$TxReportItemCopyWith(_TxReportItem value, $Res Function(_TxReportItem) _then) = __$TxReportItemCopyWithImpl;
+@override @useResult
+$Res call({
+ int timestamp, bool isCompound, bool isSendToSelf, String sendAmount, String receiveAmount, String fee, String label, String description, String txHash, String toAddress, String note
+});
+
+
+
+
+}
+/// @nodoc
+class __$TxReportItemCopyWithImpl<$Res>
+    implements _$TxReportItemCopyWith<$Res> {
+  __$TxReportItemCopyWithImpl(this._self, this._then);
+
+  final _TxReportItem _self;
+  final $Res Function(_TxReportItem) _then;
+
+/// Create a copy of TxReportItem
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? timestamp = null,Object? isCompound = null,Object? isSendToSelf = null,Object? sendAmount = null,Object? receiveAmount = null,Object? fee = null,Object? label = null,Object? description = null,Object? txHash = null,Object? toAddress = null,Object? note = null,}) {
+  return _then(_TxReportItem(
+timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as int,isCompound: null == isCompound ? _self.isCompound : isCompound // ignore: cast_nullable_to_non_nullable
+as bool,isSendToSelf: null == isSendToSelf ? _self.isSendToSelf : isSendToSelf // ignore: cast_nullable_to_non_nullable
+as bool,sendAmount: null == sendAmount ? _self.sendAmount : sendAmount // ignore: cast_nullable_to_non_nullable
+as String,receiveAmount: null == receiveAmount ? _self.receiveAmount : receiveAmount // ignore: cast_nullable_to_non_nullable
+as String,fee: null == fee ? _self.fee : fee // ignore: cast_nullable_to_non_nullable
+as String,label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,txHash: null == txHash ? _self.txHash : txHash // ignore: cast_nullable_to_non_nullable
+as String,toAddress: null == toAddress ? _self.toAddress : toAddress // ignore: cast_nullable_to_non_nullable
+as String,note: null == note ? _self.note : note // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

@@ -6,16 +6,15 @@ part of 'block_explorers.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BlockExplorerImpl _$$BlockExplorerImplFromJson(Map json) =>
-    _$BlockExplorerImpl(
-      network: $enumDecode(_$KaspaNetworkEnumMap, json['network']),
-      name: json['name'] as String,
-      url: json['url'] as String,
-      addressUrl: json['addressUrl'] as String,
-      txUrl: json['txUrl'] as String,
-    );
+_BlockExplorer _$BlockExplorerFromJson(Map json) => _BlockExplorer(
+  network: $enumDecode(_$KaspaNetworkEnumMap, json['network']),
+  name: json['name'] as String,
+  url: json['url'] as String,
+  addressUrl: json['addressUrl'] as String,
+  txUrl: json['txUrl'] as String,
+);
 
-Map<String, dynamic> _$$BlockExplorerImplToJson(_$BlockExplorerImpl instance) =>
+Map<String, dynamic> _$BlockExplorerToJson(_BlockExplorer instance) =>
     <String, dynamic>{
       'network': _$KaspaNetworkEnumMap[instance.network]!,
       'name': instance.name,

@@ -6,7 +6,7 @@ import '../types.dart';
 part 'send_tx.freezed.dart';
 
 @freezed
-class SendTx with _$SendTx {
+sealed class SendTx with _$SendTx {
   const SendTx._();
 
   factory SendTx({

@@ -6,12 +6,12 @@ part of 'token_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TokenInfoImpl _$$TokenInfoImplFromJson(Map json) => _$TokenInfoImpl(
-      tokenId: json['tokenId'] as String,
-      decimals: json['decimals'] as int,
-    );
+_TokenInfo _$TokenInfoFromJson(Map json) => _TokenInfo(
+  tokenId: json['tokenId'] as String,
+  decimals: (json['decimals'] as num).toInt(),
+);
 
-Map<String, dynamic> _$$TokenInfoImplToJson(_$TokenInfoImpl instance) =>
+Map<String, dynamic> _$TokenInfoToJson(_TokenInfo instance) =>
     <String, dynamic>{
       'tokenId': instance.tokenId,
       'decimals': instance.decimals,

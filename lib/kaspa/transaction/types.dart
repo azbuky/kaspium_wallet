@@ -61,7 +61,7 @@ enum SigHashType {
 }
 
 @freezed
-class UtxoChanges with _$UtxoChanges {
+sealed class UtxoChanges with _$UtxoChanges {
   const factory UtxoChanges({
     required List<Utxo> removed,
     required List<Utxo> added,
@@ -75,7 +75,7 @@ class UtxoChanges with _$UtxoChanges {
 }
 
 @freezed
-class Utxo with _$Utxo {
+sealed class Utxo with _$Utxo {
   const Utxo._();
   const factory Utxo({
     required String address,
@@ -86,21 +86,21 @@ class Utxo with _$Utxo {
   factory Utxo.fromJson(Map<String, dynamic> json) => _$UtxoFromJson(json);
 
   factory Utxo.fromRpc(RpcUtxosByAddressesEntry rpc) => Utxo(
-        address: rpc.address,
-        outpoint: Outpoint.fromRpc(rpc.outpoint),
-        utxoEntry: UtxoEntry.fromRpc(rpc.utxoEntry),
-      );
+    address: rpc.address,
+    outpoint: Outpoint.fromRpc(rpc.outpoint),
+    utxoEntry: UtxoEntry.fromRpc(rpc.utxoEntry),
+  );
 
   RpcUtxosByAddressesEntry toRpc() => RpcUtxosByAddressesEntry(
-        address: address,
-        outpoint: outpoint.toRpc(),
-        utxoEntry: utxoEntry.toRpc(),
-      );
+    address: address,
+    outpoint: outpoint.toRpc(),
+    utxoEntry: utxoEntry.toRpc(),
+  );
 }
 
 // blockDaaScore can change
 @Freezed(equal: false)
-class UtxoEntry with _$UtxoEntry {
+sealed class UtxoEntry with _$UtxoEntry {
   const UtxoEntry._();
   const factory UtxoEntry({
     required BigInt amount,
@@ -113,24 +113,24 @@ class UtxoEntry with _$UtxoEntry {
       _$UtxoEntryFromJson(json);
 
   factory UtxoEntry.fromRpc(RpcUtxoEntry rpc) => UtxoEntry(
-        amount: rpc.amount.toUnsignedBigInt(),
-        scriptPublicKey: ScriptPublicKey.fromRpc(rpc.scriptPublicKey),
-        blockDaaScore: rpc.blockDaaScore.toUnsignedBigInt(),
-        isCoinbase: rpc.isCoinbase,
-      );
+    amount: rpc.amount.toUnsignedBigInt(),
+    scriptPublicKey: ScriptPublicKey.fromRpc(rpc.scriptPublicKey),
+    blockDaaScore: rpc.blockDaaScore.toUnsignedBigInt(),
+    isCoinbase: rpc.isCoinbase,
+  );
 
   RpcUtxoEntry toRpc() => RpcUtxoEntry(
-        amount: amount.toInt64(),
-        scriptPublicKey: scriptPublicKey.toRpc(),
-        blockDaaScore: blockDaaScore.toInt64(),
-        isCoinbase: isCoinbase,
-      );
+    amount: amount.toInt64(),
+    scriptPublicKey: scriptPublicKey.toRpc(),
+    blockDaaScore: blockDaaScore.toInt64(),
+    isCoinbase: isCoinbase,
+  );
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UtxoEntryImpl &&
+            other is UtxoEntry &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.scriptPublicKey, scriptPublicKey) ||
                 other.scriptPublicKey == scriptPublicKey) &&
@@ -145,7 +145,7 @@ class UtxoEntry with _$UtxoEntry {
 }
 
 @freezed
-class ScriptPublicKey with _$ScriptPublicKey {
+sealed class ScriptPublicKey with _$ScriptPublicKey {
   const ScriptPublicKey._();
   const factory ScriptPublicKey({
     @JsonKey(fromJson: hexToBytes, toJson: bytesToHex)
@@ -158,18 +158,18 @@ class ScriptPublicKey with _$ScriptPublicKey {
 
   // from rpc
   factory ScriptPublicKey.fromRpc(RpcScriptPublicKey rpc) => ScriptPublicKey(
-        scriptPublicKey: hexToBytes(rpc.scriptPublicKey),
-        version: rpc.version,
-      );
+    scriptPublicKey: hexToBytes(rpc.scriptPublicKey),
+    version: rpc.version,
+  );
 
   RpcScriptPublicKey toRpc() => RpcScriptPublicKey(
-        scriptPublicKey: bytesToHex(scriptPublicKey),
-        version: version,
-      );
+    scriptPublicKey: bytesToHex(scriptPublicKey),
+    version: version,
+  );
 }
 
 @freezed
-class Outpoint with _$Outpoint {
+sealed class Outpoint with _$Outpoint {
   Outpoint._();
   factory Outpoint({
     required String transactionId,
@@ -180,18 +180,18 @@ class Outpoint with _$Outpoint {
       _$OutpointFromJson(json);
 
   factory Outpoint.fromRpc(RpcOutpoint rpc) => Outpoint(
-        transactionId: rpc.transactionId,
-        index: rpc.index,
-      );
+    transactionId: rpc.transactionId,
+    index: rpc.index,
+  );
 
   RpcOutpoint toRpc() => RpcOutpoint(
-        transactionId: transactionId,
-        index: index,
-      );
+    transactionId: transactionId,
+    index: index,
+  );
 }
 
 @freezed
-class TxInput with _$TxInput {
+sealed class TxInput with _$TxInput {
   const TxInput._();
   const factory TxInput({
     required Address address,
@@ -203,15 +203,15 @@ class TxInput with _$TxInput {
   }) = _TxInput;
 
   RpcTransactionInput toRpc() => RpcTransactionInput(
-        previousOutpoint: previousOutpoint.toRpc(),
-        signatureScript: bytesToHex(signatureScript),
-        sequence: sequence,
-        sigOpCount: sigOpCount,
-      );
+    previousOutpoint: previousOutpoint.toRpc(),
+    signatureScript: bytesToHex(signatureScript),
+    sequence: sequence,
+    sigOpCount: sigOpCount,
+  );
 }
 
 @freezed
-class TxOutput with _$TxOutput {
+sealed class TxOutput with _$TxOutput {
   const TxOutput._();
   const factory TxOutput({
     /*uint64*/ required Int64 value,
@@ -219,13 +219,13 @@ class TxOutput with _$TxOutput {
   }) = _TxOutput;
 
   RpcTransactionOutput toRpc() => RpcTransactionOutput(
-        amount: value,
-        scriptPublicKey: scriptPublicKey.toRpc(),
-      );
+    amount: value,
+    scriptPublicKey: scriptPublicKey.toRpc(),
+  );
 }
 
 @freezed
-class Transaction with _$Transaction {
+sealed class Transaction with _$Transaction {
   const Transaction._();
   const factory Transaction({
     /*uint16*/ required int version,
@@ -241,20 +241,20 @@ class Transaction with _$Transaction {
   }) = _Transaction;
 
   RpcTransaction toRpc() => RpcTransaction(
-        version: version,
-        inputs: inputs.map((input) => input.toRpc()),
-        outputs: outputs.map((output) => output.toRpc()),
-        lockTime: lockTime,
-        subnetworkId: subnetworkId.hex,
-        gas: gas,
-        payload: payload?.hex,
-      );
+    version: version,
+    inputs: inputs.map((input) => input.toRpc()),
+    outputs: outputs.map((output) => output.toRpc()),
+    lockTime: lockTime,
+    subnetworkId: subnetworkId.hex,
+    gas: gas,
+    payload: payload?.hex,
+  );
 
   bool get isCoinbase => subnetworkId.hex == kSubnetworkIdCoinbaseHex;
 }
 
 @unfreezed
-class SighashReusedValues with _$SighashReusedValues {
+sealed class SighashReusedValues with _$SighashReusedValues {
   factory SighashReusedValues({
     Uint8List? previousOutputsHash,
     Uint8List? sequencesHash,

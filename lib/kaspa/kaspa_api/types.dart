@@ -13,7 +13,7 @@ enum ResolvePreviousOutpoints {
 }
 
 @freezed
-class ApiAddressBalance with _$ApiAddressBalance {
+sealed class ApiAddressBalance with _$ApiAddressBalance {
   const factory ApiAddressBalance({
     required String address,
     required int balance,
@@ -24,7 +24,7 @@ class ApiAddressBalance with _$ApiAddressBalance {
 }
 
 @freezed
-class ApiUtxo with _$ApiUtxo {
+sealed class ApiUtxo with _$ApiUtxo {
   const factory ApiUtxo({
     required String address,
     required ApiOutpoint outpoint,
@@ -36,7 +36,7 @@ class ApiUtxo with _$ApiUtxo {
 }
 
 @freezed
-class ApiOutpoint with _$ApiOutpoint {
+sealed class ApiOutpoint with _$ApiOutpoint {
   const factory ApiOutpoint({
     required String transactionId,
     required int index,
@@ -47,7 +47,7 @@ class ApiOutpoint with _$ApiOutpoint {
 }
 
 @freezed
-class ApiUtxoEntry with _$ApiUtxoEntry {
+sealed class ApiUtxoEntry with _$ApiUtxoEntry {
   const factory ApiUtxoEntry({
     required BigInt amount,
     required ApiScriptPublicKey scriptPublicKey,
@@ -60,7 +60,7 @@ class ApiUtxoEntry with _$ApiUtxoEntry {
 }
 
 @freezed
-class ApiScriptPublicKey with _$ApiScriptPublicKey {
+sealed class ApiScriptPublicKey with _$ApiScriptPublicKey {
   const factory ApiScriptPublicKey({
     required String scriptPublicKey,
     @Default(0) int version,
@@ -71,7 +71,7 @@ class ApiScriptPublicKey with _$ApiScriptPublicKey {
 }
 
 @freezed
-class ApiTxLink with _$ApiTxLink {
+sealed class ApiTxLink with _$ApiTxLink {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ApiTxLink({
     String? txReceived,
@@ -83,7 +83,7 @@ class ApiTxLink with _$ApiTxLink {
 }
 
 @freezed
-class ApiTxId with _$ApiTxId {
+sealed class ApiTxId with _$ApiTxId {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ApiTxId({
     required String transactionId,
@@ -105,7 +105,7 @@ int _sigOpCountFromJson(sigOpCount) {
 }
 
 @freezed
-class ApiTxInput with _$ApiTxInput {
+sealed class ApiTxInput with _$ApiTxInput {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ApiTxInput({
     required String transactionId,
@@ -124,7 +124,7 @@ class ApiTxInput with _$ApiTxInput {
 }
 
 @freezed
-class ApiTxOutput with _$ApiTxOutput {
+sealed class ApiTxOutput with _$ApiTxOutput {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ApiTxOutput({
     required String transactionId,
@@ -140,7 +140,7 @@ class ApiTxOutput with _$ApiTxOutput {
 }
 
 @freezed
-class ApiTransaction with _$ApiTransaction {
+sealed class ApiTransaction with _$ApiTransaction {
   ApiTransaction._();
   @JsonSerializable(fieldRename: FieldRename.snake)
   factory ApiTransaction({

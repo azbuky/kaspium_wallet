@@ -4,7 +4,7 @@ part 'token_info.freezed.dart';
 part 'token_info.g.dart';
 
 @freezed
-class TokenInfo with _$TokenInfo {
+sealed class TokenInfo with _$TokenInfo {
   const TokenInfo._();
   const factory TokenInfo({
     required String tokenId,

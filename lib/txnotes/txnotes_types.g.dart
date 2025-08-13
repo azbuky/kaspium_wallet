@@ -6,13 +6,10 @@ part of 'txnotes_types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TxNoteImpl _$$TxNoteImplFromJson(Map json) => _$TxNoteImpl(
-      txId: json['txId'] as String,
-      note: json['note'] as String,
-    );
+_TxNote _$TxNoteFromJson(Map json) =>
+    _TxNote(txId: json['txId'] as String, note: json['note'] as String);
 
-Map<String, dynamic> _$$TxNoteImplToJson(_$TxNoteImpl instance) =>
-    <String, dynamic>{
-      'txId': instance.txId,
-      'note': instance.note,
-    };
+Map<String, dynamic> _$TxNoteToJson(_TxNote instance) => <String, dynamic>{
+  'txId': instance.txId,
+  'note': instance.note,
+};

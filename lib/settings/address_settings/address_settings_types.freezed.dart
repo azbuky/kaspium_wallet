@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,147 +9,263 @@ part of 'address_settings_types.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-AddressSettings _$AddressSettingsFromJson(Map<String, dynamic> json) {
-  return _AddressSettings.fromJson(json);
-}
 
 /// @nodoc
 mixin _$AddressSettings {
-  AddressFilter get addressFilter => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $AddressSettingsCopyWith<AddressSettings> get copyWith =>
-      throw _privateConstructorUsedError;
+ AddressFilter get addressFilter;
+/// Create a copy of AddressSettings
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AddressSettingsCopyWith<AddressSettings> get copyWith => _$AddressSettingsCopyWithImpl<AddressSettings>(this as AddressSettings, _$identity);
+
+  /// Serializes this AddressSettings to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddressSettings&&(identical(other.addressFilter, addressFilter) || other.addressFilter == addressFilter));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,addressFilter);
+
+@override
+String toString() {
+  return 'AddressSettings(addressFilter: $addressFilter)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $AddressSettingsCopyWith<$Res> {
-  factory $AddressSettingsCopyWith(
-          AddressSettings value, $Res Function(AddressSettings) then) =
-      _$AddressSettingsCopyWithImpl<$Res, AddressSettings>;
-  @useResult
-  $Res call({AddressFilter addressFilter});
-}
+abstract mixin class $AddressSettingsCopyWith<$Res>  {
+  factory $AddressSettingsCopyWith(AddressSettings value, $Res Function(AddressSettings) _then) = _$AddressSettingsCopyWithImpl;
+@useResult
+$Res call({
+ AddressFilter addressFilter
+});
 
+
+
+
+}
 /// @nodoc
-class _$AddressSettingsCopyWithImpl<$Res, $Val extends AddressSettings>
+class _$AddressSettingsCopyWithImpl<$Res>
     implements $AddressSettingsCopyWith<$Res> {
-  _$AddressSettingsCopyWithImpl(this._value, this._then);
+  _$AddressSettingsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final AddressSettings _self;
+  final $Res Function(AddressSettings) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? addressFilter = null,
-  }) {
-    return _then(_value.copyWith(
-      addressFilter: null == addressFilter
-          ? _value.addressFilter
-          : addressFilter // ignore: cast_nullable_to_non_nullable
-              as AddressFilter,
-    ) as $Val);
-  }
+/// Create a copy of AddressSettings
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? addressFilter = null,}) {
+  return _then(_self.copyWith(
+addressFilter: null == addressFilter ? _self.addressFilter : addressFilter // ignore: cast_nullable_to_non_nullable
+as AddressFilter,
+  ));
 }
 
-/// @nodoc
-abstract class _$$AddressSettingsImplCopyWith<$Res>
-    implements $AddressSettingsCopyWith<$Res> {
-  factory _$$AddressSettingsImplCopyWith(_$AddressSettingsImpl value,
-          $Res Function(_$AddressSettingsImpl) then) =
-      __$$AddressSettingsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({AddressFilter addressFilter});
 }
 
-/// @nodoc
-class __$$AddressSettingsImplCopyWithImpl<$Res>
-    extends _$AddressSettingsCopyWithImpl<$Res, _$AddressSettingsImpl>
-    implements _$$AddressSettingsImplCopyWith<$Res> {
-  __$$AddressSettingsImplCopyWithImpl(
-      _$AddressSettingsImpl _value, $Res Function(_$AddressSettingsImpl) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? addressFilter = null,
-  }) {
-    return _then(_$AddressSettingsImpl(
-      addressFilter: null == addressFilter
-          ? _value.addressFilter
-          : addressFilter // ignore: cast_nullable_to_non_nullable
-              as AddressFilter,
-    ));
-  }
+/// Adds pattern-matching-related methods to [AddressSettings].
+extension AddressSettingsPatterns on AddressSettings {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AddressSettings value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _AddressSettings() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AddressSettings value)  $default,){
+final _that = this;
+switch (_that) {
+case _AddressSettings():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AddressSettings value)?  $default,){
+final _that = this;
+switch (_that) {
+case _AddressSettings() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AddressFilter addressFilter)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _AddressSettings() when $default != null:
+return $default(_that.addressFilter);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AddressFilter addressFilter)  $default,) {final _that = this;
+switch (_that) {
+case _AddressSettings():
+return $default(_that.addressFilter);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AddressFilter addressFilter)?  $default,) {final _that = this;
+switch (_that) {
+case _AddressSettings() when $default != null:
+return $default(_that.addressFilter);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AddressSettingsImpl implements _AddressSettings {
-  const _$AddressSettingsImpl({this.addressFilter = AddressFilter.all});
 
-  factory _$AddressSettingsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AddressSettingsImplFromJson(json);
+class _AddressSettings implements AddressSettings {
+  const _AddressSettings({this.addressFilter = AddressFilter.all});
+  factory _AddressSettings.fromJson(Map<String, dynamic> json) => _$AddressSettingsFromJson(json);
 
-  @override
-  @JsonKey()
-  final AddressFilter addressFilter;
+@override@JsonKey() final  AddressFilter addressFilter;
 
-  @override
-  String toString() {
-    return 'AddressSettings(addressFilter: $addressFilter)';
-  }
+/// Create a copy of AddressSettings
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AddressSettingsCopyWith<_AddressSettings> get copyWith => __$AddressSettingsCopyWithImpl<_AddressSettings>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddressSettingsImpl &&
-            (identical(other.addressFilter, addressFilter) ||
-                other.addressFilter == addressFilter));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, addressFilter);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddressSettingsImplCopyWith<_$AddressSettingsImpl> get copyWith =>
-      __$$AddressSettingsImplCopyWithImpl<_$AddressSettingsImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AddressSettingsImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$AddressSettingsToJson(this, );
 }
 
-abstract class _AddressSettings implements AddressSettings {
-  const factory _AddressSettings({final AddressFilter addressFilter}) =
-      _$AddressSettingsImpl;
-
-  factory _AddressSettings.fromJson(Map<String, dynamic> json) =
-      _$AddressSettingsImpl.fromJson;
-
-  @override
-  AddressFilter get addressFilter;
-  @override
-  @JsonKey(ignore: true)
-  _$$AddressSettingsImplCopyWith<_$AddressSettingsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddressSettings&&(identical(other.addressFilter, addressFilter) || other.addressFilter == addressFilter));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,addressFilter);
+
+@override
+String toString() {
+  return 'AddressSettings(addressFilter: $addressFilter)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$AddressSettingsCopyWith<$Res> implements $AddressSettingsCopyWith<$Res> {
+  factory _$AddressSettingsCopyWith(_AddressSettings value, $Res Function(_AddressSettings) _then) = __$AddressSettingsCopyWithImpl;
+@override @useResult
+$Res call({
+ AddressFilter addressFilter
+});
+
+
+
+
+}
+/// @nodoc
+class __$AddressSettingsCopyWithImpl<$Res>
+    implements _$AddressSettingsCopyWith<$Res> {
+  __$AddressSettingsCopyWithImpl(this._self, this._then);
+
+  final _AddressSettings _self;
+  final $Res Function(_AddressSettings) _then;
+
+/// Create a copy of AddressSettings
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? addressFilter = null,}) {
+  return _then(_AddressSettings(
+addressFilter: null == addressFilter ? _self.addressFilter : addressFilter // ignore: cast_nullable_to_non_nullable
+as AddressFilter,
+  ));
+}
+
+
+}
+
+// dart format on

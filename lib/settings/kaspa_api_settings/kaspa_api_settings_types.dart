@@ -10,7 +10,7 @@ const kKaspaApiUrlTestnet10 = 'https://api-tn10.kaspa.org';
 const kKaspaApiUrlTestnet11 = 'https://api-tn11.kaspa.org';
 
 @freezed
-class KaspaApiSettings with _$KaspaApiSettings {
+sealed class KaspaApiSettings with _$KaspaApiSettings {
   const KaspaApiSettings._();
 
   const factory KaspaApiSettings({
