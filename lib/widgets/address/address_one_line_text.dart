@@ -52,7 +52,8 @@ class AddressOneLineText extends ConsumerWidget {
 
     return Column(
       children: [
-        if (label != null) Text(label!, style: mapping[type]?.$1),
+        if (label != null)
+          Text(label!, style: mapping[type]?.$1, textAlign: .center),
         RichText(
           textAlign: .center,
           text: TextSpan(

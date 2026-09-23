@@ -20,6 +20,7 @@ class SendCompleteSheet extends HookConsumerWidget {
   final Address toAddress;
   final String txId;
   final String? note;
+  final String? toLabel;
 
   const SendCompleteSheet({
     super.key,
@@ -27,6 +28,7 @@ class SendCompleteSheet extends HookConsumerWidget {
     required this.toAddress,
     required this.txId,
     this.note,
+    this.toLabel,
   });
 
   @override
@@ -67,7 +69,12 @@ class SendCompleteSheet extends HookConsumerWidget {
                         style: styles.textStyleHeader2Colored,
                       ),
                     ),
-                    AddressCard(address: toAddress, type: .PRIMARY),
+                    AddressCard(
+                      address: toAddress,
+                      type: .PRIMARY,
+                      label: toLabel,
+                      labelProven: toLabel != null,
+                    ),
                     const SizedBox(height: 30),
                     TxIdCard(txId: txId),
                     const SizedBox(height: 20),

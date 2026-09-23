@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app_providers.dart';
+import '../../dotk/dotk_proven_name.dart';
 import 'address_text_type.dart';
 
 class AddressThreeLineText extends ConsumerWidget {
   final String address;
   final AddressTextType type;
   final String? label;
+  final bool labelProven;
   final TextAlign textAlign;
 
   const AddressThreeLineText({
@@ -15,6 +17,7 @@ class AddressThreeLineText extends ConsumerWidget {
     required this.address,
     this.type = .PRIMARY,
     this.label,
+    this.labelProven = false,
     this.textAlign = .center,
   });
 
@@ -70,7 +73,14 @@ class AddressThreeLineText extends ConsumerWidget {
     return Column(
       crossAxisAlignment: textAlign == .center ? .center : .start,
       children: [
-        if (label != null) Text(label!, style: mapping[type]?.$1),
+        if (label != null)
+          labelProven
+              ? DotkProvenName(
+                  label!,
+                  style: mapping[type]?.$1,
+                  textAlign: textAlign,
+                )
+              : Text(label!, style: mapping[type]?.$1, textAlign: textAlign),
         RichText(
           textAlign: textAlign,
           text: TextSpan(

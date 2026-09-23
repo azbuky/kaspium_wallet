@@ -17,6 +17,8 @@ class AccountAddressWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final styles = ref.watch(stylesProvider);
 
+    final dotkName = ref.watch(dotkNameForAddressProvider(address.encoded));
+
     return Column(
       children: [
         Container(
@@ -32,6 +34,7 @@ class AccountAddressWidget extends ConsumerWidget {
           child: AddressAdaptiveText(
             address: address.encoded,
             type: .PRIMARY60,
+            label: dotkName,
           ),
         ),
       ],

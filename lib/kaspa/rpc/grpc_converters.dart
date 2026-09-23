@@ -196,6 +196,7 @@ UtxoEntry decodeUtxoEntry(RpcUtxoEntry rpc) {
     scriptPublicKey: decodeScriptPublicKey(rpc.scriptPublicKey),
     blockDaaScore: rpc.blockDaaScore.toUnsignedBigInt(),
     isCoinbase: rpc.isCoinbase,
+    covenantId: rpc.covenantId.isEmpty ? null : hexToBytes(rpc.covenantId),
   );
 }
 

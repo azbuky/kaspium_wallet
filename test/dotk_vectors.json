@@ -1,0 +1,1136 @@
+{
+ "recordsDecode": [
+  {
+   "what": "the mixed map, every item kind carried",
+   "blob": "b06161182a61622061631b0102030405060708616443a0ff00616580616682617861796167a06168a1616b016169d8186174616af6616bf93c00616cfb0000000000000000616df820616e6174616ff5617082f4f5",
+   "records": {
+    "a": {
+     "opaque": "182a"
+    },
+    "b": {
+     "opaque": "20"
+    },
+    "c": {
+     "opaque": "1b0102030405060708"
+    },
+    "d": {
+     "opaque": "43a0ff00"
+    },
+    "e": {
+     "opaque": "80"
+    },
+    "f": {
+     "opaque": "8261786179"
+    },
+    "g": {
+     "opaque": "a0"
+    },
+    "h": {
+     "opaque": "a1616b01"
+    },
+    "i": {
+     "opaque": "d8186174"
+    },
+    "j": {
+     "opaque": "f6"
+    },
+    "k": {
+     "opaque": "f93c00"
+    },
+    "l": {
+     "opaque": "fb0000000000000000"
+    },
+    "m": {
+     "opaque": "f820"
+    },
+    "n": "t",
+    "o": true,
+    "p": {
+     "opaque": "82f4f5"
+    }
+   },
+   "reencoded": "b06161182a61622061631b0102030405060708616443a0ff00616580616682617861796167a06168a1616b016169d8186174616af6616bf93c00616cfb0000000000000000616df820616e6174616ff5617082f4f5"
+  },
+  {
+   "what": "keys out of order, rewritten sorted on save",
+   "blob": "a2617a016161f5",
+   "records": {
+    "a": true,
+    "z": {
+     "opaque": "01"
+    }
+   },
+   "reencoded": "a26161f5617a01"
+  },
+  {
+   "what": "a non-preferred head inside a value, carried verbatim",
+   "blob": "a161785a00000002abcd",
+   "records": {
+    "x": {
+     "opaque": "5a00000002abcd"
+    }
+   },
+   "reencoded": "a161785a00000002abcd"
+  },
+  {
+   "what": "non-UTF-8 text inside a skipped item is bytes",
+   "blob": "a161788161ff",
+   "records": {
+    "x": {
+     "opaque": "8161ff"
+    }
+   },
+   "reencoded": "a161788161ff"
+  },
+  {
+   "what": "arrays nested to the depth cap",
+   "blob": "a16178818181818181818101",
+   "records": {
+    "x": {
+     "opaque": "818181818181818101"
+    }
+   },
+   "reencoded": "a16178818181818181818101"
+  },
+  {
+   "what": "tags nested to the depth cap",
+   "blob": "a16178c6c6c6c6c6c6c6c601",
+   "records": {
+    "x": {
+     "opaque": "c6c6c6c6c6c6c6c601"
+    }
+   },
+   "reencoded": "a16178c6c6c6c6c6c6c6c601"
+  },
+  {
+   "what": "arrays nested past the depth cap",
+   "blob": "a1617881818181818181818101",
+   "fault": "too deep"
+  },
+  {
+   "what": "tags nested past the depth cap",
+   "blob": "a16178c6c6c6c6c6c6c6c6c601",
+   "fault": "too deep"
+  },
+  {
+   "what": "an empty container at the cap is a container too",
+   "blob": "a16178818181818181818180",
+   "fault": "too deep"
+  },
+  {
+   "what": "not a map",
+   "blob": "80",
+   "fault": "not a CBOR map"
+  },
+  {
+   "what": "an eight-byte length",
+   "blob": "a161785b0000000000000001ab",
+   "fault": "unsupported CBOR head"
+  },
+  {
+   "what": "a reserved argument",
+   "blob": "a161781c",
+   "fault": "unsupported CBOR head"
+  },
+  {
+   "what": "an indefinite-length byte string",
+   "blob": "a161785f41abff",
+   "fault": "unsupported CBOR head"
+  },
+  {
+   "what": "an indefinite-length map as a value",
+   "blob": "a16178bfff",
+   "fault": "unsupported CBOR head"
+  },
+  {
+   "what": "an ill-formed simple value",
+   "blob": "a16178f800",
+   "fault": "unsupported CBOR head"
+  },
+  {
+   "what": "a double as a key",
+   "blob": "a1fb000000000000000001",
+   "fault": "unsupported CBOR head"
+  },
+  {
+   "what": "a tag whose item is truncated",
+   "blob": "a16178c6",
+   "fault": "truncated"
+  },
+  {
+   "what": "an array running past the blob",
+   "blob": "a16178830102",
+   "fault": "truncated"
+  },
+  {
+   "what": "a map whose pair count leaves it short",
+   "blob": "a2617801",
+   "fault": "truncated"
+  },
+  {
+   "what": "a half float as a key",
+   "blob": "a1f93c0001",
+   "fault": "not text"
+  },
+  {
+   "what": "a byte-string key",
+   "blob": "a1417801",
+   "fault": "not text"
+  },
+  {
+   "what": "a duplicate key whose second value is opaque",
+   "blob": "a26178f5617801",
+   "fault": "twice"
+  },
+  {
+   "what": "text that is not UTF-8 under the map",
+   "blob": "a1617861ff",
+   "fault": "not UTF-8"
+  },
+  {
+   "what": "trailing bytes after an opaque last value",
+   "blob": "a161780100",
+   "fault": "trailing"
+  }
+ ],
+ "subname": [
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "address": "kaspa:qp8n2k7uklxq4aegau7vawtptkgxsja4kt99lpv6krctwpq8tpc6547zhh9u4"
+  },
+  {
+   "network": "testnet-10",
+   "input": "dev.team.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "dev.team",
+   "records": {
+    "sub:dev.team": {
+     "opaque": "5821032222222222222222222222222222222222222222222222222222222222222222"
+    }
+   },
+   "address": "kaspatest:pq3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyxccxflal"
+  },
+  {
+   "network": "simnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821863333333333333333333333333333333333333333333333333333333333333333"
+    }
+   },
+   "address": "kaspasim:qyprxvenxvenxvenxvenxvenxvenxvenxvenxvenxvenxvenxvenxvca3cz5km7"
+  },
+  {
+   "network": "devnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821854444444444444444444444444444444444444444444444444444444444444444"
+    }
+   },
+   "address": "kaspadev:qyp5g3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3qucd5dser"
+  },
+  {
+   "network": "mainnet",
+   "input": "Bob.Alice.K",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "address": "kaspa:qp8n2k7uklxq4aegau7vawtptkgxsja4kt99lpv6krctwpq8tpc6547zhh9u4"
+  },
+  {
+   "network": "mainnet",
+   "input": "alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   }
+  },
+  {
+   "network": "mainnet",
+   "input": "k.k",
+   "ownerType": 0,
+   "parent": "k",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   }
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice",
+   "ownerType": 0,
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "no-suffix"
+  },
+  {
+   "network": "mainnet",
+   "input": "alice.k.k",
+   "ownerType": 0,
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-parent"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k.k",
+   "ownerType": 0,
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-parent"
+  },
+  {
+   "network": "mainnet",
+   "input": "k.alice.k",
+   "ownerType": 0,
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-label"
+  },
+  {
+   "network": "mainnet",
+   "input": ".k",
+   "ownerType": 0,
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-parent"
+  },
+  {
+   "network": "mainnet",
+   "input": "a..b.k",
+   "ownerType": 0,
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-label"
+  },
+  {
+   "network": "mainnet",
+   "input": "-bob.alice.k",
+   "ownerType": 0,
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-label"
+  },
+  {
+   "network": "mainnet",
+   "input": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz.alice.k",
+   "ownerType": 0,
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-label"
+  },
+  {
+   "network": "mainnet",
+   "input": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz.alice.k",
+   "ownerType": 0,
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-label"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 4,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "parent-in-covenant"
+  },
+  {
+   "network": "mainnet",
+   "input": "pay.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "pay",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    },
+    "sub:dev.team": {
+     "opaque": "5821032222222222222222222222222222222222222222222222222222222222222222"
+    }
+   }
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": "kaspa:qqq"
+   },
+   "fault": "not-bytes"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": true
+   },
+   "fault": "not-bytes"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "182a"
+    }
+   },
+   "fault": "not-bytes"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "58204f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-length"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821fe4f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-scheme"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821024f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-scheme"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821874f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-scheme"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821044f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "held-by-covenant"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821040000000000000000000000000000000000000000000000000000000000000000"
+    }
+   },
+   "fault": "held-by-covenant"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821000000000000000000000000000000000000000000000000000000000000000000"
+    }
+   },
+   "fault": "zero-payload"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "582100ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    }
+   },
+   "fault": "not-a-point"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "590021004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-length"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5a00000021004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa"
+    }
+   },
+   "fault": "bad-length"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5f5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aaff"
+    }
+   },
+   "fault": "bad-length"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "58"
+    }
+   },
+   "fault": "bad-length"
+  },
+  {
+   "network": "mainnet",
+   "input": "bob.alice.k",
+   "ownerType": 0,
+   "parent": "alice",
+   "label": "bob",
+   "records": {
+    "sub:bob": {
+     "opaque": "5821004f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa00"
+    }
+   },
+   "fault": "bad-length"
+  }
+ ],
+ "mainnet": {
+  "registryCovenantId": "ee2128c03dfac7f6d74734bb3c879bd999434c47a55945b8a6daae2a1e4a21de",
+  "deedTemplateHash": "238a8d0a5af1ea136d50dd49973487929b8e713a84f1bd1650e97776b9a3f5a0",
+  "deedAddress": [
+   {
+    "network": "mainnet",
+    "name": "kaspa",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280100201111111111111111111111111111111111111111111111111111111111111111206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pp5z0hckcdq2an4f8kduqrv9wywvfauusujdl4ypnmrv5pzr9t6ru5fhtfxrz"
+   },
+   {
+    "network": "mainnet",
+    "name": "kaspa",
+    "ownerType": 3,
+    "owner": "2222222222222222222222222222222222222222222222222222222222222222",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280103202222222222222222222222222222222222222222222222222222222222222222206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pq9c2lmqylrtq22a7u4vtz0kr6ttrzpmcgjul2pkyeh5w3szee4v7q6qdzewa"
+   },
+   {
+    "network": "mainnet",
+    "name": "kaspa",
+    "ownerType": 134,
+    "owner": "3333333333333333333333333333333333333333333333333333333333333333",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280186203333333333333333333333333333333333333333333333333333333333333333206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pqdcd2hrqmcttdy43hmv98w8vfd29awjlxten8lak0ujkr45tl60cyec4la5n"
+   },
+   {
+    "network": "mainnet",
+    "name": "kaspa",
+    "ownerType": 133,
+    "owner": "4444444444444444444444444444444444444444444444444444444444444444",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280185204444444444444444444444444444444444444444444444444444444444444444206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pqd2v92e9vtlc400qh9rpdghgj7dlemne236qwevp6mw7hrtqm93u8089tnc7"
+   },
+   {
+    "network": "mainnet",
+    "name": "kaspa",
+    "ownerType": 4,
+    "owner": "5555555555555555555555555555555555555555555555555555555555555555",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280104205555555555555555555555555555555555555555555555555555555555555555206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pp7h6nwhxh4lhgu80xf6vukdlya72h4vrnwfrjeetdml0cn0x9nr6mp8e29nt"
+   },
+   {
+    "network": "mainnet",
+    "name": "a",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "01022017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f0100201111111111111111111111111111111111111111111111111111111111111111206100000000000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:prvrw0ng795d0ud0vywfd2qz6kyvra275suaafm6mrwjzh7706chxwhyw76kg"
+   },
+   {
+    "network": "mainnet",
+    "name": "a",
+    "ownerType": 3,
+    "owner": "2222222222222222222222222222222222222222222222222222222222222222",
+    "state": "01022017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f0103202222222222222222222222222222222222222222222222222222222222222222206100000000000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pr76uszve5s87zl9rr2g3aqxpzky4aje3xcr52lvy88t5nprj5mjjmn8fmxvp"
+   },
+   {
+    "network": "mainnet",
+    "name": "a",
+    "ownerType": 134,
+    "owner": "3333333333333333333333333333333333333333333333333333333333333333",
+    "state": "01022017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f0186203333333333333333333333333333333333333333333333333333333333333333206100000000000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:prjxgpvek8dflh06j5e5n7kzj73gwcaxnzery2kxww7w8rj7yp7uc3amlljx7"
+   },
+   {
+    "network": "mainnet",
+    "name": "a",
+    "ownerType": 133,
+    "owner": "4444444444444444444444444444444444444444444444444444444444444444",
+    "state": "01022017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f0185204444444444444444444444444444444444444444444444444444444444444444206100000000000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pqad3f7e7md36rzj3zse8u9dtr9ywmy5gnt9q282ms3c77a6264m7s4zzh3u6"
+   },
+   {
+    "network": "mainnet",
+    "name": "a",
+    "ownerType": 4,
+    "owner": "5555555555555555555555555555555555555555555555555555555555555555",
+    "state": "01022017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f0104205555555555555555555555555555555555555555555555555555555555555555206100000000000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pr3yhak6zueaa9nsx7385vxqmgnv92x2v3uev00a6w98wzkxhw8q2e69km0vg"
+   },
+   {
+    "network": "mainnet",
+    "name": "a-b9",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "0102207683b6c8103a0bd8dc8124b5b74a3b52fbca488567ec91f9582439ad228ba9c1010020111111111111111111111111111111111111111111111111111111111111111120612d623900000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pp79vz6trylllt0edcq8cvhd6xlhevheyels9hmrd642unvcn4ttsed3uf945"
+   },
+   {
+    "network": "mainnet",
+    "name": "a-b9",
+    "ownerType": 3,
+    "owner": "2222222222222222222222222222222222222222222222222222222222222222",
+    "state": "0102207683b6c8103a0bd8dc8124b5b74a3b52fbca488567ec91f9582439ad228ba9c1010320222222222222222222222222222222222222222222222222222222222222222220612d623900000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pp4ts9yw825k3ecflgucgl9frs2gxf5v8ljz7w5kdqew3a2n67tqu49v78lep"
+   },
+   {
+    "network": "mainnet",
+    "name": "a-b9",
+    "ownerType": 134,
+    "owner": "3333333333333333333333333333333333333333333333333333333333333333",
+    "state": "0102207683b6c8103a0bd8dc8124b5b74a3b52fbca488567ec91f9582439ad228ba9c1018620333333333333333333333333333333333333333333333333333333333333333320612d623900000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pzu2vrzlevhqnl38l6vvw9n2erg3g04xmudk6g4juxc8fv8x3wcpyyxxwq9n7"
+   },
+   {
+    "network": "mainnet",
+    "name": "a-b9",
+    "ownerType": 133,
+    "owner": "4444444444444444444444444444444444444444444444444444444444444444",
+    "state": "0102207683b6c8103a0bd8dc8124b5b74a3b52fbca488567ec91f9582439ad228ba9c1018520444444444444444444444444444444444444444444444444444444444444444420612d623900000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:ppnsyzlltragpv3rd2vear65a2swkyavk3p8drahf2urcy7jenu6xz6c3ydc3"
+   },
+   {
+    "network": "mainnet",
+    "name": "a-b9",
+    "ownerType": 4,
+    "owner": "5555555555555555555555555555555555555555555555555555555555555555",
+    "state": "0102207683b6c8103a0bd8dc8124b5b74a3b52fbca488567ec91f9582439ad228ba9c1010420555555555555555555555555555555555555555555555555555555555555555520612d623900000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pzfhffcgwu74djmg5y42wc2gaj5jcettltkpsvenryuxh2v8jm3s7ufwtfrjl"
+   },
+   {
+    "network": "mainnet",
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "0102205fbae4177f269dfcd4f9e45297043d9ef542a772bcd058f6251fa7effd8df86e0100201111111111111111111111111111111111111111111111111111111111111111207a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a",
+    "address": "kaspa:pryrgkfql83axstlwra56ut2gda7lp06dm34jmn6j4r7vztar2vk6zj2jqrj3"
+   },
+   {
+    "network": "mainnet",
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "ownerType": 3,
+    "owner": "2222222222222222222222222222222222222222222222222222222222222222",
+    "state": "0102205fbae4177f269dfcd4f9e45297043d9ef542a772bcd058f6251fa7effd8df86e0103202222222222222222222222222222222222222222222222222222222222222222207a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a",
+    "address": "kaspa:pr5qx8ynp2rssw8wfu9ednfqncwrnc8zdpjhvtrwp75atqtkk2a7zl43240vq"
+   },
+   {
+    "network": "mainnet",
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "ownerType": 134,
+    "owner": "3333333333333333333333333333333333333333333333333333333333333333",
+    "state": "0102205fbae4177f269dfcd4f9e45297043d9ef542a772bcd058f6251fa7effd8df86e0186203333333333333333333333333333333333333333333333333333333333333333207a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a",
+    "address": "kaspa:pzzdy4qhxhctqs8hh5h260m74tly4xv4a5d6c3nwv3ntfxnmqff8xk74t2fqc"
+   },
+   {
+    "network": "mainnet",
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "ownerType": 133,
+    "owner": "4444444444444444444444444444444444444444444444444444444444444444",
+    "state": "0102205fbae4177f269dfcd4f9e45297043d9ef542a772bcd058f6251fa7effd8df86e0185204444444444444444444444444444444444444444444444444444444444444444207a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a",
+    "address": "kaspa:ppfsh6wwy3lp9vnzlr2tmx4qzpcl496jxmw2mcjp6w0ehfaq469n23s5t6k04"
+   },
+   {
+    "network": "mainnet",
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "ownerType": 4,
+    "owner": "5555555555555555555555555555555555555555555555555555555555555555",
+    "state": "0102205fbae4177f269dfcd4f9e45297043d9ef542a772bcd058f6251fa7effd8df86e0104205555555555555555555555555555555555555555555555555555555555555555207a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a",
+    "address": "kaspa:pprsvzavm9ghewqhuhrvv6jgwt6cd4r3k0pxufpxr8jptd39d42xk5a7q8hjv"
+   },
+   {
+    "network": "mainnet",
+    "name": "kaspa",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280100201111111111111111111111111111111111111111111111111111111111111111206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:pp5z0hckcdq2an4f8kduqrv9wywvfauusujdl4ypnmrv5pzr9t6ru5fhtfxrz"
+   },
+   {
+    "network": "testnet-10",
+    "name": "kaspa",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280100201111111111111111111111111111111111111111111111111111111111111111206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pp5z0hckcdq2an4f8kduqrv9wywvfauusujdl4ypnmrv5pzr9t6ru403sxcjx"
+   },
+   {
+    "network": "simnet",
+    "name": "kaspa",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280100201111111111111111111111111111111111111111111111111111111111111111206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspasim:pp5z0hckcdq2an4f8kduqrv9wywvfauusujdl4ypnmrv5pzr9t6rume224ca3"
+   },
+   {
+    "network": "devnet",
+    "name": "kaspa",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280100201111111111111111111111111111111111111111111111111111111111111111206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspadev:pp5z0hckcdq2an4f8kduqrv9wywvfauusujdl4ypnmrv5pzr9t6ruchjdmmkw"
+   }
+  ],
+  "card": [
+   {
+    "network": "mainnet",
+    "name": "kaspa",
+    "blob": "a762c3a96bc3bc6ec3af63c3b664c3a96375726c7168747470733a2f2f6b617370612e6f72676661766174617279015a646174613a696d6167652f7376672b786d6c3b6261736536342c51554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a44677072696d617279f56a636f6d2e676974687562686b617370616e65746b636f6d2e67697468756278606b6465736372697074696f6e704b617370612773206f776e206e616d65",
+    "recordsHash": "7949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db",
+    "spenderType": 0,
+    "spender": "1111111111111111111111111111111111111111111111111111111111111111",
+    "redeemScript": "20aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c28207949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db757504646f746b88201111111111111111111111111111111111111111111111111111111111111111ac",
+    "address": "kaspa:pq4gczymumcprsyvd4stguvkrmfvyvhdryxcs4gun7y5kk2sxw2tvrgf7esuv"
+   },
+   {
+    "network": "mainnet",
+    "name": "kaspa",
+    "blob": "a762c3a96bc3bc6ec3af63c3b664c3a96375726c7168747470733a2f2f6b617370612e6f72676661766174617279015a646174613a696d6167652f7376672b786d6c3b6261736536342c51554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a44677072696d617279f56a636f6d2e676974687562686b617370616e65746b636f6d2e67697468756278606b6465736372697074696f6e704b617370612773206f776e206e616d65",
+    "recordsHash": "7949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db",
+    "spenderType": 134,
+    "spender": "3333333333333333333333333333333333333333333333333333333333333333",
+    "redeemScript": "20aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c28207949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db757504646f746b8821023333333333333333333333333333333333333333333333333333333333333333ab",
+    "address": "kaspa:pzzt5q20urpgfd6f4uhn22my9ka7c4vvqcpa3vrrzkaz57gtuqvkgcyqzpneg"
+   },
+   {
+    "network": "mainnet",
+    "name": "kaspa",
+    "blob": "a762c3a96bc3bc6ec3af63c3b664c3a96375726c7168747470733a2f2f6b617370612e6f72676661766174617279015a646174613a696d6167652f7376672b786d6c3b6261736536342c51554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a44677072696d617279f56a636f6d2e676974687562686b617370616e65746b636f6d2e67697468756278606b6465736372697074696f6e704b617370612773206f776e206e616d65",
+    "recordsHash": "7949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db",
+    "spenderType": 133,
+    "spender": "c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
+    "redeemScript": "20aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c28207949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db757504646f746b882103c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5ab",
+    "address": "kaspa:pqgf07n9qdvp62klrpw8u6zxsw53efjtj4pwep0tf6cjh947gdvcsx4qsvc27"
+   },
+   {
+    "network": "mainnet",
+    "name": "a",
+    "blob": "a0",
+    "recordsHash": "1f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02",
+    "spenderType": 0,
+    "spender": "1111111111111111111111111111111111111111111111111111111111111111",
+    "redeemScript": "2017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f201f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02757504646f746b88201111111111111111111111111111111111111111111111111111111111111111ac",
+    "address": "kaspa:pr4nh8wnf4k85488h6ptscjvqa45skgnquwp5yz82kje4rzzcv76ugpy5jkrd"
+   },
+   {
+    "network": "mainnet",
+    "name": "a",
+    "blob": "a0",
+    "recordsHash": "1f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02",
+    "spenderType": 134,
+    "spender": "3333333333333333333333333333333333333333333333333333333333333333",
+    "redeemScript": "2017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f201f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02757504646f746b8821023333333333333333333333333333333333333333333333333333333333333333ab",
+    "address": "kaspa:pqx8xp0pllur7kjvee5uj0cl5g9w2htd4xrrejzuk7dm8z869lgps2vquxr04"
+   },
+   {
+    "network": "mainnet",
+    "name": "a",
+    "blob": "a0",
+    "recordsHash": "1f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02",
+    "spenderType": 133,
+    "spender": "c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
+    "redeemScript": "2017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f201f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02757504646f746b882103c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5ab",
+    "address": "kaspa:pz505tjp7awl5jdfr5x8r7v7eaj8m3jt3l3syjsxe0h8vj8x796nv3hfazh4n"
+   }
+  ]
+ },
+ "testnet-10": {
+  "registryCovenantId": "4a4ca31ea28508021b899610bbc8fbcec4ebd6e6bf4f9c37dca0339fbda1442c",
+  "deedTemplateHash": "aaf7b98861ad13f70064e79521c86dccc388b96bd6ce68bf11be76129f518e69",
+  "deedAddress": [
+   {
+    "network": "testnet-10",
+    "name": "kaspa",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280100201111111111111111111111111111111111111111111111111111111111111111206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:ppqgzx7u7wyqzs8trg39xee4fxmstuam9ryj32xahn7jwdskkrru7cgh65fdv"
+   },
+   {
+    "network": "testnet-10",
+    "name": "kaspa",
+    "ownerType": 3,
+    "owner": "2222222222222222222222222222222222222222222222222222222222222222",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280103202222222222222222222222222222222222222222222222222222222222222222206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pqugmpulvanrnevh3qdklmeaqlw8ctvuzzy4r7kzkf5s5sam86fmywe8pp9vz"
+   },
+   {
+    "network": "testnet-10",
+    "name": "kaspa",
+    "ownerType": 134,
+    "owner": "3333333333333333333333333333333333333333333333333333333333333333",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280186203333333333333333333333333333333333333333333333333333333333333333206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pzra5pj707anqxtsntwngjum2efu2yfc7rj2u5d458v0u9quxcjljym6nz7fz"
+   },
+   {
+    "network": "testnet-10",
+    "name": "kaspa",
+    "ownerType": 133,
+    "owner": "4444444444444444444444444444444444444444444444444444444444444444",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280185204444444444444444444444444444444444444444444444444444444444444444206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pracz66u93d7pegzz3jyup58kcxr707535zr0p8hl5dv0yq629cwsz3fcveln"
+   },
+   {
+    "network": "testnet-10",
+    "name": "kaspa",
+    "ownerType": 4,
+    "owner": "5555555555555555555555555555555555555555555555555555555555555555",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280104205555555555555555555555555555555555555555555555555555555555555555206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:prgc8ewelvq5ntucdh3a4yvttaqyvra4resfjfcf84mrq66qe8yv554sx776t"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "01022017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f0100201111111111111111111111111111111111111111111111111111111111111111206100000000000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pzt4xkhgjeud65jzk0u9sqgz5np24zjzvhfw00fzaz0r0wqlz7gxghk6yjtp7"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a",
+    "ownerType": 3,
+    "owner": "2222222222222222222222222222222222222222222222222222222222222222",
+    "state": "01022017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f0103202222222222222222222222222222222222222222222222222222222222222222206100000000000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pzree7gz729u7psta5nwzrlqucg79vl7zksm7vz4l5xj732hhx7k5uyvv2cn2"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a",
+    "ownerType": 134,
+    "owner": "3333333333333333333333333333333333333333333333333333333333333333",
+    "state": "01022017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f0186203333333333333333333333333333333333333333333333333333333333333333206100000000000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pptpufhl00a5mcx25wa05hhzjsv34mhh3f897t7ze2csdtakfz96x0eumxgyh"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a",
+    "ownerType": 133,
+    "owner": "4444444444444444444444444444444444444444444444444444444444444444",
+    "state": "01022017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f0185204444444444444444444444444444444444444444444444444444444444444444206100000000000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:prj03lztkm3sdqmmjnyh0nm85lccc9tydlgp0g8x7ttxp9vzttankmnkvunxm"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a",
+    "ownerType": 4,
+    "owner": "5555555555555555555555555555555555555555555555555555555555555555",
+    "state": "01022017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f0104205555555555555555555555555555555555555555555555555555555555555555206100000000000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pptkcewz9jf7ln2rdxjhlkpy93rgkr84w8s6np6g8lkpya8x3f5jgzgl9kkkk"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a-b9",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "0102207683b6c8103a0bd8dc8124b5b74a3b52fbca488567ec91f9582439ad228ba9c1010020111111111111111111111111111111111111111111111111111111111111111120612d623900000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pzgpfczmhnt7edl72h34satg7565shgp7dfk7hmhpgz7m8t4r6p9762mvzjw8"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a-b9",
+    "ownerType": 3,
+    "owner": "2222222222222222222222222222222222222222222222222222222222222222",
+    "state": "0102207683b6c8103a0bd8dc8124b5b74a3b52fbca488567ec91f9582439ad228ba9c1010320222222222222222222222222222222222222222222222222222222222222222220612d623900000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:ppavlrezt8znwj3j695ea5e94l9p6evaehcx34zgwd03krva7ug96w6dvy6qk"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a-b9",
+    "ownerType": 134,
+    "owner": "3333333333333333333333333333333333333333333333333333333333333333",
+    "state": "0102207683b6c8103a0bd8dc8124b5b74a3b52fbca488567ec91f9582439ad228ba9c1018620333333333333333333333333333333333333333333333333333333333333333320612d623900000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pqasvddjczf36j4vfy5fn4fmzmuvu8uldlc98zt5j463ppzprddh5yvmrtfkz"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a-b9",
+    "ownerType": 133,
+    "owner": "4444444444444444444444444444444444444444444444444444444444444444",
+    "state": "0102207683b6c8103a0bd8dc8124b5b74a3b52fbca488567ec91f9582439ad228ba9c1018520444444444444444444444444444444444444444444444444444444444444444420612d623900000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pqtygce4mmq52xkfup9scfefe6faslm7uyul9mtm2fjfyhkausmwupclvjkgk"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a-b9",
+    "ownerType": 4,
+    "owner": "5555555555555555555555555555555555555555555555555555555555555555",
+    "state": "0102207683b6c8103a0bd8dc8124b5b74a3b52fbca488567ec91f9582439ad228ba9c1010420555555555555555555555555555555555555555555555555555555555555555520612d623900000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:pzsz3wr5n45jcqu4ux264y0q78nd2qwvr0uclzz63yzjztj0d2ynyre8uhz6g"
+   },
+   {
+    "network": "testnet-10",
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "0102205fbae4177f269dfcd4f9e45297043d9ef542a772bcd058f6251fa7effd8df86e0100201111111111111111111111111111111111111111111111111111111111111111207a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a",
+    "address": "kaspatest:ppplr6q303fe5f6qs55rftaaedajh38jjul8vychrmcj2lh0x8decnw0ntlhy"
+   },
+   {
+    "network": "testnet-10",
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "ownerType": 3,
+    "owner": "2222222222222222222222222222222222222222222222222222222222222222",
+    "state": "0102205fbae4177f269dfcd4f9e45297043d9ef542a772bcd058f6251fa7effd8df86e0103202222222222222222222222222222222222222222222222222222222222222222207a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a",
+    "address": "kaspatest:pp4qmxkf7l3x40esx4n0j8j9y556uv5muvtqqvxe6kt6pxn95czqc8tdra5xm"
+   },
+   {
+    "network": "testnet-10",
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "ownerType": 134,
+    "owner": "3333333333333333333333333333333333333333333333333333333333333333",
+    "state": "0102205fbae4177f269dfcd4f9e45297043d9ef542a772bcd058f6251fa7effd8df86e0186203333333333333333333333333333333333333333333333333333333333333333207a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a",
+    "address": "kaspatest:pzdardsvtef0rjcqlqeuvmnr88d8w7dj6cmz3mtcqytzjftrks30xz0l5atyr"
+   },
+   {
+    "network": "testnet-10",
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "ownerType": 133,
+    "owner": "4444444444444444444444444444444444444444444444444444444444444444",
+    "state": "0102205fbae4177f269dfcd4f9e45297043d9ef542a772bcd058f6251fa7effd8df86e0185204444444444444444444444444444444444444444444444444444444444444444207a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a",
+    "address": "kaspatest:ppfgex6jjepl4pa062vmem4l2srvfp8v7249t3k6qrlq562uwpdqy49egw538"
+   },
+   {
+    "network": "testnet-10",
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "ownerType": 4,
+    "owner": "5555555555555555555555555555555555555555555555555555555555555555",
+    "state": "0102205fbae4177f269dfcd4f9e45297043d9ef542a772bcd058f6251fa7effd8df86e0104205555555555555555555555555555555555555555555555555555555555555555207a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a",
+    "address": "kaspatest:ppm4qvgp3c4h0ma4xkzryfep2xw7u349rxfuwzhpncfu4nwstncjjck6jeuga"
+   },
+   {
+    "network": "mainnet",
+    "name": "kaspa",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280100201111111111111111111111111111111111111111111111111111111111111111206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspa:ppqgzx7u7wyqzs8trg39xee4fxmstuam9ryj32xahn7jwdskkrru7ew3pmhug"
+   },
+   {
+    "network": "testnet-10",
+    "name": "kaspa",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280100201111111111111111111111111111111111111111111111111111111111111111206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspatest:ppqgzx7u7wyqzs8trg39xee4fxmstuam9ryj32xahn7jwdskkrru7cgh65fdv"
+   },
+   {
+    "network": "simnet",
+    "name": "kaspa",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280100201111111111111111111111111111111111111111111111111111111111111111206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspasim:ppqgzx7u7wyqzs8trg39xee4fxmstuam9ryj32xahn7jwdskkrru7k7vq8fzm"
+   },
+   {
+    "network": "devnet",
+    "name": "kaspa",
+    "ownerType": 0,
+    "owner": "1111111111111111111111111111111111111111111111111111111111111111",
+    "state": "010220aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c280100201111111111111111111111111111111111111111111111111111111111111111206b61737061000000000000000000000000000000000000000000000000000000",
+    "address": "kaspadev:ppqgzx7u7wyqzs8trg39xee4fxmstuam9ryj32xahn7jwdskkrru74s58f2fy"
+   }
+  ],
+  "card": [
+   {
+    "network": "testnet-10",
+    "name": "kaspa",
+    "blob": "a762c3a96bc3bc6ec3af63c3b664c3a96375726c7168747470733a2f2f6b617370612e6f72676661766174617279015a646174613a696d6167652f7376672b786d6c3b6261736536342c51554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a44677072696d617279f56a636f6d2e676974687562686b617370616e65746b636f6d2e67697468756278606b6465736372697074696f6e704b617370612773206f776e206e616d65",
+    "recordsHash": "7949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db",
+    "spenderType": 0,
+    "spender": "1111111111111111111111111111111111111111111111111111111111111111",
+    "redeemScript": "20aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c28207949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db757504646f746b88201111111111111111111111111111111111111111111111111111111111111111ac",
+    "address": "kaspatest:pq4gczymumcprsyvd4stguvkrmfvyvhdryxcs4gun7y5kk2sxw2tvzw09kwdg"
+   },
+   {
+    "network": "testnet-10",
+    "name": "kaspa",
+    "blob": "a762c3a96bc3bc6ec3af63c3b664c3a96375726c7168747470733a2f2f6b617370612e6f72676661766174617279015a646174613a696d6167652f7376672b786d6c3b6261736536342c51554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a44677072696d617279f56a636f6d2e676974687562686b617370616e65746b636f6d2e67697468756278606b6465736372697074696f6e704b617370612773206f776e206e616d65",
+    "recordsHash": "7949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db",
+    "spenderType": 134,
+    "spender": "3333333333333333333333333333333333333333333333333333333333333333",
+    "redeemScript": "20aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c28207949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db757504646f746b8821023333333333333333333333333333333333333333333333333333333333333333ab",
+    "address": "kaspatest:pzzt5q20urpgfd6f4uhn22my9ka7c4vvqcpa3vrrzkaz57gtuqvkgezxewdgv"
+   },
+   {
+    "network": "testnet-10",
+    "name": "kaspa",
+    "blob": "a762c3a96bc3bc6ec3af63c3b664c3a96375726c7168747470733a2f2f6b617370612e6f72676661766174617279015a646174613a696d6167652f7376672b786d6c3b6261736536342c51554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a4451554a44677072696d617279f56a636f6d2e676974687562686b617370616e65746b636f6d2e67697468756278606b6465736372697074696f6e704b617370612773206f776e206e616d65",
+    "recordsHash": "7949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db",
+    "spenderType": 133,
+    "spender": "c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
+    "redeemScript": "20aede8be919b35bab48724b885259f3cf59c3ffabefbb48a9c1d581afd61d7c28207949dd4a4558bfac0348594bbb7ab15797ab11361e630454df974cb0a353c1db757504646f746b882103c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5ab",
+    "address": "kaspatest:pqgf07n9qdvp62klrpw8u6zxsw53efjtj4pwep0tf6cjh947gdvcs8nxtrxm6"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a",
+    "blob": "a0",
+    "recordsHash": "1f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02",
+    "spenderType": 0,
+    "spender": "1111111111111111111111111111111111111111111111111111111111111111",
+    "redeemScript": "2017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f201f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02757504646f746b88201111111111111111111111111111111111111111111111111111111111111111ac",
+    "address": "kaspatest:pr4nh8wnf4k85488h6ptscjvqa45skgnquwp5yz82kje4rzzcv76uf8z0agjf"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a",
+    "blob": "a0",
+    "recordsHash": "1f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02",
+    "spenderType": 134,
+    "spender": "3333333333333333333333333333333333333333333333333333333333333333",
+    "redeemScript": "2017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f201f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02757504646f746b8821023333333333333333333333333333333333333333333333333333333333333333ab",
+    "address": "kaspatest:pqx8xp0pllur7kjvee5uj0cl5g9w2htd4xrrejzuk7dm8z869lgpst2x8fa73"
+   },
+   {
+    "network": "testnet-10",
+    "name": "a",
+    "blob": "a0",
+    "recordsHash": "1f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02",
+    "spenderType": 133,
+    "spender": "c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
+    "redeemScript": "2017762fddd969a453925d65717ac3eea21320b66b54342fde15128d6caf21215f201f94cbf313b3ce23257a7251ea0fc95a24556ea611e4f8f475e549971baedb02757504646f746b882103c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5ab",
+    "address": "kaspatest:pz505tjp7awl5jdfr5x8r7v7eaj8m3jt3l3syjsxe0h8vj8x796nvs30xdfyh"
+   }
+  ]
+ }
+}

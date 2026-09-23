@@ -81,6 +81,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  blake3_dart:
+    dependency: "direct main"
+    description:
+      name: blake3_dart
+      sha256: "6ce35907aa5872c9a02fdc92da3e109877976679d2745ef27ae866f75d382572"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   boolean_selector:
     dependency: transitive
     description:

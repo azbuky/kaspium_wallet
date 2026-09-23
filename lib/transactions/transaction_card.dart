@@ -48,6 +48,11 @@ class TransactionCard extends ConsumerWidget {
     final isContact = contact != null;
     final isThisWallet = addressNotifier.containsAddress(address);
     final isSendType = item.type == .send;
+    // A contact the user named wins over the name the registry knows, and
+    // this wallet's own addresses are not labelled with its own names
+    final dotkName = isContact || isThisWallet
+        ? null
+        : ref.watch(dotkNameForAddressProvider(address));
 
     final txDate = DateTime.fromMillisecondsSinceEpoch(tx.apiTx.blockTime);
 
@@ -177,6 +182,15 @@ class TransactionCard extends ConsumerWidget {
                               Text(
                                 contact.name,
                                 style: styles.textStyleTransactionAmountSmall,
+                              ),
+                            ] else if (dotkName != null) ...[
+                              Flexible(
+                                child: Text(
+                                  dotkName,
+                                  style: styles.textStyleTransactionAmountSmall,
+                                  maxLines: 1,
+                                  overflow: .ellipsis,
+                                ),
                               ),
                             ],
                           ],

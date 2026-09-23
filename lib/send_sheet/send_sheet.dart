@@ -11,6 +11,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../contacts/contact.dart';
+import '../dotk/dotk_lookup_text.dart';
+import '../dotk/dotk_name_resolver.dart';
+import '../dotk/dotk_names.dart';
+import '../dotk/dotk_proven_name.dart';
+import '../dotk/dotk_types.dart';
 import '../kaspa/kaspa.dart';
 import '../l10n/l10n.dart';
 import '../settings_advanced/compound_utxos_dialog.dart';
@@ -59,6 +64,8 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   final _noteFocusNode = FocusNode();
   final _noteController = TextEditingController();
 
+  late final DotkNameResolver _nameResolver;
+
   // States
   AddressStyle _sendAddressStyle = .TEXT60;
   String? _amountHint;
@@ -77,6 +84,9 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   // Set to true when a contact is being entered
   bool _isContact = false;
 
+  // Set while a send waits for the name to resolve
+  bool _resolvingName = false;
+
   // Buttons States (Used because we hide the buttons under certain conditions)
   bool _contactButtonVisible = true;
   bool _pasteButtonVisible = true;
@@ -92,6 +102,13 @@ class _SendSheetState extends ConsumerState<SendSheet> {
   @override
   void initState() {
     super.initState();
+
+    _nameResolver = DotkNameResolver(
+      service: () => ref.read(dotkServiceProvider),
+      prover: () => ref.read(dotkProverProvider),
+      onLookup: _onNameLookup,
+      log: ref.read(loggerProvider),
+    );
 
     // Do an UTXO refresh for all active addresses
     final addresses = ref.read(activeAddressesProvider);
@@ -175,6 +192,10 @@ class _SendSheetState extends ConsumerState<SendSheet> {
           _addressController.text = '';
           setState(() => _contactButtonVisible = true);
         }
+        // A name left in the field should not wait out the debounce
+        if (DotkName.isName(_addressController.text)) {
+          _nameResolver.resolve(_addressController.text);
+        }
       }
     });
     _noteFocusNode.addListener(() {
@@ -192,6 +213,8 @@ class _SendSheetState extends ConsumerState<SendSheet> {
 
   @override
   void dispose() {
+    _nameResolver.dispose();
+
     _amountController.dispose();
     _addressController.dispose();
     _noteController.dispose();
@@ -203,10 +226,38 @@ class _SendSheetState extends ConsumerState<SendSheet> {
     super.dispose();
   }
 
+  void _onNameLookup(String name, DotkLookup? lookup) {
+    // The field may have moved on while the lookup was in flight
+    if (!mounted || DotkName.tryNormalize(_addressController.text) != name) {
+      return;
+    }
+    setState(() {
+      _addressValidationText = dotkLookupText(lookup, l10nOf(context));
+      _sendAddressStyle = lookup?.resolution == null ? .TEXT60 : .PRIMARY;
+    });
+  }
+
+  void _putNameInAddressField(String text) {
+    _addressController.text = text.trim();
+    _addressFocusNode.unfocus();
+    setState(() {
+      _isContact = false;
+      _contacts = [];
+      _addressValidationText = '';
+      _sendAddressStyle = .TEXT60;
+      _pasteButtonVisible = false;
+      _contactButtonVisible = false;
+      _addressValidAndUnfocused = false;
+    });
+    _nameResolver.resolve(text);
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(themeProvider);
     final l10n = l10nOf(context);
+    final nameProven =
+        _nameResolver.resolvedFor(_addressController.text) != null;
     final styles = ref.watch(stylesProvider);
 
     Future<void> scanQrCode() async {
@@ -222,6 +273,11 @@ class _SendSheetState extends ConsumerState<SendSheet> {
       final uri = KaspaUri.tryParse(qrData, prefix: prefix);
       final address = uri?.address;
       if (address == null) {
+        // A `.k` name is not a URI, but the field takes one
+        if (DotkName.isName(qrData)) {
+          _putNameInAddressField(qrData);
+          return;
+        }
         UIUtil.showSnackbar(l10n.qrInvalidAddress);
         return;
       }
@@ -265,15 +321,42 @@ class _SendSheetState extends ConsumerState<SendSheet> {
       setState(() {});
     }
 
-    void sendAction() {
+    Future<void> sendAction() async {
       final validRequest = _validateRequest();
       if (!validRequest) {
         return;
       }
       final addressText = _addressController.text.trim();
       String destination;
+      String? label;
 
-      if (addressText.startsWith("@")) {
+      if (DotkName.isName(addressText)) {
+        if (_resolvingName) {
+          return;
+        }
+        // The name is resolved again here: what was shown while typing is a
+        // display cache, never the destination
+        setState(() => _resolvingName = true);
+        final lookup = await _nameResolver.resolveForSend(
+          addressText,
+          current: () => _addressController.text,
+        );
+        if (!context.mounted) return;
+        setState(() => _resolvingName = false);
+        if (lookup == null || !_validateRequest()) {
+          return;
+        }
+
+        final resolution = lookup.resolution;
+        if (resolution == null) {
+          setState(() {
+            _addressValidationText = dotkLookupError(lookup.status, l10n);
+          });
+          return;
+        }
+        destination = resolution.address;
+        label = resolution.display;
+      } else if (addressText.startsWith("@")) {
         final contacts = ref.read(contactsProvider);
         // Need to make sure its a valid contact
         final contact = contacts.getContactWithName(addressText);
@@ -313,7 +396,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
         message: note,
       );
 
-      UIUtil.showSendFlow(context, ref: ref, uri: uri);
+      UIUtil.showSendFlow(context, ref: ref, uri: uri, toLabel: label);
     }
 
     final viewInsets = MediaQuery.viewInsetsOf(context);
@@ -453,11 +536,21 @@ class _SendSheetState extends ConsumerState<SendSheet> {
                             // ******* Enter Address Error Container ******* //
                             Container(
                               alignment: const AlignmentDirectional(0, 0),
-                              margin: const .only(top: 3),
-                              child: Text(
-                                _addressValidationText,
-                                style: styles.textStyleParagraphThinPrimary,
-                              ),
+                              // Kept inside the field's width: a resolved
+                              // name wraps to a second line
+                              margin: const .only(top: 3, left: 38, right: 38),
+                              child: nameProven
+                                  ? DotkProvenName(
+                                      _addressValidationText,
+                                      style:
+                                          styles.textStyleParagraphThinPrimary,
+                                    )
+                                  : Text(
+                                      _addressValidationText,
+                                      textAlign: .center,
+                                      style:
+                                          styles.textStyleParagraphThinPrimary,
+                                    ),
                             ),
                             // ******* Enter Address Error Container End ******* //
                             const SizedBox(height: 3),
@@ -483,7 +576,11 @@ class _SendSheetState extends ConsumerState<SendSheet> {
           ),
           ActionButtonsWrapper(
             buttons: [
-              PrimaryButton(title: l10n.send, onPressed: sendAction),
+              PrimaryButton(
+                title: l10n.send,
+                disabled: _resolvingName,
+                onPressed: sendAction,
+              ),
               if (widget.uri == null)
                 PrimaryOutlineButton(
                   title: l10n.scanQrCode,
@@ -588,6 +685,8 @@ class _SendSheetState extends ConsumerState<SendSheet> {
     // Validate address
     final addressText = _addressController.text.trim();
     bool isContact = addressText.startsWith('@');
+    // A well-formed name is checked by resolving it, not by parsing it
+    final isName = DotkName.isName(addressText);
     if (addressText.isEmpty) {
       setState(() {
         _addressValidationText = l10n.addressMising;
@@ -597,14 +696,14 @@ class _SendSheetState extends ConsumerState<SendSheet> {
     }
     final prefix = ref.read(addressPrefixProvider);
     final address = Address.tryParse(addressText, expectedPrefix: prefix);
-    if (!isContact && address == null) {
+    if (!isContact && !isName && address == null) {
       setState(() {
         _addressValidationText = l10n.invalidAddress;
         _pasteButtonVisible = true;
       });
       return false;
     }
-    if (!isContact) {
+    if (!isContact && !isName) {
       setState(() {
         _addressValidationText = '';
         _pasteButtonVisible = false;
@@ -785,6 +884,10 @@ class _SendSheetState extends ConsumerState<SendSheet> {
               if (data == null || data.text == null) {
                 return;
               }
+              if (DotkName.isName(data.text!)) {
+                _putNameInAddressField(data.text!);
+                return;
+              }
               final prefix = ref.read(addressPrefixProvider);
               final address = Address.tryParse(
                 data.text!,
@@ -833,6 +936,9 @@ class _SendSheetState extends ConsumerState<SendSheet> {
                 ? styles.textStyleAddressText90
                 : styles.textStyleAddressPrimary,
         onChanged: (text) {
+          // A `.k` name resolves while the user types, anything else is left
+          // to the checks below
+          _nameResolver.textChanged(text);
           if (text.isNotEmpty) {
             setState(() {
               _contactButtonVisible = false;
@@ -888,6 +994,12 @@ class _SendSheetState extends ConsumerState<SendSheet> {
                 _sendAddressStyle = .PRIMARY;
               });
             }
+          }
+        },
+        onSubmitted: (text) {
+          // Don't wait out the debounce once the user is done typing
+          if (DotkName.isName(text)) {
+            _nameResolver.resolve(text);
           }
         },
         overrideTextFieldWidget: hasUri

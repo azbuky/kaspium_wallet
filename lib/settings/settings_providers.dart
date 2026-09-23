@@ -10,6 +10,7 @@ import 'settings_repository.dart';
 import 'theme_setting_notifier.dart';
 
 export 'block_explorer/block_explorer_providers.dart';
+export 'dotk_settings/dotk_settings_providers.dart';
 export 'kaspa_api_settings/kaspa_api_settings_providers.dart';
 export 'kasplex_settings/kasplex_settings_providers.dart';
 export 'node_settings/node_settings_providers.dart';

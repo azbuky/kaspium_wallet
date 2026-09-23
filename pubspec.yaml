@@ -52,6 +52,7 @@ dependencies:
   collection: 1.19.1
   fixnum: 1.1.1
   pointycastle: 4.0.0
+  blake3_dart: 1.0.0
   flutter_portal: 1.1.4
   crypto: 3.0.7
   convert: 3.1.2

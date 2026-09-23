@@ -167,6 +167,22 @@
   "doContinue": "Continue",
   "donate": "Donate",
   "dontShowAgain": "Don't show again",
+  "dotkDisabledHint": "Please enable .k names in the network settings",
+  "dotkLookupFailed": "Could not resolve name",
+  "dotkNotRegistered": "Name not registered",
+  "dotkResolvedTo": "{name} resolves to {address}",
+  "@dotkResolvedTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "address": {
+        "type": "String"
+      }
+    }
+  },
+  "dotkResolving": "Resolving name…",
+  "dotkUnconfirmed": "Name could not be confirmed",
   "emailAction": "Email {email}",
   "@emailAction": {
     "placeholders": {

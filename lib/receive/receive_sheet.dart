@@ -125,15 +125,17 @@ class ReceiveSheet extends HookConsumerWidget {
             crossAxisAlignment: .start,
             children: [
               const SizedBox(width: 60, height: 60),
-              Column(
-                children: [
-                  const SheetHandle(),
-                  GestureDetector(
-                    onTap: selectAddress,
-                    onLongPress: copyAddress,
-                    child: AccountAddressWidget(address: receiveAddress),
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    const SheetHandle(),
+                    GestureDetector(
+                      onTap: selectAddress,
+                      onLongPress: copyAddress,
+                      child: AccountAddressWidget(address: receiveAddress),
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding: const .directional(top: 10, end: 10),

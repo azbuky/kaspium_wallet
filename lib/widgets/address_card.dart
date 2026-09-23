@@ -12,12 +12,18 @@ class AddressCard extends HookConsumerWidget {
   final AddressTextType type;
   final VoidCallback? onPressed;
 
+  /// Shown instead of the contact, address or `.k` name label.
+  final String? label;
+  final bool labelProven;
+
   const AddressCard({
     super.key,
     required this.address,
     this.showLabel = true,
     this.type = .PRIMARY,
     this.onPressed,
+    this.label,
+    this.labelProven = false,
   });
 
   @override
@@ -25,7 +31,11 @@ class AddressCard extends HookConsumerWidget {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
 
-    final label = useMemoized(() {
+    final dotkName = showLabel
+        ? ref.watch(dotkNameForAddressProvider(address.encoded))
+        : null;
+
+    final localLabel = useMemoized(() {
       if (!showLabel) return null;
 
       final contacts = ref.read(contactsProvider);
@@ -44,13 +54,18 @@ class AddressCard extends HookConsumerWidget {
       return contact?.name;
     }, [address, showLabel]);
 
+    // A contact or an address label the user set wins over the name the
+    // registry knows the address by
+    final shownLabel = label ?? localLabel ?? (showLabel ? dotkName : null);
+
     final horizontal = MediaQuery.widthOf(context) * 0.105;
 
     final content = Padding(
       padding: const .symmetric(horizontal: 25, vertical: 15),
       child: AddressThreeLineText(
         address: address.encoded,
-        label: label,
+        label: shownLabel,
+        labelProven: labelProven,
         type: type,
       ),
     );

@@ -119,12 +119,16 @@ abstract class UIUtil {
     BuildContext context, {
     required WidgetRef ref,
     required KaspaUri uri,
-  }) => _showTxFlow(context, ref: ref, uri: uri);
+    String? toLabel,
+  }) => _showTxFlow(context, ref: ref, uri: uri, toLabel: toLabel);
 
+  /// [toLabel] is a `.k` name this wallet resolved to [uri]'s address. A label
+  /// a scanned uri carries is never shown on the confirm sheet.
   static Future<void> _showTxFlow(
     BuildContext context, {
     required WidgetRef ref,
     required KaspaUri? uri,
+    String? toLabel,
   }) async {
     final theme = ref.read(themeProvider);
     final l10n = l10nOf(context);
@@ -192,7 +196,7 @@ abstract class UIUtil {
       Sheets.showAppHeightNineSheet(
         context: context,
         theme: theme,
-        widget: SendConfirmSheet(sendTx: sendTx, rbf: rbf),
+        widget: SendConfirmSheet(sendTx: sendTx, rbf: rbf, toLabel: toLabel),
       );
     } catch (e) {
       showSnackbar(e.toString());
